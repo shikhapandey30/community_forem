@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employment_detail_id: 1
+  designation: MyString
+  start_date: 2015-10-08
+  end_date: 2015-10-08
+  current_company: false
+  job_profile: MyString
+
+two:
+  employment_detail_id: 1
+  designation: MyString
+  start_date: 2015-10-08
+  end_date: 2015-10-08
+  current_company: false
+  job_profile: MyString

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Education Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Specialization</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @education_histories.each do |education_history| %>
+      <tr>
+        <td><%= education_history.user_id %></td>
+        <td><%= education_history.specialization_id %></td>
+        <td><%= link_to 'Show', education_history %></td>
+        <td><%= link_to 'Edit', edit_education_history_path(education_history) %></td>
+        <td><%= link_to 'Destroy', education_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Education history', new_education_history_path %>

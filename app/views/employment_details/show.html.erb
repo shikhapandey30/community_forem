@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @employment_detail.user_id %>
+</p>
+
+<p>
+  <strong>Total experience:</strong>
+  <%= @employment_detail.total_experience %>
+</p>
+
+<%= link_to 'Edit', edit_employment_detail_path(@employment_detail) %> |
+<%= link_to 'Back', employment_details_path %>

@@ -1,0 +1,37 @@
+<%=  nested_form_for(@education_history) do |f| %>
+  <% if @education_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@education_history.errors.count, "error") %> prohibited this education_history from being saved:</h2>
+
+      <ul>
+      <% @education_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.hidden_field :user_id,:value=>current_user.id %>
+  </div>
+<h1>Enter Courses</h1>
+<%= f.fields_for :courses do |course| %>
+<%= course.label :name %><br/>
+ <%= course.select(:name, Course.all.where(:education_history_id=>nil).collect {|u| [u.name]}, :prompt => 'Select')  %>
+<%= course.link_to_remove "Remove this course" %>
+<% end %>
+<p><%= f.link_to_add "Add a Course", :courses %></p>
+</br></br>
+
+<h1>Add Institutes</h1>
+<%= f.fields_for :institutes do |institute| %>
+<%= institute.label :name %><br/>
+<%= institute.text_field :name %><br />
+<%= institute.label :passing_year %><br/>
+<%= institute.date_select :passing_year %><br />
+<%= institute.link_to_remove "Remove this institute" %>
+<% end %>
+<p><%= f.link_to_add "Add a institute", :institutes %></p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

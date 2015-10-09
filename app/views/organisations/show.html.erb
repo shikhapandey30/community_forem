@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Employment detail:</strong>
+  <%= @organisation.employment_detail_id %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @organisation.designation %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @organisation.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @organisation.end_date %>
+</p>
+
+<p>
+  <strong>Current company:</strong>
+  <%= @organisation.current_company %>
+</p>
+
+<p>
+  <strong>Job profile:</strong>
+  <%= @organisation.job_profile %>
+</p>
+
+<%= link_to 'Edit', edit_organisation_path(@organisation) %> |
+<%= link_to 'Back', organisations_path %>

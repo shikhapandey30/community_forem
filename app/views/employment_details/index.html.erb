@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Employment Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Total experience</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employment_details.each do |employment_detail| %>
+      <tr>
+        <td><%= employment_detail.user_id %></td>
+        <td><%= employment_detail.total_experience %></td>
+        <td><%= link_to 'Show', employment_detail %></td>
+        <td><%= link_to 'Edit', edit_employment_detail_path(employment_detail) %></td>
+        <td><%= link_to 'Destroy', employment_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employment detail', new_employment_detail_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  education_history_id: 1
+  name: MyString
+  passing_year: 2015-10-08
+
+two:
+  education_history_id: 1
+  name: MyString
+  passing_year: 2015-10-08

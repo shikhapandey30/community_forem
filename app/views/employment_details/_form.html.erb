@@ -1,0 +1,36 @@
+<%= nested_form_for(@employment_detail) do |f| %>
+  <% if @employment_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employment_detail.errors.count, "error") %> prohibited this employment_detail from being saved:</h2>
+
+      <ul>
+      <% @employment_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.hidden_field :user_id,:value=>current_user.id %>
+  </div>
+ 
+<%= f.fields_for :organisations do |organisation| %>
+ <strong>organisation Name:</strong> 
+ <%= organisation.text_field :name %><br />
+ <strong>Designation:</strong>
+ <%= organisation.text_field :designation %><br />
+ <strong>Start Date:</strong>
+ <%= organisation.date_select  :start_date %><br />
+ <strong>Worked till:</strong>
+ <%= organisation.date_select  :end_date %><br />
+ <strong>Job Profile:</strong><%= organisation.text_field :job_profile%><br />
+ <strong>Current Company:</strong></br>
+  <strong>Yes:</strong><%= organisation.radio_button :current_company,true%><br />
+  <strong>No:</strong><%= organisation.radio_button :current_company,false%><br />
+ <%= organisation.link_to_remove "Remove this organisation" %>
+<% end %>
+<p><%= f.link_to_add "Add a organisation", :organisations %></p>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
