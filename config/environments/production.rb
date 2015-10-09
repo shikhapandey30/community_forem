@@ -47,6 +47,21 @@ Rails.application.configure do
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :debug
+   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host:'community-forem.herokuapp.com'}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => 'community-forem.herokuapp.com',
+      :user_name => "evetest81@gmail.com",
+      :password => "sandeepchauhan",
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
