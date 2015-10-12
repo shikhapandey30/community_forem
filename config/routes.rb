@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :posts do
+    resources :likes, only: [:create]
+    resources :comments
+  end
   resources :employment_details
   resources :categories
   resources :education_histories
@@ -14,6 +19,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'users#index'
    get '/dashboard', to: 'users#dashboard'
+    get '/auth/:provider/callback', to: 'users#social_login'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  category_id: 1
+  topic: MyText
+  post_text: MyText
+  attachment: MyString
+  visibility: MyString
+  expiration_date: 2015-10-12 15:29:24
+
+two:
+  user_id: 1
+  category_id: 1
+  topic: MyText
+  post_text: MyText
+  attachment: MyString
+  visibility: MyString
+  expiration_date: 2015-10-12 15:29:24

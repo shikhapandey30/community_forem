@@ -28,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :image %><br>
-    <%= f.text_field :image %>
+  <%= f.file_field :image%>
   </div>
   <div class="field">
     <%= f.label :phone_no %><br>
@@ -48,20 +48,20 @@
   </div>
 
   <div class="field">
-    <%= f.label :street %><br>
-    <%= f.text_field :street %>
-  </div>
-  <div class="field">
-    <%= f.label :post_code %><br>
-    <%= f.text_field :post_code %>
+    <%= f.label :country %><br>
+    <%=f.text_field :country %>
   </div>
   <div class="field">
     <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
   <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :post_code %><br>
+    <%= f.text_field :post_code %>
   </div>
   <div class="actions">
     <%= f.submit %>
