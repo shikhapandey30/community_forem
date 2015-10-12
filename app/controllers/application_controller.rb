@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   	if resource.is_a?(AdminUser)
       admin_dashboard_path
     elsif resource.is_a?(User)
-        '/dashboard'
+      if resource.sign_in_count==1
+        new_profile_path
+      else
+        dashboard_path
+      end
     end
   end
   

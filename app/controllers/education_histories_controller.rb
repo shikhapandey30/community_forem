@@ -39,8 +39,12 @@ class EducationHistoriesController < InheritedResources::Base
   def update
     respond_to do |format|
       if @education_history.update(education_history_params)
-        format.html { redirect_to edit_employment_detail_path(current_user.employment_detail) , notice: 'EducationHistory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @education_history }
+        if current_user.employment_detail.present?
+          format.html { redirect_to edit_employment_detail_path(current_user.employment_detail) , notice: 'EducationHistory was successfully updated.' }
+        else
+           format.html { redirect_to new_employment_detail_path , notice: 'EducationHistory was successfully updated.' }
+        end
+         format.json { render :show, status: :ok, location: @education_history }
       else
         format.html { render :edit }
         format.json { render json: @education_history.errors, status: :unprocessable_entity }

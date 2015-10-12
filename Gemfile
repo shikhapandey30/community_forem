@@ -9,10 +9,12 @@ gem 'pg'
 gem 'activeadmin', github: 'activeadmin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'social-share-button'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'carrierwave'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'devise'
@@ -27,7 +29,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "rails-erd"
 gem 'pry'
 gem "nested_form"
-
+gem 'country_select', github: 'stefanpenner/country_select'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

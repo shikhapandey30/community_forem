@@ -40,7 +40,11 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully updated.' }
+        if current_user.education_history.present?
+          format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully updated.' }
+        else
+          format.html { redirect_to new_education_history_path, notice: 'Profile was successfully updated.' }
+        end
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit }

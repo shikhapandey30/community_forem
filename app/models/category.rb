@@ -1,3 +1,4 @@
 class Category < ActiveRecord::Base
-	belongs_to :user
+	has_many :categorable_categories,:dependent => :destroy, :as => :categorable
+
 end
