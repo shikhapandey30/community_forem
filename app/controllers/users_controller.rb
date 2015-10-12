@@ -20,7 +20,7 @@ class UsersController < ApplicationController
        if  user.profile.present?
         redirect_to dashboard_path
        else
-        redirect_to new_profile_pathCategory
+        redirect_to new_profile_path
        end
 
       else
