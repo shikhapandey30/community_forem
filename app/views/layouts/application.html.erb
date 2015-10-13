@@ -1,15 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CommunityForem</title>
+  <title>community forum</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "layouts/header"%>
-<%= flash[:notice] %> 
-<%= yield %>
+
+<div class="mainCon" id="Home">
+	<!--Start Header-->
+	<%= render "layouts/header"%>
+	<%= render 'layouts/alerts' %> 
+</div>
+
+<%if (user_signed_in? && params[:controller]!='home'&& params[:action]!='index') || params[:controller] =="users" %>
+  <!-- Start Middle Part -->
+  <div class="midCon textureBg">
+    <div class="responsive">
+     <!-- Start Dashboard Left -->
+      <% if params[:controller] =="home" || params[:controller] =="users"  %>
+      <%= render "layouts/left_panel"%>
+      <% end %>
+       <%= yield %>
+       <!-- Start Dashboard Right -->
+       <% if params[:controller] =="home" || params[:controller] =="friendships" || params[:action]=="dashboard" || params[:controller] =="messages"  || (params[:controller] =="races") || (params[:controller] =="blogs" && params[:action]=="index") || params[:controller] =="users" || params[:controller] =="rewards"%>
+
+       <%end %>
+         <div class="clr"></div>
+    </div>
+  </div>
+  <% else %>
+   <%= yield %>
+  <% end %>
+
 
 </body>
 </html>
+<script>
+$('.bannerSlider').bxSlider({
+  minSlides: 1,
+  maxSlides: 1,
+  moveSlides: 1,
+  auto:true,
+  pause: 5000,
+});
+$('.memberSlider').bxSlider({
+  minSlides: 1,
+  maxSlides: 6,
+  moveSlides: 1,
+  auto:true,
+  pause: 5000,
+  slideWidth:150,
+});
+$('.partnerSlider').bxSlider({
+  minSlides: 1,
+  maxSlides: 5,
+  moveSlides: 1,
+  auto:true,
+  pause: 5000,
+  slideWidth:160,
+  slideMargin: 15,
+});
+</script>
+
+<script>
+$(function() {
+
+  var tId;
+
+$("#flash-message").hide().slideDown();
+clearTimeout(tId);
+tId=setTimeout(function(){
+  $("#flash-message").hide();        
+}, 3000);
+    // setTimeout() function will be fired after page is loaded
+    // it will wait for 5 sec. and then will fire
+    // $("#successMessage").hide() function
+   
+});
+$(function() {
+ $('input, textarea').placeholder();
+});
+</script>
+
+<style type="text/css">
+  .dashboardElement {
+    padding: 0px 0 0px 0px !important;
+    width: 460px;
+}
+</style>

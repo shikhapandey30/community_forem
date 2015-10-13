@@ -1,51 +1,8 @@
-Welcome to dash board
-<%if current_user.profile.present?%>
-<p><%=link_to 'Edit Profile',edit_profile_path(current_user.profile)%></p>
-<%else%>
-<p><%=link_to 'Create Profile',new_profile_path%></p>
-<%end%>
+<div class="dashboardCen">
 
+<h1>Welcome To Dashboard</h1>
 
-<p><%=link_to 'Create Post',new_post_path%></p>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Category</th>
-      <th>Topic</th>
-      <th>Post text</th>
-      <th>Attachment</th>
-      <th>Visibility</th>
-      <th>Expiration date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.try(:first_name) %></td>
-        <td><%= post.category.name %></td>
-        <td><%= post.topic %></td>
-        <td><%= post.post_text %></td>
-        <td><%= post.attachment %></td>
-        <td><%= post.visibility %></td>
-        <td><%= post.expiration_date %></td>
-        <td><%= link_to 'Show', post %></td>
-         <td><%= link_to 'Comment','#',:id=>'comment'%></td>
-         <%= form_for([post, post.comments.build] , :remote=>true) do |f|%>
-            <td class='comment_form' style='display:none;'><%= f.text_field :body, :class=>"formInput" %><td>
-            <td><%= link_to "Like", post_likes_path(post), method: :post, remote: true%></td>
-            <%=f.hidden_field :user_id,:value=>current_user.id%>
-        <%end%>
-        <%if post.user_id==current_user.id%>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-         <%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>
 
 <script>
 $(window).load(function() {

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  
+  resources :forums do 
+    resources :topics
+    resources :comments
+  end
+  resources :forum_polls do
+    resources :votes, only: [:create]
+  end
   resources :comments
   resources :posts do
     resources :likes, only: [:create]
@@ -9,6 +17,7 @@ Rails.application.routes.draw do
   resources :education_histories
   resources :specializations
   resources :profiles
+  resources :topics
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :organisations
@@ -17,8 +26,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'users#index'
-   get '/dashboard', to: 'users#dashboard'
+   root 'users#dashboard'
     get '/auth/:provider/callback', to: 'users#social_login'
 
   # Example of regular route:

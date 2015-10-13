@@ -1,39 +1,71 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Category</th>
-      <th>Topic</th>
-      <th>Post text</th>
-      <th>Attachment</th>
-      <th>Visibility</th>
-      <th>Expiration date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="midCon textureBg">
+  <div class="responsive">
+    <div class="virtualCatCon clearfix">
+      <div class="subHd"><%= t('pages.index.all_posts')%></div>
+      <div class="shadeBox reviewTable listingtble">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="hd">
+            <td width="10%"><%= t('pages.index.user')%></td>
+            <td width="10%"><%= t('pages.index.category')%></td>
+            <td width="10%"><%= t('pages.index.topic')%></td>
+          
+            <td width="10%"><%= t('pages.index.visibility')%></td>
+            <td width="10%"><%= t('pages.index.expire_on')%></td>
+             <td width="10%"><%= t('pages.index.view_detail')%></td>
+            <td width="20%"><%= t('pages.index.actions')%></td>
+          </tr>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.user_id %></td>
-        <td><%= post.category_id %></td>
+        <td><%= post.user.try(:first_name) %></td>
+        <td><%= post.category.name %></td>
         <td><%= post.topic %></td>
-        <td><%= post.post_text %></td>
-        <td><%= image_tag post.attachment %></td>
         <td><%= post.visibility %></td>
         <td><%= post.expiration_date %></td>
         <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+         <td>
+             <span class="hide-show-comment" onclick= "$('#commentBox-<%= post.id%>').toggle();">Comment</span>
+              <div class="lists-comments-<%= post.id%>">
+            <% post.comments.each do |comment|%>
+<!--           <div class="comments-box"><%#= comment.body %></div>
+ -->       <div class="comment-box-<%=comment.id%>">
+           <%= render 'comments/show' , :comment => comment %>
+           </div>
+          <%end%>
+             <div class="commentBox commentBox-<%= post.id%>" style="display :none" id="commentBox-<%= post.id%>">
+       
+            <%= form_for([post, post.comments.build] , :remote=>true) do |f|%>
+
+           <%= f.text_field :body, :class=>"formInput" ,:style=>'width:100%'%>
+             <%=f.hidden_field :user_id,:value=>current_user.id%>
+             <%#= f.submit "Comment", :class=>"btn"%>
+        <%end%>
+        </div>
+         
+            <%= link_to "Like", post_likes_path(post), method: :post, remote: true%></td>
+             
+
+        <%if post.user_id==current_user.id%>
+          <td><%= link_to 'Edit', edit_post_path(post) %>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
+</div>
+  </div>
+</div>
 <br>
+<style>
+#comment_body{
+  width: 100% !important;
+}
+#comment{
+ width: 200px !important;
 
-<%= link_to 'New Post', new_post_path %>
+}
+<%#= link_to 'New Post', new_post_path %>

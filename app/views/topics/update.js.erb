@@ -1,0 +1,3 @@
+
+$(".topic-box-<%= @topic.id%>").html("<%= escape_javascript(render partial: 'show', locals: { topic: @topic } ) %>"); 
+$('.topicBox-<%= @topic.id%>').html("")

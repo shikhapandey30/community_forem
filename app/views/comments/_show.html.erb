@@ -1,0 +1,23 @@
+<div class="comments-box">
+  <%= comment.body %>
+</div>
+<div class="hd">
+            <%#=link_to post.title, post %>
+              <%#if post.user_id==current_user.id%>
+               <img src="/images/edit_icon-img.png" onclick = '$(".edit-comment-form-<%= comment.id%>").toggle();' >
+              <%# end %>
+            <div class="edit-comment-form-<%= comment.id %>" style="display:none;" >
+            <div class="hitGoing">
+                <div class="sendBox">                    
+                      <%= form_for(comment,:remote=>true) do |f| %>
+                      <%= f.text_field :body, :class=>"input" ,:id=>'comment'%>
+                      <% end %>
+                    </div>
+            </div>
+            </div>
+            <%#if post.user_id==current_user.id%>
+       <%= link_to image_tag('delete-icon.png'), comment, method: :delete, data: { confirm: 'Are you sure?' }%>
+             
+            <%# end %>
+            </div>
+

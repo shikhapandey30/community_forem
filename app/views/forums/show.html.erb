@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @forum.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @forum.description %>
+</p>
+
+
+<p>
+  <strong>Created By</strong>
+  <%= @forum.user.profile.try(:first_name) %>
+</p>
+
+
+<%= link_to 'Back', forums_path %>

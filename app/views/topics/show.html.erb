@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Forum:</strong>
+  <%= @topic.forum_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @topic.user_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @topic.description %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

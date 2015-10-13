@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       if resource.sign_in_count==1
         new_profile_path
       else
-        dashboard_path
+       root_path
       end
     end
   end

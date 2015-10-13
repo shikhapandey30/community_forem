@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @forum_poll.category_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @forum_poll.topic.name %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @forum_poll.body %>
+</p>
+
+<p>
+  <strong>Visibility:</strong>
+  <%= @forum_poll.visibility %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @forum_poll.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @forum_poll.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_forum_poll_path(@forum_poll) %> |
+<%= link_to 'Back', forum_polls_path %>

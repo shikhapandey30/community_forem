@@ -1,0 +1,6 @@
+<% if @forum.present? %>
+$(".lists-comments-<%= @forum.id%>").prepend("<%= escape_javascript(render partial: 'forum_comments', locals: { comment: @comment } ) %>"); 
+<% else %>
+$(".lists-comments-<%= @post.id%>").prepend("<%= escape_javascript(render partial: 'show', locals: { comment: @comment } ) %>"); 
+$('.commentBox-<%= @post.id%>').html("")
+<%end%>

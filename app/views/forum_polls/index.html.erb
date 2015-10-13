@@ -1,0 +1,64 @@
+
+
+<h1>Listing Forum Polls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Topic</th>
+      <th>Body</th>
+      <th>Visibility</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forum_polls.each do |forum_poll| %>
+      <tr>
+        <td><%= forum_poll.category_id %></td>
+        <td><%= forum_poll.topic.try(:name) %></td>
+        <td><%= forum_poll.body %></td>
+        <td><%= forum_poll.visibility %></td>
+        <td><%= forum_poll.start_date %></td>
+        <td><%= forum_poll.end_date %></td>
+   
+        
+        <td><%= link_to "Upvote", forum_poll_votes_path(forum_poll,:id=>'UpVote'), method: :post, remote: true%></td>
+        <td><%= link_to "Downvote", forum_poll_votes_path(forum_poll,:id=>'Downvote'), method: :post, remote: true%></td>
+         <td><%= link_to "Not concern", forum_poll_votes_path(forum_poll,:id=>'Not concern'), method: :post, remote: true%></td>
+
+        
+        <td><%= link_to 'Show', forum_poll %></td>
+        <td><%= link_to 'Edit', edit_forum_poll_path(forum_poll) %></td>
+        <td><%= link_to 'Destroy', forum_poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Forum poll', new_forum_poll_path %>
+
+<h4 class="column">Featured Movies</h4>
+<div class="column">
+  <ul class="movies-grid no-bullet row">
+    <% @forum_polls.each do |forum_poll| %>
+      <li class="large-3 medium-4 small-12 column">
+        <div class="movie-card padly">
+          
+
+          <div class="movie-info ell glassy-bg padmy padlx">
+            <div class="title">
+              
+            </div>
+            <p class="left price label movie-label radius">
+            <% end %>
+          </div>
+        </div>
+      </li>
+  </ul>
+</div>

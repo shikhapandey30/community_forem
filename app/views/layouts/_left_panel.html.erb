@@ -1,0 +1,33 @@
+<div class="dashboardLft">
+	<div class="shadeBox">
+  	<div class="userBox clearfix">
+      <div class="lft"><a href="#"><%= image_tag current_user.profile.try(:image) %></a></div>
+        <div class="rgt">
+          <span class="name"><%= current_user.profile.try(:first_name) %></span>
+         
+        </div>
+      <div class="clr"><%=link_to 'Manage Profile',edit_profile_path(current_user.profile),:class=>"addWorkout"%></a></div>
+    </div>
+    <div class="dashboardLinks">
+    	<ul class="clearfix">
+        <li>
+          <%=link_to 'Manage Forum',forums_path%>
+        </li>
+       
+      	
+
+        <li>
+          <%=link_to 'Create Forum Poll',new_forum_poll_path%>
+        </li> 
+       
+        </ul>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .dashboardLinks ul li a.true {
+    color: #9a258f;
+}
+</style>
+

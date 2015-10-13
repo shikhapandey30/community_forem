@@ -1,3 +1,26 @@
-<% if user_signed_in?%>
- <li><%= link_to  'logout' ,destroy_user_session_path, :method => :delete %></li>
-<%end%>
+  <%if user_signed_in? %>
+<header>
+        <div class="myAc">
+            <a href="#" class="myAcLink"><%= image_tag current_user.profile.try(:image) %> <span><%= current_user.profile.try(:first_name) %></span><br></a>
+            <a href="javascript:void(0)" class="showLinks">&nbsp;</a>
+            <nav class="menu">
+            <a href="/" class="mobMenu"><i></i><i></i><i></i></a>
+            <ul>
+                <li class="register"><a href="/dashboard"><%= t('home') %></a></li>
+                
+                <li class="register"><%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+              
+            </ul>
+        </nav>
+        </div>
+       
+           
+        </div>
+    <% end %>
+</header>
+
+<!--End Header-->
+
+<!--Start Login Popup-->
+
+<!--End Login Popup-->
