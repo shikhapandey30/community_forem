@@ -11,8 +11,8 @@
 
 <div class="mainCon" id="Home">
 	<!--Start Header-->
-	<%= render "layouts/header"%>
-	<%= render 'layouts/alerts' %> 
+	<%#= render "layouts/header"%>
+	<%#= render 'layouts/alerts' %> 
 </div>
 
 <%if (user_signed_in? && params[:controller]!='home'&& params[:action]!='index') || params[:controller] =="users" %>
@@ -21,7 +21,7 @@
     <div class="responsive">
      <!-- Start Dashboard Left -->
       <% if params[:controller] =="home" || params[:controller] =="users"  %>
-      <%= render "layouts/left_panel"%>
+      <%#= render "layouts/left_panel"%>
       <% end %>
        <%= yield %>
        <!-- Start Dashboard Right -->
