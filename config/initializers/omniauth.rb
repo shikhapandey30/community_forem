@@ -6,7 +6,7 @@ if Rails.env=='development'
    provider :google_oauth2, '916993778195-g8us044cdqf041giiu4nj3jnmthcd2is.apps.googleusercontent.com', 'fZtHAyE-zj51Qg5SE6Y-RVIW' 
 else
 	provider :facebook, '905207316223625', 'f61eda3cc0a382d542bfc0bc3ce9eeef'
-    provider :google_oauth2,'711090715610-14qhen98i1d5jmqtod08h51p44n7kjhu.apps.googleusercontent.com',' Qb9tApr3990CBxo7lzwrMDw6' 
+    provider :google_oauth2, '916993778195-g8us044cdqf041giiu4nj3jnmthcd2is.apps.googleusercontent.com', 'fZtHAyE-zj51Qg5SE6Y-RVIW' 
     provider :twitter, 'sCximTbSsmWPEZtl2qhlGaLZN', 'p4pgwnn5H5tlPJBGFjmFRZRY6b0IewOdNGutJBYYKGRoa7clFi'
 end
 end
