@@ -1,13 +1,18 @@
 <div class="dashboardLft">
 	<div class="shadeBox">
   	<div class="userBox clearfix">
-      <div class="lft"><a href="#"><%= image_tag current_user.profile.try(:image) %></a></div>
+      <div class="lft"><a href="#"><%= image_tag current_user.profile.try(:image) rescue nil %></a></div>
         <div class="rgt">
-          <span class="name"><%= current_user.profile.try(:first_name) %></span>
+          <span class="name"><%= current_user.profile.try(:first_name) rescue nil %></span>
          
         </div>
+        <% if current_user.profile.present?%>
       <div class="clr"><%=link_to 'Manage Profile',edit_profile_path(current_user.profile),:class=>"addWorkout"%></a></div>
     </div>
+    <%else%>
+    <div class="clr"><%=link_to 'Manage Profile',new_profile_path,:class=>"addWorkout"%></a></div>
+    </div>
+    <%end%>
     <div class="dashboardLinks">
     	<ul class="clearfix">
         <li>
