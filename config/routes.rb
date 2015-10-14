@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'users#home'
+   root 'users#index'
    get '/dashboard'=>'users#dashboard'
     get '/auth/:provider/callback', to: 'users#social_login'
 
