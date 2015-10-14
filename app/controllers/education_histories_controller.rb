@@ -25,7 +25,12 @@ class EducationHistoriesController < InheritedResources::Base
 
     respond_to do |format|
       if @education_history.save
-        format.html { redirect_to new_employment_detail_path, notice: 'EducationHistory was successfully created.' }
+        if current_user.employment_detail.present?
+          format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'EducationHistory was successfully created.' }
+        else
+          format.html { redirect_to new_employment_detail_path, notice: 'EducationHistory was successfully created.' }
+
+        end
         format.json { render :show, status: :created, location: @education_history }
       else
         format.html { render :new }

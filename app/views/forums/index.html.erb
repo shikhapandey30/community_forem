@@ -24,8 +24,7 @@
         <td><%= forum.user.try(:first_name) %></td>
         <td><%=forum.topics.count%></td>
         <td><%= link_to 'More Dettail', forum %></td>
-        <%if forum.user_id==current_user.id%>
-           <td><span class="hide-show-topic" onclick= "$('#topicBox-<%= forum.id%>').toggle();">Create Topic</span>
+           <td><span class="hide-show-topic" onclick= "$('#topicBox-<%= forum.id%>').toggle();">Click To Create Topic</span>
             <div class="lists-topics-<%= forum.id%>">
             <% forum.topics.each do |topic|%>
 <!--           <div class="topics-box"><%#= comment.body %></div>
@@ -46,12 +45,12 @@
        
 
 
-            <td><span class="hide-show-comment" onclick= "$('#commentBox-<%= forum.id%>').toggle();">Comment</span>
+            <td><span class="hide-show-comment" onclick= "$('#commentBox-<%= forum.id%>').toggle();">Click To Comment</span></br>
             <div class="lists-comments-<%= forum.id%>">
             <% forum.comments.each do |comment|%>
 <!--           <div class="comments-box"><%#= comment.body %></div>
  -->       <div class="comment-box-<%=comment.id%>">
-           <%= render 'comments/show' , :comment => comment %>
+            <%= render 'comments/show' , :comment => comment %>
            </div>
           <%end%>
              <div class="commentBox commentBox-<%= forum.id%>" style="display :none" id="commentBox-<%= forum.id%>">
@@ -65,6 +64,7 @@
         </div></td>
 
         
+        <%if forum.user_id==current_user.id%>
         <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
         <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>

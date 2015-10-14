@@ -25,7 +25,12 @@ class EmploymentDetailsController < InheritedResources::Base
 
     respond_to do |format|
       if @employment_detail.save
-        format.html { redirect_to dashboard_path, notice: 'EmploymentDetail was successfully created.' }
+        if current_user.skills.present?
+          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully created.' }
+        else
+          format.html { redirect_to new_user_skill_path, notice: 'EmploymentDetail was successfully created.' }
+
+        end
         format.json { render :show, status: :created, location: @employment_detail }
       else
         format.html { render :new }
@@ -39,7 +44,12 @@ class EmploymentDetailsController < InheritedResources::Base
   def update
     respond_to do |format|
       if @employment_detail.update(employment_detail_params)
-        format.html { redirect_to dashboard_path, notice: 'EmploymentDetail was successfully updated.' }
+        if current_user.skills.present?
+          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully Updated.' }
+        else
+          format.html { redirect_to new_user_skill_path, notice: 'EmploymentDetail was successfully Updated.' }
+          
+        end
         format.json { render :show, status: :ok, location: @employment_detail }
       else
         format.html { render :edit }

@@ -1,9 +1,10 @@
-<div class="topics-box">
-  <%= topic.name %>
+<div class="comments-box" style="margin-left:58px; margin-top: 17px;">
+  <b><i><%= topic.name %></b></i></br>
+  created at: <%= time_ago_in_words topic.created_at %>ago
 </div>
 <div class="hd">
             <%#=link_to post.title, post %>
-              <%#if post.user_id==current_user.id%>
+              <%if topic.user_id==current_user.id%>
                <img src="/images/edit_icon-img.png" onclick = '$(".edit-topic-form-<%= topic.id%>").toggle();' >
               <%# end %>
             <div class="edit-topic-form-<%= topic.id %>" style="display:none;" >
@@ -20,7 +21,7 @@
             <%#if post.user_id==current_user.id%>
        <%= link_to image_tag('delete-icon.png'), topic, method: :delete, data: { confirm: 'Are you sure?' }%>
              
-            <%# end %>
+            <% end %>
             </div>
 
 <style type="text/css">

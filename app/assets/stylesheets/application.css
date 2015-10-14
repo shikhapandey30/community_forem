@@ -10,11 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= stube active_admin
  *= require social-share-button 
- *= require_tree .
  *= require_self
+ *= require stylesheet
+
 
  */
-.commentBox {padding:0 0 0 35px; position:relative;}
-.commentBox img {width:25px; position:absolute; left:0; top:0; border-radius:2px;}
-.commentBox textarea {border:1px solid #d4d4d4; border-radius:4px; height:40px; -webkit-box-shadow:1px 1px 5px #ccc inset; -ms-box-shadow:1px 1px 5px #ccc inset; box-shadow:1px 1px 5px #ccc inset; width:100%; padding:5px 8px; -webkit-box-sizing:border-box; -ms-box-sizing:border-box; box-sizing:border-box;}

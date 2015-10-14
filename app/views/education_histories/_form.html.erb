@@ -13,6 +13,10 @@
   <div class="field">
     <%= f.hidden_field :user_id,:value=>current_user.id %>
   </div>
+   <div class="field">
+    <%= f.label :specialization_id %><br>
+      <%=  f.select(:specialization_id , Specialization.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')  %>
+  </div>
 <h1>Enter Courses</h1>
 <%= f.fields_for :courses do |course| %>
 <%= course.label :name %><br/>
@@ -21,7 +25,7 @@
 <% end %>
 <p><%= f.link_to_add "Add a Course", :courses %></p>
 </br></br>
-
+ 
 <h1>Add Institutes</h1>
 <%= f.fields_for :institutes do |institute| %>
 <%= institute.label :name %><br/>

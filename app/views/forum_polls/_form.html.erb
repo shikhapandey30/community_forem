@@ -1,41 +1,82 @@
-<%= form_for(@forum_poll) do |f| %>
-  <% if @forum_poll.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@forum_poll.errors.count, "error") %> prohibited this forum_poll from being saved:</h2>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<div class="midCon">
+  <div class="responsive">
+    <div class="innerCon">
+      <%= form_for(@forum_poll) do |f| %>
+          <% if @forum_poll.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@forum_poll.errors.count, "error") %> prohibited this forum_poll from being saved:</h2>
+                <ul>
+                  <% @forum_poll.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+         <% end %>
+      <div class="shadeBox">                        
+      <div class="formCon">
+        <ul class="clearfix">                                
+          <li>
+            <div class="formField half fl">
+              <%= f.label :category_id %><br>
+              <%=  f.select(:category_id , Category.all.collect {|u| [u.name, u.id]},:class => 'formSelect',:prompt => 'Select')  %>
+            </div>
+          </li>
+          <li>
+            <div class="formField half fl">
+              <%= f.label :topic_id %><br>
+              <%=  f.select(:topic_id ,Topic.all.collect {|u| [u.name, u.id]},:class => 'formSelect', :prompt => 'Select' )%>
+            </div>
+          </li>
+          <li>
+            <div class="formField half fl">
+              <%= f.label :body %><br>
+              <%= f.text_area :body,:class=>"formInput" %>
+            </div>
+          </li>
+          <li>
+            <div class="formField half fl">
+              <%= f.label :visibility %><br>
+              <%= f.select :visibility, [ 'Public', 'Private','Just For My Network','Just For My Connection','Just For My Community', 'Other' ], :prompt => 'Select One',:class => 'formSelect' %>
+            </div>
+          </li>
+          <li>
+            <div class="formField half fl">
+              <%= f.label :start_date %><br>
+              <%= f.text_field :start_date,:class=>"datepicker" %>
+            </div>
+          </li>
+          <li>
+            <div class="formField half fl">
+             <%= f.label :end_date %><br>
+             <%= f.text_field :end_date,:class=>"datepicker" %>
+            </div>
+          </li>
+        </ul>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+        </div>
+        </div>
+        </div>
+        <% end %>
 
-      <ul>
-      <% @forum_poll.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+</div>
+</div>
+</div>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+  </script>
 
-  <div class="field">
-    <%= f.label :category_id %><br>
-      <%=  f.select(:category_id , Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')  %>
-  </div>
-  <div class="field">
-   <%= f.label :topic_id %><br>
-     <%=  f.select(:topic_id ,Topic.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')  %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :visibility %><br>
-    <%= f.select :visibility, [ 'Public', 'Private','Just For My Network','Just For My Connection','Just For My Community', 'Other' ], :prompt => 'Select One' %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.datetime_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.datetime_select :end_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
+
+
+
+
+
+
+
+<!-- Start Middle Part -->

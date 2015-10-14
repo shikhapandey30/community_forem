@@ -1,2 +1,3 @@
 alert('hi');
-$('commentBox-<%= @forum.id%>').hide();
+$(".lists-topics-<%= @forum.id%>").prepend("<%= escape_javascript(render partial: 'show', locals: { topic: @topic } ) %>"); 
+$('.commentBox-<%= @forum.id%>').html("")

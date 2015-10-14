@@ -26,6 +26,10 @@
     <%= f.label :gender %><br>
     <%= f.select :gender, [ 'Male', 'Female', 'Other' ], :prompt => 'Select One' %>
   </div>
+   <div class="field">
+    <%= f.label :type %><br>
+    <%= f.select :profile_type, [ 'Individual', 'Company', 'Other' ], :prompt => 'Select One' %>
+  </div>
   <div class="field">
     <%= f.label :image %><br>
   <%= f.file_field :image%>
@@ -42,11 +46,12 @@
     <%= f.label :dob %><br>
     <%= f.date_select :dob %>
   </div>
+  <%if params[:action]=='new'%>
   <div class="field">
     <%= f.label :screen_name %><br>
     <%= f.text_field :screen_name %>
   </div>
-
+ <%end%>
   <div class="field">
     <%= f.label :country %><br>
     <%=f.text_field :country %>
@@ -63,6 +68,10 @@
     <%= f.label :post_code %><br>
     <%= f.text_field :post_code %>
   </div>
+ <div class="field">
+   <%= f.label :ethnic_group %><br>
+   White: <%= f.radio_button :ethnic_group,'white'%><br />
+    Black: <%= f.radio_button :ethnic_group,'black'%><br />
   <div class="actions">
     <%= f.submit %>
   </div>

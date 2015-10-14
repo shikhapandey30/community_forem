@@ -12,7 +12,7 @@
 <div class="mainCon" id="Home">
 	<!--Start Header-->
 	<%= render "layouts/header"%>
-	<%#= render 'layouts/alerts' %> 
+	<%= render 'layouts/alerts' %> 
 </div>
 
 <%if (user_signed_in? && params[:controller]!='home'&& params[:action]!='index') || params[:controller] =="users" %>
@@ -25,7 +25,7 @@
       <% end %>
        <%= yield %>
        <!-- Start Dashboard Right -->
-       <% if params[:controller] =="home" || params[:controller] =="friendships" || params[:action]=="dashboard" || params[:controller] =="messages"  || (params[:controller] =="races") || (params[:controller] =="blogs" && params[:action]=="index") || params[:controller] =="users" || params[:controller] =="rewards"%>
+       <% if params[:controller] =="home" || params[:controller] =="users"%>
 
        <%end %>
          <div class="clr"></div>

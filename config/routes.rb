@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :user_skills
   resources :forums do 
     resources :topics
     resources :comments
@@ -26,10 +27,15 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  #users route
    root 'users#index'
    get '/dashboard'=>'users#dashboard'
     get '/auth/:provider/callback', to: 'users#social_login'
+   #forums route
+   get '/manage_forum'=>'forums#manage_forum'
 
+    post '/add_course', to: 'education_histories#add_course', as: 'add_course'
+    get '/manage_skill'=>'skills#manage_skill'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
