@@ -1,0 +1,93 @@
+<div class="midCon textureBg">
+  <div class="responsive">
+    <div class="virtualCatCon clearfix">
+      <div class="subHd"><%= t('pages.index.all_forums')%></div>
+      <div class="shadeBox reviewTable listingtble">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="hd">
+            <td width="10%"><%= t('pages.index.name')%></td>
+            <td width="10%"><%= t('pages.index.user')%></td>
+            <td width="10%"><%= t('pages.index.topic_count')%></td>
+          
+             <td width="10%"><%= t('pages.index.view_detail')%></td>
+            <td width="20%"><%= t('pages.index.Create/Edit Topic')%></td>
+            <td width="20%"><%= t('pages.index.Create/Edit Comment')%></td>
+            <td width="20%"><%= t('pages.index.edit')%></td>
+            <td width="20%"><%= t('pages.index.delete')%></td>
+          </tr>
+
+  <tbody>
+      <tr>
+        <% @forums.each do |forum| %>
+      <tr>
+        <td><%= forum.name %></td>
+        <td><%= forum.user.try(:first_name) %></td>
+        <td><%=forum.topics.count%></td>
+        <td><%= link_to 'More Dettail', forum %></td>
+        <%if forum.user_id==current_user.id%>
+           <td><span class="hide-show-topic" onclick= "$('#topicBox-<%= forum.id%>').toggle();">Create Topic</span>
+            <div class="lists-topics-<%= forum.id%>">
+            <% forum.topics.each do |topic|%>
+<!--           <div class="topics-box"><%#= comment.body %></div>
+ -->       <div class="topic-box-<%=topic.id%>">
+           <%= render 'topics/show' , :topic => topic %>
+           </div>
+          <%end%>
+            <div class="topicBox topicBox-<%= forum.id%>" style="display :none" id="topicBox-<%= forum.id%>">
+       
+            <%= form_for([forum, forum.topics.build] , :remote=>true) do |f|%>
+
+            Name: <%= f.text_field :name, :class=>"formInput" ,:style=>'width:100%'%></br></br>
+            Description:<%= f.text_area :description, :class=>"formInput" ,:style=>'width:100%'%></br></br>
+             <%=f.hidden_field :user_id,:value=>current_user.id%>
+             <%= f.submit "save Topic", :class=>"btn"%>
+         <%end%></td>
+        </div>
+       
+
+
+            <td><span class="hide-show-comment" onclick= "$('#commentBox-<%= forum.id%>').toggle();">Click To Comment</span>
+            <div class="lists-comments-<%= forum.id%>">
+            <% forum.comments.each do |comment|%>
+<!--           <div class="comments-box"><%#= comment.body %></div>
+ -->       <div class="comment-box-<%=comment.id%>">
+           <%= render 'comments/show' , :comment => comment %>
+           </div>
+          <%end%>
+             <div class="commentBox commentBox-<%= forum.id%>" style="display :none" id="commentBox-<%= forum.id%>">
+       
+            <%= form_for([forum, forum.comments.build] , :remote=>true) do |f|%>
+
+           <%= f.text_field :body, :class=>"formInput" ,:style=>'width:100%'%>
+             <%=f.hidden_field :user_id,:value=>current_user.id%>
+             <%#= f.submit "Comment", :class=>"btn"%>
+        <%end%>
+        </div></td>
+
+        
+        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
+        <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+  </div>
+</div>
+<br>
+<style>
+#comment_body{
+  width: 100% !important;
+}
+#comment{
+ width: 200px !important;
+
+}
+<%#= link_to 'New forum', new_post_path %>
+</style>
+
+
+
+<%= link_to 'New Forum', new_forum_path %>
