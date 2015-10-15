@@ -3,11 +3,7 @@ class UsersController < ApplicationController
 	def index
 	end
   def search
-    if params[:value]=='User'
       @users= User.where(:id=>params[:id]).first
-    elsif params[:value]=='Post'
-       @users= Post.search(params[:search])
-    end
   end
   # def search_data
   #   if params[:type]=='User'
