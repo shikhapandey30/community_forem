@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        if @profile.profile_type=='individual'
+        if @profile.profile_type=='Individual'
           if current_user.education_history.present?
            format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully created.' }
           else
@@ -56,7 +56,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-         if @profile.profile_type=='individual'
+         if @profile.profile_type=='Individual'
           if current_user.education_history.present?
            format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully created.' }
           else
