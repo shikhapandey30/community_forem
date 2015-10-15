@@ -73,7 +73,7 @@ class EmploymentDetailsController < InheritedResources::Base
       @employment_detail=EmploymentDetail.find(params[:id])
     end
     def employment_detail_params
-      params.require(:employment_detail).permit(:user_id, :total_experience,organisations_attributes: [:id, :name, :_destroy,:employment_detail_id,:designation,:start_date,:end_date,:current_company,:job_profile,:total_experience])
+      params.require(:employment_detail).permit(:user_id,:total_experience,organisations_attributes: [:id, :name, :_destroy,:employment_detail_id,:designation,:start_date,:end_date,:current_company,:job_profile,:total_experience])
     end
 end
 

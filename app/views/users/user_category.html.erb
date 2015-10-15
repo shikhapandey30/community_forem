@@ -1,0 +1,19 @@
+       <%= form_tag "/user_category",:multipart=> true, :method => 'post' do %>
+            <span><%#= t('friendships.index.invite_friends')%></span>
+           <span>Enter Message</span></br>
+          <ul>
+           <% @category.each do |category| %>
+            <li>
+              <%if @all_cat.include?(h category.name)%>
+                <%= check_box_tag 'category_ids[]', category.id ,:checked=>'true'-%>
+              <%else%>
+                <%= check_box_tag 'category_ids[]', category.id%>
+              <%end%>
+                <%= h category.name%>
+           </li>
+           <% end %>
+            </ul>
+
+            <%= submit_tag "Save", :class=>"invite" %>
+            </br>
+            <%end %>

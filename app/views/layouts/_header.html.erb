@@ -1,8 +1,32 @@
-  <%if user_signed_in? %>
+zz<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<%@users_json = User.all.map{|u| {:value=> u.id,:label=>u.email}}%>
+
+
+  <%#=render'users/data_show'%>
+ <%if user_signed_in? %>
 <header>
+
+<%=form_tag '/search', :method => 'get' do %>
+  <!--   <div class="ui-widget"> -->
+ <!--  <input type="text" placeholder="Search..." required id="tags"> -->
+    <%= hidden_field_tag :id,nil,:id=>"selector", :class=>"tags_id" %>
+
+  <%= text_field_tag :search, params[:search],:id=>"tags"%>
+<!-- </div> -->
+User:<%= radio_button_tag(:value, "User") %>
+Post:<%= radio_button_tag(:value, "Post") %>
+ <%= submit_tag "Search", :name => nil %>
+<%end%>
+
+<!-- <form>
+<div class="ui-widget">
+  <input id="tags">
+</div>
+</form> -->
         <div class="myAc">
             <a href="#" class="myAcLink"><%= image_tag current_user.profile.try(:image) %> <span><%= current_user.profile.try(:first_name) %></span><br></a>
-            <a href="javascript:void(0)" class="showLinks">&nbsp;</a>
             <nav class="menu">
             <a href="/" class="mobMenu"><i></i><i></i><i></i></a>
             <ul>
@@ -17,7 +41,31 @@
            
         </div>
     <% end %>
+
 </header>
+
+  <script>
+  $(function() {
+     if (document.getElementById('value_Post').checked) 
+       {
+       var raw = <%= raw  @posts_json.to_json %>
+        }
+      else{
+       var raw = <%= raw  @users_json.to_json %>
+      } 
+$('#tags').autocomplete({
+    minLength: 1,
+    source: raw,
+    select: function(event, ui) {
+        $('.ui-autocomplete-input').val(ui.item.label);
+         $('.tags_id').val(ui.item.value);
+        return false
+
+    }
+});
+});
+
+  </script>
 
 <!--End Header-->
 

@@ -1,0 +1,18 @@
+
+$("#search").html("<%= escape_javascript(render partial: 'users/data_show' ) %>"); 
+
+    $("#value_User").click(function(){
+         $.ajax({ 
+          url: "/search_data",
+          data: { 'type' : 'User' }
+        })
+    alert('hi');
+    });
+     $("#value_Post").click(function(){
+         $.ajax({ 
+          url: "/search_data",
+          data: { 'type' : 'Post' }
+        })
+    alert('hello');
+    });
+    console.log( "ready!" );

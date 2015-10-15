@@ -17,7 +17,7 @@ ul {list-style:none;}
 .clearfix:before, .clearfix:after {content:''; display:block; height:0; overflow:hidden;}
 .clearfix:after {clear:both;}
 .mainCon {width:100%; padding-top:91px;}
-header {background:#361148; width:100%; height:90px; border-bottom:1px solid #fff; position:fixed; z-index:100; left:0; top:0;}
+header {background:gray; width:100%; height:90px; border-bottom:1px solid #fff; position:fixed; z-index:100; left:0; top:0;}
 .responsive { margin:auto; padding:0 10px;}
 .logo {float:left; padding:12px 0 0 0;}
 .menu {float:right; padding:45px 0 0 0;}
@@ -257,7 +257,7 @@ a.readMore:hover {text-decoration:underline;}
 .formBtn {background:#361148; border:none; border-radius:3px; color:#fff; padding:8px 15px; text-transform:uppercase; font-family: 'open_sansbold'; font-size:12px; cursor:pointer;}
 .formBtn:hover {background:#000 !important;}
 /*Start 21 May*/
-.myAc {float:right; color:#fff; padding:40px 0 0 30px; position:relative; -webkit-transform: translateZ(0px); transform: translateZ(0px);}
+.myAc {float:right; color:#fff;position:relative; -webkit-transform: translateZ(0px); transform: translateZ(0px);}
 .myAc a.myAcLink {color:#fff; display:block; float:left; margin-right:5px; white-space: nowrap; width:150px;}
 .myAc a.myAcLink img {float:left; border:2px solid #fff; border-radius:2px; width:35px; margin:2px 8px 0 0; font-size:12px;}
 .myAc a.myAcLink span {font-size:17px;}
@@ -280,7 +280,7 @@ a.readMore:hover {text-decoration:underline;}
 a.addWorkout {display:block; text-align:center; background:#fda601; font-size:13px; color:#fff; text-transform:uppercase; font-family: 'open_sanssemibold'; border-radius:3px; padding:8px;}
 a.addWorkout:hover {background:#333;}
 .dashboardLinks ul li {border-top:1px solid #e1e5e8;}
-.dashboardLinks ul li a {display:block; padding:15px 15px 15px 42px; color:#4d4d4d; font-size:13px; position:relative;}
+.dashboardLinks ul li a {display:block; padding:15px 15px 15px 10px; color:#4d4d4d; font-size:13px; position:relative;}
 .dashboardLinks ul li a:hover, .dashboardLinks ul li a.active {color:#9a258f;}
 .dashboardLinks ul li a .icon {background:url(../images/dashboard_links.png); width:21px; position:absolute; left:15px;}
 .dashboardLinks ul li a .icon.myActivities {background-position:0 0; height:24px; top:11px;}

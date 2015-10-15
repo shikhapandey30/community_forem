@@ -30,12 +30,16 @@ Rails.application.routes.draw do
   #users route
    root 'users#index'
    get '/dashboard'=>'users#dashboard'
-    get '/auth/:provider/callback', to: 'users#social_login'
+   get '/auth/:provider/callback', to: 'users#social_login'
+   get '/search'=>'users#search'
+   get '/search_data'=>'users#search_data'
+   post '/user_category', to: 'users#user_category'
+   get '/user_category', to: 'users#user_category'
+    
    #forums route
-   get '/manage_forum'=>'forums#manage_forum'
-
-    post '/add_course', to: 'education_histories#add_course', as: 'add_course'
+    get '/manage_forum'=>'forums#manage_forum'
     get '/manage_skill'=>'skills#manage_skill'
+   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

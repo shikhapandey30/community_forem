@@ -44,7 +44,7 @@
   </div>
   <div class="field">
     <%= f.label :dob %><br>
-    <%= f.date_select :dob %>
+    <%= f.text_field :dob,:class=>"datepicker" %>
   </div>
   <%if params[:action]=='new'%>
   <div class="field">

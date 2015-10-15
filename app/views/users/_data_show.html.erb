@@ -1,0 +1,5 @@
+<%if params[:type]=='User'%>
+  <%@data_json = User.all.map{|u| {:value=> u.id,:label=>u.profile.try(:first_name)}}%>
+<%else%>
+  <%@data_json = Post.all.map{|u| {:value=> u.id,:label=>u.post_text}}%>
+ <%end%>

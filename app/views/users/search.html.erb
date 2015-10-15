@@ -1,0 +1,51 @@
+<div class="midCon textureBg">
+  <div class="responsive">
+    <div class="virtualCatCon clearfix">
+      <div class="subHd"><%= t('pages.index.search result')%></div>
+      <div class="shadeBox reviewTable listingtble">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="hd">
+            <td width="20%"><%= t('pages.index.first_name')%></td>
+            <td width="20%"><%= t('pages.index.last_name')%></td>
+            <td width="20%"><%= t('pages.index.image')%></td>
+          
+            <td width="20%"><%= t('pages.index.location')%></td>
+            <td width="10%"><%= t('pages.index.organisations')%></td>
+             <td width="10%"><%= t('pages.index.follow')%></td>
+           <!--  <td width="20%"><%#= t('pages.index.actions')%></td> -->
+          </tr>
+
+  <tbody>
+      <tr>
+        <td><%= @users.profile.try(:first_name) %></td>
+        <td><%= @users.profile.try(:last_name) %></td>
+        <td><%= image_tag @users.profile.try(:image),:height=>'20px;' %></td>
+        <td><%= @users.profile.try(:location)%></td>
+        <%if @users.organisations.present?%>
+          <%  @users.organisations.each do |f|  %></td>
+          <td>
+            <ul>
+              <li><%=f.name%></li>
+            </ul>
+          </td>
+        <%end%>
+        <%end%>
+        <td><%= link_to 'follow','#',:class=>'replyBtn' %></td>
+
+         
+  </tbody>
+</table>
+</div>
+</div>
+  </div>
+</div>
+<br>
+<style>
+#comment_body{
+  width: 100% !important;
+}
+#comment{
+ width: 200px !important;
+
+}
+<%#= link_to 'New Post', new_post_path %>

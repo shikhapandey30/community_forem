@@ -30,6 +30,10 @@
  <%= organisation.link_to_remove "Remove this organisation" %>
 <% end %>
 <p><%= f.link_to_add "Add a organisation", :organisations %></p>
+<div class="field">
+    <%=f.label :total_experience%>
+    <%= f.text_field :total_experience %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

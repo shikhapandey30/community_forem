@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :user
-	belongs_to :topic
+	has_one :topic
 	has_many :likes, :as => :likable
 	has_many :comments,:dependent => :destroy, :as => :commentable
      mount_uploader :attachment, PostUploader

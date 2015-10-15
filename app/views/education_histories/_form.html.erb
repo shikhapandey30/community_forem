@@ -31,7 +31,7 @@
 <%= institute.label :name %><br/>
 <%= institute.text_field :name %><br />
 <%= institute.label :passing_year %><br/>
-<%= institute.date_select :passing_year %><br />
+<%= institute.text_field :passing_year,:class=>"datepicker" %><br />
 <%= institute.link_to_remove "Remove this institute" %>
 <% end %>
 <p><%= f.link_to_add "Add a institute", :institutes %></p>
