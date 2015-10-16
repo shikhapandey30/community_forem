@@ -5,7 +5,8 @@ ActiveAdmin.register User do
 #
 # permit_params :list, :of, :attributes, :on, :model
 #
- permit_params :email, :password, :password_confirmation
+ permit_params :email, :password, :password_confirmation,category_ids: []
+#
 
  form do |f|
    f.inputs do
@@ -13,9 +14,13 @@ ActiveAdmin.register User do
        f.input :email 
        f.input :password
         f.input :password_confirmation
+         f.input :categories, :as => :select2_multiple, :collection => Category.all.sort_by(&:name).collect {|p| [ p.name, p.id ] }
      end
        f.actions
  end
+
+
+
 
 # or
 #

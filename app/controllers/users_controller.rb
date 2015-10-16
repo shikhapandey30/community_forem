@@ -21,8 +21,8 @@ class UsersController < ApplicationController
 	end
   def user_category
     @category=Category.all
-    if current_user.categorables_categories.present?
-      cat=current_user.categorables_categories.uniq
+    if current_user.categories.present?
+      cat=current_user.categories.uniq
       @all_cat=cat.collect{|f| f.name}
     end
     

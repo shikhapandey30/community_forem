@@ -14,6 +14,7 @@
  *= require social-share-button 
  *= require_self
  *= require stylesheet
+ *= require select2
 
 
  */
