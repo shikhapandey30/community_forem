@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :authenticates
   has_many :posts
   has_many :forums
+  has_many :forum_polls
   has_many :skills,through: :user_skill
   accepts_nested_attributes_for :skills, :allow_destroy => true
   has_many :categorables, dependent: :destroy

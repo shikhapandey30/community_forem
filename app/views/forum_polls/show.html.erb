@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Category:</strong>
@@ -7,7 +7,7 @@
 
 <p>
   <strong>Topic:</strong>
-  <%= @forum_poll.topic.name %>
+  <%= @forum_poll.topic.try(:name) %>
 </p>
 
 <p>
@@ -17,18 +17,53 @@
 
 <p>
   <strong>Visibility:</strong>
-  <%= @forum_poll.visibility %>
+  <%= @forum_poll.visibility  %>
 </p>
 
 <p>
   <strong>Start date:</strong>
-  <%= @forum_poll.start_date %>
+  <%= @forum_poll.start_date.strftime(" %m/%d/%Y") rescue nil %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @forum_poll.end_date %>
+  <%= @forum_poll.end_date.strftime(" %m/%d/%Y") rescue nil%>
 </p>
 
-<%= link_to 'Edit', edit_forum_poll_path(@forum_poll) %> |
-<%= link_to 'Back', forum_polls_path %>
+<p id='error' style='color:red;display:none;' >You have already Posted your vote for this post</p>
+<p id='success' style='color:green;display:none;'>Vote submitted successfully</p>
+        <table id="table_data">
+        <%=render 'forum_polls/data'%>
+        </br>
+        </table></br>
+<%if @forum_poll.user_id==current_user.id%>
+  <%= link_to 'Edit', edit_forum_poll_path(@forum_poll) %> 
+<%end%>
+<%= link_to 'Back', dashboard_path,:class=>'replyBtn' %>
+
+<script>
+function myfunction(i){
+   var val =  $('.vote1').val();
+  $.ajax({ 
+            type: "POST",
+            url: "/forum_polls/"+ i + "/votes",
+            data: { 'value' : val }
+          })
+}
+function myFunction2(i){
+   var val =  $('.vote2').val();
+  $.ajax({ 
+            type: "POST",
+            url: "/forum_polls/"+ i + "/votes",
+            data: { 'value' : val }
+          })
+}
+function myFunction23(i){
+   var val =  $('.vote3').val();
+  $.ajax({ 
+            type: "POST",
+            url: "/forum_polls/"+ i + "/votes",
+            data: { 'value' : val }
+          })
+}
+</script>
