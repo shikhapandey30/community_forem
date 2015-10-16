@@ -7,6 +7,7 @@ class VotesController < ApplicationController
   	   @is_vote='true'
   	else
   		@vote = @forum_poll.votes.create(:user_id => current_user.id,:vote_type=>params[:value])
+      @user_vote_type=@vote.vote_type
     end
   end
 end

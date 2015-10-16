@@ -1,11 +1,11 @@
 
 <%if @is_vote=='true'%>
 $('#error').show();
-$('#sucess').hide();
+$('#success').hide();
 $("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
 <%else%>
 $('#error').hide();
-$('#sucess').show();
+$('#success').show();
 $("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
 
 <%end%>
