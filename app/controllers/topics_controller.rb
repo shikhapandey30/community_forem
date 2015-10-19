@@ -1,14 +1,17 @@
 class TopicsController < InheritedResources::Base
  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   def create
-  	@forum = Forum.find(params[:forum_id])
-    @topic = @forum.topics.create(topic_params)
-    respond_to do |format|
+    if params[:topic][:forum_id].present? 
+  	 @forum = Forum.find(params[:topic][:forum_id])
+       @topic = @forum.topics.create(topic_params)
+      else
+        @topic=Topic.new(topic_params)
+      end
     if @topic.save
-      format.html { redirect_to @topic, notice: 'topic was successfully created.' }
-        # format.json { render :show, status: :created, location: @topic }
-        format.js
-    end
+      attachment=@topic.attachments.create(:file=>params[:topic][:file])
+      redirect_to dashboard_path, notice: 'topic was successfully created.' 
+    else
+       render 'new'
     end
   end
    def update
@@ -38,7 +41,7 @@ class TopicsController < InheritedResources::Base
 
 
     def topic_params
-      params.require(:topic).permit(:forum_id, :user_id, :description, :name)
+      params.require(:topic).permit(:forum_id, :user_id, :description, :name,:file,:topic_id)
     end
 end
 

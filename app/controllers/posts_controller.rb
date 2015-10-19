@@ -27,7 +27,7 @@ class PostsController < InheritedResources::Base
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to dashboard_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -66,7 +66,7 @@ class PostsController < InheritedResources::Base
     end
 
     def post_params
-      params.require(:post).permit(:user_id, :category_id, :topic, :post_text, :attachment, :visibility, :expiration_date)
+      params.require(:post).permit(:user_id, :category_id, :title, :post_text, :attachment, :visibility, :expiration_date,:topic_id)
     end
 end
 

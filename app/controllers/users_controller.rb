@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!,:except => [:social_login]
 	def index
+    @topic=Topic.all
 	end
   def search
       @users= User.where(:id=>params[:id]).first
@@ -14,11 +15,28 @@ class UsersController < ApplicationController
   # end
 
 	def dashboard
-	 posts = Post.all
+     posts = Post.all
     pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
     self_post=current_user.posts
     @posts=pub_post+self_post
 	end
+  def follow
+    @following = Following.where(:following_id => current_user.id, :follower_id => params[:follower_id]).first
+
+    if @following.nil?
+     @following = Following.create(:following_id => current_user.id, :follower_id => params[:follower_id])
+    else
+      @unfollow = @following.destroy
+    end
+
+  end
+ def followings
+    @following=current_user.followings
+  end
+  def followers
+    @follower=current_user.followers
+  end
+  
   def user_category
     @category=Category.all
     if current_user.categories.present?

@@ -20,7 +20,7 @@
   <div class="midCon textureBg">
     <div class="responsive">
      <!-- Start Dashboard Left -->
-      <% if params[:controller] =="home" || params[:controller] =="users"&& params[:action]!='user_category'&& params[:action]!='search'  %>
+      <% if params[:controller] =="home" || params[:controller] =="users"&& params[:action]!='user_category'&& params[:action]!='search'&& params[:action]!='followings'&& params[:action]!='followers'  %>
       <%= render "layouts/left_panel"%>
       <% end %>
        <%= yield %>

@@ -301,9 +301,7 @@ a.addWorkout:hover {background:#333;}
 .dashboardCen {width: 536px;float:left; padding:30px 0 30px 20px;}
 .dashboardElement {width:460px; padding:30px 0 30px 20px;}
 .weekHd {background:#f6f6f6; padding:14px 10px; color:#222222; font-size:14px; text-align:center; border-bottom:1px solid #dfdfdf; position:relative;}
-.prevArrow {background:url(../images/arrow_new.png); width:13px; height:15px; display:block; position:absolute; left:15px; top:16px; cursor:pointer;}
 .prevArrow:hover {background-position:left bottom;}
-.nextArrow {background:url(../images/arrow_new.png) right top; width:13px; height:15px; display:block; position:absolute; right:15px; top:16px; cursor:pointer;}
 .nextArrow:hover {background-position:right bottom;}
 .graph {padding:10px; text-align:center;}
 .graph img {max-width:100%; vertical-align:top;}
@@ -601,16 +599,10 @@ a.yellowBtn:hover {background:#333;}
 .detBtn {padding:15px 0 0 0;}
 .detBtn a {display:inline-block; background:#a4ca0d; padding:8px 10px; font-size:13px; color:#fff; border-radius:3px; margin-right:5px;}
 .detBtn a:hover {background:#90b20a;}
-.detPopup {width:344px; position:absolute; left:50%; top:50%; margin:-240px 0 0 -196px; background:#f3f3f3; border:4px solid #74597f; border-radius:8px; padding:20px;}
-.detPopup .logoIcon {position:absolute; right:5px; top:5px; z-index:100;}
-.detPopup .close {right:-15px; top:-15px; z-index:100; color:#fff; background:#361148;}
-.detailPopup {width:344px; position:absolute; left:50%; top:50%; margin:-240px 0 0 -196px; background:#f3f3f3; border:4px solid #74597f; border-radius:8px; padding:20px;}
-.detailPopup .logoIcon {position:absolute; right:5px; top:5px; z-index:100;}
-.detailPopup .close {right:-15px; top:-15px; z-index:100; color:#fff; background:#361148;}
-.rewardPopup {width:344px; position:absolute; left:50%; top:50%; margin:-240px 0 0 -196px; background:#f3f3f3; border:4px solid #74597f; border-radius:8px; padding:20px;}
-.rewardPopup .logoIcon {position:absolute; right:5px; top:5px; z-index:100;}
-.rewardPopup .close {right:-15px; top:-15px; z-index:100; color:#fff; background:#361148;}
 
+.errorPopup {width:344px; position:absolute; left:50%; top:50%; margin:-240px 0 0 -196px; background:#f3f3f3; border:4px solid #74597f; border-radius:8px; padding:20px;}
+.errorPopup .logoIcon {position:absolute; right:5px; top:5px; z-index:100;}
+.errorPopup .close {right:-15px; top:-15px; z-index:100; color:#fff; background:#361148;}
 .thanks {border-top:1px solid #a6a6a6; padding:10px 0 0 0; margin-top:10px; color:#361148; font-size:18px; text-align:center;}
 
 

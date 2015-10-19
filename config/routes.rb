@@ -1,31 +1,33 @@
 Rails.application.routes.draw do
   
   resources :user_skills
-  resources :forums do 
-    resources :topics
-    resources :comments
-  end
+  resources :forums  
   resources :forum_polls do
     resources :votes, only: [:create]
   end
   resources :comments
-  resources :posts do
+  
+   resources :topics do
+     resources :likes, only: [:create]
+    resources :comments
+  end
+   resources :posts do
     resources :likes, only: [:create]
     resources :comments
   end
+
   resources :employment_details
   resources :categories
   resources :education_histories
   resources :specializations
   resources :profiles
-  resources :topics
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :organisations
   devise_for :users, controllers: { registrations: "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  get 'likes/create'
   # You can have the root of your site routed with "root"
   #users route
    root 'users#index'
@@ -35,7 +37,11 @@ Rails.application.routes.draw do
    get '/search_data'=>'users#search_data'
    post '/user_category', to: 'users#user_category'
    get '/user_category', to: 'users#user_category'
-    
+   get '/followings', to: 'users#followings'
+   post '/follow', to: 'users#follow'
+   get'follwers', to: 'users#followers'
+   get'follwings', to: 'users#followings'
+
    #forums route
     get '/manage_forum'=>'forums#manage_forum'
     get '/manage_skill'=>'skills#manage_skill'

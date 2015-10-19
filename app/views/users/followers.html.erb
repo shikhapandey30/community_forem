@@ -1,0 +1,48 @@
+<div class="midCon textureBg">
+  <div class="responsive">
+    <div class="virtualCatCon clearfix">
+      <div class="subHd"><%= t('pages.index.all_followers')%></div>
+      <div class="shadeBox reviewTable listingtble">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="hd">
+            <td width="10%"><%= t('pages.index.image')%></td>
+            <td width="10%"><%= t('pages.index.first_name')%></td>
+          
+            <td width="10%"><%= t('pages.index.last_name')%></td>
+            <td width="10%"><%= t('pages.index.reveal_identity')%></td>
+             <td width="10%"><%= t('pages.index.message')%></td>
+            <td width="20%"><%= t('pages.index.Unfollow/follow')%></td>
+          </tr>
+
+  <tbody>
+    <% @follower.each do |follower| %>
+    <%user=User.find(follower.following_id)%>
+      <tr>
+          <td><%=image_tag user.profile.try(:image),:height=>'96px;',:width=>'104px;' %></td>
+        <td><%= user.profile.try(:first_name) %></td>
+        <td><%=user.profile.try(:last_name) %></td>
+         <td><%= link_to 'Reveal Identity', '#',:class=>'replyBtn' %></td>
+         <td><%= link_to 'Message', '#' ,:class=>'replyBtn'%></td>
+         <%if current_user.following?(user)%>
+                               <td class="following-button-<%= user.id %>"><%= link_to "UnFollow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true ,:class=>'replyBtn' %></td>
+                               <% else %>
+                                 <td class="following-button-<%= user.id %>"><%= link_to "Follow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true,:class=>'replyBtn' %></td>
+                               <%end%>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+  </div>
+</div>
+<br>
+<style>
+#comment_body{
+  width: 100% !important;
+}
+#comment{
+ width: 200px !important;
+
+}
+<%#= link_to 'New Post', new_post_path %>

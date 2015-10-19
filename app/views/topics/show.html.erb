@@ -1,13 +1,23 @@
+
+
+
+
+<div class="midCon">
+      <div class="responsive">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Forum:</strong>
-  <%= @topic.forum_id %>
+  <strong></strong>
+  <%if @topic.updated_at.present?%>
+  <%= @topic.created_at %>(edited at <%=@topic.updated_at%>)
+  <%else%>
+  <%= @topic.created_at %>
+  <%end%>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @topic.user_id %>
+  <%= @topic.user.profile.first_name %>
 </p>
 
 <p>
@@ -22,3 +32,5 @@
 
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
+</div>
+</div>

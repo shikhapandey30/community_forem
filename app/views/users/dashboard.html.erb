@@ -1,13 +1,86 @@
-<div class="dashboardCen">
+    <div class="dashboardCen">
+      <div class="shadeBox marginBt">
+          <div class="weekHd">
+              <span class="prevArrow"></span>
 
-<h1>Welcome To Dashboard</h1>
+        
+        <div class="newsFeedCon">
+          <div class="subHd"><%= t('users.dashboard.newsfeed')%></div>
+            <div class="shadeBox">
+              <div class="feedTab">
+                  <ul>
+                      <li><a href="javascript:void(0)" class="active"><%= t('users.dashboard.my_friends')%></a></li>
+                      <li><a href="javascript:void(0)"><%= t('users.dashboard.photos')%></a></li>
+                    </ul>
+                </div>
+                <div>
+                <div class="hitGoing"> 
+                    <span><%= t('users.dashboard.whats_on_your_mind')%></span>
+                   <div class="detBtn"><a href="javascript:void()" class="transition showErrorPopup" >Click To Share</a>
+               </div> 
+                    <div class="friendList">
+                      <ul class="lists-posts"> 
+                        <% @posts.each do |post|%> 
+                          
+                          <div id="posts">               
+                            <%= render 'posts/post',:post=>post%>
+                          </div>
+                       <!--    </span>  --> 
+                         <%end%>
+                           
+                        </ul>
+                       <!--  <div class="digg_pagination" id="infinite-scrolling">
+                          <!-- <div class="page_info">
+                            <%#= page_entries_info @posts %>
+                          </div> -->
+                          <%#= will_paginate @posts, :container => false %>
+                       <!--  </div> -->
+                        <%#= will_paginate @posts %>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
+   <div class="backBg" id="errorPopup">
+  <div class="errorPopup">
+      <span class="close hideErrorPopup">X</span>
+      <div class="logoIcon"></div>
+        <div class="vDetailImg">
+            <div><img src="<%#= @product.image %>" alt=""></div>
+            <div class="bot clearfix">
+               
+            </div>
+        </div>
+        <div class="detInfo">
+               <% @post = current_user.posts.new %>
+                      <%= form_for(@post, :remote=>true) do |f| %>
+                     Title: <%= f.text_field :title, :class=>"input" %></br>
+                      Text:<%= f.text_area :post_text, :class=>"input" %></br>
+                       Topic:<%=f.select(:topic_id , Topic.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')%></br>
+                       visibility:<%= f.select :visibility, [ 'Public', 'Private','Just For My Network','Just For My Connection','Just For My Community', 'Other' ], :prompt => 'Select One' %></br>
+                      <%= f.submit "Send", :class=>"btn",:id=>'post_submit'%></br>
+                      <%=f.hidden_field :user_id,:value=>current_user.id%>
+                      <%=link_to 'Want Your Own Topic Click To Create One',new_topic_path%>
+          <% end %>
+        </div>
+    </div>
 </div>
-
 <script>
-$(window).load(function() {
-    $("#comment").click(function(){
-      $('.comment_form').show();
-    });
+$(document).ready(function() {
+$(".showErrorPopup").click(function() {
+    $("#errorPopup").fadeIn();
+    $("body").css("overflow","hidden");
+  });
+  $(".hideErrorPopup").click(function() {
+    $("#errorPopup").fadeOut();
+    $("body").css("overflow","auto");
+  });
+ $("#post_submit").click(function() {
+    $("#errorPopup").fadeOut();
+    $("body").css("overflow","auto");
+  });
 });
+
 </script>

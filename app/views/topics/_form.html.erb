@@ -12,20 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :forum_id %><br>
-    <%= f.number_field :forum_id %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.label :category_id %><br>
+      <%=  f.select(:category_id , Category.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')  %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :forum_id,:value=>params[:forum_id] %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id,:value=>current_user.id %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+   <div class="field">
+    <%= f.label :file %><br>
+    <%= f.file_field :file %>
   </div>
   <div class="actions">
     <%= f.submit %>

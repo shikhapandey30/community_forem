@@ -25,25 +25,8 @@
         <td><%= forum.user.try(:first_name) %></td>
         <td><%=forum.topics.count%></td>
         <td><%= link_to 'More Dettail', forum %></td>
-           <td><span class="hide-show-topic" onclick= "$('#topicBox-<%= forum.id%>').toggle();">Click To Create Topic</span>
-            <div class="lists-topics-<%= forum.id%>">
-            <% forum.topics.each do |topic|%>
-<!--           <div class="topics-box"><%#= comment.body %></div>
- -->       <div class="topic-box-<%=topic.id%>">
-           <%= render 'topics/show' , :topic => topic %>
-           </div>
-          <%end%>
-            <div class="topicBox topicBox-<%= forum.id%>" style="display :none" id="topicBox-<%= forum.id%>">
-       
-            <%= form_for([forum, forum.topics.build] , :remote=>true) do |f|%>
-
-            Name: <%= f.text_field :name, :class=>"formInput" ,:style=>'width:100%'%></br></br>
-            Description:<%= f.text_area :description, :class=>"formInput" ,:style=>'width:100%'%></br></br>
-             <%=f.hidden_field :user_id,:value=>current_user.id%>
-             <%= f.submit "save Topic", :class=>"btn"%>
-         <%end%></td>
-        </div>
-       
+        <td><%=link_to 'Create Topic',new_topic_path(:forum_id=>forum)%></td>
+          
 
 
             <td><span class="hide-show-comment" onclick= "$('#commentBox-<%= forum.id%>').toggle();">Click To Comment</span></br>

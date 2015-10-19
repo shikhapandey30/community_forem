@@ -1,0 +1,13 @@
+<% if @is_like %>
+  <%if @post.present?%>
+    $(".like-<%= @post.id%>").html('<%= link_to "UnLike", post_likes_path(@post), method: :post, remote: true%>');
+  <%else%>
+    $(".like-<%= @topic.id%>").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+  <%end%>
+<% else %>
+  <%if @post.present?%>
+    $(".like-<%= @post.id%>").html('<%= link_to "Like", post_likes_path(@post), method: :post, remote: true%>');
+  <%else%>
+    $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+  <%end%>
+<% end %>

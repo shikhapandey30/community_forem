@@ -6,23 +6,19 @@
         <table cellpadding="0" cellspacing="0">
           <tr class="hd">
             <td width="10%"><%= t('pages.index.user')%></td>
-            <td width="10%"><%= t('pages.index.category')%></td>
             <td width="10%"><%= t('pages.index.topic')%></td>
           
-            <td width="10%"><%= t('pages.index.visibility')%></td>
-            <td width="10%"><%= t('pages.index.expire_on')%></td>
-             <td width="10%"><%= t('pages.index.view_detail')%></td>
+            <td width="10%"><%= t('pages.index.view_detail')%></td>
+            <td width="10%"><%= t('pages.index.Like/comment')%></td>
+             <td width="10%"><%= t('pages.index.edit')%></td>
             <td width="20%"><%= t('pages.index.actions')%></td>
           </tr>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.user.try(:first_name) %></td>
-        <td><%= post.category.name %></td>
-        <td><%= post.topic %></td>
-        <td><%= post.visibility %></td>
-        <td><%= post.expiration_date %></td>
+        <td>Created by:<%= post.user.profile.try(:first_name) %></td>
+        <td><%= post.title %></td>
         <td><%= link_to 'Show', post %></td>
 
          <td>

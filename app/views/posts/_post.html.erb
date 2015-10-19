@@ -1,0 +1,61 @@
+<li>
+  <div class="lft"><a  href="#"><%= image_tag current_user.profile.try(:image) %></a></div>
+    <div class="rgt">
+      <div class="top">
+          <div class="hd">
+            <%=link_to post.title, post %>
+              <%if post.user_id==current_user.id%>
+               <img src="/images/edit_icon-img.png" onclick = '$(".edit-post-form-<%= post.id%>").toggle();' >
+              <% end %>
+            <div class="edit-post-form-<%= post.id %>" style="display:none;">
+            <div class="hitGoing">
+                <div class="sendBox">                    
+                      <%= form_for(post, :remote=>true) do |f| %>
+                      <%= f.text_field :title, :class=>"input" %>
+                      <%= f.submit "Update", :class=>"btn"%>
+                      <% end %>
+                    </div>
+            </div>
+            </div>
+            <%if post.user_id==current_user.id%>
+              <%= link_to image_tag('delete-icon.png'), post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+            </div>
+          <div class="info"><span></span></div>
+            <div class="cheerNow"><%if current_user.following?(post.user)%>
+                               <td class="following-button-<%= post.user_id %>"><%= link_to "UnFollow", follow_path(:follower_id => post.user_id), :method => :post , :class=>"transition addFriend", :remote=>true ,:class=>'replyBtn' %></td>
+                               <% else %>
+                                 <td class="following-button-<%=post.user_id %>"><%= link_to "Follow", follow_path(:follower_id => post.user_id), :method => :post , :class=>"transition addFriend", :remote=>true,:class=>'replyBtn' %></td>
+                               <%end%></div>
+        </div>
+        <div class="links">
+          <span class="like-<%= post.id%>">
+             (<%=post.likes.count%>)<%= link_to "Like", post_likes_path(post), method: :post, remote: true%>
+          </span>
+           <span class="hide-show-comment" onclick= "$('#commentBox-<%= post.id%>').toggle();">(<%=post.comments.count%>)Comment</span>
+        </div>
+        <div class="lists-comments-<%= post.id%>">
+          <% post.comments.each do |comment|%>
+<!--           <div class="comments-box"><%#= comment.body %></div>
+ -->    <div class="comment-box-<%=comment.id%>">
+        <%= render 'comments/show' , :comment => comment %>
+       </div>
+          <%end%>
+        </div>
+        <div class="commentBox commentBox-<%= post.id%>" style="display :none" id="commentBox-<%= post.id%>">
+        
+            <%= form_for([post, post.comments.build], :remote=>true) do |f| %>
+            <%= f.text_field :body, :class=>"formInput" %>
+             <%#= f.submit "Comment", :class=>"btn"%>
+        <%end%>
+        </div>
+       
+                         
+                          
+                          
+    </div>    
+    <div class="clr"></div>
+</li>
+<script>
+
+</script>

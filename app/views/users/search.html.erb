@@ -30,9 +30,14 @@
           </td>
         <%end%>
         <%end%>
-        <td><%= link_to 'follow','#',:class=>'replyBtn' %></td>
-
-         
+       <!--  <span class="following-button-<%= @users.id %>"> -->               
+                                <%if current_user.following?(@users)%>
+                               <td class="following-button-<%= @users.id %>"><%= link_to "UnFollow", follow_path(:follower_id => @users.id), :method => :post , :class=>"transition addFriend", :remote=>true ,:class=>'replyBtn' %></td>
+                               <% else %>
+                                 <td class="following-button-<%= @users.id %>"><%= link_to "Follow", follow_path(:follower_id => @users.id), :method => :post , :class=>"transition addFriend", :remote=>true,:class=>'replyBtn' %></td>
+                               <%end%>
+                            <!--    </span>
+          -->
   </tbody>
 </table>
 </div>
