@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   resources :user_skills
-  resources :forums  
+  resources :forums  do
+     resources :comments
+  end
   resources :forum_polls do
     resources :votes, only: [:create]
   end
@@ -15,7 +17,9 @@ Rails.application.routes.draw do
     resources :likes, only: [:create]
     resources :comments
   end
-
+   resources :conversations do
+    resources :messages
+  end
   resources :employment_details
   resources :categories
   resources :education_histories
