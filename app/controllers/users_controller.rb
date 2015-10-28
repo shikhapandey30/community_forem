@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!,:except => [:social_login]
 	def index
     @topic=Topic.all
+    @users=User.all
 	end
   def search
       @users= User.where(:id=>params[:id]).first
@@ -13,8 +14,27 @@ class UsersController < ApplicationController
   #     @post
   #   end
   # end
+  
+  def reveal_identity
+    binding.pry
+     @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:user_id])
+    if @reveal_identity.present?
+      @status=false
+    else
+       @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:user_id],:body=>params[:message])
+       @status=true
+    end
+  end
+
+  def notification_count
+    current_user.notifications.update_all(:notification_status=>'Read')
+  end
 
 	def dashboard
+    @user_notification=current_user.notifications.where(:notification_status=>'Unread')
+    @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
+    @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
+    @users_json = User.all.map{|u| {:value=> u.id,:label=>u.email}}
      posts = Post.all
     pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
     self_post=current_user.posts
@@ -25,6 +45,7 @@ class UsersController < ApplicationController
 
     if @following.nil?
      @following = Following.create(:following_id => current_user.id, :follower_id => params[:follower_id])
+     Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
     else
       @unfollow = @following.destroy
     end
@@ -34,6 +55,7 @@ class UsersController < ApplicationController
     @following=current_user.followings
   end
   def followers
+
     @follower=current_user.followers
   end
   

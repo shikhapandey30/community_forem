@@ -426,6 +426,9 @@ a.addWorkout:hover {background:#333;}
 .replyTA {width:100%; border:1px solid #e1e5e8; color:#979797; padding:5px 8px; -webkit-box-sizing:border-box; -ms-box-sizing:border-box; box-sizing:border-box; height:50px; margin-bottom:10px;}
 .replyBtn {border:none; background:#a4ca0d; color:#fff; padding:4px 15px; border-radius:3px; cursor:pointer; font-size:12px;}
 .replyBtn:hover {background:#333;}
+#replyBtn {border:none; background:#a4ca0d; color:#fff; padding:4px 15px; border-radius:3px; cursor:pointer; font-size:12px;}
+
+#replyBtn:hover {background:#333;}
 
 .reviewTable table {width:100%;}
 .reviewTable .hd td {padding:10px; text-align:center; color:#484848; font-size:14px; background:#e8e8e8; border-right:1px solid #dfdfdf;}
@@ -907,3 +910,203 @@ a.startbtn:hover {background:#333;}
 .numb span{ border:#ccc solid 1px; border-right:0; display:inline-block; margin-left:10px;}
 .numb span a{ padding:10px 15px; display:inline-block; border-right:#ccc solid 1px;}
 .opacit{ opacity:0.5;}
+
+/**
+ * GMAIL Like chat css
+ * CREDITS: http://css-tricks.com/replicating-google-hangouts-chat/
+ *
+ */
+
+.chatbox {
+    position: fixed;
+    position: expression("absolute");
+    width: 280px;
+    display: none;
+}
+
+.chatboxhead {
+    background: #666;
+    color: white;
+    padding: 0.5rem;
+    overflow: hidden;
+
+    border-right: 1px solid rgba(85, 85, 85, 0.87);
+    border-left: 1px solid rgba(85, 85, 85, 0.87);
+}
+
+.chatboxhead h1 {
+    display: inline;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.chatboxblink {
+    background-color: #176689;
+    border-right: 1px solid #176689;
+    border-left: 1px solid #176689;
+}
+
+.chatboxcontent {
+    font-family: arial, sans-serif;
+    height: 280px;
+    width: 280px;
+    overflow-y: auto;
+    padding: 7px;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #eeeeee;
+    background: #e5e5e5;
+    line-height: 1.3em;
+    list-style: none;
+}
+
+.chatboxcontent li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+
+.chatboxcontent .avatar {
+    width: 40px;
+    position: relative;
+}
+
+.chatboxcontent .avatar img {
+    display: block;
+    width: 100%;
+}
+
+.other .avatar:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.self {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.self .chatboxmessagecontent {
+    order: 1;
+    border-bottom-right-radius: 0;
+}
+
+.self .avatar {
+    order: 2;
+}
+
+.self .avatar:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chatboxmessagecontent {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.chatboxmessagecontent p {
+    font-size: 12px;
+    margin: 0 0 0.2rem 0;
+    -ms-word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+.chatboxmessagecontent time {
+    font-size: 9px;
+    color: #ccc;
+}
+
+.chatboxinput {
+    padding: 5px;
+    background-color: #ffffff;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+.chatboxtextarea {
+    width: 262px;
+    height: 44px;
+    padding: 3px 0pt 3px 3px;
+    border: 1px solid #eeeeee;
+    margin: 1px;
+    overflow: hidden;
+    resize: none !important;
+}
+
+.chatboxtextareaselected {
+    border: 2px solid #878787;
+    margin: 0;
+}
+
+.chatboxmessage {
+    margin-left: 1em;
+}
+
+.chatboxinfo {
+    margin-left: -1em;
+    color: #666666;
+
+}
+
+.chatboxoptions {
+    float: right;
+}
+
+.chatboxoptions a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.chatboxtitle {
+    float: left;
+}
+.notiFication{ position:relative;}
+.notiFication span{background-color:#ff0000; color:#FFFFFF; padding:4px; border-radius:3px; position:absolute; top: -3px;right: -7px;display: block;height: 7px;font-size: 12px; display:block; box-shadow: 0px 0px 2px 3px rgba(0,0,0,0.1);  line-height:7px;}
+.subNavi{position: absolute;width: 254px; height:auto; max-height:400px; background-color: #FFF;top: 35px;left: -111px;padding:0px;box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.1);  padding-bottom:10px; display:none;  }  
+.Title {width:170px; float:left;font-size: 9px;}
+.Title a{ color:#F36A22 !important}
+.Title a:hover{ color:#000000!important}
+.date1{ width:55px; float:right; margin-top:2px; color:#F36A22 !important; font-size: 9px;}
+.subNavi  li{ border-bottom: solid 1px #efefef; padding-bottom:3px !important;}
+.subNavi  li:last-child{ border-bottom:0px;}
+.vpb_top_notifications_dropdown_arrow_up:after {
+position: absolute;
+content: "";
+width: 0px;
+height: 0px;
+margin-top: 1px;
+margin-left: 1px;
+border-left: 8px solid transparent;
+border-right: 8px solid transparent;
+border-bottom: 8px solid #FFF;
+top: -9px;
+z-index: 9999999;
+left: 128px;
+}
+}

@@ -9,7 +9,7 @@
             <td width="10%"><%= t('pages.index.first_name')%></td>
           
             <td width="10%"><%= t('pages.index.last_name')%></td>
-            <td width="10%"><%= t('pages.index.reveal_identity')%></td>
+            <td width="40%"><%= t('pages.index.reveal_identity')%></td>
              <td width="10%"><%= t('pages.index.message')%></td>
             <td width="20%"><%= t('pages.index.Unfollow/follow')%></td>
           </tr>
@@ -18,17 +18,52 @@
     <% @follower.each do |follower| %>
     <%user=User.find(follower.following_id)%>
       <tr>
-          <td><%=image_tag user.profile.try(:image),:height=>'96px;',:width=>'104px;' %></td>
+        <td><%=image_tag user.profile.try(:image),:height=>'96px;',:width=>'104px;' %></td>
         <td><%= user.profile.try(:first_name) %></td>
         <td><%=user.profile.try(:last_name) %></td>
-         <td><%= link_to 'Reveal Identity', '#',:class=>'replyBtn' %></td>
-         <td><%= link_to 'Message', '#' ,:class=>'replyBtn'%></td>
-         <%if current_user.following?(user)%>
-                               <td class="following-button-<%= user.id %>"><%= link_to "UnFollow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true ,:class=>'replyBtn' %></td>
-                               <% else %>
-                                 <td class="following-button-<%= user.id %>"><%= link_to "Follow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true,:class=>'replyBtn' %></td>
-                               <%end%>   
+        <td>
+         <%if current_user.revealed?(user)%>
+         <a href="javascript:void()" id="replyBtn" >Cancel Reveal Request</a>
+        </td>
+        <%else%>
+        <td>
+         <a href="javascript:void()" class="transition showErrorPopup" id="replyBtn">Reveal Identity</a>
+         
+        </td>
+        <%end%>
+        <td>
+          <%=link_to 'message','#' ,:class=>'replyBtn'%>
+        </td>
+        <%if current_user.following?(user)%>
+          <td class="following-button-<%= user.id %>"><%= link_to "UnFollow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true ,:class=>'replyBtn' %></td>
+        <% else %>
+          <td class="following-button-<%= user.id %>"><%= link_to "Follow", follow_path(:follower_id => user.id), :method => :post , :class=>"transition addFriend", :remote=>true,:class=>'replyBtn' %></td>
+        <%end%>   
       </tr>
+       <div class="backBg" id="errorPopup">
+  <div class="errorPopup">
+      <span class="close hideErrorPopup">X</span>
+      <div class="logoIcon"></div>
+        <div class="vDetailImg">
+            <div><img src="<%#= @product.image %>" alt=""></div>
+            <div class="bot clearfix">
+               
+            </div>
+        </div>
+        <div id ="success" style="color:green;display:none;"> 
+        </div>
+        <div id ="error" style="color:red;display:none;">
+        </div>
+        <div class="detInfo">
+        <%= form_tag(reveal_identity_path, :remote=>true, :method=>'GET') do %>
+        Tell Why DO You want to reveal the identity
+        <%= text_area_tag :message %>
+        <%=hidden_field_tag :user_id,user.id%>
+        <%= submit_tag "Submit", :class=>"btn",:id=>'post_submit'%>
+        <% end %>
+        </div>
+    </div>
+</div>
     <% end %>
   </tbody>
 </table>
@@ -37,6 +72,24 @@
   </div>
 </div>
 <br>
+
+<script>
+$(document).ready(function() {
+$(".showErrorPopup").click(function() {
+    $("#errorPopup").fadeIn();
+    $("body").css("overflow","hidden");
+  });
+  $(".hideErrorPopup").click(function() {
+    $("#errorPopup").fadeOut();
+    $("body").css("overflow","auto");
+  });
+ // $("#post_submit").click(function() {
+ //    $("#errorPopup").fadeOut();
+ //    $("body").css("overflow","auto");
+ //  });
+});
+
+</script>
 <style>
 #comment_body{
   width: 100% !important;
@@ -45,4 +98,5 @@
  width: 200px !important;
 
 }
+
 <%#= link_to 'New Post', new_post_path %>

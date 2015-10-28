@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,9 +22,15 @@ class User < ActiveRecord::Base
  has_many :followers, :class_name => "Following", :foreign_key => "follower_id"
   accepts_nested_attributes_for :skills, :allow_destroy => true
   has_many :categorables, dependent: :destroy
+ has_many :conversations, :foreign_key => :sender_id
   #has_many :categorables_categories, through: :categorables, source: :categorable, source_type: 'Category'
   has_many :categories, through: :categorables
+  has_one :subscription
+  has_many :notifications
    def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
+  end
+   def revealed?(reveal)
+    RevealIdentity.where(:sender_id=>self.id,:user_id=>reveal.id).present?
   end
 end

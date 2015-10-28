@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<%@users_json = User.all.map{|u| {:value=> u.id,:label=>u.email}}%>
+
 
 
   <%#=render'users/data_show'%>
@@ -30,10 +30,43 @@ Post:<%= radio_button_tag(:value, "Post") %>
             <nav class="menu">
             <a href="/" class="mobMenu"><i></i><i></i><i></i></a>
             <ul>
+                  <li>
+                  <ul style="float:left;">
+              <li style="position:relative;">  <a href="#" class="notiFication" > <img src="/images/gl.png">
+                 <%if @user_notification.present? && @user_notification.count!=0%>
+                   <span id="noti-span" ><%=@user_notification.count%></span> </a>
+               
+               <ul class="subNavi ">
+                 <div class="vpb_top_notifications_dropdown_arrow_up"></div>
+                <li><div class="Title"><a href="#" style="text-decoration:none">Reveal Identity</a></div> 
+                <div class="date1"></div>  <div class="clr"></div> 
+                <%@reveal_identity.each do |f|%>
+                <%binding.pry%>
+                <%sender=User.find(f.sender_id)%>
+                <ul>
+                <li><div class="Title"><a href="#" style="text-decoration:none"><%=sender.profile.try(:first_name)%></a></div> 
+                <div class="date1"></div>  <div class="clr"></div>
+                </li>
+                </ul>
+                <%end%>
+                </li> 
+          
+          
+               <li><div class="Title"><a href="#" style="text-decoration:none">Notification 2</a></div>  
+             <div class="date1"></div>  <div class="clr"></div> </li> 
+          
+          <li><div class="Title"><a  href="#" style="text-decoration:none">Notification 3</a></div>  
+          <div class="date1"></div> <div class="clr"></div>  </li>
+          <li><div class="Title"><a  href="#" style="text-decoration:none">Notification 4</a></div>  
+          <div class="date1"></div> <div class="clr"></div>  </li>        
+        </ul>
+       </li>
+       </ul>
+                    </li>        
+        <%end%>
                 <li class="register"><a href="/dashboard"><%= t('home') %></a></li>
                 
-                <li class="register"><%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-              
+                <li class="register"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
             </ul>
         </nav>
         </div>
@@ -63,9 +96,28 @@ $('#tags').autocomplete({
 
     }
 });
+
 });
 
-  </script>
+</script>
+<script>
+  $(document).ready(function(){
+     $(".notiFication").click(function(){
+
+      $.ajax({
+      url: '/notification_count',
+      success: function (data) {
+        
+          $("#noti-span").hide();
+        
+      }
+      
+    });
+      $(".subNavi").slideToggle(300);
+     });
+});
+
+</script>
 
 <!--End Header-->
 

@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   #  include PublicActivity::Model
   # tracked
+   extend FriendlyId
+  friendly_id :title, :use => :slugged
+  validates :title, uniqueness: true, :allow_blank => true
 	belongs_to :category
 	validates_presence_of :post_text
 	belongs_to :user

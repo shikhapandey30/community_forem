@@ -20,6 +20,9 @@ Rails.application.routes.draw do
    resources :conversations do
     resources :messages
   end
+  # resources :users do
+  # resources :notifications, only: [:create]  
+  # end
   resources :employment_details
   resources :categories
   resources :education_histories
@@ -45,7 +48,8 @@ Rails.application.routes.draw do
    post '/follow', to: 'users#follow'
    get'follwers', to: 'users#followers'
    get'follwings', to: 'users#followings'
-
+   get '/notification_count', to: 'users#notification_count'
+   get '/reveal_identity', to: 'users#reveal_identity'
    #forums route
     get '/manage_forum'=>'forums#manage_forum'
     get '/manage_skill'=>'skills#manage_skill'

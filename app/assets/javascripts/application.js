@@ -15,6 +15,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require select2
+//= require private_pub
+//= require users
+//= require chat
 //= require jquery_nested_form
 //= require_tree .
 
