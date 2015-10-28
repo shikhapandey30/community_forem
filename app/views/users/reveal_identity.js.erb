@@ -1,0 +1,14 @@
+
+<%if @status==true%>
+$('#success').show();
+$('#success').css("color", "green"); 
+$('#success').html('Query Submitted Successfully We Will Soon Inform The Requester');
+<%elsif @status==false%>
+$('#error').show();
+$('#error').css("color", "red"); 
+$('#error').html('You Have Already Requested For This');
+<%else%>
+$('#error').show();
+$('#error').css("color", "red"); 
+$('#error').html('Error Submitting Your Form Try After Sometime');
+<%end%>
