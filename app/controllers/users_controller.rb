@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @users=User.all
 	end
   def search
+    binding.pry
       @users= User.where(:id=>params[:id]).first
   end
   # def search_data
