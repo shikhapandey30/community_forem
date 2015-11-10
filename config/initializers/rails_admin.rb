@@ -1,6 +1,5 @@
 RailsAdmin.config do |config|
-
-  config.main_app_name = ["Community Forum"]
+  config.current_user_method(&:current_user)
 
   ### Popular gems integration
 
@@ -9,7 +8,8 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   # config.current_user_method(&:current_user)
-
+  #App name
+  config.main_app_name = ["Community Forum"]
   ## == Cancan ==
   # config.authorize_with :cancan
   #Excluded Models
