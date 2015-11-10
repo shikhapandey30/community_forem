@@ -1,55 +1,55 @@
 <div class:="containerlogin">
-<div class:="login">
-
-<center><h2>Sign up</h2></center>
-
-<center>
-<table>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class:="login">
+    <center>
+      <h2>Sign up</h2>
+    </center>
+    <center>      
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
-<tr>
-            <td><div class="field">
-          <%= f.label :email %></div></td>
-          <td><%= f.email_field :email, autofocus: true ,placeholder:"Enter your email",class: "text_box" %></td>
-        
-</tr>
-
-  <tr>
-          <td><div class="field">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %></div></td>
-          <td><%= f.password_field :password, autocomplete: "off",placeholder:"Enter your password",class: "text_box" %></td>
-     </tr>  
-    <tr>
-
-        <td><div class="field">
-          <%= f.label :password_confirmation %>
-        </div></td>
-
-         <td> <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Re-enter your password ",class: "text_box" %></td>
-</tr>
-
-  <tr>     
-        <td>
-          <div class="actions"></div>
-        </td>
-          <td>
-            <%= f.submit "Sign up", class: "signup_button" %>
-    </td>
-
-
-    </tr>
-  </table>
-    <% end %>
-
-    <%= render "users/shared/links" %></center>
-
-    </div>
-    </div>
-    <style type="text/css">
-    .text_box {
+        <table>
+          <tr>
+            <td>
+              <div class="field">
+                <%= f.label :email %>
+              </div>
+            </td>
+            <td><%= f.email_field :email, autofocus: true ,placeholder:"Enter your email",class: "text_box" %></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="field">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %>
+              </div>
+            </td>
+            <td><%= f.password_field :password, autocomplete: "off",placeholder:"Enter your password",class: "text_box" %></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="field">
+                <%= f.label :password_confirmation %>
+              </div>
+            </td>
+            <td> <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Re-enter your password ",class: "text_box" %></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="actions"></div>
+            </td>
+            <td>
+              <%= f.submit "Sign up", class: "signup_button" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      <%= render "users/shared/links" %>
+    </center>
+  </div>
+</div>
+<style type="text/css">
+  .text_box {
     -moz-box-sizing: content-box;
     border: 1px solid #B2B2B2;
     border-radius: 23px;
@@ -58,17 +58,14 @@
     padding: 10px 5px 10px 32px;
     transition: all 0.2s linear 0s;
     width: 99%;
-
   }
-    input {
-        outline: medium none;
-    }
-    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
-        margin: 0;
-        padding: 0;
+  input {
+    outline: medium none;
   }
-
-
+  body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+  }
   h2:after {
     background: -moz-linear-gradient(left center , rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93B8BD 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     content: " ";
@@ -76,7 +73,6 @@
     height: 10px;
     margin-top: 10px;
     width: 100%;
-
   }
   h2 {
     color: #066A75;
@@ -102,8 +98,6 @@
     width: 60%;
     margin-top: 18px;
   }
-  
-
   .containerlogin {
     margin: 20px auto;
     width: 460px;
@@ -111,16 +105,10 @@
     border-radius: 20px;
     box-shadow: 0 6px 8px 8px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px #FEFEFE, 0 5px 3px 3px #D2D2D2;
   }
-
   .login {
     position: relative;
     margin: 0 auto;
     padding: 15px 15px 15px;
     width: 400px;
   }
-
-
-
-   
-
-  </style>
+</style>
