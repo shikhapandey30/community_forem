@@ -7,6 +7,8 @@ gem 'rails', '4.2.4'
 gem 'mysql2', '~> 0.3.18'
 gem 'pg'
 gem 'activeadmin', github: 'activeadmin'
+# Use rails_admin for out of box admin interface
+gem "rails_admin"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'social-share-button'

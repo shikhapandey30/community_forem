@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :user_skills
   resources :forums  do
      resources :comments
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   resources :specializations
   resources :profiles
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
   resources :organisations
   devise_for :users, controllers: { registrations: "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
