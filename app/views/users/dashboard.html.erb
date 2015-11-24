@@ -16,8 +16,11 @@
                 <div>
                 <div class="hitGoing"> 
                     <span><%= t('users.dashboard.whats_on_your_mind')%></span>
-                   <div class="detBtn"><a href="javascript:void()" class="transition showErrorPopup" >Click To Share</a>
+                   <div class="detBtn"><a href="javascript:void()" class="transition showErrorPopup" >Click To Share</a>                   
                </div> 
+                    <textarea class='voice' autofocus="true">
+                    </textarea>
+                    <%=image_tag "microphone.png", onclick: 'responsiveVoice.speak($(".voice").val());'%>
                     <div class="friendList">
                       <ul class="lists-posts"> 
                         <% @posts.each do |post|%> 
