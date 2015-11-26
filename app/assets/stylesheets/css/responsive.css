@@ -1,0 +1,92 @@
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width : 1100px) {
+.videoOuter {background-size:cover;}
+.searhInput {width: 500px;}
+.videoOuter {min-height: 500px;}
+.stepInfo {margin: 0px 0;}
+
+
+
+}
+
+
+@media only screen and (max-width : 992px) {
+.searhInput {width: 400px;}
+.banner {min-height: 480px;}
+.featureThumb img {width: 146px; height:auto;}
+.featureInfo {margin-left: 160px;}
+.videoOuter {min-height: 410px; }
+.stepImg{margin-top:15%;}
+.blueHD {font-size: 28px;}
+.footerNAv a {padding: 0px 7px;}
+.copy a {padding: 0px 10px;}
+.leftNAv ul li a {font-size:13px;}
+.leftNAv {width: 200px;}
+.rightContent {margin-left: 200px;}
+.leftNAv ul li a img {width: 16px;}
+.stepNumber {left: -38px;}
+.timeLineTwo .stepNumber {right: -39px;}
+}
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 767px) {
+.logo {margin:10px 0px; width:100%; text-align:center;}
+.topSearchRight {margin: 0;}
+.searhInput {width: 211px;}
+.topSearchRight { width:311px; margin:auto; text-align:center; float: none;}
+.topSearchRight .lightBlueBtn {margin: 10px auto;}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle{background-color: #0BB4D3;}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{background-color: #366973;}
+.navbar-default .navbar-toggle .icon-bar {background-color: #FFF;}
+.navbar-default .navbar-toggle {border:0px; margin-right:20px;}
+.container-fluid > .navbar-collapse{margin-left:0px;}
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {border-bottom:solid 1px #efefef}
+.bTextInnrt {font-size: 24px;}
+.banner {min-height: 330px;}
+.aboutUsBox {margin-top: 15px;}
+.padding30 {padding: 20px;}
+.featureBoxOuter {padding: 40px 0px 0px 0px;}
+.blueHD {font-size: 25px;}
+.stepInfo.tar{text-align:left;}
+.middleRow .col-sm-5 {float: none;;}
+.copy a {font-size: 11px;}
+.copy{text-align:center; width:100%; }
+.footerNAv{text-align:center; width:100%; margin-top:10px;}
+.leftNAv {left: -200px;}
+.rightContent {margin-left: 0px;}
+.leftMenuTab{display:block;}
+.rightMenu {display:block;}
+.topNAv {height: 45px;}
+.topRightNav {position:relative; }
+.topRightNav ul {display:none; position: absolute;background-color: #FFF;right: 10px;top: 46px;width: 170px;text-align: left; box-shadow:0px 4px 3px 3px rgba(0,0,0,0.1);}
+.topNAv li a {height: 36px;line-height: 33px;border-bottom: 3px solid #FFF;display: block;}
+.topRightNav ul li{ display:block;  border-bottom: solid 1px #ddd;}
+.innerWIdth {padding: 0px 10px;}
+.footerLink a {padding: 4px;}
+.contactForm .pl10{padding-left:15px;}
+.contactForm .pr10{padding-right:15px;}
+.smk_accordion .accordion_in .acc_head {font-size: 16px;}
+.line{display:none;}
+.tlImage{width:100%; margin-bottom:20px;}
+.timeLineINfo{width:100%;}
+.timeLine > .clearfix{text-align:center; max-width:500px; margin:auto auto 40px auto; border-bottom: solid 1px #ddd;}
+.timeLine > .clearfix br{display:none;}
+.stepNumber{display:none;}
+.timeLine .blueColor {font-size: 24px;line-height: 28px;}
+
+
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 479px) {
+.featureThumb{position:static;}
+.featureInfo{margin:10px 0 0 0 ;}
+.loginInner{width:90%; }
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+
+}

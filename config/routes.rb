@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'home/index'
+
   get 'payment_details/express'
   get 'payment_details/create'
 
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   get 'likes/create'
   # You can have the root of your site routed with "root"
   #users route
-   root 'users#index'
+   root 'home#index'
    get '/dashboard'=>'users#dashboard'
    get '/auth/:provider/callback', to: 'users#social_login'
    get '/search'=>'users#search'

@@ -1,126 +1,19 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-
-
-  <%#=render'users/data_show'%>
- <%if user_signed_in? %>
-<header>
-
-<%=form_tag '/search', :method => 'get' do %>
-  <!--   <div class="ui-widget"> -->
- <!--  <input type="text" placeholder="Search..." required id="tags"> -->
-    <%= hidden_field_tag :id,nil,:id=>"selector", :class=>"tags_id" %>
-
-  <%= text_field_tag :search, params[:search],:id=>"tags"%>
-<!-- </div> -->
-User:<%= radio_button_tag(:value, "User") %>
-Post:<%= radio_button_tag(:value, "Post") %>
- <%= submit_tag "Search", :name => nil %>
-<%end%>
-
-<!-- <form>
-<div class="ui-widget">
-  <input id="tags">
+<header class="clearfix">
+<div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+  <a href="#"> <img src="../assets/images/logo.png" alt=""></a>
 </div>
-</form> -->
-        <div class="myAc">
-            <a href="#" class="myAcLink"><%= image_tag current_user.profile.try(:image) %> <span><%= current_user.profile.try(:first_name) %></span><br></a>
-            <nav class="menu">
-            <a href="/" class="mobMenu"><i></i><i></i><i></i></a>
-            <ul>
-                  <li>
-                  <ul style="float:left;">
-              <li style="position:relative;">  <a href="#" class="notiFication" > <img src="/images/gl.png">
-                 <%if @user_notification.present? && @user_notification.count!=0%>
-                   <span id="noti-span" ><%=@user_notification.count%></span> </a>
-               
-               <ul class="subNavi ">
-                 <div class="vpb_top_notifications_dropdown_arrow_up"></div>
-                <li><div class="Title"><a href="#" style="text-decoration:none">Reveal Identity</a></div> 
-                <div class="date1"></div>  <div class="clr"></div> 
-                <%@reveal_identity.each do |f|%>
-                
-                <%sender=User.find(f.sender_id)%>
-                <ul>
-                <li><div class="Title"><a href="#" style="text-decoration:none"><%=sender.profile.try(:first_name)%></a></div> 
-                <div class="date1"></div>  <div class="clr"></div>
-                </li>
-                </ul>
-                <%end%>
-                </li> 
-          
-          
-               <li><div class="Title"><a href="#" style="text-decoration:none">Notification 2</a></div>  
-             <div class="date1"></div>  <div class="clr"></div> </li> 
-          
-          <li><div class="Title"><a  href="#" style="text-decoration:none">Notification 3</a></div>  
-          <div class="date1"></div> <div class="clr"></div>  </li>
-          <li><div class="Title"><a  href="#" style="text-decoration:none">Notification 4</a></div>  
-          <div class="date1"></div> <div class="clr"></div>  </li>        
-        </ul>
-       </li>
-       </ul>
-                    </li>        
-        <%end%>
-                <li class="register"><a href="/dashboard"><%= t('home') %></a></li>
-                
-                <li class="register"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
-            </ul>
-        </nav>
-        </div>
-       
-           
-        </div>
-    <% end %>
 
+<div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+  <div class="catLIstLink">
+    <a href="#" class="catLIst"><img src="../assets/images/catDrop.png" alt=""></a>
+  </div>
+  
+  <div class="formOuter">
+  <form method="post" action="">
+    <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
+    <input type="submit" value="" class="searhSub">  
+  </form>
+  </div>
+  <a class="lightBlueBtn" href="#">Get Started</a>
+</div>
 </header>
-
-  <script>
-  $(function() {
-     if (document.getElementById('value_Post').checked) 
-       {
-       var raw = <%= raw  @posts_json.to_json %>
-        }
-      else{
-       var raw = <%= raw  @users_json.to_json %>
-      } 
-$('#tags').autocomplete({
-    minLength: 1,
-    source: raw,
-    select: function(event, ui) {
-        $('.ui-autocomplete-input').val(ui.item.label);
-         $('.tags_id').val(ui.item.value);
-        return false
-
-    }
-});
-
-});
-
-</script>
-<script>
-  $(document).ready(function(){
-     $(".notiFication").click(function(){
-
-      $.ajax({
-      url: '/notification_count',
-      success: function (data) {
-        
-          $("#noti-span").hide();
-        
-      }
-      
-    });
-      $(".subNavi").slideToggle(300);
-     });
-});
-
-</script>
-
-<!--End Header-->
-
-<!--Start Login Popup-->
-
-<!--End Login Popup-->

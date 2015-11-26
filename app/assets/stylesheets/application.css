@@ -11,14 +11,8 @@
  * file per style scope.
  *
  *= stube active_admin
- *= require social-share-button 
- *= require_self
- *= require stylesheet
- *= require select2
-
-
+ *= require css/bootstrap.min
+ *= require css/style
+ *= require css/responsive
+ *= require css/animate.css
  */
-#messages {
-  max-height: 500px;
-  overflow: auto;
-}
