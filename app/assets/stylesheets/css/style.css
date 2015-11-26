@@ -43,11 +43,11 @@ ul {list-style:none;}
 header{background-color:#0bb4d3; padding:5px;}
 .logo{margin-left:10px; float:left;}
 .topSearchRight{ float:right; margin:12px 12px  0 0 ;}
-.catLIstLink{ display:inline-block;}
+.catLIstLink{ display:inline-block;vertical-align: top;}
 .formOuter{ display:inline-block;}
 .lightBlueBtn{background-color:#6dd2e6; display:inline-block; padding: 9px 15px; color:#366973; font-weight:600; border-radius:5px;} 
 .lightBlueBtn:hover{background-color:#0ca8c5; color:#FFFFFF;}
-.topSearchRight .lightBlueBtn{margin:0 0px 0 12px  ;}
+.topSearchRight .lightBlueBtn{margin:0 0px 0 12px  ;vertical-align: top;}
 .catLIst{background-color:#6dd2e6; display:inline-block; padding: 9px 15px; border-radius:5px 0px 0px 5px;}
 .searhInput{ background-color:#FFFFFF; border:0px; display:inline-block; padding: 9px 15px; width:700px;  margin-left:-4px;}
 .searhSub{ background-color:#FFFFFF;border:0px; background-image:url(/assets/images/search.png); background-repeat:no-repeat; background-position:center left; width:30px; height:37px; margin-left:-4px; border-radius:0px 5px 5px 0px;}  
@@ -217,7 +217,7 @@ footer{border-top: solid 1px #ebebeb; color:#919191; font-size:13px; padding:15p
 
 .whiteHeader{background-color:#FFFFFF; box-shadow: 3px 0px 5px 5px rgba(0, 0, 0, 0.1); position:relative; z-index: 999;}
 .whiteHeader .topSearchRight {max-width:550px; float:none; margin:10px auto;}
-.whiteHeader .searhInput {width: 451px; border:solid 1px #dadada; border-left:0px; border-right:0px; padding: 8px 15px;}
+.whiteHeader .searhInput {width: 451px; border:solid 1px #dadada; border-left:0px; border-right:0px; padding: 8px 15px;vertical-align: top;}
 .whiteHeader .searhSub{ border:solid 1px #dadada;  border-left:0px;}
 .userTHumb{background-color:#f5f5f5; border-bottom:solid 1px #dadada; position:relative; padding:10px;}
 .profileImg img{width:76px; height:76px;}
