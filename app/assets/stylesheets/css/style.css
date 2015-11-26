@@ -49,7 +49,7 @@ header{background-color:#0bb4d3; padding:5px;}
 .lightBlueBtn:hover{background-color:#0ca8c5; color:#FFFFFF;}
 .topSearchRight .lightBlueBtn{margin:0 0px 0 12px  ;vertical-align: top;}
 .catLIst{background-color:#6dd2e6; display:inline-block; padding: 9px 15px; border-radius:5px 0px 0px 5px;}
-.searhInput{ background-color:#FFFFFF; border:0px; display:inline-block; padding: 9px 15px; width:700px;  margin-left:-4px;}
+.searhInput{ background-color:#FFFFFF; border:0px; display:inline-block; padding: 9px 15px; width:700px;  margin-left:-4px;vertical-align: top;}
 .searhSub{ background-color:#FFFFFF;border:0px; background-image:url(/assets/images/search.png); background-repeat:no-repeat; background-position:center left; width:30px; height:37px; margin-left:-4px; border-radius:0px 5px 5px 0px;}  
 .navbar .container-fluid{padding:0px 2px 0 0 ;}
 .navbar { border:0px; margin:0px;}
