@@ -18,5 +18,7 @@
 //= require users
 //= require chat
 //= require jquery_nested_form
-//= require_tree .
+//= require js/bootstrap.min
+//= require js/wow
+//= require js/function
 
