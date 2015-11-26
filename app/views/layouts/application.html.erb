@@ -12,7 +12,8 @@
 <body>
 <div class="bodyCont">  
   <%= render "layouts/header"%>
-  <div class="mainCOntnt">
+  <%cla = params[:action] =="index" ? "mainContner" : "mainCOntnt" %>
+  <div class="<%= cla %>">
     <%if params[:controller] =="home" &&  params[:action]!="index"%>
       <%= render "layouts/left_panel"%>
     <% end %>
