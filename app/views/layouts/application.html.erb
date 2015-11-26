@@ -10,10 +10,19 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="bodyCont">
-<%= render "layouts/header"%>
-   <%= yield %>
-<%= render "layouts/footer"%>
+<div class="bodyCont">  
+  <%= render "layouts/header"%>
+  <div class="mainCOntnt">
+    <%if params[:controller] =="home" &&  params[:action]!="index"%>
+      <%= render "layouts/left_panel"%>
+    <% end %>
+    <%= yield %>
+  </div>
+  <%if params[:action] != "terms_and_conditions" &&  params[:action] != "privacy_policy" &&  params[:action] != "how_it_work"  &&  params[:action] != "contactus" &&  params[:action] != "aboutus" &&  params[:action] != "help"%>
+
+    <%= render "layouts/footer"%>
+
+  <% end %>
 
 </div>
 </body>

@@ -1,49 +1,19 @@
-<div class="dashboardLft">
-	<div class="shadeBox">
-  	<div class="userBox clearfix">
-      <div class="lft"><a href="#"><%= image_tag current_user.profile.try(:image) rescue nil %></a></div>
-        <div class="rgt">
-          <span class="name"><%= current_user.profile.try(:first_name) rescue nil %></span>
-         
-        </div>
-        <% if current_user.profile.present?%>
-      <div class="clr"><%=link_to 'Manage Profile',edit_profile_path(current_user.profile),:class=>"addWorkout"%></a></div>
-    </div>
-    <%else%>
-    <div class="clr"><%=link_to 'Manage Profile',new_profile_path,:class=>"addWorkout"%></a></div>
-    </div>
-    <%end%>
-    <div class="dashboardLinks">
-    	<ul class="clearfix">
-        <li>
-          <%=link_to 'Manage Your Forum',manage_forum_path%>
-        </li>
-         <li>
-          <%=link_to 'All Forums',forums_path%>
-        </li>
-       
-      	
-
-        <li>
-          <%=link_to 'Create Forum Poll',new_forum_poll_path%>
-        </li>
-        <li>
-          <%=link_to 'All Forum Poll',forum_polls_path%>
-        </li>
-        <li>
-          <%=link_to 'My Follwers',follwers_path%>
-        </li>
-        <li>
-          <%=link_to 'My Followings',follwings_path%>
-        </li>
-        <li>
-          <%=link_to 'Create Your Category',user_category_path%>
-        </li>  
-       <li>
-          <%#=link_to 'Create Post',new_post_path%>
-        </li> 
-        </ul>
-    </div>
-  </div>
+<div class="leftNAv">
+  <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
+    <ul>
+      <li><a href="#"><img src="../assets/images/li1.png" alt="">Entertainment</a></li>
+      <li><a href="#"><img src="../assets/images/li2.png" alt="">Politics</a></li>
+      <li><a href="#"><img src="../assets/images/li3.png" alt="">Technology</a></li>
+      <li><a href="#"><img src="../assets/images/li4.png" alt="">Sports</a></li>
+      <li><a href="#"><img src="../assets/images/li5.png" alt="">Music</a></li>
+      <li><a href="#"><img src="../assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
+      <li><a href="#"><img src="../assets/images/li7.png" alt="">Politics &amp; Government</a></li>
+      <li><a href="#"><img src="../assets/images/li8.png" alt="">Travel &amp; Lifestyle</a></li>
+      <li><a href="#"><img src="../assets/images/li9.png" alt="">Food &amp; Drink</a></li>
+      <a class="viewAll" href="#"> View All</a>
+      <div class="footerLink">
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+  </ul>    
 </div>
-

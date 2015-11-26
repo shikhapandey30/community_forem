@@ -44,6 +44,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   #users route
    root 'home#index'
+   get '/aboutus'=>'home#aboutus'
+   get '/contactus'=>'home#contactus'
+   get '/help'=>'home#help'
+   get '/how_it_work'=>'home#how_it_work'
+   get '/privacy_policy'=>'home#privacy_policy'
+   get '/terms_and_conditions'=>'home#terms_and_conditions'
+
    get '/dashboard'=>'users#dashboard'
    get '/auth/:provider/callback', to: 'users#social_login'
    get '/search'=>'users#search'
