@@ -41,7 +41,7 @@ Post:<%= radio_button_tag(:value, "Post") %>
                 <li><div class="Title"><a href="#" style="text-decoration:none">Reveal Identity</a></div> 
                 <div class="date1"></div>  <div class="clr"></div> 
                 <%@reveal_identity.each do |f|%>
-                <%binding.pry%>
+                
                 <%sender=User.find(f.sender_id)%>
                 <ul>
                 <li><div class="Title"><a href="#" style="text-decoration:none"><%=sender.profile.try(:first_name)%></a></div> 

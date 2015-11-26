@@ -42,6 +42,7 @@ gem "letter_opener", :group => :development
 gem 'select2-rails'
 gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2.git'
 gem 'public_activity'
+gem 'activemerchant', '1.50.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -64,3 +65,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'twilio-ruby', '~> 4.2.1'
+
+gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'

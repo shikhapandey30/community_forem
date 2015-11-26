@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: a252cebb4e6b4939775df2ef6920f16bec38f884
+  revision: d787029e5523be2eb2ed99816eb0cecca2b72862
   specs:
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
@@ -17,10 +17,18 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/stefanpenner/country_select.git
-  revision: 67548cc64c87412e69b3997ccce1015cb206a526
+  remote: git://github.com/konjoot/rails_admin_flatly_theme.git
+  revision: 1156afdb42832c58c84b796ee182892604fe7a5f
   specs:
-    country_select (2.5.0)
+    rails_admin_flatly_theme (1.1.0)
+      rails (> 3.1.3)
+      rails_admin (< 0.6.6)
+
+GIT
+  remote: git://github.com/stefanpenner/country_select.git
+  revision: 0d9c97d795ded70c23fb3215e0e18905d6a99ed4
+  specs:
+    country_select (2.5.1)
       countries (~> 1.2.0)
       sort_alphabetical (~> 1.0)
 
@@ -58,6 +66,11 @@ GEM
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
+    activemerchant (1.50.0)
+      activesupport (>= 3.2.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
     activemodel (4.2.4)
       activesupport (= 4.2.4)
       builder (~> 3.1)
@@ -82,7 +95,7 @@ GEM
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
-    byebug (8.1.0)
+    byebug (8.2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -96,9 +109,9 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     cookiejar (0.3.2)
-    countries (1.2.1)
+    countries (1.2.2)
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
     currencies (0.4.2)
@@ -161,9 +174,8 @@ GEM
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jquery-rails (4.0.5)
-      rails-dom-testing (~> 1.0)
-      railties (>= 4.2.0)
+    jquery-rails (3.1.4)
+      railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
@@ -181,15 +193,15 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.6.2)
+    mime-types (2.99)
     mini_portile (0.6.2)
-    minitest (5.8.2)
+    minitest (5.8.3)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
     nested_form (0.3.2)
-    nokogiri (1.6.6.2)
+    nokogiri (1.6.6.4)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
     oauth2 (1.0.0)
@@ -219,7 +231,7 @@ GEM
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
-    pg (0.18.3)
+    pg (0.18.4)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     private_pub (1.0.3)
@@ -263,12 +275,12 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails_admin (0.7.0)
+    rails_admin (0.6.4)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
-      font-awesome-rails (>= 3.0, < 5)
+      font-awesome-rails (>= 3.0)
       haml (~> 4.0)
-      jquery-rails (>= 3.0, < 5)
+      jquery-rails (~> 3.0)
       jquery-ui-rails (~> 5.0)
       kaminari (~> 0.14)
       nested_form (~> 0.3)
@@ -276,7 +288,7 @@ GEM
       rails (~> 4.0)
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
-      sass-rails (>= 4.0, < 6)
+      sass-rails (>= 4.0)
     railties (4.2.4)
       actionpack (= 4.2.4)
       activesupport (= 4.2.4)
@@ -313,7 +325,7 @@ GEM
       sass-rails
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
-    spring (1.4.1)
+    spring (1.4.4)
     sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
@@ -329,6 +341,10 @@ GEM
     tilt (2.0.1)
     turbolinks (2.5.3)
       coffee-rails
+    twilio-ruby (4.2.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -352,6 +368,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activeadmin-select2!
+  activemerchant (= 1.50.0)
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
@@ -373,6 +390,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-erd
   rails_admin
+  rails_admin_flatly_theme!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails
@@ -380,5 +398,9 @@ DEPENDENCIES
   spring
   thin
   turbolinks
+  twilio-ruby (~> 4.2.1)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.6

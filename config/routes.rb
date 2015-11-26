@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'payment_details/express'
+  get 'payment_details/create'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :user_skills
   resources :forums  do

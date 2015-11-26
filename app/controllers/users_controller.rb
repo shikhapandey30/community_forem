@@ -5,8 +5,7 @@ class UsersController < ApplicationController
     @users=User.all
 	end
   def search
-    binding.pry
-      @users= User.where(:id=>params[:id]).first
+    @users= User.where(:id=>params[:id]).first
   end
   # def search_data
   #   if params[:type]=='User'
@@ -17,7 +16,6 @@ class UsersController < ApplicationController
   # end
   
   def reveal_identity
-    binding.pry
      @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:user_id])
     if @reveal_identity.present?
       @status=false
