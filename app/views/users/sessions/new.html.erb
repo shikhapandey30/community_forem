@@ -1,114 +1,26 @@
-<div class='containerlogin'>
-  <div class='login'>
-    <h2>Login</h2>
-
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <table>
-        <tr>
-          <div class="field">
-            <td class='loginTxt'><%= f.label :email %></td>
-            <td class='loginField'><%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", class: "text_box" %></td>
-          </div>
-        </tr>
-        <tr>
-          <div class="field">
-            <td class='loginTxt'><%= f.label :password %></td>
-            <td class='loginField'><%= f.password_field :password, autocomplete: "off",placeholder: "Enter Your Password", class: "text_box" %></td>
-          </div>
-        </tr>
-        <tr>
-          <td>
-            <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end -%>
-          </td>
-          <td align='right'>
-            <div class="actions">
-            <%= f.submit "Log in", class: "sign_button" %>
-          </div>
-          </td>
-        </tr>
-      </table>
-    <% end %>
-    <%= render "users/shared/links" %>
-    <%#= social_share_button_tag('Facebook', :url => '/auth/facebook') %>
-    <ul class="social">
-      <li type="circle"><%= link_to 'Facebook', '/auth/facebook' %></li>
-      <li type="circle"><%= link_to 'Twitter', '/auth/twitter' %></li>
-      <li type="circle"><%= link_to 'Google+', '/auth/google_oauth2' %></li>
-    </ul>
-
+<div class="bodyCont">
+<!--  Header Start -->
+<div class="headerBkg"></div>
+<!-- Header End -->
+<div class="loginOuter">
+  <div class="loginInner">
+    <a href="#" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="../assets/images/logoShadow.png"></a>
+    <div class="socialLogin">
+      <a href="/auth/facebook" class="fb"> <img src="../assets/images/fb.png" alt=""> Sign in with Facebook </a>
+      <a href="/auth/google_oauth2" class="gp"> <img src="../assets/images/gp.png" alt=""> Sign in with Google </a>
+      <a href="/auth/twitter" class="tw"> <img src="../assets/images/tw.png" alt=""> Sign in with Twitter </a>
+    </div>
+    <div class="tac or">
+      <div class="octagon">OR</div>
+    </div>
+    <div class="loginForm">      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%#= devise_error_messages! %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", class: "inputText" %>
+        <%= f.password_field :password, autocomplete: "off",placeholder: "Password", class: "inputText" %>
+        <%= f.submit "Login", class: "darkBlueBtn inputSubmit" %>
+      <%end%>
+    </div>
+    <p>Don't have an account? <%=link_to "Sign Up", new_user_registration_path%></p>
   </div>
 </div>
-
-
-<style type="text/css">
-
-  .text_box {
-      -moz-box-sizing: content-box;
-      border: 1px solid #B2B2B2;
-      border-radius: 15px;
-      box-shadow: 0 16px 4px 0 rgba(168, 168, 168, 0.6) inset;
-      margin-top: 18px;
-      padding: 10px 5px 10px 32px;
-      transition: all 0.2s linear 0s;
-      width: 99%;
-  }
-
-  h2:after {
-      background: -moz-linear-gradient(left center , rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, #93B8BD 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-      content: " ";
-      display: block;
-      height: 10px;
-      margin-top: 10px;
-      width: 100%;
-
-    }
-
-  h2 {
-      color: #066A75;
-      font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
-      font-size: 38px;
-      font-weight: bold;
-      padding: 2px 0;
-      text-align: center;
-      margin: 0 auto;
-      margin-top: -10px;
-    }
-
-  .sign_button {
-      background: none repeat scroll 0 0 #3D9DB3;
-      border: 1px solid #1C6C7A;
-      border-radius: 3px;
-      box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px #FEFEFE, 0 5px 3px 3px #D2D2D2;
-      color: #FFFFFF;
-      cursor: pointer;
-      font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
-      font-size: 24px;
-      margin-bottom: 10px;
-      padding: 0 5px;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-      transition: all 0.2s linear 0s;
-      width: 60%;
-      margin-top: 18px;
-    }
-
-  .containerlogin {
-    margin: 50px auto;
-    width: 460px;
-    border: 1px solid #1C6C7A;
-    border-radius: 25px;
-    box-shadow: 0 6px 8px 8px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px #FEFEFE, 0 5px 3px 3px #D2D2D2;
-  }
-
-  .login {
-    position: relative;
-    margin: 0 auto;
-    padding: 15px 15px 15px;
-    width: 400px;
-  }
-
-</style>

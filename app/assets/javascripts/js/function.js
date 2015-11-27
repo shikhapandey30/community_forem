@@ -32,7 +32,7 @@ $(".overLAy").click(function(){
 
     
 if($(window).width() > 768){
-wow = new WOW(
+	wow = new WOW(
       {
         animateClass: 'animated',
         offset:       100,
@@ -42,11 +42,11 @@ wow = new WOW(
       }
     );
     wow.init();
-    document.getElementById('moar').onclick = function() {
-      var section = document.createElement('section');
-      section.className = 'section--purple wow fadeInDown';
-      this.parentNode.insertBefore(section, this);
-    };
+    // document.getElementById('moar').onclick = function() {
+    //   var section = document.createElement('section');
+    //   section.className = 'section--purple wow fadeInDown';
+    //   this.parentNode.insertBefore(section, this);
+    // };
 }
 
     

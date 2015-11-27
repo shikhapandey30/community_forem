@@ -18,7 +18,7 @@
 //= require users
 //= require chat
 //= require jquery_nested_form
+//= require js/smk-accordion.min
 //= require js/bootstrap.min
 //= require js/wow
 //= require js/function
-

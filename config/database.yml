@@ -9,8 +9,8 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  password: 
+
 
 development:
   <<: *default
@@ -44,4 +44,4 @@ test:
 #
 production:
   <<: *default
-  database: community_runner_development
+  database: community_runner_production
