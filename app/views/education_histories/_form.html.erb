@@ -1,41 +1,55 @@
-<%=  nested_form_for(@education_history) do |f| %>
-  <% if @education_history.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@education_history.errors.count, "error") %> prohibited this education_history from being saved:</h2>
+<%= nested_form_for(current_user,url: "#-") do |f| %>
+  
+  <h1>Education History</h1>
+  <p><%= f.link_to_add "Add a Course", :education_histories %></p>
+  <%= f.fields_for :education_histories do |education| %>
+    <%= education.label :course %><br/>
+    <%= education.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, :prompt => 'Select')  %>
+    <%= education.label :Specialization %><br/>
+    <%= education.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, :prompt => 'Select')  %>
+    <%= education.label "Institute/University" %><br/>
+    <%= education.select(:institute_id, Institute.all.collect {|i| [i.name, i.id]}, :prompt => 'Select')  %>
+    <%= education.label "Start Year" %><br/>
+    <%= education.text_field :start_year, value: Date.today %>
+    <%= education.label "End Year" %><br/>
+    <%= education.text_field :end_year, value: Date.today %>
+    
+    <%= education.link_to_remove "Remove this course" %>
+  <% end %>  
+  <p><%= link_to "Save", "#-" %></p>
+  <p><%= link_to "Cancel", "#-" %></p>
 
-      <ul>
-      <% @education_history.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <h1>Employment Details</h1>
+  <p><%= f.link_to_add "Add Employment", :employment_details %></p>
+  <%= f.fields_for :employment_details do |emp| %>
+    <%= emp.label "Enter Designation" %><br/>
+    <%= emp.text_field :designation %>
+    <%= emp.label :organization %><br/>
+    <%= emp.text_field :designation %>
+    <%= emp.label "Start Working From" %><br/>
+    <%= emp.text_field :start_work_date, value: Date.today %>    
+    <%= emp.label "Worked Till" %><br/>
+    <%= emp.text_field :worked_till, value: Date.today %>
+    <%= check_box_tag "current company"%><strong>Current Company</strong>
+    <%= emp.label :description %><br/>
+    <%= emp.text_area :description %>    
+    <%= emp.link_to_remove "Remove Employment" %>
+  <% end %>  
+  <p><%= link_to "Save", "#-" %></p>
+  <p><%= link_to "Cancel", "#-" %></p>
+
+  <h1>Skills</h1>  
+  <%= f.label "Enter Skills" %><br/>
+  <%= f.text_field :name %>
+  <p><%= link_to "Add a skill", "#-" %></p>
+  <p><%= link_to "Save", "#-" %></p>
+  <p><%= link_to "Cancel", "#-" %></p>
+
+  <h1>Add Category</h1>
+  <%current_user.categories.each do |category| %>    
+    <%= check_box_tag "name[]", {}, false %> <%=category.name%>
   <% end %>
-  <div class="field">
-    <%= f.hidden_field :user_id,:value=>current_user.id %>
-  </div>
-   <div class="field">
-    <%= f.label :specialization_id %><br>
-      <%=  f.select(:specialization_id , Specialization.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')  %>
-  </div>
-<h1>Enter Courses</h1>
-<%= f.fields_for :courses do |course| %>
-<%= course.label :name %><br/>
- <%= course.select(:name, Course.all.where(:education_history_id=>nil).collect {|u| [u.name]}, :prompt => 'Select')  %>
-<%= course.link_to_remove "Remove this course" %>
-<% end %>
-<p><%= f.link_to_add "Add a Course", :courses %></p>
-</br></br>
- 
-<h1>Add Institutes</h1>
-<%= f.fields_for :institutes do |institute| %>
-<%= institute.label :name %><br/>
-<%= institute.text_field :name %><br />
-<%= institute.label :passing_year %><br/>
-<%= institute.text_field :passing_year,:class=>"datepicker" %><br />
-<%= institute.link_to_remove "Remove this institute" %>
-<% end %>
-<p><%= f.link_to_add "Add a institute", :institutes %></p>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <p><%= link_to "Save", "#-" %></p>
+  <p><%= link_to "Cancel", "#-" %></p>
+
 <% end %>

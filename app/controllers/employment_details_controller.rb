@@ -11,7 +11,7 @@ class EmploymentDetailsController < InheritedResources::Base
 
   # GET /EmploymentDetails/new
   def new
-    @employment_detail = EmploymentDetail.new
+    # @employment_detail = EmploymentDetail.new
   end
 
   # GET /EmploymentDetails/1/edit

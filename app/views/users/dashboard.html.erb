@@ -29,7 +29,7 @@
                             <%= render 'posts/post',:post=>post%>
                           </div>
                        <!--    </span>  --> 
-                         <%end%>
+                         <%end if @posts%>
                            
                         </ul>
                        <!--  <div class="digg_pagination" id="infinite-scrolling">
@@ -57,16 +57,16 @@
             </div>
         </div>
         <div class="detInfo">
-               <% @post = current_user.posts.new %>
-                      <%= form_for(@post, :remote=>true) do |f| %>
-                     Title: <%= f.text_field :title, :class=>"input" %></br>
-                      Text:<%= f.text_area :post_text, :class=>"input" %></br>
-                       Topic:<%=f.select(:topic_id , Topic.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')%></br>
-                       visibility:<%= f.select :visibility, [ 'Public', 'Private','Just For My Network','Just For My Connection','Just For My Community', 'Other' ], :prompt => 'Select One' %></br>
-                      <%= f.submit "Send", :class=>"btn",:id=>'post_submit'%></br>
-                      <%=f.hidden_field :user_id,:value=>current_user.id%>
-                      <%=link_to 'Want Your Own Topic Click To Create One',new_topic_path%>
-          <% end %>
+               <%# @post = current_user.posts.new %>
+                      <%#= form_for(@post, :remote=>true) do |f| %>
+                     Title: <%#= f.text_field :title, :class=>"input" %></br>
+                      Text:<%#= f.text_area :post_text, :class=>"input" %></br>
+                       Topic:<%#=f.select(:topic_id , Topic.all.collect {|u| [u.name, u.id]}, :prompt => 'Select')%></br>
+                       visibility:<%#= f.select :visibility, [ 'Public', 'Private','Just For My Network','Just For My Connection','Just For My Community', 'Other' ], :prompt => 'Select One' %></br>
+                      <%#= f.submit "Send", :class=>"btn",:id=>'post_submit'%></br>
+                      <%#=f.hidden_field :user_id,:value=>current_user.id%>
+                      <%#=link_to 'Want Your Own Topic Click To Create One',new_topic_path%>
+          <%# end %>
         </div>
     </div>
 </div>

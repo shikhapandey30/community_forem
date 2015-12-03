@@ -1,3 +1,3 @@
 class Institute < ActiveRecord::Base
-	belongs_to :education_history
+	has_many :education_histories
 end

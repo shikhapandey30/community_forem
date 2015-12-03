@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127125033) do
+ActiveRecord::Schema.define(version: 20151202122737) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20151127125033) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
 
   create_table "comments", force: :cascade do |t|
@@ -124,13 +125,22 @@ ActiveRecord::Schema.define(version: 20151127125033) do
     t.integer  "specialization_id", limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "course_id",         limit: 4
+    t.integer  "institute_id",      limit: 4
+    t.date     "start_year"
+    t.date     "end_year"
   end
 
   create_table "employment_details", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
     t.float    "total_experience", limit: 24
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "designation",      limit: 255
+    t.string   "organization",     limit: 255
+    t.string   "start_work_date",  limit: 255
+    t.string   "worked_till",      limit: 255
+    t.text     "description",      limit: 65535
   end
 
   create_table "followings", force: :cascade do |t|
@@ -267,6 +277,7 @@ ActiveRecord::Schema.define(version: 20151127125033) do
     t.datetime "updated_at",                    null: false
     t.string   "profile_type",      limit: 255
     t.string   "ethnic_group",      limit: 255
+    t.string   "state",             limit: 255
   end
 
   create_table "reveal_identities", force: :cascade do |t|
@@ -283,6 +294,7 @@ ActiveRecord::Schema.define(version: 20151127125033) do
     t.integer  "user_skill_id", limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "user_id",       limit: 4
   end
 
   create_table "specializations", force: :cascade do |t|
@@ -353,6 +365,13 @@ ActiveRecord::Schema.define(version: 20151127125033) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_categories", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",       limit: 4

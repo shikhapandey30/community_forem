@@ -30,14 +30,14 @@ class UsersController < ApplicationController
   end
 
 	def dashboard
-    @user_notification=current_user.notifications.where(:notification_status=>'Unread')
-    @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
-    @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
-    @users_json = User.all.map{|u| {:value=> u.id,:label=>u.email}}
-     posts = Post.all
-    pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
-    self_post=current_user.posts
-    @posts=pub_post+self_post
+    # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
+    # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
+    # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
+    # @users_json = User.all.map{|u| {:value=> u.id,:label=>u.email}}
+    #  posts = Post.all
+    # pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
+    # self_post=current_user.posts
+    # @posts=pub_post+self_post
 	end
   def follow
     @following = Following.where(:following_id => current_user.id, :follower_id => params[:follower_id]).first

@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
 	# has_many :categorable_categories,:dependent => :destroy, :as => :categorable
-     has_many :categorables
-     has_many :users, through: :categorables
+  belongs_to :user
+  has_many :users_categories, dependent: :destroy
+  # has_many :categorables
+  # has_many :users, through: :categorables
 end
