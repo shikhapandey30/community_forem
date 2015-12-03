@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 	def class_container
-		(!params[:controller].eql?("devise/sessions") && !params[:controller].eql?("registrations")) ? params[:action] =="index" ? "mainContner" : "mainCOntnt" : "loginOuter"
+		(!params[:controller].eql?("devise/sessions") && !params[:controller].eql?("registrations") && !params[:controller].eql?("devise/passwords")) ? params[:action] =="index" ? "mainContner" : "mainCOntnt" : "loginOuter"
 	end
 
 	def action_exist?

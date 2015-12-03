@@ -1,3 +1,5 @@
+
+
 <div class="bodyCont">
   <!--  Header Start -->
   <div class="headerBkg"></div>
@@ -14,17 +16,25 @@
         <div class="octagon">OR</div>
       </div>
       <div class="loginForm">
+      
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+       
+        <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")%>">
           <%= devise_error_messages! %>
+        </div>
+       
           <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "inputText"%>
-          <%= f.text_field :screen_name,  placeholder: "Screen Name", class: "inputText"%>
-          <%= f.email_field :email, placeholder: "Email", class: "inputText" %>
-          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "inputText" %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password",class: "inputText" %>
-          <%= f.submit "Signup", class: "darkBlueBtn inputSubmit" %>
+        <%= f.text_field :screen_name,  placeholder: "Screen Name", class: "inputText"%>
+        <%= f.email_field :email, placeholder: "Email", class: "inputText" %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "inputText" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password",class: "inputText" %>
+        <%= f.submit "Signup", class: "darkBlueBtn inputSubmit" %>
+
         <%end%>
-      </div>
+     
+       </div>
       <p>Already Have Account? <%=link_to "Sign In", new_user_session_path%></p>
     </div>
   </div>
 </div>
+

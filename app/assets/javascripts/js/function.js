@@ -2,11 +2,56 @@ $(document).ready(function(){
 	$(".bTextInnrt").height($(".bannerText").height());
 	$(".bTextInnrt").width($(".bannerText").width());
 	$(".mainCOntnt").css("min-height",($(window).height() - $("header").height()));
-	
-	$(".leftNAv ul").height($(".mainCOntnt").height()-57);
-	
+//	$(".leftNAv ul").height($(".mainCOntnt").height()-57-116);
 
 
+/* Forgot pass*/
+
+
+$(".backLogin").click(function(){
+		$(".login").slideDown(500);			
+		$(".frgtPass").slideUp(500);
+});
+
+$(".frgtPAssLink").click(function(){
+		$(".login").slideUp(500);			
+		$(".frgtPass").slideDown(500);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* For TAb */	
+	
+$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+});
+
+/* For Select Option */	
+$('.select').change(function(){
+		var a = $(this).find('option:selected').text();
+		$(this).prev('.selectInput').val(a);
+});      
+
+
+$(".enable").click(function(){
+	$(this).closest(".col-sm-12").find("input").removeAttr("disabled");
+});	
 
 
 $(".rightMenu").click(function(){
@@ -32,7 +77,7 @@ $(".overLAy").click(function(){
 
     
 if($(window).width() > 768){
-	wow = new WOW(
+wow = new WOW(
       {
         animateClass: 'animated',
         offset:       100,
@@ -42,14 +87,14 @@ if($(window).width() > 768){
       }
     );
     wow.init();
-    // document.getElementById('moar').onclick = function() {
-    //   var section = document.createElement('section');
-    //   section.className = 'section--purple wow fadeInDown';
-    //   this.parentNode.insertBefore(section, this);
-    // };
+ 	/*   document.getElementById('moar').onclick = function() {
+      var section = document.createElement('section');
+      section.className = 'section--purple wow fadeInDown';
+      this.parentNode.insertBefore(section, this);
+    }; */
 }
 
-    
+
 });
 
 			

@@ -5,9 +5,6 @@
 .searhInput {width: 500px;}
 .videoOuter {min-height: 500px;}
 .stepInfo {margin: 0px 0;}
-
-
-
 }
 
 
@@ -27,8 +24,9 @@
 .leftNAv ul li a img {width: 16px;}
 .stepNumber {left: -38px;}
 .timeLineTwo .stepNumber {right: -39px;}
+.footerLink a {padding: 10px 4px;}
+header .searhInput {max-width: 211px;}
 }
-
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) {
@@ -59,7 +57,7 @@
 .leftMenuTab{display:block;}
 .rightMenu {display:block;}
 .topNAv {height: 45px;}
-.topRightNav {position:relative; }
+.topRightNav {position:relative; z-index: 9;}
 .topRightNav ul {display:none; position: absolute;background-color: #FFF;right: 10px;top: 46px;width: 170px;text-align: left; box-shadow:0px 4px 3px 3px rgba(0,0,0,0.1);}
 .topNAv li a {height: 36px;line-height: 33px;border-bottom: 3px solid #FFF;display: block;}
 .topRightNav ul li{ display:block;  border-bottom: solid 1px #ddd;}
@@ -75,14 +73,32 @@
 .timeLine > .clearfix br{display:none;}
 .stepNumber{display:none;}
 .timeLine .blueColor {font-size: 24px;line-height: 28px;}
-
-
+.topRightHeader {margin-left: 0px;}
+.whiteHeader  .topRight{width:100%; text-align:center; margin:10px 0 10px 0  ;}
+.whiteHeader .searhInput {width: 212px; }
+.whiteHeader  > *{float:none;}
+.tab-content .inputTextW {width: 100%;}
+.formOuterPost  .pr10 {padding-right:15px;}
+.formOuterPost  .pl10 {padding-left:15px;}
+.dateOuter{clear:both;}
+.blueBkg span {width: 50px;height: 50px;margin-right: 10px;line-height: 30px;border: 2px solid #0BB4D3;padding: 5px; margin-left:5px;}
+.blueBkg {font-size: 14px;}
+.back {font-size: 12px;padding: 7px 12px;margin: 9px 5px 0 0;}
+.mainCOntnt {margin-top: 0px; position:static}
+.leftNAv {top: 0px; position:absolute;}
+header{position:static !important;}
+.overLAy {position: fixed;}
+.topNAv {border-top: solid 1px #ddd;}
+.catOuter .col-sm-3{width:50%; float:left;}
+.catOuter .col-sm-3 img{width:100%;}
 }
+
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 479px) {
 .featureThumb{position:static;}
 .featureInfo{margin:10px 0 0 0 ;}
 .loginInner{width:90%; }
+.catOuter .col-sm-3{width:100%; }
 
 }
 

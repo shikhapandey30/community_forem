@@ -1,0 +1,53 @@
+<%= render '/layouts/navbar_header' %>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
+<div class="bodyCont">
+<!--  Header Start -->
+<div class="headerBkg"></div>
+<!-- Header End -->
+<div class="loginOuter">
+  <div class="loginInner">
+    <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="../assets/images/logoShadow.png"></a>
+    <div class="login" style="<%='display:none' if isInvalid%>">
+      <div class="socialLogin">
+        <a href="/auth/facebook" class="fb"> <img src="../assets/images/fb.png" alt=""> Sign in with Facebook </a>
+        <a href="/auth/google_oauth2" class="gp"> <img src="../assets/images/gp.png" alt=""> Sign in with Google </a>
+        <a href="/auth/twitter" class="tw"> <img src="../assets/images/tw.png" alt=""> Sign in with Twitter </a>
+      </div>
+      <div class="tac or">
+        <div class="octagon">OR</div>
+      </div>
+      <div class="loginForm">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%#= devise_error_messages! %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", class: "inputText" %>
+        <%= f.password_field :password, autocomplete: "off",placeholder: "Password", class: "inputText" %>
+        <%= f.submit "Login", class: "darkBlueBtn inputSubmit" %>
+        <!--  <label class="fl remPAss font12"><input type="checkbox"> Remenber Password </label>
+          <a href="#" class="fr font12 frgtPAssLink"> Forgot Password</a> -->
+        <label class="fl remPAss font12">
+        <%= f.check_box :remember_me%>  Remember Password
+        </label>
+        <%= link_to "Forgot Password?", "#", class: "fr font12 frgtPAssLink" %> 
+        <div class="clearfix"></div>
+        <%end%>
+      </div>
+    </div>
+    <div class="loginForm frgtPass" style="<%='display:block' if isInvalid%>">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
+      <%= devise_error_messages! %>
+      </div>
+      <%= f.email_field :email, required: true, autofocus: true, placeholder: "Enter Your Email", class: "inputText" %>
+      <%= f.submit "Submit", class: "darkBlueBtn inputSubmit" %>
+      <%#if !isInvalid%>
+        <a href="javascript:void(0)" class="fr font12 backLogin"> Back</a>
+      <%#end%>
+      <div class="clearfix"></div>
+      <% end %>
+    </div>
+    <p class="mt30">Don't have an account? <a href="/users/sign_up">Sign Up</a></p>
+  </div>
+</div>
+</div>
+
