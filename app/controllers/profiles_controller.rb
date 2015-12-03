@@ -1,8 +1,9 @@
 class ProfilesController < ApplicationController
+
  # before_action :set_profile, only: [:show, :edit, :update, :destroy]
   def index
     current_user.profile.present? ? current_user.profile : current_user.build_profile
-    current_user.skills.present? ? current_user.skills : current_user.skills.new
+    current_user.skill.present? ? current_user.skill : current_user.build_skill
     # if current_user.profile.present?
     #   redirect_to edit_profile_path(current_user.profile)
     # else
@@ -56,8 +57,7 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
-  def update
-
+  def update    
     current_user.update_attributes(profile_params)
     redirect_to :back
     # respond_to do |format|

@@ -24,7 +24,7 @@ class PostsController < InheritedResources::Base
   # POST /Posts
   # POST /Posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to dashboard_path, notice: 'Post was successfully created.' }
@@ -38,7 +38,7 @@ class PostsController < InheritedResources::Base
 
   # PATCH/PUT /Posts/1
   # PATCH/PUT /Posts/1.json
-  def update
+  def update    
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
@@ -61,13 +61,13 @@ class PostsController < InheritedResources::Base
   end
 
   private
-      def set_post
-       @post= Post.friendly.find(params[:id])
+      def set_post       
+       @post= Post.find(params[:id])
       # @post=Post.find(params[:id])
     end
 
     def post_params
-      params.require(:post).permit(:user_id, :category_id, :title, :post_text, :attachment, :visibility, :expiration_date,:topic_id)
+      params.require(:post).permit!
     end
 end
 

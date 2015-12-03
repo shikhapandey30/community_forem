@@ -68,4 +68,9 @@ end
 
 gem 'twilio-ruby', '~> 4.2.1'
 
+#Change Rails Admin theme
 gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'
+
+#Use TagsInput
+gem 'acts-as-taggable-on', '~> 3.4'
+

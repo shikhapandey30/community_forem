@@ -11,8 +11,7 @@
   </head>
   <body>
     <div class="bodyCont">  
-      <%= render "layouts/header"%>  
-      <% class_container %>
+      <%= render "layouts/header"%>
       <div class="<%= class_container %>">
         <%if params[:controller] =="home" &&  params[:action]!="index"%>
           <%= render "layouts/left_panel"%>

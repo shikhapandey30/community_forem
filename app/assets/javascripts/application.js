@@ -22,3 +22,6 @@
 //= require js/bootstrap.min
 //= require js/wow
 //= require js/function
+//= require js/tag-input
+//= require js/custom
+//= require responsivevoice
