@@ -85,8 +85,6 @@
     <p><%= link_to "Cancel", "#-" %></p>
   <% end %>  
   
-
-
   <h1>Employment Details</h1>
   <p><%= f.link_to_add "Add Employment", :employment_details %></p>
   <%= f.fields_for :employment_details do |emp| %>
@@ -109,11 +107,12 @@
 
 
   <h1>Skills</h1>
-  <%= f.fields_for :skills do |s| %>
+  <%= f.fields_for :skill do |s| %>
     <%= s.label "Enter Skills" %><br/>    
-    <%= s.text_field :name, class: "skills_attributes" %>
+    <%= text_field_tag "tags", nil, class: "skills_attr" %>
+    <%= s.text_field :name, class: "skills_attributes", "data-role"=>"tagsinput" %>
 
-    <p><%= link_to "Add a skill", "#-" %></p>
+    <p><%= link_to "Add a skill", "#-", class: "add_skill" %></p>
     <p><%= link_to "Save", "#-", id: "skills_attributes", class: 'save' %></p>
     <p><%= link_to "Cancel", "#-" %></p>
   <%end%>
@@ -128,16 +127,15 @@
 <%end%>
 
 
-<script>
+<script type="text/javascript">
   $(document).on('click', 'a[class=save]', function() {
-    // $("input[name=attribute]").val(this.id);    
     $.ajax({
-      method: "put",
+      method: "PUT",
       url: "<%=profile_path(current_user)%>",
       data: $("."+this.id).serialize(),
       success :function(){
         return false;
       }
-    })    
+    });
   });
 </script>

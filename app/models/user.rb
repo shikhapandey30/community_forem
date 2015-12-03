@@ -5,22 +5,19 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   
-  has_one :profile
-  accepts_nested_attributes_for :profile, :allow_destroy => true
-
+  has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
-  accepts_nested_attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true
-  
+  accepts_nested_attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
   has_many :employment_details, dependent: :destroy
   accepts_nested_attributes_for :employment_details, :reject_if => :all_blank, :allow_destroy => true
-
-  has_many :skills, dependent: :destroy  
-  accepts_nested_attributes_for :skills, :reject_if => :all_blank, :allow_destroy => true
-
-  has_many :categories, dependent: :destroy
-
+  has_many :posts, dependent: :destroy
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile, :allow_destroy => true
+  has_one :skill, dependent: :destroy
+  accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
   has_many :users_categories, dependent: :destroy
   accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
+  
   
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
@@ -29,7 +26,7 @@ class User < ActiveRecord::Base
  #  has_many :institutes , through: :education_history
  #  has_many :courses, through: :education_history
  #  has_many :authenticates
- #  has_many :posts
+ #  
  #  has_many :topics
  #  has_many :forums
  #  has_many :forum_polls
