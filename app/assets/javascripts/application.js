@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= stube active_admin
+// stube active_admin
 //= require jquery
 //= require jquery_ujs
 //= require select2
