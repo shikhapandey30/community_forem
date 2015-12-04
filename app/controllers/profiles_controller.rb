@@ -4,6 +4,8 @@ class ProfilesController < ApplicationController
   def index
     current_user.profile.present? ? current_user.profile : current_user.build_profile
     current_user.skill.present? ? current_user.skill : current_user.build_skill
+    @skills = Skill.all
+    @categories = Category.all
     # if current_user.profile.present?
     #   redirect_to edit_profile_path(current_user.profile)
     # else
@@ -58,8 +60,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
   def update    
-    current_user.update_attributes(profile_params)
-    redirect_to :back
+    current_user.update_attributes(profile_params)    
     # respond_to do |format|
     #   if @profile.update(profile_params)
     #      if @profile.profile_type=='Individual'
@@ -83,21 +84,6 @@ class ProfilesController < ApplicationController
     # end
   end
 
-  def education_history
-    debugger
-  end
-
-  def employment_detail
-    debugger
-  end
-
-  def skill
-    debugger
-  end
-
-  def category
-    debugger
-  end
 
   # DELETE /Profiles/1
   # DELETE /Profiles/1.json

@@ -1,0 +1,96 @@
+<div class="clearfix whiteBox mt30">
+  <%= f.fields_for :profile do |p| %>
+    <div class="clearfix formOuterPost tal">
+      <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+      <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
+      <div class="uploadPhoto" onclick="$('.profile_picture').click();" >
+        <div class="reletive">
+          <img src="../assets/images/camera.png" alt="" id='imgprvw'>
+          <div>Change Photo</div>
+        </div>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>First Name</label>
+        <%= p.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Last Name</label>
+        <%= p.text_field :last_name, class: "profile inputTextW small", placeholder: "John" %>
+      </div>
+      <div class="col-sm-12">
+        <div class="blackHD">Address</div>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label class="">Country</label>
+        <%= p.text_field :country, class: "profile inputTextW small" %>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label class="">CIty</label>
+        <%= p.text_field :city, class: "profile inputTextW small" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Street</label>
+        <%= p.text_field :street, class: "profile inputTextW small" %>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Zipcode</label>
+        <%= p.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Gender</label>
+        <div class="selctFormBox">                  
+          <%= p.text_field :gender, value: "Select", class: "profile selectInput" %>
+          <%= p.select("gender", [['Male','male'],['Female','female']], {}, class: "select")  %>
+        </div>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Phone</label>
+        <%= p.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Select Type</label>
+        <div class="selctFormBox">
+          <%= p.text_field :profile_type, value: "Select", class: "profile selectInput" %>
+          <select class="select">
+            <option>Individual</option>
+            <option>Company</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Date of Birth</label>
+          <%= p.text_field :dob,:class=>"datepicker", class: "inputTextW small date fullWdth" %> 
+        <!-- <input type="text" placeholder="987654321" class=""> -->
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Screen Name</label>
+        <%= p.text_field :screen_name, class: "inputTextW small " %>
+        <!-- <input type="text" placeholder="john2015" class="inputTextW small  ">  -->
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Location</label>
+        <%= p.text_field :location, class: "inputTextW small" %>
+       <!--  <input type="text" placeholder="South America" class="inputTextW small  "> -->
+      </div>
+      <div class="col-sm-12">
+        <%= link_to "Save", "#-", id: "profile", class: 'blueBtn save' %>
+        <!-- <input type="submit" value="Save " class="blueBtn"> -->
+        <%= link_to "Cancel", "#-",class: 'grayBtn' %>
+      </div>
+    </div>
+  <%end%>  
+</div>
+<script>
+ function showimagepreview(input) {
+    if (input.files && input.files[0]) {
+    var filerdr = new FileReader();
+    filerdr.onload = function(e) {
+
+    $('#imgprvw').attr('src', e.target.result);
+    }
+    filerdr.readAsDataURL(input.files[0]);
+    }
+    
+  }
+</script>

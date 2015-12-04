@@ -1,12 +1,10 @@
+/* For Select Option */	
+$(document).on('change', '.select', function(){	
+	var a = $(this).find('option:selected').text();
+	$(this).prev('.selectInput').val(a);
+});
+
 $(document).ready(function(){
-
-
-	/* For Select Option */	
-	$('.select').change(function(){		
-		var a = $(this).find('option:selected').text();
-		$(this).prev('.selectInput').val(a);
-	});      
-
 
 	$(".bTextInnrt").height($(".bannerText").height());
 	$(".bTextInnrt").width($(".bannerText").width());

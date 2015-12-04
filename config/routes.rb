@@ -33,14 +33,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :education_histories
   resources :specializations
-  resources :profiles do
-    collection do
-      post :education_history, as: :education
-      post :employment_detail, as: :employment
-      post :skill
-      post :category      
-    end
-  end
+  resources :profiles
   devise_for :admin_users, ActiveAdmin::Devise.config
   # ActiveAdmin.routes(self)
   resources :organisations
