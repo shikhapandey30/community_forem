@@ -12,6 +12,7 @@
   <body>
     <div class="bodyCont">  
       <%= render "layouts/header" if !user_signed_in?%>
+      <%=render 'layouts/navbar_header' if !user_signed_in?%>
       <div class="<%= class_container %>">
         <%if params[:controller] =="home" &&  params[:action]!="index"%>
           <%= render "layouts/left_panel"%>
@@ -19,7 +20,7 @@
         <%= yield %>
       </div>
       <%if action_exist? %>
-        <%= render "layouts/footer" if !user_signed_in?%>
+        <%= render "layouts/footer" if !user_signed_in? %>
       <% end %>
     </div>
   </body>

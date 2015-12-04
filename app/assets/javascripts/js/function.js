@@ -1,4 +1,13 @@
 $(document).ready(function(){
+
+
+	/* For Select Option */	
+	$('.select').change(function(){		
+		var a = $(this).find('option:selected').text();
+		$(this).prev('.selectInput').val(a);
+	});      
+
+
 	$(".bTextInnrt").height($(".bannerText").height());
 	$(".bTextInnrt").width($(".bannerText").width());
 	$(".mainCOntnt").css("min-height",($(window).height() - $("header").height()));
@@ -9,45 +18,28 @@ $(document).ready(function(){
 
 
 $(".backLogin").click(function(){
-		$(".login").slideDown(500);			
-		$(".frgtPass").slideUp(500);
+	$(".login").slideDown(500);			
+	$(".frgtPass").slideUp(500);
 });
 
 $(".frgtPAssLink").click(function(){
-		$(".login").slideUp(500);			
-		$(".frgtPass").slideDown(500);
+	$(".login").slideUp(500);			
+	$(".frgtPass").slideDown(500);
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
 /* For TAb */	
 	
 $('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
+	var tab_id = $(this).attr('data-tab');
 
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
+	$('ul.tabs li').removeClass('current');
+	$('.tab-content').removeClass('current');
 
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
+	$(this).addClass('current');
+	$("#"+tab_id).addClass('current');
 });
-
-/* For Select Option */	
-$('.select').change(function(){
-		var a = $(this).find('option:selected').text();
-		$(this).prev('.selectInput').val(a);
-});      
-
 
 $(".enable").click(function(){
 	$(this).closest(".col-sm-12").find("input").removeAttr("disabled");
@@ -77,7 +69,7 @@ $(".overLAy").click(function(){
 
     
 if($(window).width() > 768){
-wow = new WOW(
+  wow = new WOW(
       {
         animateClass: 'animated',
         offset:       100,
