@@ -1,7 +1,9 @@
 /* For Select Option */	
 $(document).on('change', '.select', function(){	
-	var a = $(this).find('option:selected').text();
-	$(this).prev('.selectInput').val(a);
+	var text = $(this).find('option:selected').text();
+	var val = $(this).find('option:selected').val();	
+	$(this).prev().prev('.selectInputField').val(val);
+	$(this).prev('.selectInput').val(text);
 });
 
 $(document).ready(function(){
