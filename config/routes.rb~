@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :education_histories
   resources :specializations
-
+<<<<<<< HEAD
   resources :profiles do
     collection do
       post :education_history, as: :education
@@ -45,7 +45,12 @@ Rails.application.routes.draw do
       post :category      
     end
   end
-
+ 
+=======
+  resources :profiles
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
+>>>>>>> de5ef44b0b2c726046b8df6e88ec221c82d9770a
   resources :organisations
   devise_for :users, controllers: { registrations: "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.

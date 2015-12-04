@@ -1,0 +1,40 @@
+<div class="clearfix whiteBox">
+  <div class="clearfix formOuterPost tal">
+    <div class="col-sm-12 mb10">
+      <div class="grayHD">EMPLOYMENT DETAILS 
+        <%= f.link_to_add " Add Employment" ,:employment_details,:class=>'blueBtn fr addBtn' %>
+      </div>
+    </div>
+    <%=f.fields_for :employment_details do |emp| %>
+      <div class="col-sm-6 pr10">
+        <label>Enter Designation </label>
+        <%= emp.text_field :designation, class: "inputTextW small " %>
+        <!-- <input type="text" placeholder="Designation " class="inputTextW small  ">  -->
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Enter Organization</label>
+        <%= emp.text_field :organization, class: "inputTextW small" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label class="">Start Working From  </label>
+        <%= emp.text_field :start_work_date,:class=>"datepicker", class: "inputTextW small date fullWdth" %> 
+      </div>
+      <div class="col-sm-6 pl10">
+        <label class="">Worked Till   </label>
+         <%= emp.text_field :worked_till,:class=>"datepicker", class: "inputTextW small date fullWdth" %>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-lg-12 tar mt-10"><label><%= check_box_tag "current company"%></div>
+      <div class="col-sm-12 ">
+        <label class=""> Write Text </label>
+        <%= emp.text_area :description, class: "inputTextW small" %>
+        <!-- <textarea placeholder="Write Text " class="inputTextW small "></textarea> -->
+        <div class="font12 grayColor fr mt-10">300 Characters Max</div>
+      </div>
+      <div class="col-sm-12 mt10">
+        <%= link_to "Save", "#-", id: "employment_details_attributes", class: 'blueBtn save' %>
+        <a href="#" class="grayBtn">Cancel</a>&nbsp;&nbsp;<%= emp.link_to_remove "X" %> 
+      </div>
+    <%end%>
+  </div>
+</div>
