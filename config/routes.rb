@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
+
   get 'home/index'
 
   get 'payment_details/express'
   get 'payment_details/create'
-
+  
+  devise_for :admin
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   resources :user_skills
   resources :forums  do
      resources :comments
@@ -41,8 +44,7 @@ Rails.application.routes.draw do
       post :category      
     end
   end
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
+ 
   resources :organisations
   devise_for :users, controllers: { registrations: "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.

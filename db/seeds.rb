@@ -21,4 +21,4 @@
     specialixation=Specialization.create(:name=>'Environment')
     specialixation=Specialization.create(:name=>'Nuclear')
     specialixation=Specialization.create(:name=>'Petroleum')
-    AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+    
