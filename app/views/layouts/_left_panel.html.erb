@@ -1,4 +1,14 @@
 <div class="leftNAv">
+  <%if user_signed_in? %>
+    <div class="userTHumb">
+      <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+      <div class="nameLocation">
+        <a href="#">John Smith</a>
+        <span class="location">United Kingdom</span>
+      </div>
+    </div>
+  <% end %>
+
   <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
     <ul>
       <li><a href="#"><img src="../assets/images/li1.png" alt="">Entertainment</a></li>
