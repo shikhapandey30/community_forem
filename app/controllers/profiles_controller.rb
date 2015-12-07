@@ -88,9 +88,10 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
+
   def update
-    debugger
     current_user.profile.update(profile_params)
+
     # respond_to do |format|
     #   if @profile.update(profile_params)
     #      if @profile.profile_type=='Individual'
@@ -130,7 +131,7 @@ class ProfilesController < ApplicationController
       @profile=Profile.find(params[:id])
     end
 
-    def profile_params   
+    def profile_params
       params.require(:profile).permit!
     end
 
