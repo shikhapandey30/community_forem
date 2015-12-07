@@ -17,8 +17,7 @@
  *= require css/style
  *= require css/responsive
  *= require css/animate.css
- *= require css/bootstrap-datetimepicker
- 
+ *= require css/bootstrap-datetimepicker 
  *= require css/tag-input
  *= require css/custom
  */

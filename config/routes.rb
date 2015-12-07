@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+
+  devise_for :admin
+
   get 'home/index'
+
 
   get 'payment_details/express'
   get 'payment_details/create'
   
-  devise_for :admin
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   

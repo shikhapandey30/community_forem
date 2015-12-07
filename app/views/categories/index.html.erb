@@ -1,3 +1,25 @@
+<div class="mainCOntnt">
+  <%= render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%= render "layouts/topNAv"%>
+    <div class="clearfix innerWIdth innerWIdth860 tac ">
+      <div class="catOuter">
+        <div class="row">
+
+          <% @categories.each do |category| %>
+          <div class="col-sm-3">
+            <a href="#"><%= image_tag(category.image_url) %>
+              <span><%= category.name %></span>
+            </a>
+          </div>
+          <% end %>     
+        
+        </div>              
+      </div> 
+    </div>
+  </div>
+</div>
+<!-- 
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Categories</h1>
@@ -27,3 +49,356 @@
 <br>
 
 <%= link_to 'New Category', new_category_path %>
+ -->
+
+
+
+
+
+<!-- Meeting Room Page Start-->
+<!-- 
+<div class="mainCOntnt">
+  <%= render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%= render "layouts/topNAv"%>
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/meeting.png" alt=""></span>
+         Meeting Room
+       <a href="#" class="back">back</a>
+      </div>
+    </div>
+    <div class="clearfix innerWIdth550 tac ">
+      <div class="whiteBox mt90">
+        
+        <div class="userTHumb userTHumbRight">
+          <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+          <div class="nameLocation">
+            <a href="#">John Smith</a><br>
+            <span class="location">United Kingdom</span>
+          </div>
+        </div>
+          
+        <div class="tabOuter">
+          <div id="tab-1" class="tab-content current">
+            <div class="uploadBoxOuter font14"> 
+            <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+            <a href="#" onClick="document.getElementById('Photo').click(); return false"><img src="/assets/images/cemera.png" alt=""></a>
+            
+            <div class="grayBig mt20 bold"> Add an image to bring your post to life</div>
+            Images that are at least 700 x 400 pixels look best.
+            </div>
+          </div>
+          <div id="tab-2" class="tab-content">
+            <div class="uploadBoxOuter font14">  
+              <img src="/assets/images/website.png" alt="">
+              
+              <div class="grayBig bold ">Add Your Website Links</div>
+              <input type="text" placeholder="http://" class="inputTextW">
+            </div>
+          </div>
+          <div id="tab-3" class="tab-content">
+            <div class="uploadBoxOuter font14"> 
+            <input id="Link" name="Link" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+            <a href="#" onClick="document.getElementById('Link').click(); return false"><img src="/assets/images/link.png" alt=""></a>
+            
+            <div class="grayBig mt0 bold">Upload your Document</div>
+            Your file needs to be a docx, pdf, ppt, xls, jpg, gif, png<br>
+             and no larger than 5MB.
+            </div>
+          </div>
+          <div id="tab-4" class="tab-content">
+            <div class="uploadBoxOuter font14"> 
+              <img src="/assets/images/videoIcon.png" alt="">
+              <div class="grayBig bold ">Add Your Video</div>
+              <input type="text" placeholder="http://" class="inputTextW"><br>
+              <div class="mt10">Paste a link from YourTube, Vimeo, Vine etc.</div>
+            </div>
+          </div>
+          
+          <ul class="tabs uploadIcon">
+            <li class="tab-link current" data-tab="tab-1"><img src="/assets/images/c1.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-2"><img src="/assets/images/c2.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-3"><img src="/assets/images/c3.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-4"><img src="/assets/images/c4.png" alt=""></li>
+          </ul>
+
+        </div>
+
+      </div>
+      
+      <div class="clearfix whiteBox">
+        <div class="clearfix formOuterPost tal">
+          <div class="col-sm-6 pr10">
+            <label>Select Category</label>
+            <div class="selctFormBox">
+              <input type="text" value="BCA" readonly class="selectInput">
+                <select class="select">
+                  <option>BCA</option>
+                </select>
+            </div>
+          </div>
+          <div class="col-sm-6 pl10">
+            <label>Type Topic</label>
+            <input type="text" placeholder="Topics" class="inputTextW small">
+          </div>  
+          
+          <div class="col-sm-12">
+            <label class="font20">Write Your Headline</label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+     
+          <div class="col-sm-12">
+            <label class=""> Assign Name </label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+          
+          <div class="col-sm-12 ">
+            <label class="">Slogan of Meeting </label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+
+          <div class="col-sm-12 ">
+            <label class="">Invite Members </label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+
+          <div class="col-sm-12 mt10">
+             <input type="submit" value="Save Meeting Room" class="blueBtn">
+             <a href="#" class="grayBtn">Cancel</a> 
+          </div>  
+        </div>
+      </div>  
+      <br>
+    </div>
+  </div>
+</div>
+ -->
+<!-- Meeting Room Page End-->
+
+
+<!-- Create Community Page Start-->
+<!-- 
+<div class="mainCOntnt">
+  <%= render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%= render "layouts/topNAv"%>  
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/comm.png" alt=""></span>
+         Your Community
+         <a href="#" class="back">back</a>
+      </div>
+    </div>
+
+    <div class="clearfix innerWIdth550 tac ">
+      
+      <div class="whiteBox mt90">
+
+        <div class="userTHumb userTHumbRight">
+          <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+          <div class="nameLocation">
+            <a href="#">John Smith</a><br>
+            <span class="location">United Kingdom</span>
+          </div>
+        </div>
+        
+        <div class="uploadBoxOuter font14"> 
+          <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+          <a href="#" onClick="document.getElementById('Photo').click(); return false"><img src="/assets/images/photo.png" alt=""></a>
+          
+          <div class="grayBig mt20 bold">Your logo will appear in the Community <br>
+            and on your community pages.</div>
+          Note: PNG, JPEG, or GIF only; max size 100 KB
+          </div>
+      
+        </div>
+      
+        <div class="clearfix whiteBox">
+          <div class="clearfix formOuterPost tal">
+            <div class="col-sm-6 pr10">
+              <label>Select Category</label>
+              <div class="selctFormBox">
+                <input type="text" value="BCA" readonly class="selectInput">
+                <select class="select">
+                        <option>BCA</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6 pl10">
+              <label>Type Topic</label>
+              <input type="text" placeholder="Topics" class="inputTextW small">
+            </div>  
+            
+            <div class="col-sm-12">
+              <label class="font20">Write Your Headline</label>
+              <input type="text" placeholder="" class="inputTextW small">
+            </div>
+            
+            <div class="col-sm-12">
+              <label class="">Slogan of Community </label>
+              <input type="text" placeholder="" class="inputTextW small">
+            </div>
+            
+            <div class="col-sm-12">
+              <label class="">Write Something</label>
+              <textarea class="inputTextW small" placeholder=""></textarea>
+            </div>
+          
+            <div class="col-sm-12   pr10  ">
+              <label>Invite Friends</label> 
+              <input type="text"  class="inputTextW small ">
+              
+            </div>
+            
+            <div class="col-sm-12">
+               <input type="submit" value="Create Community" class="blueBtn">
+               <a href="#" class="grayBtn">Cancel</a> 
+            </div>  
+          </div>
+        </div>  
+      <br>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+ $(function () {
+   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+ });
+</script>
+ -->
+<!-- Create Community Page End-->
+
+
+
+<!-- Create Contest Page Start-->
+<!-- 
+<div class="mainCOntnt">
+  <%= render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%= render "layouts/topNAv"%> 
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/contest.png" alt=""></span>
+        Your Contest Module
+        <a href="#" class="back">back</a>
+      </div>
+    </div>
+    <div class="clearfix innerWIdth550 tac ">
+      <div class="whiteBox mt90">
+        <div class="userTHumb userTHumbRight">
+          <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+          <div class="nameLocation">
+            <a href="#">John Smith</a><br>
+            <span class="location">United Kingdom</span>
+          </div>
+        </div>
+        <div class="tabOuter">
+          <div id="tab-1" class="tab-content current">
+            <div class="uploadBoxOuter font14">
+              <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+              <a href="#" onClick="document.getElementById('Photo').click(); return false"><img src="/assets/images/cemera.png" alt=""></a>
+              <div class="grayBig mt20 bold"> Add an image to bring your post to life</div>
+              Images that are at least 700 x 400 pixels look best.
+            </div>
+          </div>
+          <div id="tab-2" class="tab-content">
+            <div class="uploadBoxOuter font14">
+              <img src="/assets/images/website.png" alt="">
+              <div class="grayBig bold ">Add Your Website Links</div>
+              <input type="text" placeholder="http://" class="inputTextW">
+            </div>
+          </div>
+          <div id="tab-3" class="tab-content">
+            <div class="uploadBoxOuter font14">
+              <input id="Link" name="Link" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+              <a href="#" onClick="document.getElementById('Link').click(); return false"><img src="/assets/images/link.png" alt=""></a>
+              <div class="grayBig mt0 bold">Upload your Document</div>
+              Your file needs to be a docx, pdf, ppt, xls, jpg, gif, png<br> and no larger than 5MB.
+            </div>
+          </div>
+          <div id="tab-4" class="tab-content">
+            <div class="uploadBoxOuter font14">
+              <img src="/assets/images/videoIcon.png" alt="">
+              <div class="grayBig bold ">Add Your Video</div>
+              <input type="text" placeholder="http://" class="inputTextW"><br>
+              <div class="mt10">Paste a link from YourTube, Vimeo, Vine etc.</div>
+            </div>
+          </div>
+          <ul class="tabs uploadIcon">
+            <li class="tab-link current" data-tab="tab-1"><img src="/assets/images/c1.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-2"><img src="/assets/images/c2.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-3"><img src="/assets/images/c3.png" alt=""></li>
+            <li class="tab-link" data-tab="tab-4"><img src="/assets/images/c4.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="clearfix whiteBox">
+        <div class="clearfix formOuterPost tal">
+          <div class="col-sm-6 pr10">
+            <label>Select Category</label>
+            <div class="selctFormBox">
+              <input type="text" value="BCA" readonly class="selectInput">
+              <select class="select">
+                <option>BCA</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-6 pl10">
+            <label>Type Topic</label>
+            <input type="text" placeholder="Topics" class="inputTextW small">
+          </div>
+
+          <div class="col-sm-12">
+            <label class="font20">Write Your Headline</label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+
+          <div class="col-sm-12">
+            <label class="">Write Something</label>
+            <textarea class="inputTextW small" placeholder=""></textarea>
+          </div>
+        
+          <div class="col-sm-12">
+            <label class="font16">Select Visibility</label><br>
+            <div class="mt5">
+              <label class="radioV"> <input type="radio" name="visiblility"> Private </label> &nbsp; &nbsp; <label class="radioV"> <input type="radio"  name="visiblility"> Public </label>
+            </div>  
+          </div>
+        
+          <div class="col-sm-12 mt10">
+            <label class="">Invite Users / Community</label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+
+          <label  class="col-sm-12 mt20 block">Set expiration of post </label>
+
+          <div class="col-sm-6  pr10  dateOuter">
+            <label>From</label> <input type="text" placeholder="DD-MM-YYYY" class="inputTextW small date">
+          </div>
+
+          <div class="col-sm-6  pl10 dateOuter">
+            <label>To</label><input type="text" placeholder="DD-MM-YYYY" class="inputTextW small date">
+          </div>
+        
+          <div class="col-sm-12 mt10">
+             <input type="submit" value="Create Contest" class="blueBtn">
+             <a href="#" class="grayBtn">Cancel</a> 
+          </div>  
+
+        </div>
+      </div>  
+      <br>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+ $(function () {
+   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+ });
+</script>
+ -->
+<!-- Create Contest Page End-->
