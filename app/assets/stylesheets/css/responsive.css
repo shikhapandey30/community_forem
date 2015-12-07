@@ -5,6 +5,7 @@
 .searhInput {width: 500px;}
 .videoOuter {min-height: 500px;}
 .stepInfo {margin: 0px 0;}
+.whiteHeader .searhInput {width: 360px;}
 }
 
 
@@ -58,7 +59,7 @@ header .searhInput {max-width: 211px;}
 .rightMenu {display:block;}
 .topNAv {height: 45px;}
 .topRightNav {position:relative; z-index: 9;}
-.topRightNav ul {display:none; position: absolute;background-color: #FFF;right: 10px;top: 46px;width: 170px;text-align: left; box-shadow:0px 4px 3px 3px rgba(0,0,0,0.1);}
+.topRightNav ul {display:none; position: absolute;background-color: #FFF;right: 10px;top: 46px;width: 170px;text-align: left; box-shadow:0px 4px 3px 3px rgba(0,0,0,0.1); z-index:10}
 .topNAv li a {height: 36px;line-height: 33px;border-bottom: 3px solid #FFF;display: block;}
 .topRightNav ul li{ display:block;  border-bottom: solid 1px #ddd;}
 .innerWIdth {padding: 0px 10px;}
@@ -85,12 +86,41 @@ header .searhInput {max-width: 211px;}
 .blueBkg {font-size: 14px;}
 .back {font-size: 12px;padding: 7px 12px;margin: 9px 5px 0 0;}
 .mainCOntnt {margin-top: 0px; position:static}
-.leftNAv {top: 0px; position:absolute;}
+.leftNAv {top: 0px; }
 header{position:static !important;}
 .overLAy {position: fixed;}
 .topNAv {border-top: solid 1px #ddd;}
 .catOuter .col-sm-3{width:50%; float:left;}
 .catOuter .col-sm-3 img{width:100%;}
+.postTitle {line-height: 26px;font-size: 20px;padding-left: 20px; margin-right: 76px;}
+.cmntRow .addcomtntTA {width: 80%;}
+.comntONcmnt .userInfo {-left: 25px !important;}
+.cmntSec .addCmnt {width: 100%; margin:10px 0 10px 0 ;}
+.cmntSec a.audioBtn {margin:10px 0 0 0;}
+.userInfo .grayColor {margin-top: 0; float: none;  text-align:left;}
+.userInfo .grayColor br{ display:none;}
+.comntONcmnt .userInfo .grayColor {    margin-top: -35px;}
+.userNAme {    margin-top: 0px;}
+.userInfo .fr a {height: 26px; line-height: 24px;}
+.tableOuterBtm td {padding: 6px 3px;}
+.thumbImg {width: 130px;height: 130px; margin-top:20px;}
+.grayHD {font-size: 18px;}
+.blackHD {font-size: 16px;}
+.grayHD  .blueBtn.fr.addBtn{overflow: hidden;height: 30px;width: 40px;  background-position: center center; margin:-2px -3px 0 0 }
+.whiteBox .formOuterPost {padding: 20px 0px;}
+.ProfileTHumb {margin: -30px -10px 20px;}
+.myWall .userTHumb {margin-left:20px; float:none;}
+.myWall .back {margin:20px auto; float:none; width:180px;}
+.addPostBtn {margin:15px;}
+.replyRow {margin: 12px 0px 0px 0px;}
+.replyRow .inputTextW {width: 83%;}
+.converRight {float: none;}
+.conversationTop {padding-left:25px;}
+.conversationTop .fr{ float:none;}
+.borderRight{border-bottom: solid 1px #D8D6D6; border-right:0px;}
+.videoFeedImg {float: none;width: auto;}
+
+
 }
 
 /* Extra Small Devices, Phones */ 
