@@ -73,4 +73,6 @@ gem 'twilio-ruby', '~> 4.2.1'
 
 #Use TagsInput
 gem 'acts-as-taggable-on', '~> 3.4'
+#Use Rmotipart for upload image as ajax
+gem 'remotipart', '~> 1.2'
 

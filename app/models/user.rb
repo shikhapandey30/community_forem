@@ -7,14 +7,14 @@ class User < ActiveRecord::Base
   
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
-  accepts_nested_attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
+  # accepts_nested22attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
   has_many :employment_details, dependent: :destroy
-  accepts_nested_attributes_for :employment_details, :reject_if => :all_blank, :allow_destroy => true
+  # accepts_nested_attributes_for :employment_details, :reject_if => :all_blank, :allow_destroy => true
   has_many :posts, dependent: :destroy
   has_one :profile, dependent: :destroy
-  accepts_nested_attributes_for :profile, :allow_destroy => true
+  # accepts_nested_attributes_for :profile, :allow_destroy => true
   has_one :skill, dependent: :destroy
-  accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
+  # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
   has_many :users_categories, dependent: :destroy
   accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   

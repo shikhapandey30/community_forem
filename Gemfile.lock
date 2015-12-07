@@ -341,6 +341,7 @@ DEPENDENCIES
   rails-erd
   rails_12factor
   rails_admin
+  remotipart (~> 1.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails

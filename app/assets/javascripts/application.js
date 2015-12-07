@@ -25,5 +25,6 @@
 //= require js/tag-input
 //= require js/locales
 //= require js/bootstrap-datetimepicker
+//= require jquery.remotipart
 //= require js/custom
 //= require responsivevoice
