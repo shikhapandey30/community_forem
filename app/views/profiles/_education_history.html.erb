@@ -1,0 +1,50 @@
+<div class="clearfix whiteBox">
+  <div class="clearfix formOuterPost tal">
+    <div class="col-sm-12 mb10">
+      <div class="grayHD">EDUCATION HISTORY <%= f.link_to_add "Add Courses" , :education_histories,:class=>'blueBtn fr addBtn' %></div>
+    </div>
+    <%= f.fields_for :education_histories do |education| %>
+      <div class="col-sm-6 pr10">
+        <label>Course</label>
+
+        <div class="selctFormBox">
+         
+          <%= education.hidden_field :course_id, :value=>'Select', class: "education_histories_attributes selectInputField"%>
+          <%= education.text_field "course", :value=>'Select', class: "selectInput",:id=>'course'%>
+          
+          <%= education.select('course', Course.all.collect {|c| [c.name, c.id]}, {}, class: "select")  %>
+        </div>
+      </div>
+      <div class="col-sm-6 pl10">
+        <label>Specialization</label>
+        <div class="selctFormBox">
+          <%= education.hidden_field :specialization_id, :value=>'Select', class: "education_histories_attributes selectInputField" %>
+          <%= education.text_field "specialization", :value=>'Select', class: "selectInput" ,:id=>'specialization'%>
+          <%= education.select("specialization", Specialization.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <label class="">Institute/University</label>
+        <div class="selctFormBox fullWDdl">
+          <%= education.hidden_field :institute_id, :value=>'Select', class: "education_histories_attributes selectInputField"%>
+          <%= education.text_field "institute", :value=>'Select', class: "selectInput",:id=>'institute'%>
+          <%= education.select("institute", Institute.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+          <%#= education.select(:institute_id, Institute.all.collect {|i| [i.name, i.id]}, :prompt => 'Select', class: "profile selectInput")  %>
+        </div>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Start Year</label>
+        <%= education.text_field :start_year, class: "education_histories_attributes inputTextW small date fullWdth" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>End Year</label>
+        <%= education.text_field :end_year, class: "education_histories_attributes  inputTextW small date fullWdth" %>
+      </div>
+      <div class="col-sm-12 mt10">
+      <%=link_to "Save", "#-", id: "education_histories_attributes", class: 'blueBtn save'%>
+        <%#= link_to "Save", "#-", class: 'blueBtn save' %>
+        <%= link_to "Cancel", "#-",class: 'grayBtn' %>&nbsp;&nbsp;<%= education.link_to_remove "x" %> 
+      </div>
+    <%end%>
+  </div>
+</div>

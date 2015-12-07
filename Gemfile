@@ -7,7 +7,7 @@ gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 gem 'pg'
-# gem 'activeadmin', github: 'activeadmin'
+
 # Use rails_admin for out of box admin interface
 gem "rails_admin"
 # Use SCSS for stylesheets

@@ -70,219 +70,36 @@
 
     <%= nested_form_for(current_user, url: "#-", remote: :true) do |f| %>
       <div class="clearfix innerWIdth550 tac ">
-        <div class="clearfix whiteBox mt30">
-          <%= f.fields_for :profile do |p| %>
-            <div class="clearfix formOuterPost tal">
-              <%= p.file_field :image, class: "profile", style: "visibility: hidden; width: 1px; height: 1px" %>
-              <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
-              <div class="uploadPhoto" onclick="document.getElementById('user_profile_attributes_image').click(); return false">
-                <div class="reletive">
-                  <img src="../assets/images/camera.png" alt="">
-                  <div>Change Photo</div>
-                </div>
-              </div>
-              <div class="col-sm-6 pr10">
-                <label>First Name</label>
-                <%= p.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
-              </div>
-              <div class="col-sm-6 pl10">
-                <label>Last Name</label>
-                <%= p.text_field :last_name, class: "profile inputTextW small", placeholder: "John" %>
-              </div>
-              <div class="col-sm-12">
-                <div class="blackHD">Address</div>
-              </div>
-              <div class="col-sm-6 pr10">
-                <label class="">Country</label>
-                <%= p.text_field :country, class: "profile inputTextW small" %>
-                <!-- <div class="selctFormBox">                   -->
-                  <!-- <input type="text" value="Select" readonly class="selectInput"> -->
-                  <!-- <select class="select">
-                    <option>Select</option>
-                  </select> -->
-                <!-- </div> -->
-              </div>
-              <div class="col-sm-6 pl10">
-                <label class="">CIty</label>
-                <%= p.text_field :city, class: "profile inputTextW small" %>
-                <!-- <div class="selctFormBox">
-                  <input type="text" value="Select" readonly class="selectInput">
-                  <select class="select">
-                    <option>Select</option>
-                  </select>
-                </div> -->
-              </div>
-              <div class="col-sm-6 pr10">
-                <label>Street</label>
-                <%= p.text_field :street, class: "profile inputTextW small" %>
-                <!-- <div class="selctFormBox">
-                  <input type="text" value="Select" readonly class="selectInput">
-                  <select class="select">
-                    <option>Select</option>
-                  </select>
-                </div> -->
-              </div>
-              <div class="col-sm-6 pl10">
-                <label>Zipcode</label>
-                <%= p.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
-              </div>
-              <div class="col-sm-6 pr10">
-                <label>Gender</label>
-                <div class="selctFormBox">                  
-                  <%= p.text_field :gender, value: "Select", class: "profile selectInput" %>
-                  <select class="select">
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6 pl10">
-                <label>Phone</label>
-                <%= p.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
-              </div>
-              <div class="col-sm-6 pr10">
-                <label>Select Type</label>
-                <div class="selctFormBox">
-                  <input type="text" value="Individual" readonly class="selectInput">
-                  <select class="select">
-                    <option>Individual</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6 pl10">
-                <label>Date of Birth</label>
-                <input type="text" placeholder="987654321" class="inputTextW small date fullWdth">
-              </div>
-              <div class="col-sm-6 pr10">
-                <label>Screen Name</label>
-                <input type="text" placeholder="john2015" class="inputTextW small  "> 
-              </div>
-              <div class="col-sm-6 pl10">
-                <label>Location</label>
-                <input type="text" placeholder="South America" class="inputTextW small  ">
-              </div>
-              <div class="col-sm-12">
-                <input type="submit" value="Save " class="blueBtn">
-                <a href="#" class="grayBtn">Cancel</a> 
-              </div>
-            </div>
-          <%end%>  
-        </div>
+        <%=render 'profile',:f=>f%>
+        <%=render 'education_history',:f=>f%>
+        <%=render 'employment_detail',:f=>f%>
+
         <div class="clearfix whiteBox">
-          <div class="clearfix formOuterPost tal">
-            <div class="col-sm-12 mb10">
-              <div class="grayHD">EDUCATION HISTORY <a href="#" class="blueBtn fr addBtn"> &nbsp;&nbsp; Add Courses</a></div>
-            </div>
-            <div class="col-sm-6 pr10">
-              <label>Course</label>
-              <div class="selctFormBox">
-                <input value="BCA" readonly="" class="selectInput" type="text">
-                <select class="select">
-                  <option>BCA</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-6 pl10">
-              <label>Specialization</label>
-              <div class="selctFormBox">
-                <input value="Computers" readonly="" class="selectInput" type="text">
-                <select class="select">
-                  <option>Computers</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <label class="">Institute/University</label>
-              <div class="selctFormBox fullWDdl">
-                <input value="University 1" readonly="" class="selectInput" type="text">
-                <select class="select">
-                  <option>University 1</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-6 pr10">
-              <label>Year</label>
-              <div class="selctFormBox">
-                <input value="2006" readonly="" class="selectInput" type="text">
-                <select class="select">
-                  <option>2006</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-6 pl10">
-              <label class=""> &nbsp;</label>
-              <div class="selctFormBox">
-                <input value="2008" readonly="" class="selectInput" type="text">
-                <select class="select">
-                  <option>2008</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-sm-12 mt10">
-              <input value="Save" class="blueBtn" type="submit">
-              <a href="#" class="grayBtn">Cancel</a> 
-            </div>
-          </div>
-        </div>
-        <div class="clearfix whiteBox">
-          <div class="clearfix formOuterPost tal">
-            <div class="col-sm-12 mb10">
-              <div class="grayHD">EMPLOYMENT DETAILS <a href="#" class="blueBtn fr addBtn"> &nbsp;&nbsp; Add Employment</a></div>
-            </div>
-            <div class="col-sm-6 pr10">
-              <label>Enter Designation </label>
-              <input type="text" placeholder="Designation " class="inputTextW small  "> 
-            </div>
-            <div class="col-sm-6 pl10">
-              <label>Enter Organization</label>
-              <input type="text" placeholder="Organization " class="inputTextW small  "> 
-            </div>
-            <div class="col-sm-6 pr10">
-              <label class="">Start Working From  </label>
-              <input type="text" placeholder="DD-MM-YYYY " class="inputTextW small date fullWdth"> 
-            </div>
-            <div class="col-sm-6 pl10">
-              <label class="">Worked Till   </label>
-              <input type="text" placeholder="DD-MM-YYYY " class="inputTextW small date fullWdth"> 
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-lg-12 tar mt-10"><label><input type="checkbox"> Current Company</label></div>
-            <div class="col-sm-12 ">
-              <label class=""> Write Text </label>
-              <textarea placeholder="Write Text " class="inputTextW small "></textarea>
-              <div class="font12 grayColor fr mt-10">300 Characters Max</div>
-            </div>
-            <div class="col-sm-12 mt10">
-              <input value="Save" class="blueBtn" type="submit">
-              <a href="#" class="grayBtn">Cancel</a> 
-            </div>
-          </div>
-        </div>
-        <div class="clearfix whiteBox">
-          <div class="clearfix formOuterPost tal">
+          <div class="clearfix formOuterPost tal">            
             <div class="col-sm-12 mb10">
               <div class="grayHD">SKILLS </div>
             </div>
+            <%= f.fields_for :skill do |s| %>
             <div class="col-sm-12 addSkills">
               <label>Enter Skills </label><br>
-              <input type="text" placeholder="Skills " class="inputTextW small  "> 
-              <input value="Add Skill" class="blueBtn" type="submit">
+               <%= s.text_field :name, class: "skills_attributes inputTextW small", "data-role"=>"tagsinput" %>
+              <%= link_to "Add Skill", "#-", class: 'blueBtn' %>
             </div>
             <div class="col-sm-12 skillsTag ">
-              <span>User Experience <a  href="javascript:void(0)"></a> </span>
-              <span>User Interface Design <a  href="javascript:void(0)"></a> </span>
-              <span>Photoshop <a  href="javascript:void(0)"></a> </span>
-              <span>Graphic Design <a  href="javascript:void(0)"></a> </span >
-              <span>Interaction Design <a  href="javascript:void(0)"></a> </span>
-              <span>Webdesign <a  href="javascript:void(0)"></a> </span> 
+              <%@skills.each do |f|%>
+                <span><%=f.name%><a  href="javascript:void(0)"></a> </span>
+              <%end%>
             </div>
             <div class="clearfix"></div>
             <div class="col-sm-12 mt10">
-              <input value="Save" class="blueBtn" type="submit">
-              <a href="#" class="grayBtn">Cancel</a> 
+              <%= link_to "Save", "#-", id: "skills_attributes", class: 'blueBtn save' %>
+              <%= link_to "Cancel", "#-",class: 'grayBtn' %>
+              <!-- <a href="#" class="grayBtn">Cancel</a>  -->
             </div>
+          <%end%>
           </div>
         </div>
+
         <div class="clearfix whiteBox">
           <div class="clearfix formOuterPost tal">
             <div class="col-sm-12 mb10">
@@ -291,32 +108,20 @@
             <div class="col-sm-12 addSkills">
               <label class="font18">Select Category </label><br>
             </div>
-            <div class="col-sm-6 pr10 categoriesChk">
-              <label> <input type="checkbox">   Entertainment</label>
-              <label> <input type="checkbox">   Politics</label>
-              <label> <input type="checkbox">  Technology</label>
-              <label> <input type="checkbox"> Sports</label>
-              <label> <input type="checkbox"> Music</label>
-              <label> <input type="checkbox"> Religion &amp; Ideas</label>
-              <label> <input type="checkbox"> Politics &amp; Government</label>
-              <label> <input type="checkbox"> Travel &amp; Lifestyle</label>
-              <label> <input type="checkbox"> Food &amp; Drink</label>
-            </div>
-            <div class="col-sm-6 pl10 categoriesChk">
-              <label> <input type="checkbox">   Music</label>
-              <label> <input type="checkbox">   Religion & Ideas</label>
-              <label> <input type="checkbox">  Products & Companies</label>
-              <label> <input type="checkbox"> History & Events</label>
-              <label> <input type="checkbox"> Fashion & The Arts</label>
-              <label> <input type="checkbox" > Religion &amp; Ideas</label>
-              <label> <input type="checkbox"> Science & Nature</label>
-              <label> <input type="checkbox"> Books & Publications</label>
-              <label> <input type="checkbox"> Gaming</label>
-              <label> <input type="checkbox"> Education</label>
-            </div>
+            <%Category.all.each_with_index do |category, index|%>  
+              <%if index.even?%>
+                <div class="col-sm-6 pr10 categoriesChk">
+                    <%= check_box_tag "user[users_categories_attributes][#{index}][category_id]", category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false, class: "categories_attributes" %> <%=category.try(:name)%>
+                </div>
+                <%else%>
+                <div class="col-sm-6 pl10 categoriesChk">
+                  <%= check_box_tag "user[users_categories_attributes][#{index}][category_id]", category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false, class: "categories_attributes" %> <%=category.try(:name)%>
+              </div>
+              <%end%>
+            <%end%>
             <div class="clearfix"></div>
             <div class="col-sm-12 mt10">
-              <input value="Save" class="blueBtn" type="submit">
+              <%= link_to "Save", "#-", id: "categories_attributes", class: 'blueBtn save' %>
               <a href="#" class="grayBtn">Cancel</a> 
             </div>
           </div>
@@ -330,4 +135,16 @@
   $(function () {
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
+
+  $(document).on('click', 'a.save', function() {
+    $.ajax({
+      method: "PUT",
+      url: "<%=profile_path(current_user)%>",
+      data: $("."+this.id).serialize(),
+      success :function(){
+        return false;
+      }
+    });
+  });
 </script>
+
