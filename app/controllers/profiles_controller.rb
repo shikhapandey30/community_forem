@@ -38,11 +38,11 @@ class ProfilesController < ApplicationController
   end
 
   def skill
-    debugger
+
   end
 
   def category
-    debugger
+    
   end
 
   # GET /Profiles/new
