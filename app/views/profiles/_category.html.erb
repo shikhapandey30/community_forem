@@ -8,16 +8,20 @@
     </div>
     <%=form_tag category_profiles_path, method: true do%>
       <%Category.all.each_with_index do |category, index|%>
-        <%if index.even?%>
+        <%#if index.even?%>
           <div class="col-sm-6 pr10 categoriesChk">
-          <%#=check_box_tag 'category_ids', category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false%> <%#=category.try(:name)%>
-            <%= check_box_tag 'category_ids[]'%> <%=category.try(:name)%>
+          <%if current_user.users_category.present? && current_user.users_category.category_ids.include?(category.id.to_s)%>
+            <%= check_box_tag 'category_ids[]', category.id,:checked=>true%> <%=category.try(:name)%>
+          <%else%>
+            <%= check_box_tag 'category_ids[]', category.id%> <%=category.try(:name)%>
+          <%end%>
+            <%#= check_box_tag 'category_ids[]'%> <%#=category.try(:name)%>
           </div>
-        <%else%>
+        <%#else%>
           <div class="col-sm-6 pl10 categoriesChk">
-            <%= check_box_tag 'category_ids[]'%> <%=category.try(:name)%>
+             <%#= check_box_tag 'category_ids', category.try(:id)%><%#=category.try(:name)%>
           </div>
-        <%end%>
+        <%#end%>
       <%end%>    
       <div class="clearfix"></div>
       <div class="col-sm-12 mt10">
