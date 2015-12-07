@@ -2,10 +2,13 @@ class ProfilesController < ApplicationController
 
  # before_action :set_profile, only: [:show, :edit, :update, :destroy]
   def index
-    current_user.profile.present? ? current_user.profile : current_user.build_profile
-    current_user.skill.present? ? current_user.skill : current_user.build_skill
-    @skills = Skill.all
-    @categories = Category.all
+    @profile = current_user.profile.present? ? current_user.profile : current_user.build_profile
+    @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
+    @education_history = current_user.education_histories.new
+    @employment_detail = current_user.employment_details.new    
+    @category = current_user.users_categories.present? ? current_user.users_categories : Category.new
+    # @skills = Skill.all
+    # @categories = Category.all
     # if current_user.profile.present?
     #   redirect_to edit_profile_path(current_user.profile)
     # else
@@ -18,8 +21,32 @@ class ProfilesController < ApplicationController
   def show
   end
 
+  def education_history
+    if params[:id].present?
+      @education = EducationHistory.find(params[:id])
+    else
+      @education = current_user.education_histories.create(education_params)
+    end
+  end
+
+  def employment_detail
+    if params[:id].present?
+      @employment = EmploymentDetail.find(params[:id])
+    else
+      @employment = current_user.employment_details.create(employment_params)
+    end
+  end
+
+  def skill
+
+  end
+
+  def category
+    
+  end
+
   # GET /Profiles/new
-  def new    
+  def new 
   end
 
   # GET /Profiles/1/edit
@@ -29,6 +56,8 @@ class ProfilesController < ApplicationController
   # POST /Profiles
   # POST /Profiles.json
   def create
+    @profile = current_user.build_profile(profile_params)
+    @profile.save
     # @profile = current_user.build_profile(profile_params)
     # @profile.save
     # redirect_to :back
@@ -59,8 +88,10 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
-  def update    
-    current_user.update_attributes(profile_params)    
+
+  def update
+    current_user.profile.update(profile_params)
+
     # respond_to do |format|
     #   if @profile.update(profile_params)
     #      if @profile.profile_type=='Individual'
@@ -99,7 +130,20 @@ class ProfilesController < ApplicationController
     def set_profile
       @profile=Profile.find(params[:id])
     end
-    def profile_params   
-      params.require(:user).permit!
+
+    def profile_params
+      params.require(:profile).permit!
+    end
+
+    def education_params
+      params.require(:education_history).permit!
+    end
+
+    def employment_params
+      params.require(:employment_detail).permit!
+    end
+
+    def category_params
+      params.require(:education_history).permit!
     end
 end

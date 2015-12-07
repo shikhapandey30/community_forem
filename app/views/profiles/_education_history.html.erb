@@ -1,49 +1,48 @@
 <div class="clearfix whiteBox">
   <div class="clearfix formOuterPost tal">
     <div class="col-sm-12 mb10">
-      <div class="grayHD">EDUCATION HISTORY <%= f.link_to_add "Add Courses" , :education_histories,:class=>'blueBtn fr addBtn' %></div>
+      <div class="grayHD">EDUCATION HISTORY <a href="#" class="blueBtn fr addBtn"> &nbsp;&nbsp; Add Courses</a></div>
     </div>
-    <%= f.fields_for :education_histories do |education| %>
+    <%= form_for @education_history, url: education_profiles_path, :remote => true do |f| %>
       <div class="col-sm-6 pr10">
         <label>Course</label>
-
-        <div class="selctFormBox">
-         
-          <%= education.hidden_field :course_id, :value=>'Select', class: "education_histories_attributes selectInputField"%>
-          <%= education.text_field "course", :value=>'Select', class: "selectInput",:id=>'course'%>
-          
-          <%= education.select('course', Course.all.collect {|c| [c.name, c.id]}, {}, class: "select")  %>
+        <div class="selctFormBox">          
+          <%= text_field_tag "course", nil, :value=>'Select', class: "selectInput",:id=>'course'%>
+          <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select")  %>
         </div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Specialization</label>
         <div class="selctFormBox">
-          <%= education.hidden_field :specialization_id, :value=>'Select', class: "education_histories_attributes selectInputField" %>
-          <%= education.text_field "specialization", :value=>'Select', class: "selectInput" ,:id=>'specialization'%>
-          <%= education.select("specialization", Specialization.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+          <%= text_field_tag "specialization", nil, :value=>'Select', class: "selectInput" ,:id=>'specialization'%>
+          <%= f.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
         </div>
       </div>
       <div class="col-sm-12">
         <label class="">Institute/University</label>
         <div class="selctFormBox fullWDdl">
-          <%= education.hidden_field :institute_id, :value=>'Select', class: "education_histories_attributes selectInputField"%>
-          <%= education.text_field "institute", :value=>'Select', class: "selectInput",:id=>'institute'%>
-          <%= education.select("institute", Institute.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
-          <%#= education.select(:institute_id, Institute.all.collect {|i| [i.name, i.id]}, :prompt => 'Select', class: "profile selectInput")  %>
+          <%= hidden_field_tag :id, f.object.id%>
+          <%= text_field_tag "institute", nil, :value=>'Select', class: "selectInput",:id=>'institute'%>
+          <%= f.select(:institute_id, Institute.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
         </div>
       </div>
       <div class="col-sm-6 pr10">
         <label>Start Year</label>
-        <%= education.text_field :start_year, class: "education_histories_attributes inputTextW small date fullWdth" %>
+        <div class="selctFormBox">
+          <%= f.text_field :start_year, value: "Select", class: "selectInput" %>
+          <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select")  %>
+        </div>
       </div>
       <div class="col-sm-6 pr10">
         <label>End Year</label>
-        <%= education.text_field :end_year, class: "education_histories_attributes  inputTextW small date fullWdth" %>
+        <div class="selctFormBox">
+          <%= f.text_field :end_year, value: "Select", class: "selectInput" %>
+          <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select") %>
+        </div>        
       </div>
       <div class="col-sm-12 mt10">
-      <%=link_to "Save", "#-", id: "education_histories_attributes", class: 'blueBtn save'%>
-        <%#= link_to "Save", "#-", class: 'blueBtn save' %>
-        <%= link_to "Cancel", "#-",class: 'grayBtn' %>&nbsp;&nbsp;<%= education.link_to_remove "x" %> 
+        <%= f.submit "Save", class: 'blueBtn' %>
+        <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
       </div>
     <%end%>
   </div>

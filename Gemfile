@@ -7,6 +7,7 @@ gem 'rails_12factor', group: :production
 # Use sqlite3 as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 gem 'pg'
+
 # Use rails_admin for out of box admin interface
 gem "rails_admin"
 # Use SCSS for stylesheets
@@ -40,7 +41,7 @@ gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem "letter_opener", :group => :development
 gem 'select2-rails'
-gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2.git'
+# gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2.git'
 gem 'public_activity'
 gem 'activemerchant', '1.50.0'
 # Use ActiveModel has_secure_password
@@ -68,8 +69,10 @@ end
 gem 'twilio-ruby', '~> 4.2.1'
 
 #Change Rails Admin theme
-gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'
+# gem 'rails_admin_flatly_theme', github: 'konjoot/rails_admin_flatly_theme'
 
 #Use TagsInput
 gem 'acts-as-taggable-on', '~> 3.4'
+#Use Rmotipart for upload image as ajax
+gem 'remotipart', '~> 1.2'
 

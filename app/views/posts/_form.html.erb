@@ -1,62 +1,284 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<!--  Header Start -->
+<script src="/assets/posts.js"></script>
+<header class="clearfix whiteHeader ">
+  <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+    <a href="#"> <img src="../assets/images/logoBlue.png" alt=""></a>
+  </div>
+  <div class="topRightHeader">
+    <div class="topRight">
+      <a href="#"><img src="../assets/images/noti.png" alt=""><span>20</span></a>
+      <a href="#"><img src="../assets/images/email.png" alt=""><span>6</span></a>
+      <a href="#"><img src="../assets/images/user.png" alt=""></a>
+      <a href="#"><img src="../assets/images/wlt.png" alt=""></a>
+      <a href="#" class="wlt">500</a>
+      <a href="#"><img src="../assets/images/setting.png" alt=""></a>
     </div>
-  <% end %>
-  
-  <div class="field">
-    <%= f.label :image%><br>
-    <%= f.file_field :image %>
+    <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+      <div class="catLIstLink">
+        <a href="#" class="catLIst"><img src="../assets/images/catDrop.png" alt=""></a>
+      </div>
+      <div class="formOuter">
+        <form method="post" action="">
+          <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
+          <input type="submit" value="" class="searhSub">
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :site_link %><br>
-    <%= f.text_field :site_link %>
-  </div>
-  <div class="field">
-    <%= f.label :file %><br>
-   <%= f.file_field :file%>
-  </div>
+</header>
+      <!-- Header End -->
+<div class="mainCOntnt">
+  <div class="leftNAv">
+    <div class="userTHumb">
+      <a href="#" class="profileImg"><img src="../assets/images/profile.jpg" alt=""></a>
+      <div class="nameLocation">
+        <a href="#">John Smith</a>
+        <span class="location">United Kingdom</span>
+      </div>
+    </div>
+    <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
+    <ul>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li1.png" alt="">Entertainment
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li2.png" alt="">Politics
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li3.png" alt="">Technology
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li4.png" alt="">Sports
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li5.png" alt="">Music
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="../assets/images/li6.png" alt="">Religion &amp; Ideas
+        </a>
+      </li>
+      <a class="viewAll" href="#"> View All</a>
+      <div class="footerLink">
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </ul>
+    </div>
+    <div class="rightContent">
+      <div class="overLAy"></div>
+        <div class="topNAv">
+          <span class="blueColor leftMenuTab"><img src="../assets/images/tab.png" alt="" class=""> Categories</span>
+          <div class="topRightNav">
+              <span class="blueColor rightMenu"> Menu <img src="../assets/images/down.png" alt="" class=""></span>
+              <ul>
+                <li class="activeMenu"><a href="#">News Feed</a></li>
+                <li>
+                  <a href="#">Hot Topics</a>
+                </li>
+                <li>
+                  <a href="#">Followers (25)</a>
+                </li>
+                <li>
+                  <a href="#">Following (100)</a>
+                </li>
+                <li>
+                  <a href="#">More 
+                    <img src="../assets/images/arrowBlack.png" alt=""> 
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="clearfix innerWIdth550 tac ">
+           <%= form_for(@post) do |f| %>
+            <% if @post.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:
+                </h2>
+                <ul>
+                  <% @post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="whiteBox mt90">
+              <div class="userTHumb userTHumbRight">
+                <a href="#" class="profileImg">
+                  <img src="../assets/images/profile.jpg" alt="">
+                </a>
+                <div class="nameLocation">
+                  <a href="#">John Smith</a><br>
+                  <span class="location">United Kingdom</span>
+                </div>
+              </div>
+              <div class="tabOuter">
+                <div id="tab-1" class="tab-content current">
+                  <div class="uploadBoxOuter font14">
+                    <%= f.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+                    <a href="#"  onclick="$('.post_image').click();">
+                      <img src="../assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+                    </a>
+                    <div class="grayBig mt20 bold"> 
+                      Add an image to bring your post to life
+                    </div>
+                    Images that are at least 700 x 400 pixels look best.
+                  </div>
+                </div>
+                <div id="tab-2" class="tab-content">
+                  <div class="uploadBoxOuter font14">
+                    <img src="../assets/images/website.png" alt="">
+                    <div class="grayBig bold ">
+                      Add Your Website Links
+                    </div>
+                    <input type="text" placeholder="http://" class="inputTextW">
+                  </div>
+                </div>
+                <div id="tab-3" class="tab-content">
+                  <div class="uploadBoxOuter font14">
+                   <%= f.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showfilepreview(this)" %>
+                    <a href="#"  onclick="$('.post_file').click();">
+                      <img src="../assets/images/link.png" alt="" id='fleprvw'>  <%=link_to 'X','#',class: 'remove_file',:style=>'display:none;'%>
+                    </a>
+                    <div class='file_name'>
+                    </div>
+                    <div class="grayBig mt0 bold">
+                      Upload your Document
+                    </div>
+                    Your file needs to be a docx, pdf, ppt, xls, jpg, gif, png<br>
+                    and no larger than 5MB.
+                  </div>
+                </div>
+                <div id="tab-4" class="tab-content">
+                  <div class="uploadBoxOuter font14">
+                    <div class='iframe'>
+                      <iframe width="400" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe> 
+                    </div>
+                   <img src="../assets/images/videoIcon.png" alt="" class="video_image"> 
+                    <div class="grayBig bold "><%= f.label :video %></div>
+                      <%= f.file_field :video, placeholder: "http://", class: "inputTextW",:onchange => "showvideopreview(this)" %><%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
+                      <div class="mt10">
+                        Paste a link from YourTube, Vimeo, Vine etc.
+                      </div>
+                    </div>
+                </div>
+                <ul class="tabs uploadIcon">
+                  <li class="tab-link current" data-tab="tab-1">
+                    <img src="../assets/images/c1.png" alt="">
+                  </li>
+                  <li class="tab-link" data-tab="tab-2">
+                    <img src="../assets/images/c2.png" alt="">
+                  </li>
+                  <li class="tab-link" data-tab="tab-3">
+                    <img src="../assets/images/c3.png" alt="">
+                  </li>
+                  <li class="tab-link" data-tab="tab-4">
+                    <img src="../assets/images/c4.png" alt="">
+                  </li>
+                </ul>
+              </div>
+              <!-- container -->
+            </div>
+            <div class="clearfix whiteBox">
+              <div class="clearfix formOuterPost tal">
+                <div class="col-sm-6 pr10">
+                  <label><%= f.label "Category" %></label>
+                  <div class="selctFormBox"> 
+                   <%#=  f.select(:category_id,Category.all.collect {|u| [ u.name]}, :prompt => 'Select') %>
+                    <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
+                    <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category'%>
+                    <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+                  <%#= f.text_field :category_id, placeholder: "Category", class: "inputTextW small" %>
+                    <!-- <input type="text" value="BCA" readonly 
+class="selectInput">
+                    <select class="select">
+                      <option>BCA</option> -->
+                    <!-- </select> -->
+                  </div>
+               </div>
+                <div class="col-sm-6 pl10">
+                  <label>
+                    <%= f.label :title%>
+                  </label>
+                  <%= f.text_field :title, placeholder: "Topics", class: "inputTextW small"%>
+                </div>
+                <div class="col-sm-12">
+                  <label class="font20">
+                    <%= f.label :title %>
+                  </label>
+                  <%= f.text_field :title, class: "inputTextW small" %>
+                </div>
+                <div class="col-sm-12">
+                  <label class="">
+                    <%= f.label :description %>
+                  </label>
+                  <%= f.text_area :description, class: "inputTextW small" %>
+                </div>
+                <div class="col-sm-12">
+                  <label class="font16">
+                    <%= f.label :visibility %>
+                  </label><br>
+                  <div class="mt5">
+                    <label class="radioV">
+                      <%#= f.radio_button :visibility,true,:checked => true %> Private 
+                    </label> &nbsp; &nbsp; 
+                    <label class="radioV"> 
+                      <%= f.radio_button :visibility, false %>Public 
+                    </label>
+                  </div>
+                </div>
+                <label  class="col-sm-12 mt20 block">Set expiration of post </label>
+                <div class="col-sm-6  pr10  dateOuter">
+                  <label> 
+                    <%= f.label :start_date, "From" %>
+                  </label>
+                  <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+                </div>
+                <div class="col-sm-6  pl10 dateOuter">
+                  <label><%= f.label :expiration_date, "To" %></label>
+                  <%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.submit "Save Post", class: "blueBtn" %>
+                  <a href="#" class="grayBtn">Cancel</a>
+                </div>
+              </div>
+            </div>
+            <br>
+            <% end %>
+          </div>
+        </div>
+      </div>
+<script>
+  $(".remove_image" ).click(function() {
+    $("#post_image").replaceWith($('<input id="post_image" class="post post_image" type="file" name="post[image]" onchange="showimagepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+     $('#imgprvw').attr('src', '../assets/images/cemera.png');
+     $('.remove_image').hide();
+  });
+  $(".remove_file" ).click(function() {
 
-  <div class="field">
-    <%= f.label :video %><br>
-   <%= f.file_field :video %>
-  </div>
+    $("#post_file").replaceWith($('<input id="post_file" class="post post_file" type="file" name="post[file]" onchange="showfilepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+    $( ".file_name" ).html( '' );
+     $('.remove_file').hide();
+  });
+  $(".remove_video" ).click(function() {
+    $("#post_video").replaceWith($('<input id="post_video" class="inputTextW" type="file" name="post[video]" onchange="showvideopreview(this)" placeholder="http://">'));
+    $( "iframe" ).hide();
+    $('.remove_video').hide();
+  });
+</script>
 
-  <div class="field">
-    <%= f.label "Category" %><br>
-   <%= f.text_field :category_id %>
-  </div>
 
-  <div class="field">
-    <%= f.label :title%><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-    
-  <div class="field">
-    <%= f.label :visibility %><br>
-    <%= f.radio_button :visibility, true, :checked => true %>
-    <%= f.radio_button :visibility, false %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.text_field :start_date,:class=>"datepicker" %>
-  </div>
-  <div class="field">
-    <%= f.label :expiration_date %><br>
-    <%= f.text_field :expiration_date,:class=>"datepicker" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+ 

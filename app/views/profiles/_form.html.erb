@@ -68,66 +68,13 @@
       </div>
     </div>
 
-    <%= nested_form_for(current_user, url: "#-", remote: :true) do |f| %>
-      <div class="clearfix innerWIdth550 tac ">
-        <%=render 'profile',:f=>f%>
-        <%=render 'education_history',:f=>f%>
-        <%=render 'employment_detail',:f=>f%>
-
-        <div class="clearfix whiteBox">
-          <div class="clearfix formOuterPost tal">            
-            <div class="col-sm-12 mb10">
-              <div class="grayHD">SKILLS </div>
-            </div>
-            <%= f.fields_for :skill do |s| %>
-            <div class="col-sm-12 addSkills">
-              <label>Enter Skills </label><br>
-               <%= s.text_field :name, class: "skills_attributes inputTextW small", "data-role"=>"tagsinput" %>
-              <%= link_to "Add Skill", "#-", class: 'blueBtn' %>
-            </div>
-            <div class="col-sm-12 skillsTag ">
-              <%@skills.each do |f|%>
-                <span><%=f.name%><a  href="javascript:void(0)"></a> </span>
-              <%end%>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-sm-12 mt10">
-              <%= link_to "Save", "#-", id: "skills_attributes", class: 'blueBtn save' %>
-              <%= link_to "Cancel", "#-",class: 'grayBtn' %>
-              <!-- <a href="#" class="grayBtn">Cancel</a>  -->
-            </div>
-          <%end%>
-          </div>
-        </div>
-
-        <div class="clearfix whiteBox">
-          <div class="clearfix formOuterPost tal">
-            <div class="col-sm-12 mb10">
-              <div class="grayHD">Add category </div>
-            </div>
-            <div class="col-sm-12 addSkills">
-              <label class="font18">Select Category </label><br>
-            </div>
-            <%Category.all.each_with_index do |category, index|%>  
-              <%if index.even?%>
-                <div class="col-sm-6 pr10 categoriesChk">
-                    <%= check_box_tag "user[users_categories_attributes][#{index}][category_id]", category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false, class: "categories_attributes" %> <%=category.try(:name)%>
-                </div>
-                <%else%>
-                <div class="col-sm-6 pl10 categoriesChk">
-                  <%= check_box_tag "user[users_categories_attributes][#{index}][category_id]", category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false, class: "categories_attributes" %> <%=category.try(:name)%>
-              </div>
-              <%end%>
-            <%end%>
-            <div class="clearfix"></div>
-            <div class="col-sm-12 mt10">
-              <%= link_to "Save", "#-", id: "categories_attributes", class: 'blueBtn save' %>
-              <a href="#" class="grayBtn">Cancel</a> 
-            </div>
-          </div>
-        </div>
-      </div>
-    <%end%>  
+    <div class="clearfix innerWIdth550 tac ">
+      <%=render 'profile'%>
+      <%=render 'education_history'%>
+      <%=render 'employment_detail'%>
+      <%=render 'skill'%>
+      <%=render 'category'%>
+    </div>    
   </div>
 </div>
 
@@ -135,18 +82,16 @@
   $(function () {
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
-</script>
 
-<script>
-  $(document).on('click', 'a.save', function() {
-    $.ajax({
-      method: "PUT",
-      url: "<%=profile_path(current_user)%>",
-      data: $("."+this.id).serialize(),
-      success :function(){
-        return false;
-      }
-    });
-  });
+  // $(document).on('click', 'a.save', function() {
+  //   $.ajax({
+  //     method: "PUT",
+  //     url: "<%=profile_path(current_user)%>",
+  //     data: $("."+this.id).serialize(),
+  //     success :function(){
+  //       return false;
+  //     }
+  //   });
+  // });
 </script>
 

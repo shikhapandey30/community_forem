@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  
 
   devise_for :admin
 
-    get 'home/index'
+  get 'home/index'
+
 
   get 'payment_details/express'
   get 'payment_details/create'
   
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   
   resources :user_skills
   resources :forums  do
@@ -41,15 +42,15 @@ Rails.application.routes.draw do
 
   resources :profiles do
     collection do
+      post :category
       post :education_history, as: :education
       post :employment_detail, as: :employment
       post :skill
-      post :category      
     end
   end
-
   resources :organisations
   devise_for :users, controllers: { registrations: "registrations" }
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'likes/create'
