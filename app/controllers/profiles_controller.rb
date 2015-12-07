@@ -59,8 +59,9 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
-  def update    
-    current_user.update_attributes(profile_params)    
+  def update  
+
+    current_user.update(profile_params)    
     # respond_to do |format|
     #   if @profile.update(profile_params)
     #      if @profile.profile_type=='Individual'
@@ -100,6 +101,6 @@ class ProfilesController < ApplicationController
       @profile=Profile.find(params[:id])
     end
     def profile_params   
-      params.require(:user).permit!
+      params.require(:user).permit(:id, :education_histories_attributes=>[:id, :specialization_id, :start_year, :course_id, :end_year, :institute_id,:_destroy])
     end
 end
