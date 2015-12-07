@@ -6,7 +6,7 @@
     <%= form_for @skill, url: skill_profiles_path, remote: true do |f| %>
       <div class="col-sm-12 addSkills">
         <label>Enter Skills </label><br>
-        <%= text_field_tag "skill", nil,  class: "inputTextW small skills_attr" %>        
+        <%= text_field_tag "skill", nil, class: "inputTextW small skills_attr", placeholder: "Skills" %>
         <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn' %>
       </div>
       <%=hidden_field_tag :hi, "lsdjf"%>
