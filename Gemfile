@@ -21,7 +21,7 @@ gem 'carrierwave'
 gem 'private_pub'
 gem 'thin'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+ gem 'therubyracer', platforms: :ruby
 gem 'devise'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
