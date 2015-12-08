@@ -70,6 +70,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = current_user.build_profile(profile_params)
     @profile.save
+    # flash[:notice] = "Profile created successfully." if @profile.save
     # @profile = current_user.build_profile(profile_params)
     # @profile.save
     # redirect_to :back
@@ -103,6 +104,8 @@ class ProfilesController < ApplicationController
 
   def update
     current_user.profile.update(profile_params)
+    @profile = current_user.profile
+    # flash[:notice] = "Profile update successfully." 
 
     # respond_to do |format|
     #   if @profile.update(profile_params)

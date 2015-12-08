@@ -8,12 +8,8 @@
     </div>
     <%=form_for @category, url: category_profiles_path, method: true do |f|%>
       <%Category.all.each_with_index do |category, index|%>        
-        <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">
-          <%if current_user.users_category.present? && current_user.users_category.category_ids.include?(category.id.to_s)%>
-            <%= check_box_tag 'category_ids[]', category.id,:checked=>true%> <%=category.try(:name)%>
-          <%else%>
-            <%= check_box_tag 'category_ids[]', category.id%> <%=category.try(:name)%>
-          <%end%>
+        <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">          
+          <label><%= check_box_tag 'category_ids[]', category.id, isCategory?(category)%> <%=category.try(:name)%></label>
         </div>
       <%end%>    
       <div class="clearfix"></div>
