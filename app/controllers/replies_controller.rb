@@ -2,7 +2,7 @@ class RepliesController < ApplicationController
 	def create
 		@comment = Comment.find(params[:comment_id])
 		params[:reply][:user_id] = current_user.id
-		@reply = @comment.replies.create(reply_params) if params[:reply][:body] .present?
+		@reply = @comment.replies.create(reply_params) if params[:reply][:body].present?
 		@replies = @comment.replies
 	end
 

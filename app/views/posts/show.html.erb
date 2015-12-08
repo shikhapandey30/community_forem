@@ -70,7 +70,7 @@
             <div class="col-sm-12 mb10">
               <div class="clearfix userInfo posRel">
                 <a href="#" class="userImg"><img src="<%= @post.user.img %>" alt=""></a>
-                <a href="#" class="userNAme"><%= @post.user.try(:profile).try(:first_name) %></a>
+                <a href="#" class="userNAme"><%= @post.user.try(:profile).try(:screen_name) %></a>
                 <br>
                 <span class="font13"><%= @designation %></span>
                 <div class="fr grayColor tar"><%= time_ago_in_words(@post.created_at.strftime("%d %b")) %><br>
@@ -80,7 +80,7 @@
               </div>
               <div class="uniOuter">
                 <div class="mt20 blackColor ">
-                  <p><%= @post.description %></p>
+                  <p><%= @post.description.html_safe %></p>
                   <a href="javascript:void(0)" class="listen whiteBtn"><img src="../assets/images/audio38.png" alt=""> Listen this post </a>
                 </div>
               </div>
