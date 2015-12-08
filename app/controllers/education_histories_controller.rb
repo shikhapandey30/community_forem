@@ -1,4 +1,4 @@
-class EducationHistoriesController < InheritedResources::Base
+class EducationHistoriesController < ApplicationController
  before_action :set_education_history, only: [:show, :edit, :update, :destroy]
   def index
     @education_histories = EducationHistory.all

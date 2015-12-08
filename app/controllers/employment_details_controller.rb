@@ -1,4 +1,4 @@
-class EmploymentDetailsController < InheritedResources::Base
+class EmploymentDetailsController < ApplicationController
  before_action :set_employment_detail, only: [:show, :edit, :update, :destroy]
   def index
     @employment_detail = EmploymentDetail.all

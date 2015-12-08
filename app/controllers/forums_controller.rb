@@ -1,4 +1,4 @@
-class ForumsController < InheritedResources::Base
+class ForumsController < ApplicationController
   def manage_forum
   	@forums=current_user.forums
   end
