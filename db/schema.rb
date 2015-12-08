@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204121749) do
+ActiveRecord::Schema.define(version: 20151207123304) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20151204121749) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id",    limit: 4
+    t.string   "image",      limit: 255
   end
 
   create_table "comments", force: :cascade do |t|
@@ -302,6 +303,14 @@ ActiveRecord::Schema.define(version: 20151204121749) do
     t.string   "state",             limit: 255
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.integer  "comment_id", limit: 4
+    t.text     "body",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "reveal_identities", force: :cascade do |t|
     t.integer  "sender_id",  limit: 4
     t.integer  "user_id",    limit: 4
@@ -345,26 +354,6 @@ ActiveRecord::Schema.define(version: 20151204121749) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id",        limit: 4
-    t.integer  "taggable_id",   limit: 4
-    t.string   "taggable_type", limit: 255
-    t.integer  "tagger_id",     limit: 4
-    t.string   "tagger_type",   limit: 255
-    t.string   "context",       limit: 128
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-
-  create_table "tags", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "taggings_count", limit: 4,   default: 0
-  end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.integer  "forum_id",    limit: 4
@@ -410,10 +399,10 @@ ActiveRecord::Schema.define(version: 20151204121749) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_categories", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "category_ids", limit: 255
   end
 
   create_table "votes", force: :cascade do |t|

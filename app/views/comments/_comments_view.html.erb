@@ -23,9 +23,9 @@
 		      <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
 		    </div>
 		<% end %>
-	  </div>
-		<div id="replies_view_<%= comment.id%>">
-			<%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
+	</div>
+	<div id="replies_view_<%= comment.id%>">
+		<%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
   	</div>
   </div>
 </div>
