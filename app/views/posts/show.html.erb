@@ -31,7 +31,7 @@
       <div class="userTHumb">
         <a href="#" class="profileImg"><img src="../assets/images/profile.jpg" alt=""></a>
         <div class="nameLocation">
-          <a href="#"><% current_user.try(:profile).try(:screen_name) %></a>
+          <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
           <span class="location"><%= current_user.try(:profile).try(:country) %></span>
         </div>
       </div>
@@ -82,19 +82,19 @@
               <div class="uniOuter">
                 <div class="mt20 blackColor ">
                   <p><%= @post.description %></p>
+                  <a href="javascript:void(0)" class="listen whiteBtn"><img src="../assets/images/audio38.png" alt=""> Listen this post </a>
                 </div>
               </div>
             </div>
             <div class="clearfix"></div>
             <div class="commentSec">
-              <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; <%= @comments.count %> Comments &nbsp; &nbsp; 468 shares</span>
+              <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; <span id ="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? "Comment" : "Comments" %></span> &nbsp; &nbsp; 468 shares</span>
               <div class="cmntSec">
                 <a href="#"><img src="../assets/images/up.png" alt=""></a>
                 <a href="#"><img src="../assets/images/down1.png" alt=""></a>
                 <a href="#" class="shareLInk"><img src="../assets/images/share.png" alt=""></a>
                 <a href="#" class="shareArrow"><img src="../assets/images/arrowSmall.png" alt=""></a>
                 <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
-                <a href="#" class="audioBtn"><img src="../assets/images/sound.png" alt=""></a> 
               </div>
             </div>
             <div class="clearfix"></div>
@@ -135,27 +135,27 @@
               </div>
             </div> -->
             <div id="comment_box">
-	            <div  class="clearfix commentSec cmntRow">
-	              <div class="clearfix userInfo posRel">
-	                <a href="javascript:;" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-	                <div class="addcomtntTA">
-	                  <!-- <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
-	                  <input value="Save" class="blueBtn" type="submit">
-	                  <a href="#" class="grayBtn">Cancel</a>   -->
-	                  <!-- Start Comment form -->
-	                  <%= form_for(@comment, remote: true) do |f| %>
-	                    <div class="field">
-	                      <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body", class: "addCmnt inputTextW small" %>
-	                      <%= hidden_field_tag :post_id, @post.id %>
-	                      <%= f.submit "Save", class: "blueBtn", id: "save_comment" %> &nbsp;&nbsp;
-	                      <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a>	
-	                    </div>
-	                  <% end %>
-	                	<!-- End comment form -->
-	                </div>
-	              </div>
-	            </div>
-	          </div>
+              <div  class="clearfix commentSec cmntRow">
+                <div class="clearfix userInfo posRel">
+                  <a href="javascript:;" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+                  <div class="addcomtntTA">
+                    <!-- <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
+                    <input value="Save" class="blueBtn" type="submit">
+                    <a href="#" class="grayBtn">Cancel</a>   -->
+                    <!-- Start Comment form -->
+                    <%= form_for(@comment, remote: true) do |f| %>
+                      <div class="field">
+                        <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body", class: "addCmnt inputTextW small" %>
+                        <%= hidden_field_tag :post_id, @post.id %>
+                        <%= f.submit "Save", class: "blueBtn", id: "save_comment" %> &nbsp;&nbsp;
+                        <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
+                      </div>
+                    <% end %>
+                    <!-- End comment form -->
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -167,15 +167,16 @@
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
   $("#comment_cancel").click(function(event) {
-  	$("#comment_body").val("");
-	});
+    $("#comment_body").val("");
+  });
   $("#comments").hide();
   $("#comment_box").hide();
   $("#comment_button").click(function(event) {
-  	event.preventDefault();
-  	$("#comments").toggle();
-  	$("#comment_box").toggle();
-	});
+    event.preventDefault();
+    $("#comments").toggle();
+    $("#comment_box").toggle();
+    $("html, body").scrollTop($('#comment_box').offset().top);
+  });
   $("#save_comment").click(function(event) {
     event.preventDefault();
     if ($("#comment_body").val() == ""){

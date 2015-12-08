@@ -1,27 +1,21 @@
-<br>
-<% replies.each do |reply| %>
-	<% if reply.id.present? && reply.body.present? %>
-		<% if current_user.id == reply.user_id %>
-			<div  class="clearfix commentSec cmntRow comntONcmnt">
-		<% else %>
-			<div  class="clearfix commentSec cmntRow">
-		<% end %>
-		<% if current_user.id == reply.user_id %>
-		  <div class="clearfix userInfo posRel">
-		<% end %>
-	    <a href="#" class="userImg"><img src="<%= reply.user.img %>" alt=""></a>
-	    <a href="#" class="userNAme"> <%= reply.user.try(:profile).try(:screen_name) %></a> <br>
-	    <% @designation = reply.user.employment_details.collect(&:designation) %>
-	    <span class="font13"> <%= @designation.present? ? @designation.join(",") : ""  %></span>
-	    <div class="fr grayColor tar">
-	    	<%= time_ago_in_words(reply.created_at.strftime("%d %b")) if reply.created_at.present? %></div>
-	    <div class="clearfix mt15 font13 blackColor">
-	    	<%= reply.body %>
-	    </div>
-	    <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a></div>
-	  <% if current_user.id == reply.user_id %>
-		  </div>
-		<% end %>
+<% if replies.count > 0 %>
+	<div  class="clearfix commentSec cmntRow comntONcmnt">
+		<% replies.each do |reply| %>
+			<% if reply.id.present? && reply.body.present? %>
+				  <div class="clearfix userInfo posRel mt10">
+				    <a href="#" class="userImg"><img src="<%= reply.user.img %>" alt=""></a>
+				    <a href="#" class="userNAme"> <%= reply.user.try(:profile).try(:screen_name) %></a> <br>
+				    <% @designation = reply.user.employment_details.collect(&:designation) %>
+				    <span class="font13"> <%= @designation.present? ? @designation.join(",") : ""  %></span>
+				    <div class="fr grayColor tar">
+				    	<%= time_ago_in_words(reply.created_at.strftime("%d %b")) if reply.created_at.present? %>
+				    </div>
+				    <div class="clearfix mt15 font13 blackColor">
+				    	<%= reply.body %>
+				    </div>
+				    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
+				  </div>
+			<% end %>
+		<% end if replies%>
 	</div>
-	<% end %>
-<% end if replies%>
+<% end %>
