@@ -252,7 +252,7 @@ header{position:fixed; top:0px;left:0px; width:100%; z-index:999;}
 .mt20{margin-top:20px;}
 
 .uploadIcon{ padding-right:5px;text-align:right; }
-ul.tabs{ 0px;list-style: none;}
+ul.tabs{ list-style: none;}
 ul.tabs li{display: inline-block;cursor: pointer; opacity:0.6; margin-right:10px;}
 ul.tabs li.current {opacity:1;}
 .tab-content{display: none;}
