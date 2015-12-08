@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   resources :profiles do
     collection do
+      get :add_education
+      get :add_employment
       post :category
       post :education_history, as: :education
       post :employment_detail, as: :employment

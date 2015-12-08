@@ -1,6 +1,7 @@
-.bootstrap-tagsinput {
-    width: 100%;
-}
-.label {
-    line-height: 2 !important;
-}
+.bootstrap-tagsinput {width: 100%;}
+.label {line-height: 2 !important;}
+.bootstrap-tagsinput input[type="text"]{display: none;}
+.bootstrap-tagsinput{border: 0px; padding: 0px; box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.00) }
+.skillsTag span {padding: 0px 7px;}
+.bootstrap-tagsinput .tag [data-role="remove"] {margin-top: 6px; box-shadow: 0 0 0 0 rgba(0,0,0,0);
+

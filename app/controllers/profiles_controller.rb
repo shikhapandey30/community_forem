@@ -4,8 +4,6 @@ class ProfilesController < ApplicationController
   def index
     @profile = current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
-    @education_history = current_user.education_histories.new
-    @employment_detail = current_user.employment_details.new    
     @category = current_user.users_categories.present? ? current_user.users_categories : Category.new
     # @skills = Skill.all
     # @categories = Category.all
@@ -19,6 +17,14 @@ class ProfilesController < ApplicationController
   # GET /Profiles/1
   # GET /Profiles/1.json
   def show
+  end
+
+  def add_education
+    @education_history = current_user.education_histories.new    
+  end
+
+  def add_employment
+    @employment_detail = current_user.employment_details.new    
   end
 
   def education_history

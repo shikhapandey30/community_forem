@@ -7,3 +7,7 @@ $(document).on('click', ".add_skill", function(){
 $(document).on('click', ".cancel", function(){	
   $(this).closest('form').trigger('reset');
 });
+
+$(function () {
+  $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+});
