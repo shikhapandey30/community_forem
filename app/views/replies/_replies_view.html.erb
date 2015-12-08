@@ -1,8 +1,8 @@
 <% if replies.count > 0 %>
 	<div  class="clearfix commentSec cmntRow comntONcmnt">
-		<% replies.each do |reply| %>
+		<% replies.each_with_index do |reply, index| %>
 			<% if reply.id.present? && reply.body.present? %>
-				  <div class="clearfix userInfo posRel mt10">
+				  <div class="clearfix userInfo posRel">
 				    <a href="#" class="userImg"><img src="<%= reply.user.img %>" alt=""></a>
 				    <a href="#" class="userNAme"> <%= reply.user.try(:profile).try(:screen_name) %></a> <br>
 				    <% @designation = reply.user.employment_details.collect(&:designation) %>
@@ -15,6 +15,10 @@
 				    </div>
 				    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
 				  </div>
+				  <% next_element = replies[index+1] %>
+          <% if next_element.present? && next_element["id"].present? %>
+            <div class="mt10"></div> 
+          <% end %>
 			<% end %>
 		<% end if replies%>
 	</div>
