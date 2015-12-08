@@ -11,7 +11,7 @@
 				    	<%= time_ago_in_words(reply.created_at.strftime("%d %b")) if reply.created_at.present? %>
 				    </div>
 				    <div class="clearfix mt15 font13 blackColor" id="reply_id_<%=reply.id%>">
-				    	<%= reply.body %>
+				    	<%= reply.body.html_safe %>
 				    </div>
 				    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
 				  </div>

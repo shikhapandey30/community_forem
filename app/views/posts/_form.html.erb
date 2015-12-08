@@ -32,9 +32,12 @@
     <div class="userTHumb">
       <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
       <div class="nameLocation">
-        <a href="#"><%= current_user.profile.screen_name %></a>
-        <br>
-        <span class="location"><%= current_user.profile.country %></span>
+
+
+        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
+        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
+
+
       </div>
     </div>
     <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
