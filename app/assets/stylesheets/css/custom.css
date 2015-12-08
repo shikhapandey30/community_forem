@@ -9,3 +9,5 @@
     color: #7E7E7E;display: inline-block;font-size: 12px;font-weight: 600;margin: 0 5px 8px 0;}
 .like_image_post_liked{background-color: #0bb4d3;}
 .dislike_image_post_disliked{background-color: #0bb4d3;}
+.screen_name{min-width: 50px;}
+
