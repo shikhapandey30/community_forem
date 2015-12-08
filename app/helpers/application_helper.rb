@@ -8,4 +8,14 @@ module ApplicationHelper
 		params[:action] != "terms_and_conditions" &&  params[:action] != "privacy_policy" &&  params[:action] != "how_it_work"  &&  params[:action] != "contactus" &&  params[:action] != "aboutus" &&  params[:action] != "help"
 	end
 
+
+  # def flash(level)
+  #       case level
+  #       when 'notice' then "alert alert-info"
+  #       when 'success' then "alert alert-success"
+  #       when 'error' then "alert alert-error"
+  #       when 'alert' then "alert alert-error"
+  #       end
+  #   end
+
 end

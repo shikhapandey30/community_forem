@@ -1,1 +1,4 @@
 $(".education_history").html("<%=j (render '/profiles/education_history')%>");
+$(function () {
+  $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+});

@@ -1,81 +1,80 @@
-<div class="clearfix whiteBox mt30">  
-  <%= form_for @profile, url: @profile.id.present? ? profile_path(@profile) : profiles_path, :html => { :multipart => true }, :remote => true do |f| %>
-    <div class="clearfix formOuterPost tal">
-      <%= f.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
-      <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
-      <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=f.object.try(:image).try(:url)%>);">
-        <div class="reletive">
-          <img src="../assets/images/camera.png" alt="" id='imgprvw'>          
-          <div>Change Photo</div>
-        </div>
+<%= form_for @profile, url: @profile.try(:id).present? ? profile_path(@profile) : profiles_path, :html => { :multipart => true }, :remote => true do |f| %>
+  <div class="clearfix formOuterPost tal">
+    <%= f.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+    <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
+    <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=f.object.try(:image).try(:url)%>);">
+      <div class="reletive">
+        <img src="../assets/images/camera.png" alt="" id='imgprvw'>          
+        <div>Change Photo</div>
       </div>
-      <div class="col-sm-6 pr10">
-        <label>First Name</label>
-        <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
+    </div>
+    <div class="col-sm-6 pr10">
+      <label>First Name</label>
+      <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
+    </div>
+    <div class="col-sm-6 pl10">
+      <label>Last Name</label>
+      <%= f.text_field :last_name, class: "profile inputTextW small", placeholder: "John" %>
+    </div>
+    <div class="col-sm-12">
+      <div class="blackHD">Address</div>
+    </div>
+    <div class="col-sm-6 pr10">
+      <label class="">Country</label>
+      <%= f.text_field :country, class: "profile inputTextW small" %>
+    </div>
+    <div class="col-sm-6 pl10">
+      <label class="">CIty</label>
+      <%= f.text_field :city, class: "profile inputTextW small" %>
+    </div>
+    <div class="col-sm-6 pr10">
+      <label>Street</label>
+      <%= f.text_field :street, class: "profile inputTextW small" %>
+    </div>
+    <div class="col-sm-6 pl10">
+      <label>Zipcode</label>
+      <%= f.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
+    </div>
+    <div class="col-sm-6 pr10">
+      <label>Gender</label>
+      <div class="selctFormBox">                  
+        <%= f.text_field :gender, value: "Select", class: "profile selectInput" %>
+        <%= f.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
       </div>
-      <div class="col-sm-6 pl10">
-        <label>Last Name</label>
-        <%= f.text_field :last_name, class: "profile inputTextW small", placeholder: "John" %>
+    </div>
+    <div class="col-sm-6 pl10">
+      <label>Phone</label>
+      <%= f.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
+    </div>
+    <div class="col-sm-6 pr10">
+      <label>Select Type</label>
+      <div class="selctFormBox">
+        <%= f.text_field :profile_type, value: "Select", class: "profile selectInput" %>
+        <%= f.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
       </div>
-      <div class="col-sm-12">
-        <div class="blackHD">Address</div>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label class="">Country</label>
-        <%= f.text_field :country, class: "profile inputTextW small" %>
-      </div>
-      <div class="col-sm-6 pl10">
-        <label class="">CIty</label>
-        <%= f.text_field :city, class: "profile inputTextW small" %>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Street</label>
-        <%= f.text_field :street, class: "profile inputTextW small" %>
-      </div>
-      <div class="col-sm-6 pl10">
-        <label>Zipcode</label>
-        <%= f.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Gender</label>
-        <div class="selctFormBox">                  
-          <%= f.text_field :gender, value: "Select", class: "profile selectInput" %>
-          <%= f.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
-        </div>
-      </div>
-      <div class="col-sm-6 pl10">
-        <label>Phone</label>
-        <%= f.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Select Type</label>
-        <div class="selctFormBox">
-          <%= f.text_field :profile_type, value: "Select", class: "profile selectInput" %>
-          <%= f.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
-        </div>
-      </div>
-      <div class="col-sm-6 pl10">
-        <label>Date of Birth</label>
-          <%= f.text_field :dob, class: "profile inputTextW small date fullWdth" %> 
-        <!-- <input type="text" placeholder="987654321" class=""> -->
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Screen Name</label>
-        <%= f.text_field :screen_name, class: "inputTextW small " %>
-        <!-- <input type="text" placeholder="john2015" class="inputTextW small  ">  -->
-      </div>
-      <div class="col-sm-6 pl10">
-        <label>Location</label>
-        <%= f.text_field :location, class: "inputTextW small" %>
-       <!--  <input type="text" placeholder="South America" class="inputTextW small  "> -->
-      </div>      
-      <div class="col-sm-12">
-        <input type="submit" value="Save " class="blueBtn">        
-        <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
-      </div>
-    <%end%>
-  </div>  
-</div>
+    </div>
+    <div class="col-sm-6 pl10">
+      <label>Date of Birth</label>
+        <%= f.text_field :dob, class: "profile inputTextW small date fullWdth" %> 
+      <!-- <input type="text" placeholder="987654321" class=""> -->
+    </div>
+    <div class="col-sm-6 pr10">
+      <label>Screen Name</label>
+      <%= f.text_field :screen_name, class: "inputTextW small " %>
+      <!-- <input type="text" placeholder="john2015" class="inputTextW small  ">  -->
+    </div>
+    <div class="col-sm-6 pl10">
+      <label>Location</label>
+      <%= f.text_field :location, class: "inputTextW small" %>
+     <!--  <input type="text" placeholder="South America" class="inputTextW small  "> -->
+    </div>      
+    <div class="col-sm-12">
+      <input type="submit" value="Save " class="blueBtn">        
+      <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
+    </div>
+  <%end%>
+</div>  
+
 <script>
  function showimagepreview(input) {
     if (input.files && input.files[0]) {
