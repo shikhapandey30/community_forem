@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 	belongs_to :category
 	# validates_presence_of :description
 	belongs_to :user
-	has_one :topic
+	 # has_one :topic
 	has_many :likes, :as => :likable
   has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable

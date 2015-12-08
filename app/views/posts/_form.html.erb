@@ -32,7 +32,8 @@
     <div class="userTHumb">
       <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
       <div class="nameLocation">
-        <a class="screen_name" href="#"><%= current_user.profile.screen_name %></a>
+        <a href="#"><%= current_user.profile.screen_name %></a>
+        <br>
         <span class="location"><%= current_user.profile.country %></span>
       </div>
     </div>
@@ -193,66 +194,59 @@
               </div>
               <!-- container -->
             </div>
+            
+
+
+
+
+
+
             <div class="clearfix whiteBox">
               <div class="clearfix formOuterPost tal">
                 <div class="col-sm-6 pr10">
-                  <label><%= f.label "Category" %></label>
-                  <div class="selctFormBox"> 
-                   <%#=  f.select(:category_id,Category.all.collect {|u| [ u.name]}, :prompt => 'Select') %>
+                  <label>Select Category</label>
+                  <div class="selctFormBox">
                     <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
                     <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category'%>
                     <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
-                  <%#= f.text_field :category_id, placeholder: "Category", class: "inputTextW small" %>
-                    <!-- <input type="text" value="BCA" readonly 
-class="selectInput">
-                    <select class="select">
-                      <option>BCA</option> -->
-                    <!-- </select> -->
                   </div>
-               </div>
-               
-                <div class="col-sm-12">
-                  <label class="font20">
-                    <%= f.label :title %>
-                  </label>
-                  <%= f.text_field :title, placeholder: "Topics", class: "inputTextW small"%>
+                </div>
+                <div class="col-sm-6 pl10">
+                    <label>Type Topic</label>
+                    <!-- <div class="selctFormBox"> -->
+                      <%#= f.hidden_field :topic_id, :value=>'Select', class: " selectInputField" %>
+                      <%#= f.text_field "topic_id", :value=>'Select', class: "selectInput" ,:id=>'topic'%>
+                      <%#= f.select("topic_id", Topic.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+                    <!-- </div> -->
+                    <%= f.text_field :topic, :id=>"topic", class: "inputTextW small" %>
                 </div>
                 <div class="col-sm-12">
-                  <label class="">
-                    <%= f.label :description %>
-                  </label>
+                  <label class="font20">Write Your Headline</label>
+                   <%= f.text_field :title, class: "inputTextW small" %>
+                </div>
+                <div class="col-sm-12">
+                  <label class=""><%= f.label "Write Something" %></label>
                   <%= f.text_area :description, class: "inputTextW small" %>
                 </div>
                 <div class="col-sm-12">
-                  <label class="font16">
-                    <%= f.label :visibility %>
-                  </label><br>
+                 <label class="font16">Select Visibility</label><br>
                   <div class="mt5">
-                    <label class="radioV">
-                      <%= f.radio_button :visibility,true,:checked => true %> Private 
-                    </label> &nbsp; &nbsp; 
-                    <label class="radioV"> 
-                      <%= f.radio_button :visibility, false %>Public 
-                    </label>
+                    <label class="radioV">  <%= f.radio_button :visibility,true,:checked => true %> Private  </label> &nbsp; &nbsp; <label class="radioV">  <%= f.radio_button :visibility, false %> Public  </label>
                   </div>
                 </div>
                 <label  class="col-sm-12 mt20 block">Set expiration of post </label>
                 <div class="col-sm-6  pr10  dateOuter">
-                  <label> 
-                    <%= f.label :start_date, "From" %>
-                  </label>
-                  <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+                  <label>From</label> <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
                 </div>
                 <div class="col-sm-6  pl10 dateOuter">
-                  <label><%= f.label :expiration_date, "To" %></label>
-                  <%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+                  <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
                 </div>
                 <div class="col-sm-12">
                   <%= f.submit "Save Post", class: "blueBtn" %>
-                  <a href="#" class="grayBtn">Cancel</a>
+                  <a href="#" class="grayBtn">Cancel</a>  
                 </div>
               </div>
-            </div>
+            </div> 
             <br>
             <% end %>
           </div>
@@ -277,3 +271,6 @@ class="selectInput">
     $('.remove_video').hide();
   });
 </script>
+
+
+ 
