@@ -30,10 +30,10 @@
 <div class="mainCOntnt">
   <div class="leftNAv">
     <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
+      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
       <div class="nameLocation">
-        <a class="screen_name" href="#"><%= current_user.profile.screen_name %></a>
-        <span class="location"><%= current_user.profile.country %></span>
+        <a class="screen_name" href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
+        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
       </div>
     </div>
     <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
@@ -117,11 +117,11 @@
             <div class="whiteBox mt90">
               <div class="userTHumb userTHumbRight">
                 <a href="#" class="profileImg">
-                  <%= image_tag current_user.profile.image %>
+                  <%= image_tag current_user.try(:profile).try(:image) %>
                 </a>
                 <div class="nameLocation">
-                  <a href="#"><%= current_user.profile.screen_name %></a><br>
-                  <span class="location"><%= current_user.profile.country %></span>
+                  <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a><br>
+                  <span class="location"><%= current_user.try(:profile).try(:country) %></span>
                 </div>
               </div>
               <div class="tabOuter">
