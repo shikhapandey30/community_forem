@@ -70,7 +70,7 @@
             <div class="col-sm-12 mb10">
               <div class="clearfix userInfo posRel">
                 <a href="#" class="userImg"><img src="<%= @post.user.img %>" alt=""></a>
-                <a href="#" class="userNAme"><%= @post.user.try(:profile).try(:screen_name) %></a>
+                <a href="#" class="userNAme"><%= @post.user.try(:profile).try(:first_name) %></a>
                 <br>
 
                 <span class="font13"><%= @designation %></span>
@@ -88,9 +88,14 @@
             </div>
             <div class="clearfix"></div>
             <div class="commentSec">
-              <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; <span id ="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? "Comment" : "Comments" %></span> &nbsp; &nbsp; 468 shares</span>
+             <span class="grayColor font12"><span class="post_like_count"><%= @post.likes.count%></span> Likes &nbsp; &nbsp; <%= @comments.count %> Comments &nbsp; &nbsp; 468 shares</span>
               <div class="cmntSec">
-                <a href="#"><img src="../assets/images/up.png" alt=""></a>
+                <!-- <a href="#"><img src="../assets/images/up.png" alt=""></a> -->
+                <%if @post.liked?(current_user)==nil%>
+                  <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post_liked'%>
+                <%else%>
+                  <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post'%>
+                <%end%>
                 <a href="#"><img src="../assets/images/down1.png" alt=""></a>
                 <a href="#" class="shareLInk"><img src="../assets/images/share.png" alt=""></a>
                 <a href="#" class="shareArrow"><img src="../assets/images/arrowSmall.png" alt=""></a>
