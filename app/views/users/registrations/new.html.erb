@@ -1,5 +1,3 @@
-
-
 <div class="bodyCont">
   <!--  Header Start -->
   <div class="headerBkg"></div>
@@ -18,20 +16,17 @@
       <div class="loginForm">
       
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-       
-        <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")%>">
-          <%= devise_error_messages! %>
-        </div>
-       
-          <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "inputText"%>
-        <%= f.text_field :screen_name,  placeholder: "Screen Name", class: "inputText"%>
-        <%= f.email_field :email, placeholder: "Email", class: "inputText" %>
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "inputText" %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password",class: "inputText" %>
-        <%= f.submit "Signup", class: "darkBlueBtn inputSubmit" %>
-
+          <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")%>">
+            <%= devise_error_messages! %>
+          </div>
+          <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", :maxlength=>"80", class: "inputText"%>
+          <%= f.text_field :last_name, placeholder: "Last Name", :maxlength=>"80", class: "inputText"%>
+          <%= f.text_field :screen_name,  placeholder: "Screen Name", :maxlength=>"80", class: "inputText"%>
+          <%= f.email_field :email, placeholder: "Email", :maxlength=>"80", class: "inputText" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", :maxlength=>"80", class: "inputText" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:"Confirm Password", :maxlength=>"80",class: "inputText" %>
+          <%= f.submit "Signup", class: "darkBlueBtn inputSubmit" %>
         <%end%>
-     
        </div>
       <p>Already Have Account? <%=link_to "Sign In", new_user_session_path%></p>
     </div>

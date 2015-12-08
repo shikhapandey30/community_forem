@@ -28,3 +28,5 @@
 //= require jquery.remotipart
 //= require js/custom
 //= require responsivevoice
+//= require js/validate
+//= require js/validate.min
