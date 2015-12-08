@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
   friendly_id :name, :use => :slugged
 	 belongs_to :forum
 	 has_many :forum_polls
-     has_many :posts
+     # has_many :posts
      belongs_to :user
      has_many :likes, :as => :likable
      mount_uploader :file, TopicUploader
