@@ -1,57 +1,30 @@
 <% comments.each do |comment| %>
-	<% if current_user.id == comment.user_id %>
-		<div  class="clearfix commentSec cmntRow comntONcmnt">
-	<% else %>
-		<div  class="clearfix commentSec cmntRow">
-	<% end %>
-  <div class="clearfix userInfo posRel">
-    <a href="#" class="userImg"><img src="<%= comment.user.img %>" alt=""></a>
-    <a href="#" class="userNAme"> <%= comment.user.try(:profile).try(:screen_name) %></a> <br>
-    <span class="font13"> 
-    	<% @designation = comment.user.employment_details.collect(&:designation)%>
-    	<%= @designation.present? ? @designation.join(",") : " " %>
-    </span>
-    <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at.strftime("%d %b")) %></div>
-    <div class="clearfix mt15 font13 blackColor">
-    	<%= comment.body %>	
+	<div  class="clearfix commentSec cmntRow">
+    <div class="clearfix userInfo posRel">
+      <a href="#" class="userImg"><img src="<%= comment.user.img %>" alt=""></a>
+      <a href="#" class="userNAme"> <%= comment.user.try(:profile).try(:screen_name) %></a> <br>
+      <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation)%>
+  			<%= @designation.present? ? @designation.join(",") : " " %></span>
+      <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at.strftime("%d %b")) %></div>
+      <div class="clearfix mt15 font13 blackColor"><%= comment.body %></div>
+      <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a>| <a href="javascript:;" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" > Reply</a></div>
+    	<div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
+    		<%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
+	    		<a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+			    <div class="field">
+			      <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
+			    </div>
+				<% end %>
+			</div>
     </div>
-    <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a>| <a href="javascript:;" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" > Reply</a></div>
-    <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
-    	<%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
-    		<a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-		    <div class="field">
-		      <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
-		    </div>
-		<% end %>
-	</div>
-	<div id="replies_view_<%= comment.id%>">
-		<%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
-  	</div>
   </div>
-</div>
-	<!-- <div  class="clearfix commentSec cmntRow comntONcmnt">
-	  <div class="clearfix userInfo posRel">
-	    <a href="#" class="userImg"><img src="../assets/images/smith.jpg" alt=""></a>
-	    <a href="#" class="userNAme"> John Smith </a> <br>
-	    <span class="font13"> Events Coordinator, Designer</span>
-	    <div class="fr grayColor tar">2 Oct</div>
-	    <div class="clearfix mt15 font13 blackColor">Exactly! It's a sad and ineffective way to do things.</div>
-	    <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a>| <a href="#" class="blueColor" > Reply</a></div>
-	  </div>
-	</div> -->
+  <div id="replies_view_<%= comment.id%>">
+		<%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
+	</div>
 <% end %>
+
 <script>
 	$(".replyRow").hide();
-	// $(".reply_link").click(function() {
-	// 	$(".reply_box_class").hide();
-	// 	var reply_link_id = this.id;
-	// 	var reply_box_id = reply_link_id.split("_")[3];
-	// 	$("#" + "reply_box_id_" + reply_box_id).show();
-	// });
-	// $(".comment_cancel").click(function(){
-	// 	$(".addReply").val("");
-	// 	$(".reply_box_class").hide();
-	// });
 	$(".reply").click(function(){
 		$(this).closest("div").next(".replyRow").slideToggle(500);			
 	});

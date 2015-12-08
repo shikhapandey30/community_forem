@@ -1,12 +1,16 @@
 <% if @is_like %>
   <%if @post.present?%>
-    $(".like-<%= @post.id%>").html('<%= link_to "UnLike", post_likes_path(@post), method: :post, remote: true%>');
+    $(".like_image_post").css('background-color', '#0bb4d3');
+     $(".like_image_post_liked").css('background-color', '#0bb4d3');
+    $(".post_like_count").html('<%=@post.likes.count%>');
   <%else%>
-    $(".like-<%= @topic.id%>").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+    $(".post_like_count").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
   <%end%>
 <% else %>
   <%if @post.present?%>
-    $(".like-<%= @post.id%>").html('<%= link_to "Like", post_likes_path(@post), method: :post, remote: true%>');
+    $(".post_like_count").html('<%=@post.likes.count%>');
+    $(".like_image_post_liked").css('background-color', 'white');
+    $(".like_image_post").css('background-color', 'white');
   <%else%>
     $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
   <%end%>

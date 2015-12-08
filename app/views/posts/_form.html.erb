@@ -30,10 +30,10 @@
 <div class="mainCOntnt">
   <div class="leftNAv">
     <div class="userTHumb">
-      <a href="#" class="profileImg"><img src="../assets/images/profile.jpg" alt=""></a>
+      <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
       <div class="nameLocation">
-        <a href="#">John Smith</a>
-        <span class="location">United Kingdom</span>
+        <a class="screen_name" href="#"><%= current_user.profile.screen_name %></a>
+        <span class="location"><%= current_user.profile.country %></span>
       </div>
     </div>
     <span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
@@ -117,11 +117,11 @@
             <div class="whiteBox mt90">
               <div class="userTHumb userTHumbRight">
                 <a href="#" class="profileImg">
-                  <img src="../assets/images/profile.jpg" alt="">
+                  <%= image_tag current_user.profile.image %>
                 </a>
                 <div class="nameLocation">
-                  <a href="#">John Smith</a><br>
-                  <span class="location">United Kingdom</span>
+                  <a href="#"><%= current_user.profile.screen_name %></a><br>
+                  <span class="location"><%= current_user.profile.country %></span>
                 </div>
               </div>
               <div class="tabOuter">
@@ -210,17 +210,12 @@ class="selectInput">
                     <!-- </select> -->
                   </div>
                </div>
-                <div class="col-sm-6 pl10">
-                  <label>
-                    <%= f.label :title%>
-                  </label>
-                  <%= f.text_field :title, placeholder: "Topics", class: "inputTextW small"%>
-                </div>
+               
                 <div class="col-sm-12">
                   <label class="font20">
                     <%= f.label :title %>
                   </label>
-                  <%= f.text_field :title, class: "inputTextW small" %>
+                  <%= f.text_field :title, placeholder: "Topics", class: "inputTextW small"%>
                 </div>
                 <div class="col-sm-12">
                   <label class="">
@@ -234,7 +229,7 @@ class="selectInput">
                   </label><br>
                   <div class="mt5">
                     <label class="radioV">
-                      <%#= f.radio_button :visibility,true,:checked => true %> Private 
+                      <%= f.radio_button :visibility,true,:checked => true %> Private 
                     </label> &nbsp; &nbsp; 
                     <label class="radioV"> 
                       <%= f.radio_button :visibility, false %>Public 
@@ -282,6 +277,3 @@ class="selectInput">
     $('.remove_video').hide();
   });
 </script>
-
-
- 

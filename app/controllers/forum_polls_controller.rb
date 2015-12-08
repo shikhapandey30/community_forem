@@ -1,4 +1,4 @@
-class ForumPollsController < InheritedResources::Base
+class ForumPollsController < ApplicationController
   before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
   
   def show

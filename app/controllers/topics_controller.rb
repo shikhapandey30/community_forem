@@ -1,4 +1,4 @@
-class TopicsController < InheritedResources::Base
+class TopicsController < ApplicationController
  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   def create
     if params[:topic][:forum_id].present? 
