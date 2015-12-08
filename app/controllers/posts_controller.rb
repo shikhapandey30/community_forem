@@ -11,6 +11,14 @@ class PostsController < ApplicationController
   # GET /Posts/1
   # GET /Posts/1.json
   def show
+    @comment = Comment.new
+    @comments = @post.comments
+    @designation = @post.user.employment_details.collect(&:designation)
+    if @designation.present?
+      @designation = @designation.join(",")
+    else
+      @designation = ""
+    end
   end
 
   # GET /Posts/new

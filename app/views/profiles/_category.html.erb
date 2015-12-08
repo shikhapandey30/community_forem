@@ -7,16 +7,20 @@
       <label class="font18">Select Category </label><br>
     </div>
     <%=form_for @category, url: category_profiles_path, method: true do |f|%>
-      <%Category.all.each_with_index do |category, index|%>
+      <%Category.all.each_with_index do |category, index|%>        
         <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">
-          <label> <%= check_box_tag "category[#{index}][category_id]", category.try(:id), category.users_categories.where(user_id: current_user.id).present? ? true : false%> <%=category.try(:name)%></label>
+          <%if current_user.users_category.present? && current_user.users_category.category_ids.include?(category.id.to_s)%>
+            <%= check_box_tag 'category_ids[]', category.id,:checked=>true%> <%=category.try(:name)%>
+          <%else%>
+            <%= check_box_tag 'category_ids[]', category.id%> <%=category.try(:name)%>
+          <%end%>
         </div>
-      <%end%>
-    <%end%> 
-    <div class="clearfix"></div>
-    <div class="col-sm-12 mt10">
-      <input value="Save" class="blueBtn" type="submit">
-      <a href="#" class="grayBtn">Cancel</a>  
-    </div>
+      <%end%>    
+      <div class="clearfix"></div>
+      <div class="col-sm-12 mt10">
+        <%= submit_tag "Save", class: 'blueBtn' %>
+        <a href="#" class="grayBtn">Cancel</a> 
+      </div>
+    <%end%>
   </div>
 </div>

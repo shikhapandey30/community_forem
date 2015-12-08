@@ -166,9 +166,11 @@
                     <div class='iframe'>
                       <iframe width="400" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe> 
                     </div>
-                   <img src="../assets/images/videoIcon.png" alt="" class="video_image"> 
-                    <div class="grayBig bold "><%= f.label :video %></div>
-                      <%= f.file_field :video, placeholder: "http://", class: "inputTextW",:onchange => "showvideopreview(this)" %><%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
+                  <!--  <img src="../assets/images/videoIcon.png" alt="" class="video_image">  -->
+                    <%= f.file_field :video, class: "post post_video", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showvideopreview(this)" %>
+                    <a href="#"  onclick="$('.post_video').click();">
+                      <img src="../assets/images/videoIcon.png" alt="" id='vdoprvw'>  <%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
+                    </a>
                       <div class="mt10">
                         Paste a link from YourTube, Vimeo, Vine etc.
                       </div>
@@ -274,8 +276,9 @@ class="selectInput">
      $('.remove_file').hide();
   });
   $(".remove_video" ).click(function() {
-    $("#post_video").replaceWith($('<input id="post_video" class="inputTextW" type="file" name="post[video]" onchange="showvideopreview(this)" placeholder="http://">'));
+    $("#post_video").replaceWith($('<input id="post_video" class="post post_video" type="file" name="post[video]" onchange="showvideopreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
     $( "iframe" ).hide();
+    $('#vdoprvw').attr('src', '../assets/images/videoIcon.png');
     $('.remove_video').hide();
   });
 </script>

@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :forum_polls do
     resources :votes, only: [:create]
   end
-  resources :comments
+  resources :comments do
+    resources :replies, only: [:create, :show]
+  end
   
    resources :topics do
      resources :likes, only: [:create]

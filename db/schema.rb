@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207074349) do
+ActiveRecord::Schema.define(version: 20151207123304) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -303,6 +303,14 @@ ActiveRecord::Schema.define(version: 20151207074349) do
     t.string   "state",             limit: 255
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.integer  "comment_id", limit: 4
+    t.text     "body",       limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "reveal_identities", force: :cascade do |t|
     t.integer  "sender_id",  limit: 4
     t.integer  "user_id",    limit: 4
@@ -411,10 +419,10 @@ ActiveRecord::Schema.define(version: 20151207074349) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_categories", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.integer  "category_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "category_ids", limit: 255
   end
 
   create_table "votes", force: :cascade do |t|
