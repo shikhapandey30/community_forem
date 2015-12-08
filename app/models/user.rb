@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_one :skill, dependent: :destroy
   # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
   has_many :users_categories, dependent: :destroy
+  has_many :replies, dependent: :destroy
   accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   
@@ -45,5 +46,12 @@ class User < ActiveRecord::Base
   end
    def revealed?(reveal)
     RevealIdentity.where(:sender_id=>self.id,:user_id=>reveal.id).present?
+  end
+  def img
+    if self.profile.present?
+      self.profile.image
+    else
+      '../assets/images/profile.jpg'
+    end
   end
 end
