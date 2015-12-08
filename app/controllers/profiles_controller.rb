@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
     @education_history = current_user.education_histories.new
     @employment_detail = current_user.employment_details.new    
-    @category = current_user.users_categories.present? ? current_user.users_categories : Category.new
+    @category = current_user.users_category.present? ? current_user.users_category : Category.new
     # @skills = Skill.all
     # @categories = Category.all
     # if current_user.profile.present?
@@ -42,7 +42,12 @@ class ProfilesController < ApplicationController
   end
 
   def category
-    
+    if current_user.users_category.present?
+      current_user.users_category.update(:category_ids=>params[:category_ids].join(','))
+    else
+      UsersCategory.create(:category_ids=>params[:category_ids].join(','),:user_id=>current_user.id)
+    end
+    redirect_to :back
   end
 
   # GET /Profiles/new

@@ -33,8 +33,6 @@
     var filerdr = new FileReader();
     var filename = input.files[0].name
     filerdr.onload = function(e) {
-    $('#vdoprvw').hide;
-    $('.video_image').hide;
     $('iframe').show();
      $('iframe').attr('src', e.target.result);
     }
