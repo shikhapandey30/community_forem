@@ -1,0 +1,17 @@
+<% if @is_dislike %>
+  <%if @post.present?%>
+    $(".dislike_image_post").css('background-color', '#0bb4d3');
+     $(".dislike_image_post_disliked").css('background-color', '#0bb4d3');
+    $(".post_dislike_count").html('<%=@post.dislikes.count%>');
+  <%else%>
+    $(".post_dislike_count").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+  <%end%>
+<% else %>
+  <%if @post.present?%>
+    $(".post_dislike_count").html('<%=@post.dislikes.count%>');
+    $(".dislike_image_post_disliked").css('background-color', 'white');
+    $(".dislike_image_post").css('background-color', 'white');
+  <%else%>
+    $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+  <%end%>
+<% end %>

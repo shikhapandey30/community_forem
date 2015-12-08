@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
    resources :posts do
     resources :likes, only: [:create]
+    resources :dislikes, only: [:create]
     resources :comments
   end
    resources :conversations do
