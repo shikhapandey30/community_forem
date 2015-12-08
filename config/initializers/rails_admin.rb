@@ -1,16 +1,16 @@
 RailsAdmin.config do |config|
 
-  config.authorize_with do
-    authenticate_or_request_with_http_basic('Login required') do |username, password|      
-      if current_user.nil? || !current_user.email.eql?("admin@example.com")
-        username=''
-        password=''
-      else
-        username == Rails.application.secrets.user &&
-        password == Rails.application.secrets.password
-      end
-    end
-  end
+  # config.authorize_with do
+  #   authenticate_or_request_with_http_basic('Login required') do |username, password|      
+  #     if current_user.nil? || !current_user.email.eql?("admin@example.com")
+  #       username=''
+  #       password=''
+  #     else
+  #       username == Rails.application.secrets.user &&
+  #       password == Rails.application.secrets.password
+  #     end
+  #   end
+  # end
    
   # config.current_user_method(&:current_admin) 
   

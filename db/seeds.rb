@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+    Admin.create(email: "admin@example.com", password: "password", password_confirmation: "password")
     courses = Course.create(:name=>'B.A')
     courses = Course.create(:name=>'B.Arch')
     courses = Course.create(:name=>'BCA')

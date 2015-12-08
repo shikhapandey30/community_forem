@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       rails_admin_path
     elsif resource.is_a?(User)
       if resource.sign_in_count==1
-        new_profile_path
+        dashboard_path
       else
        dashboard_path
       end
