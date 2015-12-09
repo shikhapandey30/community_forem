@@ -21,7 +21,7 @@
     var filerdr = new FileReader();
     var filename = input.files[0].name
     filerdr.onload = function(e) {
-    $('#fleprvw').attr('src', "../assets/images//link.png");
+    $('#fleprvw').attr('src', "../assets/images/link.png");
     $( ".file_name" ).html( filename );
     }
     filerdr.readAsDataURL(input.files[0]);

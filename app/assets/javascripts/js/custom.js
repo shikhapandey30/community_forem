@@ -1,8 +1,10 @@
-$(document).on('click', ".add_skill", function(){	
-  $('.skills').tagsinput('add', '');
-  $('.skills').tagsinput('add', $('.skills_attr').val());
-  $('.skillsTag .tag.label.label-info').css({"opacity":"1","display":"inline-block"});
-  $('.skills_attr').val('');
+$(document).on('click', ".add_skill", function(){
+  if ($('.skills_attr').val().length!=0) {
+    $('.skills').tagsinput('add', '');
+    $('.skills').tagsinput('add', $('.skills_attr').val());
+    $('.skillsTag .tag.label.label-info').css({"opacity":"1","display":"inline-block"});
+    $('.skills_attr').val('');
+  }  
 });
 
 $(document).on('click', ".cancel", function(){
@@ -31,12 +33,10 @@ $(document).on('ready', function () {
                     equalTo : "#user_password" },
         },
         messages: {
-          "user[first_name]": "Please enter first name",
-          "user[last_name]": "Please enter second name",
-          "user[screen_name]": "Please enter Screen name",          
-          "user[email]": "Please enter email",
-          "user[password]": "Please enter password",
-          "user[password_confirmation]": "Please enter password",
+          // "user[first_name]": "Please enter first name",
+          // "user[last_name]": "Please enter second name",
+          // "user[screen_name]": "Please enter Screen name",          
+          // "user[email]": "Please enter email",          
           submitHandler: function(form) {
               form.submit();
           }
@@ -45,10 +45,10 @@ $(document).on('ready', function () {
 
   $("form#reqPassword").validate({
       rules: {
-          "user[email]": { required: true },         
+          "user[email]": { required: true },
         },
         messages: {
-          "user[email]": "Please enter email",          
+          "user[email]": "Please enter email",
           submitHandler: function(form) {
               form.submit();
           }

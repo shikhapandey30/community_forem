@@ -2,14 +2,14 @@
   <div class="col-sm-6 pr10">
     <label>Course</label>
     <div class="selctFormBox">          
-      <%= text_field_tag "course", nil, :value=>'Select', class: "selectInput",:id=>'course'%>
+      <%= text_field_tag "course", nil, :value=>select_type(f, "course"), class: "selectInput",:id=>'course'%>
       <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
   </div>
   <div class="col-sm-6 pl10">
     <label>Specialization</label>
     <div class="selctFormBox">
-      <%= text_field_tag "specialization", nil, :value=>'Select', class: "selectInput" ,:id=>'specialization'%>
+      <%= text_field_tag "specialization", nil, :value=>select_type(f, "specialization"), class: "selectInput" ,:id=>'specialization'%>
       <%= f.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
   </div>
@@ -17,21 +17,21 @@
     <label class="">Institute/University</label>
     <div class="selctFormBox fullWDdl">
       <%= hidden_field_tag :id, f.object.id%>
-      <%= text_field_tag "institute", nil, :value=>'Select', class: "selectInput",:id=>'institute'%>
+      <%= text_field_tag "institute", nil, :value=>select_type(f, "institute"), class: "selectInput",:id=>'institute'%>
       <%= f.select(:institute_id, Institute.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
   </div>
   <div class="col-sm-6 pr10">
     <label>Start Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :start_year, value: "Select", class: "selectInput" %>
+      <%= f.text_field :start_year, value: select_type(f, "start_year"), class: "selectInput" %>
       <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select")  %>
     </div>
   </div>
   <div class="col-sm-6 pr10">
     <label>End Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :end_year, value: "Select", class: "selectInput" %>
+      <%= f.text_field :end_year, value: select_type(f, "end_year"), class: "selectInput" %>
       <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select") %>
     </div>        
   </div>

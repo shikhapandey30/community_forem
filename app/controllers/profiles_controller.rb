@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
 
  # before_action :set_profile, only: [:show, :edit, :update, :destroy]
   def index
-    @profile = current_user.profile.present? ? current_user.profile : current_user.build_profile
+    current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
     @category = current_user.users_category.present? ? current_user.users_category : Category.new
 
@@ -102,8 +102,8 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
 
-  def update
-    current_user.profile.update(profile_params)
+  def update    
+    current_user.update_attributes(profile_params)
     @profile = current_user.profile
     # flash[:notice] = "Profile update successfully." 
 
@@ -147,7 +147,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit!
+      params.require(:user).permit!
     end
 
     def education_params

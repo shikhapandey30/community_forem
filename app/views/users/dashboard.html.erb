@@ -29,10 +29,10 @@
   <!-- Header End --> 
   <div class="leftNAv">
     <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
+      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
       <div class="nameLocation">
-        <a href="#"><%= current_user.profile.screen_name %></a>
-        <span class="location"><%= current_user.profile.country %></span>
+        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
+        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
       </div>
     </div>
     <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
@@ -68,10 +68,10 @@
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
+          <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
           <div class="nameLocation">
-            <a href="#" class="font22"><%= current_user.profile.screen_name %></a>
-            <div class="location font14"><%= current_user.profile.country %></div>
+            <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
+            <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
             <a href="/profiles" class="normal">Edit</a>
           </div>
         </div>
