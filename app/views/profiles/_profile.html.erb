@@ -10,30 +10,30 @@
     </div>
     <div class="col-sm-6 pr10">
       <label>First Name</label>
-      <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
+      <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "First Name", :maxlength=>"80" %>
     </div>
     <div class="col-sm-6 pl10">
       <label>Last Name</label>
-      <%= f.text_field :last_name, class: "profile inputTextW small", placeholder: "John" %>
+      <%= f.text_field :last_name, class: "profile inputTextW small", placeholder: "Last Name", :maxlength=>"80" %>
     </div>
     <div class="col-sm-12">
       <div class="blackHD">Address</div>
     </div>
     <div class="col-sm-6 pr10">
       <label class="">Country</label>
-      <%= f.text_field :country, class: "profile inputTextW small" %>
+      <%= f.text_field :country, class: "profile inputTextW small", :maxlength=>"80" %>
     </div>
     <div class="col-sm-6 pl10">
       <label class="">CIty</label>
-      <%= f.text_field :city, class: "profile inputTextW small" %>
+      <%= f.text_field :city, class: "profile inputTextW small", :maxlength=>"80" %>
     </div>
     <div class="col-sm-6 pr10">
       <label>Street</label>
-      <%= f.text_field :street, class: "profile inputTextW small" %>
+      <%= f.text_field :street, class: "profile inputTextW small", :maxlength=>"80" %>
     </div>
     <div class="col-sm-6 pl10">
       <label>Zipcode</label>
-      <%= f.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
+      <%= f.text_field :post_code, class: "profile inputTextW small", placeholder: "10001", :maxlength=>"12" %>
     </div>
     <div class="col-sm-6 pr10">
       <label>Gender</label>
@@ -44,7 +44,7 @@
     </div>
     <div class="col-sm-6 pl10">
       <label>Phone</label>
-      <%= f.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
+      <%= f.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789", :maxlength=>"20" %>
     </div>
     <div class="col-sm-6 pr10">
       <label>Select Type</label>
@@ -60,12 +60,12 @@
     </div>
     <div class="col-sm-6 pr10">
       <label>Screen Name</label>
-      <%= f.text_field :screen_name, class: "inputTextW small " %>
+      <%= f.text_field :screen_name, class: "inputTextW small", :maxlength=>"80" %>
       <!-- <input type="text" placeholder="john2015" class="inputTextW small  ">  -->
     </div>
     <div class="col-sm-6 pl10">
       <label>Location</label>
-      <%= f.text_field :location, class: "inputTextW small" %>
+      <%= f.text_field :location, class: "inputTextW small", :maxlength=>"80" %>
      <!--  <input type="text" placeholder="South America" class="inputTextW small  "> -->
     </div>      
     <div class="col-sm-12">
