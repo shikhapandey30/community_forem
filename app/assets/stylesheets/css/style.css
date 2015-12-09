@@ -52,14 +52,14 @@ header{background-color:#0bb4d3; padding:5px;}
 .topSearchRight .lightBlueBtn{margin:0 0px 0 12px  ;}
 .catLIst{background-color:#6dd2e6; display:inline-block; padding: 9px 15px; border-radius:5px 0px 0px 5px;}
 .searhInput{ background-color:#FFFFFF; border:0px; display:inline-block; padding: 9px 15px; width:700px;  margin-left:-4px;}
-.searhSub{ background-color:#FFFFFF;border:0px; background-image:url(../images/search.png); background-repeat:no-repeat; background-position:center left; width:30px; height:37px; margin-left:-4px; border-radius:0px 5px 5px 0px;}  
+.searhSub{ background-color:#FFFFFF;border:0px; background-image:url(../assets/images/search.png); background-repeat:no-repeat; background-position:center left; width:30px; height:37px; margin-left:-4px; border-radius:0px 5px 5px 0px;}  
 .navbar .container-fluid{padding:0px 2px 0 0 ;}
 .navbar { border:0px; margin:73px 0 0 0px; }
 #navbar{background-color:#fff; border:0px;}
 .navbar-default .navbar-nav > li > a{font-weight:600; color:#444444; font-size:13px;}
 .navbar-default .navbar-nav > li > a:hover{color:#0bb4d3; }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {color: #0bb4d3 ; background-color: #fff;}
-.banner{background-image:url(../images/banner.jpg); position:relative; background-position:center top; background-repeat:no-repeat; background-size:cover; margin-top: 0px; min-height:560px; }
+.banner{background-image:url(../assets/images/banner.jpg); position:relative; background-position:center top; background-repeat:no-repeat; background-size:cover; margin-top: 0px; min-height:560px; }
 
 
 .bannerImg{opacity:0; width:100%; display:none;} 
@@ -76,7 +76,7 @@ header{background-color:#0bb4d3; padding:5px;}
 .blackHD{color:#212121; font-size:18px; font-weight:600; text-transform:uppercase;}
 .aboutUsBox p{ margin-top:20px; line-height:21px;}
 .aboutUsBox .readMore{ margin-top:10px;}
-.readMore{display:inline-block; padding-right:30px; font-weight:600; color:#212121; font-size:14px; background-image:url(../images/arrow.png); background-repeat:no-repeat; background-position: right -23px;height: 23px;line-height: 20px;   -ms-transition: all  00ms ease-in-out; -webkit-transition: all  00ms ease-in-out;  -moz-transition: all 00ms  ease-in-out;  -o-transition: all 00ms  ease-in-out;  transition: all 00ms  ease-in-out; }
+.readMore{display:inline-block; padding-right:30px; font-weight:600; color:#212121; font-size:14px; background-image:url(../assets/images/arrow.png); background-repeat:no-repeat; background-position: right -23px;height: 23px;line-height: 20px;   -ms-transition: all  00ms ease-in-out; -webkit-transition: all  00ms ease-in-out;  -moz-transition: all 00ms  ease-in-out;  -o-transition: all 00ms  ease-in-out;  transition: all 00ms  ease-in-out; }
 .readMore:hover{ color:#0bb4d3; background-position: right 0px;}
 .featureBoxOuter{ padding:40px 0 0 20px;}
 .borderHD span{font-size:26px; display:inline-block; color:#212121; text-transform:uppercase;   position:relative; border-bottom:solid 1px #d5d5d5; font-weight:600; }
@@ -88,7 +88,7 @@ header{background-color:#0bb4d3; padding:5px;}
 .featureInfo{margin-left:210px; min-height:144px;}
 .featureHD{font-size:18px; font-weight:600; color:#212121; text-transform:uppercase; margin-bottom:10px; display:inline-block;}
 .featureHD:hover{color:#0bb4d3;}
-.videoOuter{background-image:url(../images/video.jpg); min-height:596px; background-position:center; background-repeat:no-repeat; margin-top:60px; background-size:cover;}
+.videoOuter{background-image:url(../assets/images/video.jpg); min-height:596px; background-position:center; background-repeat:no-repeat; margin-top:60px; background-size:cover;}
 .videoTExt{ margin-top:13%; text-align:center; color:#FFFFFF; float:left; width:100%; font-size:31px; text-transform:uppercase; text-shadow:1px 1px 2px #000; font-weight:600; line-height:40px; } 
 .videoPlay{display:inline-block;  margin-bottom:18px;  -moz-transform: scale(1); -ms-transform: scale(1); -webkit-transform: scale(1);transform: scale(1);}
 .videoPlay:hover{ -ms-transform: scale(1.1); -webkit-transform: scale(1.1);transform: scale(1.1);}
