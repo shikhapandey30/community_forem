@@ -12,6 +12,6 @@
     $(".dislike_image_post_disliked").css('background-color', 'white');
     $(".dislike_image_post").css('background-color', 'white');
   <%else%>
-    $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+    $(".dislike-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
   <%end%>
 <% end %>

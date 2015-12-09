@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
 
   before_action :authenticate_user!
-  # before_action :set_profile, only: [:show, :edit, :update, :destroy]
+   before_action :set_profile, only: [:show]
+    before_action :current_user_profile, only: [:education_history,:employment_detail,:skill,:category]
   def index    
   end
 
@@ -12,6 +13,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @category=[]
+    @category<<@profile.user.users_category.category_ids
   end
 
   def add_education
@@ -145,6 +148,9 @@ class ProfilesController < ApplicationController
   private
     def set_profile
       @profile=Profile.find(params[:id])
+    end
+    def current_user_profile
+      @profile=current_user.profile
     end
 
     def profile_params

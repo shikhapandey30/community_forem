@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile, :allow_destroy => true
   
-  has_one :skill, dependent: :destroy
+  # has_many :skills, dependent: :destroy
+  has_one :skill
   # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
   
   has_one :users_category, dependent: :destroy
