@@ -123,22 +123,21 @@ Lake Hiawatha, New Jersey
           <%end%>
         </div>
       </div>
-      <div class="col-sm-6 pr10 categoriesChk">
-        <ul>
-          <% @category.each do |category|%>
-           <li><%=Category.find(category.to_i).name%></li>
-          <%end%>         
-        </ul> 
-      </div>
-      <div class="col-sm-6 pl10 categoriesChk">
-        <ul>
-        <!--   <li>  Music</li>
-          <li>  Religion & Ideas</li>
-          <li> Religion &amp; Ideas </li>
-          <li> Politics &amp; Government</li>
-          <li> Travel &amp; Lifestyle</li> -->
-        </ul>
-      </div>
+          <% @category.first.each_with_index do |category,index|%>
+        <%if index.even?%>
+          <div class="col-sm-6 pr10 categoriesChk">
+            <ul>
+            <li><%=Category.find(category.to_i).name%></li>        
+            </ul> 
+          </div>
+        <%else%>
+          <div class="col-sm-6 pl10 categoriesChk">
+            <ul>
+              <li><%=Category.find(category.to_i).name%></li>   
+            </ul>
+          </div>
+        <%end%>
+        <%end%>
     </div>
   </div>
   

@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
 
   def show
     @category=[]
-    @category<<@profile.user.users_category.category_ids
+    @category<<@profile.user.users_category.category_ids.split(',')
   end
 
   def add_education
