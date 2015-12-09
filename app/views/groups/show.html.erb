@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @group.category_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @group.topic_id %>
+</p>
+
+<p>
+  <strong>Headline:</strong>
+  <%= @group.headline %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @group.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @group.image %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @group.video %>
+</p>
+
+<p>
+  <strong>Site link:</strong>
+  <%= @group.site_link %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @group.file %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @group.topic %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

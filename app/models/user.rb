@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :replies, dependent: :destroy
+
+  has_many :communities, dependent: :destroy
+  has_many :groups, dependent: :destroy
   
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
@@ -51,7 +54,7 @@ class User < ActiveRecord::Base
   end
   def img
     if self.profile.present?
-      self.profile.image
+      self.profile.try(:image)
     else
       '../assets/images/profile.jpg'
     end

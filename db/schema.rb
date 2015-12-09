@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208124309) do
+ActiveRecord::Schema.define(version: 20151209043529) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -125,6 +125,18 @@ ActiveRecord::Schema.define(version: 20151208124309) do
     t.string   "commentable_type", limit: 255
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.string   "slogan",      limit: 255
+    t.string   "image",       limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "topic_id",    limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
     t.integer  "recipient_id", limit: 4
@@ -211,6 +223,20 @@ ActiveRecord::Schema.define(version: 20151208124309) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.integer  "topic_id",    limit: 4
+    t.string   "headline",    limit: 255
+    t.text     "description", limit: 65535
+    t.string   "image",       limit: 255
+    t.string   "video",       limit: 255
+    t.string   "site_link",   limit: 255
+    t.string   "file",        limit: 255
+    t.string   "topic",       limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "institutes", force: :cascade do |t|
     t.integer  "education_history_id", limit: 4
@@ -362,26 +388,6 @@ ActiveRecord::Schema.define(version: 20151208124309) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id",        limit: 4
-    t.integer  "taggable_id",   limit: 4
-    t.string   "taggable_type", limit: 255
-    t.integer  "tagger_id",     limit: 4
-    t.string   "tagger_type",   limit: 255
-    t.string   "context",       limit: 128
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-
-  create_table "tags", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "taggings_count", limit: 4,   default: 0
-  end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.integer  "forum_id",    limit: 4

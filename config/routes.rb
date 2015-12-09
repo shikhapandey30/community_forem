@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :groups
   devise_for :admin
 
   get 'home/index'
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
     end
   end
   resources :organisations
+  resources :communities
   devise_for :users, controllers: { registrations: "registrations" }
   
   # The priority is based upon order of creation: first created -> highest priority.
