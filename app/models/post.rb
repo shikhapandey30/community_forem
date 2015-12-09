@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
 	has_many :likes, :as => :likable
   has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
+   has_many :followings, as: :followable, :dependent => :destroy
     mount_uploader :file, PostUploader
     mount_uploader :image, PostUploader
     mount_uploader :video, PostUploader
