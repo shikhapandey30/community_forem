@@ -1,19 +1,17 @@
-<%if !params[:controller].eql?("devise/sessions") && !params[:controller].eql?("registrations") && !params[:controller].eql?("devise/passwords") %>
-  <header class="clearfix">
-    <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-      <a href="/"> <img src="../assets/images/logo.png" alt=""></a>
+<header class="clearfix">
+  <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+    <a href="/"> <img src="/assets/images//logo.png" alt=""></a>
+  </div>
+  <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
+    <div class="catLIstLink">
+      <a href="/" class="catLIst"><img src="/assets/images//catDrop.png" alt=""></a>
     </div>
-    <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-      <div class="catLIstLink">
-        <a href="/" class="catLIst"><img src="../assets/images/catDrop.png" alt=""></a>
-      </div>
-      <div class="formOuter">
-        <form method="get" action="">
-          <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-          <input type="submit" value="" class="searhSub">  
-        </form>
-      </div>
-      <a class="lightBlueBtn" href="#">Get Started</a>
+    <div class="formOuter">
+      <form method="get" action="">
+        <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
+        <input type="submit" value="" class="searhSub">  
+      </form>
     </div>
-  </header>
-<%end%>
+    <a class="lightBlueBtn" href="#">Get Started</a>
+  </div>
+</header>

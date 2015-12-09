@@ -1,4 +1,5 @@
 class DislikesController < ApplicationController
+  before_action :authenticate_user!
 	def create
     if params[:topic_id].present?
       @topic = Topic.find(params[:topic_id])

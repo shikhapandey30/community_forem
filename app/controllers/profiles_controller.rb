@@ -1,22 +1,16 @@
 class ProfilesController < ApplicationController
 
- # before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  def index
-    @profile = current_user.profile.present? ? current_user.profile : current_user.build_profile
-    @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
-    @category = current_user.users_category.present? ? current_user.users_category : Category.new
-
-    # @skills = Skill.all
-    # @categories = Category.all
-    # if current_user.profile.present?
-    #   redirect_to edit_profile_path(current_user.profile)
-    # else
-    #   redirect_to new_profile_path 
-    # end
+  before_action :authenticate_user!
+  # before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  def index    
   end
 
-  # GET /Profiles/1
-  # GET /Profiles/1.json
+  def edit
+    current_user.profile.present? ? current_user.profile : current_user.build_profile
+    @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
+    @category = current_user.users_category.present? ? current_user.users_category : Category.new    
+  end
+
   def show
   end
 
@@ -30,7 +24,8 @@ class ProfilesController < ApplicationController
 
   def education_history
     if params[:id].present?
-      @education = EducationHistory.find(params[:id])
+      @education = current_user.education_histories.find(params[:id])
+      @education.update_attributes(education_params)
     else
       @education = current_user.education_histories.create(education_params)
     end
@@ -38,23 +33,29 @@ class ProfilesController < ApplicationController
 
   def employment_detail
     if params[:id].present?
-      @employment = EmploymentDetail.find(params[:id])
+      @employment = current_user.employment_details.find(params[:id])
+      @employment.update_attributes(employment_params)
     else
       @employment = current_user.employment_details.create(employment_params)
     end
   end
 
-  def skill
-
+  def skill    
+    if current_user.skill      
+      @skill = current_user.skill.update(name: params[:name])
+    else
+      @skill = current_user.build_skill(name: params[:name])
+      @skill.save
+    end
   end
 
   def category
-    if current_user.users_category.present?
+    if current_user.users_category
       current_user.users_category.update(:category_ids=>params[:category_ids].join(','))
     else
-      UsersCategory.create(:category_ids=>params[:category_ids].join(','),:user_id=>current_user.id)
-    end
-    redirect_to :back
+      category = current_user.build_users_category(:category_ids=>params[:category_ids].join(','))
+      category.save
+    end    
   end
 
   # GET /Profiles/new
@@ -102,8 +103,8 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
 
-  def update
-    current_user.profile.update(profile_params)
+  def update    
+    current_user.update_attributes(profile_params)
     @profile = current_user.profile
     # flash[:notice] = "Profile update successfully." 
 
@@ -147,7 +148,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit!
+      params.require(:user).permit!
     end
 
     def education_params
