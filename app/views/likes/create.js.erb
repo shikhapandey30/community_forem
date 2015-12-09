@@ -1,17 +1,37 @@
-<% if @is_like %>
-  <%if @post.present?%>
-    $(".like_image_post").css('background-color', '#0bb4d3');
-     $(".like_image_post_liked").css('background-color', '#0bb4d3');
-    $(".post_like_count").html('<%=@post.likes.count%>');
-  <%else%>
-    $(".post_like_count").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
-  <%end%>
+<% if params[:from] == "post_index" %>
+  <% if @is_like %>
+    <%if @post.present?%>
+      $("#like_image_post_<%= @post.id %>").css('background-color', '#0bb4d3');
+       $("#like_image_post_liked_<%= @post.id %>").css('background-color', '#0bb4d3');
+      $("#post_like_count_<%= @post.id %>").html('<%= @post.likes.count%>');
+    <%else%>
+      $("#post_like_count_<%= @post.id %>").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% else %>
+    <%if @post.present?%>
+      $("#post_like_count_<%= @post.id %>").html('<%=@post.likes.count%>');
+      $("#like_image_post_liked_<%= @post.id %>").css('background-color', 'white');
+      $("#like_image_post_<%= @post.id %>").css('background-color', 'white');
+    <%else%>
+      $("#like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% end %>
 <% else %>
-  <%if @post.present?%>
-    $(".post_like_count").html('<%=@post.likes.count%>');
-    $(".like_image_post_liked").css('background-color', 'white');
-    $(".like_image_post").css('background-color', 'white');
-  <%else%>
-    $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
-  <%end%>
+  <% if @is_like %>
+    <%if @post.present?%>
+      $(".like_image_post").css('background-color', '#0bb4d3');
+       $(".like_image_post_liked").css('background-color', '#0bb4d3');
+      $(".post_like_count").html('<%=@post.likes.count%>');
+    <%else%>
+      $(".post_like_count").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% else %>
+    <%if @post.present?%>
+      $(".post_like_count").html('<%=@post.likes.count%>');
+      $(".like_image_post_liked").css('background-color', 'white');
+      $(".like_image_post").css('background-color', 'white');
+    <%else%>
+      $(".like-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% end %>
 <% end %>

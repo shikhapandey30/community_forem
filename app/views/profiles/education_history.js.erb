@@ -1,1 +1,2 @@
 alert("Education History Succesfully updated");
+$("#education_history").html('$("<%= j render(:partial => 'my_education_history', :locals => {:@profile => @profile}) %>');

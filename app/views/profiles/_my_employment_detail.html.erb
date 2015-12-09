@@ -1,0 +1,29 @@
+
+<div class="clearfix whiteBox">
+  <div class="clearfix formOuterPost tal">
+    <div class="col-sm-12 mb10">
+      <div class="grayHD">EMPLOYMENT DETAILS
+        <% if current_user.profile.id==@profile.id%>
+         <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Employment</a>
+        <%end%>
+      </div>
+        <% @profile.user.employment_details.each do |employment_detail| %>
+          <div class="uniOuter">
+            <div class="blackHD"><%= employment_detail.organization %>
+              <img src="../assets/images/uni1.jpg" alt="" class="fr">
+            </div>
+            <div class="blackColor">
+              <%= employment_detail.designation %>
+              <div class="grayColor">
+                <%= employment_detail.start_work_date %>–<%= employment_detail.worked_till %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <!-- <div class='new_employment_detail' style='display:none;'>
+        <%#=render 'employment_detail',:@employment_detail=>current_user.employment_details.new%>
+      </div> -->
+       <div class="employment_detail"></div>          
+    </div>
+  </div>
+</div>
