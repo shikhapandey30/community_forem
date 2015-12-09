@@ -1,10 +1,14 @@
-$(document).on('click', ".add_skill", function(){
-  if ($('.skills_attr').val().length!=0) {
+$(document).on('click', ".add_skill", function(){  
+  if ($('.skills_attr').val().length!=0 || $(this).data("val")!=undefined) {
     $('.skills').tagsinput('add', '');
     $('.skills').tagsinput('add', $('.skills_attr').val());
     $('.skillsTag .tag.label.label-info').css({"opacity":"1","display":"inline-block"});
     $('.skills_attr').val('');
   }  
+});
+
+$(window).load(function(){
+  $(".add_skill").trigger('click');
 });
 
 $(document).on('click', ".cancel", function(){
