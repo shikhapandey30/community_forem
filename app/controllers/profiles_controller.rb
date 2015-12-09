@@ -66,8 +66,6 @@ class ProfilesController < ApplicationController
   end
 
   # GET /Profiles/1/edit
-  def edit
-  end
 
   # POST /Profiles
   # POST /Profiles.json
