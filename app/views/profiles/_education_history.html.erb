@@ -1,42 +1,77 @@
-<%= form_for @education_history, url: education_profiles_path, :remote => true do |f| %>
+<%= form_for @education_history, url: education_profiles_path, :html => { class: "education_form" }, :remote => true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Course</label>
     <div class="selctFormBox">          
-      <%= text_field_tag "course", nil, :value=>select_type(f, "course"), class: "selectInput",:id=>'course'%>
+      <%= text_field_tag "course", nil, :value=>'Select', class: "selectInput",:id=>'course'%>
       <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
+    <div id="course_error"></div>
   </div>
   <div class="col-sm-6 pl10">
     <label>Specialization</label>
     <div class="selctFormBox">
-      <%= text_field_tag "specialization", nil, :value=>select_type(f, "specialization"), class: "selectInput" ,:id=>'specialization'%>
+      <%= text_field_tag "specialization", nil, :value=>'Select', class: "selectInput" ,:id=>'specialization'%>
       <%= f.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
+    <div id="specialization_error"></div>
   </div>
   <div class="col-sm-12">
     <label class="">Institute/University</label>
     <div class="selctFormBox fullWDdl">
       <%= hidden_field_tag :id, f.object.id%>
-      <%= text_field_tag "institute", nil, :value=>select_type(f, "institute"), class: "selectInput",:id=>'institute'%>
+      <%= text_field_tag "institute", nil, :value=>'Select', class: "selectInput",:id=>'institute'%>
       <%= f.select(:institute_id, Institute.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
     </div>
+    <div id="institute_error"></div>
   </div>
   <div class="col-sm-6 pr10">
     <label>Start Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :start_year, value: select_type(f, "start_year"), class: "selectInput" %>
+      <%= f.text_field :start_year, value: "Select", name: "start_year", class: "selectInput" %>
       <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select")  %>
     </div>
+    <div id="start_year_error"></div>
   </div>
   <div class="col-sm-6 pr10">
     <label>End Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :end_year, value: select_type(f, "end_year"), class: "selectInput" %>
-      <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select") %>
-    </div>        
+      <%= f.text_field :end_year, value: "Select", name: "end_year", class: "selectInput" %>
+      <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"},  class: "select") %>
+    </div>
+    <div id="end_year_error"></div>      
   </div>
   <div class="col-sm-12 mt10">
     <%= f.submit "Save", class: 'blueBtn' %>
     <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
   </div>
 <%end%>
+<script>
+  $("form.education_form").validate({
+      errorPlacement: function(error, element) {
+        if(element.attr("name") == "education_history[course_id]") {
+          error.appendTo($("#course_error"));
+        } else if(element.attr("name") == "education_history[specialization_id]") {
+          error.appendTo($("#specialization_error"));
+        } else if(element.attr("name") == "education_history[institute_id]") {
+          error.appendTo($("#institute_error"));
+        } else if(element.attr("name") == "education_history[start_year]") {
+          error.appendTo($("#start_year_error"));
+        } else if(element.attr("name") == "education_history[end_year]") {
+          error.appendTo($("#end_year_error"));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      rules: {
+          "education_history[course_id]": {required: true},
+          "education_history[specialization_id]": {required: true},
+          "education_history[institute_id]": {required: true},
+          "education_history[start_year]": {required: true},
+          "education_history[end_year]": {required: true}
+      },      
+      submitHandler: function(form) {
+          alert("Hello");
+          form.submit();
+      }  
+  });
+</script>

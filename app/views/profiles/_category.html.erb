@@ -6,13 +6,13 @@
     <div class="col-sm-12 addSkills">
       <label class="font18">Select Category </label><br>
     </div>
-    <%=form_tag category_profiles_path, remote: true do |f|%>
+    <%=form_tag category_profiles_path, :html => { class: "category_form" }, remote: true do |f|%>
       <%Category.all.each_with_index do |category, index|%>        
         <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">          
           <label><%= check_box_tag 'category_ids[]', category.id, isCategory?(category)%> <%=category.try(:name)%></label>
         </div>
       <%end%>
-
+      <div id="category_error" class="col-sm-12"></div>
       <div class="clearfix"></div>
       <div class="col-sm-12 mt10">
         <%= submit_tag "Save", class: 'blueBtn' %>
