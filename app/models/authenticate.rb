@@ -5,9 +5,9 @@ class Authenticate < ActiveRecord::Base
     if authenticate.user
       authenticate.provider = auth.provider
       authenticate.uid = auth.uid
-    else
+      else
           user = User.new
-          authenticate.provider = auth.provider
+        authenticate.provider = auth.provider
         authenticate.uid = auth.uid
         user.email = auth.info.email
         if user.email.blank?
@@ -16,7 +16,7 @@ class Authenticate < ActiveRecord::Base
         email=User.find_by_email( user.email )
         user.confirmed_at = Time.now
         user.password =  Devise.friendly_token.first(8)
-        user.save!
+        user.save!(:validate => false)
         authenticate.user_id = user.id
      end
       authenticate.save
