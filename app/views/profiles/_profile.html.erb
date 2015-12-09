@@ -1,4 +1,4 @@
-<%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true }, :remote => true do |f| %>
+<%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, class: "profile_form" }, :remote => true do |f| %>
   <%=f.fields_for :profile do |p|%>
     <div class="clearfix formOuterPost tal">
       <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
@@ -9,6 +9,7 @@
           <div>Change Photo</div>
         </div>
       </div>
+
       <div class="col-sm-6 pr10">
         <label>First Name</label>
         <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "John" %>
@@ -36,29 +37,34 @@
         <label>Zipcode</label>
         <%= p.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
       </div>
+      <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Gender</label>
         <div class="selctFormBox">      
-          <%= p.text_field :gender, value: select_type(p, "gender"), class: "profile selectInput" %>
+          <%= p.text_field :gender, value: select_type(p, "gender"), name: "gender_type", class: "profile selectInput" %>
           <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
         </div>
+        <div id="gender_error"></div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
         <%= p.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
       </div>
+      <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Select Type</label>
         <div class="selctFormBox">
-          <%= p.text_field :profile_type, value: select_type(p, "profile_type"), class: "profile selectInput" %>
+          <%= p.text_field :profile_type, value: select_type(p, "profile_type"), name: "profile_type_name", class: "profile selectInput" %>
           <%= p.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
         </div>
+        <div id="profile_type_error"></div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Date of Birth</label>
           <%= p.text_field :dob, class: "profile inputTextW small date fullWdth" %> 
         <!-- <input type="text" placeholder="987654321" class=""> -->
       </div>
+      <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Screen Name</label>
         <%= f.text_field :screen_name, class: "inputTextW small " %>

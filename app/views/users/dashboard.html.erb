@@ -48,7 +48,7 @@
                   <div class="videoPost">
                     <div class="font12 bold blackColor">Absolutely incredible ad from Beats by Dre. AMAZING.</div>
                     <% if post.image.present? %>
-                      <a href="#" class="post"><%= image_tag post.image %></a>
+                      <a href="#" class="post"><%= image_tag post.try(:image) %></a>
                     <% end %>
                     <% if post.video.present? %>
                       <a href="#" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
@@ -56,8 +56,8 @@
                     <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div>
                   </div>
                   <div class="clearfix borderBtmS"></div>
-                  <a href="#" class="userImg"><%= image_tag post.user.profile.image %></a>
-                  <a href="#" class="userNAme"> <%= current_user.profile.screen_name %></a> <br>
+                  <a href="#" class="userImg"><%= image_tag post.user.try(:profile).try(:image) %></a>
+                  <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
                   <span class="font13">Events Coordinator, Designer</span>
                   <div class="fr grayColor tar">2h<br>
                     <a href="#"><img src="/assets/images/add.png" alt=""></a>

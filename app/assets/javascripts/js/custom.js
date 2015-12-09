@@ -25,8 +25,27 @@ $(function () {
 });
 
 $(document).on('ready', function () {
-	
-  $("form").validate({
+
+    $("form#reqPassword").validate({      
+      rules: {          
+          "user[email]": { required: true },
+        },
+       submitHandler: function(form) {
+         form.submit();
+       }
+  });
+
+
+    $("form.profile_form").validate({
+      errorPlacement: function(error, element) {
+        if(element.attr("name") == "user[profile_attributes][gender]") {
+          error.appendTo($("#gender_error"));
+        } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
+          error.appendTo($("#profile_type_error"));
+        } else {
+          error.insertAfter(element);
+        }
+      },
       rules: {
           "user[first_name]": { required: true },
           "user[last_name]": { required: true },
@@ -35,78 +54,52 @@ $(document).on('ready', function () {
           "user[password]": { required: true, minlength: 8 },
           "user[password_confirmation]": { required: true, minlength: 8,
                     equalTo : "#user_password" },
-          "profile[first_name]": { required: true },
-          "profile[last_name]": { required: true },
-          "profile[country]": { required: true },
-          "profile[city]": { required: true },
-          "profile[street]": { required: true },
-          "profile[post_code]": { required: true },
-          "profile[gender]": { required: true },
-          "profile[phone_no]": { required: true },
-          "profile[profile_type]": { required: true },
-          "profile[dob]": { required: true },
-          "profile[screen_name]": { required: true },
-          "profile[location]": { required: true },
-          "education_history[course_id]": {required: true},
-          "education_history[specialization_id]": {required: true},
-          "education_history[institute_id]": {required: true},
-          "education_history[course_id]": {required: true},
-          "education_history[start_year]": {required: true},
-          "education_history[end_year]": {required: true},
-          "employment_detail[designation]": {required: true},
-          "employment_detail[organization]": {required: true},
-          "employment_detail[start_work_date]": {required: true},
-          "employment_detail[worked_till]": {required: true},
-          "employment_detail[description]": {required: true},
-          "employment_detail[designation]": {required: true},
-          "skill": {required: true, maxlength: 50}
+          "user[profile_attributes][country]": { required: true , minlength: 5, maxlength: 80},
+          "user[profile_attributes][city]": { required: true, minlength: 5, maxlength: 80},
+          "user[profile_attributes][street]": { required: true, minlength: 5, maxlength: 80 },
+          "user[profile_attributes][post_code]": { required: true, minlength: 4, maxlength: 12 },
+          "user[profile_attributes][gender]": { required: true },
+          "user[profile_attributes][phone_no]": { required: true, minlength: 10, maxlength: 20 },
+          "user[profile_attributes][profile_type]": { required: true },
+          "user[profile_attributes][dob]": { required: true },
+          "user[screen_name]": { required: true , minlength: 5, maxlength: 80},
+          "user[profile_attributes][location]": { required: true, minlength: 5, maxlength: 80 }
         },
-        messages: {
-          // "user[first_name]": "Please enter first name",
-          // "user[last_name]": "Please enter second name",
-          // "user[screen_name]": "Please enter Screen name",          
-          // "user[email]": "Please enter email",
-          // "user[password]": "Please enter password",
-          // "user[password_confirmation]": "Please enter password",
-          // "profile[first_name]": "Please enter first name",
-          // "profile[last_name]": "Please enter last name",
-          // "profile[country]": "Please enter country",
-          // "profile[city]": "Please enter city",
-          // "profile[street]": "Please enter street",
-          // "profile[post_code]": "Please enter post code",
-          // "profile[gender]": "Please enter gender",
-          // "profile[phone_no]": "Please enter phone no",
-          // "profile[profile_type]": "Please enter profile type",
-          // "profile[dob]": "Please enter date of birth", 
-          // "profile[screen_name]": "Please enter screen name",
-          // "profile[location]": "Please enter location",
-          // "profile[phone_no]": "Please enter phone no",
-          // "education_history[course_id]": "Please select course",
-          // "education_history[institute_id]": "Please select institute",
-          // "education_history[start_year]": "Please select starting year",
-          // "education_history[end_year]": "Please select end year",
-          // "employment_detail[designation]": "Please enter designation",
-          // "employment_detail[organization]": "Please enter organization",
-          // "employment_detail[start_work_date]": "Please select starting date",
-          // "employment_detail[worked_till]": "Please select date",
-          // "employment_detail[description]": "Please enter description",
-          // "skill": "Please enter skill",
-          submitHandler: function(form) {
-              form.submit();
-          }
-      }
+       submitHandler: function(form) {
+         form.submit();
+       }
   });
 
-  $("form#reqPassword").validate({
-      rules: {
-          "user[email]": { required: true },
-        },
-        messages: {
-          "user[email]": "Please enter email",
-          submitHandler: function(form) {
-              form.submit();
-          }
-      }
-  });
 
+  // $("form.skill_form").validate({
+  //     errorPlacement: function(error, element) {
+  //       if(element.attr("name") == "skill") {
+  //         error.appendTo($("#skill_error"));
+  //       } else {
+  //         error.insertAfter(element);
+  //       }
+  //     },
+  //     rules: {
+  //         "skill": { required: true, minlength: 5, maxlength: 80 },
+  //     },         
+  //     submitHandler: function(form) {
+  //         form.submit();
+  //     }
+  // });
+
+  // $("form.category_form").validate({
+  //     errorPlacement: function(error, element) {
+  //       if(element.attr("name") == "category_ids[]") {
+  //         error.appendTo($("#category_error"));
+  //       } else {
+  //         error.insertAfter(element);
+  //       }
+  //     },
+  //     rules: {
+  //         "category_ids[]": { required: true }
+  //     },      
+  //     submitHandler: function(form) {
+  //         form.submit();
+  //     }  
+  // });
 });
