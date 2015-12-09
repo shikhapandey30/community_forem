@@ -80,7 +80,7 @@
               </div>
               <div class="uniOuter">
                 <div class="mt20 blackColor ">
-                  <p><%= @post.description.html_safe %></p>
+                  <p><%= @post.description.try(:html_safe) %></p>
                   <a href="javascript:void(0)" class="listen whiteBtn"><img src="../assets/images/audio38.png" alt=""> Listen this post </a>
                 </div>
               </div>
