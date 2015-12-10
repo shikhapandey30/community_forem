@@ -59,7 +59,7 @@
                   </div>
                   <div class="clearfix borderBtmS"></div>
 
-                  <a href="#" class="userImg"><%= image_tag post.try(:user).try(:profile).try(:image) %></a>
+                  <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
                   <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
                   <span class="font13"><%= designation %></span>
                   <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
