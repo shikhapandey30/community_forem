@@ -17,12 +17,10 @@
     </div>
     <div class="clearfix innerWIdth550 tac ">
       <a href="/posts/new" class="addPostBtn">Add posts</a>
-      <% @post.each do |post| %>
-      <%debugger%>
-        <% designation = post.user.employment_details.collect(&:designation) %>
-        <% designation = designation.present? ? designation.join(",") : "" %>
+
+      <% @post.each do |post| %>        
         <a href = "/posts/<%= post.id %>">
-          <div class="clearfix whiteBox borderTop  mb10 pb0">
+          <div class="clearfix whiteBox borderTop mb10 pb0">
             <div class="clearfix formOuterPost tal padding10-0">
               <div class="col-sm-12 mb10">
                 <div class="clearfix userInfo posRel">
@@ -40,7 +38,7 @@
 
                   <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
                   <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
-                  <span class="font13"><%= designation %></span>
+                  <span class="font13"><%= designation(post) %></span>
                   <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
 
                     <a href="#"><img src="/assets/images/add.png" alt=""></a>
@@ -270,7 +268,7 @@
 
 <script type="text/javascript">
   $(function () {
-  $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
 
   function comment_body(id) {

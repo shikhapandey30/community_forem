@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   # tracked
    # extend FriendlyId
   # friendly_id :title, :use => :slugged
-  validates :title, uniqueness: true, :allow_blank => true
+  # validates :title, uniqueness: true, :allow_blank => true
 	belongs_to :category
 	# validates_presence_of :description
 	belongs_to :user
