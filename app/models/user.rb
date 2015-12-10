@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+
+  validates :screen_name, uniqueness: true
+  validates :first_name, :last_name, :email, :screen_name, presence: true
   
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
@@ -12,8 +15,10 @@ class User < ActiveRecord::Base
   # accepts_nested_attributes_for :employment_details, :reject_if => :all_blank, :allow_destroy => true
   has_many :posts, dependent: :destroy
   has_one :profile, dependent: :destroy
-  # accepts_nested_attributes_for :profile, :allow_destroy => true
-  has_one :skill, dependent: :destroy
+  accepts_nested_attributes_for :profile, :allow_destroy => true
+  
+  # has_many :skills, dependent: :destroy
+  has_one :skill
   # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
   
   has_one :users_category, dependent: :destroy
@@ -24,6 +29,9 @@ class User < ActiveRecord::Base
 
   has_many :communities, dependent: :destroy
   has_many :groups, dependent: :destroy
+
+  has_many :followings, as: :followable, :dependent => :destroy
+  has_many :authenticates
   
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history

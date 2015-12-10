@@ -3,14 +3,15 @@
     <div class="col-sm-12 mb10">
       <div class="grayHD">SKILLS </div>
     </div>
-    <%= form_tag  skill_profiles_path, remote: true do |f| %>
+    <%= form_tag  skill_profiles_path, class: "skill_form", remote: true do |f| %>
       <div class="col-sm-12 addSkills">
         <label>Enter Skills </label><br>
         <%= text_field_tag "skill", nil, class: "inputTextW small skills_attr", placeholder: "Skills" %>
-        <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn' %>
+        <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn', "data-val"=>@skill.try(:id) %>
       </div>
+      <div id="skill_error" class="col-sm-12"></div>
       <div class="col-sm-12 skillsTag ">
-        <%= text_field_tag :name, nil, class: 'inputTextW small skills' , :data => {:role => 'tagsinputr' }, style: "display:none;"%>
+        <%= text_field_tag :name, @skill.try(:name), class: 'inputTextW small skills' , :data => {:role => 'tagsinputr' }, style: "display:none;"%>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-12 mt10">

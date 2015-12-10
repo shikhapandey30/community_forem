@@ -1,38 +1,10 @@
-<div class="bodyCont">
-  <!--  Header Start -->
-  <header class="clearfix whiteHeader ">
-    <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-      <a href="#"> <img src="/assets/images/logoBlue.png" alt=""></a>
-    </div>
-    <div class="topRightHeader">
-      <div class="topRight">
-        <a href="#"><img src="/assets/images/noti.png" alt=""><span>20</span></a>
-        <a href="#"><img src="/assets/images/email.png" alt=""><span>6</span></a>
-        <a href="#"><img src="/assets/images/user.png" alt=""></a>
-        <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
-        <a href="#" class="wlt">500</a>
-        <a href="#"><img src="/assets/images/setting.png" alt=""></a>
-      </div>
-      <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-        <div class="catLIstLink">
-          <a href="#" class="catLIst"><img src="/assets/images/catDrop.png" alt=""></a>
-        </div>
-        <div class="formOuter">
-          <form method="post" action="">
-            <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-            <input type="submit" value="" class="searhSub">  
-          </form>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- Header End --> 
+<div class="bodyCont">  
   <div class="leftNAv">
     <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
+      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
       <div class="nameLocation">
-        <a href="#"><%= current_user.profile.screen_name %></a>
-        <span class="location"><%= current_user.profile.country %></span>
+        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
+        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
       </div>
     </div>
     <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
@@ -51,36 +23,25 @@
     </ul>
   </div>
   <div class="rightContent">
-    <div class="overLAy"></div>
-    <div class="topNAv ">
-      <span class="blueColor leftMenuTab"><img src="/assets/images/tab.png" alt="" class=""> Categories</span>
-      <div class="topRightNav">
-        <span class="blueColor rightMenu"> Menu  <img src="/assets/images/down.png" alt="" class=""></span>
-        <ul>
-          <li class="activeMenu"><a href="#">News Feed</a></li>
-          <li><a href="#">Hot Topics</a></li>
-          <li><a href="#">Followers (25)</a></li>
-          <li><a href="#">Following (100)</a></li>
-          <li><a href="#">More <img src="/assets/images/arrowBlack.png" alt=""> </a></li>
-        </ul>
-      </div>
-    </div>
+    <%=render 'layouts/topNav'%>
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.profile.image %></a>
+          <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
           <div class="nameLocation">
-            <a href="#" class="font22"><%= current_user.profile.screen_name %></a>
-            <div class="location font14"><%= current_user.profile.country %></div>
-            <a href="/profiles" class="normal">Edit</a>
+            <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
+            <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
+            <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
           </div>
         </div>
-        <a href="/profiles" class="back">complete your profile</a>
+        <a href="<%=edit_profile_path(current_user)%>" class="back">complete your profile</a>
       </div>
     </div>
     <div class="clearfix innerWIdth550 tac ">
       <a href="/posts/new" class="addPostBtn">Add posts</a>
       <% @post.each do |post| %>
+        <% designation = post.user.employment_details.collect(&:designation) %>
+        <% designation = designation.present? ? designation.join(",") : "" %>
         <a href = "/posts/<%= post.id %>">
           <div class="clearfix whiteBox borderTop  mb10 pb0">
             <div class="clearfix formOuterPost tal padding10-0">
@@ -89,7 +50,7 @@
                   <div class="videoPost">
                     <div class="font12 bold blackColor">Absolutely incredible ad from Beats by Dre. AMAZING.</div>
                     <% if post.image.present? %>
-                      <a href="#" class="post"><%= image_tag post.image %></a>
+                      <a href="#" class="post"><%= image_tag post.try(:image) %></a>
                     <% end %>
                     <% if post.video.present? %>
                       <a href="#" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
@@ -97,19 +58,24 @@
                     <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div>
                   </div>
                   <div class="clearfix borderBtmS"></div>
-                  <a href="#" class="userImg"><%= image_tag post.user.profile.image %></a>
-                  <a href="#" class="userNAme"> <%= current_user.profile.screen_name %></a> <br>
-                  <span class="font13">Events Coordinator, Designer</span>
-                  <div class="fr grayColor tar">2h<br>
+
+                  <a href="#" class="userImg"><%= image_tag post.try(:user).try(:profile).try(:image) %></a>
+                  <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
+                  <span class="font13"><%= designation %></span>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
+
                     <a href="#"><img src="/assets/images/add.png" alt=""></a>
-                    <a href="#">Follow</a>
+                    <span id="following-button-span-<%= post.id %>">
+                      <%= render :partial=> "follow_link", :locals => {:post => post} %>
+                    </span>
+                                        <!-- <a href="#">Follow</a> -->
                   </div>
                 </div>
                 <div class="uniOuter">
                   <div class="mt0 blackColor bold ">
                     <p><%= post.title %></p>
                     <p>
-                      <%= post.description %> 
+                      <%= post.try(:description).try(:html_safe) %> 
                     </p>
                     <a href="javascript:void(0)" class="listen whiteBtn"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
                   </div>
@@ -117,19 +83,30 @@
               </div>
               <div class="clearfix"></div>
               <div class="commentSec">
-                <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; 587 Comments &nbsp; &nbsp; 468 shares</span>
+                <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
                 <div class="cmntSec">
-                  <a href="#"><img src="/assets/images/up.png" alt=""></a>
-                  <a href="#"><img src="/assets/images/down1.png" alt=""></a>
+                  <%if post.liked?(current_user).present?%>
+                  <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post_liked', :id=> "like_image_post_liked_#{post.id}"%>
+                <%else%>
+                  <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post', :id=> "like_image_post_#{post.id}"%>
+                <%end%>
+                <%if post.disliked?(current_user).present?%>
+                  <%=link_to image_tag("images/down1.png"), post_dislikes_path(post, from: "post_index"), method: :post, remote: true,:class=>'dislike_image_post_disliked', :id=>"dislike_image_post_disliked_#{post.id}"%>
+                <%else%>
+                  <%=link_to image_tag("images/down1.png"), post_dislikes_path(post, from: "post_index"), method: :post, remote: true,:class=>'dislike_image_post', :id=>"dislike_image_post_#{post.id}"%>
+                <%end%>
                   <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
                   <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-                  <input type="button" value="Add Your Comment" class="addCmnt inputTextW small">
+                  <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="comment_body(<%= post.id %>);" id="comment_button_<%= post.id %>">
                 </div>
               </div>
               <div class="commentShow">
                 <div  class="clearfix commentSec cmntRow">
                   <div class="bold mb10"><a href="#" class="grayColor font13 showCmnt">Show Previous Comments</a></div>
                   <div class="clearfix userInfo posRel">
+                    <div id="comments_<%= post.id %>">
+                      <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
+                    </div>  
                     <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
                     <a href="#" class="userNAme"> Jack</a> <br>
                     <span class="font13"> Events Coordinator, Designer</span>
@@ -141,12 +118,19 @@
                     </div>
                   </div>
                 </div>
-                <div  class="clearfix commentSec cmntRow borderNOne">
+                <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= post.id %>">
                   <div class="clearfix userInfo posRel">
                     <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
                     <div class="addcomtntTA">
-                      <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
-                      <input value="Save" class="blueBtn" type="submit"> <a href="javascript:void(0)" class="grayBtn Cancel">Cancel</a>  
+                      <%= form_for(@comment, remote: true) do |f| %>
+                        <div class="field">
+                          <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", class: "addCmnt inputTextW small" %>
+                          <%= hidden_field_tag :from, "post_index" %>
+                          <%= hidden_field_tag :post_id, post.id %>
+                          <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>
+                          <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
+                        </div>
+                      <% end %> 
                     </div>
                   </div>
                 </div>
@@ -173,6 +157,7 @@
               <span class="font13">Events Coordinator, Designer</span>
               <div class="fr grayColor tar">2h<br>
                 <a href="#"><img src="/assets/images/add.png" alt=""></a>
+
                 <a href="#">Follow</a>
               </div>
             </div>
@@ -303,22 +288,15 @@
     </div>
   </div>
 </div>
-<!-- <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/locales.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script> -->
+
 <script type="text/javascript">
   $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
-</script>
-<!-- <script src="js/wow.js"></script>
-<script src="js/function.js"></script>
- -->
 
-<style>
-/*.mainCOntnt {
-    margin-top: 24px !important;
-}*/
-</style>
+  function comment_body(id) {
+    $("#comments_"+id).toggle();
+    $("#comment_box_"+id).toggle();
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top);
+  }
+</script>

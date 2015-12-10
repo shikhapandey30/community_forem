@@ -1,6 +1,12 @@
-
+<% case params[:followable_type]
+when 'Post' then object = Post.where(:id=> params[:followable_id]).first
+else
+	object = nil
+end	%>
 <%if @unfollow %>
-$(".following-button-<%= params[:follower_id] %>").html('<%= link_to "Follow", follow_path(:follower_id => params[:follower_id]), :method => :post , :class=>"replyBtn", :remote=>true , :style => "display: inline-block;"%>');
+$("#following-button-span-<%= params[:followable_id] %>").html("<%= escape_javascript(render partial: 'follow_link', locals: { post: object } ) %>");
+$("#following-button-<%= params[:followable_id] %>").html("Follow");
 <% else %>
-$(".following-button-<%= params[:follower_id] %>").html('<%= link_to "Unfollow", follow_path(:follower_id => params[:follower_id]), :method => :post , :class=>"replyBtn", :remote=>true , :style => "display: inline-block;"%>');
+$("#following-button-span-<%= params[:followable_id] %>").html("<%= escape_javascript(render partial: 'follow_link', locals: { post: object } ) %>");
+$("#following-button-<%= params[:followable_id] %>").html("Unfollow");
 <%end%>

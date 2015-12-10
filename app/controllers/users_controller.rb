@@ -38,18 +38,17 @@ class UsersController < ApplicationController
     # pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
     # self_post=current_user.posts
     # @posts=pub_post+self_post
+    @comment = Comment.new
     @post = Post.all.order("created_at DESC") 
 	end
   def follow
-    @following = Following.where(:following_id => current_user.id, :follower_id => params[:follower_id]).first
-
+    @following = Following.where(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id]).first
     if @following.nil?
-     @following = Following.create(:following_id => current_user.id, :follower_id => params[:follower_id])
+     @following = Following.create(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id])
      Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
     else
       @unfollow = @following.destroy
     end
-
   end
  def followings
     @following=current_user.followings

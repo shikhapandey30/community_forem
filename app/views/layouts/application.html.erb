@@ -10,7 +10,14 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="bodyCont">      
+    <div class="bodyCont">
+      <%if user_signed_in?%>
+        <%=render 'layouts/new_header'%>
+      <%elsif request.url.include?("sign") || request.url.include?("password")%>
+        <%#=render 'layouts/header'%>      
+      <%else%>
+        <%=render 'layouts/header'%>
+      <%end%>  
       <div class="<%= class_container %>">
         <%if params[:controller] =="home" &&  params[:action]!="index"%>
           <%= render "layouts/left_panel"%>
@@ -18,7 +25,7 @@
         <%= yield %>
       </div>
       <%if action_exist? %>
-        <%= render "layouts/footer" if !user_signed_in? %>
+        <%= render "layouts/footer"%>
       <% end %>
     </div>
   </body>

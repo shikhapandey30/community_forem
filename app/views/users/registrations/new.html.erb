@@ -4,18 +4,18 @@
   <!-- Header End -->
   <div class="loginOuter">
     <div class="loginInner">
-      <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="../assets/images/logoShadow.png"></a>
+      <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="/assets/images//logoShadow.png"></a>
       <div class="socialLogin">        
-        <a href="/auth/facebook" class="fb"> <img src="../assets/images/fb.png" alt=""> Sign Up with Facebook </a>
-        <a href="/auth/google_oauth2" class="gp"> <img src="../assets/images/gp.png" alt=""> Sign Up with Google </a>
-        <a href="/auth/twitter" class="tw"> <img src="../assets/images/tw.png" alt=""> Sign Up with Twitter </a>
+        <a href="/auth/facebook" class="fb"> <img src="/assets/images//fb.png" alt=""> Sign Up with Facebook </a>
+        <a href="/auth/google_oauth2" class="gp"> <img src="/assets/images//gp.png" alt=""> Sign Up with Google </a>
+        <a href="/auth/twitter" class="tw"> <img src="/assets/images//tw.png" alt=""> Sign Up with Twitter </a>
       </div>
       <div class="tac or">
         <div class="octagon">OR</div>
       </div>
       <div class="loginForm">
       
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { class: "profile_form" }) do |f| %>
           <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")%>">
             <%= devise_error_messages! %>
           </div>
