@@ -1,5 +1,6 @@
 $(document).on('click', ".add_skill", function(){  
   if ($('.skills_attr').val().length!=0 || $(this).data("val")!=undefined) {
+    $("#skill_error").hide();
     $('.skills').tagsinput('add', '');
     $('.skills').tagsinput('add', $('.skills_attr').val());
     $('.skillsTag .tag.label.label-info').css({"opacity":"1","display":"inline-block"});
@@ -48,50 +49,13 @@ $(document).on('ready', function () {
       rules: {
           "user[first_name]": { required: true },
           "user[last_name]": { required: true },
-          // "user[screen_name]": { required: true },
           "user[email]": { required: true },          
           "user[password]": { required: true, minlength: 8 },
           "user[password_confirmation]": { required: true, minlength: 8,
                     equalTo : "#user_password" }
         },
        submitHandler: function(form) {
-
-         $         $('form.profile_form').submit();
+         $('form.profile_form').submit();
        }
-    });  
-
-
-  // $("form.skill_form").validate({
-  //     errorPlacement: function(error, element) {
-  //       if(element.attr("name") == "skill") {
-  //         error.appendTo($("#skill_error"));
-  //       } else {
-  //         error.insertAfter(element);
-  //       }
-  //     },
-  //     rules: {
-  //         "skill": { required: true, minlength: 5, maxlength: 80 },
-  //     },         
-  //     submitHandler: function(form) {
-  //         form.submit();
-  //     }
-  // });
-
-  $("form.category_form").validate({
-      errorPlacement: function(error, element) {
-        if(element.attr("name") == "category_ids[]") {
-          error.appendTo($("#category_error"));
-        } else {
-          error.insertAfter(element);
-        }
-      },
-      rules: {
-          "category_ids[]": { required: true }
-      },      
-      submitHandler: function(form) {
-          form.submit();
-      }  
-  });
-
-
+    });
 });
