@@ -7,6 +7,9 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    if params[:id].present?
+      @profile=Profile.find(params[:id])
+     end
     current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
     @category = current_user.users_category.present? ? current_user.users_category : Category.new    
