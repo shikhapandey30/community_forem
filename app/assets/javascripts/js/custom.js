@@ -35,7 +35,6 @@ $(document).on('ready', function () {
        }
     });
 
-
     $("form.profile_form").validate({
       errorPlacement: function(error, element) {
         if(element.attr("name") == "user[profile_attributes][gender]") {
@@ -58,38 +57,5 @@ $(document).on('ready', function () {
        submitHandler: function(form) {
          $('form.profile_form').submit();
        }
-    });
-
-
-  // $("form.skill_form").validate({
-  //     errorPlacement: function(error, element) {
-  //       if(element.attr("name") == "skill") {
-  //         error.appendTo($("#skill_error"));
-  //       } else {
-  //         error.insertAfter(element);
-  //       }
-  //     },
-  //     rules: {
-  //         "skill": { required: true, minlength: 5, maxlength: 80 },
-  //     },         
-  //     submitHandler: function(form) {
-  //         form.submit();
-  //     }
-  // });
-
-  $("form.category_form").validate({
-      errorPlacement: function(error, element) {
-        if(element.attr("name") == "category_ids[]") {
-          error.appendTo($("#category_error"));
-        } else {
-          error.insertAfter(element);
-        }
-      },
-      rules: {
-          "category_ids[]": { required: true }
-      },      
-      submitHandler: function(form) {
-          form.submit();
-      }  
-  });
+    });  
 });
