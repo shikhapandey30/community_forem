@@ -31,27 +31,32 @@ class ProfilesController < ApplicationController
   def education_history
     if params[:id].present?
       @education = current_user.education_histories.find(params[:id])
-      @education.update_attributes(education_params)
+      @message = "Education History Succesfully updated" if @education.update_attributes(education_params)
     else
       @education = current_user.education_histories.create(education_params)
+      @message = "Education History Succesfully created"
     end
   end
 
   def employment_detail
     if params[:id].present?
+      @message = "Category Succesfully updated"
       @employment = current_user.employment_details.find(params[:id])
       @employment.update_attributes(employment_params)
     else
       @employment = current_user.employment_details.create(employment_params)
+      @message = "Category Succesfully created"
     end
   end
 
   def skill    
-    if current_user.skill      
+    if current_user.skill
+      @message = "Skill Succesfully updated"
       @skill = current_user.skill.update(name: params[:name])
     else
       @skill = current_user.build_skill(name: params[:name])
-      @skill.save
+      @message = "Skill Succesfully created" if @skill.save
+
     end
   end
 
@@ -74,7 +79,7 @@ class ProfilesController < ApplicationController
   # POST /Profiles.json
   def create
     @profile = current_user.build_profile(profile_params)
-    @profile.save
+    @message = "Profile Succesfully created" if @profile.save
     # flash[:notice] = "Profile created successfully." if @profile.save
     # @profile = current_user.build_profile(profile_params)
     # @profile.save
@@ -108,7 +113,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1.json
 
   def update    
-    current_user.update_attributes(profile_params)
+    @message = "Profile Succesfully updated" if current_user.update_attributes(profile_params)
     @profile = current_user.profile
     # flash[:notice] = "Profile update successfully." 
 
