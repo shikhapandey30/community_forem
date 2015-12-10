@@ -6,7 +6,7 @@
     <div class="col-sm-12 addSkills">
       <label class="font18">Select Category </label><br>
     </div>
-    <%=form_tag category_profiles_path, :html => { class: "category_form" }, remote: true do |f|%>
+    <%=form_tag category_profiles_path, class: "category_form", remote: true do |f|%>
       <%Category.all.each_with_index do |category, index|%>        
         <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">          
           <label><%= check_box_tag 'category_ids[]', category.id, isCategory?(category)%> <%=category.try(:name)%></label>
