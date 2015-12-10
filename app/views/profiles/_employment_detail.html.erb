@@ -9,6 +9,7 @@
     <%= f.text_field :organization, class: " inputTextW small", :maxlength=>"80" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
+  <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
     <label class="">Start Working From  </label>
     <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth" %> 
@@ -51,7 +52,7 @@
         "employment_detail[designation]": {required: true, minlength: 5, maxlength: 80}       
       },       
       submitHandler: function(form) {
-          form.submit();
+        $('form.employment_form').submit();
       }
   });
 </script>

@@ -1,4 +1,3 @@
-
 <div class="bodyCont">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
@@ -6,7 +5,7 @@
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
+          <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
           <div class="nameLocation">
             <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
             <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
@@ -39,7 +38,7 @@
                   </div>
                   <div class="clearfix borderBtmS"></div>
 
-                  <a href="#" class="userImg"><%= image_tag post.try(:user).try(:profile).try(:image) %></a>
+                  <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
                   <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
                   <span class="font13"><%= designation %></span>
                   <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>

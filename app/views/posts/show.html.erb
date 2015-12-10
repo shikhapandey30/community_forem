@@ -1,5 +1,7 @@
 <div class="mainCOntnt">
+
   <%=render "layouts/left_panel"%>  
+
   <div class="rightContent">
     <div class="overLAy"></div>
     <div class="postCover posRel" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
