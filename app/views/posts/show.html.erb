@@ -1,30 +1,8 @@
 <div class="mainCOntnt">
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg"><img src="/assets/images//profile.jpg" alt=""></a>
-      <div class="nameLocation">
-        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
-        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
-      </div>
-    </div>
-    <span class="categories"><img src="/assets/images//tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="/assets/images//li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="/assets/images//li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="/assets/images//li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="/assets/images//li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="/assets/images//li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="/assets/images//li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      
-      </div>
-    </ul>
-  </div>
+  <%=render "layouts/left_panel"%>  
   <div class="rightContent">
     <div class="overLAy"></div>
-    <div class="postCover posRel" style="background-image: url('<%=@post.image.url%>')">
+    <div class="postCover posRel" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
       <div class="postCoverBkg ">
         <div class="clearfix innerWIdth550 posRel">
           <div class="pTitltOuter">
@@ -42,18 +20,18 @@
           <div class="col-sm-12 mb10">
             <div class="clearfix userInfo posRel">
               <a href="#" class="userImg"><img src="<%= @post.user.img %>" alt=""></a>
-              <a href="#" class="userNAme"><%= @post.user.try(:profile).try(:screen_name) %></a>
+              <a href="#" class="userNAme"><%= @post.user.try(:screen_name) %></a>
               <br>
               <span class="font13"><%= @designation %></span>
               <div class="fr grayColor tar"><%= time_ago_in_words(@post.created_at.strftime("%d %b")) %><br>
-                <a href="#"><img src="/assets/images//add.png" alt=""></a>
+                <a href="#"><img src="/assets/images/add.png" alt=""></a>
                 <a href="#">Follow</a>
               </div>
             </div>
             <div class="uniOuter">
               <div class="mt20 blackColor ">
-                <p><%= @post.description.html_safe %></p>
-                <a href="javascript:void(0)" class="listen whiteBtn"><img src="/assets/images//audio38.png" alt=""> Listen this post </a>
+                <p><%= @post.try(:description).try(:html_safe) %></p>
+                <a href="javascript:void(0)" class="listen whiteBtn"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
               </div>
             </div>
           </div>
@@ -66,14 +44,14 @@
               <%else%>
                 <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post'%>
               <%end%>
-              <!-- <a href="#"><img src="/assets/images//down1.png" alt=""></a> -->
+              <!-- <a href="#"><img src="/assets/images/down1.png" alt=""></a> -->
               <%if @post.disliked?(current_user).present?%>
                 <%=link_to image_tag("images/down1.png"), post_dislikes_path(@post), method: :post, remote: true,:class=>'dislike_image_post_disliked'%>
               <%else%>
                 <%=link_to image_tag("images/down1.png"), post_dislikes_path(@post), method: :post, remote: true,:class=>'dislike_image_post'%>
               <%end%>
-              <a href="#" class="shareLInk"><img src="/assets/images//share.png" alt=""></a>
-              <a href="#" class="shareArrow"><img src="/assets/images//arrowSmall.png" alt=""></a>
+              <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+              <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
               <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
             </div>
           </div>

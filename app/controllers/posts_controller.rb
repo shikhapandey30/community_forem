@@ -24,6 +24,7 @@ class PostsController < ApplicationController
   # GET /Posts/new
   def new
     @post = Post.new
+    @post.build_upload
   end
 
   # GET /Posts/1/edit
@@ -71,12 +72,12 @@ class PostsController < ApplicationController
 
   private
       def set_post       
-       @post= Post.find(params[:id])
-      # @post=Post.find(params[:id])
+       @post=Post.find(params[:id])     
     end
 
     def post_params
-      params.require(:post).permit(:user_id, :category_id, :title, :description, :file, :visibility, :expiration_date, :created_at, :updated_at, :topic_id, :image, :video, :site_link, :topic, :start_date)
+      params.require(:post).permit!
+      # (:user_id, :category_id, :title, :description, :visibility, :expiration_date, :created_at, :updated_at, :topic_id, :topic, :start_date)
     end
 end
 

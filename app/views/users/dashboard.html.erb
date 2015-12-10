@@ -1,27 +1,6 @@
-<div class="bodyCont">  
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
-      <div class="nameLocation">
-        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
-        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
-      </div>
-    </div>
-    <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="/assets/images/li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="/assets/images/li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="/assets/images/li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="/assets/images/li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="/assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      
-      </div>
-    </ul>
-  </div>
+
+<div class="bodyCont">
+  <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
     <div class="blueBkg myWall">
@@ -40,6 +19,7 @@
     <div class="clearfix innerWIdth550 tac ">
       <a href="/posts/new" class="addPostBtn">Add posts</a>
       <% @post.each do |post| %>
+      <%debugger%>
         <% designation = post.user.employment_details.collect(&:designation) %>
         <% designation = designation.present? ? designation.join(",") : "" %>
         <a href = "/posts/<%= post.id %>">
@@ -48,7 +28,7 @@
               <div class="col-sm-12 mb10">
                 <div class="clearfix userInfo posRel">
                   <div class="videoPost">
-                    <div class="font12 bold blackColor">Absolutely incredible ad from Beats by Dre. AMAZING.</div>
+                    <div class="font12 bold blackColor"><%=post.try(:title)%></div>
                     <% if post.image.present? %>
                       <a href="#" class="post"><%= image_tag post.try(:image) %></a>
                     <% end %>

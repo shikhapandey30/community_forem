@@ -12,7 +12,7 @@
   <body>
     <div class="bodyCont">
       <%if user_signed_in?%>
-        <%=render 'layouts/new_header'%>
+        <%=render 'layouts/new_header'%>        
       <%elsif request.url.include?("sign") || request.url.include?("password")%>
         <%#=render 'layouts/header'%>      
       <%else%>

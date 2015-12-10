@@ -67,6 +67,7 @@ $(document).on('ready', function () {
         },
        submitHandler: function(form) {
          $('form').submit(function () {}
+       }
   });
 
 

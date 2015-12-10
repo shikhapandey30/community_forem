@@ -1,5 +1,5 @@
   <header class="clearfix whiteHeader ">
-    <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="#"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
+    <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="/dashboard"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
     <div class="topRightHeader">
       <div class="topRight">
       
@@ -135,7 +135,7 @@
         </span>
          <a href="#"><img src="/assets/images/user.png" alt=""></a> <a href="#"><img src="/assets/images/wlt.png" alt=""></a> <a href="#" class="wlt">500</a> <span class="dropdown settingDropDown"> <a href="#"  data-toggle="dropdown"><img src="/assets/images/setting.png" alt=""></a>
         <ul class="dropdown-menu">
-          <li><%=link_to "My Profile", profile_path(current_user), method: :delete %></li>
+          <li><%=link_to "My Profile", profile_path(current_user)%></li>
           <li><%=link_to "Privacy & Setting", privacy_policy_path %></li>
           <li><%=link_to "Reveal Identity", "#-" %></li>
           <li><%=link_to "Help Center", help_path %></li>
