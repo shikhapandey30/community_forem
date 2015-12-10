@@ -1,2 +1,4 @@
-alert("Employment Details Succesfully updated");
+$(".success").html("<%=@message%>");
+$(".popup-msg").show();
+
 $("#employment_detail").html('$("<%= j render(:partial => 'my_employment_detail', :locals => {:@profile => @profile}) %>');
