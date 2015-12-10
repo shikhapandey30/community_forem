@@ -5,7 +5,7 @@
       <%= form_for(@forum_poll) do |f| %>
           <% if @forum_poll.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(@forum_poll.errors.count, "error") %> prohibited this forum_poll from being saved:</h2>
+                <!-- <h2><%#= pluralize(@forum_poll.errors.count, "error") %> prohibited this forum_poll from being saved:</h2> -->
                 <ul>
                   <% @forum_poll.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
