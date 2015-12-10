@@ -1,7 +1,7 @@
 <div class="bodyCont">  
   <div class="leftNAv">
     <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
+      <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
       <div class="nameLocation">
         <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
         <span class="location"><%= current_user.try(:profile).try(:country) %></span>
@@ -27,7 +27,7 @@
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
+          <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
           <div class="nameLocation">
             <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
             <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>

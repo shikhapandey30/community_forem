@@ -29,6 +29,7 @@
         <label class="">CIty</label>
         <%= p.text_field :city, class: "profile inputTextW small" %>
       </div>
+      <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Street</label>
         <%= p.text_field :street, class: "profile inputTextW small" %>
@@ -95,6 +96,34 @@
     }
     filerdr.readAsDataURL(input.files[0]);
     }
-    
   }
+
+  $("form.profile_form").validate({
+      errorPlacement: function(error, element) {
+        if(element.attr("name") == "user[profile_attributes][gender]") {
+          error.appendTo($("#gender_error"));
+        } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
+          error.appendTo($("#profile_type_error"));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      rules: {
+          "user[first_name]": { required: true },
+          "user[last_name]": { required: true },
+          "user[profile_attributes][country]": { required: true , minlength: 5, maxlength: 80},
+          "user[profile_attributes][city]": { required: true, minlength: 5, maxlength: 80},
+          "user[profile_attributes][street]": { required: true, minlength: 5, maxlength: 80 },
+          "user[profile_attributes][post_code]": { required: true, minlength: 4, maxlength: 12 },
+          "user[profile_attributes][gender]": { required: true },
+          "user[profile_attributes][phone_no]": { required: true, minlength: 10, maxlength: 20 },
+          "user[profile_attributes][profile_type]": { required: true },
+          "user[profile_attributes][dob]": { required: true },
+          "user[screen_name]": { required: true , minlength: 5, maxlength: 80},
+          "user[profile_attributes][location]": { required: true, minlength: 5, maxlength: 80 }
+        },
+       submitHandler: function(form) {
+         $('form.profile_form').submit();
+       }
+    });
 </script>
