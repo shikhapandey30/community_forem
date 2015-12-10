@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208124309) do
+ActiveRecord::Schema.define(version: 20151209065441) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -138,10 +138,12 @@ ActiveRecord::Schema.define(version: 20151208124309) do
   end
 
   create_table "followings", force: :cascade do |t|
-    t.integer  "follower_id",  limit: 4
-    t.integer  "following_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "follower_id",     limit: 4
+    t.integer  "following_id",    limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "followable_id",   limit: 4
+    t.string   "followable_type", limit: 255
   end
 
   create_table "forum_polls", force: :cascade do |t|
@@ -193,6 +195,7 @@ ActiveRecord::Schema.define(version: 20151208124309) do
     t.string   "likable_type", limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.boolean  "vote"
   end
 
   create_table "messages", force: :cascade do |t|
