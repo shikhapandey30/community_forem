@@ -87,19 +87,19 @@ $(document).on('ready', function () {
   //     }
   // });
 
-  // $("form.category_form").validate({
-  //     errorPlacement: function(error, element) {
-  //       if(element.attr("name") == "category_ids[]") {
-  //         error.appendTo($("#category_error"));
-  //       } else {
-  //         error.insertAfter(element);
-  //       }
-  //     },
-  //     rules: {
-  //         "category_ids[]": { required: true }
-  //     },      
-  //     submitHandler: function(form) {
-  //         form.submit();
-  //     }  
-  // });
+  $("form.category_form").validate({
+      errorPlacement: function(error, element) {
+        if(element.attr("name") == "category_ids[]") {
+          error.appendTo($("#category_error"));
+        } else {
+          error.insertAfter(element);
+        }
+      },
+      rules: {
+          "category_ids[]": { required: true }
+      },      
+      submitHandler: function(form) {
+          form.submit();
+      }  
+  });
 });
