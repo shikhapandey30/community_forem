@@ -66,8 +66,7 @@ $(document).on('ready', function () {
           "user[profile_attributes][location]": { required: true, minlength: 5, maxlength: 80 }
         },
        submitHandler: function(form) {
-         form.submit();
-       }
+         $('form').submit(function () {}
   });
 
 
