@@ -23,21 +23,21 @@
 </div>
 <script>
   $("form.category_form").validate({
-        errorPlacement: function(error, element) {
-          if(element.attr("name") == "category_ids[]") {
-            error.appendTo($("#category_error"));
-          } else {
-            error.insertAfter(element);
-          }
-        },
-        rules: {
-            "category_ids[]": { required: true }
-        },
-        messages: {
-          "category_ids[]": "Please select category",
-        },      
-        submitHandler: function(form) {
-          $('form.category_form').submit();
-        }  
+    errorPlacement: function(error, element) {
+      if(element.attr("name") == "category_ids[]") {
+        error.appendTo($("#category_error"));
+      } else {
+        error.insertAfter(element);
+      }
+    },
+    rules: {
+        "category_ids[]": { required: true }
+    },
+    messages: {
+      "category_ids[]": "Please select category",
+    },      
+    submitHandler: function(form) {
+      $('form.category_form').submit();
+    }  
   });
 </script>

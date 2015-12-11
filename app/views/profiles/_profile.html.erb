@@ -62,7 +62,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Date of Birth</label>
-          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth" %> 
+          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth dob" %> 
         <!-- <input type="text" placeholder="987654321" class=""> -->
       </div>
       <div class="clearfix"></div>
@@ -99,31 +99,32 @@
   }
 
   $("form.profile_form").validate({
-      errorPlacement: function(error, element) {
-        if(element.attr("name") == "user[profile_attributes][gender]") {
-          error.appendTo($("#gender_error"));
-        } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
-          error.appendTo($("#profile_type_error"));
-        } else {
-          error.insertAfter(element);
-        }
+    errorPlacement: function(error, element) {
+      if(element.attr("name") == "user[profile_attributes][gender]") {
+        error.appendTo($("#gender_error"));
+      } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
+        error.appendTo($("#profile_type_error"));
+      } else {
+        error.insertAfter(element);
+      }
+    },
+    rules: {
+        "user[first_name]": { required: true },
+        "user[last_name]": { required: true },
+        "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
+        "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
+        "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
+        "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
+        "user[profile_attributes][gender]": { required: true },
+        "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 20 },
+        "user[profile_attributes][profile_type]": { required: true },
+        "user[profile_attributes][dob]": { required: true },
+        "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
+        "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
       },
-      rules: {
-          "user[first_name]": { required: true },
-          "user[last_name]": { required: true },
-          "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
-          "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
-          "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
-          "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
-          "user[profile_attributes][gender]": { required: true },
-          "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 20 },
-          "user[profile_attributes][profile_type]": { required: true },
-          "user[profile_attributes][dob]": { required: true },
-          "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
-          "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
-        },
-       submitHandler: function(form) {
-         $('form.profile_form').submit();
-       }
-    });
+     submitHandler: function(form) {
+       $('form.profile_form').submit();
+     }
+  });
+  $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
 </script>
