@@ -169,7 +169,7 @@
     $('.remove_video').hide();
   });
   $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
-  $('.end_date').datetimepicker({format: 'YYYY-MM-DD'});
+  $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
   $(".start_date").on("dp.change", function (selected) {
     $(".end_date").data("DateTimePicker").minDate(selected.date);
   });
