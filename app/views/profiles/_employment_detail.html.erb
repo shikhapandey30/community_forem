@@ -12,12 +12,12 @@
   <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
     <label class="">Start Working From  </label>
-    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth" %> 
+    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth datetimepicker4"%> 
   </div>
   <div class="col-sm-6 pl10">
     <label class="">Worked Till</label>
      <div id="present_time" style="font-weight: 600;">- Present</div>
-     <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth" %>
+     <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth datetimepicker5"%>
   </div>
   <div id="worked_till_error" class="col-sm-6"></div>
   <div class="clearfix"></div>
@@ -79,4 +79,12 @@
       $("#worked_till").show();
     }
   });
-</script>
+  $('.datetimepicker4').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
+  $('.datetimepicker5').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
+  $(".datetimepicker4").on("dp.change", function (selected) {
+    $(".datetimepicker5").data("DateTimePicker").minDate(selected.date);
+  });
+  $(".datetimepicker5").on("dp.change", function (selected) {
+    $(".datetimepicker4").data("DateTimePicker").maxDate(selected.date);
+  });
+</script> 

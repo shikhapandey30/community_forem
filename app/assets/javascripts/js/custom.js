@@ -47,6 +47,8 @@ $(document).on('ready', function () {
           error.appendTo($("#gender_error"));
         } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
           error.appendTo($("#profile_type_error"));
+        } else if(element.attr("name") == "post[category_id]") {
+          error.appendTo($("#category_name_error"));
         } else {
           error.insertAfter(element);
         }
@@ -57,10 +59,17 @@ $(document).on('ready', function () {
           "user[email]": { required: true },          
           "user[password]": { required: true, minlength: 8 },
           "user[password_confirmation]": { required: true, minlength: 8,
-                    equalTo : "#user_password" }
-        },
-       submitHandler: function(form) {
-         $('form.profile_form').submit();
-       }
+                    equalTo : "#user_password" },
+          "post[category_id]": { required: true },
+          "post[topic]": { required: true, maxlength: 80},
+          "post[title]": { required: true, maxlength: 80},
+          "post[description]": { required: true, maxlength: 80},
+          "post[start_date]": { required: true },
+          "post[expiration_date]": { required: true }
+
+      },
+      submitHandler: function(form) {
+       $('form.profile_form').submit();
+      }
     });
 });
