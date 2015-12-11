@@ -1,10 +1,10 @@
 <div class="leftNAv">
   <%if user_signed_in? %>
     <div class="userTHumb">
-      <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
       <div class="nameLocation">
-        <a href="#">John Smith</a>
-        <span class="location">United Kingdom</span>
+        <a href="#"><%= current_user.try(:screen_name) %></a><br>
+        <span class="location"><%= current_user.try(:profile).try(:country)%> </span>
       </div>
     </div>
   <% end %>
