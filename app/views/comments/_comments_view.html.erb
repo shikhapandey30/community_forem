@@ -1,7 +1,7 @@
 <% comments.each do |comment| %>
 	<div  class="clearfix commentSec cmntRow">
     <div class="clearfix userInfo posRel">
-      <a href="#" class="userImg"><img src="<%= comment.user.img %>" alt=""></a>
+      <a href="#" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
       <a href="#" class="userNAme"> <%= comment.user.try(:profile).try(:screen_name) %></a> <br>
       <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation)%>
   			<%= @designation.present? ? @designation.join(",") : " " %></span>
