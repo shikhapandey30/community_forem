@@ -1,10 +1,11 @@
 <% comments.each do |comment| %>
 	<div  class="clearfix commentSec cmntRow">
     <div class="clearfix userInfo posRel">
-      <a href="#" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
-      <a href="#" class="userNAme"> <%= comment.user.try(:profile).try(:screen_name) %></a> <br>
+
+      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
+      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userNAme"> <%= comment.user.try(:profile).try(:screen_name) %></a> <br>
       <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation) rescue nil %>
-  			<%= @designation.present? ? @designation.join(",") : " " %></span>
+  			<%= @designation.present? ? @designation.join(", ") : " " %></span>
       <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at.strftime("%d %b")) %></div>
       <% if params[:controller]=="users" && params[:action]=="dashboard"
       	bold = 'bold' else bold = '' end %>

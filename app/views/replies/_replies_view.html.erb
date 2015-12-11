@@ -4,12 +4,13 @@
 			<% if reply.id.present? && reply.body.present? %>
 				  <div class="clearfix userInfo posRel">
 				    <a href="#" class="userImg"><img src="<%= reply.user.img %>" alt=""></a>
-				    <a href="#" class="userNAme"> <%= reply.user.try(:profile).try(:screen_name) %></a> <br>
+				    <a href="#" class="userNAme"> <%= reply.user.try(:screen_name) %></a> <br>
 				    <% @designation = reply.user.employment_details.collect(&:designation) %>
-				    <span class="font13"> <%= @designation.present? ? @designation.join(",") : ""  %></span>
 				    <div class="fr grayColor tar">
 				    	<%= time_ago_in_words(reply.created_at.strftime("%d %b")) if reply.created_at.present? %>
 				    </div>
+				    <span class="font13"> <%= @designation.present? ? @designation.join(", ") : ""  %></span>
+				    
 				    <div class="clearfix mt15 font13 blackColor" id="reply_id_<%=reply.id%>">
 				    	<%= reply.body.html_safe %>
 				    </div>

@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @designation = @post.user.employment_details.collect(&:designation)
     if @designation.present?
-      @designation = @designation.join(",")
+      @designation = @designation.join(", ")
     else
       @designation = ""
     end

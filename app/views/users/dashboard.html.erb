@@ -7,7 +7,7 @@
         <div class="userTHumb">
           <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
           <div class="nameLocation">
-            <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
+            <a href="#" class="font22"><%= current_user.try(:screen_name) %></a>
             <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
             <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
           </div>
@@ -37,7 +37,7 @@
                   <div class="clearfix borderBtmS"></div>
 
                   <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-                  <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
+                  <a href="#" class="userNAme"> <%= current_user.try(:screen_name) %></a> <br>
                   <span class="font13"><%= designation(post) %></span>
                   <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
 
