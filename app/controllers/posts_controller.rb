@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]  
   def index
     posts = Post.all
     pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
   # GET /Posts/1/edit
   def edit
+    @post.upload.present? ? @post.upload : @post.build_upload
   end
 
   # POST /Posts
@@ -51,6 +52,7 @@ class PostsController < ApplicationController
   def update    
     respond_to do |format|
       if @post.update(post_params)
+        set_upload(params[:post][:upload_attributes])
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -78,6 +80,12 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit!
       # (:user_id, :category_id, :title, :description, :visibility, :expiration_date, :created_at, :updated_at, :topic_id, :topic, :start_date)
+    end
+
+    def set_upload params
+      @post.upload.destroy
+      @post.build_upload(image: params[:image], file: params[:file] , site_link: params[:site_link] , video: params[:video] )
+      @post.save
     end
 end
 

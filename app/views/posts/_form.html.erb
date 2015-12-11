@@ -22,10 +22,15 @@
           <%#= image_tag current_user.profile.try(:image) %>
           </a>
           <div class="nameLocation">
-            <a href="#"><%= current_user.profile.try(:screen_name) %></a><br>
-            <span class="location"><%= current_user.profile.try(:country) %></span>
+            <a href="#"><%= current_user.try(:screen_name) %></a><br>
+            <span class="location"><%= current_user.try(:profile).try(:country) %></span>
           </div>
         </div>
+
+        <!-- start if uploader is not present  -->
+
+
+        <!-- end if uploader is not present  -->
         <!-- upload assets -->
         <%=f.fields_for :upload do |u|%>              
         <div class="tabOuter">
@@ -33,7 +38,11 @@
             <div class="uploadBoxOuter font14">
               <%= u.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
               <a href="#"  onclick="$('.post_image').click();">
-              <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+                <% if @post.try(:upload).try(:image).present? %>
+                  <%= image_tag @post.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+                <% else %>  
+                  <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+                <% end %>
               </a>
               <div class="grayBig mt20 bold"> 
                 Add an image to bring your post to life
@@ -66,18 +75,12 @@
             </div>
           </div>
           <div id="tab-4" class="tab-content">
-            <div class="uploadBoxOuter font14">
-              <div class='iframe'>
-                <iframe width="400" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe> 
-              </div>
-              <!--  <img src="/assets/images/videoIcon.png" alt="" class="video_image">  -->
-              <%= u.file_field :video, class: "post post_video", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showvideopreview(this)" %>
-              <a href="#"  onclick="$('.post_video').click();">
-              <img src="/assets/images/videoIcon.png" alt="" id='vdoprvw'>  <%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
-              </a>
-              <div class="mt10">
-                Paste a link from YourTube, Vimeo, Vine etc.
-              </div>
+            <div class="uploadBoxOuter font14"> 
+            <img src="/assets/images/videoIcon.png" alt="">
+            
+            <div class="grayBig bold ">Add Your Video</div>
+            <%= u.text_field :video, placeholder: "http://", class: "inputTextW" %><br>
+            <div class="mt10">Paste a link from YourTube, Vimeo, Vine etc.</div>
             </div>
           </div>
           <ul class="tabs uploadIcon">
@@ -162,13 +165,7 @@
     $( ".file_name" ).html( '' );
     $('.remove_file').hide();
   });
-  $(".remove_video" ).click(function() {
-    $("#post_video").val('');
-    // $("#post_video").replaceWith($('<input id="post_video" class="post post_video" type="file" name="post[video]" onchange="showvideopreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
-    $( "iframe" ).hide();
-    $('#vdoprvw').attr('src', '/assets/images/videoIcon.png');
-    $('.remove_video').hide();
-  });
+  
   $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
   $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
   $(".start_date").on("dp.change", function (selected) {
