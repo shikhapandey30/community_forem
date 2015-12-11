@@ -4,7 +4,7 @@
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
     <div class="clearfix innerWIdth550 tac ">
-      <%= form_for(@post) do |f| %>
+      <%= form_for(@post, html: {class: "profile_form"}) do |f| %>
       <% if @post.errors.any? %>
       <div id="error_explanation">
         <!-- <h2><%#= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2> -->
@@ -102,10 +102,11 @@
           <div class="col-sm-6 pr10">
             <label>Select Category</label>
             <div class="selctFormBox">
-              <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
-              <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category'%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+              <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField", name: "category_name_first" %>
+              <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category', name: "category_name_second"%>
+              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
+            <div id="category_name_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
