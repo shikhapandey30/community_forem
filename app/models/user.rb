@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   has_many :replies, dependent: :destroy
   has_many :followings, as: :followable, :dependent => :destroy
-  # has_many :followers, :class_name => "Following", :foreign_key => "follower_id"
+  has_many :followers, :class_name => "Following", :foreign_key => "follower_id"
   has_many :authenticates
   
  #  has_one :employment_detail
