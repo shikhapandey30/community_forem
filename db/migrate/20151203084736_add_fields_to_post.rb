@@ -7,7 +7,6 @@ class AddFieldsToPost < ActiveRecord::Migration
   	# add_column 		:posts, :start_date, :date
   	# remove_column   :posts, :slug
   	# rename_column 	:posts, :post_text, :description
-    change_column :posts, :visibility, 'boolean USING CAST(visibility AS boolean)'
-  	change_column 	:posts, :visibility, :boolean, :default => true
+  	#change_column 	:posts, :visibility, :boolean, :default => true
   end
 end
