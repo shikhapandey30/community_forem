@@ -10,7 +10,9 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <%=render 'layouts/popup_msg'%>
+    <%if notice%><%=render 'layouts/success', :@success=>notice%><%end%>
+    <%if alert%><%=render 'layouts/alert', :@alert=>alert%>><%end%>
+    <div class="popup-success"></div>
     <div class="bodyCont">
       <%if user_signed_in?%>
         <%=render 'layouts/new_header'%>        
@@ -28,6 +30,6 @@
       <%if action_exist? %>
         <%= render "layouts/footer"%>
       <% end %>
-    </div>
+    </div>    
   </body>
 </html>

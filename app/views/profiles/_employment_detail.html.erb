@@ -33,11 +33,10 @@
   </div>
   <div class="col-sm-12 mt10">
     <%= f.submit "Save", class: 'blueBtn' %>
-    <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
+    <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
   <%end%>
 <script>
-
    $("form.employment_form").validate({
       errorPlacement: function(error, element) {
         if(element.attr("name") == "employment_detail[worked_till]") {

@@ -1,5 +1,5 @@
-$(".success").html("<%=@message%>");
-$(".popup-msg").show();
-$("#employment_detail").html('<%= j render(:partial => 'my_employment_detail', :locals => {:@profile => @profile}) %>');
-$('.employment_detail').hide();
-$("#employment_all_detail").html('<%= j render(:partial => 'all_employment_detail', :locals => {:@profile => @profile}) %>');
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+$("#employment_detail").html("<%= j render('my_employment_detail') %>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

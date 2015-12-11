@@ -2,3 +2,8 @@ $(".employment_detail").html("<%=j render('/profiles/employment_detail')%>");
 $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
 });
+$('html, body').animate({
+    scrollTop: $("#new_employment_detail").offset().top
+}, 500, function() {
+    $("#employment_detail_description").focus();
+});

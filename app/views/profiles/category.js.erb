@@ -1,2 +1,4 @@
-$(".success").html("<%=@message%>");
-$(".popup-msg").show();
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

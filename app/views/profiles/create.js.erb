@@ -1,5 +1,8 @@
 $(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
-alert("Profile created successfully.");
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);
 $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
 });

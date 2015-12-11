@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-12 skillsTag skillsTagBlock">
         <%#@profile.user.skill.each do |skill|%>
-          <span><%=@profile.user.skill.name%></span>
+          <span><%=@user.skill.try(:name)%></span>
         <%#end%>
       </div>  
       <div id='skill_form' style="display:none;">

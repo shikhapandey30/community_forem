@@ -1,10 +1,6 @@
 class HomeController < ApplicationController
   def index
-    if user_signed_in? 
-      redirect_to dashboard_path
-      else
-      redirect_to root_path
-    end
+    redirect_to dashboard_path if user_signed_in?
   end
 
   def aboutus

@@ -26,10 +26,10 @@
                 <div class="clearfix userInfo posRel">
                   <div class="videoPost">
                     <div class="font12 bold blackColor"><%=post.try(:title)%></div>
-                    <% if post.image.present? %>
-                      <a href="#" class="post"><%= image_tag post.try(:image) %></a>
+                    <% if post.upload.present? %>
+                      <a href="#" class="post"><%= image_tag post.upload.try(:image) %></a>
                     <% end %>
-                    <% if post.video.present? %>
+                    <% if post.upload.present? %>
                       <a href="#" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
                     <% end %>
                     <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div>

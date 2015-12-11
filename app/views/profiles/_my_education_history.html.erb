@@ -1,15 +1,15 @@
 <div class="clearfix whiteBox">
   <div class="clearfix formOuterPost tal">
     <div class="col-sm-12 mb10">
-      <div class="grayHD">EDUCATION HISTORY 
-        <%if current_user.profile.id==@profile.id%>
+      <div class="grayHD">EDUCATION HISTORY      
+        <%#if @user==current_user%>
          <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Courses</a>
-        <%end%>
+        <%#end%>
       </div>
-      <% @profile.user.education_histories.each do |education_history| %>
+      <% current_user.education_histories.each do |education_history| %>
         <div class="uniOuter">
           <div class="blackHD"><%= education_history.specialization.name%>
-            <img src="../assets/images/uni1.jpg" alt="" class="fr">
+            <img src="/assets/images/uni1.jpg" alt="" class="fr">
           </div>
           <div class="blackColor">
             <%= education_history.course.name %>
@@ -18,8 +18,9 @@
             </div>
           </div>
         </div>
-      <% end %>      
+      <% end if current_user.education_histories %>
     </div>
+    <!-- Render Education Details -->
     <div class="education_history"><%#=render 'education_history'%></div>
   </div>
 </div>
