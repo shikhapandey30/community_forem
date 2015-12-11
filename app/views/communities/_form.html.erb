@@ -74,7 +74,10 @@
         <%= link_to 'Back', :back, :class=>"back" %>
       </div>
     </div>
-    <%= form_for(@community) do |f| %>
+   
+
+    <div class="clearfix innerWIdth550 tac ">
+     <%= form_for(@community) do |f| %>
   <% if @community.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@community.errors.count, "error") %> prohibited this community from being saved:</h2>
@@ -86,8 +89,6 @@
       </ul>
     </div>
   <% end %>
-
-    <div class="clearfix innerWIdth550 tac ">
       <div class="whiteBox mt90">
         <div class="userTHumb userTHumbRight">
           <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
@@ -150,8 +151,9 @@
         </div>
       </div>
       <br>
+        <% end %>
     </div>
-    <% end %>
+  
   </div>
 </div>
 

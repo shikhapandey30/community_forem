@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :contests
+  resources :meeting_rooms
   resources :groups
   devise_for :admin
 

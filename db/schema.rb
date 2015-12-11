@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151209043529) do
+ActiveRecord::Schema.define(version: 20151210121551) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -28,9 +27,6 @@ ActiveRecord::Schema.define(version: 20151209043529) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
-=======
-ActiveRecord::Schema.define(version: 20151209065441) do
->>>>>>> 4185fc4297c75e20f4f899909b6d941423110e3b
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -48,6 +44,24 @@ ActiveRecord::Schema.define(version: 20151209065441) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -119,8 +133,22 @@ ActiveRecord::Schema.define(version: 20151209065441) do
     t.string   "image",       limit: 255
     t.text     "description", limit: 65535
     t.integer  "topic_id",    limit: 4
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.text     "description", limit: 65535
+    t.boolean  "visibility",                default: true
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -189,6 +217,8 @@ ActiveRecord::Schema.define(version: 20151209065441) do
     t.integer  "topic_id",    limit: 4
     t.string   "attachement", limit: 255
     t.integer  "user_id",     limit: 4
+    t.string   "headline",    limit: 255
+    t.string   "vote_id",     limit: 255
   end
 
   create_table "forums", force: :cascade do |t|
@@ -222,6 +252,7 @@ ActiveRecord::Schema.define(version: 20151209065441) do
     t.string   "site_link",   limit: 255
     t.string   "file",        limit: 255
     t.string   "topic",       limit: 255
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -241,6 +272,17 @@ ActiveRecord::Schema.define(version: 20151209065441) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.boolean  "vote"
+  end
+
+  create_table "meeting_rooms", force: :cascade do |t|
+    t.string   "category_id", limit: 255
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.string   "name",        limit: 255
+    t.string   "slogan",      limit: 255
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "messages", force: :cascade do |t|

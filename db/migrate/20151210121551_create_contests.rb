@@ -1,13 +1,13 @@
-class CreateCommunities < ActiveRecord::Migration
+class CreateContests < ActiveRecord::Migration
   def change
-    create_table :communities do |t|
+    create_table :contests do |t|
       t.integer :category_id
       t.string :topic
       t.string :headline
-      t.string :slogan
-      t.string :image
       t.text :description
-      t.integer :topic_id
+      t.boolean :visibility, :default => true
+      t.date :start_date
+      t.date :end_date
       t.integer :user_id
 
       t.timestamps null: false

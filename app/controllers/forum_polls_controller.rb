@@ -1,6 +1,12 @@
 class ForumPollsController < ApplicationController
   before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
   
+  def index
+    @forum_polls = ForumPoll.all
+  end
+  
+ 
+
   def show
   	votes=@forum_poll.votes
   	user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first
@@ -9,12 +15,31 @@ class ForumPollsController < ApplicationController
   	 end
   end
 
+  def new
+    @forum_poll= ForumPoll.new
+  end
+
+  def create
+    @forum_poll = ForumPoll.new(forum_poll_params)
+
+    respond_to do |format|
+      if @forum_poll.save
+        format.html { redirect_to @forum_poll, notice: 'Forum Poll was successfully created.' }
+        format.json { render :show, status: :created, location: @forum_poll }
+      else
+        format.html { render :new }
+        format.json { render json: @forum_poll.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
   private
     def set_forum_poll
       @forum_poll= ForumPoll.find(params[:id])
     end
     def forum_poll_params
-      params.require(:forum_poll).permit(:category_id, :topic_id, :body, :visibility, :start_date, :end_date)
+      params.require(:forum_poll).permit(:category_id, :topic, :body, :visibility, :start_date, :end_date, :headline, :vote_id)
     end
 end
 

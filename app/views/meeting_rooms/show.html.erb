@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @meeting_room.category_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @meeting_room.topic %>
+</p>
+
+<p>
+  <strong>Headline:</strong>
+  <%= @meeting_room.headline %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @meeting_room.name %>
+</p>
+
+<p>
+  <strong>Slogan:</strong>
+  <%= @meeting_room.slogan %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @meeting_room.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_meeting_room_path(@meeting_room) %> |
+<%= link_to 'Back', meeting_rooms_path %>

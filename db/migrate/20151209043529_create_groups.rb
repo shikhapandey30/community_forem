@@ -10,6 +10,7 @@ class CreateGroups < ActiveRecord::Migration
       t.string :site_link
       t.string :file
       t.string :topic
+      t.integer :user_id 
 
       t.timestamps null: false
     end
