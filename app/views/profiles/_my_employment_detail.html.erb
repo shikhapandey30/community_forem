@@ -1,29 +1,29 @@
-
 <div class="clearfix whiteBox">
   <div class="clearfix formOuterPost tal">
     <div class="col-sm-12 mb10">
       <div class="grayHD">EMPLOYMENT DETAILS
-        <% if current_user.profile.id==@profile.id%>
+        <%# if @user==current_user %>
          <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Employment</a>
-        <%end%>
+        <%#end%>
       </div>
-        <% @profile.user.employment_details.each do |employment_detail| %>
-          <div class="uniOuter">
-            <div class="blackHD"><%= employment_detail.organization %>
-              <img src="../assets/images/uni1.jpg" alt="" class="fr">
+      <% current_user.employment_details.each do |employment| %>
+        <div class="uniOuter">
+          <div class="blackHD"><%= employment.designation %>
+            <img src="/assets/images/uni1.jpg" alt="" class="fr">
+          </div>
+          <div class="blackColor">
+            <%= employment.organization %>
+            <div class="grayColor">            
+              <%= employment.start_work_date.to_date.strftime("%b %Y") rescue nil %> – <%= employment.worked_till.to_date.strftime("%b %Y") rescue nil %>
             </div>
-            <div class="blackColor">
-              <%= employment_detail.designation %>
-              <div class="grayColor">
-                <%= employment_detail.start_work_date %>–<%= employment_detail.worked_till %>
-              </div>
+            <div class="mt20 blackColor borderBtm">
+              <p><%= employment.try(:description)%></p>
             </div>
           </div>
-      <% end %>
-      <!-- <div class='new_employment_detail' style='display:none;'>
-        <%#=render 'employment_detail',:@employment_detail=>current_user.employment_details.new%>
-      </div> -->
+        </div>
+      <% end if current_user.employment_details%>
     </div>
+    <!-- Render Employment Details -->
     <div class="employment_detail"></div>
   </div>
 </div>

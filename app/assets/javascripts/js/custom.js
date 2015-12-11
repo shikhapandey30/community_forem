@@ -16,6 +16,11 @@ $(document).on('click', ".cancel", function(){
   $(this).closest('form').trigger('reset');
 });
 
+$(document).on('click', ".cancel.hided", function(){
+  $(this).closest('form').remove();
+});
+
+
 $(document).on('click', ".removeSkills", function(){
   $(".bootstrap-tagsinput span").remove();
   $('.skills').val('')

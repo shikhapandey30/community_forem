@@ -1,6 +1,5 @@
-$(".success").html("<%=@message%>");
-$(".popup-msg").show();
-$("#education_history").html('<%= j render(:partial => 'my_education_history', :locals => {:@profile => @profile}) %>');
-$('.education_history').hide();
-$("#education_all_detail").html('<%= j render(:partial => 'all_education_detail', :locals => {:@profile => @profile}) %>');
-
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+$("#education_history").html("<%= j render('my_education_history') %>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

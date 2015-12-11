@@ -1,30 +1,13 @@
 <div class="mainCOntnt">
-  <%=render "layouts/left_panel"%>  
+  <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
     <div class="clearfix innerWIdth550 tac ">
-      <div class="clearfix whiteBox mt30 profile">
+      <div class="clearfix whiteBox mt30 profile">        
         <%=render 'profile'%>
       </div>  
-      <div class="clearfix whiteBox">
-        <div class="clearfix formOuterPost tal">
-          <div class="col-sm-12 mb10">
-            <div class="grayHD">EDUCATION HISTORY <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Courses</a></div>
-          </div>
-          <!-- Render Education History -->
-          <div class="education_history"><%#=render 'education_history'%></div>
-        </div>
-      </div>
-
-      <div class="clearfix whiteBox">
-        <div class="clearfix formOuterPost tal">
-          <div class="col-sm-12 mb10">
-            <div class="grayHD">EMPLOYMENT DETAILS <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Employment</a></div>
-          </div>
-          <!-- Render Employment Details -->
-          <div class="employment_detail"><%#=render 'employment_detail'%></div>          
-        </div>
-      </div>
+      <div id="education_history"><%=render 'my_education_history'%></div>
+      <div id="employment_detail"><%=render 'my_employment_detail'%></div>
       <!-- Render Skills -->
       <%=render 'skill'%>
       <!-- Render Category -->

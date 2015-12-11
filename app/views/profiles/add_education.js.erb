@@ -2,3 +2,8 @@ $(".education_history").html("<%=j (render '/profiles/education_history')%>");
 $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
 });
+$('html, body').animate({
+    scrollTop: $("#new_education_history").offset().top
+}, 500, function() {
+    $("#education_history_start_year").focus();
+});

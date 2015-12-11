@@ -21,7 +21,7 @@
 .error {text-align: left; float: left; font-size: 13px;}
 
 
-.popup-msg{	z-index: 99999;top: 25px; position: fixed; display: none; }
+.popup-msg{	z-index: 99999;top: 25px; position: fixed; }
 
 .alert-message
 {

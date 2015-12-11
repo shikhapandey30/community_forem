@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210101505) do
+ActiveRecord::Schema.define(version: 20151211100904) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(version: 20151210101505) do
     t.datetime "updated_at",                  null: false
     t.integer  "course_id",         limit: 4
     t.integer  "institute_id",      limit: 4
-    t.date     "start_year"
-    t.date     "end_year"
+    t.integer  "start_year",        limit: 4
+    t.integer  "end_year",          limit: 4
   end
 
   create_table "employment_details", force: :cascade do |t|

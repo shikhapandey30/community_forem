@@ -3,7 +3,8 @@
     <div class="clearfix formOuterPost tal">
       <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
       <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
-      <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url) ? p.object.try(:image).try(:url) : 'images/default_logo.png'%>);">
+
+      <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url)%>);">
         <div class="reletive">
           <img src="/assets/images/camera.png" alt="" id='imgprvw'>          
           <div>Change Photo</div>

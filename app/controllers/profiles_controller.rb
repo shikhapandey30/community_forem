@@ -1,15 +1,13 @@
 class ProfilesController < ApplicationController
 
   before_action :authenticate_user!
-   before_action :set_profile, only: [:show]
-    before_action :current_user_profile, only: [:education_history,:employment_detail,:skill,:category]
+  before_action :set_profile, only: [:show]
+  before_action :current_user_profile, only: [:education_history,:employment_detail,:skill,:category]
   def index    
   end
 
-  def edit
-    if params[:id].present?
-      @profile=Profile.find(params[:id])
-     end
+  def edit    
+    @user = User.find(params[:id])    
     current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
     @category = current_user.users_category.present? ? current_user.users_category : Category.new    
@@ -17,7 +15,7 @@ class ProfilesController < ApplicationController
 
   def show
     @category=[]
-    @category<<@profile.user.users_category.category_ids.split(',')
+    @category<<@user.users_category.category_ids.split(',') rescue nil
   end
 
   def add_education
@@ -31,41 +29,47 @@ class ProfilesController < ApplicationController
   def education_history
     if params[:id].present?
       @education = current_user.education_histories.find(params[:id])
-      @message = "Education History Succesfully updated" if @education.update_attributes(education_params)
+      @success = "Education History update Succesfully." if @education.update_attributes(education_params)
     else
       @education = current_user.education_histories.create(education_params)
-      @message = "Education History Succesfully created"
+      @success = "Education History create Succesfully."
     end
+    @user=current_user
   end
 
-  def employment_detail
+  def employment_detail    
     if params[:id].present?
-      @message = "Category Succesfully updated"
+      @success = "Employment Detail update Succesfully."
       @employment = current_user.employment_details.find(params[:id])
       @employment.update_attributes(employment_params)
     else
       @employment = current_user.employment_details.create(employment_params)
-      @message = "Category Succesfully created"
+      @success = "Employment Detail create Succesfully."
     end
+    @user=current_user
   end
 
-  def skill    
+  def skill
     if current_user.skill
-      @message = "Skill Succesfully updated"
       @skill = current_user.skill.update(name: params[:name])
-    else
+      @success = "Skill update Succesfully."
+    elsif params[:name].present?
       @skill = current_user.build_skill(name: params[:name])
-      @message = "Skill Succesfully created" if @skill.save
-
+      @success = "Skill create Succesfully." if @skill.save
+    else
+      render :nothing => true, :status => 200
     end
   end
 
   def category
     if current_user.users_category
-      current_user.users_category.update(:category_ids=>params[:category_ids].join(','))
-    else
+      current_user.users_category.update(:category_ids=>params[:category_ids].join(',')) rescue nil
+      @success = "Category update Succesfully."
+    elsif params[:category_ids].present?
       category = current_user.build_users_category(:category_ids=>params[:category_ids].join(','))
-      category.save
+      @success = "Category update Succesfully." if category.save
+    else
+      render :nothing => true, :status => 200
     end    
   end
 
@@ -79,7 +83,7 @@ class ProfilesController < ApplicationController
   # POST /Profiles.json
   def create
     @profile = current_user.build_profile(profile_params)
-    @message = "Profile Succesfully created" if @profile.save
+    @success = "Profile create Succesfully." if @profile.save
     # flash[:notice] = "Profile created successfully." if @profile.save
     # @profile = current_user.build_profile(profile_params)
     # @profile.save
@@ -113,7 +117,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1.json
 
   def update    
-    @message = "Profile Succesfully updated" if current_user.update_attributes(profile_params)
+    @success = "Profile update Succesfully." if current_user.update_attributes(profile_params)
     @profile = current_user.profile
     # flash[:notice] = "Profile update successfully." 
 
@@ -153,7 +157,7 @@ class ProfilesController < ApplicationController
   
   private
     def set_profile
-      @profile=Profile.find(params[:id])
+      @user=User.find(params[:id])
     end
     def current_user_profile
       @profile=current_user.profile
