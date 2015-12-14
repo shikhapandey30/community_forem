@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :replies, dependent: :destroy
-  has_many :followings, as: :followable, :dependent => :destroy
+  has_many :followings, :class_name => "Following", :foreign_key => "follower_id", :dependent => :destroy
   has_many :followers, :class_name => "Following", :foreign_key => "follower_id"
   has_many :authenticates
   

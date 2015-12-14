@@ -1,3 +1,1 @@
-<% status = post.followings.where(follower_id: current_user.id).first %>
-<% status = status.present? ? "Unfollow" : "Follow" %>
-<%= link_to status, follow_path(:follower_id => current_user.id,  followable_id: post.id, followable_type: "Post"), :method => :post , :class=>"transition addFriend", :id=>"following-button-#{post.id}", :remote=>true, :class=>'replyBtn' %>
+ <%= link_to follow_status(post), follow_path(:follower_id => current_user.id,  followable_id: post.id, followable_type: "Post"), :method => :post , :class=>"transition addFriend", :id=>"following-button-#{post.id}", :remote=>true, :class=>'replyBtn' %>

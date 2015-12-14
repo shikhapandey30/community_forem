@@ -44,17 +44,18 @@ class UsersController < ApplicationController
   def follow
     @following = Following.where(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id]).first
     if @following.nil?
-     @following = Following.create(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id])
-     Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
+      @following = Following.create(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id])
+      Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
     else
       @unfollow = @following.destroy
     end
   end
- def followings
+ 
+  def followings
     @following=current_user.followings
   end
+ 
   def followers
-
     @follower=current_user.followers
   end
   

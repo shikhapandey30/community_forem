@@ -12,6 +12,10 @@ module ApplicationHelper
     f.object.send(attribute) ? f.object.send(attribute) : "Select"    
   end
 
+  def categories
+    Category.all
+  end
+
 
   # def flash(level)
   #       case level

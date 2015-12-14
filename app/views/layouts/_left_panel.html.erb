@@ -1,7 +1,7 @@
 <div class="leftNAv">
   <%if user_signed_in? %>
     <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
+      <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""><%#= image_tag current_user.try(:profile).try(:image) %></a>
       <div class="nameLocation">
         <a href="#"><%= current_user.try(:screen_name) %></a><br>
         <span class="location"><%= current_user.try(:profile).try(:country)%> </span>
@@ -11,7 +11,10 @@
 
   <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
     <ul>
-      <li><a href="#"><img src="/assets/images/li1.png" alt="">Entertainment</a></li>
+    <%categories.each do |category|%>
+      <li><a href="#"><img src="<%=category.icon.try(:url)%>" alt=""><%=category.name%></a></li>
+    <%end if categories%>
+      <!-- 
       <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>
       <li><a href="#"><img src="/assets/images/li3.png" alt="">Technology</a></li>
       <li><a href="#"><img src="/assets/images/li4.png" alt="">Sports</a></li>
@@ -19,8 +22,9 @@
       <li><a href="#"><img src="/assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
       <li><a href="#"><img src="/assets/images/li7.png" alt="">Politics &amp; Government</a></li>
       <li><a href="#"><img src="/assets/images/li8.png" alt="">Travel &amp; Lifestyle</a></li>
-      <li><a href="#"><img src="/assets/images/li9.png" alt="">Food &amp; Drink</a></li>
-      <a class="viewAll" href="/"> View All</a>
+      <li><a href="#"><img src="/assets/images/li9.png" alt="">Food &amp; Drink</a></li> -->
+      
+      <%=link_to "View All", categories_path, class: "viewAll"%>
       <div class="footerLink">
         <a href="/terms_and_conditions">Terms of Use</a>
         <a href="/privacy_policy">Privacy Policy</a>
