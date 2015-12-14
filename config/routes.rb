@@ -54,7 +54,13 @@ Rails.application.routes.draw do
       get :add_employment
       post :category
       post :education_history, as: :education
+      post 'update_education_history/:education_history_id', to: 'profiles#update_education_history', as: :edit_education
+      patch 'update_education_history/:education_history_id', to: 'profiles#update_education_history'
+      
+
       post :employment_detail, as: :employment
+      post 'update_employment_detail/:employment_detail_id', to: 'profiles#update_employment_detail', as: :edit_employment
+      patch 'update_employment_detail/:employment_detail_id', to: 'profiles#update_employment_detail'
       post :skill
     end
   end
@@ -80,10 +86,10 @@ Rails.application.routes.draw do
    get '/search_data'=>'users#search_data'
    post '/user_category', to: 'users#user_category'
    get '/user_category', to: 'users#user_category'
-   get '/followings', to: 'users#followings'
+   # get '/followings', to: 'users#followings'
    post '/follow', to: 'users#follow'
-   get'follwers', to: 'users#followers'
-   get'follwings', to: 'users#followings'
+   get'followers', to: 'users#followers'
+   get'followings', to: 'users#followings'
    get '/notification_count', to: 'users#notification_count'
    get '/reveal_identity', to: 'users#reveal_identity'
    #forums route

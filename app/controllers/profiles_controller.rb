@@ -14,12 +14,28 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @category=[]
-    @category<<@user.users_category.category_ids.split(',') rescue nil
+    @category = @user.users_category
+    @user_categories =  @category.present? ? @category.category_ids.split(',') : []
+    # @category=[]
+    # @category<<@user.users_category.category_ids.split(',') rescue nil
   end
 
   def add_education
     @education_history = current_user.education_histories.new    
+  end
+
+  def update_education_history
+    @education_histories = EducationHistory.find(params[:id])
+    @education_histories.update(education_params)
+     @success = "Education History update Succesfully." 
+    render 'education_history'
+  end
+
+  def update_employment_detail
+    @employment_detail = EmploymentDetail.find(params[:id])
+    @employment_detail.update(employment_params)
+     @success = "Employment History update Succesfully." 
+    render 'employment_detail'
   end
 
   def add_employment
@@ -63,10 +79,10 @@ class ProfilesController < ApplicationController
 
   def category
     if current_user.users_category
-      current_user.users_category.update(:category_ids=>params[:category_ids].join(',')) rescue nil
+      current_user.users_category.update(:category_ids=>params[:category_ids].join(', ')) rescue nil
       @success = "Category update Succesfully."
     elsif params[:category_ids].present?
-      category = current_user.build_users_category(:category_ids=>params[:category_ids].join(','))
+      category = current_user.build_users_category(:category_ids=>params[:category_ids].join(', '))
       @success = "Category update Succesfully." if category.save
     else
       render :nothing => true, :status => 200
