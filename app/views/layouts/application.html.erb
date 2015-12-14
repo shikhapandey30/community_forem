@@ -11,7 +11,7 @@
   </head>
   <body>
     <%if notice%><%=render 'layouts/success', :@success=>notice%><%end%>
-    <%if alert%><%=render 'layouts/alert', :@alert=>alert%>><%end%>
+    <%if alert%><%=render 'layouts/alert', :@alert=>alert%><%end%>
     <div class="popup-success"></div>
     <div class="bodyCont">
       <%if user_signed_in?%>
