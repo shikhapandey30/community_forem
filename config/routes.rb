@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :friendships
   devise_for :admin
 
   get 'home/index'
