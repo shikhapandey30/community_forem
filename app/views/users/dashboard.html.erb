@@ -5,7 +5,7 @@
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><img src="<%= current_user.img %>" alt=""></a>
+          <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
           <div class="nameLocation">
             <a href="#" class="font22"><%= current_user.try(:screen_name) %></a>
             <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
@@ -54,7 +54,7 @@
                     <p>
                       <%= post.try(:description).try(:html_safe) %> 
                     </p>
-                    <a href="javascript:void(0)" class="listen whiteBtn"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
+                    <a href="<%=root_path(id: post.id)%>" class="listen whiteBtn" data-remote="true"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>                    
                   </div>
                 </div>
               </div>

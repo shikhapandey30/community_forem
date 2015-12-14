@@ -51,9 +51,9 @@ class PostsController < ApplicationController
   # PATCH/PUT /Posts/1.json
   def update    
     respond_to do |format|
-      if @post.update(post_params)
-        set_upload(params[:post][:upload_attributes])
-        format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
+      set_upload(params[:post][:upload_attributes])
+      if @post.update(post_params)        
+        format.html { redirect_to dashboard_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -88,4 +88,3 @@ class PostsController < ApplicationController
       @post.save
     end
 end
-
