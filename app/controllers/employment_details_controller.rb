@@ -63,7 +63,7 @@ class EmploymentDetailsController < ApplicationController
   def destroy
     @employment_detail.destroy
     respond_to do |format|
-      format.html { redirect_to EmploymentDetails_url, notice: 'EmploymentDetail was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'EmploymentDetail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
