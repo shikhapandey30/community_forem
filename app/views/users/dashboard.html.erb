@@ -79,20 +79,11 @@
               </div>
               <div class="commentShow">
                 <div  class="clearfix commentSec cmntRow">
-                  <div class="bold mb10"><a href="#" class="grayColor font13 showCmnt">Show Previous Comments</a></div>
+                  <% if post.comments.count>0 %><div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div><% end %>
                   <div class="clearfix userInfo posRel">
-                    <div id="comments_<%= post.id %>">
+                    <div id="comments_<%= post.id %>" style="display:none;">
                       <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
                     </div>  
-                    <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
-                    <a href="#" class="userNAme"> Jack</a> <br>
-                    <span class="font13"> Events Coordinator, Designer</span>
-                    <div class="fr grayColor tar">2 Oct</div>
-                    <div class="clearfix mt10 font13 blackColor bold">Everybody deserves the comfort living. </div>
-                    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a>| <a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
-                    <div class="clearfix replyRow">
-                      <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
-                    </div>
                   </div>
                 </div>
                 <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= post.id %>">
@@ -273,7 +264,14 @@
 
   function comment_body(id) {
     $("#comments_"+id).toggle();
-    $("#comment_box_"+id).toggle();
-    $("html, body").scrollTop($('#comment_box_'+id).offset().top);
+    $("#comment_box_"+id).toggle(200);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 200);
   }
+  function show_comments(post_id){
+    $('#comments_'+post_id).toggle(200);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 600);    
+
+  }
+
+
 </script>

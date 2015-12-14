@@ -20,8 +20,13 @@ Rails.application.routes.draw do
     resources :votes, only: [:create]
   end
   resources :comments do
+    resources :likes
     resources :replies, only: [:create, :show]
   end
+
+  resources :replies do
+    resources :likes
+  end  
   
    resources :topics do
      resources :likes, only: [:create]

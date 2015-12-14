@@ -14,7 +14,9 @@
 				    <div class="clearfix mt15 font13 blackColor" id="reply_id_<%=reply.id%>">
 				    	<%= reply.body.html_safe %>
 				    </div>
-				    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
+				    <% like_status = reply.likes.where(user_id:current_user.id).first.present? ? "Unlike" : "Like" %>
+				    <div class="font13 bold blueColor mt5"><%= link_to like_status, reply_likes_path(reply), method: "post", remote: true, id: "reply_like_#{reply.id}", class: "blueColor" %><span id ="reply_like_count_<%= reply.id %>">(<%= reply.likes.count %>)</span></div>
+				  	
 				  </div>
 				  <% next_element = replies[index+1] %>
           <% if next_element.present? && next_element["id"].present? %>
