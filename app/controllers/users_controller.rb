@@ -88,7 +88,7 @@ class UsersController < ApplicationController
        if  user.profile.present?
         redirect_to dashboard_path
        else
-        redirect_to new_profile_path
+        redirect_to dashboard_path
        end
 
       else
