@@ -49,7 +49,13 @@ Rails.application.routes.draw do
       get :add_employment
       post :category
       post :education_history, as: :education
+      post 'update_education_history/:education_history_id', to: 'profiles#update_education_history', as: :edit_education
+      patch 'update_education_history/:education_history_id', to: 'profiles#update_education_history'
+      
+
       post :employment_detail, as: :employment
+      post 'update_employment_detail/:employment_detail_id', to: 'profiles#update_employment_detail', as: :edit_employment
+      patch 'update_employment_detail/:employment_detail_id', to: 'profiles#update_employment_detail'
       post :skill
     end
   end

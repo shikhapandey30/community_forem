@@ -71,7 +71,7 @@ class EducationHistoriesController < ApplicationController
 
   private
     def set_education_history      
-      # @education_history=EducationHistory.find(params[:id])      
+      @education_history=EducationHistory.find(params[:id])      
     end
 
     def education_history_params
