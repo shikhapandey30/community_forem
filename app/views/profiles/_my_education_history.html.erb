@@ -8,7 +8,9 @@
       </div>
 
       <% current_user.education_histories.each do |education_history| %>
-         <%=link_to (image_tag 'images/edit.png'), edit_education_history_path(education_history), :remote => true  %>
+        <% if current_user == education_history.user %>
+          <%=link_to (image_tag 'images/edit.png'), edit_education_history_path(education_history), :remote => true  %>
+         <% end %>
         <div class="uniOuter">
           <div class="blackHD"><%= education_history.specialization.name%>
             <img src="/assets/images/uni1.jpg" alt="" class="fr">

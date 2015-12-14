@@ -49,20 +49,12 @@
             <%end%>
           </div>
         </div>
-        <% @category.first.each_with_index do |category,index|%>
-        <%if index.even?%>
+        <% @user_categories.each do |category|%>
         <div class="col-sm-6 pr10 categoriesChk">
           <ul>
             <li><%=Category.find(category.to_i).name%></li>
           </ul>
-        </div>
-        <%else%>
-        <div class="col-sm-6 pl10 categoriesChk">
-          <ul>
-            <li><%=Category.find(category.to_i).name%></li>
-          </ul>
-        </div>
-        <%end%>
+        </div>        
         <%end%>
       </div>
     </div>

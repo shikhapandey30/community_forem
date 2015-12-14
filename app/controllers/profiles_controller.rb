@@ -14,8 +14,10 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @category=[]
-    @category<<@user.users_category.category_ids.split(',') rescue nil
+    @category = @user.users_category
+    @user_categories =  @category.present? ? @category.category_ids.split(',') : []
+    # @category=[]
+    # @category<<@user.users_category.category_ids.split(',') rescue nil
   end
 
   def add_education
