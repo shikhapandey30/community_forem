@@ -43,7 +43,7 @@
       <div class="col-sm-6 pr10">
         <label>Gender</label>
         <div class="selctFormBox">      
-          <%= p.text_field :gender, value: select_type(p, "gender"), name: "gender_type", class: "profile selectInput" %>
+          <%= p.text_field "gender", value: select_type(p, "gender"), class: "profile selectInput" %>
           <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
         </div>
         <div id="gender_error"></div>
@@ -56,7 +56,7 @@
       <div class="col-sm-6 pr10">
         <label>Select Type</label>
         <div class="selctFormBox">
-          <%= p.text_field :profile_type, value: select_type(p, "profile_type"), name: "profile_type_name", class: "profile selectInput" %>
+          <%= p.text_field "profile_type", value: select_type(p, "profile_type"), class: "profile selectInput" %>
           <%= p.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
         </div>
         <div id="profile_type_error"></div>
