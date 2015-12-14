@@ -19,7 +19,7 @@
         <div class="userTHumb userTHumbRight">
           <a href="#" class="profileImg">
           <img src="<%= current_user.img %>" alt="">
-          <%#= image_tag current_user.profile.try(:image) %>
+          <%= image_tag current_user.img %>
           </a>
           <div class="nameLocation">
             <a href="#"><%= current_user.try(:screen_name) %></a><br>
@@ -104,10 +104,9 @@
         <div class="clearfix formOuterPost tal">
           <div class="col-sm-6 pr10">
             <label>Select Category</label>
-            <div class="selctFormBox">
-              <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField", name: "category_name_first" %>
-              <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
+            <div class="selctFormBox">              
+              <%= f.text_field "category", :value=>select_type(f, "category_id"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
+              <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
             <div id="category_name_error"></div>
           </div>

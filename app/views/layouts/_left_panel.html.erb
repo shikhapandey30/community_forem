@@ -3,7 +3,7 @@
     <div class="userTHumb">
       <a href="#" class="profileImg">
       
-      <%= image_tag current_user.try(:profile).try(:image) %></a>
+      <%= image_tag current_user.img %></a>
       <div class="nameLocation">
         <a href="#"><%= current_user.try(:screen_name) %></a><br>
         <span class="location"><%= current_user.try(:profile).try(:country)%> </span>

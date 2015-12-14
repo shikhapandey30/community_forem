@@ -98,6 +98,7 @@ class ProfilesController < ApplicationController
   # POST /Profiles
   # POST /Profiles.json
   def create
+    debugger
     @profile = current_user.build_profile(profile_params)
     @success = "Profile create Succesfully." if @profile.save
     # flash[:notice] = "Profile created successfully." if @profile.save
