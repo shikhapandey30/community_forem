@@ -81,10 +81,10 @@ Rails.application.routes.draw do
    get '/search_data'=>'users#search_data'
    post '/user_category', to: 'users#user_category'
    get '/user_category', to: 'users#user_category'
-   get '/followings', to: 'users#followings'
+   # get '/followings', to: 'users#followings'
    post '/follow', to: 'users#follow'
-   get'follwers', to: 'users#followers'
-   get'follwings', to: 'users#followings'
+   get'followers', to: 'users#followers'
+   get'followings', to: 'users#followings'
    get '/notification_count', to: 'users#notification_count'
    get '/reveal_identity', to: 'users#reveal_identity'
    #forums route

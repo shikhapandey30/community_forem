@@ -77,10 +77,10 @@ class ProfilesController < ApplicationController
 
   def category
     if current_user.users_category
-      current_user.users_category.update(:category_ids=>params[:category_ids].join(',')) rescue nil
+      current_user.users_category.update(:category_ids=>params[:category_ids].join(', ')) rescue nil
       @success = "Category update Succesfully."
     elsif params[:category_ids].present?
-      category = current_user.build_users_category(:category_ids=>params[:category_ids].join(','))
+      category = current_user.build_users_category(:category_ids=>params[:category_ids].join(', '))
       @success = "Category update Succesfully." if category.save
     else
       render :nothing => true, :status => 200

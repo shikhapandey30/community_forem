@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     # self_post=current_user.posts
     # @posts=pub_post+self_post
     @comment = Comment.new
-    @post = Post.all.order("created_at DESC") 
+    @posts = Post.all.order("created_at DESC") 
 	end
   def follow
     @following = Following.where(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id]).first
@@ -52,11 +52,11 @@ class UsersController < ApplicationController
   end
  
   def followings
-    @following=current_user.followings
+    @followings = current_user.followings
   end
  
-  def followers
-    @follower=current_user.followers
+  def followers    
+    @followers = current_user.followers
   end
   
   def user_category
