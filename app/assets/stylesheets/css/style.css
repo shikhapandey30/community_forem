@@ -143,6 +143,8 @@ footer{border-top: solid 1px #ebebeb; color:#919191; font-size:13px; padding:15p
 .topNAv li{display:inline}
 .topNAv li a{display:inline-block; height:57px; line-height:56px; color:#212121; font-size:14px; font-weight:600; padding:0 15px;border-bottom:solid 3px #fff; }
 .topNAv li.activeMenu a, .topNAv li a:hover{color:#0bb4d3; border-bottom:solid 3px #0bb4d3;}
+.topNAv li.true a, .topNAv li a:hover{color:#0bb4d3; border-bottom:solid 3px #0bb4d3;}
+
 .innerWIdth{max-width:780px; padding:0 20px; margin:auto; color:#454545; font-weight:400;}
 .bigHD{color:#212121; font-size:30px; font-weight:600; margin-top:40px;}
 .innerWIdth p{margin-top:20px; margin-bottom:10px; line-height:22px;}
