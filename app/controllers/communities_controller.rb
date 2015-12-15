@@ -15,10 +15,12 @@ class CommunitiesController < ApplicationController
   # GET /communities/new
   def new
     @community = Community.new
+    @community.build_upload
   end
 
   # GET /communities/1/edit
   def edit
+    @community.upload.present? ? @community.upload : @community.build_upload
   end
 
   # POST /communities
@@ -41,6 +43,7 @@ class CommunitiesController < ApplicationController
   # PATCH/PUT /communities/1.json
   def update
     respond_to do |format|
+      set_upload(params[:community][:upload_attributes])
       if @community.update(community_params)
         format.html { redirect_to @community, notice: 'Community was successfully updated.' }
         format.json { render :show, status: :ok, location: @community }
@@ -69,6 +72,12 @@ class CommunitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def community_params
-      params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description)
+      params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :_destroy])
+    end
+
+    def set_upload params
+      @community.upload.destroy
+      @community.build_upload( image: params[:image] )
+      @community.save
     end
 end

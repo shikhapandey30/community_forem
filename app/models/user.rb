@@ -124,6 +124,4 @@ class User < ActiveRecord::Base
       all
     end
   end
-
-
 end

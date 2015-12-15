@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 	end
 
   def search
-    User.search(params[:name])
+    @user = User.search(params[:name]).first
+    # render edit_profile_path(@user)
+    redirect_to profile_path(@user)
   end
   # def search_data
   #   if params[:type]=='User'
