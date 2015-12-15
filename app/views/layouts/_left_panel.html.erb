@@ -13,7 +13,7 @@
   <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
     <ul>
     <%categories.each do |category|%>
-      <li><a href="<%=category_path(category)%>"><img src="<%=category.icon.try(:url)%>" alt=""><%=category.name%></a></li>
+      <li class="cat <%=controller?("categories") && category.id.eql?(params[:id].to_i)%>"><a href="<%=category_path(category)%>"><img src="<%=category.icon.try(:url)%>" alt=""><%=category.name%></a></li>
     <%end if categories%>
       <!-- 
       <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>

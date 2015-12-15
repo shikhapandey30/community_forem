@@ -1,37 +1,30 @@
 <div class="bodyCont">
   <%=render "layouts/left_panel"%>
-  <div class="rightContent">
+  <div class="rightContent" style="margin-top:67px;">
     <%=render 'layouts/topNav'%>
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
           <a href="#" class="profileImg"><img src="/assets/images/group.png" alt=""></a>
           <div class="nameLocation">
-            <a href="#" class="font22">Your Followings</a>
+            <a href="#" class="font22">Your Connections</a>                        
           </div>
         </div>
-        <div class="back"><%=@followings.try(:count) %> followings</div>
+        <div class="back"><%=@friends.try(:count) %> Connections</div>
       </div>
     </div>
-
     <div class="clearfix innerWIdth550 tac ">
-      <%@followings.each do |follow|%>      
+      <%@friends.each do |firend|%>
         <div class="clearfix whiteBox borderTop  mb10 pb0">
           <div class="clearfix formOuterPost tal padding10-0 ">
+            
             <div class="col-sm-12 mb10">
               <div class="clearfix userInfo posRel">
-                <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
-
-                <a href="<%= profile_path(follow.followable.try(:user))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
-                <span class="font13"><%=follow.followable.try(:title)%></span>
-                <div class="fr grayColor tar">2h<br>
-                  <span class="friendship-button-<%= follow.followable.user.id %>">
-                  <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
-                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true, :style => "display: inline-block;" %>
-                  <%# else %>
-                  <%#= link_to "Disconnect", unfriend_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
-                  <%end%>
-                  </span>
+                <a href="#" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
+                <a href="#" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
+                <span class="font13"><%=designations(firend)%></span>
+                <div class="fr grayColor tar"><%= time_ago_in_words(firend.created_at) %> ago<br>
+                 <%= link_to "Disconnect", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
                 </div>
               </div>
               <div class="uniOuter">
@@ -43,7 +36,7 @@
             <div class="clearfix"></div>
           </div>
         </div>
-      <%end if @followings%>  
+      <%end if @friends%>  
       <div class="clearfix whiteBox borderTop  mb10 pb0">
         <div class="clearfix conversationTop borderBtm">
           <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
@@ -67,7 +60,7 @@
             <a href="#" class="whiteBtn"> Follow </a>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
   </div>
 </div>

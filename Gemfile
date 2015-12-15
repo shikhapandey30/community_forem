@@ -76,7 +76,10 @@ gem 'acts-as-taggable-on', '~> 3.4'
 #Use Rmotipart for upload image as ajax
 gem 'remotipart', '~> 1.2'
 # Solr Search
+# gem 'sunspot_rails'
 gem 'sunspot_rails'
 # optional pre-packaged Solr distribution for use in development
 gem 'sunspot_solr'
-gem "espeak-ruby", require: "espeak"
+gem 'progress_bar'
+
+ gem "espeak-ruby", require: "espeak"

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :groups
 
   resources :friendships
+  post '/unfriend', to: 'friendships#unfriend'
   devise_for :admin
 
   get 'home/index'
@@ -53,7 +54,12 @@ Rails.application.routes.draw do
   resources :categories
   resources :education_histories
   resources :specializations
-
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
+  
   resources :profiles do
     collection do
       get :add_education
@@ -89,7 +95,7 @@ Rails.application.routes.draw do
 
    get '/dashboard'=>'users#dashboard'
    get '/auth/:provider/callback', to: 'users#social_login'
-   get '/search'=>'users#search'
+   post '/search'=>'users#search'
    get '/search_data'=>'users#search_data'
    post '/user_category', to: 'users#user_category'
    get '/user_category', to: 'users#user_category'
@@ -99,6 +105,7 @@ Rails.application.routes.draw do
    get'followings', to: 'users#followings'
    get '/notification_count', to: 'users#notification_count'
    get '/reveal_identity', to: 'users#reveal_identity'
+   get '/users'=>'users#index'
    #forums route
     get '/manage_forum'=>'forums#manage_forum'
     get '/manage_skill'=>'skills#manage_skill'

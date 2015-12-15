@@ -1,29 +1,31 @@
 class User < ActiveRecord::Base
 
   # searchable do
-  #   string :first_name, :last_name, :screen_name
-  #   text :posts do
-  #     posts.map { |post| post.title }
-  #   end
-  #   text :education_histories do
-  #     education_histories.map { |education| education.course }
-  #     education_histories.map { |education| education.specialization }
-  #     education_histories.map { |education| education.institute }
-  #   end
+    # text :first_name
+    # text :last_name
+    # text :screen_name
+    # text :posts do
+    #   posts.map { |post| post.title }
+    # end
+    # text :education_histories do
+    #   education_histories.map { |education| education.course }
+    #   education_histories.map { |education| education.specialization }
+    #   education_histories.map { |education| education.institute }
+    # end
 
-  #   text :employment_details do
-  #     employment_details.map { |employment| employment.designation }
-  #     employment_details.map { |employment| employment.organisation }
-  #     employment_details.map { |employment| employment.description }
-  #   end
+    # text :employment_details do
+    #   employment_details.map { |employment| employment.designation }
+    #   employment_details.map { |employment| employment.organisation }
+    #   employment_details.map { |employment| employment.description }
+    # end
 
-  #   text :skill do
-  #     skill.name
-  #   end
+    # text :skill do
+    #   skill.name
+    # end
 
-  #   text :users_category do
-  #     users_category.name
-  #   end
+    # text :users_category do
+    #   users_category.name
+    # end
   # end
   
   # Include default devise modules. Others available are:
@@ -64,10 +66,22 @@ class User < ActiveRecord::Base
   
 
   #friendsships
-  # has_many :friends, :through => :friendships, :conditions => "status = 'accepted'"
-  # has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
-  # has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
-  # has_many :friendships, :dependent => :destroy
+  has_many :friendships
+ # has_many :friends, :through => :friendships
+  # has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships, :class_name => "Friendship"
+  has_many :friends, :class_name => "Friendship"
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+
+#Notifications
+ has_many :sent_notifications,
+   :class_name => 'Notification',
+   :foreign_key => 'user_id'
+
+  has_many :notifications,
+   :class_name => 'Notification',
+   :foreign_key => 'recepient_id'
 
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
@@ -89,7 +103,6 @@ class User < ActiveRecord::Base
  #  #has_many :categorables_categories, through: :categorables, source: :categorable, source_type: 'Category'
  #  has_many :categories, through: :categorables
  #  has_one :subscription
- #  has_many :notifications
    def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
   end
@@ -100,7 +113,17 @@ class User < ActiveRecord::Base
     if self.profile.present?
       self.profile.try(:image)
     else
-      'images/profile.jpg'
+      '/images/profile.jpeg'
     end
   end
+
+  def self.search(search)
+    if search
+      where('screen_name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
+
 end

@@ -4,65 +4,27 @@
     <div class="topRight">
     
     <span class="dropdown notification">
-       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span>0</span></a>
+    <% notifications = current_user.notifications.unread %>
+         <% messages = current_user.notifications.messages.unread %>
+       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
          <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> <a class="blackColor font13 bold fr" href="#">View All</a> </div>
+         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span>
+         
+         <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
       
       <div class="notiScroll scrollbars"> 
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
+        <% notifications.each do |notification|%>
+          <li>
+            <div class="clearfix commentSec cmntRow">
+              <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
+                <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
+                <div class="font13">Web Designer</div>
+                <div class="blackColor font12 bold"> is now a connection</div>
+              </div>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
+          </li>
+        <% end %>
+        <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff" if notifications.present? %>       
         </div>
         
       </ul>
@@ -70,65 +32,25 @@
       
         <span class="dropdown notification">
   
-             <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span>0</span></a>
+             <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
          <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Message (0)</span> <a class="blackColor font13 bold fr" href="#">View All</a> </div>
+         <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
+         <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
+         <!--  <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
       
-      <div class="notiScroll scrollbars"> 
+      <div class="notiScroll scrollbars">
+        <% messages.each do |notification|%>
         <li>
           <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
+            <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
+              <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
               <div class="font13">Web Designer</div>
               <div class="blackColor font12 bold"> is now a connection</div>
             </div>
           </div>
         </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="#" class="userImg"><img src="/assets/images/profile.jpg" alt=""></a> <a href="#" class="userNAme font14">John Vaughan</a> <br>
-              <div class="fr grayColor tar">2 Oct</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-          </div>
-        </li>
+        <% end %>
+        <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff" if notifications.present? %>    
         </div>
         
       </ul>
@@ -154,10 +76,10 @@
         </ul>
       </div>
       <div class="formOuter">
-        <form method="post" action="">
-          <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
+        <%=form_tag search_path, remote: true do%>
+          <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
           <input type="submit" value="" class="searhSub">
-        </form>
+        <%end%>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214133028) do
+ActiveRecord::Schema.define(version: 20151215092404) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -93,6 +93,32 @@ ActiveRecord::Schema.define(version: 20151214133028) do
     t.string   "commentable_type", limit: 255
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.string   "slogan",      limit: 255
+    t.string   "image",       limit: 255
+    t.text     "description", limit: 65535
+    t.integer  "topic_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.text     "description", limit: 65535
+    t.boolean  "visibility",                default: true
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
     t.integer  "recipient_id", limit: 4
@@ -160,6 +186,8 @@ ActiveRecord::Schema.define(version: 20151214133028) do
     t.integer  "topic_id",    limit: 4
     t.string   "attachement", limit: 255
     t.integer  "user_id",     limit: 4
+    t.string   "headline",    limit: 255
+    t.string   "vote_id",     limit: 255
   end
 
   create_table "forums", force: :cascade do |t|
@@ -183,6 +211,29 @@ ActiveRecord::Schema.define(version: 20151214133028) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.boolean  "accept"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "category_id", limit: 4
+    t.integer  "topic_id",    limit: 4
+    t.string   "headline",    limit: 255
+    t.text     "description", limit: 65535
+    t.string   "image",       limit: 255
+    t.string   "video",       limit: 255
+    t.string   "site_link",   limit: 255
+    t.string   "file",        limit: 255
+    t.string   "topic",       limit: 255
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "institutes", force: :cascade do |t|
     t.integer  "education_history_id", limit: 4
     t.string   "name",                 limit: 255
@@ -200,6 +251,17 @@ ActiveRecord::Schema.define(version: 20151214133028) do
     t.boolean  "vote"
   end
 
+  create_table "meeting_rooms", force: :cascade do |t|
+    t.string   "category_id", limit: 255
+    t.string   "topic",       limit: 255
+    t.string   "headline",    limit: 255
+    t.string   "name",        limit: 255
+    t.string   "slogan",      limit: 255
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "body",            limit: 65535
     t.integer  "conversation_id", limit: 4
@@ -212,11 +274,15 @@ ActiveRecord::Schema.define(version: 20151214133028) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.string   "notifictaion_type",   limit: 255
-    t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "notification_status", limit: 255
+    t.integer  "user_id",          limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "recepient_id",     limit: 4
+    t.integer  "notificable_id",   limit: 4
+    t.string   "notificable_type", limit: 255
+    t.datetime "readt_at"
+    t.text     "body",             limit: 65535
+    t.boolean  "accept"
   end
 
   create_table "organisations", force: :cascade do |t|

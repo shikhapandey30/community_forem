@@ -23,4 +23,12 @@ class Post < ActiveRecord::Base
     self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "Post" )
   end
     # has_many :attachments,:dependent => :destroy, :as => :attachable
+
+    def self.search(search)
+      if search
+        where('topic LIKE ?', "%#{search}%")
+      else
+        all
+      end
+    end
 end

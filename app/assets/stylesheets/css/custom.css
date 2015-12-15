@@ -12,6 +12,9 @@
 .screen_name{min-width: 50px;}
 .bootstrap-tagsinput .tag [data-role="remove"]:after{padding: 0; margin: 0;}    
 /*.screen_name{min-width: 50px;}*/
+.topNAv li.true a, .topNAv li a:hover{color:#0bb4d3; border-bottom:solid 3px #0bb4d3;}
+li.cat.true a { color: #0BB4D3; }
+
 .like_image_post_liked{background-color: #0bb4d3;}
 
 
