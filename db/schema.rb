@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214115339) do
+ActiveRecord::Schema.define(version: 20151214133028) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -182,14 +182,6 @@ ActiveRecord::Schema.define(version: 20151214115339) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
-
-  create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "friend_id",  limit: 4
-    t.boolean  "accept"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
 
   create_table "institutes", force: :cascade do |t|
     t.integer  "education_history_id", limit: 4
@@ -404,6 +396,7 @@ ActiveRecord::Schema.define(version: 20151214115339) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "category_ids", limit: 255
+    t.integer  "category_id",  limit: 4
   end
 
   create_table "votes", force: :cascade do |t|
