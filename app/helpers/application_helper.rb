@@ -8,8 +8,16 @@ module ApplicationHelper
 		params[:action] != "terms_and_conditions" &&  params[:action] != "privacy_policy" &&  params[:action] != "how_it_work"  &&  params[:action] != "contactus" &&  params[:action] != "aboutus" &&  params[:action] != "help"
 	end
 
-  def select_type(f, attribute)    
-    f.object.send(attribute) ? f.object.send(attribute) : "Select"    
+  def select_type(f, attribute)
+    if attribute.eql?("category_id")
+      Category.find(f.object.send(attribute)).name if f.object.id
+    else
+      f.object.send(attribute) ? f.object.send(attribute) : "Select"
+    end    
+  end
+
+  def categories
+    Category.all
   end
 
 

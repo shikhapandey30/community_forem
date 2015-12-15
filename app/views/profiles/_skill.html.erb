@@ -9,15 +9,25 @@
         <%= text_field_tag "skill", nil, class: "inputTextW small skills_attr", placeholder: "Skills" %>
         <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn', "data-val"=>@skill.try(:id) %>
       </div>
-      <div id="skill_error" class="col-sm-12"></div>
+      <div id="skill_error" class="col-sm-12 error" style="display:none"><label style="font-weight: 600;color: #F00;">Please add skills</label></div>
       <div class="col-sm-12 skillsTag ">
         <%= text_field_tag :name, @skill.try(:name), class: 'inputTextW small skills' , :data => {:role => 'tagsinputr' }, style: "display:none;"%>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-12 mt10">
-        <%= submit_tag "Save", class: 'blueBtn' %>
+        <%= submit_tag "Save", id: "skill_submit",class: 'blueBtn'%>
         <%= link_to "Cancel", "javascript:void(0)", class: 'removeSkills grayBtn' %>
       </div>
     <%end%>
   </div>
 </div>
+<script>
+  // $( "#skill_submit" ).click(function(event) {
+  //   if ($('.tag').length == 0){
+  //     $("#skill_error").show();
+  //     event.preventDefault();
+  //   } else {
+  //     $("#skill_error").hide();
+  //   }
+  // });
+</script>

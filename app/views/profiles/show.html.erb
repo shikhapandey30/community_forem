@@ -1,162 +1,77 @@
-
-<!-- Header Start -->
-<header class="clearfix whiteHeader ">
-  <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-    <a href="#"> <img src="../assets/images/logoBlue.png" alt=""></a>
-  </div>
-  <div class="topRightHeader">
-    <div class="topRight">
-      <a href="#"><img src="../assets/images/noti.png" alt=""><span>20</span></a>
-      <a href="#"><img src="../assets/images/email.png" alt=""><span>6</span></a>
-      <a href="#"><img src="../assets/images/user.png" alt=""></a>
-      <a href="#"><img src="../assets/images/wlt.png" alt=""></a>
-      <a href="#" class="wlt">500</a>
-      <a href="#"><img src="../assets//images/setting.png" alt=""></a>
-    </div>
-    <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-      <div class="catLIstLink">
-        <a href="#" class="catLIst"><img src="../assets/images/catDrop.png" alt=""></a>
-      </div>
-      <div class="formOuter">
-        <form method="post" action="">
-          <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-          <input type="submit" value="" class="searhSub">
-        </form>
-      </div>
-    </div>
-  </div>
-</header>
-<!-- Header End -->
 <div class="mainCOntnt">
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg">
-        <img src="../assets/images/profile.jpg" alt="">
-      </a>
-      <div class="nameLocation">
-        <a href="#">John Smith</a>
-        <span class="location">United Kingdom</span>
-      </div>
-    </div>
-<span class="categories"><img src="../assets/images/tab.png" alt=""> Categories</span>
-<ul>
-<li><a href="#"><img src="../assets/images/li1.png" alt="">Entertainment</a></li>
-<li><a href="#"><img src="../assets/images/li2.png" alt="">Politics</a></li>
-<li><a href="#"><img src="../assets/images/li3.png" alt="">Technology</a></li>
-<li><a href="#"><img src="../assets/images/li4.png" alt="">Sports</a></li>
-<li><a href="#"><img src="../assets/images/li5.png" alt="">Music</a></li>
-<li><a href="#"><img src="../assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
-<a class="viewAll" href="#"> View All</a>
-<div class="footerLink">
-<a href="#">Terms of Use</a>
-<a href="#">Privacy Policy</a>
-</div>
-</ul>
-</div>
+<%=render "layouts/left_panel"%>
 <div class="rightContent">
-<div class="overLAy"></div>
-<div class="topNAv">
-<span class="blueColor leftMenuTab"><img src="../assets/images/tab.png" alt="" class=""> Categories</span>
-<div class="topRightNav">
-<span class="blueColor rightMenu"> Menu <img src="../assets/images/down.png" alt="" class=""></span>
-<ul>
-<li class="activeMenu"><a href="#">News Feed</a></li>
-<li><a href="#">Hot Topics</a></li>
-<li><a href="#">Followers (25)</a></li>
-<li><a href="#">Following (100)</a></li>
-<li><a href="#">More <img src="../assets/images/arrowBlack.png" alt=""> </a></li>
-</ul>
-</div>
-</div>
-<div class="clearfix innerWIdth550 tac ">
-<div class="clearfix whiteBox mt30 borderBtmBlue">
-<div class="clearfix formOuterPost tal">
-<div class="ProfileTHumb">
-<div class="noConn">
-<div class="blueColor font16 bold">2000</div>
-connections
-</div>
-<a href="#" class="thumbImg"> <img src="../assets/images/s2a.png" alt=""></a>
-<div class="font22"><%= @profile.try(:first_name) %></div>
-<div class="designation"> Senior UX Practitioner; Actively looking for work<br>
-Lake Hiawatha, New Jersey
-</div>
-</div>
-<div class="tableOuterBtm ">
-<table>
-<tr>
-<td>Current</td>
-<td class="blackColor"> Camp Summit (pro bono through Taproot) : Actively Looking</td>
-</tr>
-<tr>
-<td>Education</td>
-<td class="blackColor"> Pro Bono @ ZanaAfrica, Barclays, H.P. Curran Appraisals</td>
-</tr>
-<tr>
-<td>Education</td>
-<td class="blackColor"> New York University</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<%#= render 'education_history' %>
-<div id ='education_history'>
-  <%=render 'my_education_history',:@profile=>@profile%>
-</div>
-
-
-<%#= render 'employment_detail' %>
-<div id ='employment_detail'>
-  <%=render 'my_employment_detail',:@profile=>@profile%>
-</div>
-
-<div id='skills'>
-  <%=render 'my_skill',:@profile=>@profile%>
-</div>
-<div class="clearfix whiteBox mb10">
-    <div class="clearfix formOuterPost tal">
-      <div class="col-sm-12 mb10">
-        <div class="grayHD">Category  
-          <% if current_user.id==@profile.id%>
-            <a href="#" class="blueBtn fr addBtn">&nbsp;&nbsp;Add Category</a>
-          <%end%>
+  <%=render "layouts/topNav"%>
+  <div class="clearfix innerWIdth550 tac ">
+    <div class="clearfix whiteBox mt30 borderBtmBlue">
+      <div class="clearfix formOuterPost tal">
+        <div class="ProfileTHumb">
+          <div class="noConn">
+            <div class="blueColor font16 bold">2000</div>
+            connections
+          </div>
+          <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
+          <div class="font22"><%= @profile.try(:first_name) %></div>
+          <div class="designation"> <%=@user.try(:employment_details).try(:last).try(:designation)%>
+          </div>
+        </div>
+        <div class="tableOuterBtm ">
+          <table>
+            <tr>
+              <td>Current</td>
+              <td class="blackColor"> <%=@user.try(:employment_details).try(:last).try(:organization)%></td>
+            </tr>
+            <tr>
+              <td>Education</td>
+              <td class="blackColor"> <%=@user.try(:education_histories).try(:last).try(:institute).try(:name)%></td>
+            </tr>
+          </table>
         </div>
       </div>
-          <% @category.first.each_with_index do |category,index|%>
-        <%if index.even?%>
-          <div class="col-sm-6 pr10 categoriesChk">
-            <ul>
-            <li><%=Category.find(category.to_i).name%></li>        
-            </ul> 
+    </div>
+    <%#= render 'education_history' %>
+    <div id ='education_history'>
+      <%=render 'my_education_history'%>
+    </div>
+    <%#= render 'employment_detail' %>
+    <div id ='employment_detail'>
+      <%=render 'my_employment_detail'%>
+    </div>
+    <div id='skills'>
+      <%=render 'skill'%>
+    </div>
+    <div class="clearfix whiteBox mb10">
+      <div class="clearfix formOuterPost tal">
+        <div class="col-sm-12 mb10">
+          <div class="grayHD">Category  
+            <% if current_user==@user%>
+            <a href="#" class="blueBtn fr addBtn">&nbsp;&nbsp;Add Category</a>
+            <%end%>
           </div>
-        <%else%>
-          <div class="col-sm-6 pl10 categoriesChk">
-            <ul>
-              <li><%=Category.find(category.to_i).name%></li>   
-            </ul>
-          </div>
+        </div>
+        <% @user_categories.each do |category|%>
+        <div class="col-sm-6 pr10 categoriesChk">
+          <ul>
+            <li><%=Category.find(category.to_i).name%></li>
+          </ul>
+        </div>        
         <%end%>
-        <%end%>
+      </div>
     </div>
   </div>
-  
-</div>
 </div>
 <script>
-$(".hide-show").hide();
-$("#skill").click(function(event) {
-$("#skill_form").show();
-});
-$("#skill_new").click(function(event) {
- $('#skill_form').show();
-
-// event.preventDefault();
-// $(".add-show").hide();
-// $(".hide-show").show();
-
-});
+  $(".hide-show").hide();
+  $("#skill").click(function(event) {
+  $("#skill_form").show();
+  });
+  $("#skill_new").click(function(event) {
+   $('#skill_form').show();
+  
+  // event.preventDefault();
+  // $(".add-show").hide();
+  // $(".hide-show").show();
+  
+  });
 </script>
-
-
 

@@ -1,4 +1,5 @@
-<%=form_for @employment_detail, url: employment_profiles_path, :html => { class: "employment_form" }, remote: true do |f| %>
+<% path =  @employment_detail.id.present? ? edit_employment_profiles_path(@employment_detail) : employment_profiles_path %>
+<%=form_for @employment_detail, url: path, :html => { class: "employment_form" }, remote: true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Enter Designation </label>
     <%= f.text_field :designation, class: "inputTextW small", :maxlength=>"80" %>
@@ -9,28 +10,31 @@
     <%= f.text_field :organization, class: " inputTextW small", :maxlength=>"80" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
+  <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
     <label class="">Start Working From  </label>
-    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth" %> 
+    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth datetimepicker4"%> 
   </div>
   <div class="col-sm-6 pl10">
-    <label class="">Worked Till   </label>
-     <%= f.text_field :worked_till, class: "inputTextW small date fullWdth" %>
+    <label class="">Worked Till</label>
+     <div id="present_time" style="font-weight: 600;">- Present</div>
+     <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth datetimepicker5"%>
   </div>
   <div id="worked_till_error" class="col-sm-6"></div>
   <div class="clearfix"></div>
-  <div class="col-lg-12 tar mt-10"><label><input type="checkbox"> Current Company</label></div>
-
+  <div class="col-lg-12 tar mt-10" id="current_company_checkbox">
+    <%= f.check_box :current_company, id: "current_company" %> <label>Current Company</label>
+  </div>
 
   <div class="col-sm-12 ">
     <label class=""> Write Text </label>
-    <%= f.text_area :description, class: "inputTextW small", :maxlength=>"250" %>
+    <%= f.text_area :description, class: "inputTextW small", :maxlength=>"300" %>
     <!-- <textarea placeholder="Write Text " class="inputTextW small "></textarea> -->
-    <div class="font12 grayColor fr mt-10">300 Characters Max</div>
+    <div class="font12 grayColor fr mt-10"><p id="counter"></p></div>
   </div>
   <div class="col-sm-12 mt10">
     <%= f.submit "Save", class: 'blueBtn' %>
-    <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
+    <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
   <%end%>
 <script>
@@ -43,15 +47,45 @@
         }
       },
       rules: {
-        "employment_detail[designation]": {required: true},
-        "employment_detail[organization]": {required: true},
+        "employment_detail[designation]": {required: true, maxlength: 80},
+        "employment_detail[organization]": {required: true, maxlength: 80},
         "employment_detail[start_work_date]": {required: true},
         "employment_detail[worked_till]": {required: true},
-        "employment_detail[description]": {required: true, minlength: 5, maxlength: 80},
-        "employment_detail[designation]": {required: true, minlength: 5, maxlength: 80}       
+        "employment_detail[description]": {maxlength: 300}     
       },       
       submitHandler: function(form) {
-          form.submit();
+        $('form.employment_form').submit();
       }
   });
-</script>
+
+  $('#employment_detail_description').keyup(function () {
+    var left = 300 - $(this).val().length;
+    if (left < 0) {
+        left = 0;
+    }
+    $('#counter').text('Characters left: ' + left);
+  });
+  $("#present_time").hide();
+  $('#current_company').change(function () {
+    if ((this.checked) == true){
+      var dNow = new Date();
+      // var utcdate= (dNow.getMonth()+ 1) + '/' + dNow.getDate() + '/' + dNow.getFullYear();
+      var utcdate= dNow.getFullYear() + '-' + (dNow.getMonth()+ 1) + '-' + dNow.getDate();
+      $("#worked_till").hide();
+      $("#present_time").show();
+      $("#worked_till").val(utcdate);
+      $("#worked_till_error").hide();
+    } else{
+      $("#present_time").hide();
+      $("#worked_till").show();
+    }
+  });
+  $('.datetimepicker4').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
+  $('.datetimepicker5').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
+  $(".datetimepicker4").on("dp.change", function (selected) {
+    $(".datetimepicker5").data("DateTimePicker").minDate(selected.date);
+  });
+  $(".datetimepicker5").on("dp.change", function (selected) {
+    $(".datetimepicker4").data("DateTimePicker").maxDate(selected.date);
+  });
+</script> 

@@ -1,1 +1,4 @@
-alert("Category Succesfully updated");
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

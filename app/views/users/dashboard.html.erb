@@ -1,35 +1,13 @@
-<div class="bodyCont">  
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
-      <div class="nameLocation">
-        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a>
-        <span class="location"><%= current_user.try(:profile).try(:country) %></span>
-      </div>
-    </div>
-    <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="/assets/images/li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="/assets/images/li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="/assets/images/li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="/assets/images/li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="/assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      
-      </div>
-    </ul>
-  </div>
+<div class="bodyCont">
+  <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
     <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.try(:profile).try(:image) %></a>
+          <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
           <div class="nameLocation">
-            <a href="#" class="font22"><%= current_user.try(:profile).try(:screen_name) %></a>
+            <a href="#" class="font22"><%= current_user.try(:screen_name) %></a>
             <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
             <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
           </div>
@@ -39,29 +17,28 @@
     </div>
     <div class="clearfix innerWIdth550 tac ">
       <a href="/posts/new" class="addPostBtn">Add posts</a>
-      <% @post.each do |post| %>
-        <% designation = post.user.employment_details.collect(&:designation) %>
-        <% designation = designation.present? ? designation.join(",") : "" %>
+
+      <% @posts.each do |post| %>        
         <a href = "/posts/<%= post.id %>">
-          <div class="clearfix whiteBox borderTop  mb10 pb0">
+          <div class="clearfix whiteBox borderTop mb10 pb0">
             <div class="clearfix formOuterPost tal padding10-0">
               <div class="col-sm-12 mb10">
                 <div class="clearfix userInfo posRel">
                   <div class="videoPost">
-                    <div class="font12 bold blackColor">Absolutely incredible ad from Beats by Dre. AMAZING.</div>
-                    <% if post.image.present? %>
-                      <a href="#" class="post"><%= image_tag post.try(:image) %></a>
+                    <div class="font12 bold blackColor"><%=post.try(:title)%></div>
+                    <% if post.upload.present? %>
+                      <a href="#" class="post"><%= image_tag post.upload.try(:image) %></a>
                     <% end %>
-                    <% if post.video.present? %>
-                      <a href="#" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
+                    <% if post.upload.present? %>
+                      <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
                     <% end %>
                     <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div>
                   </div>
                   <div class="clearfix borderBtmS"></div>
 
-                  <a href="#" class="userImg"><%= image_tag post.try(:user).try(:profile).try(:image) %></a>
-                  <a href="#" class="userNAme"> <%= current_user.try(:profile).try(:screen_name) %></a> <br>
-                  <span class="font13"><%= designation %></span>
+                  <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+                  <a href="#" class="userNAme"> <%= current_user.try(:screen_name) %></a> <br>
+                  <span class="font13"><%= designation(post) %></span>
                   <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
 
                     <a href="#"><img src="/assets/images/add.png" alt=""></a>
@@ -77,7 +54,7 @@
                     <p>
                       <%= post.try(:description).try(:html_safe) %> 
                     </p>
-                    <a href="javascript:void(0)" class="listen whiteBtn"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
+                    <a href="<%=root_path(id: post.id)%>" class="listen whiteBtn" data-remote="true"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>                    
                   </div>
                 </div>
               </div>
@@ -102,20 +79,11 @@
               </div>
               <div class="commentShow">
                 <div  class="clearfix commentSec cmntRow">
-                  <div class="bold mb10"><a href="#" class="grayColor font13 showCmnt">Show Previous Comments</a></div>
+                  <% if post.comments.count>0 %><div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div><% end %>
                   <div class="clearfix userInfo posRel">
-                    <div id="comments_<%= post.id %>">
+                    <div id="comments_<%= post.id %>" style="display:none;">
                       <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
                     </div>  
-                    <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
-                    <a href="#" class="userNAme"> Jack</a> <br>
-                    <span class="font13"> Events Coordinator, Designer</span>
-                    <div class="fr grayColor tar">2 Oct</div>
-                    <div class="clearfix mt10 font13 blackColor bold">Everybody deserves the comfort living. </div>
-                    <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a>| <a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
-                    <div class="clearfix replyRow">
-                      <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
-                    </div>
                   </div>
                 </div>
                 <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= post.id %>">
@@ -291,12 +259,19 @@
 
 <script type="text/javascript">
   $(function () {
-  $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
 
   function comment_body(id) {
     $("#comments_"+id).toggle();
-    $("#comment_box_"+id).toggle();
-    $("html, body").scrollTop($('#comment_box_'+id).offset().top);
+    $("#comment_box_"+id).toggle(200);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 200);
   }
+  function show_comments(post_id){
+    $('#comments_'+post_id).toggle(200);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 600);    
+
+  }
+
+
 </script>

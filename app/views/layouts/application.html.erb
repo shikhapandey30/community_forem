@@ -10,11 +10,16 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="bodyCont">
-      <%if user_signed_in?%>
-        <%=render 'layouts/new_header'%>
+    <%if notice%><%=render 'layouts/success', :@success=>notice%><%end%>
+    <%if alert%><%=render 'layouts/alert', :@alert=>alert%><%end%>
+    <div class="popup-success"></div>
+    <div class="bodyCont">      
+      <%if user_signed_in? && !request.url.include?("admin")%>
+        <%=render 'layouts/new_header'%>        
       <%elsif request.url.include?("sign") || request.url.include?("password")%>
         <%#=render 'layouts/header'%>      
+      <%elsif request.url.include?("admin")%>
+        <%#=render 'layouts/header'%>
       <%else%>
         <%=render 'layouts/header'%>
       <%end%>  
@@ -27,8 +32,22 @@
       <%if action_exist? %>
         <%= render "layouts/footer"%>
       <% end %>
-    </div>
+    </div>    
   </body>
 </html>
 <script src="/assets/posts.js"></script>
 
+
+<script type="text/javascript">
+  $(function() {
+      var tId;
+    $(".popupmsg").hide().slideDown();
+    clearTimeout(tId);
+    tId=setTimeout(function(){
+      $(".popupmsg").hide();        
+    }, 5000);
+        // setTimeout() function will be fired after page is loaded
+        // it will wait for 5 sec. and then will fire
+        // $("#successMessage").hide() function       
+    });
+</script>

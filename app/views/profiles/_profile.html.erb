@@ -3,9 +3,10 @@
     <div class="clearfix formOuterPost tal">
       <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
       <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
-      <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url) ? p.object.try(:image).try(:url) : 'images/default_logo.png'%>);">
+
+      <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url)%>);">
         <div class="reletive">
-          <img src="/assets/images//camera.png" alt="" id='imgprvw'>          
+          <img src="/assets/images/camera.png" alt="" id='imgprvw'>          
           <div>Change Photo</div>
         </div>
       </div>
@@ -29,6 +30,7 @@
         <label class="">CIty</label>
         <%= p.text_field :city, class: "profile inputTextW small" %>
       </div>
+      <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Street</label>
         <%= p.text_field :street, class: "profile inputTextW small" %>
@@ -41,7 +43,7 @@
       <div class="col-sm-6 pr10">
         <label>Gender</label>
         <div class="selctFormBox">      
-          <%= p.text_field :gender, value: select_type(p, "gender"), name: "gender_type", class: "profile selectInput" %>
+          <%= p.text_field "gender", value: select_type(p, "gender"), class: "profile selectInput" %>
           <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
         </div>
         <div id="gender_error"></div>
@@ -54,14 +56,14 @@
       <div class="col-sm-6 pr10">
         <label>Select Type</label>
         <div class="selctFormBox">
-          <%= p.text_field :profile_type, value: select_type(p, "profile_type"), name: "profile_type_name", class: "profile selectInput" %>
+          <%= p.text_field "profile_type", value: select_type(p, "profile_type"), class: "profile selectInput" %>
           <%= p.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
         </div>
         <div id="profile_type_error"></div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Date of Birth</label>
-          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth" %> 
+          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth dob" %> 
         <!-- <input type="text" placeholder="987654321" class=""> -->
       </div>
       <div class="clearfix"></div>
@@ -95,6 +97,35 @@
     }
     filerdr.readAsDataURL(input.files[0]);
     }
-    
   }
+
+  $("form.profile_form").validate({
+    errorPlacement: function(error, element) {
+      if(element.attr("name") == "user[profile_attributes][gender]") {
+        error.appendTo($("#gender_error"));
+      } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
+        error.appendTo($("#profile_type_error"));
+      } else {
+        error.insertAfter(element);
+      }
+    },
+    rules: {
+        "user[first_name]": { required: true },
+        "user[last_name]": { required: true },
+        "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
+        "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
+        "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
+        "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
+        "user[profile_attributes][gender]": { required: true },
+        "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 20 },
+        "user[profile_attributes][profile_type]": { required: true },
+        "user[profile_attributes][dob]": { required: true },
+        "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
+        "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
+      },
+     submitHandler: function(form) {
+       $('form.profile_form').submit();
+     }
+  });
+  $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
 </script>

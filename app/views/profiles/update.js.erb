@@ -1,6 +1,9 @@
 $(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
 // $(".flash-message").html("flash-message");
-alert("Profile update successfully.");
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);
 $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
 });

@@ -1,51 +1,13 @@
 <div class="mainCOntnt">
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg"><img src="/assets/images//profile.jpg" alt=""></a>
-      <div class="nameLocation">
-        <a href="#">John Smith</a>
-        <span class="location">United Kingdom</span>
-      </div>
-    </div>
-    <span class="categories"><img src="/assets/images//tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="/assets/images//li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="/assets/images//li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="/assets/images//li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="/assets/images//li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="/assets/images//li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="/assets/images//li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      
-      </div>
-    </ul>
-  </div>
-  <div class="rightContent">    
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
     <div class="clearfix innerWIdth550 tac ">
-      <div class="clearfix whiteBox mt30 profile">
+      <div class="clearfix whiteBox mt30 profile">        
         <%=render 'profile'%>
       </div>  
-      <div class="clearfix whiteBox">
-        <div class="clearfix formOuterPost tal">
-          <div class="col-sm-12 mb10">
-            <div class="grayHD">EDUCATION HISTORY <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Courses</a></div>
-          </div>
-          <!-- Render Education History -->
-          <div class="education_history"><%#=render 'education_history'%></div>
-        </div>
-      </div>
-
-      <div class="clearfix whiteBox">
-        <div class="clearfix formOuterPost tal">
-          <div class="col-sm-12 mb10">
-            <div class="grayHD">EMPLOYMENT DETAILS <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Employment</a></div>
-          </div>
-          <!-- Render Employment Details -->
-          <div class="employment_detail"><%#=render 'employment_detail'%></div>          
-        </div>
-      </div>
+      <div id="education_history"><%=render 'my_education_history'%></div>
+      <div id="employment_detail"><%=render 'my_employment_detail'%></div>
       <!-- Render Skills -->
       <%=render 'skill'%>
       <!-- Render Category -->

@@ -1,4 +1,30 @@
 class User < ActiveRecord::Base
+
+  # searchable do
+  #   string :first_name, :last_name, :screen_name
+  #   text :posts do
+  #     posts.map { |post| post.title }
+  #   end
+  #   text :education_histories do
+  #     education_histories.map { |education| education.course }
+  #     education_histories.map { |education| education.specialization }
+  #     education_histories.map { |education| education.institute }
+  #   end
+
+  #   text :employment_details do
+  #     employment_details.map { |employment| employment.designation }
+  #     employment_details.map { |employment| employment.organisation }
+  #     employment_details.map { |employment| employment.description }
+  #   end
+
+  #   text :skill do
+  #     skill.name
+  #   end
+
+  #   text :users_category do
+  #     users_category.name
+  #   end
+  # end
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -32,8 +58,17 @@ class User < ActiveRecord::Base
   has_many :forum_polls, dependent: :destroy
 
   has_many :followings, as: :followable, :dependent => :destroy
+  has_many :followings, :foreign_key => "follower_id", :dependent => :destroy
+  has_many :followers, :class_name => "Following", as: :followable
   has_many :authenticates
   
+
+  #friendsships
+  # has_many :friends, :through => :friendships, :conditions => "status = 'accepted'"
+  # has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
+  # has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
+  # has_many :friendships, :dependent => :destroy
+
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
  #  has_one :user_skill
@@ -65,7 +100,7 @@ class User < ActiveRecord::Base
     if self.profile.present?
       self.profile.try(:image)
     else
-      '../assets/images/profile.jpg'
+      'images/profile.jpg'
     end
   end
 end

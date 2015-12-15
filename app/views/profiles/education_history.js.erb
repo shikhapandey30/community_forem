@@ -1,2 +1,5 @@
-alert("Education History Succesfully updated");
-$("#education_history").html('$("<%= j render(:partial => 'my_education_history', :locals => {:@profile => @profile}) %>');
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+$("#education_history").html("<%= j render('my_education_history') %>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

@@ -1,2 +1,5 @@
-alert("Employment Details Succesfully updated");
-$("#employment_detail").html('$("<%= j render(:partial => 'my_employment_detail', :locals => {:@profile => @profile}) %>');
+$(".popup-success").html("<%=j (render '/layouts/success')%>");
+$("#employment_detail").html("<%= j render('my_employment_detail') %>");
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 3000);

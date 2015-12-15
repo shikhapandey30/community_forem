@@ -1,9 +1,10 @@
-<%= form_for @education_history, url: education_profiles_path, :html => { class: "education_form" }, :remote => true do |f| %>
+<% path =  @education_history.id.present? ? edit_education_profiles_path(@education_history) : education_profiles_path %>
+<%= form_for @education_history, url: path, :html => { class: "education_form" }, :remote => true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Course</label>
     <div class="selctFormBox">          
       <%= text_field_tag "course", nil, :value=>'Select', class: "selectInput",:id=>'course'%>
-      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select")  %>
+      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select" , :selected => params[:course_id])  %>
     </div>
     <div id="course_error"></div>
   </div>
@@ -42,7 +43,7 @@
   </div>
   <div class="col-sm-12 mt10">
     <%= f.submit "Save", class: 'blueBtn' %>
-    <%= link_to "Cancel", "#-",class: 'cancel grayBtn' %>
+    <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
 <%end%>
 <script>
@@ -70,8 +71,7 @@
           "education_history[end_year]": {required: true}
       },      
       submitHandler: function(form) {
-          alert("Hello");
-          form.submit();
+          $('form.education_form').submit();
       }  
   });
 </script>

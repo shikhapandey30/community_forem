@@ -64,14 +64,14 @@ class EducationHistoriesController < ApplicationController
   def destroy
     @education_history.destroy
     respond_to do |format|
-      format.html { redirect_to EducationHistorys_url, notice: 'EducationHistory was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'EducationHistory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     def set_education_history      
-      # @education_history=EducationHistory.find(params[:id])      
+      @education_history=EducationHistory.find(params[:id])      
     end
 
     def education_history_params
