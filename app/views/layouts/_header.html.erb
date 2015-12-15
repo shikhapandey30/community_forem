@@ -7,11 +7,47 @@
       <a href="/" class="catLIst"><img src="/assets/images/catDrop.png" alt=""></a>
     </div>
     <div class="formOuter">
-      <form method="get" action="">
-        <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-        <input type="submit" value="" class="searhSub">  
-      </form>
+      <%=form_tag search_path, remote: true do%>
+        <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
+        <input type="submit" value="" class="searhSub">
+      <%end%>
     </div>
     <a class="lightBlueBtn" href="/users/sign_up">Get Started</a>
   </div>
 </header>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(function() {
+var availableTags = [
+"ActionScript",
+"AppleScript",
+"Asp",
+"BASIC",
+"C",
+"C++",
+"Clojure",
+"COBOL",
+"ColdFusion",
+"Erlang",
+"Fortran",
+"Groovy",
+"Haskell",
+"Java",
+"JavaScript",
+"Lisp",
+"Perl",
+"PHP",
+"Python",
+"Ruby",
+"Scala",
+"Scheme"
+];
+$( ".searhInput" ).autocomplete({
+source: availableTags
+});
+});
+</script>
+

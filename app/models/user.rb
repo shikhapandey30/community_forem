@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
-  searchable do
-    string :first_name, :last_name, :screen_name
+  # searchable do
+    # text :first_name
+    # text :last_name
+    # text :screen_name
     # text :posts do
     #   posts.map { |post| post.title }
     # end
@@ -24,7 +26,7 @@ class User < ActiveRecord::Base
     # text :users_category do
     #   users_category.name
     # end
-  end
+  # end
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -114,4 +116,14 @@ class User < ActiveRecord::Base
       'images/profile.jpg'
     end
   end
+
+  def self.search(search)
+    if search
+      where('screen_name LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
+
 end

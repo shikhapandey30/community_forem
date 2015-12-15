@@ -4,8 +4,9 @@ class UsersController < ApplicationController
     @topic=Topic.all
     @users=User.all
 	end
+
   def search
-    @users= User.where(:id=>params[:id]).first
+    User.search(params[:name])
   end
   # def search_data
   #   if params[:type]=='User'
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
 
     if params[:data]=="hot_topic"     
       @posts = EmploymentDetail.select{|e| e.total_experience}.sort_by(&:total_experience).
-      reverse.collect(&:user).flatten.map{|u| u.posts.order("updated_at desc")}.compact.flatten
+      reverse.collect(&:user).flatten.map{|u| u.posts.order("updated_at desc")}.compact.flatten rescue []
     else
       @posts = Post.all.order("created_at DESC")
     end
@@ -52,7 +53,8 @@ class UsersController < ApplicationController
     @following = Following.where(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id]).first
     if @following.nil?
       @following = Following.create(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id])
-      Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
+      # Notification.create(:notifictaion_type=>'Follow',:user_id=>params[:follower_id],:notification_status=>'Unread')
+      Notification.create(recepient_id: params[:followable_id] , user: current_user, body: "#{current_user.screen_name } has follow to you", notificable: @following, :accept => false)
     else
       @unfollow = @following.destroy
     end
