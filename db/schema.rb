@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214133028) do
+ActiveRecord::Schema.define(version: 20151215092404) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -211,6 +211,14 @@ ActiveRecord::Schema.define(version: 20151214133028) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "friend_id",  limit: 4
+    t.boolean  "accept"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.integer  "category_id", limit: 4
     t.integer  "topic_id",    limit: 4
@@ -266,11 +274,15 @@ ActiveRecord::Schema.define(version: 20151214133028) do
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.string   "notifictaion_type",   limit: 255
-    t.integer  "user_id",             limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "notification_status", limit: 255
+    t.integer  "user_id",          limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "recepient_id",     limit: 4
+    t.integer  "notificable_id",   limit: 4
+    t.string   "notificable_type", limit: 255
+    t.datetime "readt_at"
+    t.text     "body",             limit: 65535
+    t.boolean  "accept"
   end
 
   create_table "organisations", force: :cascade do |t|

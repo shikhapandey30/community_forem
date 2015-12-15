@@ -64,10 +64,22 @@ class User < ActiveRecord::Base
   
 
   #friendsships
-  # has_many :friends, :through => :friendships, :conditions => "status = 'accepted'"
-  # has_many :requested_friends, :through => :friendships, :source => :friend, :conditions => "status = 'requested'", :order => :created_at
-  # has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
-  # has_many :friendships, :dependent => :destroy
+  has_many :friendships
+ # has_many :friends, :through => :friendships
+  # has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships, :class_name => "Friendship"
+  has_many :friends, :class_name => "Friendship"
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+
+
+#Notifications
+ has_many :sent_notifications,
+   :class_name => 'Notification',
+   :foreign_key => 'user_id'
+
+  has_many :notifications,
+   :class_name => 'Notification',
+   :foreign_key => 'recepient_id'
 
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
@@ -89,7 +101,6 @@ class User < ActiveRecord::Base
  #  #has_many :categorables_categories, through: :categorables, source: :categorable, source_type: 'Category'
  #  has_many :categories, through: :categorables
  #  has_one :subscription
- #  has_many :notifications
    def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
   end

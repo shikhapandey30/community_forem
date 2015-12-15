@@ -1,0 +1,1 @@
+$(".friendship-button-<%= params[:friend_id] %>").html('<%= link_to "Disconnect", unfriend_path(:friend_id => @friendship.friend_id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>');

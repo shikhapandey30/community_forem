@@ -7,7 +7,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    debugger
     @user = User.find(params[:id])    
     current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill

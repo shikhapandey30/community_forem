@@ -25,7 +25,13 @@
                 <a href="#" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
                 <span class="font13"><%=follow.followable.try(:title)%></span>
                 <div class="fr grayColor tar">2h<br>
-                  <a href="#">Connect</a>
+                  <span class="friendship-button-<%= follow.followable.user.id %>">
+                  <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
+                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true, :style => "display: inline-block;" %>
+                  <% else %>
+                  <%= link_to "Disconnect", unfriend_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
+                  <%end%>
+                  </span>
                 </div>
               </div>
               <div class="uniOuter">

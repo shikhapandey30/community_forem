@@ -1,0 +1,5 @@
+<%if @unfollow %>
+$(".following-button-<%= params[:follower_id] %>").html('<%= link_to "Follow", follow_path(:follower_id => params[:follower_id]), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>');
+<% else %>
+$(".following-button-<%= params[:follower_id] %>").html('<%= link_to "Unfollow", follow_path(:follower_id => params[:follower_id]), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>');
+<%end%>

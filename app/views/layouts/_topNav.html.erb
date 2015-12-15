@@ -10,13 +10,13 @@
       <li class="<%= controller?("users") && action?("followings")%>"><a href="/followings">Following (<%=current_user.followings.count rescue 0%>)</a></li>
       <li class="dropdown <%= controller?("users") && action?("dashboard")%>"><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <img src="/assets/images/arrowBlack.png" alt="" > </a>
         <ul class="dropdown-menu moreDropDown">
-          <li><a href="#"> Post Status </a> </lI>
+          <li><a href="/dashboard"> Post Status </a> </lI>
           <lI> <a href="#"> Connections </a> </lI>
           <lI> <a href="#"> Community </a> </lI>
-          <lI> <a href="#"> Groups </a> </lI>
+          <lI> <a href="/groups"> Groups </a> </lI>
           <lI> <a href="#"> Forum Poll </a> </lI>
           <lI> <a href="#"> Contest Module </a> </lI>
-          <lI> <a href="#"> Meeting Room </a> </lI>
+          <lI> <a href="/meeting_rooms"> Meeting Room </a> </lI>
         </ul>
       </li>
     </ul>
