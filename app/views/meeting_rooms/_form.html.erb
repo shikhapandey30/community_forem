@@ -1,3 +1,5 @@
+
+
 <!--  Header Start -->
 <header class="clearfix whiteHeader ">
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
@@ -5,26 +7,23 @@
   </div>
   <div class="topRightHeader">
     <div class="topRight">
-        <a href="#"><img src="/assets/images/noti.png" alt=""><span>20</span></a>
-        <a href="#"><img src="/assets/images/email.png" alt=""><span>6</span></a>
-        <a href="#"><img src="/assets/images/user.png" alt=""></a>
-        <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
-        <a href="#" class="wlt">500</a>
-        <a href="#"><img src="/assets/images/setting.png" alt=""></a>
-      </div>
+      <a href="#"><img src="/assets/images/noti.png" alt=""><span>20</span></a>
+      <a href="#"><img src="/assets/images/email.png" alt=""><span>6</span></a>
+      <a href="#"><img src="/assets/images/user.png" alt=""></a>
+      <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
+      <a href="#" class="wlt">500</a>
+      <a href="#"><img src="/assets/images/setting.png" alt=""></a>
+    </div>
     <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
       <div class="catLIstLink">
         <a href="#" class="catLIst"><img src="/assets/images/catDrop.png" alt=""></a>
       </div>
       <div class="formOuter">
-      <form method="post" action="">
-        <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-        <input type="submit" value="" class="searhSub">  
-      </form>
+        <form method="post" action="">
+          <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
+          <input type="submit" value="" class="searhSub">  
+        </form>
       </div>
-      
-      
-      
     </div>
   </div>
 </header>
@@ -49,70 +48,63 @@
       <a class="viewAll" href="#"> View All</a>
       <div class="footerLink">
         <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      </div>
+        <a href="#">Privacy Policy</a>      
+      </div>
     </ul>
   </div>
   <div class="rightContent">
-  <div class="overLAy"></div>
-  <div class="topNAv">
-  <span class="blueColor leftMenuTab"><img src="/assets/images/tab.png" alt="" class=""> Categories</span>
-  <div class="topRightNav">
-  <span class="blueColor rightMenu"> Menu  <img src="/assets/images/down.png" alt="" class=""></span>
-  <ul>                                
-      <li class="activeMenu"><a href="#">News Feed</a></li>
-      <li><a href="#">Hot Topics</a></li>
-      <li><a href="#">Followers (25)</a></li>
-      <li><a href="#">Following (100)</a></li>
-      <li><a href="#">More <img src="/assets/images/arrowBlack.png" alt=""> </a></li>   
-  </ul>
-  </div>  
-  </div>
-  
-  <div class="blueBkg">
-      <div class="innerWIdth550">
-      <span><img src="/assets/images/meeting.png" alt=""></span>
-       Meeting Room
-       <%= link_to "Back", :back, class: "back" %>
-     
-       </div>
-  </div>
-  <div class="clearfix innerWIdth550 tac ">
-
-   <%= form_for(@meeting_room) do |f| %>
-  <% if @meeting_room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@meeting_room.errors.count, "error") %> prohibited this meeting room from being saved:</h2>
-
-      <ul>
-      <% @meeting_room.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="whiteBox mt90">
-  
-    <div class="userTHumb userTHumbRight">
-      <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
-      <div class="nameLocation">
-        <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a><br>
-        <span class="location"><%= current_user.try(:profile).try(:location) %></span>
+    <div class="overLAy"></div>
+    <div class="topNAv">
+      <span class="blueColor leftMenuTab"><img src="/assets/images/tab.png" alt="" class=""> Categories</span>
+      <div class="topRightNav">
+        <span class="blueColor rightMenu"> Menu  <img src="/assets/images/down.png" alt="" class=""></span>
+        <ul>
+          <li class="activeMenu"><a href="#">News Feed</a></li>
+          <li><a href="#">Hot Topics</a></li>
+          <li><a href="#">Followers (25)</a></li>
+          <li><a href="#">Following (100)</a></li>
+          <li><a href="#">More <img src="/assets/images/arrowBlack.png" alt=""> </a></li>
+        </ul>
       </div>
     </div>
-    
-    
-  
-  
-  <div class="tabOuter">
-
-  
-
-   <div id="tab-1" class="tab-content current">
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/meeting.png" alt=""></span>
+        Meeting Room
+        <%= link_to "Back", :back, class: "back" %>
+      </div>
+    </div>
+    <div class="clearfix innerWIdth550 tac ">
+      <%= form_for(@meeting_room) do |f| %>
+      <% if @meeting_room.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@meeting_room.errors.count, "error") %> prohibited this meeting room from being saved:</h2>
+        <ul>
+          <% @meeting_room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <div class="whiteBox mt90">
+        <div class="userTHumb userTHumbRight">
+          <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
+          <div class="nameLocation">
+            <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a><br>
+            <span class="location"><%= current_user.try(:profile).try(:location) %></span>
+          </div>
+        </div>
+        <%=f.fields_for :upload do |u|%>  
+        <div class="tabOuter">
+          <div id="tab-1" class="tab-content current">
             <div class="uploadBoxOuter font14">
-              <%= f.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+              <%= u.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
               <a href="#"  onclick="$('.post_image').click();">
+              <% if @meeting_room.try(:upload).try(:image).present? %>
+              <%= image_tag @meeting_room.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+              <% else %> 
               <img src="../assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+              <% end %>
               </a>
               <div class="grayBig mt20 bold"> 
                 Add an image to bring your post to life
@@ -126,12 +118,12 @@
               <div class="grayBig bold ">
                 Add Your Website Links
               </div>
-              <input type="text" placeholder="http://" class="inputTextW">
+              <%=u.url_field :site_link, class: 'inputTextW', placeholder: "http://"%>
             </div>
           </div>
           <div id="tab-3" class="tab-content">
             <div class="uploadBoxOuter font14">
-              <%= f.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showfilepreview(this)" %>
+              <%= u.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showfilepreview(this)" %>
               <a href="#"  onclick="$('.post_file').click();">
               <img src="../assets/images/link.png" alt="" id='fleprvw'>  <%=link_to 'X','#',class: 'remove_file',:style=>'display:none;'%>
               </a>
@@ -146,88 +138,68 @@
           </div>
           <div id="tab-4" class="tab-content">
             <div class="uploadBoxOuter font14">
-              <div class='iframe'>
-                <iframe width="400" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe> 
-              </div>
-              <%= f.file_field :video, class: "post post_video", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showvideopreview(this)" %>
-              <a href="#"  onclick="$('.post_video').click();">
-              <img src="../assets/images/videoIcon.png" alt="" id='vdoprvw'>  <%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
-              </a>
-              <div class="mt10">
-                Paste a link from YourTube, Vimeo, Vine etc.
-              </div>
+              <img src="/assets/images/videoIcon.png" alt="">
+              <div class="grayBig bold ">Add Your Video</div>
+              <%= u.text_field :video, placeholder: "http://", class: "inputTextW" %><br>
+              <div class="mt10">Paste a link from YourTube, Vimeo, Vine etc.</div>
             </div>
           </div>
-  
-  <ul class="tabs uploadIcon">
-    <li class="tab-link current" data-tab="tab-1"><img src="/assets/images/c1.png" alt=""></li>
-    <li class="tab-link" data-tab="tab-2"><img src="/assets/images/c2.png" alt=""></li>
-    <li class="tab-link" data-tab="tab-3"><img src="/assets/images/c3.png" alt=""></li>
-    <li class="tab-link" data-tab="tab-4"><img src="/assets/images/c4.png" alt=""></li>
-  </ul>
-
-</div><!-- container -->
-  
-    
-  </div>
-  
-  <div class="clearfix whiteBox">
-    <div class="clearfix formOuterPost tal">
-      <div class="col-sm-6 pr10">
-        <label>Select Category</label>
-        <div class="selctFormBox">
-          <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
+          <ul class="tabs uploadIcon">
+            <li class="tab-link current" data-tab="tab-1">
+              <img src="/assets/images/c1.png" alt="">
+            </li>
+            <li class="tab-link" data-tab="tab-2">
+              <img src="/assets/images/c2.png" alt="">
+            </li>
+            <li class="tab-link" data-tab="tab-3">
+              <img src="/assets/images/c3.png" alt="">
+            </li>
+            <li class="tab-link" data-tab="tab-4">
+              <img src="/assets/images/c4.png" alt="">
+            </li>
+          </ul>
+        </div>
+        <%end%>
+      </div>
+      <div class="clearfix whiteBox">
+        <div class="clearfix formOuterPost tal">
+          <div class="col-sm-6 pr10">
+            <label>Select Category</label>
+            <div class="selctFormBox">
+              <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
               <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category'%>
               <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
-</div>
+            </div>
+          </div>
+          <div class="col-sm-6 pl10">
+            <label>Type Topic</label>
+            <%= f.text_field :topic, placeholder: "Topics", class: "inputTextW small" %>
+          </div>
+          <div class="col-sm-12">
+            <label class="font20">Write Your Headline</label>
+            <%= f.text_field :headline, class: "inputTextW small" %>
+          </div>
+          <div class="col-sm-12">
+            <label class=""> Assign Name </label>
+            <%= f.text_field :name, class: "inputTextW small" %>
+          </div>
+          <div class="col-sm-12 ">
+            <label class="">Slogan of Meeting </label>
+            <%= f.text_field :slogan, class: "inputTextW small" %>
+          </div>
+          <div class="col-sm-12 ">
+            <label class="">Invite Members </label>
+            <input type="text" placeholder="" class="inputTextW small">
+          </div>
+          <div class="col-sm-12 mt10">
+            <%= f.submit "Save Meeting Room", class: "blueBtn" %>
+            <a href="#" class="grayBtn">Cancel</a> 
+          </div>
+        </div>
       </div>
-      <div class="col-sm-6 pl10">
-        <label>Type Topic</label>
-        <%= f.text_field :topic, placeholder: "Topics", class: "inputTextW small" %>
-        
-      </div>  
-      
-      <div class="col-sm-12">
-        <label class="font20">Write Your Headline</label>
-         <%= f.text_field :headline, class: "inputTextW small" %>
-       
-      </div>
-      
-      
-      <div class="col-sm-12">
-        <label class=""> Assign Name </label>
-        <%= f.text_field :name, class: "inputTextW small" %>
-      </div>
-      
-      <div class="col-sm-12 ">
-        <label class="">Slogan of Meeting </label>
-         <%= f.text_field :slogan, class: "inputTextW small" %>
-     
-      </div>
-      
-      
-      <div class="col-sm-12 ">
-        <label class="">Invite Members </label>
-        <input type="text" placeholder="" class="inputTextW small">
-      </div>
-      <div class="col-sm-12 mt10">
-        <%= f.submit "Save Meeting Room", class: "blueBtn" %>
-        
-         <a href="#" class="grayBtn">Cancel</a> 
-      </div>  
+      <br>
+      <% end %>
     </div>
-  </div>  
-  <br>
-  <% end %>
-</div>
-</div>
-
-
-
-
-
-
-
-
+  </div>
 </div>
 

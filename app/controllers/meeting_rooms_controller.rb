@@ -15,10 +15,12 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms/new
   def new
     @meeting_room = MeetingRoom.new
+    @meeting_room.build_upload
   end
 
   # GET /meeting_rooms/1/edit
   def edit
+    @meeting_room.build_upload
   end
 
   # POST /meeting_rooms
@@ -69,6 +71,6 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-      params.require(:meeting_room).permit(:category_id, :topic, :headline, :name, :slogan, :user_id)
+      params.require(:meeting_room).permit(:category_id, :topic, :headline, :name, :slogan, :user_id,upload_attributes: [:id, :image, :site_link, :file, :video])
     end
 end
