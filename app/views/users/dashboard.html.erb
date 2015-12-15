@@ -30,7 +30,7 @@
                       <a href="#" class="post"><%= image_tag post.upload.try(:image) %></a>
                     <% end %>
                     <% if post.upload.present? %>
-                      <a href="#" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
+                      <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
                     <% end %>
                     <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div>
                   </div>
