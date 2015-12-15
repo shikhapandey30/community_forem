@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def select_type(f, attribute)
     if attribute.eql?("category_id")
-      Category.find(f.object.send(attribute)).name 
+      Category.find(f.object.send(attribute)).name if f.object.id
     else
       f.object.send(attribute) ? f.object.send(attribute) : "Select"
     end    
