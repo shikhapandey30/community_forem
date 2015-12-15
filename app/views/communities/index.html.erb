@@ -1,37 +1,144 @@
-<p id="notice"><%= notice %></p>
+<!-- Header End --> 
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+  <div class="overLAy"></div>  
+  <div class="postCover posRel" style="background-image: url('<%=@community.try(:image).try(:url)%>')">
+        <div class="postCoverBkg ">
+        <div class="clearfix innerWIdth550 posRel">
+                <div class="pTitltOuter">
+                      <div class="postTitle"><%=@community.try(:title)%></div>
+                      <%= link_to "Back", :back, :class=>"backBtn"%>
+                  </div>
+             </div> 
+            </div> 
+    </div>  
+    
+  <div class="clearfix innerWIdth550 tac ">    
+    <div class="clearfix whiteBox borderTop mt0 mb10 pb0">
+    <div class="clearfix formOuterPost tal padding10-0">        
+          <div class="col-sm-12 mb10">
+            <div class="clearfix userInfo posRel">
+            <a href="#" class="userImg"><img src="/assets/images/profileImg.jpg" alt=""></a>
+               <a href="#" class="userNAme"> Sarah</a> <br>
+        <span class="font13">Events Coordinator, Designer</span>
+  
+          <div class="fr grayColor tar">2h<br>
 
-<h1>Listing Communities</h1>
+                      <a href="#"><img src="/assets/images/add.png" alt=""></a>
+                      <a href="#">Follow</a>
+                  </div>
+            </div>
+            
+         
+          
+            
+            <div class="uniOuter">
+                            
+                
+                    <div class="mt20 blackColor ">
+                    <p>Following the Orange Crush that overwhelmed Canada during the 2011 federal election, I and the rest of the NDP camp thought we really stood a shot this time around. Harper had finally alienated enough voters so that Canada knew it was time for him to go – and even though Tom Mulcair may not have quite the charisma and flair for leadership that Jack Layton had, surely the party stood to build on its recent and overwhelming success?</p>
+                    <p>
+I guess not. Right from the beginning of Monday’s election, polls showed that people trusted Justin Trudeau to take the reins as leader of the country. Why him? Sure he is an attractive candidate, but his party is almost painfully centric. I’d fooled myself into thinking Canadians were ready for real change, the kind that could only come much further left of the centre. I, and all of us decked out in orange this Monday, were a different kind of crushed this time around.</p>
+                    </div>
+                    </div>    
+       </div>
+             <div class="clearfix"></div>
+      <div class="commentSec">
+              <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; 587 Comments &nbsp; &nbsp; 468 shares</span>
+               
+               <div class="cmntSec">
+                   <a href="#"><img src="/assets/images/up.png" alt=""></a>
+                    <a href="#"><img src="/assets/images/down1.png" alt=""></a>
+                    <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+                    <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
+                     <input type="button" value="Add Your Comment" class="addCmnt inputTextW small">
+                   
+               </div>     
+               
+               
+               
+            
+            </div>    
+ 
+                <div class="commentShow">
+                 <div  class="clearfix commentSec cmntRow">
+               <div class="clearfix userInfo posRel">
+            <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
+               <a href="#" class="userNAme"> Jack</a> <br>
+        <span class="font13"> Events Coordinator, Designer</span>
+  
+          <div class="fr grayColor tar">2 Oct</div>
+                
+        <div class="clearfix mt15 font13 blackColor">I agree. I was not impressed with the strategic voting the country implemented. You can't ask people not to vote for their beliefs just to oust someone out.</div>
+                <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a>| <a href="#" class="blueColor" ><a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
+                
+                <div class="clearfix replyRow">
+                  <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
+                </div>
+            </div>
+            
+            </div>
+            
+            
+            <div  class="clearfix commentSec cmntRow comntONcmnt">
+               <div class="clearfix userInfo posRel">
+            <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
+               <a href="#" class="userNAme"> John Smith </a> <br>
+        <span class="font13"> Events Coordinator, Designer</span>
+  
+          <div class="fr grayColor tar">2 Oct</div>
+                
+        <div class="clearfix mt15 font13 blackColor">Exactly! It's a sad and ineffective way to do things.</div>
+                <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
+                
+            </div>
+            
+            <div class="clearfix userInfo posRel mt15">
+            <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
+               <a href="#" class="userNAme"> John Smith </a> <br>
+        <span class="font13"> Events Coordinator, Designer</span>
+  
+          <div class="fr grayColor tar">2 Oct</div>
+                
+        <div class="clearfix mt15 font13 blackColor">Exactly! It's a sad and ineffective way to do things.</div>
+                <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
+                
+            </div>
+            </div>
+            
+            <div  class="clearfix commentSec cmntRow">
+               <div class="clearfix userInfo posRel">
+            <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
+               <a href="#" class="userNAme"> Jack</a> <br>
+        <span class="font13"> Events Coordinator, Designer</span>
+  
+          <div class="fr grayColor tar">2 Oct</div>
+                
+        <div class="clearfix mt15 font13 blackColor">Good to know that youngs are coming in to stage to get rid of those so
+called "old rifles"!</div>
+                <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a>|<a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
+                
+                <div class="clearfix replyRow">
+                  <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
+                </div>
+            </div>
+            </div>
+            
+            <div  class="clearfix commentSec cmntRow borderNOne">
+               <div class="clearfix userInfo posRel">
+            <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
+              <div class="addcomtntTA">
+              <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
+        
+         <input value="Save" class="blueBtn" type="submit">
+        <a href="javascript:void(0)" class="grayBtn Cancel">Cancel</a>  
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Topic</th>
-      <th>Headline</th>
-      <th>Slogan</th>
-      <th>Community logo</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @communities.each do |community| %>
-      <tr>
-        <td><%= community.category_id %></td>
-        <td><%= community.topic %></td>
-        <td><%= community.headline %></td>
-        <td><%= community.slogan %></td>
-        <td><%= community.image %></td>
-        <td><%= community.description %></td>
-        <td><%= link_to 'Show', community %></td>
-        <td><%= link_to 'Edit', edit_community_path(community) %></td>
-        <td><%= link_to 'Destroy', community, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Community', new_community_path %>
+                </div>
+              </div>
+            </div>
+            </div>
+            
+    </div>
+  </div>
+    
