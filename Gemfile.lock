@@ -301,6 +301,7 @@ GEM
       nokogiri
       rails (>= 3)
       sunspot (= 2.2.2)
+    sunspot_solr (2.2.2)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -371,6 +372,7 @@ DEPENDENCIES
   social-share-button
   spring
   sunspot_rails
+  sunspot_solr
   therubyracer
   thin
   turbolinks
