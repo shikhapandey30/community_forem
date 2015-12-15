@@ -33,7 +33,7 @@
             <div class="uniOuter">
               <div class="mt20 blackColor ">
                 <p><%= @post.try(:description).try(:html_safe) %></p>
-                <a href="javascript:void(0)" class="listen whiteBtn" onclick='responsiveVoice.speak("<%= @post.description %>");'><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
+                <a href="javascript:void(0)" class="listen whiteBtn" onclick='responsiveVoice.speak("<%= post.description %>");'><img src="/assets/images/audio38.png" alt=""> Listen this post </a>
               </div>
             </div>
           </div>
