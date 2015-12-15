@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   def index    
   end
 
-  def edit    
+  def edit
     @user = User.find(params[:id])    
     current_user.profile.present? ? current_user.profile : current_user.build_profile
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
@@ -98,7 +98,6 @@ class ProfilesController < ApplicationController
   # POST /Profiles
   # POST /Profiles.json
   def create
-    debugger
     @profile = current_user.build_profile(profile_params)
     @success = "Profile create Succesfully." if @profile.save
     # flash[:notice] = "Profile created successfully." if @profile.save
