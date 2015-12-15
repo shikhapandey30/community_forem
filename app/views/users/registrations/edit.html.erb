@@ -1,4 +1,66 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
+    <div class="clearfix innerWIdth550 tac ">
+      <div class="whiteBox mt90">
+        <div class="userTHumb userTHumbRight">
+          <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
+          <div class="nameLocation">
+            <a href="#"><%= current_user.try(:first_name) %> <%= current_user.try(:last_name) %></a><br>
+            <span class="location"><%= current_user.try(:profile).try(:country) %></span>
+          </div>
+        </div>
+        
+        <!-- container -->
+        <div class="clearfix formOuterPost mt20 tal">
+          <div class="col-sm-12 ">
+            <label class="font16">Screen Name: &nbsp; <span class="disName"><%= current_user.try(:screen_name) %></span></label>
+          </div>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <%=f.fields_for :profile do |p|%>
+
+          <div class="col-sm-12  mt10">
+            <label>Password  <a href="javascript:void(0)" class="blueColor font12 enable"> Change Password</a></label>
+            
+            <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small", disabled: "disabled" %>
+
+            <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small", disabled:"disabled" %>
+
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small", disabled: "disabled" %>
+          </div>
+          <div class="col-sm-12 mt5">
+            <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change / Add</a></label>
+            <%= f.email_field :email, autofocus: true, value: "jognsmith2008@gmail.com", class: "inputTextW small", disabled: "disabled" %>
+          </div>
+          <div class="col-sm-12 mt5">
+            <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Add/remove</a> </label>
+            <%= p.text_field :phone_no, value:"999999999", class: "inputTextW small", disabled: "disabled" %>
+          </div>
+          <div class="col-sm-12">
+            <%= f.submit "Update", value: "Save", class: "blueBtn" %>
+            <a href="#" class="grayBtn">Cancel</a>
+          </div>
+
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+  });
+</script>
+
+
+
+
+<!-- <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -37,3 +99,4 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+ -->
