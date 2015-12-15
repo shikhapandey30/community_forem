@@ -29,7 +29,7 @@ RailsAdmin.config do |config|
   ## == Cancan ==
   # config.authorize_with :cancan
   #Excluded Models
-  config.excluded_models = ["Attachment","Authenticate","Categorable","Conversation","Following","Like","Message","Notification","Organisation","Post","Skill","Vote"]
+  config.excluded_models = ["Attachment","Authenticate","Categorable","Conversation","Following","Like","Message","Notification","Organisation","Skill","Vote"]
   ## == PaperTrail ==
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
@@ -49,6 +49,88 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+  
+  config.model User do
+    list do
+      field :id
+      field :email
+      field :screen_name
+      field :first_name
+      field :last_name
+    end
+    edit do
+      field :email
+      field :password
+      field :password_confirmation
+      field :screen_name
+      field :first_name
+      field :last_name
+    end
+  end
+
+  config.model Category do
+    list do
+      field :id
+      field :name
+      field :user
+      field :image
+    end
+    edit do
+      field :name
+      field :user
+      field :image
+    end
+  end
+
+  config.model Specialization do
+    list do
+      field :id
+      field :name
+      field :education_histories
+    end
+    edit do
+      field :name
+      field :education_histories
+    end
+  end
+
+  config.model Profile do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+    edit do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model Post do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+    edit do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
   end
   
   # config.model AdminUser do
