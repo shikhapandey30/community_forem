@@ -8,9 +8,9 @@
          <% messages = current_user.notifications.messages.unread %>
        <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
          <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span>
-         
-         <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
+         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
+         <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>
+         <a class="blackColor font13 bold fr" href="#">View All</a> </div>
       
       <div class="notiScroll scrollbars"> 
         <% notifications.each do |notification|%>
@@ -23,8 +23,7 @@
               </div>
             </div>
           </li>
-        <% end %>
-        <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff" if notifications.present? %>       
+        <% end %>       
         </div>
         
       </ul>
@@ -36,7 +35,7 @@
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
          <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-         <!--  <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
+          <a class="blackColor font13 bold fr" href="#">View All</a> </div>
       
       <div class="notiScroll scrollbars">
         <% messages.each do |notification|%>
@@ -50,7 +49,6 @@
           </div>
         </li>
         <% end %>
-        <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff" if notifications.present? %>    
         </div>
         
       </ul>
@@ -76,7 +74,7 @@
         </ul>
       </div>
       <div class="formOuter">
-        <%=form_tag search_path, remote: true do%>
+        <%=form_tag search_path do%>
           <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
           <input type="submit" value="" class="searhSub">
         <%end%>

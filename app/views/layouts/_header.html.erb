@@ -7,7 +7,7 @@
       <a href="/" class="catLIst"><img src="/assets/images/catDrop.png" alt=""></a>
     </div>
     <div class="formOuter">
-      <%=form_tag search_path, remote: true do%>
+      <%=form_tag search_path do%>
         <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
         <input type="submit" value="" class="searhSub">
       <%end%>
