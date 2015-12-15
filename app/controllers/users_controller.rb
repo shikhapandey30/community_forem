@@ -38,9 +38,10 @@ class UsersController < ApplicationController
     # pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
     # self_post=current_user.posts
     # @posts=pub_post+self_post
-    
-    if params[:data]=="hot_topic"
-      @posts = Post.all.order("created_at DESC") 
+
+    if params[:data]=="hot_topic"     
+      @posts = EmploymentDetail.select{|e| e.total_experience}.sort_by(&:total_experience).
+      reverse.collect(&:user).flatten.map{|u| u.posts.order("updated_at desc")}.compact.flatten
     else
       @posts = Post.all.order("created_at DESC")
     end
