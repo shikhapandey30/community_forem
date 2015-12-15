@@ -1,49 +1,66 @@
-<!-- Start Dashboard Center -->
- <div class="dashboardCen"> 
-<div class="midCon textureBg">
-<div class="dashboardElement">
-  <div>
-    <div class="subHd"><%= t('friendships.index.my_friends')%></div>
-      <div class="shadeBox">
-        <!-- <div class="hitGoing">
-            <%= form_tag "/user/import",:multipart=> true, :method => 'post' do %>
-            <span><%= t('friendships.index.invite_friends')%></span>
-            Upload Xlsx:<%= file_field_tag :file, required: true %></br>
-           <span>Enter Message</span></br>
-            <%= text_area 'message' ,nil, :class =>"sendBox_invite" %></br></br>
-            <%= submit_tag "Send", :class=>"invite" %>
-            </br>
-            <%end %>
-        </div> -->
-        <div class="friendList">
-          <ul>
-            <%  @friends.each do |friend|%>
-              <li class="frined-box-<%= friend.id %>">
-                  <div class="lft"><a href="profile/<%= friend.id%>"><%= image_tag(friend.img, :style=>"width: 50px") %></a></div>
-                  <div class="rgt">
-                      <div class="top">
-                          <div class="hd"><a href="/profile/<%= friend.id %>"><%= friend.name %></a> | <%= friend.address %>, <%= friend.country %> </div>
-                          <div class="info"><span><img src="/assets/images/running_icon.png" alt=""> Running</span> | <%= friend.total_distance%> km | <%= friend.time_taken%></div>
-                          <div class="cheerNow">
-                              <%= link_to "Remove", unfriend_path(:friend_id => friend.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
-                          </div>
-                      </div>
-                  </div>    
-                  <div class="clr"></div>
-              </li>
-              <%end%>
-               <div class="digg_pagination" >                         
-              <%= will_paginate @friends, :container => false %>
-           </div> 
-            <%= will_paginate @friends %>
-          </ul>
+<div class="bodyCont">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
+    <div class="blueBkg myWall">
+      <div class="clearfix innerWIdth550">
+        <div class="userTHumb">
+          <a href="#" class="profileImg"><img src="/assets/images/group.png" alt=""></a>
+          <div class="nameLocation">
+            <a href="#" class="font22">Your Connections</a>                        
+          </div>
         </div>
-        </div>
+        <div class="back"><%=@friends.try(:count) %> Connections</div>
+      </div>
     </div>
- </div> 
- </div>
+    <div class="clearfix innerWIdth550 tac ">
+      <%@friends.each do |firend|%>
+        <div class="clearfix whiteBox borderTop  mb10 pb0">
+          <div class="clearfix formOuterPost tal padding10-0 ">
+            
+            <div class="col-sm-12 mb10">
+              <div class="clearfix userInfo posRel">
+                <a href="#" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
+                <a href="#" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
+                <span class="font13"><%=designations(firend)%></span>
+                <div class="fr grayColor tar"><%= time_ago_in_words(firend.created_at) %> ago<br>
+                 <%= link_to "Disconnect", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
+                </div>
+              </div>
+              <div class="uniOuter">
+                <div class="mt0 blackColor bold ">
+                  <p>Game of Thrones: <a href="#" class="blueColor">over it</a></p>
+                </div>
+              </div>
+            </div>          
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      <%end if @friends%>  
+      <div class="clearfix whiteBox borderTop  mb10 pb0">
+        <div class="clearfix conversationTop borderBtm">
+          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
+          <div class="fr">
+            <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
+          </div>
+        </div>
+        <div class="connectionOuter ">
+          <div class="col-sm-6 borderRight">
+            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> 
+            <span>H. Peter Curran</span></a>
+            <div class="dsignation">Appraiser, Art, Antiques,
+              Deconstruction      
+            </div>
+            <a href="#" class="whiteBtn"> Follow </a>
+          </div>
+          <div class="col-sm-6">
+            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> 
+            <span>Trip Spencer</span></a>
+            <div class="dsignation">Director</div>
+            <a href="#" class="whiteBtn"> Follow </a>
+          </div>
+        </div>
+      </div>      
+    </div>
   </div>
-<!-- End Dashboard Center -->
-<style type="text/css">
-  .pagination{display: none;}
-</style>
+</div>
