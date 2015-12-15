@@ -1,2 +1,2 @@
-$(".friendship-button-<%= params[:friend_id] %>").html('<%= link_to "Connect", friendships_path(:friend_id => params[:friend_id]), :method => :post , :class=>"transition addFriend", :remote=>true, :style => "display: inline-block;" %>');
+$(".friendship-button-<%= params[:friend_id] %>").html('<%= link_to "Add Friend", friendships_path(:friend_id => params[:friend_id]), :method => :post , :class=>"transition addFriend", :remote=>true, :style => "display: inline-block;" %>');
 $(".frined-box-<%= params[:friend_id] %>").css('display', 'none');

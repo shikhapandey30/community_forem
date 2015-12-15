@@ -20,16 +20,16 @@
           <div class="clearfix formOuterPost tal padding10-0 ">
             <div class="col-sm-12 mb10">
               <div class="clearfix userInfo posRel">
-                <a href="#" class="userImg"><%#=follow.followable.try(:uploadable).try(:image)%></a>
+                <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
 
-                <a href="#" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
+                <a href="<%= profile_path(follow.followable.try(:user))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
                 <span class="font13"><%=follow.followable.try(:title)%></span>
                 <div class="fr grayColor tar">2h<br>
                   <span class="friendship-button-<%= follow.followable.user.id %>">
                   <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
                   <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true, :style => "display: inline-block;" %>
-                  <% else %>
-                  <%= link_to "Disconnect", unfriend_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
+                  <%# else %>
+                  <%#= link_to "Disconnect", unfriend_path(:friend_id => follow.followable.user.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
                   <%end%>
                   </span>
                 </div>
