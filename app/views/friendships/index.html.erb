@@ -1,0 +1,49 @@
+<!-- Start Dashboard Center -->
+ <div class="dashboardCen"> 
+<div class="midCon textureBg">
+<div class="dashboardElement">
+  <div>
+    <div class="subHd"><%= t('friendships.index.my_friends')%></div>
+      <div class="shadeBox">
+        <!-- <div class="hitGoing">
+            <%= form_tag "/user/import",:multipart=> true, :method => 'post' do %>
+            <span><%= t('friendships.index.invite_friends')%></span>
+            Upload Xlsx:<%= file_field_tag :file, required: true %></br>
+           <span>Enter Message</span></br>
+            <%= text_area 'message' ,nil, :class =>"sendBox_invite" %></br></br>
+            <%= submit_tag "Send", :class=>"invite" %>
+            </br>
+            <%end %>
+        </div> -->
+        <div class="friendList">
+          <ul>
+            <%  @friends.each do |friend|%>
+              <li class="frined-box-<%= friend.id %>">
+                  <div class="lft"><a href="profile/<%= friend.id%>"><%= image_tag(friend.img, :style=>"width: 50px") %></a></div>
+                  <div class="rgt">
+                      <div class="top">
+                          <div class="hd"><a href="/profile/<%= friend.id %>"><%= friend.name %></a> | <%= friend.address %>, <%= friend.country %> </div>
+                          <div class="info"><span><img src="/assets/images/running_icon.png" alt=""> Running</span> | <%= friend.total_distance%> km | <%= friend.time_taken%></div>
+                          <div class="cheerNow">
+                              <%= link_to "Remove", unfriend_path(:friend_id => friend.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
+                          </div>
+                      </div>
+                  </div>    
+                  <div class="clr"></div>
+              </li>
+              <%end%>
+               <div class="digg_pagination" >                         
+              <%= will_paginate @friends, :container => false %>
+           </div> 
+            <%= will_paginate @friends %>
+          </ul>
+        </div>
+        </div>
+    </div>
+ </div> 
+ </div>
+  </div>
+<!-- End Dashboard Center -->
+<style type="text/css">
+  .pagination{display: none;}
+</style>
