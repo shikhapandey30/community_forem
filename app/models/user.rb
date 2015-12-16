@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   has_many :communities, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :forum_polls, dependent: :destroy
+  has_many :contests, dependent: :destroy
 
   has_many :followings, as: :followable, :dependent => :destroy
   has_many :followings, :foreign_key => "follower_id", :dependent => :destroy

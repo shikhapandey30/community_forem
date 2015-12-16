@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth550 tac ">
-      <%= form_for(@contest) do |f| %>
+      <%= form_for(@contest, html: {class: "profile_form"}) do |f| %>
       <% if @contest.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
@@ -29,64 +29,7 @@
             <span class="location"><%= current_user.try(:profile).try(:country) %></span>
           </div>
         </div>
-        <div class="tabOuter">
-          <div id="tab-1" class="tab-content current">
-            <div class="uploadBoxOuter font14">
-              <%= f.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
-              <a href="#"  onclick="$('.post_image').click();">
-              <img src="../assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
-              </a>
-              <div class="grayBig mt20 bold"> 
-                Add an image to bring your post to life
-              </div>
-              Images that are at least 700 x 400 pixels look best.
-            </div>
-          </div>
-          <div id="tab-2" class="tab-content">
-            <div class="uploadBoxOuter font14">
-              <img src="../assets/images/website.png" alt="">
-              <div class="grayBig bold ">
-                Add Your Website Links
-              </div>
-              <input type="text" placeholder="http://" class="inputTextW">
-            </div>
-          </div>
-          <div id="tab-3" class="tab-content">
-            <div class="uploadBoxOuter font14">
-              <%= f.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showfilepreview(this)" %>
-              <a href="#"  onclick="$('.post_file').click();">
-              <img src="../assets/images/link.png" alt="" id='fleprvw'>  <%=link_to 'X','#',class: 'remove_file',:style=>'display:none;'%>
-              </a>
-              <div class='file_name'>
-              </div>
-              <div class="grayBig mt0 bold">
-                Upload your Document
-              </div>
-              Your file needs to be a docx, pdf, ppt, xls, jpg, gif, png<br>
-              and no larger than 5MB.
-            </div>
-          </div>
-          <div id="tab-4" class="tab-content">
-            <div class="uploadBoxOuter font14">
-              <div class='iframe'>
-                <iframe width="400" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe> 
-              </div>
-              <%= f.file_field :video, class: "post post_video", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showvideopreview(this)" %>
-              <a href="#"  onclick="$('.post_video').click();">
-              <img src="../assets/images/videoIcon.png" alt="" id='vdoprvw'>  <%=link_to 'X','#',class: 'remove_video',:style=>'display:none;'%>
-              </a>
-              <div class="mt10">
-                Paste a link from YourTube, Vimeo, Vine etc.
-              </div>
-            </div>
-          </div>
-          <ul class="tabs uploadIcon">
-            <li class="tab-link current" data-tab="tab-1"><img src="/assets/images/c1.png" alt=""></li>
-            <li class="tab-link" data-tab="tab-2"><img src="/assets/images/c2.png" alt=""></li>
-            <li class="tab-link" data-tab="tab-3"><img src="/assets/images/c3.png" alt=""></li>
-            <li class="tab-link" data-tab="tab-4"><img src="/assets/images/c4.png" alt=""></li>
-          </ul>
-        </div>
+        <%=render 'layouts/shared/upload', f: f, obj: @contest%>
         <!-- container -->
       </div>
       <div class="clearfix whiteBox">
@@ -114,7 +57,7 @@
           <div class="col-sm-12">
             <label class="font16">Select Visibility</label><br>
             <div class="mt5">
-              <label class="radioV">  <%= f.radio_button :visibility,true,:checked => true %> Private  </label> &nbsp; &nbsp; <label class="radioV">  <%= f.radio_button :visibility, false %> Public  </label>
+              <label class="radioV">  <%= f.radio_button :visibility,false %> Private  </label> &nbsp; &nbsp; <label class="radioV">  <%= f.radio_button :visibility, true, :checked => true %> Public  </label>
             </div>
           </div>
           <div class="col-sm-12 mt10">
@@ -128,6 +71,7 @@
           <div class="col-sm-6  pl10 dateOuter">
             <label>To</label><%= f.text_field :end_date,placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
           </div>
+          <div class="clearfix"></div>
           <div class="col-sm-12 mt10">
             <%= f.submit "Create Contest", class: "blueBtn" %>
             <a href="#" class="grayBtn">Cancel</a> 

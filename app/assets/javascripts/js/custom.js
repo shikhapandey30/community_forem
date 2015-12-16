@@ -83,7 +83,12 @@ $(document).on('ready', function () {
           "forum_poll[headline]": { required: true, maxlength: 80 },
           "forum_poll[body]": { required: true, maxlength: 80 },
           "forum_poll[start_date]": { required: true },
-          "forum_poll[end_date]": { required: true }
+          "forum_poll[end_date]": { required: true },
+          "contest[topic]": { required: true, maxlength: 80 },
+          "contest[headline]": { required: true, maxlength: 80 },
+          "contest[description]": { required: true, maxlength: 80 },
+          "contest[start_date]": { required: true },
+          "contest[end_date]": { required: true }
       },
       submitHandler: function(form) {
        $('form.profile_form').submit();
