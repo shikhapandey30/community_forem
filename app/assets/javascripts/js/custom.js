@@ -70,11 +70,16 @@ $(document).on('ready', function () {
           "post[start_date]": { required: true },
           "post[expiration_date]": { required: true },
           "group[category_id]": { required: true },
-          "group[topic]": { required: true },
-          "group[headline]": { required: true },
-          "group[description]": { required: true },
-          "group[headline]": { required: true }
-
+          "group[topic]": { required: true, maxlength: 80},
+          "group[headline]": { required: true, maxlength: 80 },
+          "group[description]": { required: true, maxlength: 80 },
+          "group[headline]": { required: true, maxlength: 80 },
+          "forum_poll[category_id]": { required: true },
+          "forum_poll[topic]": { required: true, maxlength: 80 },
+          "forum_poll[headline]": { required: true, maxlength: 80 },
+          "forum_poll[body]": { required: true, maxlength: 80 },
+          "forum_poll[start_date]": { required: true },
+          "forum_poll[end_date]": { required: true }
       },
       submitHandler: function(form) {
        $('form.profile_form').submit();

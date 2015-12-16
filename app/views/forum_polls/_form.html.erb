@@ -75,7 +75,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth550 tac ">
-      <%= form_for(@forum_poll) do |f| %>
+      <%= form_for(@forum_poll, html: {class: "profile_form"}) do |f| %>
       <% if @forum_poll.errors.any? %>
       <div id="error_explanation">
         <!-- <h2><%#= pluralize(@forum_poll.errors.count, "error") %> prohibited this forum_poll from being saved:</h2> -->
@@ -137,6 +137,7 @@
           <div class="col-sm-6  pl10 dateOuter">
             <label>To</label><%= f.text_field :end_date,placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
           </div>
+          <div class="clearfix"></div>
           <div class="col-sm-6 mt10 pr10">
             <label>Vote Type</label>
             <div class="selctFormBox">
