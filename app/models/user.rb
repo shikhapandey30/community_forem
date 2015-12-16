@@ -66,11 +66,12 @@ class User < ActiveRecord::Base
   
 
   #friendsships
-  has_many :friendships
- # has_many :friends, :through => :friendships
-  # has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships, :class_name => "Friendship"
-  has_many :friends, :class_name => "Friendship"
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+   has_many :friendships
+   # has_many :friends, :through => :friendships
+  has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
+  # has_many :friends, -> { where(inverse_friendships: { accept: true}) }, through: :friendships
+  has_many :inverse_friendships, -> { where(accept: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
+
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 
@@ -82,6 +83,13 @@ class User < ActiveRecord::Base
   has_many :notifications,
    :class_name => 'Notification',
    :foreign_key => 'recepient_id'
+
+  has_many :members, dependent: :destroy
+  has_many :community_members, through: :members, source: :invitable, source_type: 'Community'
+  has_many :group_members, through: :members, source: :invitable, source_type: 'Group'
+  has_many :meeting_rooms_members, through: :members, source: :invitable, source_type: 'MeetingRoom'
+
+
 
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
@@ -123,5 +131,10 @@ class User < ActiveRecord::Base
     else
       all
     end
+  end
+
+  def is_friend(friend)
+    friend=  Friendship.where(:friend_id => friend.id, :user_id => self.id,:accept=>true).first
+    friend.present? ? true : false
   end
 end

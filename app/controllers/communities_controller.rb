@@ -4,7 +4,7 @@ class CommunitiesController < ApplicationController
   # GET /communities
   # GET /communities.json
   def index
-    @communities = Community.all
+    @communities = current_user.communities
   end
 
   # GET /communities/1
@@ -16,6 +16,8 @@ class CommunitiesController < ApplicationController
   def new
     @community = Community.new
     @community.build_upload
+    @friends = current_user.friends + current_user.inverse_friends
+    @friends.delete(current_user)
   end
 
   # GET /communities/1/edit
@@ -26,8 +28,7 @@ class CommunitiesController < ApplicationController
   # POST /communities
   # POST /communities.json
   def create
-    @community = Community.new(community_params)
-
+    @community = current_user.communities.new(community_params)
     respond_to do |format|
       if @community.save
         format.html { redirect_to @community, notice: 'Community was successfully created.' }

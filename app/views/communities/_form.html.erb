@@ -82,7 +82,10 @@
           </div>
           <div class="col-sm-12   pr10  ">
             <label>Invite Friends</label> 
-            <input type="text"  class="inputTextW small ">
+             <div class="selctFormBox">
+             <%= f.select(:members, Category.all.collect {|s| [s.name, s.id]})  %>
+<!--             <input type="text"  class="inputTextW small ">
+ -->          </div>
           </div>
           <div class="col-sm-12">
             <%= f.submit "Create Community", class: "blueBtn" %>
