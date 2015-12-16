@@ -15,16 +15,18 @@ class ContestsController < ApplicationController
   # GET /contests/new
   def new
     @contest = Contest.new
+    @contest.build_upload
   end
 
   # GET /contests/1/edit
   def edit
+    @contest.upload.present? ? @contest.upload : @contest.build_upload
   end
 
   # POST /contests
   # POST /contests.json
   def create
-    @contest = Contest.new(contest_params)
+    @contest = current_user.contests.new(contest_params)
 
     respond_to do |format|
       if @contest.save
@@ -42,6 +44,7 @@ class ContestsController < ApplicationController
   def update
     respond_to do |format|
       if @contest.update(contest_params)
+        set_upload
         format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
@@ -69,6 +72,11 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit(:category_id, :topic, :headline, :description, :visibility, :start_date, :end_date, :user_id)
+      params.require(:contest).permit!
+    end
+
+    def set_upload
+      @contest_poll.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @contest_poll.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end
