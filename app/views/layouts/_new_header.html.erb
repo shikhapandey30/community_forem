@@ -57,7 +57,7 @@
       <ul class="dropdown-menu">
         <li><%=link_to "My Profile", profile_path(current_user)%></li>
         <li><%=link_to "Privacy & Setting", edit_user_registration_path %></li>
-        <li><%=link_to "Reveal Identity", "#-" %></li>
+        <li><%=link_to "Reveal Identity", "/reveal_identity" %></li>
         <li><%=link_to "Help Center", help_path %></li>
         <li><%=link_to "Points & Wallet Amount", "#-" %></li>
         <li><%=link_to "Log Out", destroy_user_session_path, method: :delete %></li>
