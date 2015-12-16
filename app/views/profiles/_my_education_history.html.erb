@@ -18,7 +18,7 @@
             <img src="/assets/images/uni1.jpg" alt="" class="fr">
           </div>
           <div class="blackColor">
-            <%= education_history.course.name %>
+            <%= education_history.try(:course).try(:name) %>
             <div class="grayColor">
               <%= education_history.start_year%>–<%= education_history.end_year %>
             </div>
