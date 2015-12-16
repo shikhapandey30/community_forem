@@ -24,11 +24,6 @@
             <span class="location"><%= current_user.try(:profile).try(:country) %></span>
           </div>
         </div>
-
-        <!-- start if uploader is not present  -->
-
-
-        <!-- end if uploader is not present  -->
         <!-- upload assets -->
         <%=f.fields_for :upload do |u|%>
           <div class="tabOuter">

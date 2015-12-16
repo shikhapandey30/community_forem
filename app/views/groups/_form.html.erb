@@ -192,7 +192,7 @@
 </div>
 <script>
   $(".remove_image" ).click(function() {
-    $("#post_image").replaceWith($('<input id="post_image" class="post post_image" type="file" name="post[image]" onchange="showimagepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+    $("#post_upload_attributes_image").val('');
      $('#imgprvw').attr('src', '../assets/images/cemera.png');
      $('.remove_image').hide();
   });
@@ -202,11 +202,11 @@
     $( ".file_name" ).html( '' );
      $('.remove_file').hide();
   });
-  $(".remove_video" ).click(function() {
-    $("#post_video").replaceWith($('<input id="post_video" class="post post_video" type="file" name="post[video]" onchange="showvideopreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
-    $( "iframe" ).hide();
-    $('#vdoprvw').attr('src', '../assets/images/videoIcon.png');
-    $('.remove_video').hide();
-  });
+  // $(".remove_video" ).click(function() {
+  //   $("#post_video").replaceWith($('<input id="post_video" class="post post_video" type="file" name="post[video]" onchange="showvideopreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+  //   $( "iframe" ).hide();
+  //   $('#vdoprvw').attr('src', '../assets/images/videoIcon.png');
+  //   $('.remove_video').hide();
+  // });
 </script>
 
