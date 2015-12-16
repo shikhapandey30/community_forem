@@ -31,7 +31,7 @@
         <div class="clearfix formOuterPost tal">
           <div class="col-sm-6 pr10">
             <label>Select Category</label>
-            <div class="selctFormBox">              
+            <div class="selctFormBox">
               <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
               <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
@@ -57,7 +57,7 @@
           <div class="col-sm-12">
             <label class="font16">Select Visibility</label><br>
             <div class="mt5">
-              <label class="radioV">  <%= f.radio_button :visibility, false %> Private  </label> &nbsp; &nbsp; <label class="radioV">  <%= f.radio_button :visibility, true %> Public  </label>
+              <label class="radioV">  <%= f.radio_button :visibility, false %> Private  </label> &nbsp; &nbsp; <label class="radioV">  <%= f.radio_button :visibility, true, checked: true %> Public  </label>
             </div>
           </div>
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
