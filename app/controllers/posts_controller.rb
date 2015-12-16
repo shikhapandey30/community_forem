@@ -49,10 +49,10 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /Posts/1
   # PATCH/PUT /Posts/1.json
-  def update    
+  def update
     respond_to do |format|
-      set_upload(params[:post][:upload_attributes])
-      if @post.update(post_params)        
+      if @post.update(post_params)
+        set_upload
         format.html { redirect_to dashboard_path, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -82,9 +82,11 @@ class PostsController < ApplicationController
       # (:user_id, :category_id, :title, :description, :visibility, :expiration_date, :created_at, :updated_at, :topic_id, :topic, :start_date)
     end
 
-    def set_upload params
-      @post.upload.destroy
-      @post.build_upload(image: params[:image], file: params[:file] , site_link: params[:site_link] , video: params[:video] )
-      @post.save
+    def set_upload
+      @post.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @post.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+      # @post.upload.destroy
+      # @post.build_upload(image: params[:image], file: params[:file] , site_link: params[:site_link] , video: params[:video] )
+      # @post.save
     end
 end

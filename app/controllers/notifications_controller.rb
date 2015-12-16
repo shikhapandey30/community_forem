@@ -17,4 +17,20 @@ class NotificationsController < ApplicationController
 	    flash[:notice] = "Mark As read"
 	    redirect_to '/dashboard'
     end
+
+    def accept
+    	@notification = Notification.find(params[:id])
+    	notificable = @notification.notificable
+    	member = Member.where(:invitable_id => @notification.notificable_id , :user_id => current_user.id ).first
+    	@notification.update_attributes(accept:true)
+    	member.update_attributes(accept:true) if member.present?
+    end
+
+    def reject
+    	@notification = Notification.find(params[:id])
+    	notificable = @notification.notificable
+    	member = Member.where(:invitable_id => @notification.notificable_id , :user_id => current_user.id )
+    	@notification.update_attributes(accept:true)
+    	member.destroy_all if member.present?
+    end
 end

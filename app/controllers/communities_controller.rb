@@ -5,6 +5,9 @@ class CommunitiesController < ApplicationController
   # GET /communities.json
   def index
     @communities = current_user.communities
+    @friends = current_user.my_friends
+    @friends = @friends.present? ? @friends : []
+    # @suggested_communities = 
   end
 
   # GET /communities/1
@@ -16,8 +19,8 @@ class CommunitiesController < ApplicationController
   def new
     @community = Community.new
     @community.build_upload
-    @friends = current_user.friends + current_user.inverse_friends
-    @friends.delete(current_user)
+    @friends = current_user.my_friends
+    @friends = @friends.present? ? @friends : []
   end
 
   # GET /communities/1/edit
@@ -31,6 +34,16 @@ class CommunitiesController < ApplicationController
     @community = current_user.communities.new(community_params)
     respond_to do |format|
       if @community.save
+        if params[:community][:members].present?
+          members_ids = params[:community][:members].reject(&:empty?)
+          members_ids.each do |members_id|
+            member = Member.create(:user_id => members_id.to_i, :invitable => @community)
+
+            #send notification
+            Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
+
+          end
+        end
         format.html { redirect_to @community, notice: 'Community was successfully created.' }
         format.json { render :show, status: :created, location: @community }
       else
@@ -46,6 +59,16 @@ class CommunitiesController < ApplicationController
     respond_to do |format|
       set_upload(params[:community][:upload_attributes])
       if @community.update(community_params)
+        if params[:community][:members].present?
+          members_ids = params[:community][:members].reject(&:empty?)
+          members_ids.each do |members_id|
+            member = Member.find_or_initialize_by(:user_id => members_id.to_i, :invitable => @community)
+            member.save
+            #send notification
+           notification = Notification.find_or_initialize_by(recepient_id: @friendship.members_id, user: current_user, body: "#{current_user.screen_name } has has invited you to join a community #{@community.headline} ", notificable: @friendship, :accept => false)
+           notification.save
+          end
+        end
         format.html { redirect_to @community, notice: 'Community was successfully updated.' }
         format.json { render :show, status: :ok, location: @community }
       else
