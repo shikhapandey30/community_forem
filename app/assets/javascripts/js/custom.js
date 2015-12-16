@@ -88,7 +88,12 @@ $(document).on('ready', function () {
           "contest[headline]": { required: true, maxlength: 80 },
           "contest[description]": { required: true, maxlength: 80 },
           "contest[start_date]": { required: true },
-          "contest[end_date]": { required: true }
+          "contest[end_date]": { required: true },
+          "meeting_room[category_id]": { required: true },
+          "meeting_room[topic]": { required: true, maxlength: 80 },
+          "meeting_room[headline]": { required: true, maxlength: 80 },
+          "meeting_room[name]": { required: true, maxlength: 80 },
+          "meeting_room[slogan]": { required: true, maxlength: 80 }
       },
       submitHandler: function(form) {
        $('form.profile_form').submit();

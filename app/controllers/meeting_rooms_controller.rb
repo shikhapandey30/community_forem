@@ -20,13 +20,13 @@ class MeetingRoomsController < ApplicationController
 
   # GET /meeting_rooms/1/edit
   def edit
-    @meeting_room.build_upload
+    @meeting_room.upload.present? ? @meeting_room.upload : @meeting_room.build_upload
   end
 
   # POST /meeting_rooms
   # POST /meeting_rooms.json
   def create
-    @meeting_room = MeetingRoom.new(meeting_room_params)
+    @meeting_room = current_user.meeting_rooms.new(meeting_room_params)
 
     respond_to do |format|
       if @meeting_room.save
@@ -44,6 +44,7 @@ class MeetingRoomsController < ApplicationController
   def update
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
+        set_upload
         format.html { redirect_to @meeting_room, notice: 'Meeting room was successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
@@ -71,6 +72,11 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-      params.require(:meeting_room).permit(:category_id, :topic, :headline, :name, :slogan, :user_id,upload_attributes: [:id, :image, :site_link, :file, :video])
+      params.require(:meeting_room).permit!
+    end
+
+    def set_upload
+      @meeting_room.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @meeting_room.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end
