@@ -2,12 +2,12 @@
   <div class="clearfix formOuterPost tal">
     <div class="col-sm-12 mb10">
       <div class="grayHD">EDUCATION HISTORY      
-        <%#if @user==current_user%>
+        <%if @user==current_user%>
          <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Courses</a>
-        <%#end%>
+        <%end%>
       </div>
 
-      <% current_user.education_histories.each do |education_history| %>
+      <% @user.education_histories.each do |education_history| %>
         <% if current_user == education_history.user %>
           <%=link_to (image_tag 'images/edit.png'), edit_education_history_path(education_history), :remote => true  %>
           <%= link_to (image_tag 'images/delete.png'), education_history, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-      <% end if current_user.education_histories %>
+      <% end if @user.education_histories %>
     </div>
     <!-- Render Education Details -->
     <div class="education_history"><%#=render 'education_history'%></div>
