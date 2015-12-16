@@ -1,5 +1,4 @@
-<% path =  @employment_detail.id.present? ? edit_employment_profiles_path(@employment_detail) : employment_profiles_path %>
-<%=form_for @employment_detail, url: path, :html => { class: "employment_form" }, remote: true do |f| %>
+<%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form" }, remote: true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Enter Designation </label>
     <%= f.text_field :designation, class: "inputTextW small", :maxlength=>"80" %>

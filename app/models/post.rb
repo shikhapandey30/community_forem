@@ -14,6 +14,9 @@ class Post < ActiveRecord::Base
   has_many :followings, as: :followable, :dependent => :destroy
   has_one :upload, as: :uploadable, dependent: :destroy
   accepts_nested_attributes_for :upload, :allow_destroy => true
+  scope :validity, -> { where("expiration_date < ? && visibility = ?", Date.today, true) }
+  # scope :visibility, ~> { where(visibility: true) }
+  
   def liked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first
     self.likes.where(:user_id => current_user.id,:likable_type=> "Post" )
