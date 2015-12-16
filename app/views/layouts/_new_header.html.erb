@@ -9,7 +9,7 @@
        <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
-         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr"%>
+         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
          <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
       
       <div class="notiScroll scrollbars"> 
@@ -38,7 +38,7 @@
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
          <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-          <a class="blackColor font13 bold fr" href="#">View All</a> </div>
+         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if messages.count > 0 %> </div>
       
       <div class="notiScroll scrollbars">
         <% messages.each do |notification|%>
