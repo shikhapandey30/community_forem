@@ -83,8 +83,8 @@ class PostsController < ApplicationController
     end
 
     def set_upload
-      @post.upload.update_column(:image, nil) if params[:image_url].present?
-      @post.upload.update_column(:file, nil) if params[:file_url].present?
+      @post.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @post.upload.update_column(:file, nil) if params[:file_url].eql?("true")
       # @post.upload.destroy
       # @post.build_upload(image: params[:image], file: params[:file] , site_link: params[:site_link] , video: params[:video] )
       # @post.save
