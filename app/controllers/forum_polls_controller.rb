@@ -17,10 +17,11 @@ class ForumPollsController < ApplicationController
 
   def new
     @forum_poll= ForumPoll.new
+    @forum_poll.build_upload
   end
 
   def create
-    @forum_poll = ForumPoll.new(forum_poll_params)
+    @forum_poll = current_user.forum_polls.new(forum_poll_params)
 
     respond_to do |format|
       if @forum_poll.save
@@ -33,13 +34,34 @@ class ForumPollsController < ApplicationController
     end
   end
 
+  def edit
+    @forum_poll.upload.present? ? @forum_poll.upload : @forum_poll.build_upload
+  end
+
+  def update
+    respond_to do |format|
+      if @forum_poll.update(forum_poll_params)
+        set_upload
+        format.html { redirect_to dashboard_path, notice: 'Forum Poll was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   private
     def set_forum_poll
       @forum_poll= ForumPoll.find(params[:id])
     end
     def forum_poll_params
-      params.require(:forum_poll).permit(:category_id, :topic, :body, :visibility, :start_date, :end_date, :headline, :vote_id)
+      params.require(:forum_poll).permit!
+    end
+
+    def set_upload
+      @forum_poll.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @forum_poll.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end
-
