@@ -1,4 +1,4 @@
-<%if @peoples%>
+<%if @peoples.present?%>
   <div class="searchBox">
     <div class="grayHD bold">People</div>
     <%@peoples.each do |user|%>
@@ -11,7 +11,7 @@
   </div>
 <%end%>
 
-<%if @groups%>
+<%if @groups.present?%>
   <div class="searchBox">
     <div class="grayHD bold">Groups</div>
     <%@groups.each do |user|%>
@@ -24,7 +24,7 @@
   </div>
 <%end%>
 
-<%if @communities%>
+<%if @communities.present?%>
   <div class="searchBox community">
     <div class="grayHD bold">community</div>
     <%@communities.each do |user|%>
