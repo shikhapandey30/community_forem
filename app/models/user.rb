@@ -66,11 +66,12 @@ class User < ActiveRecord::Base
   
 
   #friendsships
-  has_many :friendships
- # has_many :friends, :through => :friendships
-  # has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships, :class_name => "Friendship"
-  has_many :friends, :class_name => "Friendship"
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+   has_many :friendships
+   # has_many :friends, :through => :friendships
+  has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
+  # has_many :friends, -> { where(inverse_friendships: { accept: true}) }, through: :friendships
+  has_many :inverse_friendships, -> { where(accept: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
+
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 
@@ -130,5 +131,10 @@ class User < ActiveRecord::Base
     else
       all
     end
+  end
+
+  def is_friend(friend)
+    friend=  Friendship.where(:friend_id => friend.id, :user_id => self.id,:accept=>true).first
+    friend.present? ? true : false
   end
 end

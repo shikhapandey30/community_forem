@@ -16,6 +16,8 @@ class CommunitiesController < ApplicationController
   def new
     @community = Community.new
     @community.build_upload
+    @friends = current_user.friends + current_user.inverse_friends
+    @friends.delete(current_user)
   end
 
   # GET /communities/1/edit
