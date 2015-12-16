@@ -32,6 +32,10 @@ $(function () {
 
 $(document).on('ready', function () {
 
+  $(".dropdown-menu.searchOpt li").click(function(){    
+    $(".keyword_filter").val(this.textContent);
+  })
+
     $("form#reqPassword").validate({      
       rules: {          
           "user[email]": { required: true },

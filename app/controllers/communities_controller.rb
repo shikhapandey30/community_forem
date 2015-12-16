@@ -26,6 +26,8 @@ class CommunitiesController < ApplicationController
   # GET /communities/1/edit
   def edit
     @community.upload.present? ? @community.upload : @community.build_upload
+    @friends = current_user.my_friends
+    @friends = @friends.present? ? @friends : []
   end
 
   # POST /communities

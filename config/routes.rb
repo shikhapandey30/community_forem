@@ -106,6 +106,7 @@ Rails.application.routes.draw do
 
    get '/dashboard'=>'users#dashboard'
    get '/auth/:provider/callback', to: 'users#social_login'
+   get '/search'=>'users#search'
    post '/search'=>'users#search'
    get '/search_data'=>'users#search_data'
    post '/user_category', to: 'users#user_category'
