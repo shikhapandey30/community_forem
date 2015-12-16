@@ -137,4 +137,9 @@ class User < ActiveRecord::Base
     friend=  Friendship.where(:friend_id => friend.id, :user_id => self.id,:accept=>true).first
     friend.present? ? true : false
   end
+
+  def my_friends
+    @friends = self.friends + self.inverse_friends
+    @friends.delete(self)
+  end
 end

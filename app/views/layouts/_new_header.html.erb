@@ -1,55 +1,50 @@
 <header class="clearfix whiteHeader ">
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="/dashboard"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
   <div class="topRightHeader">
-    <div class="topRight">
-      <span class="dropdown notification">
-        <% notifications = current_user.notifications.unread %>
-        <% messages = current_user.notifications.messages.unread %>
-        <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
-        <ul class="clearfix dropdown-menu">
-          <div class="topGrayRow">
-            <span class="blackColor font14 bold">Notification</span> 
-            <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr"%>
-            <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> 
-          </div>
-          <div class="notiScroll scrollbars">
-            <% notifications.each do |notification|%>
-            <li class="notification-<%= notification.id %>">
-              <div class="clearfix commentSec cmntRow">
-                <div class="clearfix userInfo posRel">
-                  <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
-                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
-                  <%= link_to "Accept", notification_accept_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
-                  <%= link_to "Reject", notification_reject_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
-                  <div class="font13"><%= notification.body.truncate(50) %></div>
-                  <div class="blackColor font12 bold"> is now a connection</div>
-                </div>
+    <div class="topRight">   
+    <span class="dropdown notification">
+    <% notifications = current_user.notifications.unread %>
+         <% messages = current_user.notifications.messages.unread %>
+       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
+         <ul class="clearfix dropdown-menu">
+         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
+         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
+         <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
+      
+      <div class="notiScroll scrollbars"> 
+        <% notifications.each do |notification|%>
+          <li class="notification-<%= notification.id %>">
+            <div class="clearfix commentSec cmntRow">
+              <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
+                <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
+                 <%= link_to "Accept", notification_accept_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
+                 <%= link_to "Reject", notification_reject_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
+
+                <div class="font13"><%= notification.body.truncate(50) %></div>
+                <div class="blackColor font12 bold"> is now a connection</div>
               </div>
             </li>
             <% end %>       
           </div>
         </ul>
-      </span>
-      <span class="dropdown notification">
-        <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
-        <ul class="clearfix dropdown-menu">
-          <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
-            <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-            <a class="blackColor font13 bold fr" href="#">View All</a> 
-          </div>
-          <div class="notiScroll scrollbars">
-            <% messages.each do |notification|%>
-            <li>
-              <div class="clearfix commentSec cmntRow">
-                <div class="clearfix userInfo posRel">
-                  <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
-                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
-                  <div class="font13">Web Designer</div>
-                  <div class="blackColor font12 bold"> is now a connection</div>
-                </div>
-              </div>
-            </li>
-            <% end %>
+      </span>      
+        <span class="dropdown notification">
+  
+             <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
+         <ul class="clearfix dropdown-menu">
+         <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
+         <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
+         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if messages.count > 0 %> </div>
+      
+      <div class="notiScroll scrollbars">
+        <% messages.each do |notification|%>
+        <li>
+          <div class="clearfix commentSec cmntRow">
+            <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
+              <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
+              <div class="font13">Web Designer</div>
+              <div class="blackColor font12 bold"> is now a connection</div>
+            </div>
           </div>
         </ul>
       </span>
