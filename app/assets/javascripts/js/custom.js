@@ -83,7 +83,17 @@ $(document).on('ready', function () {
           "forum_poll[headline]": { required: true, maxlength: 80 },
           "forum_poll[body]": { required: true, maxlength: 80 },
           "forum_poll[start_date]": { required: true },
-          "forum_poll[end_date]": { required: true }
+          "forum_poll[end_date]": { required: true },
+          "contest[topic]": { required: true, maxlength: 80 },
+          "contest[headline]": { required: true, maxlength: 80 },
+          "contest[description]": { required: true, maxlength: 80 },
+          "contest[start_date]": { required: true },
+          "contest[end_date]": { required: true },
+          "meeting_room[category_id]": { required: true },
+          "meeting_room[topic]": { required: true, maxlength: 80 },
+          "meeting_room[headline]": { required: true, maxlength: 80 },
+          "meeting_room[name]": { required: true, maxlength: 80 },
+          "meeting_room[slogan]": { required: true, maxlength: 80 }
       },
       submitHandler: function(form) {
        $('form.profile_form').submit();
