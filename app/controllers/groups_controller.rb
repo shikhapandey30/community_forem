@@ -15,17 +15,18 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    @group.build_upload
   end
 
   # GET /groups/1/edit
   def edit
+    @group.upload.present? ? @group.upload : @group.build_upload
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(group_params)
-
+    @group = current_user.groups.new(group_params)
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -42,6 +43,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        set_upload
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
@@ -69,6 +71,11 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:category_id, :topic_id, :headline, :description, :image, :video, :site_link, :file, :topic)
+      params.require(:group).permit!
+    end
+
+    def set_upload
+      @group.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @group.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end

@@ -49,7 +49,10 @@ $(document).on('ready', function () {
           error.appendTo($("#profile_type_error"));
         } else if(element.attr("name") == "post[category_id]") {
           error.appendTo($("#category_name_error"));
-        } else {
+        } else if(element.attr("name") == "group[category_id]") {
+          error.appendTo($("#category_error"));
+        }
+         else {
           error.insertAfter(element);
         }
       },
@@ -65,7 +68,12 @@ $(document).on('ready', function () {
           "post[title]": { required: true, maxlength: 80},
           "post[description]": { required: true, maxlength: 80},
           "post[start_date]": { required: true },
-          "post[expiration_date]": { required: true }
+          "post[expiration_date]": { required: true },
+          "group[category_id]": { required: true },
+          "group[topic]": { required: true },
+          "group[headline]": { required: true },
+          "group[description]": { required: true },
+          "group[headline]": { required: true }
 
       },
       submitHandler: function(form) {
