@@ -1,66 +1,52 @@
-<div class="bodyCont">
+<div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
-    <div class="blueBkg myWall">
-      <div class="clearfix innerWIdth550">
-        <div class="userTHumb">
-          <a href="#" class="profileImg"><img src="/assets/images/group.png" alt=""></a>
-          <div class="nameLocation">
-            <a href="#" class="font22">Your Followers</a>                        
-          </div>
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/follower.png" alt=""></span>
+        Your Followers
+        <div class="fr ">
+          <div class="fr font14 mt35"><%=@followers.try(:count) %> followers</div>
         </div>
-        <div class="back"><%=@followers.try(:count) %> followers</div>
       </div>
     </div>
-    <div class="clearfix innerWIdth550 tac ">
+    <div class="clearfix innerWIdth550  ">
+      <div class="mt20 ">
+        <div class="formOuter searchFrnd width100per">
+          <form method="post" action="">
+            <input placeholder="Search Friend" class="searhInput1" type="text">
+            <input value="" class="searhSub" type="submit">
+          </form>
+        </div>
+      </div>
       <%@followers.each do |follower|%>
-        <div class="clearfix whiteBox borderTop  mb10 pb0">
-          <div class="clearfix formOuterPost tal padding10-0 ">
-            
-            <div class="col-sm-12 mb10">
-              <div class="clearfix userInfo posRel">
-                <a href="#" class="userImg"><img src="<%=user(follower).try(:img)%>" alt=""></a>
-                <a href="#" class="userNAme"> <%=user(follower).try(:screen_name)%></a> <br>
-                <span class="font13"><%=designations(user(follower))%></span>
-                <div class="fr grayColor tar">2h<br>
-                  <a href="#">Connect</a>
+        <div class="clearfix whiteBox connectionRow borderTpBlue">
+          <div class="clearfix  cmntRow">
+            <div class="clearfix userInfo posRel">
+              <div class="clearfix  "></div>
+              <a href="#" class="userImg"><img src="<%= user(follower).try(:img) %>" alt=""></a>
+              <a href="#" class="userNAme"> <%=user(follower).try(:screen_name)%></a> <br>
+              <div class="fr grayColor tar">
+                2 days ago<br>
+                <a href="#" class="mt10">Connect</a> 
+                <div class="mt5 mb-10">
+                  <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
                 </div>
               </div>
-              <div class="uniOuter">
-                <div class="mt0 blackColor bold ">
-                  <p>Game of Thrones: <a href="#" class="blueColor">over it</a></p>
-                </div>
-              </div>
-            </div>          
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      <%end if @followers%>  
-      <div class="clearfix whiteBox borderTop  mb10 pb0">
-        <div class="clearfix conversationTop borderBtm">
-          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
-          <div class="fr">
-            <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
-          </div>
-        </div>
-        <div class="connectionOuter ">
-          <div class="col-sm-6 borderRight">
-            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> 
-            <span>H. Peter Curran</span></a>
-            <div class="dsignation">Appraiser, Art, Antiques,
-              Deconstruction      
+              <div class="font13 mt5"><%=designations(user(follower))%></div>
+              <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
             </div>
-            <a href="#" class="whiteBtn"> Follow </a>
-          </div>
-          <div class="col-sm-6">
-            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> 
-            <span>Trip Spencer</span></a>
-            <div class="dsignation">Director</div>
-            <a href="#" class="whiteBtn"> Follow </a>
           </div>
         </div>
-      </div>      
+      <% end %>
+      <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+  });
+</script>
