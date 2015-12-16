@@ -83,6 +83,11 @@ class User < ActiveRecord::Base
    :class_name => 'Notification',
    :foreign_key => 'recepient_id'
 
+  has_many :members, dependent: :destroy
+  has_many :community_members, through: :members, source: :invitable, source_type: 'Community'
+  has_many :group_members, through: :members, source: :invitable, source_type: 'Group'
+
+
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history
  #  has_one :user_skill
