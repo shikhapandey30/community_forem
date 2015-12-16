@@ -99,11 +99,9 @@
         <div class="clearfix formOuterPost tal">
           <div class="col-sm-6 pr10">
             <label>Select Category</label>
-            <div class="selctFormBox">
-              <input type="text" value="BCA" readonly class="selectInput">
-              <select class="select">
-                <option>BCA</option>
-              </select>
+            <div class="selctFormBox">              
+              <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
+              <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
           </div>
           <div class="col-sm-6 pl10">
