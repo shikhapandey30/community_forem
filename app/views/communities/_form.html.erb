@@ -83,7 +83,7 @@
           <div class="col-sm-12   pr10  ">
             <label>Invite Friends</label> 
              <div class="selctFormBox">
-             <%= f.select(:members, Category.all.collect {|s| [s.name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
+             <%= f.select(:members, @friends.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
 <!--             <input type="text"  class="inputTextW small ">
  -->          </div>
           </div>

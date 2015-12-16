@@ -66,9 +66,9 @@ class User < ActiveRecord::Base
   
 
   #friendsships
-   has_many :friendships
-   # has_many :friends, :through => :friendships
-  has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  #has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
   # has_many :friends, -> { where(inverse_friendships: { accept: true}) }, through: :friendships
   has_many :inverse_friendships, -> { where(accept: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
 
