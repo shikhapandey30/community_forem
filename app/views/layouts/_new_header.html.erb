@@ -2,85 +2,91 @@
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="/dashboard"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
   <div class="topRightHeader">
     <div class="topRight">
-    
-    <span class="dropdown notification">
-    <% notifications = current_user.notifications.unread %>
-         <% messages = current_user.notifications.messages.unread %>
-       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
-         <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
-         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr"%>
-         <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> </div>
-      
-      <div class="notiScroll scrollbars"> 
-        <% notifications.each do |notification|%>
-          <li class="notification-<%= notification.id %>">
-            <div class="clearfix commentSec cmntRow">
-              <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
-                <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
-                 <%= link_to "Accept", notification_accept_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
-                 <%= link_to "Reject", notification_reject_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
-
-                <div class="font13"><%= notification.body.truncate(50) %></div>
-                <div class="blackColor font12 bold"> is now a connection</div>
-              </div>
-            </div>
-          </li>
-        <% end %>       
-        </div>
-        
-      </ul>
-      </span>
-      
-        <span class="dropdown notification">
-  
-             <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
-         <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
-         <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-          <a class="blackColor font13 bold fr" href="#">View All</a> </div>
-      
-      <div class="notiScroll scrollbars">
-        <% messages.each do |notification|%>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
-              <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
+      <span class="dropdown notification">
+        <% notifications = current_user.notifications.unread %>
+        <% messages = current_user.notifications.messages.unread %>
+        <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
+        <ul class="clearfix dropdown-menu">
+          <div class="topGrayRow">
+            <span class="blackColor font14 bold">Notification</span> 
+            <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr"%>
+            <!-- <a class="blackColor font13 bold fr" href="#">View All</a> --> 
           </div>
-        </li>
-        <% end %>
-        </div>
-        
-      </ul>
+          <div class="notiScroll scrollbars">
+            <% notifications.each do |notification|%>
+            <li class="notification-<%= notification.id %>">
+              <div class="clearfix commentSec cmntRow">
+                <div class="clearfix userInfo posRel">
+                  <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
+                  <%= link_to "Accept", notification_accept_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
+                  <%= link_to "Reject", notification_reject_path(notification), :method => :post , :class=>"transition ", :remote=>true %>
+                  <div class="font13"><%= notification.body.truncate(50) %></div>
+                  <div class="blackColor font12 bold"> is now a connection</div>
+                </div>
+              </div>
+            </li>
+            <% end %>       
+          </div>
+        </ul>
       </span>
-       <a href="#"><img src="/assets/images/user.png" alt=""></a> <a href="#"><img src="/assets/images/wlt.png" alt=""></a> <a href="#" class="wlt">500</a> <span class="dropdown settingDropDown"> <a href="#"  data-toggle="dropdown"><img src="/assets/images/setting.png" alt=""></a>
-      <ul class="dropdown-menu">
-        <li><%=link_to "My Profile", profile_path(current_user)%></li>
-        <li><%=link_to "Privacy & Setting", edit_user_registration_path %></li>
-        <li><%=link_to "Reveal Identity", "/reveal_identity" %></li>
-        <li><%=link_to "Help Center", help_path %></li>
-        <li><%=link_to "Points & Wallet Amount", "#-" %></li>
-        <li><%=link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-      </ul>
-      </span> </div>
+      <span class="dropdown notification">
+        <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
+        <ul class="clearfix dropdown-menu">
+          <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
+            <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
+            <a class="blackColor font13 bold fr" href="#">View All</a> 
+          </div>
+          <div class="notiScroll scrollbars">
+            <% messages.each do |notification|%>
+            <li>
+              <div class="clearfix commentSec cmntRow">
+                <div class="clearfix userInfo posRel">
+                  <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %> ago</div>
+                  <div class="font13">Web Designer</div>
+                  <div class="blackColor font12 bold"> is now a connection</div>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </div>
+        </ul>
+      </span>
+      <a href="#"><img src="/assets/images/user.png" alt=""></a> <a href="#"><img src="/assets/images/wlt.png" alt=""></a> <a href="#" class="wlt">500</a> 
+      <span class="dropdown settingDropDown">
+        <a href="#"  data-toggle="dropdown"><img src="/assets/images/setting.png" alt=""></a>
+        <ul class="dropdown-menu">
+          <li><%=link_to "My Profile", profile_path(current_user)%></li>
+          <li><%=link_to "Privacy & Setting", edit_user_registration_path %></li>
+          <li><%=link_to "Reveal Identity", "/reveal_identity" %></li>
+          <li><%=link_to "Help Center", help_path %></li>
+          <li><%=link_to "Points & Wallet Amount", "#-" %></li>
+          <li><%=link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </span>
+    </div>
+    <div class="searchOverLAy"></div>
     <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-      <div class="catLIstLink dropdown"> <a href="#" class="catLIst " data-toggle="dropdown"> 
-      <%=image_tag "images/sd.png", :class=> "iconChange"%>  <%=image_tag "images/drp.png"%> </a>
+      <div class="catLIstLink dropdown">
+        <a href="#" class="catLIst " data-toggle="dropdown"> 
+        <%=image_tag "images/sd.png", :class=> "iconChange"%>  <%=image_tag "images/drp.png"%> </a>
         <ul class="dropdown-menu searchOpt">
-          <li><a href="#"><img src="/assets/images/sd1.png" alt=""> All</a></li>
-          <lI><a href="#"><img src="/assets/images/sd2.png" alt=""> People</a></lI>
-          <li><a href="#"><img src="/assets/images/sd3.png" alt=""> Communities</a></li>
-          <li><a href="#"><img src="/assets/images/sd4.png" alt=""> Groups</a></li>
+          <li><a href="#"><img src="/assets/images/sd1.png" alt="">All</a></li>
+          <lI><a href="#"><img src="/assets/images/sd2.png" alt="">People</a></lI>
+          <li><a href="#"><img src="/assets/images/sd3.png" alt="">Communities</a></li>
+          <li><a href="#"><img src="/assets/images/sd4.png" alt="">Groups</a></li>
         </ul>
       </div>
       <div class="formOuter">
         <%=form_tag search_path do%>
-          <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
-          <input type="submit" value="" class="searhSub">
+        <%=text_field_tag "name", nil, placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
+        <input type="submit" value="" class="searhSub">
         <%end%>
+      </div>
+      <div class="searchDropDown">
+        <%=hidden_field_tag :filter, nil, class: "keyword_filter"%>
+        <div class="search_filter"></div>
       </div>
     </div>
   </div>
