@@ -10,6 +10,7 @@
     filerdr.onload = function(e) {
 
     $('#imgprvw').attr('src', e.target.result);
+    $("#image_url").val(false);
     }
     filerdr.readAsDataURL(input.files[0]);
     $('.remove_image').show();
@@ -22,6 +23,7 @@
     var filename = input.files[0].name
     filerdr.onload = function(e) {
     $('#fleprvw').attr('src', "/assets/images/link.png");
+    $("#file_url").val(false);
     $( ".file_name" ).html( filename );
     }
     filerdr.readAsDataURL(input.files[0]);

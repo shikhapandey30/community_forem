@@ -29,11 +29,13 @@
           <div class="tabOuter">
             <div id="tab-1" class="tab-content current">
               <div class="uploadBoxOuter font14">
-                <%= u.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+                <%= hidden_field_tag "image_url", false%>
+                <%= hidden_field_tag "file_url", false%>
+                <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
                 <a href="#"  onclick="$('.post_image').click();">
                   <% if @post.try(:upload).try(:image).present? %>
                     <%= image_tag @post.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
-                  <% else %>  
+                  <% else %>
                     <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
                   <% end %>
                 </a>
@@ -72,7 +74,8 @@
               <img src="/assets/images/videoIcon.png" alt="">
               
               <div class="grayBig bold ">Add Your Video</div>
-              <%= u.text_field :video, placeholder: "http://", class: "inputTextW" %><br>
+              <%= u.url_field :video, placeholder: "http://", class: "inputTextW" %><br>
+
               <div class="mt10">Paste a link from YourTube, Vimeo, Vine etc.</div>
               </div>
             </div>
@@ -146,15 +149,17 @@
 </div>
 <script>
   $(".remove_image" ).click(function() {
-    $(".post_image").val('');
-    // $("#post_image").replaceWith($('<input id="post_image" class="post post_image" type="file" name="post[image]" onchange="showimagepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
-     $('#imgprvw').attr('src', '/assets/images/cemera.png');
-     $('.remove_image').hide();
+    // $(".post_image").val('');
+    // $("#post_upload_attributes_image").replaceWith($('<input id="post_upload_attributes_image" class="post post_image" type="file" name="post[upload_attributes][image]" onchange="showimagepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+    $("#image_url").val(true);
+    $('#imgprvw').attr('src', '/assets/images/cemera.png');
+    $('.remove_image').hide();
   });
   $(".remove_file" ).click(function() {
-    $("#post_file").val('');
-    // $("#post_file").replaceWith($('<input id="post_file" class="post post_file" type="file" name="post[file]" onchange="showfilepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
+    // $("#post_file").val('');
+    // $("#post_upload_attributes_file").replaceWith($('<input id="post_upload_attributes_file" class="post post_file" type="file" name="post[upload_attributes][file]" onchange="showfilepreview(this)" style="visibility: hidden; width: 1px; height: 1px">'));
     $( ".file_name" ).html( '' );
+    $("#file_url").val(true);
     $('.remove_file').hide();
   });
   
