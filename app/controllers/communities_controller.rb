@@ -37,7 +37,7 @@ class CommunitiesController < ApplicationController
             member = Member.create(:user_id => members_id.to_i, :invitable => @community)
 
             #send notification
-            Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
+            Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
 
           end
         end
