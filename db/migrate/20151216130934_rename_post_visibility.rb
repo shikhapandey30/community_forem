@@ -1,5 +1,6 @@
 class RenamePostVisibility < ActiveRecord::Migration
   def change
-  	  	change_column :posts, :visibility ,'boolean USING CAST(visibility AS boolean)'
+  	remove_column :posts, :visibility 
+  	add_column :posts, :visibility ,:boolean, :default => true
   end
 end
