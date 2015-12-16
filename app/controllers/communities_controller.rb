@@ -5,6 +5,9 @@ class CommunitiesController < ApplicationController
   # GET /communities.json
   def index
     @communities = current_user.communities
+    @friends = current_user.my_friends
+    @friends = @friends.present? ? @friends : []
+    # @suggested_communities = 
   end
 
   # GET /communities/1
@@ -16,8 +19,8 @@ class CommunitiesController < ApplicationController
   def new
     @community = Community.new
     @community.build_upload
-    @friends = current_user.friends + current_user.inverse_friends
-    @friends.delete(current_user)
+    @friends = current_user.my_friends
+    @friends = @friends.present? ? @friends : []
   end
 
   # GET /communities/1/edit
