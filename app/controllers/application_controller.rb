@@ -20,5 +20,21 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password) }
-  end  
+  end
+
+  # def keyword_filter(name,keyword)    
+  #   @peoples = User.search(params[:name])
+  #   @groups = Group.search(params[:name]).collect(&:members).compact.flatten
+  #   @communities = Community.search(params[:name]).collect(&:members).compact.flatten
+  #   case keyword
+  #   when "People"
+  #     return @peoples
+  #   when "Communities"
+  #     return @groups      
+  #   when "Groups"
+  #     return @communities
+  #   else
+  #     return @peoples, @groups, @communities
+  #   end
+  # end
 end

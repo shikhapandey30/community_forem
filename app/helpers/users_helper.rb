@@ -15,4 +15,8 @@ module UsersHelper
 	def user(follower)
 		User.find(follower.follower_id)
 	end
+
+	def user_path(user)
+		current_user.eql?(user) ? edit_profile_path(user) : profile_path(user)
+	end
 end

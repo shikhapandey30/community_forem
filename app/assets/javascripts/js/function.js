@@ -1,3 +1,87 @@
+$(document).ready(function(){
+	/* search Drop Down*/						
+	$(".searhInput").keyup(function(){
+		keyword = $(".keyword_filter").val();
+		$.ajax({
+			method: "GET",
+			url: "/search",
+			data: {name: this.value, keyword: keyword}
+		});		
+
+	});
+	$(".searchOverLAy").click(function(){
+		$(".searchDropDown").stop().slideUp(500);
+		$(".searchOverLAy").stop().fadeOut(500);	
+	});
+
+
+
+	$(".searchOpt a").click(function(){
+			var newSrc = $(this).find("img").attr("src");								 
+			$(".iconChange").attr("src", newSrc);			
+	});
+
+
+
+	$(".addCmnt.inputTextW.small").click(function(){
+			$(this).closest(".commentSec").next(".commentShow").find(".clearfix.commentSec.cmntRow.borderNOne").slideDown(500);			
+	});
+	$(".Cancel").click(function(){
+			$(this).closest(".commentShow").find(".clearfix.commentSec.cmntRow.borderNOne").slideUp(500);			
+	});
+
+
+
+
+	$(".reply").click(function(){
+			$(this).closest("div").next(".replyRow").slideToggle(500);			
+	});
+
+
+
+	/* For TAb */	
+		
+	$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+	});
+
+
+
+
+
+	$(".enable").click(function(){
+		$(this).closest(".col-sm-12").find("input").removeAttr("disabled");
+	});	
+
+
+	$(".rightMenu").click(function(){
+		$(".topRightNav  ul").slideToggle(500);
+	});			       
+
+	/*Left NAvigation*/ 	
+
+	$(".leftMenuTab").click(function(){
+		$(".leftNAv").animate({left: "00px"},500);
+		$(".overLAy").animate({right: "00px"},500);
+
+	});
+
+	$(".overLAy").click(function(){
+		$(".leftNAv").animate({left: "-200px"},500);
+		$(".overLAy").animate({right: "-100%"},1000);
+
+	});
+
+	$(".scrollbars, .searchDropDown").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});
+
+});
+
 /* For Select Option */	
 $(document).on('change', '.select', function(){	
 	var text = $(this).find('option:selected').text();

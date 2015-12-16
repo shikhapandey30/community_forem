@@ -5,18 +5,26 @@ class UsersController < ApplicationController
     @users=User.all
 	end
 
-  def search
-    @user = User.search(params[:name]).first
+  def search    
+    case params[:keyword]
+    when "People"
+      @peoples = User.search(params[:name])
+    when "Communities"
+      @groups = Group.search(params[:name]).collect(&:members).compact.flatten
+    when "Groups"
+      @communities = Community.search(params[:name]).collect(&:members).compact.flatten
+    else
+      @peoples = User.search(params[:name])
+      @groups = Group.search(params[:name]).collect(&:members).compact.flatten
+      @communities = Community.search(params[:name]).collect(&:members).compact.flatten
+    end    
+    respond_to do |format|      
+      format.js      
+    end
+    # @peoples, @groups, @communities = keyword_filter(params[:name], params[:keyword])
     # render edit_profile_path(@user)
-    redirect_to profile_path(@user)
+    # redirect_to profile_path(@user)
   end
-  # def search_data
-  #   if params[:type]=='User'
-  #     @user
-  #   else
-  #     @post
-  #   end
-  # end
   
   def reveal_identity
      @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:user_id])
@@ -42,13 +50,13 @@ class UsersController < ApplicationController
     # self_post=current_user.posts
     # @posts=pub_post+self_post
 
-    if params[:data]=="hot_topic"      
+    if params[:data]=="hot_topic"
       @posts = EmploymentDetail.select{|e| e.total_experience}.sort_by(&:total_experience).reverse.
                   collect(&:user).flatten.map{|u| u.posts.validity.order("updated_at desc")}.compact.flatten rescue []
     else     
       @posts = Post.all.validity.order("created_at DESC")
     end
-    @comment = Comment.new    
+    @comment = Comment.new
 	end
 
   def follow

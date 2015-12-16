@@ -3,5 +3,7 @@ class Upload < ActiveRecord::Base
 	mount_uploader :file, PostUploader
     mount_uploader :image, PostUploader
     mount_uploader :file, GroupUploader
-    mount_uploader :image, GroupUploader    
+    mount_uploader :image, GroupUploader
+    mount_uploader :file, ForumPollUploader
+    mount_uploader :image, ForumPollUploader   
 end
