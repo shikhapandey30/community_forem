@@ -56,10 +56,21 @@ Rails.application.routes.draw do
   resources :specializations
   resources :notifications do
     collection do
-      post :mark_as_read
+      post :mark_as_read  
     end
   end
+
+  # Accept and Regect path
+  post 'accept/:id', to: 'notifications#accept', as: :notification_accept
+  post 'reject/:id', to: 'notifications#reject', as: :notification_reject
+
+  # post 'accept/:id', to: 'communities#accept', as: :community_accept
+  # post 'reject/:id', to: 'communities#reject', as: :community_reject
+
+  # post 'accept/:id', to: 'groups#accept', as: :groups_accept
+  # post 'reject/:id', to: 'groups#reject', as: :groups_reject
   
+
   resources :profiles do
     collection do
       get :add_education
