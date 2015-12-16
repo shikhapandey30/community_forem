@@ -76,7 +76,7 @@ class ContestsController < ApplicationController
     end
 
     def set_upload
-      @contest_poll.upload.update_column(:image, nil) if params[:image_url].eql?("true")
-      @contest_poll.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+      @contest.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @contest.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end
