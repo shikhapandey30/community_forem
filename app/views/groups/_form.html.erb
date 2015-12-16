@@ -73,7 +73,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth550 tac ">
-      <%= form_for(@group) do |f| %>
+      <%= form_for(@group, html: {class: "profile_form"}) do |f| %>
       <% if @group.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@group.errors.count, "error") %> prohibited this community from being saved:</h2>
@@ -103,6 +103,7 @@
               <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
               <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
+            <div id="category_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
