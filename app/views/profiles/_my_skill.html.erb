@@ -2,33 +2,35 @@
   <div class="clearfix formOuterPost tal">
       <div class="col-sm-12 mb10">
         <div class="grayHD">SKILLS  
-          <%if current_user.profile.id==@profile.id%>
+          <%if @user==current_user%>
             <a href="#" class="blueBtn fr addBtn" id='skill_new'> &nbsp;&nbsp; Add Skills</a>
           <%end%>
         </div>
       </div>
       <div class="col-sm-12 skillsTag skillsTagBlock">
-        <%#@profile.user.skill.each do |skill|%>
+        <%@user.skill.each do |skill|%>
           <span><%=@user.skill.try(:name)%></span>
-        <%#end%>
-      </div>  
-      <div id='skill_form' style="display:none;">
-        <%= form_tag  skill_profiles_path, remote: true do |f| %>
-          <div class="col-sm-12 addSkills">
-            <label>Enter Skills </label><br>
-            <%= text_field_tag "skill", nil, class: "inputTextW small skills_attr", placeholder: "Skills" %>
-            <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn' %>
-          </div>
-          <div class="col-sm-12 skillsTag ">
-            <%= text_field_tag :name, nil, class: 'inputTextW small skills' , :data => {:role => 'tagsinputr' }, style: "display:none;"%>
-          </div>
-          <div class="clearfix"></div>
-          <div class="col-sm-12 mt10">
-            <%= submit_tag "Save", class: 'blueBtn' %>
-            <%= link_to "Cancel", "javascript:void(0)", class: 'removeSkills grayBtn' %>
-          </div>
         <%end%>
-      </div>
+      </div>  
+       <%if @user==current_user%>
+        <div id='skill_form' style="display:none;">
+          <%= form_tag  skill_profiles_path, remote: true do |f| %>
+            <div class="col-sm-12 addSkills">
+              <label>Enter Skills </label><br>
+              <%= text_field_tag "skill", nil, class: "inputTextW small skills_attr", placeholder: "Skills" %>
+              <%= link_to "Add Skill", "javascript:void(0)", class: 'add_skill blueBtn' %>
+            </div>
+            <div class="col-sm-12 skillsTag ">
+              <%= text_field_tag :name, nil, class: 'inputTextW small skills' , :data => {:role => 'tagsinputr' }, style: "display:none;"%>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-12 mt10">
+              <%= submit_tag "Save", class: 'blueBtn' %>
+              <%= link_to "Cancel", "javascript:void(0)", class: 'removeSkills grayBtn' %>
+            </div>
+          <%end%>
+        </div>
+      <% end %>
       <div class="clearfix"></div>
     </div>
 </div>

@@ -3,6 +3,7 @@
     <div class="col-sm-12 mb10">
       <div class="grayHD">SKILLS </div>
     </div>
+     <%if @user==current_user%>
     <%= form_tag  skill_profiles_path, class: "skill_form", remote: true do |f| %>
       <div class="col-sm-12 addSkills">
         <label>Enter Skills </label><br>
@@ -18,6 +19,7 @@
         <%= submit_tag "Save", id: "skill_submit",class: 'blueBtn'%>
         <%= link_to "Cancel", "javascript:void(0)", class: 'removeSkills grayBtn' %>
       </div>
+      <% end %>
     <%end%>
   </div>
 </div>
