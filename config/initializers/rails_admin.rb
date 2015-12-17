@@ -122,12 +122,18 @@ RailsAdmin.config do |config|
       configure :updated_at do
         hide
       end
+      configure :dislikes do
+        hide
+      end
     end
     edit do
       configure :created_at do
         hide
       end
       configure :updated_at do
+        hide
+      end
+      configure :dislikes do
         hide
       end
     end
