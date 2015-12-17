@@ -31,7 +31,7 @@
           </div>
           <div class="col-sm-12 mt5">
             <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change / Add</a></label>
-            <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled" %>
+            <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled"  , :placeholder => "Email" %>
           </div>
           <% end %>
           <%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "profile_form", id: "edit_profile" } do |fp| %>
@@ -39,7 +39,7 @@
 
           <div class="col-sm-12 mt5">
             <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Add/remove</a> </label>
-            <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" %>
+            <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" , :placeholder => "Phone Number"%>
           </div>
           <div class="col-sm-12">
             <input type="submit" value="Save " class="blueBtn", id="form_submit">
