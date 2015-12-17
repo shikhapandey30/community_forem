@@ -143,5 +143,6 @@ class User < ActiveRecord::Base
   def my_friends
     @friends = self.friends + self.inverse_friends
     @friends.delete(self)
+    @friends
   end
 end

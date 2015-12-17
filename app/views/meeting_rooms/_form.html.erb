@@ -1,7 +1,7 @@
 <div class="mainCOntnt">
-  <%=render "layouts/left_panel"%>
+    <%=render "layouts/left_panel"%>
   <div class="rightContent">
-    <%=render 'layouts/topNav'%>
+    <%=render "layouts/topNav"%>
     <div class="blueBkg">
       <div class="innerWIdth550">
         <span><img src="/assets/images/meeting.png" alt=""></span>
@@ -44,19 +44,19 @@
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
-            <%= f.text_field :topic, placeholder: "Topics", class: "inputTextW small" %>
+            <%= f.text_field :topic, class: "inputTextW small", placeholder: "Topic" %>
           </div>
           <div class="col-sm-12">
             <label class="font20">Write Your Headline</label>
-            <%= f.text_field :headline, class: "inputTextW small" %>
+            <%= f.text_field :headline, class: "inputTextW small", placeholder: "Write headline here...." %>
           </div>
           <div class="col-sm-12">
             <label class=""> Assign Name </label>
-            <%= f.text_field :name, class: "inputTextW small" %>
+            <%= f.text_field :name, class: "inputTextW small", placeholder: "Assign Name" %>
           </div>
           <div class="col-sm-12 ">
             <label class="">Slogan of Meeting </label>
-            <%= f.text_field :slogan, class: "inputTextW small" %>
+            <%= f.text_field :slogan, class: "inputTextW small", placeholder: "Please write slogan of meeting here...." %>
           </div>
           <div class="col-sm-12 ">
             <label class="">Invite Members </label>
