@@ -23,24 +23,12 @@
           </form>
         </div>
       </div>
-       <%@friends.each do |firend|%>
-      <div class="clearfix whiteBox connectionRow borderTpBlue">
-        <div class="clearfix  cmntRow">
-          <div class="clearfix userInfo posRel">
-            <div class="clearfix  "></div>
-            <a href="<%= profile_path(firend)%>" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
-            <a href="<%= profile_path(firend)%>" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
-            <div class="fr grayColor tar"> <%= time_ago_in_words(firend.created_at) %> ago<br>
-              <a href="#" class="mt10">Message</a> 
-              <br><%= link_to "Remove", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"removeLink", :remote=>true %>
-            </div>
-            <div class="font13 mt5"><%=designations(firend)%></div>
-            <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
-          </div>
-        </div>
+      <div id="friends">
+        <%= render @friends %>
       </div>
-      <% end %>
-      <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div>
+
+      <%= will_paginate @friends %>
+      <div class="tac preloader " style="display:none;"> <img src="/assets/images/preloader.gif" alt=""> </div>
     </div>
   </div>
 </div>

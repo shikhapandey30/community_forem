@@ -1,0 +1,2 @@
+$('#friends').append('<%= escape_javascript render(@friends) %>');
+$('.pagination').replaceWith('<%= escape_javascript will_paginate(@friends) %>');
