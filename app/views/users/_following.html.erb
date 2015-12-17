@@ -1,26 +1,18 @@
 <%@followings.each do |follow|%>
-
   <%#if follower.follower.screen_name.downcase.include?(params[:data].downcase)%>
     <div class="clearfix whiteBox connectionRow borderTpBlue">
       <div class="clearfix  cmntRow">
         <div class="clearfix userInfo posRel">
           <div class="clearfix  "></div>
-          <a href="<%#= profile_path(follow.followable.try(:user))%>" class="userImg"><%#=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
-          <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
-          <div class="fr grayColor tar">
-            2 days ago<br>
-            <% if follow.followable.class.name == "User"%>
+           <% if follow.followable.class.name == "User"%>
+            <a href="<%= profile_path(follow.followable)%>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:screen_name)%></a>
+            <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+            <div class="fr grayColor tar">
+            <%= time_ago_in_words(follow.created_at) %> ago<br>
               <%if !current_user.friendships.collect(&:friend).include? follow.followable %>
               <span class="friendship-button-<%= follow.followable.id %>">
                   <%= link_to "Connect", friendships_path(:friend_id => follow.followable.id), :class=>"mt10", :remote=>true ,:method => :post %>
                   </span>
-            <%end%>
-            <%else%>
-            <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
-              <span class="friendship-button-<%= follow.followable.user.id %>">
-                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :class=>"mt10", :remote=>true ,:method => :post %>
-                  </span>
-            <%end%>
              <%end%>
             <div class="mt5 mb-10">
               <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
@@ -28,6 +20,28 @@
           </div>
           <div class="font13 mt5"><%=designations(user(follow))%></div>
           <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
+
+          <%else %>
+            <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
+            <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+            <div class="fr grayColor tar">
+            <%= time_ago_in_words(follow.created_at) %> ago<br>
+              <%if !current_user.friendships.collect(&:friend).include? follow.followable.try(:user) %>
+              <span class="friendship-button-<%= follow.followable.id %>">
+                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.try(:user).id), :class=>"mt10", :remote=>true ,:method => :post %>
+                  </span>
+             <%end%>
+            <div class="mt5 mb-10">
+              <a href="#" class="removeLink inline">Message </a> |  
+              <span id="following-button-span-<%= follow.followable.id %>">
+                <%= render :partial=> "users/follow_link", :locals => {:post => follow.followable} %>
+              </span>
+
+            </div>
+          </div>
+          <div class="font13 mt5"><%=designations(user(follow))%></div>
+          <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
+           <%end %>          
         </div>
       </div>
     </div>
