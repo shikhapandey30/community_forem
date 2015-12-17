@@ -8,8 +8,8 @@ class FriendshipsController < ApplicationController
     # @friends =  current_user.friends +  current_user.inverse_friends
     @friends = User.where(:id => current_user.friendships.collect(&:friend_id))
     @inverse_friends = User.where(:id => current_user.inverse_friendships.collect(&:user_id))
-    @friends = (@friends + @inverse_friends) 
-    # @friends =@friends.paginate(:page => params[:page], :per_page => 10)
+    @friends = (@friends + @inverse_friends)
+    @friends =@friends.paginate(:page => params[:page], :per_page => 10)
   end
   # GET /friendships/1
   # GET /friendships/1.json
