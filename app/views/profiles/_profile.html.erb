@@ -24,8 +24,8 @@
       </div>
       <div class="col-sm-6 pr10">
         <label class="">Country</label>
-        <%= country_select("profile", "country",:class=>"profile inputTextW small") %>
-        <%#= p.text_field :country, class: "profile inputTextW small", placeholder: "Country" %>
+        <%= p.text_field :country, class: "profile inputTextW small", placeholder: "Country" %>
+        <%#= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
       </div>
       <div class="col-sm-6 pl10">
         <label class="">City</label>
