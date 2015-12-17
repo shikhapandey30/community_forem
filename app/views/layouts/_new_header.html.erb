@@ -62,7 +62,7 @@
            <% end %>
           </a>
          <ul class="clearfix dropdown-menu request-notification">
-             <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= friend_requests.count%>)</span>
+             <div class="topGrayRow"> <span class="blackColor font14 bold">Friend Requests (<%= friend_requests.count%>)</span>
              <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
              <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
           
