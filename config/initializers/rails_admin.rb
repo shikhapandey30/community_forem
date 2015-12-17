@@ -83,18 +83,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Specialization do
-    list do
-      field :id
-      field :name
-      field :education_histories
-    end
-    edit do
-      field :name
-      field :education_histories
-    end
-  end
-
   config.model Profile do
     list do
       configure :created_at do
@@ -114,6 +102,90 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Community do
+    list do
+      configure :members do
+        hide
+      end
+    end
+    edit do
+      configure :members do
+        hide
+      end
+    end
+  end
+
+  config.model Course do
+    list do
+      configure :education_histories do
+        hide
+      end
+    end
+    edit do
+      configure :education_histories do
+        hide
+      end
+    end
+  end
+  
+  config.model Forum do
+    list do
+      configure :comments do
+        hide
+      end
+      configure :topics do
+        hide
+      end
+    end
+    edit do
+      configure :comments do
+        hide
+      end
+      configure :topics do
+        hide
+      end
+    end
+  end
+
+   config.model Group do
+    list do
+      configure :members do
+        hide
+      end
+    end
+    edit do
+      configure :members do
+        hide
+      end
+    end
+  end
+
+  config.model Institute do
+    list do
+      configure :education_histories do
+        hide
+      end
+    end
+    edit do
+      configure :education_histories do
+        hide
+      end
+    end
+  end
+
+  config.model MeetingRoom do
+    list do
+      configure :comments do
+        hide
+      end
+    end
+    edit do
+      configure :comments do
+        hide
+      end
+    end
+  end
+
   config.model Post do
     list do
       configure :created_at do
@@ -123,6 +195,9 @@ RailsAdmin.config do |config|
         hide
       end
       configure :dislikes do
+        hide
+      end
+      configure :comments do
         hide
       end
     end
@@ -136,9 +211,21 @@ RailsAdmin.config do |config|
       configure :dislikes do
         hide
       end
+      configure :comments do
+        hide
+      end
     end
   end
-  
+
+  config.model Specialization do
+    list do
+      field :id
+      field :name
+    end
+    edit do
+      field :name
+    end
+  end
   # config.model AdminUser do
   #   list do
   #     field :email
