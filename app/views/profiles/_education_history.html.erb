@@ -27,7 +27,7 @@
   <div class="col-sm-6 pr10">
     <label>Start Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :start_year, value: select_type(f, "start_year"), name: "start_year", class: "selectInput" %>
+      <%= f.text_field :start_year, value: f.object.start_year ? f.object.start_year : "Select", name: "start_year", class: "selectInput" %>
       <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select")  %>
     </div>
     <div id="start_year_error"></div>
@@ -35,7 +35,7 @@
   <div class="col-sm-6 pr10">
     <label>End Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :end_year, value: select_type(f, "end_year"), name: "end_year", class: "selectInput" %>
+      <%= f.text_field :end_year, value: f.object.end_year ? f.object.end_year : "Select", name: "end_year", class: "selectInput" %>
       <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"},  class: "select") %>
     </div>
     <div id="end_year_error"></div>      
