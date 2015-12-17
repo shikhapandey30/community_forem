@@ -68,10 +68,10 @@
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
           <div class="col-sm-6  pr10  dateOuter">
             <label>From</label>
-            <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+            <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date start_date" %>
           </div>
           <div class="col-sm-6  pl10 dateOuter">
-            <label>To</label><%= f.text_field :end_date,placeholder: "DD-MM-YYYY", class: "inputTextW small date" %>
+            <label>To</label><%= f.text_field :end_date,placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date" %>
           </div>
           <div class="clearfix"></div>
           <div class="col-sm-6 mt10 pr10">
@@ -94,4 +94,14 @@
     </div>
   </div>
 </div>
+<script>
+  $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
+  $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
+  $(".start_date").on("dp.change", function (selected) {
+    $(".end_date").data("DateTimePicker").minDate(selected.date);
+  });
+  $(".end_date").on("dp.change", function (selected) {
+    $(".start_date").data("DateTimePicker").maxDate(selected.date);
+  });
+</script>
 
