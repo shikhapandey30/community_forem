@@ -30,7 +30,9 @@
               <div class="fr grayColor tar">
                 2 days ago<br>
                 <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
-                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :class=>"mt10", :remote=>true %>
+                  <span class="friendship-button-<%= follow.followable.user.id %>">
+                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :class=>"mt10", :remote=>true ,:method => :post %>
+                  </span>
                 <%end%>
                 <div class="mt5 mb-10">
                   <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
