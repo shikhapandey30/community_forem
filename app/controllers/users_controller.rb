@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @users=User.all
 	end
 
-  def search    
+  def search
     case params[:keyword]
     when "People"
       @peoples = User.search(params[:name])
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
       @communities = Community.search(params[:name]).collect(&:members).compact.flatten
     end    
     respond_to do |format|      
-      format.js      
+      format.js
+      format.html
     end
     # @peoples, @groups, @communities = keyword_filter(params[:name], params[:keyword])
     # render edit_profile_path(@user)
