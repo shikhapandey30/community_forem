@@ -15,32 +15,13 @@
       <div class="mt20 ">
         <div class="formOuter searchFrnd width100per">
           <form method="post" action="">
-            <input placeholder="Search Friend" class="searhInput1" type="text">
-            <input value="" class="searhSub" type="submit">
+            <input placeholder="Search Friend" class="searhInput1 follower" type="text">
+            <input value="" class="searhSub" type="">
           </form>
         </div>
       </div>
-      <%@followers.each do |follower|%>
-        <div class="clearfix whiteBox connectionRow borderTpBlue">
-          <div class="clearfix  cmntRow">
-            <div class="clearfix userInfo posRel">
-              <div class="clearfix  "></div>
-              <a href="#" class="userImg"><img src="<%= user(follower).try(:img) %>" alt=""></a>
-              <a href="#" class="userNAme"> <%=user(follower).try(:screen_name)%></a> <br>
-              <div class="fr grayColor tar">
-                2 days ago<br>
-                <a href="#" class="mt10">Connect</a> 
-                <div class="mt5 mb-10">
-                  <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
-                </div>
-              </div>
-              <div class="font13 mt5"><%=designations(user(follower))%></div>
-              <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div>
+      <div class="follower"><%=render 'follower'%></div>
+      <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
     </div>
   </div>
 </div>

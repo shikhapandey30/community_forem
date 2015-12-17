@@ -26,6 +26,11 @@
               <td class="blackColor"> <%=@user.try(:education_histories).try(:last).try(:institute).try(:name)%></td>
             </tr>
           </table>
+          <%if !current_user.friendships.collect(&:friend).include? @user %>
+                  <span class="friendship-button-<%=  @user.id  %>">
+                  <%= link_to "Connect", friendships_path(:friend_id => @user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
+                  </span>
+                <%end%>
         </div>
       </div>
     </div>

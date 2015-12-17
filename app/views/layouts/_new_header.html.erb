@@ -98,10 +98,10 @@
         </ul>
       </div>
       <div class="formOuter">
-        <%=form_tag search_path do%>
+        <%#=form_tag search_path do%>
         <%=text_field_tag "name", nil, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
-        <input type="submit" value="" class="searhSub">
-        <%end%>
+        <input type="" value="" class="searhSub">
+        <%#end%>
       </div>
       <div class="searchDropDown">
         <%=hidden_field_tag :filter, nil, class: "keyword_filter"%>

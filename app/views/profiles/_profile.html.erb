@@ -27,7 +27,7 @@
         <%= p.text_field :country, class: "profile inputTextW small" %>
       </div>
       <div class="col-sm-6 pl10">
-        <label class="">CIty</label>
+        <label class="">City</label>
         <%= p.text_field :city, class: "profile inputTextW small" %>
       </div>
       <div class="clearfix"></div>
@@ -37,7 +37,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Zipcode</label>
-        <%= p.text_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
+        <%= p.number_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
@@ -50,7 +50,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
-        <%= p.text_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
+        <%= p.number_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
@@ -117,7 +117,7 @@
         "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
         "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
         "user[profile_attributes][gender]": { required: true },
-        "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 20 },
+        "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 12 },
         "user[profile_attributes][profile_type]": { required: true },
         "user[profile_attributes][dob]": { required: true },
         "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
