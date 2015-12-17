@@ -25,7 +25,7 @@ li.cat.true a { color: #0BB4D3; }
 .error {text-align: left; float: left; font-size: 13px;}
 
 
-.popup-msg{	z-index: 99999;top: 25px; position: fixed; }
+.popup-msg{	z-index: 99999;top: 25px; position: fixed; left:26%; }
 
 .alert-message
 {
