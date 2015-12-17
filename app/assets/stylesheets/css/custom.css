@@ -100,3 +100,6 @@ li.cat.true a { color: #0BB4D3; }
 {
     color: #444;
 }
+.scrollbars{ max-height:350px !important;}
+.request-notification{margin-left: -247px !important;}
+.request-notification::before{ margin-left: 51px !important;}
