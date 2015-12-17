@@ -14,11 +14,11 @@
 <%if @groups.present?%>
   <div class="searchBox">
     <div class="grayHD bold">Groups</div>
-    <%@groups.each do |user|%>
+    <%@groups.each do |group|%>
       <div class="clearfix userInfo posRel">
-        <a href="#" class="userImg"><img src="images/g1.jpg" alt=""></a>
-        <a href="#" class="userNAme font14 mt5">Adobe Photoshop Group</a> <br>
-        <div class="font13 mt5 bold">Designers Talk: Graphic, web, digital design and creative...</div>
+        <a href="<%=grp_path(group)%>" class="userImg"><img src="images/g1.jpg" alt=""></a>
+        <a href="<%=grp_path(group)%>" class="userNAme font14 mt5"><%=group.headline%></a> <br>
+        <div class="font13 mt5 bold"><%=group.description%></div>
       </div>
     <%end%>
   </div>
@@ -27,10 +27,11 @@
 <%if @communities.present?%>
   <div class="searchBox community">
     <div class="grayHD bold">community</div>
-    <%@communities.each do |user|%>
+    <%@communities.each do |community|%>
       <div class="clearfix userInfo posRel">
-        <a href="#" class="userImg"><img src="images/cm1.jpg" alt=""></a>
-        <a href="#" class="userNAme font14 mt5">Your Ultimate Guide To Google+ Communities</a> <br>
+        <a href="<%=comm_path(community)%>" class="userImg"><img src="images/cm1.jpg" alt=""></a>
+        <a href="<%=comm_path(community)%>" class="userNAme font14 mt5"><%=community.headline%></a> <br>
+        <div class="font13 mt5 bold"><%=community.description%></div>
       </div>
     <%end%>  
   </div>

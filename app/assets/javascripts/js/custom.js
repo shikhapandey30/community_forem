@@ -8,6 +8,23 @@ $(document).on('click', ".add_skill", function(){
   }  
 });
 
+//Followers & Followings
+$(document).on("keyup", ".searhInput1.following", function(){
+  $.ajax({
+    method: "get",
+    url: "/followings",
+    data: {data: this.value}
+  });
+});
+
+$(document).on("keyup", ".searhInput1.follower", function(){
+  $.ajax({
+    method: "get",
+    url: "/followers",
+    data: {data: this.value}
+  });
+});
+
 $(window).load(function(){
   $(".add_skill").trigger('click');
 });

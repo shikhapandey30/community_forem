@@ -1,0 +1,52 @@
+<%if @peoples.present?%>
+  <div class="searchBox">
+    <div class="grayHD bold">People</div>
+    <%@peoples.each do |user|%>
+      <div class="clearfix userInfo posRel">
+        <a href="<%=user_path(user)%>" class="userImg"><%=image_tag user.img%></a>
+        <a href="<%=user_path(user)%>" class="userNAme font14 mt5 search_fltr"><%=user.screen_name%></a> <br>
+        <div class="font13 mt5 bold search_fltr"><%=user.employment_details.try(:last).try(:designation)%></div>
+      </div>
+    <%end%>
+  </div>
+<%end%>
+
+<%if @groups.present?%>
+  <div class="searchBox">
+    <div class="grayHD bold">Groups</div>
+    <%@groups.each do |group|%>    
+      <div class="clearfix userInfo posRel">
+        <a href="<%=grp_path(group)%>" class="userImg"><img src="images/g1.jpg" alt=""></a>
+        <a href="<%=grp_path(group)%>" class="userNAme font14 mt5 search_fltr"><%=group.headline%></a> <br>
+        <div class="font13 mt5 bold search_fltr"><%=group.description%></div>
+      </div>
+      <%group.members.each do |member|%>
+        <div class="clearfix userInfo posRel">
+          <a href="<%=user_path(member.user)%>" class="userImg"><%=image_tag member.user.img%></a>
+          <a href="<%=user_path(member.user)%>" class="userNAme font14 mt5 search_fltr"><%=member.user.screen_name%></a> <br>
+          <div class="font13 mt5 bold search_fltr"><%=member.user.employment_details.try(:last).try(:designation)%></div>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+<%end%>
+
+<%if @communities.present?%>
+  <div class="searchBox community">
+    <div class="grayHD bold">community</div>
+    <%@communities.each do |community|%>
+      <div class="clearfix userInfo posRel">
+        <a href="<%=comm_path(community)%>" class="userImg"><img src="images/cm1.jpg" alt=""></a>
+        <a href="<%=comm_path(community)%>" class="userNAme font14 mt5 search_fltr"><%=community.headline%></a> <br>
+        <div class="font13 mt5 bold search_fltr"><%=community.description%></div>
+      </div>
+      <%community.members.each do |member|%>
+        <div class="clearfix userInfo posRel">
+          <a href="<%=user_path(member.user)%>" class="userImg"><%=image_tag member.user.img%></a>
+          <a href="<%=user_path(member.user)%>" class="userNAme font14 mt5 search_fltr"><%=member.user.screen_name%></a> <br>
+          <div class="font13 mt5 bold search_fltr"><%=member.user.employment_details.try(:last).try(:designation)%></div>
+        </div>
+      <%end%>
+    <%end%>  
+  </div>
+<%end%>
