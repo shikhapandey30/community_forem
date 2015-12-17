@@ -98,8 +98,8 @@ class ProfilesController < ApplicationController
   # POST /Profiles
   # POST /Profiles.json
   def create
-    @profile = current_user.build_profile(profile_params)
-    @success = "Profile create Succesfully." if @profile.save
+    # @profile = current_user.build_profile(profile_params)
+    # @success = "Profile create Succesfully." if @profile.save
     # flash[:notice] = "Profile created successfully." if @profile.save
     # @profile = current_user.build_profile(profile_params)
     # @profile.save
@@ -132,8 +132,9 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
 
-  def update    
-    @success = "Profile update Succesfully." if current_user.update_attributes(profile_params)
+  def update
+    success = current_user.profile ? "Profile update Succesfully." : "Profile create Succesfully."
+    @success = success if current_user.update_attributes(profile_params)
     @profile = current_user.profile
     # flash[:notice] = "Profile update successfully." 
 

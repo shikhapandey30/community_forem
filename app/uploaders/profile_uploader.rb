@@ -18,7 +18,11 @@ class ProfileUploader < CarrierWave::Uploader::Base
 
   def default_url
     'images/default_logo.png'
-   end
+  end
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
