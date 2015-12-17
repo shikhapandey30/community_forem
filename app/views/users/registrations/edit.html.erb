@@ -30,7 +30,7 @@
             <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small", disabled: "disabled" %>
           </div>
           <div class="col-sm-12 mt5">
-            <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change / Add</a></label>
+            <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change </a></label>
             <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled"  , :placeholder => "Email" %>
           </div>
           <% end %>
@@ -38,7 +38,7 @@
           <%=fp.fields_for :profile do |p|%>
 
           <div class="col-sm-12 mt5">
-            <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Add/remove</a> </label>
+            <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Change</a> </label>
             <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" , :placeholder => "Phone Number"%>
           </div>
           <div class="col-sm-12">
