@@ -66,9 +66,7 @@
         
           </div>
           <div class="col-sm-6  pl10 dateOuter">
-            <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date" %><!-- 
-            <div class="start_datepick hide"><%=f.object.start_date%></div>
-            <div class="exp_date hide"><%=f.object.expiration_date%></div> -->
+            <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date" %>
           </div>
           <div class="col-sm-12">
             <%= f.submit "Save Post", class: "blueBtn" %>
@@ -86,7 +84,6 @@
     if ($(".start_date").val() != "") {
       $('.end_date').data("DateTimePicker").minDate($(".start_date").val());
     } else{
-      $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
       $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
     }
     $(".start_date").on("dp.change", function (selected) {
