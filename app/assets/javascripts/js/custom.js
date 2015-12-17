@@ -55,6 +55,14 @@ $(document).on('ready', function () {
           error.appendTo($("#category_name_error"));
         } else if(element.attr("name") == "group[category_id]") {
           error.appendTo($("#category_error"));
+        } else if(element.attr("name") == "contest[category_id]") {
+          error.appendTo($("#category_name_error"));
+        } else if(element.attr("name") == "community[category_id]") {
+          error.appendTo($("#category_name_error"));
+        } else if(element.attr("name") == "forum_poll[category_id]") {
+          error.appendTo($("#category_name_error"));
+        } else if(element.attr("name") == "meeting_room[category_id]") {
+          error.appendTo($("#category_name_error"));
         }
          else {
           error.insertAfter(element);
@@ -84,6 +92,7 @@ $(document).on('ready', function () {
           "forum_poll[body]": { required: true, maxlength: 80 },
           "forum_poll[start_date]": { required: true },
           "forum_poll[end_date]": { required: true },
+          "contest[category_id]": { required: true },
           "contest[topic]": { required: true, maxlength: 80 },
           "contest[headline]": { required: true, maxlength: 80 },
           "contest[description]": { required: true, maxlength: 80 },
@@ -93,7 +102,12 @@ $(document).on('ready', function () {
           "meeting_room[topic]": { required: true, maxlength: 80 },
           "meeting_room[headline]": { required: true, maxlength: 80 },
           "meeting_room[name]": { required: true, maxlength: 80 },
-          "meeting_room[slogan]": { required: true, maxlength: 80 }
+          "meeting_room[slogan]": { required: true, maxlength: 80 },
+          "community[category_id]": { required: true },
+          "community[topic]": { required: true, maxlength: 80 },
+          "community[headline]": { required: true,maxlength: 80 },
+          "community[slogan]": { required: true, maxlength: 80 },
+          "community[description]": { required: true, maxlength: 80 }
       },
       submitHandler: function(form) {
        $('form.profile_form').submit();

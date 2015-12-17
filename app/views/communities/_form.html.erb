@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth550 tac ">
-      <%= form_for(@community) do |f| %>
+      <%= form_for(@community, html: {class: "profile_form"}) do |f| %>
       <% if @community.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@community.errors.count, "error") %> prohibited this community from being saved:</h2>
@@ -31,26 +31,7 @@
           </div>
         </div>
         <div class="uploadBoxOuter font14">
-          <%=f.fields_for :upload do |u|%>
-          <div class="tabOuter">
-            <div id="tab-1" class="tab-content current">
-              <div class="uploadBoxOuter font14">
-                <%= u.file_field :image, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
-                <a href="#"  onclick="$('.post_image').click();">
-                <% if @community.try(:upload).try(:image).present? %>
-                <%= image_tag @community.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
-                <% else %>  
-                <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
-                <% end %>
-                </a>
-                <div class="grayBig mt20 bold"> 
-                  Add an image to bring your post to life
-                </div>
-                Images that are at least 700 x 400 pixels look best.
-              </div>
-            </div>
-          </div>
-          <%end%>
+          <%=render 'layouts/shared/upload', f: f, obj: @community%>
         </div>
         <!-- container -->
       </div>
@@ -59,10 +40,11 @@
           <div class="col-sm-6 pr10">
             <label>Select Category</label>
             <div class="selctFormBox">
-              <%= f.hidden_field :category_id, :value=>'Select', class: " selectInputField" %>
-              <%= f.text_field "category_id", :value=>'Select', class: "selectInput" ,:id=>'category'%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+              <%= f.hidden_field :category_id, :value=>select_type(f, "category_id", "Category"), class: " selectInputField" %>
+              <%= f.text_field "category_id", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
+              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
             </div>
+            <div id="category_name_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>

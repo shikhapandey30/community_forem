@@ -59,8 +59,8 @@ class CommunitiesController < ApplicationController
   # PATCH/PUT /communities/1.json
   def update
     respond_to do |format|
-      set_upload(params[:community][:upload_attributes])
       if @community.update(community_params)
+        set_upload
         if params[:community][:members].present?
           members_ids = params[:community][:members].reject(&:empty?)
           members_ids.each do |members_id|
@@ -98,12 +98,14 @@ class CommunitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def community_params
-      params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :_destroy])
+      params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
     end
 
-    def set_upload params
-      @community.upload.destroy
-      @community.build_upload( image: params[:image] )
-      @community.save
+    def set_upload
+      # @community.upload.destroy
+      # @community.build_upload( image: params[:image] )
+      # @community.save
+      @community.upload.update_column(:image, nil) if params[:image_url].eql?("true")
+      @community.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 end
