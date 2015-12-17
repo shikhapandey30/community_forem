@@ -7,7 +7,7 @@
         <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
         <a href="#"  onclick="$('.post_image').click();">
           <% if obj.try(:upload).try(:image).present? %>
-            <%= image_tag obj.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+            <%= image_tag obj.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:block;'%>
           <% else %>
             <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
           <% end %>
@@ -33,8 +33,7 @@
         <a href="#"  onclick="$('.post_file').click();">
         <img src="/assets/images/link.png" alt="" id='fleprvw'>  <%=link_to 'X','#',class: 'remove_file',:style=>'display:none;'%>
         </a>
-        <div class='file_name'>
-        </div>
+        <div class='file_name'><%=u.object.file.url%></div>
         <div class="grayBig mt0 bold">
           Upload your Document
         </div>
