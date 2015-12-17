@@ -6,7 +6,12 @@
     <% notifications = current_user.notifications.unread %>
     <% messages = current_user.notifications.messages.unread %>
     <% friend_requests = current_user.notifications.friend_requests.unread %>
-       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt=""><span><%= notifications.count %></span></a>
+    <% notifications = notifications - messages - friend_requests %>
+       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt="">
+        <%if notifications.count > 0 %>
+         <span><%= notifications.count %></span>
+         <% end %>
+       </a>
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
@@ -26,7 +31,11 @@
         </ul>
       </span>      
         <span class="dropdown notification">  
-            <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt=""><span><%= messages.count%></span></a>
+            <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt="">
+            <%if messages.count > 0 %>
+            <span><%= messages.count%></span>
+            <% end %>
+            </a>
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= messages.count%>)</span>
          <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
@@ -47,28 +56,33 @@
         </ul>
       </span>
        <span class="dropdown notification ">  
-          <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt=""><span><%= friend_requests.count%></span></a>
+          <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt="">
+           <%if friend_requests.count > 0 %>
+           <span><%= friend_requests.count%></span>
+           <% end %>
+          </a>
          <ul class="clearfix dropdown-menu request-notification">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= friend_requests.count%>)</span>
-         <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
-      
-      <div class="notiScroll scrollbars">
-        <% friend_requests.each do |notification|%>
-        <li>
-          <div class="clearfix commentSec cmntRow">
-            <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
-              <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %></div>
-              <div class="font13">Web Designer</div>
-              <div class="blackColor font12 bold"> is now a connection</div>
-            </div>
-            <div class="acceptRej">
-              <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
-                 <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
+             <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= friend_requests.count%>)</span>
+             <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
+             <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
+          
+          <div class="notiScroll scrollbars">
+            <% friend_requests.each do |notification|%>
+            <li class="notification-<%= notification.id %>" >
+              <div class="clearfix commentSec cmntRow">
+                <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at) %></div>
+                  <div class="font13">Web Designer</div>
+                  <div class="blackColor font12 bold"> is now a connection</div>
                 </div>
-          </div>
-          </li>
-          <% end %>
+                <div class="acceptRej">
+                  <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
+                     <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
+                    </div>
+              </div>
+              </li>
+              <% end %>
+              </div>
         </ul>
       </span>
        <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
