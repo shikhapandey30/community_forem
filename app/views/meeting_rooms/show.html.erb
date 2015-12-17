@@ -44,7 +44,6 @@
             <div class="cmntSec">
 
               <%if @meeting_room.liked?(current_user).present?%>
-              <% debugger %>
                 <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post_liked'%>
               <%else%>
                 <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post'%>
