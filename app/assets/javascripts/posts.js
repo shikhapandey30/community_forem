@@ -2,10 +2,16 @@
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
     });
 
+    $(document).on("click", ".profile_submit", function(){
+      if ($(".error.img_error").text()!="") {
+        return false;
+      }
+    })
+
     function showimagepreview(input) {
-      Extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
-      if ( Extension == "png" || Extension == "bmp"
-                    || Extension == "jpeg" || Extension == "jpg" ) {
+      extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
+      if ( extension == "png" || extension == "bmp"
+                    || extension == "jpeg" || extension == "jpg" ) {
         $(".error.img_error").html("");
         if (input.files && input.files[0]) {
         var filerdr = new FileReader();
@@ -19,6 +25,7 @@
       }
     } else {
       $(".error.img_error").html("Please add only PNG, JPG, JPEG, and BMP Images.");
+      return false;
     }
     
   }
