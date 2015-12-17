@@ -1,0 +1,24 @@
+<%@followings.each do |follow|%>
+  <%#if follower.follower.screen_name.downcase.include?(params[:data].downcase)%>
+    <div class="clearfix whiteBox connectionRow borderTpBlue">
+      <div class="clearfix  cmntRow">
+        <div class="clearfix userInfo posRel">
+          <div class="clearfix  "></div>
+          <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
+          <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+          <div class="fr grayColor tar">
+            2 days ago<br>
+            <%if !current_user.friendships.collect(&:friend).include? follow.followable.user %>
+              <%= link_to "Connect", friendships_path(:friend_id => follow.followable.user.id), :class=>"mt10", :remote=>true %>
+            <%end%>
+            <div class="mt5 mb-10">
+              <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
+            </div>
+          </div>
+          <div class="font13 mt5"><%=designations(user(follow))%></div>
+          <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
+        </div>
+      </div>
+    </div>
+  <%#end%>  
+<%end%>

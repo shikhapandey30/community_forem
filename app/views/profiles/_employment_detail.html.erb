@@ -1,12 +1,12 @@
 <%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form" }, remote: true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Enter Designation </label>
-    <%= f.text_field :designation, class: "inputTextW small", :maxlength=>"80" %>
+    <%= f.text_field :designation, class: "inputTextW small", placeholder: "Designation", :maxlength=>"80" %>
     <!-- <input type="text" placeholder="Designation " class="inputTextW small  ">  -->
   </div>
   <div class="col-sm-6 pl10">
     <label>Enter Organization</label>
-    <%= f.text_field :organization, class: " inputTextW small", :maxlength=>"80" %>
+    <%= f.text_field :organization, class: " inputTextW small", placeholder: "Organization", :maxlength=>"80" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
   <div class="clearfix"></div>
@@ -27,7 +27,7 @@
 
   <div class="col-sm-12 ">
     <label class=""> Write Text </label>
-    <%= f.text_area :description, class: "inputTextW small", :maxlength=>"300" %>
+    <%= f.text_area :description, class: "inputTextW small", placeholder: "write description here...", :maxlength=>"300" %>
     <!-- <textarea placeholder="Write Text " class="inputTextW small "></textarea> -->
     <div class="font12 grayColor fr mt-10"><p id="counter"></p></div>
   </div>

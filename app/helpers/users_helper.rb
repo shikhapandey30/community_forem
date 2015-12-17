@@ -19,4 +19,12 @@ module UsersHelper
 	def user_path(user)
 		current_user.eql?(user) ? edit_profile_path(user) : profile_path(user)
 	end
+
+	def grp_path(group)
+		current_user.eql?(group.user) ? edit_group_path(group) : group_path(group)
+	end
+
+	def comm_path(community)		
+		current_user.eql?(community.user) ? edit_community_path(community) : community_path(community)
+	end
 end

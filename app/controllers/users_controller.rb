@@ -10,13 +10,13 @@ class UsersController < ApplicationController
     when "People"
       @peoples = User.search(params[:name])
     when "Communities"
-      @groups = Group.search(params[:name]).collect(&:members).compact.flatten
+      @groups = Group.search(params[:name])
     when "Groups"
-      @communities = Community.search(params[:name]).collect(&:members).compact.flatten
+      @communities = Community.search(params[:name])
     else
       @peoples = User.search(params[:name])
-      @groups = Group.search(params[:name]).collect(&:members).compact.flatten
-      @communities = Community.search(params[:name]).collect(&:members).compact.flatten
+      @groups = Group.search(params[:name])
+      @communities = Community.search(params[:name])
     end    
     respond_to do |format|      
       format.js
@@ -71,12 +71,20 @@ class UsersController < ApplicationController
     end
   end
  
-  def followings
+  def followings    
     @followings = current_user.followings
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
  
   def followers    
-    @followers = current_user.followers
+    @followers = current_user.followers  
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
   
   def user_category
