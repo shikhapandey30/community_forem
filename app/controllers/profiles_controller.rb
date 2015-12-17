@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
   def skill
     if current_user.skill
       @skill = current_user.skill.update(name: params[:name])
-      @success = "Skill update Succesfully."
+      @success = "Skill update Succesfully." if current_user.skill.try(:name).present?
     elsif params[:name].present?
       @skill = current_user.build_skill(name: params[:name])
       @success = "Skill create Succesfully." if @skill.save
