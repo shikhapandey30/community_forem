@@ -1,66 +1,35 @@
-<div class="bodyCont">
-  <%=render "layouts/left_panel"%>
-  <div class="rightContent" style="margin-top:67px;">
-    <%=render 'layouts/topNav'%>
-    <div class="blueBkg myWall">
-      <div class="clearfix innerWIdth550">
-        <div class="userTHumb">
-          <a href="#" class="profileImg"><img src="/assets/images/group.png" alt=""></a>
-          <div class="nameLocation">
-            <a href="#" class="font22">Your Connections</a>                        
-          </div>
+<!-- Header End -->
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>	
+  <div class="rightContent">
+    <div class="overLAy"></div>
+    <%=render 'layouts/topNav'%>	
+    <div class="blueBkg">
+      <div class="innerWIdth550">
+        <span><img src="/assets/images/connection.png" alt=""></span>
+        Your Connections
+        <div class="fr ">
+          <a href="#" class="back mt5">add contact</a><br>
+          <div class="fr font12 mt5"> <%= current_user.my_friends.try(:count) %> connections</div>
         </div>
-        <div class="back"><%=@friends.try(:count) %> Connections</div>
       </div>
     </div>
-    <div class="clearfix innerWIdth550 tac ">
-      <%@friends.each do |firend|%>
-        <div class="clearfix whiteBox borderTop  mb10 pb0">
-          <div class="clearfix formOuterPost tal padding10-0 ">
-            
-            <div class="col-sm-12 mb10">
-              <div class="clearfix userInfo posRel">
-                <a href="#" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
-                <a href="#" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
-                <span class="font13"><%=designations(firend)%></span>
-                <div class="fr grayColor tar"><%= time_ago_in_words(firend.created_at) %> ago<br>
-                 <%= link_to "Disconnect", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"transition addFriend", :remote=>true , :style => "display: inline-block;"%>
-                </div>
-              </div>
-              <div class="uniOuter">
-                <div class="mt0 blackColor bold ">
-                  <p>Game of Thrones: <a href="#" class="blueColor">over it</a></p>
-                </div>
-              </div>
-            </div>          
-            <div class="clearfix"></div>
-          </div>
+    <div class="clearfix innerWIdth550  ">
+      <div class="mt20 ">
+        <div class="formOuter searchFrnd width100per">
+          <form method="post" action="">
+            <input placeholder="Search Friend" class="searhInput1" type="text">
+            <input value="" class="searhSub" type="submit">
+          </form>
         </div>
-      <%end if @friends%>  
-      <div class="clearfix whiteBox borderTop  mb10 pb0">
-        <div class="clearfix conversationTop borderBtm">
-          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
-          <div class="fr">
-            <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
-          </div>
-        </div>
-        <div class="connectionOuter ">
-          <div class="col-sm-6 borderRight">
-            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> 
-            <span>H. Peter Curran</span></a>
-            <div class="dsignation">Appraiser, Art, Antiques,
-              Deconstruction      
-            </div>
-            <a href="#" class="whiteBtn"> Follow </a>
-          </div>
-          <div class="col-sm-6">
-            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> 
-            <span>Trip Spencer</span></a>
-            <div class="dsignation">Director</div>
-            <a href="#" class="whiteBtn"> Follow </a>
-          </div>
-        </div>
-      </div>      
+      </div>
+      <div id="friends">
+        <%= render @friends %>
+      </div>
+
+      <%= will_paginate @friends %>
+      <div class="tac preloader " style="display:none;"> <img src="/assets/images/preloader.gif" alt=""> </div>
     </div>
   </div>
 </div>
+
