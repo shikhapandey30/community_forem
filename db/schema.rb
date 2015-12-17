@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216041135) do
+ActiveRecord::Schema.define(version: 20151216130934) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -324,7 +324,6 @@ ActiveRecord::Schema.define(version: 20151216041135) do
     t.text     "title",           limit: 65535
     t.text     "description",     limit: 65535
     t.string   "file",            limit: 255
-    t.boolean  "visibility",                    default: true
     t.datetime "expiration_date"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
@@ -334,6 +333,7 @@ ActiveRecord::Schema.define(version: 20151216041135) do
     t.string   "site_link",       limit: 255
     t.string   "topic",           limit: 255
     t.date     "start_date"
+    t.boolean  "visibility",                    default: true
   end
 
   create_table "profiles", force: :cascade do |t|

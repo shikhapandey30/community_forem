@@ -13,7 +13,7 @@ module ApplicationHelper
       class_name.classify.constantize.find(f.object.send(attribute)).name
     else
       f.object.send(attribute) ? f.object.send(attribute) : "Select"
-    end    
+    end 
   end
 
   def categories

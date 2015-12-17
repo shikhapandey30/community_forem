@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   has_many :followings, as: :followable, :dependent => :destroy
   has_one :upload, as: :uploadable, dependent: :destroy
   accepts_nested_attributes_for :upload, :allow_destroy => true
-  scope :validity, -> { where("expiration_date >= ? AND visibility = ?", Date.today, true) }
+  scope :validity, -> { where("expiration_date >= ? and visibility = ?", Date.today, true) }
   # scope :visibility, ~> { where(visibility: true) }
   
   def liked?(current_user)
