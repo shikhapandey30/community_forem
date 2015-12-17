@@ -44,7 +44,7 @@
             <%#= f.text_field "topic_id", :value=>'Select', class: "selectInput" ,:id=>'topic'%>
             <%#= f.select("topic_id", Topic.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
             <!-- </div> -->
-            <%= f.text_field :topic, :placeholder=>"Topics", :id=>"topic", class: "inputTextW small" %>
+            <%= f.text_field :topic, :placeholder=>"Topic", :id=>"topic", class: "inputTextW small" %>
           </div>
           <div class="col-sm-12">
             <label class="font20">Write Your Headline</label>
