@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'errors/not_found'
-
-  get 'errors/internal_server_error'
-
   resources :contests
   resources :meeting_rooms
   resources :groups
@@ -128,7 +123,9 @@ Rails.application.routes.draw do
    
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-
+  # Error pages/
+  get "/404" => "errors#not_found"
+  # get "/500" => "errors#internal_server_error"
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
