@@ -10,10 +10,11 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  # config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
   config.serve_static_assets = true
   # Don't care if the mailer can't send.
+  config.consider_all_requests_local = false
 
  # config.action_mailer.delivery_method = :smtp
  config.action_mailer.delivery_method = :letter_opener
