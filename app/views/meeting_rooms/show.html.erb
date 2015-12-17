@@ -40,73 +40,44 @@
               </div>
             </div>
             <div class="clearfix"></div>
-            <div class="commentSec">
-              <span class="grayColor font12"><%= @meeting_room.likes.count%> Likes &nbsp; &nbsp; <%= @meeting_room.comments.count%> Comments &nbsp; &nbsp; 468 shares</span>
-              <div class="cmntSec">
-                <a href="#"><img src="/assets/images/up.png" alt=""></a>
-                <a href="#"><img src="/assets/images/down1.png" alt=""></a>
-                <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
-                <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-                <input type="button" value="Add Your Comment" class="addCmnt inputTextW small">
-              </div>
+            <span class="grayColor font12"><span class="post_like_count"><%= @meeting_room.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @meeting_room.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
+            <div class="cmntSec">
+
+              <%if @meeting_room.liked?(current_user).present?%>
+              <% debugger %>
+                <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post_liked'%>
+              <%else%>
+                <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post'%>
+              <%end%>
+              <!-- <a href="#"><img src="/assets/images/down1.png" alt=""></a> -->
+              <%if @meeting_room.disliked?(current_user).present?%>
+                <%=link_to image_tag("images/down1.png"), meeting_room_dislikes_path(@meeting_room), method: :post, remote: true,:class=>'dislike_image_post_disliked'%>
+              <%else%>
+                <%=link_to image_tag("images/down1.png"), meeting_room_dislikes_path(@meeting_room), method: :post, remote: true,:class=>'dislike_image_post'%>
+              <%end%>
+              <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+              <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
+              <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
             </div>
+            <div class="clearfix"></div>
             <div id="comments">
               <%= render partial: "comments/comments_view", locals: { comments: @meeting_room.comments } %>
             </div>
             <div class="commentShow">
-              <div  class="clearfix commentSec cmntRow">
+              <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box">
                 <div class="clearfix userInfo posRel">
-                  <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
-                  <a href="#" class="userNAme"> Jack</a> <br>
-                  <span class="font13"> Events Coordinator, Designer</span>
-                  <div class="fr grayColor tar">2 Oct</div>
-                  <div class="clearfix mt15 font13 blackColor">I agree. I was not impressed with the strategic voting the country implemented. You can't ask people not to vote for their beliefs just to oust someone out.</div>
-                  <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a>| <a href="#" class="blueColor" ><a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
-                  <div class="clearfix replyRow">
-                    <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
-                  </div>
-                </div>
-              </div>
-              <div  class="clearfix commentSec cmntRow comntONcmnt">
-                <div class="clearfix userInfo posRel">
-                  <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
-                  <a href="#" class="userNAme"> John Smith </a> <br>
-                  <span class="font13"> Events Coordinator, Designer</span>
-                  <div class="fr grayColor tar">2 Oct</div>
-                  <div class="clearfix mt15 font13 blackColor">Exactly! It's a sad and ineffective way to do things.</div>
-                  <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
-                </div>
-                <div class="clearfix userInfo posRel mt15">
-                  <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
-                  <a href="#" class="userNAme"> John Smith </a> <br>
-                  <span class="font13"> Events Coordinator, Designer</span>
-                  <div class="fr grayColor tar">2 Oct</div>
-                  <div class="clearfix mt15 font13 blackColor">Exactly! It's a sad and ineffective way to do things.</div>
-                  <div class="font13 bold blueColor mt5"><a href="#" class="blueColor" >Like </a></div>
-                </div>
-              </div>
-              <div  class="clearfix commentSec cmntRow">
-                <div class="clearfix userInfo posRel">
-                  <a href="#" class="userImg"><img src="/assets/images/jack.jpg" alt=""></a>
-                  <a href="#" class="userNAme"> Jack</a> <br>
-                  <span class="font13"> Events Coordinator, Designer</span>
-                  <div class="fr grayColor tar">2 Oct</div>
-                  <div class="clearfix mt15 font13 blackColor">Good to know that youngs are coming in to stage to get rid of those so
-                    called "old rifles"!
-                  </div>
-                  <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a>|<a href="javascript:void(0)" class="blueColor reply" > Reply</a></div>
-                  <div class="clearfix replyRow">
-                    <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <input type="text" class="inputTextW small" placeholder="Add Your Comment">
-                  </div>
-                </div>
-              </div>
-              <div  class="clearfix commentSec cmntRow borderNOne">
-                <div class="clearfix userInfo posRel">
-                  <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
+                  <a href="javascript:;" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
                   <div class="addcomtntTA">
-                    <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
-                    <input value="Save" class="blueBtn" type="submit">
-                    <a href="javascript:void(0)" class="grayBtn Cancel">Cancel</a>  
+                    <!-- Start Comment form -->
+                    <%= form_for(@comment, remote: true) do |f| %>
+                      <div class="field">
+                        <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body", class: "addCmnt inputTextW small" %>
+                        <%= hidden_field_tag :meeting_room_id, @meeting_room.id %>
+                        <%= f.submit "Save", class: "blueBtn", id: "save_comment" %>
+                        <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
+                      </div>
+                    <% end %>
+                    <!-- End comment form -->
                   </div>
                 </div>
               </div>
@@ -120,6 +91,31 @@
  $(function () {
    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
  });
+ $("#comment_cancel").click(function(event) {
+    $("#comment_body").val("");
+  });
+  $("#comments").hide();
+  $("#comment_box").hide();
+  $("#comment_button").click(function(event) {
+    event.preventDefault();
+    $("#comments").toggle();
+    $("#comment_box").toggle();
+    $("html, body").scrollTop($('#comment_box').offset().top);
+  });
+  $("#save_comment").click(function(event) {
+    event.preventDefault();
+    if ($("#comment_body").val() == ""){
+      event.preventDefault();
+    }
+    else {
+      $.ajax({
+        type: "post",
+        dataType: "script",
+        url: "/comments",
+        data: {"comment[body]": $("#comment_body").val(), meeting_room_id: $("#meeting_room_id").val() }
+      });
+    }
+  });
 </script>
 
 

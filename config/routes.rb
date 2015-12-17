@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :contests
-  resources :meeting_rooms
+  resources :meeting_rooms do
+    resources :likes, only: [:create]
+    resources :dislikes, only: [:create]
+  end
   resources :groups
 
   resources :friendships
