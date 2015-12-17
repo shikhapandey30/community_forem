@@ -21,7 +21,7 @@
             <span class="font13"><%= designation(post) %></span>
             <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
               <%if !current_user.friendships.collect(&:friend).include? post.user %>
-                  <span class="friendship-button-<%=  @user.id  %>">
+                  <span class="friendship-button-<%=  post.user.id  %>">
                   <%= link_to (image_tag '/assets/images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
                 <%end%>
