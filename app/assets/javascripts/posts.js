@@ -3,15 +3,22 @@
     });
 
     function showimagepreview(input) {
-    if (input.files && input.files[0]) {
-    var filerdr = new FileReader();
-    filerdr.onload = function(e) {
+      Extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
+      if ( Extension == "png" || Extension == "bmp"
+                    || Extension == "jpeg" || Extension == "jpg" ) {
+        $(".error.img_error").html("");
+        if (input.files && input.files[0]) {
+        var filerdr = new FileReader();
+        filerdr.onload = function(e) {
 
-    $('#imgprvw').attr('src', e.target.result);
-    $("#image_url").val(false);
-    }
-    filerdr.readAsDataURL(input.files[0]);
-    $('.remove_image').show();
+        $('#imgprvw').attr('src', e.target.result);
+        $("#image_url").val(false);
+        }
+        filerdr.readAsDataURL(input.files[0]);
+        $('.remove_image').show();
+      }
+    } else {
+      $(".error.img_error").html("Please add only PNG, JPG, JPEG, and BMP Images.");
     }
     
   }

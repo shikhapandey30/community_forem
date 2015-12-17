@@ -88,6 +88,7 @@ $(document).on('ready', function () {
       rules: {
           "user[first_name]": { required: true },
           "user[last_name]": { required: true },
+          "user[screen_name]": { required: true },          
           "user[email]": { required: true },          
           "user[password]": { required: true, minlength: 8 },
           "user[password_confirmation]": { required: true, minlength: 8,
