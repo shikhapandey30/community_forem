@@ -471,7 +471,7 @@ box-shadow:0px 0px 3px 1px rgba(0, 0, 0, .05);}
 .connectionRow .cmntRow{background-color:#FFF;}
 .connectionRow  .userInfo .grayColor {margin-top: -25px;}
 .connectionRow  .userInfo .grayColor a{display:inline-block;  margin-top:10px;}
-.connectionRow a.removeLink{padding:0px !important; border:0px; !important; margin: 3px  0px -20px 0 !important; background-color:#FFF; color:#757575; font-size:12px; height:auto; line-height:20px; font-size:10px; box-shadow: 0px 0px 0px 0px #EDEDED;}
+.connectionRow a.removeLink{padding:0px !important; border:0px !important; margin: 3px  0px -20px 0 !important; background-color:#FFF; color:#757575; font-size:12px; height:auto; line-height:20px; font-size:10px; box-shadow: 0px 0px 0px 0px #EDEDED;}
 .connectionRow a.removeLink:hover{background-color:#FFF; color:#0BB4D3; }
 .preloader{margin:30px 0; }
 .preloader img{width:30px;}
