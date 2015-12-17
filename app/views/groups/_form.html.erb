@@ -27,29 +27,7 @@
 </header>
 <!-- Header End -->
 <div class="mainCOntnt">
-  <div class="leftNAv">
-    <div class="userTHumb">
-      <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
-      <div class="nameLocation">
-        <a href="#"><%= current_user.profile.try(:screen_name) %></a>
-        <span class="location"><%= current_user.profile.try(:country) %></span>
-      </div>
-    </div>
-    <span class="categories"><img src="/assets/images/tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="/assets/images/li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="/assets/images/li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="/assets/images/li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="/assets/images/li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="/assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>      
-      </div>
-    </ul>
-  </div>
+  <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <div class="overLAy"></div>
     <div class="topNAv">
