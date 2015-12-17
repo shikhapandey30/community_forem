@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_education_history
+    @user = current_user
     @education_histories = EducationHistory.find(params[:id])
     @education_histories.update(education_params)
      @success = "Education History update Succesfully." 
@@ -32,6 +33,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_employment_detail
+    @user = current_user
     @employment_detail = EmploymentDetail.find(params[:id])
     @employment_detail.update(employment_params)
      @success = "Employment History update Succesfully." 
