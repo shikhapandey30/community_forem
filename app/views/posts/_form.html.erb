@@ -66,6 +66,8 @@
           </div>
           <div class="col-sm-6  pl10 dateOuter">
             <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date" %>
+            <div class="start_date hide"><%=f.object.start_date%></div>
+            <div class="exp_date hide"><%=f.object.expiration_date%></div>
           </div>
           <div class="col-sm-12">
             <%= f.submit "Save Post", class: "blueBtn" %>
@@ -79,12 +81,18 @@
   </div>
 </div>
 <script>
-  $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
-  $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
-  $(".start_date").on("dp.change", function (selected) {
-    $(".end_date").data("DateTimePicker").minDate(selected.date);
-  });
-  $(".end_date").on("dp.change", function (selected) {
-    $(".start_date").data("DateTimePicker").maxDate(selected.date);
+  $(function(){
+    if ($(".start_date").val().indexOf()!=-1) {
+      $('.start_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
+    }
+    if ($(".exp_date").val().indexOf()!=-1) {
+      $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
+    }
+    $(".start_date").on("dp.change", function (selected) {
+      $(".end_date").data("DateTimePicker").minDate(selected.date);
+    });
+    $(".end_date").on("dp.change", function (selected) {
+      $(".start_date").data("DateTimePicker").maxDate(selected.date);
+    });
   });
 </script>
