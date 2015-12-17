@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216130934) do
+ActiveRecord::Schema.define(version: 20151217120312) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -351,11 +351,13 @@ ActiveRecord::Schema.define(version: 20151216130934) do
     t.string   "post_code",         limit: 255
     t.string   "city",              limit: 255
     t.string   "country",           limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "profile_type",      limit: 255
     t.string   "ethnic_group",      limit: 255
     t.string   "state",             limit: 255
+    t.text     "address1",          limit: 65535
+    t.text     "address2",          limit: 65535
   end
 
   create_table "replies", force: :cascade do |t|
