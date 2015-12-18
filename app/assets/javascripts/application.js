@@ -28,7 +28,5 @@
 //= require jquery.remotipart
 //= require js/custom
 //= require responsivevoice
-//= require js/validate
 //= require js/jquery.form-validator.min
-// require js/validate.min
-// require js/jquery.nicescroll.min
+//= require js/jquery.nicescroll.min

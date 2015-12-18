@@ -60,8 +60,8 @@
           </div>
         </div>
         <div class="clearfix"></div>
-        <div class="commentSec">
-          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
+        <div class="commentSec">          
+          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count - post.dislikes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
           <div class="cmntSec">
             <%if post.liked?(current_user).present?%>
             <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post_liked', :id=> "like_image_post_liked_#{post.id}"%>
