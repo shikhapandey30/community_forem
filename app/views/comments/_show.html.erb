@@ -1,24 +1,31 @@
-<div class="comments-box"  style="margin-left:58px; margin-top: 17px;">
-  <b><i><%= comment.body %></b></i></br>
-  created at: <%= time_ago_in_words comment.created_at %>ago
-</div>
-<div class="hd">
-            <%#=link_to post.title, post %>
-              <%#if post.user_id==current_user.id%>
-            <%if comment.user_id==current_user.id%>
-               <img src="/images/edit_icon-img.png" onclick = '$(".edit-comment-form-<%= comment.id%>").toggle();' >
-              <%# end %>
-            <div class="edit-comment-form-<%= comment.id %>" style="display:none;" >
-            <div class="hitGoing">
-                <div class="sendBox">                    
-                      <%= form_for(comment,:remote=>true) do |f| %>
-                      <%= f.text_field :body, :class=>"input" ,:id=>'comment'%>
-                      <% end %>
-                    </div>
-            </div>
-            </div>
-       <%= link_to image_tag('delete-icon.png'), comment, method: :delete, data: { confirm: 'Are you sure?' }%>
-             
-            <% end %>
-            </div>
+<div  class="clearfix commentSec cmntRow">
+    <div class="clearfix userInfo posRel">
+      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
+      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userNAme"> <%= comment.user.try(:screen_name) %></a> <br>
+      <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at.strftime("%d %b")) %></div>
+      <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation) rescue nil %>
+        <%= @designation.present? ? @designation.join(", ") : " " %></span>
+      <% if params[:controller]=="users" && params[:action]=="dashboard"
+        bold = 'bold' else bold = '' end %>
+      <div class="clearfix mt15 font13 blackColor <%= bold %>"><%= comment.body.html_safe %></div>
+         <% like_status = comment.likes.where(user_id:current_user.id).first.present? ? "Unlike" : "Like" %>
+      <div class="font13 bold blueColor"><%= link_to like_status, comment_likes_path(comment), method: "post", remote: true, id: "comment_like_#{comment.id}", class: "blueColor" %><span id ="comment_like_count_<%= comment.id %>">(<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick="reply_toggle(<%= comment.id %>);"> Reply</a></div>
+      <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
+        <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
+          <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+          <div class="field">
+            <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="replies_view_<%= comment.id%>">
+    <%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
+  </div>
 
+<script>
+function reply_toggle(comment_id){
+  $("#reply_box_id_"+comment_id).slideToggle(500);
+}
+</script>

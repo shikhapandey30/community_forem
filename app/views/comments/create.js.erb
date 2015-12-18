@@ -1,6 +1,5 @@
 <% if params[:from]=="post_index" %>
-	$("#comments_<%= params[:post_id] %>").html("<%= escape_javascript(render partial: 'comments/comments_view', locals: { comments: @comments } ) %>");
-	$("#comments_<%= params[:post_id] %>").toggle();
+	$("#comments_<%= params[:post_id].to_i %>").append("<%= escape_javascript(render partial: 'comments/show', locals: { comment: @comment } ) %>");
 	$('#comment_body_<%= params[:post_id] %>').val("");
 	$('#comments_count_<%= params[:post_id] %>').html("<%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %>");
 <% else %>
