@@ -36,7 +36,7 @@
                   <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
                   <a href="#" class="userNAme"> <%= current_user.try(:screen_name) %></a> <br>
                   <span class="font13"><%= designation(post) %></span>
-                  <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at.strftime("%d %b")) rescue 0%> Ago<br>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at) rescue 0%> Ago<br>
 
                     <a href="#"><img src="/assets/images/add.png" alt=""></a>
                     <span id="following-button-span-<%= post.id %>">

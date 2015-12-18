@@ -21,8 +21,9 @@
         if (input.files && input.files[0]) {
         var filerdr = new FileReader();
         filerdr.onload = function(e) {
+          $(".uploadPhoto").css('background-image', 'url('+ e.target.result+')');
 
-        $('#imgprvw').attr('src', e.target.result);
+        // $('#imgprvw').attr('src', e.target.result);
         $("#image_url").val(false);
         }
         filerdr.readAsDataURL(input.files[0]);

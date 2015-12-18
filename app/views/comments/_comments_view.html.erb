@@ -4,14 +4,14 @@
 
       <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
       <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userNAme"> <%= comment.user.try(:screen_name) %></a> <br>
-      <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at.strftime("%d %b")) %></div>
+      <div class="fr grayColor tar"><%= time_ago_in_words(comment.created_at) %></div>
       <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation) rescue nil %>
   			<%= @designation.present? ? @designation.join(", ") : " " %></span>
       <% if params[:controller]=="users" && params[:action]=="dashboard"
       	bold = 'bold' else bold = '' end %>
       <div class="clearfix mt15 font13 blackColor <%= bold %>"><%= comment.body.html_safe %></div>
          <% like_status = comment.likes.where(user_id:current_user.id).first.present? ? "Unlike" : "Like" %>
-      <div class="font13 bold blueColor"><%= link_to like_status, comment_likes_path(comment), method: "post", remote: true, id: "comment_like_#{comment.id}", class: "blueColor" %><span id ="comment_like_count_<%= comment.id %>">(<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick="reply_toggle(<%= comment.id %>);"> Reply</a></div>
+      <div class="font13 bold blueColor"><%= link_to like_status, comment_likes_path(comment), method: "post", remote: true, id: "comment_like_#{comment.id}", class: "blueColor" %><span id ="comment_like_count_<%= comment.id %>"> (<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick="reply_toggle(<%= comment.id %>);"> Reply</a></div>
     	<div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
     		<%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
 	    		<a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
