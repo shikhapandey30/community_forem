@@ -1,14 +1,13 @@
 <%=f.fields_for :upload do |u|%>
   <div class="tabOuter">
     <div id="tab-1" class="tab-content current">
-      <div class="uploadBoxOuter font14">
+      <%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+      <div class="uploadBoxOuter font14">        
         <a href="#"  onclick="$('.post_image').click();">
           <% if obj.try(:upload).try(:image).present? %>
-            <%=link_to 'X','#',class: 'remove_image',:style=>'display:block;'%>
             <%= image_tag obj.upload.image_url, id: 'imgprvw' %>
           <% else %>
-            <%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
-            <img src="/assets/images/cemera.png" alt="" id='imgprvw'>
+            <img src="/assets/images/cemera.png" alt="" id='imgprvw'>                        
           <% end %>
         </a>
         <%= hidden_field_tag "image_url", false%>
