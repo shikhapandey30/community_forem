@@ -26,8 +26,16 @@
               <br>
               <span class="font13"><%#= @designation %></span>
               <div class="fr grayColor tar"><%= time_ago_in_words(@post.created_at) %><br>
-                <a href="#"><img src="/assets/images/add.png" alt=""></a>
-                <a href="#">Follow</a>
+               <%if !current_user.friendships.collect(&:friend).include? @post.user %>
+                  <span class="friendship-button-<%=  @post.user.id  %>">
+                  <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>@post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
+                  </span>
+                <%end%>
+              <%if current_user != @post.user %>
+                <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.user.id %>">
+                  <%= render :partial=> "users/follow_link", :locals => {:post => @post} %>
+                </span>
+              <% end %>
               </div>
             </div>
             <div class="uniOuter">
@@ -39,7 +47,7 @@
           </div>
           <div class="clearfix"></div>
           <div class="commentSec">
-           <span class="grayColor font12"><span class="post_like_count"><%= @post.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @post.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
+           <span class="grayColor font12"><span class="post_like_count"><%= @post.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @post.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
             <div class="cmntSec">
               <%if @post.liked?(current_user).present?%>
                 <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post_liked'%>
