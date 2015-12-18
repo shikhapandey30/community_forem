@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @category = current_user.users_category.present? ? current_user.users_category : Category.new
     current_user.profile.present? ? current_user.profile : current_user.build_profile    
   end
 
