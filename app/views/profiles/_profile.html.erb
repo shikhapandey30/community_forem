@@ -23,10 +23,14 @@
         <div class="blackHD">Address</div>
       </div>
       <div class="col-sm-6 pr10">
-        <label class="">Country</label>
-        <%= p.text_field :country, class: "profile inputTextW small", placeholder: "Country" %>
-        <%#= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
+        <label>Country</label>
+        <div class="selctFormBox">      
+          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput" %>
+          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
+        </div>
+        <div id="country_error"></div>
       </div>
+
       <div class="col-sm-6 pl10">
         <label class="">City</label>
         <%= p.text_field :city, class: "profile inputTextW small", placeholder: "City" %>
