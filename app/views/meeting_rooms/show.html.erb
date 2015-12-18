@@ -87,6 +87,9 @@
     $("#comment_box").toggle();
     $("html, body").scrollTop($('#comment_box').offset().top);
   });
+  function reply_toggle(comment_id){
+    // For Toggle
+  }
   $("#save_comment").click(function(event) {
     event.preventDefault();
     if ($("#comment_body").val() == ""){
