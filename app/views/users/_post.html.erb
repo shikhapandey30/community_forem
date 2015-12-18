@@ -10,7 +10,7 @@
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
               <% end %>
               <% if post.upload.present? %>
-                <a href="<%= post_path(post)%>" class="post"><img src="images/videoPost.png" alt=""></a>
+                <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
               <% end %>
               <!-- <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div> -->
             </div>
@@ -37,7 +37,7 @@
               <p>
                 <%= post.try(:description).try(:html_safe) %> 
               </p>
-              <a href="<%=root_path(id: post.id)%>" class="listen whiteBtn" data-remote="true"><img src="images/audio38.png" alt=""> Listen this post </a>                    
+              <a href="<%=root_path(id: post.id)%>" class="listen whiteBtn" data-remote="true"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>                    
             </div>
           </div>
         </div>
@@ -55,8 +55,8 @@
           <%else%>
             <%=link_to image_tag("images/down1.png"), post_dislikes_path(post, from: "post_index"), method: :post, remote: true,:class=>'dislike_image_post', :id=>"dislike_image_post_#{post.id}"%>
           <%end%>
-            <a href="#" class="shareLInk"><img src="images/share.png" alt=""></a>
-            <a href="#" class="shareArrow"><img src="images/arrowSmall.png" alt=""></a>
+            <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+            <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
             <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="comment_body(<%= post.id %>);" id="comment_button_<%= post.id %>">
           </div>
         </div>
@@ -71,7 +71,7 @@
           </div>
           <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= post.id %>">
             <div class="clearfix userInfo posRel">
-              <a href="#" class="userImg"><img src="images/smith.jpg" alt=""></a>
+              <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
               <div class="addcomtntTA">
                 <%= form_for(@comment, remote: true) do |f| %>
                   <div class="field">
