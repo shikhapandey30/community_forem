@@ -1,4 +1,3 @@
-
 <div class="bodyCont">
 <!--  Header Start -->
   <div class="headerBkg"></div>
@@ -21,9 +20,9 @@
           <!-- <div id="error_explanation" class="login <%#='errorMSg' if flash.try(:alert)%>">
             <%#= flash.try(:alert) %>
           </div> -->
-          <%#= devise_error_messages! %>
-          <%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText" %>
-          <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :maxlength=>"80", class: "inputText" %>
+          <%#= devise_error_messages! %>          
+          <%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", :maxlength=>"80", "data-validation"=>"length email", "data-validation-length"=>"max80", class: "inputText" %>
+          <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :maxlength=>"40", "data-validation"=>"length alphanumeric", "data-validation-length"=>"min4 max40", class: "inputText" %>
           <%= f.submit "Login", class: "darkBlueBtn inputSubmit" %>
           <!--  <label class="fl remPAss font12"><input type="checkbox"> Remenber Password </label>
             <a href="#" class="fr font12 frgtPAssLink"> Forgot Password</a> -->
@@ -53,3 +52,4 @@
     </div>
   </div>
 </div>
+<script> $.validate(); </script>
