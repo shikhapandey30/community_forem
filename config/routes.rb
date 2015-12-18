@@ -78,6 +78,8 @@ Rails.application.routes.draw do
       get :add_education
       get :add_employment
       post :category
+      get :edit_skill
+      get :edit_category
       post :education_history, as: :education
       post 'update_education_history/:education_history_id', to: 'profiles#update_education_history', as: :edit_education
       patch 'update_education_history/:education_history_id', to: 'profiles#update_education_history'
