@@ -1,3 +1,4 @@
 $("#replies_view_<%=@comment.id%>").html("<%= escape_javascript(render partial: 'replies/replies_view', locals: { replies: @replies } ) %>");
 $(".addReply").val("");
+$(".reply_box_class").hide();
 // $("html, body").scrollTop($('#' + 'reply_id_' + <%= @reply.id%>).offset().top - 150);

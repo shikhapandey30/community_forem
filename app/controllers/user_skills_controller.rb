@@ -1,5 +1,5 @@
 class UserSkillsController < ApplicationController
-before_action :user_skill, only: [:show, :edit, :update, :destroy]
+  before_action :user_skill, only: [:show, :edit, :update, :destroy]
   def index
     @user_skill = UserSkill.all
   end

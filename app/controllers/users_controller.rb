@@ -10,9 +10,9 @@ class UsersController < ApplicationController
     when "People"
       @peoples = User.search(params[:name])
     when "Communities"
-      @groups = Group.search(params[:name])
-    when "Groups"
       @communities = Community.search(params[:name])
+    when "Groups"
+      @groups = Group.search(params[:name])
     else
       @peoples = User.search(params[:name])
       @groups = Group.search(params[:name])

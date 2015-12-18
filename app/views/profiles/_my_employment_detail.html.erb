@@ -8,10 +8,9 @@
       </div>
       <% @user.employment_details.each do |employment| %>
         <%if current_user == employment.user%>
-         <%=link_to (image_tag 'images/edit.png'), edit_employment_detail_path(employment), :remote => true  %>
-         <%= link_to (image_tag 'images/delete.png'), employment, method: :delete, data: { confirm: 'Are you sure?' } %>
-         <%end %>
-
+          <%=link_to (image_tag 'images/edit.png'), edit_employment_detail_path(employment), :remote => true  %>
+          <%= link_to (image_tag 'images/delete.png'), employment, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%end %>
         <div class="uniOuter">
           <div class="blackHD"><%= employment.designation %>
             <img src="/assets/images/uni1.jpg" alt="" class="fr">
