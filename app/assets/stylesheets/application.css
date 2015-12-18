@@ -20,4 +20,5 @@
  *= require css/bootstrap-datetimepicker 
  *= require css/tag-input
  *= require css/custom
+ *= require css/validationEngine.jquery
  */
