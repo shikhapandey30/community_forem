@@ -9,7 +9,7 @@ $(document).on('click', ".add_skill", function(){
 });
 
 //Followers & Followings
-$(document).on("click keyup", ".searhInput1.following", function(){
+$(document).on("keyup", ".searhInput1.following", function(){
   $.ajax({
     method: "get",
     url: "/followings",
