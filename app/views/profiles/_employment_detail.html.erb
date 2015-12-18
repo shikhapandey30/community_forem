@@ -36,26 +36,7 @@
     <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
   <%end%>
-<script>
-   $("form.employment_form").validate({
-      errorPlacement: function(error, element) {
-        if(element.attr("name") == "employment_detail[worked_till]") {
-          error.appendTo($("#worked_till_error"));
-        } else {
-          error.insertAfter(element);
-        }
-      },
-      rules: {
-        "employment_detail[designation]": {required: true, maxlength: 80},
-        "employment_detail[organization]": {required: true, maxlength: 80},
-        "employment_detail[start_work_date]": {required: true},
-        "employment_detail[worked_till]": {required: true},
-        "employment_detail[description]": {maxlength: 300}     
-      },       
-      submitHandler: function(form) {
-        $('form.employment_form').submit();
-      }
-  });
+<script>  
 
   $('#employment_detail_description').keyup(function () {
     var left = 300 - $(this).val().length;
