@@ -35,6 +35,17 @@
       $("#reply_like_<%= params[:reply_id] %>").html("Like");
       $("#reply_like_count_<%= params[:reply_id] %>").html("(<%= reply.likes.count %>)");
     <% end %> 
+  <% elsif params[:meeting_room_id].present? %>
+      <% meeting_room = MeetingRoom.where(id: params[:meeting_room_id]).first.present? ? MeetingRoom.where(id: params[:meeting_room_id]).first : []  %>
+    <% if @is_like %>
+      $(".like_image_post").css('background-color', '#0bb4d3');
+      $(".post_like_count").html('<%= meeting_room.likes.count%>');
+      $(".like_image_post_liked").css('background-color', '#0bb4d3');
+  <% else %>
+      $(".post_like_count").html('<%=meeting_room.likes.count%>');
+      $(".like_image_post_liked").css('background-color', 'white');
+      $(".like_image_post").css('background-color', 'white');
+  <% end %> 
   <% else %>
     <% if @is_like %>
       <%if @post.present?%>

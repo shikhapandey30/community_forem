@@ -10,6 +10,8 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms/1
   # GET /meeting_rooms/1.json
   def show
+    @comment = Comment.new
+    @comments = @meeting_room.comments
   end
 
   # GET /meeting_rooms/new

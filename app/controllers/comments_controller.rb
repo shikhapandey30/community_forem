@@ -10,17 +10,23 @@ class CommentsController < ApplicationController
     #   @forum = Forum.find(params[:forum_id])
     #   @comment = @forum.comments.create(comment_params)
     # else
-  	  @post = Post.find(params[:post_id])
-      params[:comment][:user_id] = current_user.id
-      @comment = @post.comments.create(comment_params)
-    #end
-    @comments = @post.comments
+      if params[:post_id].present?
+    	  @post = Post.find(params[:post_id])
+        params[:comment][:user_id] = current_user.id
+        @comment = @post.comments.create(comment_params)
+        @comments = @post.comments
+      elsif params[:meeting_room_id].present?
+        @meeting_room = MeetingRoom.find(params[:meeting_room_id])
+        params[:comment][:user_id] = current_user.id
+        @comment = @meeting_room.comments.create(comment_params)
+        @comments = @meeting_room.comments
+      end
     respond_to do |format|
-    if @comment.save
-      format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        # format.json { render :show, status: :created, location: @comment }
-      format.js
-    end
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+          # format.json { render :show, status: :created, location: @comment }
+        format.js
+      end
     end
   end
 

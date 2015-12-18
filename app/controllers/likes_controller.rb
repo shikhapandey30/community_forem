@@ -9,9 +9,12 @@ class LikesController < ApplicationController
      elsif params[:reply_id].present?
          @reply = Reply.find(params[:reply_id])
          @like = @reply.likes.where(:user_id =>current_user.id).first     
-    else
+    elsif params[:post_id].present?
      	@post = Post.find(params[:post_id])
   	  @like = @post.likes.where(:user_id =>current_user.id).first
+    elsif params[:meeting_room_id].present?
+      @meeting_room = MeetingRoom.find(params[:meeting_room_id])
+      @like = @meeting_room.likes.where(:user_id =>current_user.id).first
      end
   	if @like
   		@like.destroy
@@ -23,9 +26,10 @@ class LikesController < ApplicationController
         @like = @comment.likes.create(:user_id => current_user.id)
       elsif @reply
         @like = @reply.likes.create(:user_id => current_user.id) 
-      else
-      @like = @post.likes.create(:user_id => current_user.id)
-
+      elsif @post
+        @like = @post.likes.create(:user_id => current_user.id)
+      elsif @meeting_room
+        @like = @meeting_room.likes.create(:user_id => current_user.id)  
       end
       @is_like = true
   	end
