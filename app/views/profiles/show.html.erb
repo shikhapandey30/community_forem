@@ -7,7 +7,7 @@
       <div class="clearfix formOuterPost tal">
         <div class="ProfileTHumb">
           <div class="noConn">
-            <div class="blueColor font16 bold">2000</div>
+            <div class="blueColor font16 bold"><%= @user.my_friends.count %></div>
             connections
           </div>
           <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
