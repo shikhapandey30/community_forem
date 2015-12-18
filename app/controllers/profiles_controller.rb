@@ -67,12 +67,16 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
-  def skill
+  def skill    
     if current_user.skill
+      @before_changed = current_user.skill.try(:name)
       @skill = current_user.skill.update(name: params[:name])
-      @success = "Skill update Succesfully." if current_user.skill.try(:name).present?  && !params[:name].present?
+      @after_changed = current_user.skill.try(:name)
+      @success = "Skill update Succesfully."      
     elsif params[:name].present?
       @skill = current_user.build_skill(name: params[:name])
+      @before_changed = "1"
+      @after_changed = "2"
       @success = "Skill create Succesfully." if @skill.save
     else
       render :nothing => true, :status => 200
@@ -81,9 +85,14 @@ class ProfilesController < ApplicationController
 
   def category
     if current_user.users_category
-      current_user.users_category.update(:category_ids=>params[:category_ids].join(', ')) rescue nil
-      @success = "Category update Succesfully." if current_user.users_category.try(:category_ids).present? && !params[:category_ids].present?
+       @before_changed = current_user.users_category.try(:category_ids)
+       categories_ids = params[:category_ids].present? ? params[:category_ids].join(', ') : []
+      current_user.users_category.update(:category_ids=>categories_ids) 
+      @after_changed = current_user.users_category.try(:category_ids)
+      @success = "Category update Succesfully."
     elsif params[:category_ids].present?
+      @before_changed = "1"
+      @after_changed = "2"
       category = current_user.build_users_category(:category_ids=>params[:category_ids].join(', '))
       @success = "Category update Succesfully." if category.save
     else
