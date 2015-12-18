@@ -6,7 +6,7 @@
   <div class="loginOuter">
     <div class="loginInner">
       <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="/assets/images/logoShadow.png"></a>
-      <div class="login" style="<%='display:none' if isInvalid%>">
+      <div class="login" >
         <h2>Resend confirmation instructions</h2>
        <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
         <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
