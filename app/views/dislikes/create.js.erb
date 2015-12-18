@@ -1,3 +1,22 @@
+<% if params[:from] == "post_index" %>
+  <% if @is_dislike %>
+    <%if @post.present?%>
+      $("#dislike_image_post_<%= @post.id %>").css('background-color', '#0bb4d3');
+       $("#dislike_image_post_disliked_<%= @post.id %>").css('background-color', '#0bb4d3');
+      $("#post_dislike_count_<%= @post.id %>").html('<%= @post.likes.count%>');
+    <%else%>
+      $("#post_dislike_count_<%= @post.id %>").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% else %>
+    <%if @post.present?%>
+      $("#post_dislike_count_<%= @post.id %>").html('<%=@post.likes.count%>');
+      $("#dislike_image_post_disliked_<%= @post.id %>").css('background-color', 'white');
+      $("#dislike_image_post_<%= @post.id %>").css('background-color', 'white');
+    <%else%>
+      $("#dislike-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
+    <%end%>
+  <% end %>
+<% else %>  
 <% if params[:meeting_room_id].present? %>
       <% meeting_room = MeetingRoom.where(id: params[:meeting_room_id]).first.present? ? MeetingRoom.where(id: params[:meeting_room_id]).first : []  %>
     <% if @is_dislike %>
@@ -27,7 +46,6 @@
     $(".dislike-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
   <%end%>
 <% end %>
-
-
-  <% end %>
+<% end %>
+<% end %>
 
