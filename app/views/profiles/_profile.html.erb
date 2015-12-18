@@ -1,4 +1,4 @@
-<%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "profile_form" } do |f| %>
+<%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "" ,:id => "form-id"} do |f| %>
   <%=f.fields_for :profile do |p|%>
     <div class="clearfix formOuterPost tal">
       <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
@@ -13,11 +13,11 @@
       <div class="error img_error"></div>
       <div class="col-sm-6 pr10">
         <label>First Name</label>
-        <%= f.text_field :first_name, class: "profile inputTextW small", placeholder: "First Name" %>
+        <%= f.text_field :first_name, class: "profile inputTextW small validate[required]", placeholder: "First Name" %>
       </div>
       <div class="col-sm-6 pl10">
         <label>Last Name</label>
-        <%= f.text_field :last_name, class: "profile inputTextW small", placeholder: "Last Name" %>
+        <%= f.text_field :last_name, class: "profile inputTextW small validate[required]", placeholder: "Last Name" %>
       </div>
       <div class="col-sm-12">
         <div class="blackHD">Address</div>
@@ -25,7 +25,7 @@
       <div class="col-sm-6 pr10">
         <label>Country</label>
         <div class="selctFormBox">      
-          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput" %>
+          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput validate[required]" %>
           <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
         </div>
 <!--         <div id="country_error"></div>
@@ -113,37 +113,37 @@
  //    }
  //  }
 
-  $("form.profile_form").validate({
-    errorPlacement: function(error, element) {
-      if(element.attr("name") == "user[profile_attributes][gender]") {
-        error.appendTo($("#gender_error"));
-      } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
-        error.appendTo($("#profile_type_error"));
-      } else {
-        error.insertAfter(element);
-      }
-    },
-    rules: {
-        "user[first_name]": { required: true },
-        "user[last_name]": { required: true },
-        // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
-        "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
-        "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
-        "user[profile_attributes][post_code]": { required: true },
-        "user[profile_attributes][gender]": { required: true },
-        "user[profile_attributes][phone_no]": { required: true },
-        "user[profile_attributes][profile_type]": { required: true },
-        "user[profile_attributes][dob]": { required: true },
-        "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
-        "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
-      },
-      messages: {
-        "user[profile_attributes][post_code]": "Please enter valid numbers",
-        "user[profile_attributes][phone_no]": "Please enter valid numbers",
-      },
-     submitHandler: function(form) {
-       $('form.profile_form').submit();
-     }
-  });
+  // $("form.profile_form").validate({
+  //   errorPlacement: function(error, element) {
+  //     if(element.attr("name") == "user[profile_attributes][gender]") {
+  //       error.appendTo($("#gender_error"));
+  //     } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
+  //       error.appendTo($("#profile_type_error"));
+  //     } else {
+  //       error.insertAfter(element);
+  //     }
+  //   },
+  //   rules: {
+  //       "user[first_name]": { required: true },
+  //       "user[last_name]": { required: true },
+  //       // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
+  //       "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
+  //       "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
+  //       "user[profile_attributes][post_code]": { required: true },
+  //       "user[profile_attributes][gender]": { required: true },
+  //       "user[profile_attributes][phone_no]": { required: true },
+  //       "user[profile_attributes][profile_type]": { required: true },
+  //       "user[profile_attributes][dob]": { required: true },
+  //       "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
+  //       "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
+  //     },
+  //     messages: {
+  //       "user[profile_attributes][post_code]": "Please enter valid numbers",
+  //       "user[profile_attributes][phone_no]": "Please enter valid numbers",
+  //     },
+  //    submitHandler: function(form) {
+  //      $('form.profile_form').submit();
+  //    }
+  // });
   $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
 </script>

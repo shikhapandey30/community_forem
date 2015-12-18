@@ -22,3 +22,70 @@
  *= require css/custom
  *= require css/validationEngine.jquery
  */
+div.ajax-loading{
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  display: none;
+  background: rgba(51,51,51,0.9);
+  z-index: 2000;
+  text-align: center;
+  color: #ffffff;
+}
+div.ajax-loading span{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: -15px;
+}
+div.ajax-loading span p{
+  padding-top: 10px;
+  padding-right: 10px;
+  font-size: 1.1em;
+}
+div.ajax-loading span p i{
+  color: #09c1c1;
+  font-size: 1.5em;
+}
+.gly-spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

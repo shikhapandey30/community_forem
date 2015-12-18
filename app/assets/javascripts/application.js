@@ -32,3 +32,10 @@
 //= require js/jquery.validationEngine-en
 //= require js/jquery.validationEngine
 //= require js/validate
+$(document).ajaxStart(function() {
+  $(".ajax-loading").show();
+});
+
+$(document).ajaxStop(function() {	
+  $(".ajax-loading").hide();
+});
