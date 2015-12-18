@@ -28,8 +28,8 @@
           <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput" %>
           <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
         </div>
-        <div id="country_error"></div>
-      </div>
+<!--         <div id="country_error"></div>
+ -->      </div>
 
       <div class="col-sm-6 pl10">
         <label class="">City</label>
@@ -126,7 +126,7 @@
     rules: {
         "user[first_name]": { required: true },
         "user[last_name]": { required: true },
-        "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
+        // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
         "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
         "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
         "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
