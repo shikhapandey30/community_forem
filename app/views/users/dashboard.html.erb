@@ -2,21 +2,23 @@
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
-    <div class="blueBkg myWall">
-      <div class="clearfix innerWIdth550">
-        <div class="userTHumb">
-          <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
-          <div class="nameLocation">
-            <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
-            <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
-            <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
+    <%if !params[:data]%>
+      <div class="blueBkg myWall">
+        <div class="clearfix innerWIdth550">
+          <div class="userTHumb">
+            <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
+            <div class="nameLocation">
+              <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
+              <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
+              <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
+            </div>
           </div>
+          <a href="<%=edit_profile_path(current_user)%>" class="back">complete your profile</a>
         </div>
-        <a href="<%=edit_profile_path(current_user)%>" class="back">complete your profile</a>
       </div>
-    </div>
+    <%end%>  
     <div class="clearfix innerWIdth550 tac ">
-      <a href="/posts/new" class="addPostBtn">Add posts</a>
+      <a href="/posts/new" class="addPostBtn"><%=params[:data] ? 'CREATE TOPICS' : 'ADD POSTS'%></a>
       <div id="posts">
         <%=render "post"%>
       </div>
