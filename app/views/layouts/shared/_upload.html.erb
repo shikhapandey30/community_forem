@@ -2,16 +2,18 @@
   <div class="tabOuter">
     <div id="tab-1" class="tab-content current">
       <div class="uploadBoxOuter font14">
-        <%= hidden_field_tag "image_url", false%>
-        <%= hidden_field_tag "file_url", false%>
-        <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
         <a href="#"  onclick="$('.post_image').click();">
           <% if obj.try(:upload).try(:image).present? %>
-            <%= image_tag obj.upload.image_url, id: 'imgprvw' %><%=link_to 'X','#',class: 'remove_image',:style=>'display:block;'%>
+            <%=link_to 'X','#',class: 'remove_image',:style=>'display:block;'%>
+            <%= image_tag obj.upload.image_url, id: 'imgprvw' %>
           <% else %>
-            <img src="/assets/images/cemera.png" alt="" id='imgprvw'><%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+            <%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
+            <img src="/assets/images/cemera.png" alt="" id='imgprvw'>
           <% end %>
         </a>
+        <%= hidden_field_tag "image_url", false%>
+        <%= hidden_field_tag "file_url", false%>
+        <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>        
         <div class="grayBig mt20 bold"> 
           Add an image to bring your post to life
         </div>
@@ -67,3 +69,9 @@
     </ul>
   </div>
 <%end%>
+<style type="text/css">
+  .error {
+    float: none;
+    font-size: 15px;
+}
+</style>
