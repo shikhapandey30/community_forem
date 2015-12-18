@@ -5,17 +5,21 @@
         <div class="col-sm-12 mb10">
           <div class="clearfix userInfo posRel">
             <div class="videoPost">
-              <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>
-              <% if post.upload.present? %>
+              <% if current_user == post.user %>
+              <div class="text-right">
+                <%=link_to (image_tag 'images/edit.png'), edit_post_path(post) %>
+                <%= link_to (image_tag 'images/delete.png'), post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              <% end %>
+              <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>              
+              <% if post.upload.try(:image).present? %>
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
               <% end %>
               <% if post.upload.present? %>
                 <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
               <% end %>
-              <!-- <div class="grayColor bold">The Game Before The Game: <a href="#" class="blueColor">Incredible</a></div> -->
             </div>
             <div class="clearfix borderBtmS"></div>
-
             <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
             <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a> <br>
             <span class="font13"><%= designation(post) %></span>
