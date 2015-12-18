@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	/* search Drop Down*/						
-	$(".searhInput").keyup(function(){
+	$(document).on("click keyup", ".searhInput.header_search_input", function(){
 		keyword = $(".keyword_filter").val();
 		$.ajax({
 			method: "GET",

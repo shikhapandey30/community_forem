@@ -81,3 +81,4 @@ gem 'progress_bar'
 
  gem "espeak-ruby", require: "espeak"
  gem 'will_paginate', '~> 3.0.7'
+gem 'country_select', github: 'stefanpenner/country_select'

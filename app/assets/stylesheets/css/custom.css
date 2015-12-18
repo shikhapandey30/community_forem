@@ -19,7 +19,7 @@ li.cat.true a { color: #0BB4D3; }
 
 
 .error { color: #FF0000; }
-.error.img_error { margin-left: 22%;}
+.error.img_error { margin-left: 22%; font-size: 13px;}
 
 .error_file { color: #FF0000; font-size: 13px;}
 

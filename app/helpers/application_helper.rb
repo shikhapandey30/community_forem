@@ -8,7 +8,7 @@ module ApplicationHelper
 		params[:action] != "terms_and_conditions" &&  params[:action] != "privacy_policy" &&  params[:action] != "how_it_work"  &&  params[:action] != "contactus" &&  params[:action] != "aboutus" &&  params[:action] != "help"
 	end
 
-  def select_type(f, attribute, class_name=nil)
+  def select_type(f, attribute, class_name=nil)    
     if class_name && f.object.id
       class_name.classify.constantize.find(f.object.send(attribute)).name
     else

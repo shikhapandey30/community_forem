@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_education_history
+    @user = current_user
     @education_histories = EducationHistory.find(params[:id])
     @education_histories.update(education_params)
      @success = "Education History update Succesfully." 
@@ -32,6 +33,7 @@ class ProfilesController < ApplicationController
   end
 
   def update_employment_detail
+    @user = current_user
     @employment_detail = EmploymentDetail.find(params[:id])
     @employment_detail.update(employment_params)
      @success = "Employment History update Succesfully." 
@@ -68,7 +70,7 @@ class ProfilesController < ApplicationController
   def skill
     if current_user.skill
       @skill = current_user.skill.update(name: params[:name])
-      @success = "Skill update Succesfully."
+      @success = "Skill update Succesfully." if current_user.skill.try(:name).present?  && !params[:name].present?
     elsif params[:name].present?
       @skill = current_user.build_skill(name: params[:name])
       @success = "Skill create Succesfully." if @skill.save
@@ -80,7 +82,7 @@ class ProfilesController < ApplicationController
   def category
     if current_user.users_category
       current_user.users_category.update(:category_ids=>params[:category_ids].join(', ')) rescue nil
-      @success = "Category update Succesfully."
+      @success = "Category update Succesfully." if current_user.users_category.try(:category_ids).present? && !params[:category_ids].present?
     elsif params[:category_ids].present?
       category = current_user.build_users_category(:category_ids=>params[:category_ids].join(', '))
       @success = "Category update Succesfully." if category.save
