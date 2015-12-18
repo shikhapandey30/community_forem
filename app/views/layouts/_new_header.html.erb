@@ -62,7 +62,7 @@
            <% end %>
           </a>
          <ul class="clearfix dropdown-menu request-notification">
-             <div class="topGrayRow"> <span class="blackColor font14 bold">Message (<%= friend_requests.count%>)</span>
+             <div class="topGrayRow"> <span class="blackColor font14 bold">Friend Requests (<%= friend_requests.count%>)</span>
              <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
              <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
           
@@ -113,7 +113,7 @@
       </div>
       <div class="formOuter">
         <%#=form_tag search_path do%>
-        <%=text_field_tag "name", nil, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput"%>
+        <%=text_field_tag "name", nil, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput header_search_input"%>
         <input type="" value="" class="searhSub">
         <%#end%>
       </div>

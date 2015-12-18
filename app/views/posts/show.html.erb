@@ -52,7 +52,7 @@
               <%else%>
                 <%=link_to image_tag("images/down1.png"), post_dislikes_path(@post), method: :post, remote: true,:class=>'dislike_image_post'%>
               <%end%>
-              <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+              <a href="#" class="shareLInk"><img src="/assets//assets/images/share.png" alt=""></a>
               <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
               <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
             </div>
@@ -99,6 +99,9 @@
     $("#comment_box").toggle();
     $("html, body").scrollTop($('#comment_box').offset().top);
   });
+  function reply_toggle(comment_id){
+    // For Toggling
+  }
   $("#save_comment").click(function(event) {
     event.preventDefault();
     if ($("#comment_body").val() == ""){

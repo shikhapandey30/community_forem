@@ -26,17 +26,8 @@
 		<%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
 	</div>
 <% end %>
-<% if !(params[:controller]=="users" && params[:action]=="dashboard") %>
-<script>
-	$(".replyRow").hide();
-	// $(".reply").click(function(){
-	// 	$(this).closest("div").next(".replyRow").slideToggle(500);			
-	// });
-</script>
-<% else %>
 <script>
 function reply_toggle(comment_id){
   $("#reply_box_id_"+comment_id).slideToggle(500);
 }
 </script>
-<% end %>

@@ -8,7 +8,7 @@
     </div>
     <%=form_tag category_profiles_path, class: "category_form", remote: true do |f|%>
       <%Category.all.each_with_index do |category, index|%>        
-        <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">          
+        <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">        
           <label><%= check_box_tag 'category_ids[]', category.id, isCategory?(category)%> <%=category.try(:name)%></label>
         </div>
       <%end%>
@@ -22,22 +22,22 @@
   </div>
 </div>
 <script>
-  $("form.category_form").validate({
-    errorPlacement: function(error, element) {
-      if(element.attr("name") == "category_ids[]") {
-        error.appendTo($("#category_error"));
-      } else {
-        error.insertAfter(element);
-      }
-    },
-    rules: {
-        "category_ids[]": { required: true }
-    },
-    messages: {
-      "category_ids[]": "Please select category",
-    },      
-    submitHandler: function(form) {
-      $('form.category_form').submit();
-    }  
-  });
+  // $("form.category_form").validate({
+  //   errorPlacement: function(error, element) {
+  //     if(element.attr("name") == "category_ids[]") {
+  //       error.appendTo($("#category_error"));
+  //     } else {
+  //       error.insertAfter(element);
+  //     }
+  //   },
+  //   rules: {
+  //       "category_ids[]": { required: true }
+  //   },
+  //   messages: {
+  //     "category_ids[]": "Please select category",
+  //   },      
+  //   submitHandler: function(form) {
+  //     $('form.category_form').submit();
+  //   }  
+  // });
 </script>

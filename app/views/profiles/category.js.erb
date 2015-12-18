@@ -1,4 +1,6 @@
-$(".popup-success").html("<%=j (render '/layouts/success')%>");
+<%if @before_changed != @after_changed%>
+	$(".popup-success").html("<%=j (render '/layouts/success')%>");
+<%end%>	
 setTimeout(function(){
   $(".container.popupmsg").hide();
 }, 3000);

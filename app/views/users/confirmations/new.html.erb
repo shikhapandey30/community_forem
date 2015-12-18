@@ -1,16 +1,24 @@
-<h2>Resend confirmation instructions</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
+<div class="bodyCont">
+<!--  Header Start -->
+  <div class="headerBkg"></div>
+  <!-- Header End -->
+  <div class="loginOuter">
+    <div class="loginInner">
+      <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="/assets/images/logoShadow.png"></a>
+      <div class="login" >
+        <h2>Resend confirmation instructions</h2>
+       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
+        <%= devise_error_messages! %>
+        </div>
+        <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) , placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText"  %> 
+        <div class="error"></div>
+        <%= f.submit "Resend confirmation instructions",class: "darkBlueBtn inputSubmit" %>       
+        <div class="clearfix"></div>
+        <% end %>
+      </div>
+      <p class="mt30">Don't have an account? <a href="/users/sign_up">Sign Up</a></p>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
