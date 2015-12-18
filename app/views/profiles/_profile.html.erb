@@ -129,13 +129,17 @@
         // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
         "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
         "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
-        "user[profile_attributes][post_code]": { required: true, minlength: 3, maxlength: 12 },
+        "user[profile_attributes][post_code]": { required: true },
         "user[profile_attributes][gender]": { required: true },
-        "user[profile_attributes][phone_no]": { required: true, minlength: 6, maxlength: 12 },
+        "user[profile_attributes][phone_no]": { required: true },
         "user[profile_attributes][profile_type]": { required: true },
         "user[profile_attributes][dob]": { required: true },
         "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
         "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
+      },
+      messages: {
+        "user[profile_attributes][post_code]": "Please enter valid numbers",
+        "user[profile_attributes][phone_no]": "Please enter valid numbers",
       },
      submitHandler: function(form) {
        $('form.profile_form').submit();
