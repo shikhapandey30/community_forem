@@ -50,25 +50,19 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
-  
-  config.model User do
+
+  config.model Admin do
     list do
       field :id
       field :email
-      field :screen_name
-      field :first_name
-      field :last_name
     end
     edit do
       field :email
       field :password
       field :password_confirmation
-      field :screen_name
-      field :first_name
-      field :last_name
     end
   end
-
+  
   config.model Category do
     list do
       field :id
@@ -83,7 +77,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Profile do
+  config.model Comment do
     list do
       configure :created_at do
         hide
@@ -91,12 +85,26 @@ RailsAdmin.config do |config|
       configure :updated_at do
         hide
       end
-    end
-    edit do
-      configure :created_at do
+      configure :children do
         hide
       end
-      configure :updated_at do
+      configure :replies do
+        hide
+      end
+    end
+    edit do
+      configure :children do
+        hide
+      end
+      configure :replies do
+        hide
+      end
+    end
+    show do
+      configure :children do
+        hide
+      end
+      configure :replies do
         hide
       end
     end
@@ -105,6 +113,12 @@ RailsAdmin.config do |config|
   config.model Community do
     list do
       configure :members do
+        hide
+      end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
         hide
       end
     end
@@ -120,6 +134,12 @@ RailsAdmin.config do |config|
       configure :education_histories do
         hide
       end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
     end
     edit do
       configure :education_histories do
@@ -127,13 +147,52 @@ RailsAdmin.config do |config|
       end
     end
   end
+
+  config.model Dislike do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
   
+  config.model EducationHistory do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model EmploymentDetail do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
   config.model Forum do
     list do
       configure :comments do
         hide
       end
       configure :topics do
+        hide
+      end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
         hide
       end
     end
@@ -147,9 +206,37 @@ RailsAdmin.config do |config|
     end
   end
 
-   config.model Group do
+  config.model ForumPoll do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model Friendship do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model Group do
     list do
       configure :members do
+        hide
+      end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
         hide
       end
     end
@@ -165,6 +252,12 @@ RailsAdmin.config do |config|
       configure :education_histories do
         hide
       end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
     end
     edit do
       configure :education_histories do
@@ -178,9 +271,32 @@ RailsAdmin.config do |config|
       configure :comments do
         hide
       end
+      configure :dislikes do
+        hide
+      end
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
     end
     edit do
       configure :comments do
+        hide
+      end
+      configure :dislikes do
+        hide
+      end
+    end
+  end
+
+  config.model Member do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
         hide
       end
     end
@@ -202,16 +318,43 @@ RailsAdmin.config do |config|
       end
     end
     edit do
+      configure :dislikes do
+        hide
+      end
+      configure :comments do
+        hide
+      end
+    end
+  end
+
+  config.model Profile do
+    list do
       configure :created_at do
         hide
       end
       configure :updated_at do
         hide
       end
-      configure :dislikes do
+    end
+  end
+
+  config.model Reply do
+    list do
+      configure :created_at do
         hide
       end
-      configure :comments do
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model RevealIdentity do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
         hide
       end
     end
@@ -226,19 +369,86 @@ RailsAdmin.config do |config|
       field :name
     end
   end
-  # config.model AdminUser do
-  #   list do
-  #     field :email
-  #     field :current_sign_in_at
-  #     field :sign_in_count
-  #     field :created_at
-  #   end
-  #   edit do
-  #     field :email
-  #     field :password
-  #     field :password_confirmation
-  #   end
-  # end
+
+  config.model StaticPage do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model Subscription do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+  
+  config.model Topic do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model Upload do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
+
+  config.model User do
+    list do
+      field :id
+      field :email
+      field :screen_name
+      field :first_name
+      field :last_name
+    end
+    edit do
+      field :email
+      field :password
+      field :password_confirmation
+      field :screen_name
+      field :first_name
+      field :last_name
+    end
+    show do
+      field :id
+      field :email
+      field :screen_name
+      field :first_name
+      field :last_name
+    end
+  end
+
+  config.model UsersCategory do
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+    end
+  end
 
   # config.model Category do
   #   list do
