@@ -99,7 +99,7 @@
                     <%= hidden_field_tag :from, "post_index" %>
                     <%= hidden_field_tag :post_id, post.id %>
                     <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>
-                    <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
+                    <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_box_<%= post.id %>').toggle();">Cancel</a> 
                   </div>
                 <% end %> 
               </div>
