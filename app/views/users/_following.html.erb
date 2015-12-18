@@ -6,7 +6,7 @@
           <div class="clearfix  "></div>
            <% if follow.followable.class.name == "User"%>
             <a href="<%= profile_path(follow.followable)%>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:screen_name)%></a>
-            <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+            <a href="<%= profile_path(user(follow.followable))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
             <div class="fr grayColor tar">
             <%= time_ago_in_words(follow.created_at) %> ago<br>
               <%if !current_user.friendships.collect(&:friend).include? follow.followable %>
@@ -23,7 +23,7 @@
 
           <%else %>
             <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
-            <a href="#" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+            <a href="<%= profile_path(follow.followable.try(:user))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
             <div class="fr grayColor tar">
             <%= time_ago_in_words(follow.created_at) %> ago<br>
               <%if !current_user.friendships.collect(&:friend).include? follow.followable.try(:user) %>

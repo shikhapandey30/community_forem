@@ -4,13 +4,22 @@
       <div class="clearfix  cmntRow">
         <div class="clearfix userInfo posRel">
           <div class="clearfix  "></div>
-          <a href="#" class="userImg"><img src="<%= user(follower).try(:img) %>" alt=""></a>
-          <a href="#" class="userNAme"> <%=user(follower).try(:screen_name)%></a> <br>
+          <a href="<%= profile_path(user(follower))%>" class="userImg"><img src="<%= user(follower).try(:img) %>" alt=""></a>
+          <a href="<%= profile_path(user(follower))%>" class="userNAme"> <%=user(follower).try(:screen_name)%></a> <br>
           <div class="fr grayColor tar">
-            2 days ago<br>
-            <a href="#" class="mt10">Connect</a> 
+            <%= time_ago_in_words(follower.created_at) %> ago<br>
+            <%if !current_user.friendships.collect(&:friend).include? @post.user %>
+                  <span class="friendship-button-<%=  @post.user.id  %> mt10">
+                  <%= link_to 'Connect', friendships_path(:friend_id =>@post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
+                  </span>
+                <%end%>
             <div class="mt5 mb-10">
-              <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
+              <a href="#" class="removeLink inline">Message </a> |                
+              <%if current_user != @post.user %>
+                <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.user.id %>">
+                  <%= render :partial=> "users/follow_link", :locals => {:post => @post} %>
+                </span>
+              <% end %>
             </div>
           </div>
           <div class="font13 mt5"><%=designations(user(follower))%></div>
