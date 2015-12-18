@@ -113,7 +113,7 @@ $(document).on('ready', function () {
           "contest[category_id]": { required: true },
           "contest[topic]": { required: true, maxlength: 80 },
           "contest[headline]": { required: true, maxlength: 80 },
-          "contest[description]": { required: true, maxlength: 80 },
+          "contest[description]": { required: true, maxlength: 360 },
           "contest[start_date]": { required: true },
           "contest[end_date]": { required: true },
           "meeting_room[category_id]": { required: true },
