@@ -38,14 +38,16 @@
             <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a> <br>
             <span class="font13"><%= designation(post) %></span>
             <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at) rescue 0%> Ago<br>
-              <%if !current_user.friendships.collect(&:friend).include? post.user %>
+              <%if !current_user.eql?(post.user)%>
+                <%if !current_user.friendships.collect(&:friend).include? post.user %>
                   <span class="friendship-button-<%=  post.user.id  %>">
                   <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
                 <%end%>
-              <span id="following-button-span-<%= post.id %>">
-                <%= render :partial=> "follow_link", :locals => {:post => post} %>
-              </span>
+                <span id="following-button-span-<%= post.id %>">
+                  <%= render :partial=> "follow_link", :locals => {:post => post} %>
+                </span>
+              <%end%>  
                                   <!-- <a href="#">Follow</a> -->
             </div>
           </div>
