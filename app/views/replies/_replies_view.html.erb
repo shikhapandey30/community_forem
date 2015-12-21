@@ -13,9 +13,11 @@
 				    
 				    <div class="clearfix mt15 font13 blackColor" id="reply_id_<%=reply.id%>">
 				    	<%= reply.body.html_safe %>
-				    </div>
-				    <% like_status = reply.likes.where(user_id:current_user.id).first.present? ? "Unlike" : "Like" %>
-				    <div class="font13 bold blueColor mt5"><%= link_to like_status, reply_likes_path(reply), method: "post", remote: true, id: "reply_like_#{reply.id}", class: "blueColor" %><span id ="reply_like_count_<%= reply.id %>"> (<%= reply.likes.count %>)</span></div>
+				    </div> 
+				    <div class="font13 bold blueColor mt5">
+				    <%=link_to 'Like', like_create_path(id: reply.id, type: reply.class.name.downcase), method: :post, remote: true,:class=>" #{current_user.is_liked(reply) ? 'like_image_post_liked' : 'like_image_post'}", :id=> "like_image_post_liked_#{reply.id}"%> 
+				    
+				    <span id ="post_like_count_<%= reply.id %>"> (<%= reply.likes.count %>)</span></div>
 				  	
 				  </div>
 				  <% next_element = replies[index+1] %>
