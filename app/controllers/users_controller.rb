@@ -107,21 +107,25 @@ class UsersController < ApplicationController
 
 	def social_login
 		user = Authenticate.from_omniauth(env["omniauth.auth"])
-      if user
-        flash[:notice] = "Authentication successful."
-       if user.confirmed_at==nil
-       	user.confirmed_at=Time.now
-       end
-       sign_in :user, user
-       if  user.profile.present?
-        redirect_to dashboard_path
-       else
-        redirect_to dashboard_path
-       end
+    if user
+      flash[:notice] = "Authentication successful."
+     if user.confirmed_at==nil
+     	user.confirmed_at=Time.now
+     end
+     sign_in :user, user
+     if  user.profile.present?
+      redirect_to dashboard_path
+     else
+      redirect_to dashboard_path
+     end
 
-      else
-          flash[:notice] = "Authentication Failed."
-      end
+    else
+        flash[:notice] = "Authentication Failed."
     end
+  end
+
+
+  def payment
+  end
 
 end

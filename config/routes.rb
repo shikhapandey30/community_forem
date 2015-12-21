@@ -110,6 +110,7 @@ Rails.application.routes.draw do
    get '/terms_and_conditions'=>'home#terms_and_conditions'
 
    get '/dashboard'=>'users#dashboard'
+   get '/payment'=>'users#payment'
    get '/auth/:provider/callback', to: 'users#social_login'
    get '/search'=>'users#search'
    post '/search'=>'users#search'
