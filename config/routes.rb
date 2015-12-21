@@ -105,6 +105,7 @@ Rails.application.routes.draw do
    get '/aboutus'=>'home#aboutus'
    get '/contactus'=>'home#contactus'
    get '/help'=>'home#help'
+   get '/help_center'=>'home#help_center'
    get '/how_it_work'=>'home#how_it_work'
    get '/privacy_policy'=>'home#privacy_policy'
    get '/terms_and_conditions'=>'home#terms_and_conditions'
