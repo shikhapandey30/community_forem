@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :contests
   resources :meeting_rooms do
     resources :likes, only: [:create]
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
 
   resources :friendships
   post '/unfriend', to: 'friendships#unfriend'
-  devise_for :admin
 
   get 'home/index'
   post "/likes/create", to: "likes#create", as: 'like_create'
@@ -19,7 +20,6 @@ Rails.application.routes.draw do
   get 'payment_details/create'
   
   
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   
   resources :user_skills

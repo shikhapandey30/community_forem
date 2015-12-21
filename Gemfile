@@ -8,8 +8,6 @@ gem 'rails_12factor', group: :production
 gem 'mysql2', '~> 0.3.18'
 gem 'pg'
 
-# Use rails_admin for out of box admin interface
-gem "rails_admin"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'social-share-button'
@@ -82,3 +80,4 @@ gem 'progress_bar'
  gem "espeak-ruby", require: "espeak"
  gem 'will_paginate', '~> 3.0.7'
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'activeadmin', '~> 1.0.0.pre2'
