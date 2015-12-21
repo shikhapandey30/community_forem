@@ -44,8 +44,9 @@
                   <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
                 <%end%>
+              <%end%>
 
-              <%if current_user != post.user %>
+              <% if current_user != post.user %>
                 <span id="following-button-span-<%= post.id %>" class="user-folowed-<%=post.user.id %>">
                   <%= render :partial=> "users/follow_link", :locals => {:post => post} %>
                 </span>

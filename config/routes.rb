@@ -50,6 +50,8 @@ Rails.application.routes.draw do
    resources :conversations do
     resources :messages
   end
+  resources :messages, only: [:index] do 
+  end
   # resources :users do
   # resources :notifications, only: [:create]  
   # end
