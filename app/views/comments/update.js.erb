@@ -1,3 +1,2 @@
-
-$(".comment-box-<%= @comment.id%>").html("<%= escape_javascript(render partial: 'show', locals: { comment: @comment } ) %>"); 
-$('.commentBox-<%= @comment.commentable.id%>').html("")
+$('#comment-body-<%= @comment.id %>').html("<%= escape_javascript(@comment.body) %>");
+$('#comment_form_box_<%= @comment.id%>').hide();

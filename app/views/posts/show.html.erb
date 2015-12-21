@@ -4,7 +4,7 @@
 
   <div class="rightContent">
     <div class="overLAy"></div>
-    <div class="postCover posRel" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
+    <div class="postCover posRel <%=@post.try(:upload).try(:image).present? ? '' : 'noImagePost'%>" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
       <div class="postCoverBkg ">
         <div class="clearfix innerWIdth550 posRel">
           <div class="pTitltOuter">
@@ -46,46 +46,7 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <div class="commentSec">
-           <span class="grayColor font12"><span class="post_like_count"><%= @post.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @post.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
-            <div class="cmntSec">
-              <%if @post.liked?(current_user).present?%>
-                <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post_liked'%>
-              <%else%>
-                <%=link_to image_tag("images/up.png"), post_likes_path(@post), method: :post, remote: true,:class=>'like_image_post'%>
-              <%end%>
-              <!-- <a href="#"><img src="/assets/images/down1.png" alt=""></a> -->
-              <%if @post.disliked?(current_user).present?%>
-                <%=link_to image_tag("images/down1.png"), post_dislikes_path(@post), method: :post, remote: true,:class=>'dislike_image_post_disliked'%>
-              <%else%>
-                <%=link_to image_tag("images/down1.png"), post_dislikes_path(@post), method: :post, remote: true,:class=>'dislike_image_post'%>
-              <%end%>
-              <a href="#" class="shareLInk"><img src="/assets//assets/images/share.png" alt=""></a>
-              <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-              <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <div id="comments">
-            <%= render partial: "comments/comments_view", locals: { comments: @comments } %>
-          </div>
-          <div  class="clearfix borderNOne commentSec cmntRow" id="comment_box">
-            <div class="clearfix userInfo posRel">
-              <a href="javascript:;" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-              <div class="addcomtntTA">
-                <!-- Start Comment form -->
-                <%= form_for(@comment, remote: true) do |f| %>
-                  <div class="field">
-                    <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body", class: "addCmnt inputTextW small" %>
-                    <%= hidden_field_tag :post_id, @post.id %>
-                    <%= f.submit "Save", class: "blueBtn", id: "save_comment" %>
-                    <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
-                  </div>
-                <% end %>
-                <!-- End comment form -->
-              </div>
-            </div>
-          </div>
+           <%= render 'layouts/shared/comments' , post: @post %>          
         </div>
       </div>
     </div>
