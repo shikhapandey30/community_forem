@@ -26,7 +26,7 @@
           <a href="#" class="profileImg"><img src="/assets/images/profile.jpg" alt=""></a>
           <div class="nameLocation">
             <a href="#"><%= current_user.try(:profile).try(:screen_name) %></a><br>
-            <span class="location"><%= current_user.try(:profile).try(:country) %></span>
+            <span class="location"><%= current_user.try(:profile).try(:country).try(:name) %></span>
           </div>
         </div>
         <%=render 'layouts/shared/upload', f: f, obj: @contest%>

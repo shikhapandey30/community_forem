@@ -9,7 +9,7 @@
             <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
             <div class="nameLocation">
               <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
-              <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
+              <div class="location font14"><%= current_user.try(:profile).try(:country).try(:name) %></div>
               <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
             </div>
           </div>
