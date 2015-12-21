@@ -30,6 +30,8 @@ li.cat.true a { color: #0BB4D3; }
 
 .popup-msg{	z-index: 99999;top: 25px; position: fixed; left:26%; }
 
+/*21-12-2015*/
+.width {width: 242px;}
 .alert-message
 {
     margin: 20px 0;

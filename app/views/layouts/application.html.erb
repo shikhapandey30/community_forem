@@ -24,7 +24,7 @@
         <%=render 'layouts/header'%>
       <%end%>  
       <div class="<%= class_container %>">
-        <%if params[:controller] =="home" &&  params[:action]!="index"%>
+        <%if user_signed_in? && (params[:controller] =="home" &&  params[:action]!="index")%>
           <%= render "layouts/left_panel"%>
         <% end %>
         <%= yield %>

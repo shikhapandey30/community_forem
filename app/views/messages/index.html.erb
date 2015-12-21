@@ -1,0 +1,29 @@
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
+    <div class="clearfix innerWIdth550 tac ">
+      <div class="whiteBox mt20 reveal padding40 tac">
+        <div class="mt20">
+          <img src="/assets/images/vlt.png" alt="">
+          <div class="blackHD font30 mt30"  >$20000</div>
+          <div class="grayColor font18 upperCase">Wallet Balance</div>
+          <a href="#" class="grayBtn mt10">Withdraw My Balance</a>
+        </div>
+      </div>
+      <div class="whiteBox mt20 reveal padding40 mb20 tac">
+        <div class="mt20">
+          <img src="/assets/images/points.png" alt="">
+          <div class="blackHD font30 mt30"  >500</div>
+          <div class="grayColor font18 upperCase">you have 500 points</div>
+          <a href="#" class="grayBtn mt10">Redeem Points</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+  });
+</script>
