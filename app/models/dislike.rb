@@ -20,6 +20,8 @@ class Dislike < ActiveRecord::Base
 	   	   return nil, @model
 	   	else
 	   	  dislike.save 
+	   	   like = Like.where(:likable=>@model,:user_id=>current_user.id)
+           like.destroy_all
 	   	  return dislike, @model
 	    end
 		end
