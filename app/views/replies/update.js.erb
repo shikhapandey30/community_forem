@@ -1,0 +1,2 @@
+$('#reply_id_<%= @reply.id %>').html("<%= escape_javascript(@reply.body) %>");
+$('#reply_box_id_<%= @reply.id%>').hide();
