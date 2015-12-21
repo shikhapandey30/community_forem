@@ -145,4 +145,12 @@ class User < ActiveRecord::Base
     @friends.delete(self)
     @friends
   end
+
+  def is_liked(model)    
+    Like.where(:likable => model ,:user_id => self.id).present?
+  end
+
+  def is_disliked(model)
+    Dislike.where(:dislikable=> model ,:user_id => self.id).present?
+  end
 end

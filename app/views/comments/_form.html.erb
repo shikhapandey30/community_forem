@@ -1,33 +1,14 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <!-- <h2><%#= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2> -->
-
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+ <div  class="clearfix commentSec cmntRow borderNOne" id="comment_form_<%= comment.id %>" >
+    <div class="clearfix userInfo posRel">
+      <a href="#" class="userImg"><%= image_tag comment.user.try(:img) %></a>
+      <div class="addcomtntTA">
+        <%= form_for(comment, remote: true) do |f| %>
+          <div class="field">
+            <%= f.text_area :body, placeholder: "Add Your Comment", class: "addCmnt inputTextW small" %>
+            <%= f.submit "Save", class: "blueBtn", id: "save_comment#{comment.id}" %>
+            <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_form_<%= comment.id %>').hide();">Cancel</a> 
+          </div>
+        <% end %> 
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
   </div>
-  <div class="field">
-    <%= f.label :post_id %><br>
-    <%= f.number_field :post_id %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
