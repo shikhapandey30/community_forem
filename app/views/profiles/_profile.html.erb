@@ -1,7 +1,7 @@
 <%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "" ,:id => "form-id"} do |f| %>
   <%=f.fields_for :profile do |p|%>
     <div class="clearfix formOuterPost tal">
-      <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+      <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this,false)" %>
       <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
 
       <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url)%>);">
@@ -13,11 +13,11 @@
       <div class="error img_error"></div>
       <div class="col-sm-6 pr10">
         <label>First Name</label>
-        <%= f.text_field :first_name, class: "profile inputTextW small validate[required]", placeholder: "First Name" %>
+        <%= f.text_field :first_name, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "First Name" %>
       </div>
       <div class="col-sm-6 pl10">
         <label>Last Name</label>
-        <%= f.text_field :last_name, class: "profile inputTextW small validate[required]", placeholder: "Last Name" %>
+        <%= f.text_field :last_name, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Last Name" %>
       </div>
       <div class="col-sm-12">
         <div class="blackHD">Address</div>
@@ -25,70 +25,70 @@
       <div class="col-sm-6 pr10">
         <label>Country</label>
         <div class="selctFormBox">      
-          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput validate[required]" %>
-          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
+          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput validate[required,maxSize[80]]" %>
+          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select validate[required]")  %>
         </div>
 <!--         <div id="country_error"></div>
  -->      </div>
 
       <div class="col-sm-6 pl10">
         <label class="">City</label>
-        <%= p.text_field :city, class: "profile inputTextW small", placeholder: "City" %>
+        <%= p.text_field :city, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "City" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>State</label>
-        <%= p.text_field :state, class: "profile inputTextW small", placeholder: "Street" %>
+        <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
       </div>
       <div class="col-sm-6 pl10">
         <label>Zipcode</label>
-        <%= p.number_field :post_code, class: "profile inputTextW small", placeholder: "10001" %>
+        <%= p.number_field :post_code, class: "profile inputTextW small validate[required,maxSize[20],custom[integer]]", placeholder: "10001" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Address1</label>
-        <%= p.text_field :address1, class: "profile inputTextW small", placeholder: "Street" %>
+        <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
       </div>
       <div class="col-sm-6 pr10">
         <label>Address2</label>
-        <%= p.text_field :address2, class: "profile inputTextW small", placeholder: "Street" %>
+        <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Gender</label>
         <div class="selctFormBox">      
           <%= p.text_field "gender", value: select_type(p, "gender"), class: "profile selectInput" %>
-          <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select")  %>
+          <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select validate[required]")  %>
         </div>
         <div id="gender_error"></div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
-        <%= p.number_field :phone_no, class: "profile inputTextW small", placeholder: "0123456789" %>
+        <%= p.number_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Select Type</label>
         <div class="selctFormBox">
-          <%= p.text_field "profile_type", value: select_type(p, "profile_type"), class: "profile selectInput" %>
+          <%= p.text_field "profile_type", value: select_type(p, "profile_type"), class: "profile selectInput validate[required]" %>
           <%= p.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
         </div>
         <div id="profile_type_error"></div>
       </div>
       <div class="col-sm-6 pl10">
         <label>Date of Birth</label>
-          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth dob" %> 
+          <%= p.text_field :dob, class: "profile inputTextW small date fullWdth dob validate[required]" %> 
         <!-- <input type="text" placeholder="987654321" class=""> -->
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Screen Name</label>
-        <%= f.text_field :screen_name, class: "inputTextW small", placeholder: "Screen Name" %>
+        <%= f.text_field :screen_name, class: "inputTextW small validate[required]", placeholder: "Screen Name" %>
         <!-- <input type="text" placeholder="john2015" class="inputTextW small  ">  -->
       </div>
       <div class="col-sm-6 pl10">
         <label>Location</label>
-        <%= p.text_field :location, class: "inputTextW small", placeholder: "Location" %>
+        <%= p.text_field :location, class: "inputTextW small validate[required,maxSize[80]]", placeholder: "Location" %>
        <!--  <input type="text" placeholder="South America" class="inputTextW small  "> -->
       </div>      
       <div class="col-sm-12">
@@ -98,52 +98,7 @@
     </div>
   <%end%>
 <%end%>  
-
-
 <script>
- // function showimagepreview(input) {
- //    if (input.files && input.files[0]) {
- //    var filerdr = new FileReader();
- //    filerdr.onload = function(e) {
-
- //    // $('#imgprvw').attr('src', e.target.result);
- //    $(".uploadPhoto").css('background-image', 'url(' + e.target.result + ')');
- //    }
- //    filerdr.readAsDataURL(input.files[0]);
- //    }
- //  }
-
-  // $("form.profile_form").validate({
-  //   errorPlacement: function(error, element) {
-  //     if(element.attr("name") == "user[profile_attributes][gender]") {
-  //       error.appendTo($("#gender_error"));
-  //     } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
-  //       error.appendTo($("#profile_type_error"));
-  //     } else {
-  //       error.insertAfter(element);
-  //     }
-  //   },
-  //   rules: {
-  //       "user[first_name]": { required: true },
-  //       "user[last_name]": { required: true },
-  //       // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
-  //       "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
-  //       "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
-  //       "user[profile_attributes][post_code]": { required: true },
-  //       "user[profile_attributes][gender]": { required: true },
-  //       "user[profile_attributes][phone_no]": { required: true },
-  //       "user[profile_attributes][profile_type]": { required: true },
-  //       "user[profile_attributes][dob]": { required: true },
-  //       "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
-  //       "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
-  //     },
-  //     messages: {
-  //       "user[profile_attributes][post_code]": "Please enter valid numbers",
-  //       "user[profile_attributes][phone_no]": "Please enter valid numbers",
-  //     },
-  //    submitHandler: function(form) {
-  //      $('form.profile_form').submit();
-  //    }
-  // });
   $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
+  $("#form-id").validationEngine();
 </script>

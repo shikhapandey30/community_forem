@@ -13,7 +13,7 @@
           <%= link_to (image_tag 'images/delete.png'), education_history, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
         <div class="uniOuter">
-          <div class="blackHD"><%= education_history.specialization.name%>
+          <div class="blackHD"><%= education_history.try(:specialization).try(:name)%>
             <img src="/assets/images/uni1.jpg" alt="" class="fr">
           </div>
           <div class="blackColor">

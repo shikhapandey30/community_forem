@@ -14,7 +14,7 @@
       }
     });
 
-    function showimagepreview(input) {
+    function showimagepreview(input,profile_image) {
       extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
       if ( extension == "png" || extension == "jpeg" || extension == "jpg" ) {
         $(".error.img_error").html("");
@@ -22,8 +22,9 @@
         var filerdr = new FileReader();
         filerdr.onload = function(e) {
           $(".uploadPhoto").css('background-image', 'url('+ e.target.result+')');
-
-        // $('#imgprvw').attr('src', e.target.result);
+        if (profile_image == true){
+          $('#imgprvw').attr('src', e.target.result);
+        }
         $("#image_url").val(false);
         }
         filerdr.readAsDataURL(input.files[0]);
