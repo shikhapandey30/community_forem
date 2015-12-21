@@ -1,23 +1,23 @@
-<%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form" }, remote: true do |f| %>
+<%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form employment-form-validate" }, remote: true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Enter Designation </label>
-    <%= f.text_field :designation, class: "inputTextW small", placeholder: "Designation", :maxlength=>"80" %>
+    <%= f.text_field :designation, class: "inputTextW small validate[required]", placeholder: "Designation", :maxlength=>"80" %>
     <!-- <input type="text" placeholder="Designation " class="inputTextW small  ">  -->
   </div>
   <div class="col-sm-6 pl10">
     <label>Enter Organization</label>
-    <%= f.text_field :organization, class: " inputTextW small", placeholder: "Organization", :maxlength=>"80" %>
+    <%= f.text_field :organization, class: " inputTextW small validate[required]", placeholder: "Organization", :maxlength=>"80" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
   <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
     <label class="">Start Working From  </label>
-    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth datetimepicker4"%> 
+    <%= f.text_field :start_work_date, class: "inputTextW small date fullWdth datetimepicker4 validate[required]"%> 
   </div>
   <div class="col-sm-6 pl10">
     <label class="">Worked Till</label>
      <div id="present_time" style="font-weight: 600;">- Present</div>
-     <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth datetimepicker5"%>
+     <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth datetimepicker5 validate[required]"%>
   </div>
   <div id="worked_till_error" class="col-sm-6"></div>
   <div class="clearfix"></div>
@@ -68,4 +68,5 @@
   $(".datetimepicker5").on("dp.change", function (selected) {
     $(".datetimepicker4").data("DateTimePicker").maxDate(selected.date);
   });
+  $(".employment-form-validate").validationEngine();
 </script> 
