@@ -1,5 +1,5 @@
 <div class="commentSec">          
-  <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;<span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
+  <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"  class ="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>" class="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;<span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
   <div class="cmntSec">          
     <%= render 'layouts/shared/like', model_obj: post %>
     <%= render 'layouts/shared/dislike', model_obj: post %>
