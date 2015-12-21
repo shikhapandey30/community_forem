@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   devise_for :admin
 
   get 'home/index'
-
+  post "/likes/create", to: "likes#create", as: 'like_create'
+  post "/dislikes/create", to: "dislikes#create", as: 'dislikes_create'
 
   get 'payment_details/express'
   get 'payment_details/create'

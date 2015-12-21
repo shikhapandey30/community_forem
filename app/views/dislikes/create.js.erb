@@ -1,51 +1,8 @@
-<% if params[:from] == "post_index" %>
-  <% if @is_dislike %>
-    <%if @post.present?%>
-      $("#dislike_image_post_<%= @post.id %>").css('background-color', '#0bb4d3');
-       $("#dislike_image_post_disliked_<%= @post.id %>").css('background-color', '#0bb4d3');
-      $("#post_dislike_count_<%= @post.id %>").html('<%= @post.likes.count%>');
-    <%else%>
-      $("#post_dislike_count_<%= @post.id %>").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
-    <%end%>
-  <% else %>
-    <%if @post.present?%>
-      $("#post_dislike_count_<%= @post.id %>").html('<%=@post.likes.count%>');
-      $("#dislike_image_post_disliked_<%= @post.id %>").css('background-color', 'white');
-      $("#dislike_image_post_<%= @post.id %>").css('background-color', 'white');
-    <%else%>
-      $("#dislike-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
-    <%end%>
-  <% end %>
-<% else %>  
-<% if params[:meeting_room_id].present? %>
-      <% meeting_room = MeetingRoom.where(id: params[:meeting_room_id]).first.present? ? MeetingRoom.where(id: params[:meeting_room_id]).first : []  %>
-    <% if @is_dislike %>
-      $(".dislike_image_post").css('background-color', '#0bb4d3');
-      $(".post_dislike_count").html('<%= meeting_room.dislikes.count%>');
-      (".dislike_image_post_liked").css('background-color', '#0bb4d3');
-  <% else %>
-      $(".post_dislike_count").html('<%=meeting_room.dislikes.count%>');
-      $(".dislike_image_post").css('background-color', 'white');
-      (".dislike_image_post_liked").css('background-color', 'white');
-  <% end %>
-  <% else %>
-  <% if @is_dislike %>
-  <%if @post.present?%>
-    $(".dislike_image_post").css('background-color', '#0bb4d3');
-     $(".dislike_image_post_disliked").css('background-color', '#0bb4d3');
-    $(".post_dislike_count").html('<%=@post.dislikes.count%>');
-  <%else%>
-    $(".post_dislike_count").html('<%= link_to "UnLike", topic_likes_path(@topic), method: :post, remote: true%>');
-  <%end%>
-<% else %>
-  <%if @post.present?%>
-    $(".post_dislike_count").html('<%=@post.dislikes.count%>');
-    $(".dislike_image_post_disliked").css('background-color', 'white');
-    $(".dislike_image_post").css('background-color', 'white');
-  <%else%>
-    $(".dislike-<%= @topic.id%>").html('<%= link_to "Like", topic_likes_path(@topic), method: :post, remote: true%>');
-  <%end%>
+<%if @dislike.present? %>
+$("#dislike_image_post_<%= params[:id] %>").css('background-color', '#0bb4d3');
+$("#dislike_image_post_disliked_<%= params[:id] %>").css('background-color', '#0bb4d3');
+<%else%>
+$("#dislike_image_post_<%= params[:id] %>").css('background-color', '#fff');
+$("#dislike_image_post_disliked_<%=  params[:id] %>").css('background-color', '#fff');
 <% end %>
-<% end %>
-<% end %>
-
+$("#dislike_count_<%= params[:id] %>").html('<%= @model.dislikes.count %>');

@@ -63,23 +63,16 @@
         </div>
         <div class="clearfix"></div>
         <div class="commentSec">          
-          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count - post.dislikes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
-          <div class="cmntSec">
-            <%if post.liked?(current_user).present?%>
-            <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post_liked', :id=> "like_image_post_liked_#{post.id}"%>
-          <%else%>
-            <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post', :id=> "like_image_post_#{post.id}"%>
-          <%end%>
-          <%if post.disliked?(current_user).present?%>
-            <%=link_to image_tag("images/down1.png"), post_dislikes_path(post, from: "post_index"), method: :post, remote: true,:class=>'dislike_image_post_disliked', :id=>"dislike_image_post_disliked_#{post.id}"%>
-          <%else%>
-            <%=link_to image_tag("images/down1.png"), post_dislikes_path(post, from: "post_index"), method: :post, remote: true,:class=>'dislike_image_post', :id=>"dislike_image_post_#{post.id}"%>
-          <%end%>
+          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;<span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
+          <div class="cmntSec">          
+            <%= render 'layouts/shared/like', model_obj: post %>
+            <%= render 'layouts/shared/dislike', model_obj: post %>
             <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
             <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
             <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="comment_body(<%= post.id %>);" id="comment_button_<%= post.id %>">
           </div>
         </div>
+        
         <div class="commentShow">
           <div  class="clearfix commentSec cmntRow">
             <% if post.comments.count>0 %><div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div><% end %>
