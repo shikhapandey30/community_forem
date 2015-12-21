@@ -1,0 +1,1 @@
+<%=link_to image_tag("images/down1.png"), dislikes_create_path(id: model_obj.id, type: model_obj.class.name.downcase), method: :post, remote: true,:class=>"#{current_user.is_disliked(model_obj) ? 'like_image_post_liked' : 'like_image_post'}", :id=>"dislike_image_post_disliked_#{model_obj.id}"%>

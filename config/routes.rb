@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   devise_for :admin
 
   get 'home/index'
-
+  post "/likes/create", to: "likes#create", as: 'like_create'
+  post "/dislikes/create", to: "dislikes#create", as: 'dislikes_create'
 
   get 'payment_details/express'
   get 'payment_details/create'
@@ -109,6 +110,7 @@ Rails.application.routes.draw do
    get '/terms_and_conditions'=>'home#terms_and_conditions'
 
    get '/dashboard'=>'users#dashboard'
+   get '/payment'=>'users#payment'
    get '/auth/:provider/callback', to: 'users#social_login'
    get '/search'=>'users#search'
    post '/search'=>'users#search'

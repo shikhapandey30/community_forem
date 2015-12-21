@@ -7,7 +7,7 @@
 				    <a href="#" class="userNAme"> <%= reply.user.try(:screen_name) %></a> <br>
 				    <% @designation = reply.user.employment_details.collect(&:designation) %>
 				    <div class="fr grayColor tar">
-				    	<%= time_ago_in_words(reply.created_at.strftime("%d %b")) if reply.created_at.present? %>
+				    	<%= time_ago_in_words(reply.created_at) if reply.created_at.present? %>
 				    </div>
 				    <span class="font13"> <%= @designation.present? ? @designation.join(", ") : ""  %></span>
 				    
@@ -15,7 +15,7 @@
 				    	<%= reply.body.html_safe %>
 				    </div>
 				    <% like_status = reply.likes.where(user_id:current_user.id).first.present? ? "Unlike" : "Like" %>
-				    <div class="font13 bold blueColor mt5"><%= link_to like_status, reply_likes_path(reply), method: "post", remote: true, id: "reply_like_#{reply.id}", class: "blueColor" %><span id ="reply_like_count_<%= reply.id %>">(<%= reply.likes.count %>)</span></div>
+				    <div class="font13 bold blueColor mt5"><%= link_to like_status, reply_likes_path(reply), method: "post", remote: true, id: "reply_like_#{reply.id}", class: "blueColor" %><span id ="reply_like_count_<%= reply.id %>"> (<%= reply.likes.count %>)</span></div>
 				  	
 				  </div>
 				  <% next_element = replies[index+1] %>
