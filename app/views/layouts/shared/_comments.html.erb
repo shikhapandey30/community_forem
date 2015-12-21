@@ -5,7 +5,7 @@
     <%= render 'layouts/shared/dislike', model_obj: post %>
     <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
     <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-    <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="comment_body(<%= post.id %>);" id="comment_button_<%= post.id %>">
+    <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="$('#comments_<%= post.id%>').slideToggle(500);  $('html, body').scrollTop($('#comment_box_'+id).offset().top- 200);" id="comment_button_<%= post.id %>">
   </div>
 </div>
 

@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('screen_name LIKE ?', "%#{search}%")
+      where('lower(screen_name) LIKE ?', "%#{search}%".downcase)
     else
       all
     end

@@ -22,10 +22,19 @@
       <div class="col-sm-12">
         <div class="blackHD">Address</div>
       </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6 pr10">
+        <label>Address1</label>
+        <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Address 1" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Address2</label>
+        <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Address 2" %>
+      </div>
       <div class="col-sm-6 pr10">
         <label>Country</label>
         <div class="selctFormBox">      
-          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput validate[required,maxSize[80]]" %>
+          <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required,maxSize[80]]" %>
           <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select validate[required]")  %>
         </div>
 <!--         <div id="country_error"></div>
@@ -35,24 +44,16 @@
         <label class="">City</label>
         <%= p.text_field :city, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "City" %>
       </div>
+
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>State</label>
-        <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
+        <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "State" %>
       </div>
       <div class="col-sm-6 pl10">
         <label>Zipcode</label>
-        <%= p.number_field :post_code, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "10001" %>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-sm-6 pr10">
-        <label>Address1</label>
-        <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Address2</label>
-        <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
-      </div>
+        <%= p.text_field :post_code, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "10001" %>
+      </div>      
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Gender</label>
@@ -64,7 +65,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
-        <%= p.number_field :phone_no, class: "profile inputTextW small validate[required],maxSize[20]", placeholder: "0123456789" %>
+        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required],maxSize[20]", placeholder: "0123456789" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
