@@ -1,7 +1,7 @@
 <%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "" ,:id => "form-id"} do |f| %>
   <%=f.fields_for :profile do |p|%>
     <div class="clearfix formOuterPost tal">
-      <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
+      <%= p.file_field :image, class: "profile profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this,false)" %>
       <!-- <input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file"> -->
 
       <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url)%>);">
