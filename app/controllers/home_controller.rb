@@ -15,6 +15,10 @@ class HomeController < ApplicationController
 
   def help
   end
+
+  def help_center
+  end
+
   def how_it_work
   end
 
