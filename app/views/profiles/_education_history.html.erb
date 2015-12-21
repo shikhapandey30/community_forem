@@ -1,9 +1,9 @@
-<%= form_for @education_history, url: education_path(@education_history), :html => { class: "education_form" }, :remote => true do |f| %>
+<%= form_for @education_history, url: education_path(@education_history), :html => { class: "education_form form-validate" }, :remote => true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Course</label>
     <div class="selctFormBox">          
       <%= text_field_tag "course", nil, :value=>select_type(f, "course_id", "Course"), class: "selectInput",:id=>'course'%>
-      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select" , :selected => params[:course_id])  %>
+      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select validate[required]" , :selected => params[:course_id])  %>
     </div>
     <div id="course_error"></div>
   </div>
@@ -11,7 +11,7 @@
     <label>Specialization</label>
     <div class="selctFormBox">
       <%= text_field_tag "specialization", nil, :value=>select_type(f, "specialization_id", "Specialization"), class: "selectInput" ,:id=>'specialization'%>
-      <%= f.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
+      <%= f.select(:specialization_id, Specialization.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select validate[required]")  %>
     </div>
     <div id="specialization_error"></div>
   </div>
@@ -20,15 +20,15 @@
     <div class="selctFormBox fullWDdl">
       <%= hidden_field_tag :id, f.object.id%>
       <%= text_field_tag "institute", nil, :value=>select_type(f, "institute_id", "Institute"), class: "selectInput",:id=>'institute'%>
-      <%= f.select(:institute_id, Institute.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select")  %>
+      <%= f.select(:institute_id, Institute.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select validate[required]")  %>
     </div>
     <div id="institute_error"></div>
   </div>
   <div class="col-sm-6 pr10">
     <label>Start Year</label>
     <div class="selctFormBox">
-      <%= f.text_field :start_year, value: f.object.start_year ? f.object.start_year : "Select", name: "start_year", class: "selectInput" %>
-      <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select")  %>
+      <%= f.text_field :start_year, value: f.object.start_year ? f.object.start_year : "Select", name: "start_year", class: "selectInput validate[required]" %>
+      <%= f.select(:start_year, 2000..Time.now.year, {:include_blank => "Select"}, class: "select validate[required]")  %>
     </div>
     <div id="start_year_error"></div>
   </div>
@@ -36,7 +36,7 @@
     <label>End Year</label>
     <div class="selctFormBox">
       <%= f.text_field :end_year, value: f.object.end_year ? f.object.end_year : "Select", name: "end_year", class: "selectInput" %>
-      <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"},  class: "select") %>
+      <%= f.select(:end_year, 2000..Time.now.year, {:include_blank => "Select"},  class: "select validate[required]") %>
     </div>
     <div id="end_year_error"></div>      
   </div>
@@ -46,31 +46,33 @@
   </div>
 <%end%>
 <script>
-  $("form.education_form").validate({
-      errorPlacement: function(error, element) {
-        if(element.attr("name") == "education_history[course_id]") {
-          error.appendTo($("#course_error"));
-        } else if(element.attr("name") == "education_history[specialization_id]") {
-          error.appendTo($("#specialization_error"));
-        } else if(element.attr("name") == "education_history[institute_id]") {
-          error.appendTo($("#institute_error"));
-        } else if(element.attr("name") == "education_history[start_year]") {
-          error.appendTo($("#start_year_error"));
-        } else if(element.attr("name") == "education_history[end_year]") {
-          error.appendTo($("#end_year_error"));
-        } else {
-          error.insertAfter(element);
-        }
-      },
-      rules: {
-          "education_history[course_id]": {required: true},
-          "education_history[specialization_id]": {required: true},
-          "education_history[institute_id]": {required: true},
-          "education_history[start_year]": {required: true},
-          "education_history[end_year]": {required: true}
-      },      
-      submitHandler: function(form) {
-          $('form.education_form').submit();
-      }  
-  });
+  // $("form.education_form").validate({
+  //     errorPlacement: function(error, element) {
+  //       if(element.attr("name") == "education_history[course_id]") {
+  //         error.appendTo($("#course_error"));
+  //       } else if(element.attr("name") == "education_history[specialization_id]") {
+  //         error.appendTo($("#specialization_error"));
+  //       } else if(element.attr("name") == "education_history[institute_id]") {
+  //         error.appendTo($("#institute_error"));
+  //       } else if(element.attr("name") == "education_history[start_year]") {
+  //         error.appendTo($("#start_year_error"));
+  //       } else if(element.attr("name") == "education_history[end_year]") {
+  //         error.appendTo($("#end_year_error"));
+  //       } else {
+  //         error.insertAfter(element);
+  //       }
+  //     },
+  //     rules: {
+  //         "education_history[course_id]": {required: true},
+  //         "education_history[specialization_id]": {required: true},
+  //         "education_history[institute_id]": {required: true},
+  //         "education_history[start_year]": {required: true},
+  //         "education_history[end_year]": {required: true}
+  //     },      
+  //     submitHandler: function(form) {
+  //         $('form.education_form').submit();
+  //     }  
+  // });
+$(".form-validate").validationEngine();
+</script>
 </script>
