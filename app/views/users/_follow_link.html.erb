@@ -1,1 +1,1 @@
- <%= link_to follow_status(post), follow_path(:follower_id => current_user.id,  followable_id: post.id, followable_type: "Post"), :method => :post , :class=>"transition addFriend", :id=>"following-button-#{post.id}", :remote=>true, :class=>'replyBtn' %>
+ <%= link_to follow_status(post), follow_path(:follower_id => current_user.id,  followable_id: post.user.id, followable_type: "Post"), :method => :post , :id=>"following-button-#{post.user.id}", :remote=>true, :class=>'replyBtn transition following-button-#{post.user.id}' %>

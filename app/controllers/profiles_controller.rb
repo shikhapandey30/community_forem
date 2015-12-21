@@ -7,10 +7,9 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])    
-    current_user.profile.present? ? current_user.profile : current_user.build_profile
-    @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
-    @category = current_user.users_category.present? ? current_user.users_category : Category.new    
+    @user = User.find(params[:id])
+    @category = current_user.users_category.present? ? current_user.users_category : Category.new
+    current_user.profile.present? ? current_user.profile : current_user.build_profile    
   end
 
   def show
@@ -44,6 +43,16 @@ class ProfilesController < ApplicationController
     @employment_detail = current_user.employment_details.new    
   end
 
+  def edit_skill
+    @user = current_user
+    @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
+  end
+
+  def edit_category
+    @category = current_user.users_category.present? ? current_user.users_category : Category.new
+    @user = current_user
+  end
+
   def education_history
     if params[:id].present?
       @education = current_user.education_histories.find(params[:id])
@@ -67,7 +76,8 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
-  def skill    
+  def skill
+    @user = current_user
     if current_user.skill
       @before_changed = current_user.skill.try(:name)
       @skill = current_user.skill.update(name: params[:name])

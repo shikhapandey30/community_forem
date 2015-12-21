@@ -7,7 +7,7 @@
       <div class="clearfix formOuterPost tal">
         <div class="ProfileTHumb">
           <div class="noConn">
-            <div class="blueColor font16 bold">2000</div>
+            <div class="blueColor font16 bold"><%= @user.my_friends.count %></div>
             connections
           </div>
           <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
@@ -40,7 +40,7 @@
     </div>
     <%#= render 'employment_detail' %>
     <div id ='employment_detail'>
-      <%=render 'my_employment_detail'%>
+      <%#=render 'my_employment_detail'%>
     </div>
     <div id='skills'>
       <%=render 'skill'%>
@@ -57,7 +57,7 @@
         <% @user_categories.each do |category|%>
         <div class="col-sm-6 pr10 categoriesChk">
           <ul>
-            <li><%=Category.find(category.to_i).name%></li>
+            <li><%=Category.where(:id =>category.to_i ).first.try(:name) %></li>
           </ul>
         </div>        
         <%end%>

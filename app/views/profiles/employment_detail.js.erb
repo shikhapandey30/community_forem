@@ -1,5 +1,6 @@
+window.location.reload();
 $(".popup-success").html("<%=j (render '/layouts/success')%>");
-$("#employment_detail").html("<%= j render('my_employment_detail') %>");
+$(".employment-box").html("<%= j render('my_employment_detail') %>");
 setTimeout(function(){
   $(".container.popupmsg").hide();
 }, 3000);

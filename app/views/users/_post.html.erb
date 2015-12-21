@@ -11,13 +11,27 @@
                 <%= link_to (image_tag 'images/delete.png'), post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </div>
               <% end %>
+              
               <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>              
               <% if post.upload.try(:image).present? %>
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
               <% end %>
+
               <% if post.upload.present? %>
                 <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
               <% end %>
+
+              <%# if post.upload.try(:video).present? %>
+                <!-- <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:video) %></a> -->
+              <%# end %>
+              <% if post.upload.try(:file).present? %>                
+                Attachment: <a href="<%= post.upload.try(:file)%>" class="post"><%=post.upload[:file]%></a>
+              <% end %>
+
+              <% if post.upload.try(:site_link).present? %>
+                WebSite Link: <a href="<%= post.upload.try(:site_link) %>" class="post" target="_blank"><%= post.upload.try(:site_link) %></a>
+              <% end %>
+              
             </div>
             <div class="clearfix borderBtmS"></div>
             <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
@@ -29,10 +43,12 @@
                   <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
                 <%end%>
-              <span id="following-button-span-<%= post.id %>">
-                <%= render :partial=> "follow_link", :locals => {:post => post} %>
-              </span>
-                                  <!-- <a href="#">Follow</a> -->
+              <%if current_user != post.user %>
+                <span id="following-button-span-<%= post.id %>" class="user-folowed-<%=post.user.id %>">
+                  <%= render :partial=> "follow_link", :locals => {:post => post} %>
+                </span>
+              <% end %>
+              <!-- <a href="#">Follow</a> -->
             </div>
           </div>
           <div class="uniOuter">
@@ -46,8 +62,8 @@
           </div>
         </div>
         <div class="clearfix"></div>
-        <div class="commentSec">
-          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
+        <div class="commentSec">          
+          <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"><%= post.likes.count - post.dislikes.count%></span> Likes &nbsp; &nbsp; <span id="comments_count_<%= post.id %>"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
           <div class="cmntSec">
             <%if post.liked?(current_user).present?%>
             <%=link_to image_tag("images/up.png"), post_likes_path(post, from: "post_index"), method: :post, remote: true,:class=>'like_image_post_liked', :id=> "like_image_post_liked_#{post.id}"%>
@@ -83,7 +99,7 @@
                     <%= hidden_field_tag :from, "post_index" %>
                     <%= hidden_field_tag :post_id, post.id %>
                     <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>
-                    <a href="javascript:;" class="grayBtn" id="comment_cancel">Cancel</a> 
+                    <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_box_<%= post.id %>').hide();">Cancel</a> 
                   </div>
                 <% end %> 
               </div>
