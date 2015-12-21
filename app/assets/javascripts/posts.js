@@ -14,7 +14,7 @@
       }
     });
 
-    function showimagepreview(input,profile_image) {
+    function showimagepreview(input) {
       extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
       if ( extension == "png" || extension == "jpeg" || extension == "jpg" ) {
         $(".error.img_error").html("");
