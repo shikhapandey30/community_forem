@@ -33,7 +33,7 @@
             <span class="font13"><%= designation(post) %></span>
             <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at).capitalize rescue 0%> ago<br>
               <%if !current_user.eql?(post.user)%>
-                <%if !current_user.friendships.collect(&:friend).include? post.user %>
+                <%if user_signed_in? && (!current_user.friendships.collect(&:friend).include? post.user) %>
                   <span class="friendship-button-<%=  post.user.id  %>">
                   <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
@@ -42,7 +42,7 @@
 
               <% if current_user != post.user %>
                 <span id="following-button-span-<%= post.user.id %>" class="user-folowed-<%=post.user.id %>">
-                  <%= render :partial=> "users/follow_link", :locals => {:object => post} %>
+                  <%= render :partial=> "users/follow_link", :locals => {:object => post} if user_signed_in?%>
                 </span>
               <% end %>
               <!-- <a href="#">Follow</a> -->

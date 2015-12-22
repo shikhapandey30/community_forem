@@ -27,7 +27,7 @@
           </li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/help">Help Center</a></li>        
+        <li><a href="/help_center">Help Center</a></li>        
         <%if user_signed_in?%>
         	<li><%=link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
         <%else%>
