@@ -9,11 +9,11 @@
   </div>
 </div>
 
-<div class="commentShow">
+<div class="commentShow" id="comments_<%= post.id %>" style="display:none;">
   <div  class="clearfix commentSec cmntRow">
-    <% if post.comments.count>0 %><div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div><% end %>
+    <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
     <div class="clearfix userInfo posRel">
-      <div id="comments_<%= post.id %>" style="display:none;">
+      <div >
         <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
       </div>  
     </div>
