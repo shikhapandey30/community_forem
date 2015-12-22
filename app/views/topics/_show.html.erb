@@ -1,6 +1,6 @@
 <div class="comments-box" style="margin-left:58px; margin-top: 17px;">
   <b><i><%= topic.name %></b></i></br>
-  created at: <%= time_ago_in_words topic.created_at %>ago
+  created at: <%= time_ago_in_words(topic.created_at).capitalize %> ago
 </div>
 <div class="hd">
             <%#=link_to post.title, post %>

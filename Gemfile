@@ -33,7 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "rails-erd"
 gem 'pry'
 gem "nested_form"
-gem 'country_select', github: 'stefanpenner/country_select'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"

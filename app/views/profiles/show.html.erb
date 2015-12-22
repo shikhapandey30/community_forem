@@ -12,14 +12,14 @@
           </div>
           <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
           <div class="font22"><%= @profile.try(:first_name).try(:capitalize) %></div>
-          <div class="designation"> <%=@user.try(:employment_details).try(:last).try(:designation)%>
+          <div class="designation"> <%=@user.try(:employment_details).current_company.try(:last).try(:designation)%>
           </div>
         </div>
         <div class="tableOuterBtm ">
           <table>
             <tr>
               <td>Current</td>
-              <td class="blackColor"> <%=@user.try(:employment_details).try(:last).try(:organization)%></td>
+              <td class="blackColor"> <%=@user.try(:employment_details).current_company.try(:last).try(:organization)%></td>
             </tr>
             <tr>
               <td>Education</td>
@@ -42,27 +42,14 @@
     <div id ='employment_detail'>
       <%#=render 'my_employment_detail'%>
     </div>
-    <div id='skills'>
+    <div class="my_skillsTag">
       <%=render 'my_skill'%>
     </div>
-    <div class="clearfix whiteBox mb10">
-      <div class="clearfix formOuterPost tal">
-        <div class="col-sm-12 mb10">
-          <div class="grayHD">Category  
-            <% if current_user==@user%>
-            <a href="#" class="blueBtn fr addBtn">&nbsp;&nbsp;Add Category</a>
-            <%end%>
-          </div>
-        </div>
-        <% @user_categories.each do |category|%>
-        <div class="col-sm-6 pr10 categoriesChk">
-          <ul>
-            <li><%=Category.where(:id =>category.to_i ).first.try(:name) %></li>
-          </ul>
-        </div>        
-        <%end%>
-      </div>
+    <!-- Render Category -->
+    <div class="my_category">
+      <%=render 'my_category'%>
     </div>
+    
   </div>
 </div>
 <script>
