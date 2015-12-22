@@ -55,8 +55,10 @@ class UsersController < ApplicationController
       @posts = EmploymentDetail.select{|e| e.total_experience}.sort_by(&:total_experience).reverse.
                   collect(&:user).flatten.map{|u| u.posts.validity.order("updated_at desc")}.compact.flatten rescue []
     else     
-      @posts = Post.all.validity.paginate(:page => params[:page], :per_page => 15).try(:reverse)
+      @posts = Post.all.validity
     end
+
+    @posts = @posts.paginate(:page => params[:page], :per_page => 15).try(:reverse)
     @comment = Comment.new
 	end
 
