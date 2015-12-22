@@ -12,6 +12,18 @@ ActiveAdmin.register Course do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-permit_params :Course_id, :education_history_id, :name
+  permit_params :name
+  index do
+    selectable_column
+    id_column
+    column :name
+    actions
+  end
 
+  form do |f|
+    f.inputs "Course Details" do
+      f.input :name
+    end
+    f.actions
+  end
 end

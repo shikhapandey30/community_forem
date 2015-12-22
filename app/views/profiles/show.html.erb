@@ -12,14 +12,14 @@
           </div>
           <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
           <div class="font22"><%= @profile.try(:first_name).try(:capitalize) %></div>
-          <div class="designation"> <%=@user.try(:employment_details).try(:last).try(:designation)%>
+          <div class="designation"> <%=@user.try(:employment_details).current_company.try(:last).try(:designation)%>
           </div>
         </div>
         <div class="tableOuterBtm ">
           <table>
             <tr>
               <td>Current</td>
-              <td class="blackColor"> <%=@user.try(:employment_details).try(:last).try(:organization)%></td>
+              <td class="blackColor"> <%=@user.try(:employment_details).current_company.try(:last).try(:organization)%></td>
             </tr>
             <tr>
               <td>Education</td>

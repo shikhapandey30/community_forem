@@ -1,7 +1,6 @@
 ActiveAdmin.register Category do
   preserve_default_filters!
   # menu label: 'Caregory'
-  permit_params :name, :image, :icon
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -15,7 +14,8 @@ ActiveAdmin.register Category do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-index do
+  permit_params :name, :image, :icon
+  index do
     selectable_column
     id_column
     column :name
@@ -27,21 +27,12 @@ index do
     actions
   end
 
-  filter :name
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
-
   form do |f|
-    f.inputs "Admin Details" do
-      f.input :user
+    f.inputs "Category Details" do
+      f.input :name
       f.input :image
       f.input :icon
-      # f.input :password
-      # f.input :password_confirmation
     end
     f.actions
   end
-
-
 end

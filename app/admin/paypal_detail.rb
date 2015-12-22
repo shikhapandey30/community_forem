@@ -1,5 +1,4 @@
 ActiveAdmin.register PaypalDetail do
- permit_params :express_token, :express_payer_id, :name, :address, :city, :country, :zip
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,6 +11,5 @@ ActiveAdmin.register PaypalDetail do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-
-
+ permit_params :express_token, :express_payer_id, :name, :address, :city, :country, :zip
 end
