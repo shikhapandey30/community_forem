@@ -30,7 +30,7 @@
               <% end %>
               
             </div>
-            <div class="clearfix borderBtmS"></div>
+            <%if post.upload.try(:image).present?%><div class="clearfix borderBtmS"></div><%end%>
             <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
             <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a> <br>
             <span class="font13"><%= designation(post) %></span>
