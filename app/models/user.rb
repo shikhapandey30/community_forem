@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     if self.profile.present?
       self.profile.try(:image)
     else
-      '/images/profile.jpeg'
+      '/images/profile.png'
     end
   end
 
