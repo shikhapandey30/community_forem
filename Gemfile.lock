@@ -28,6 +28,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_skin (0.0.12)
     activeadmin (1.0.0.pre2)
       arbre (~> 1.0, >= 1.0.2)
       bourbon
@@ -344,6 +345,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_skin
   activeadmin (~> 1.0.0.pre2)
   activemerchant (= 1.50.0)
   acts-as-taggable-on (~> 3.4)
@@ -383,3 +385,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate (~> 3.0.7)
+
+BUNDLED WITH
+   1.10.6
