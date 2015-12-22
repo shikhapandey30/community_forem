@@ -11,7 +11,75 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+$skinLogo: url("/assets/images/logoBlue.png") no-repeat scroll 0 0 / contain;
+$skinActiveColor: #0bb4d3;
+$skinHeaderBck: #002744;
+$panelHeaderBck: #002744;
+
+@import "active_skin"; 
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+#title_bar .action_items a > a:hover, #title_bar .action_items a > .dropdown_menu > a:hover, #title_bar .action_items span.action_item > a:hover, #title_bar .action_items span.action_item > .dropdown_menu > a:hover {
+  background: #0bb4d1 none repeat scroll 0% 0% !important;
+}
+form input[type="submit"]:hover, a.button:hover, a.button:link:hover, a.button:visited:hover {
+  background: #0bb4d1 none repeat scroll 0% 0% !important;
+}
+.panel_contents {
+    padding: 25px 15px 15px !important;
+}
+.list-none {
+  list-style-type: none !important;
+}
+.panel_contents ul.list-none li a {
+  background: #9c9f99 none repeat scroll 0 0;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding: 6px 10px;
+  font-size: 1.1em;
+  border-radius: 5px;
+}
+.panel_contents ul.list-none li a:hover {
+  background-color: #0bb4d3;
+}
+.panel_contents ul.list-none li {
+    display: inline-block;
+  margin-right: 5px;
+  padding-bottom: 20px;
+}
+.attributes_table table th {
+  width: 250px;
+}
+.attributes_table table th, .attributes_table table td {
+  color: #4c5b5d;
+}
+.breadcrumb a, .breadcrumb a:link, .breadcrumb a:visited, .breadcrumb a:active {
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+}
+.breadcrumb .breadcrumb_sep {
+  color: #fff;
+  font-size: 13px;
+}
+table.index_table td {
+  color: #4c5b5d;
+}
+#footer {
+  font-size: 1em;
+}
+#header h1.site_title{
+  padding-left: 50px !important;
+}
+#header h1{
+  font-size: 4.3em !important;
+}
+#header ul.tabs > li:hover > a, #header ul.tabs > li.current > a{
+  margin: -10px 10px -10px 0 !important;
+  padding: 8px !important;
+  border-radius: 5px !important;
+}
