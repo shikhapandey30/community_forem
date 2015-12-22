@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  menu false
   preserve_default_filters!
   # menu label: 'Caregory'
 

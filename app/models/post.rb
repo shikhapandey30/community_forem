@@ -8,8 +8,8 @@ class Post < ActiveRecord::Base
 	# validates_presence_of :description
 	belongs_to :user
 	 # has_one :topic
-	has_many :likes, :as => :likable
-  has_many :dislikes, :as => :dislikable
+	has_many :likes, :as => :likable, dependent: :destroy
+  has_many :dislikes, :as => :dislikable, dependent: :destroy
 	has_many :comments,:dependent => :destroy, :as => :commentable
   has_many :followings, as: :followable, :dependent => :destroy
   has_one :upload, as: :uploadable, dependent: :destroy

@@ -21,7 +21,7 @@
         if (input.files && input.files[0]) {
 
           if (input.files[0].size > 3000000) {            
-            $(".error.img_error").html("Image should not be longer than 3 MB.");
+            $(".error.img_error").html("File should not be larger than 3 MB");
             return false
           }
           var filerdr = new FileReader();
@@ -49,7 +49,7 @@
         $(".file_name").html("");
       if (input.files && input.files[0]) {
         if (input.files[0].size > 5000000) {
-          $(".file_name").html("File should not be longer than 5 MB.").addClass("error_file");
+          $(".file_name").html("File should not be larger than 5 MB.").addClass("error_file");
           return false
         }
         var filerdr = new FileReader();

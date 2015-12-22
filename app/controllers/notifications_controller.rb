@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
     def mark_as_read
 	    @notifications = Notification.where(recepient: current_user).unread
 	    @notifications.update_all(accept:true)
-	    flash[:notice] = "Mark As read"
+	    flash[:notice] = "Your all notifications has been marked as read."
 	    redirect_to '/dashboard'
     end
 

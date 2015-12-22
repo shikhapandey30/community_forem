@@ -1,4 +1,5 @@
 ActiveAdmin.register Upload do
+	menu false
 permit_params :uploadable_type, :uploadable_id, :image, :video, :site_link, :file
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
