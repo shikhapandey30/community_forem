@@ -12,7 +12,7 @@ menu false
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :topic, :headline, :slogan, :image, :description, :user_id
+  permit_params :topic, :headline, :slogan, :description, :user_id, upload_attributes: [ :image ]
   index do
     selectable_column
     id_column
@@ -20,7 +20,7 @@ menu false
     column :headline
     column :slogan
     column "Image" do |community|
-    	image_tag(community.try(:image_url), :style=>"width: 60px")
+    	image_tag(community.upload.try(:image_url), :style=>"width: 60px")
     end
     column :description
     column "User" do |community|
@@ -35,7 +35,11 @@ menu false
       f.input :topic
       f.input :headline
       f.input :slogan
-      f.input :image, as: :file
+      f.inputs "Upload" do
+        f.has_many :upload do |u|
+          u.input :image
+        end
+      end
       f.input :description
     end
     f.actions

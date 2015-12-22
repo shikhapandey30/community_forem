@@ -39,8 +39,8 @@ menu false
       f.input :headline
       f.input :body
       f.input :visibility
-      f.input :start_date
-      f.input :end_date
+      f.input :start_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
+      f.input :end_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
       f.input :attachement, as: :file
     end
     f.actions

@@ -12,7 +12,7 @@ ActiveAdmin.register Group do
 #   permitted << :other if resource.something?
 #   permitted
 # end
- permit_params :category_id, :headline, :description, :image, :video, :site_link, :file, :topic, :user_id
+ permit_params :category_id, :headline, :description, :topic, :user_id, upload_attributes: [ :image, :video, :site_link, :file ]
  index do
     selectable_column
     id_column
@@ -26,11 +26,17 @@ ActiveAdmin.register Group do
     column :headline
     column :description
     column "Image" do |group|
-    	image_tag(group.try(:image_url), :style=>"width: 60px")
+    	image_tag(group.upload.try(:image_url), :style=>"width: 60px")
     end
-    column :video
-    column :site_link
-    column :file
+    column "Video" do |group|
+      group.upload.try(:video)
+    end
+    column "Site Link" do |group|
+      group.upload.try(:site_link)
+    end
+    column "File" do |group|
+      group.upload.try(:file)
+    end
     actions
   end
 
@@ -41,10 +47,14 @@ ActiveAdmin.register Group do
       f.input :topic
       f.input :headline
       f.input :description
-      f.input :image, as: :file
-      f.input :video, as: :file
-      f.input :site_link
-      f.input :file, as: :file
+      f.inputs "Upload" do
+        f.has_many :upload do |u|
+          u.input :image
+          u.input :video
+          u.input :site_link
+          u.input :file
+        end
+      end
     end
     f.actions
   end
