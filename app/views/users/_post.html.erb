@@ -20,6 +20,12 @@
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
               <% end %>
 
+               <% if post.upload.try(:video).present? %>
+                <iframe width="100%"
+                    src="<%= post.upload.try(:video) %>">
+                    </iframe>
+
+              <% end %>
              
               <% if post.upload.try(:file).present? %>                
                 Attachment: <a href="<%= post.upload.try(:file)%>" class="post" target="_blank"><%=post.upload[:file]%></a>
