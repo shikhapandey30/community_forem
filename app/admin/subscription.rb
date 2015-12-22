@@ -1,5 +1,4 @@
 ActiveAdmin.register Subscription do
-permit_params :subscribe, :user_id
 #See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,6 +11,22 @@ permit_params :subscribe, :user_id
 #   permitted << :other if resource.something?
 #   permitted
 # end
+permit_params :subscribe, :user_id
+  index do
+    selectable_column
+    id_column
+    column "User" do |subscription|
+    	subscription.user.try(:first_name)
+    end
+    column :subscribe
+    actions
+  end
 
-
+  form do |f|
+    f.inputs "Subscription Detail" do
+      f.input :user_id, as: :select, collection: User.all.collect {|user| [user.first_name, user.id]}
+      f.input :subscribe
+    end
+    f.actions
+  end
 end

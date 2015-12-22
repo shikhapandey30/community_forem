@@ -3,7 +3,6 @@ ActiveAdmin.register Dislike do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params :Dislike_id, :user_id, :dislikable_id, :dislikable_type
 #
 # or
 #
@@ -12,5 +11,7 @@ ActiveAdmin.register Dislike do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+ permit_params :user_id, :dislikable_id, :dislikable_type
+ 
 
 end

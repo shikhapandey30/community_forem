@@ -12,6 +12,18 @@ ActiveAdmin.register Friendship do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-permit_params :Friendship_id, :user_id, :friend_id, :accept
-
+ permit_params :user_id, :friend_id, :accept
+ index do
+    selectable_column
+    id_column
+    column "User" do |friendship|
+    	friendship.user.try(:first_name)
+    end
+    column "Friend" do |friendship|
+      friendship.friend.try(:first_name)
+    end
+    column :accept
+    actions
+  end
+  actions :show, :index
 end
