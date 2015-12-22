@@ -1,4 +1,5 @@
 $(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
+$(".nameLocation a").text("<%=current_user.screen_name%>");
 // $(".flash-message").html("flash-message");
 $(".popup-success").html("<%=j (render '/layouts/success')%>");
 setTimeout(function(){
