@@ -12,7 +12,7 @@ ActiveAdmin.register Post do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :user_id, :category_id, :title, :description, :file, :expiration_date, :image, :video, :site_link, :topic, :start_date, :visibility
+  permit_params :user_id, :category_id, :title, :description, :expiration_date, :topic, :start_date, :visibility, upload_attributes: [ :image, :video, :site_link, :file ]
   index do
     selectable_column
     id_column
@@ -26,11 +26,17 @@ ActiveAdmin.register Post do
     column :topic
     column :description
     column "Image" do |post|
-    	image_tag(post.try(:image_url), :style=>"width: 60px")
+      image_tag(post.upload.try(:image_url), :style=>"width: 60px")
     end
-    column :video
-    column :site_link
-    column :file
+    column "Video" do |post|
+      post.upload.try(:video)
+    end
+    column "Site Link" do |post|
+      post.upload.try(:site_link)
+    end
+    column "File" do |post|
+      post.upload.try(:file)
+    end
     column :start_date
     column :expiration_date
     column :visibility
@@ -44,10 +50,14 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :topic
       f.input :description
-      f.input :image, as: :file
-      f.input :video, as: :file
-      f.input :site_link
-      f.input :file, as: :file
+      f.inputs "Upload" do
+        f.has_many :upload do |u|
+          u.input :image
+          u.input :video
+          u.input :site_link
+          u.input :file
+        end
+      end
       f.input :start_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
       f.input :expiration_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
       f.input :visibility

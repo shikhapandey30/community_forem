@@ -20,19 +20,20 @@ ActiveAdmin.register Category do
     selectable_column
     id_column
     column :name
-    column :image
-    column :icon
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    column "Image" do |category|
+      image_tag(category.try(:image_url), :style=>"width: 60px")
+    end
+    column "Icon" do |category|
+      image_tag(category.try(:icon_url), :style=>"width: 60px")
+    end
     actions
   end
 
   form do |f|
     f.inputs "Category Details" do
       f.input :name
-      f.input :image
-      f.input :icon
+      f.input :image, as: :file
+      f.input :icon, as: :file
     end
     f.actions
   end
