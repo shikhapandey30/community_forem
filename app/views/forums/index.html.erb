@@ -22,7 +22,7 @@
         <% @forums.each do |forum| %>
       <tr>
         <td><%= forum.name %></td>
-        <td><%= forum.user.try(:first_name) %></td>
+        <td><%= forum.user.try(:screen_name) %></td>
         <td><%=forum.topics.count%></td>
         <td><%= link_to 'More Dettail', forum %></td>
         <td><%=link_to 'Create Topic',new_topic_path(:forum_id=>forum)%></td>

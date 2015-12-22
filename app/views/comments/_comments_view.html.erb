@@ -1,7 +1,7 @@
 <% comments.each do |comment| %>
   <div class="clearfix commentSec cmntRow">
     <div class="clearfix userInfo posRel">
-      <% if current_user == comment.user %>
+      <% if user_signed_in? && (current_user == comment.user) %>
       <div class="text-right">
       <img src="/assets/images/edit.png" onClick = "$('#comment_form_box_<%=comment.id%>').toggle();">
         <%= link_to (image_tag 'images/delete.png'), comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -15,21 +15,25 @@
       <% if params[:controller]=="users" && params[:action]=="dashboard"
         bold = 'bold' else bold = '' end %>
       <div class="clearfix mt15 font13 blackColor <%= bold %>" id ="comment-body-<%= comment.id%>" ><%= comment.body.html_safe %></div>
-      <div class="font13 bold blueColor">
-        <%=link_to 'Like', like_create_path(id: comment.id, type: comment.class.name.downcase), method: :post, remote: true,:class=>"#{current_user.is_liked(comment) ? 'like_image_post_liked' : 'like_image_post'} like_image_post_liked_#{comment.id}", :id=> "like_image_post_liked_#{comment.id}"%> 
-        <span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"> (<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick='$("#reply_box_id_<%= comment.id %>).toggle(400);'> Reply</a>
-      </div>
-      <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
-        <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
-        <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-        <div class="field">
-          <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
+
+      <%if user_signed_in?%>
+        <div class="font13 bold blueColor">
+          <%=link_to 'Like', like_create_path(id: comment.id, type: comment.class.name.downcase), method: :post, remote: true,:class=>"#{current_user.is_liked(comment) ? 'like_image_post_liked' : 'like_image_post'} like_image_post_liked_#{comment.id}", :id=> "like_image_post_liked_#{comment.id}"%> 
+          <span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"> (<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick='$("#reply_box_id_<%= comment.id %>).toggle(400);'> Reply</a>
         </div>
-        <% end %>
-      </div>
-      <div id="comment_form_box_<%= comment.id %>" style ="display:none !important;">
-        <%= render 'comments/form' ,comment: comment %>
-    </div>
+
+        <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
+          <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
+          <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+          <div class="field">
+            <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
+          </div>
+          <% end %>
+        </div>
+        <div id="comment_form_box_<%= comment.id %>" style ="display:none !important;">
+          <%= render 'comments/form' ,comment: comment %>
+       </div>
+      <%end%> 
     </div>
   </div>
 

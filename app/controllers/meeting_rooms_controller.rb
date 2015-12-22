@@ -4,7 +4,7 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms
   # GET /meeting_rooms.json
   def index
-    @meeting_rooms = MeetingRoom.all
+    @meeting_rooms = MeetingRoom.all.order("updated_at desc")
   end
 
   # GET /meeting_rooms/1
