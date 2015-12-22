@@ -153,4 +153,8 @@ class User < ActiveRecord::Base
   def is_disliked(model)
     Dislike.where(:dislikable=> model ,:user_id => self.id).present?
   end
+
+  def is_follow(model)
+    Following.where(:followable=> model ,:follower_id => self.id).present?
+  end
 end

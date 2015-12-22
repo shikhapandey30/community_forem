@@ -15,15 +15,9 @@
               <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>              
               <% if post.upload.try(:image).present? %>
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
-              <% end %>
+              <% end %>                
 
-              <% if post.upload.present? %>
-                <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a>
-              <% end %>
-
-              <%# if post.upload.try(:video).present? %>
-                <!-- <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:video) %></a> -->
-              <%# end %>
+             
               <% if post.upload.try(:file).present? %>                
                 Attachment: <a href="<%= post.upload.try(:file)%>" class="post"><%=post.upload[:file]%></a>
               <% end %>
@@ -48,7 +42,7 @@
 
               <% if current_user != post.user %>
                 <span id="following-button-span-<%= post.user.id %>" class="user-folowed-<%=post.user.id %>">
-                  <%= render :partial=> "users/follow_link", :locals => {:post => post} %>
+                  <%= render :partial=> "users/follow_link", :locals => {:object => post} %>
                 </span>
               <% end %>
               <!-- <a href="#">Follow</a> -->

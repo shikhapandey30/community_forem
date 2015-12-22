@@ -11,7 +11,7 @@
             connections
           </div>
           <a href="#" class="thumbImg"> <%=image_tag @user.try(:profile).try(:image).try(:url)%></a>
-          <div class="font22"><%= @profile.try(:first_name) %></div>
+          <div class="font22"><%= @profile.try(:first_name).try(:capitalize) %></div>
           <div class="designation"> <%=@user.try(:employment_details).try(:last).try(:designation)%>
           </div>
         </div>
