@@ -12,7 +12,7 @@
 
 <p>
   <strong>Created By</strong>
-  <%= @forum.user.profile.try(:first_name) %>
+  <%= @forum.user.try(:screen_name) %>
 </p>
 
 
