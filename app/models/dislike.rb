@@ -17,12 +17,12 @@ class Dislike < ActiveRecord::Base
 	   dislike =  Dislike.find_or_initialize_by(:dislikable=>@model,:user_id=>current_user.id)
 	    if dislike.id.present? 
 	   	  dislike.destroy
-	   	   return nil, @model
+	   	   return nil,nil, @model
 	   	else
 	   	  dislike.save 
 	   	   like = Like.where(:likable=>@model,:user_id=>current_user.id)
            like.destroy_all
-	   	  return dislike, @model
+	   	  return dislike,like, @model
 	    end
 		end
 	
