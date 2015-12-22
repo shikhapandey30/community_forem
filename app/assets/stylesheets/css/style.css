@@ -1,26 +1,7 @@
 /* CSS Document */
-* {margin:0; padding:0; outline:0;  word-wrap: break-word; }
-div, a, span, input, select, textarea, li, img, i , ul, li{behavior:url(css/PIE.htc); }
-body {font-size:14px; line-height:normal; font-family: 'Open Sans', sans-serif; background-color:#fff;  color:#757575; }
-a, input[type="submit"] {outline:none;  text-decoration:none; text-decoration:none;  -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out;  text-decoration:none; color:#333333; }
-input[type="button"]{ -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out; }
-a:hover, .activeLink{  text-decoration:none; color:#000;} 
-a:active, a:focus{outline:none; border:0px; text-decoration:none;}
-ul{list-style:none;}
-input, textarea, select {outline:none;  font-family: 'Open Sans', sans-serif; }
-form {margin:0 }
-.fl {float:left;}
-.fr {float:right;}
-img{border:none; max-width:100%; outline:none;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;}
-ul {list-style:none;}
-.clearfix{clear:both;}
+* {margin:0; padding:0; outline:0;  word-wrap: break-word; } div, a, span, input, select, textarea, li, img, i , ul, li{behavior:url(css/PIE.htc); } body {font-size:14px; line-height:normal; font-family: 'Open Sans', sans-serif; background-color:#fff;  color:#757575; } a, input[type="submit"] {outline:none;  text-decoration:none; text-decoration:none;  -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out;  text-decoration:none; color:#333333; } input[type="button"]{ -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out; } a:hover, .activeLink{  text-decoration:none; color:#000;} a:active, a:focus{outline:none; border:0px; text-decoration:none;} ul{list-style:none;} input, textarea, select {outline:none;  font-family: 'Open Sans', sans-serif; } form {margin:0 }.fl {float:left;} .fr {float:right;} img{border:none; max-width:100%; outline:none;} h1, h2, h3, h4, h5, h6 {font-weight:normal;} ul {list-style:none;} .clearfix{clear:both;}
 /*-------------------------------Text Alignment ------------------------------------- */ 
-.tal{text-align:left;}
-.tar{text-align:right;}
-.taj{text-align:justify;}
-.tac{text-align:center;}
-.vAlign {vertical-align:middle;}
+.tal{text-align:left;} .tar{text-align:right;} .taj{text-align:justify;} .tac{text-align:center;} .vAlign {vertical-align:middle;}
 /*------------------------------All Font Size Start------------------------------------- */ 
 .font12{font-size:12px !important;}.font14{font-size:14px !important;}.font15{font-size:15px !important;}.font16{font-size:16px !important;}.font18{font-size:18px !important;}.font20{font-size:20px !important;}.font22{font-size:22px !important;}.font24{font-size:24px !important;}.font26{font-size:26px !important;}.font28{font-size:28px !important;}.font30{font-size:30px !important;}.font32{font-size:32px !important;}
 .font34{font-size:34px !important;}
@@ -237,9 +218,7 @@ ul.tabs li.current {opacity:1;}
 .tab-content .inputTextW{width:70%; margin-top:10px; box-shadow:0px 1px 1px 0px #ededed;}
 .formOuterPost{padding:20px 10px}
 label{font-size:14px; color:#212121; font-weight:600;}
-
 .selctFormBox {border:1px solid #d9d9d9; height:32px; position:relative; -webkit-border-radius:3px; border-radius:3px; background:url(../assets/images/arrowDown.png) no-repeat scroll right 7px center; padding-right:21px; width:100%; box-shadow:0px 1px 1px 0px #ededed; margin-bottom:15px;}
-
 .selctFormBox .selectInput {font-size: 13px;padding: 6px 10px; width: 100%;background: #fff;border: 0; color:#7e7e7e; font-weight:600;}
 select {left: 0;opacity: 0;padding: 5px 0; width: 100%;position: absolute;top: 0; }
 .selctFormBox  select{line-height: 26px; min-height: 30px;}
@@ -365,10 +344,7 @@ a.shareArrow{ margin-left:-5px; width:25px; border-radius:0px 4px 4px 0px; -webk
 .myWall .nameLocation a {color:#efefef;}
 .myWall .nameLocation a:hover{color:#fff;}
 .myWall .back {margin-top: 65px;}
-.addPostBtn{ height:34px; line-height:32px; text-align:center;  border: solid 1px #d8d6d6 !important; display:block; margin-top:20px;
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ededed+100 */
-background: #ffffff; /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+.addPostBtn{ height:34px; line-height:32px; text-align:center;  border: solid 1px #d8d6d6 !important; display:block; margin-top:20px; background: #ffffff; 
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 background: -moz-linear-gradient(top, #ffffff 0%, #ededed 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top, #ffffff 0%,#ededed 100%); /* Chrome10-25,Safari5.1-6 */
@@ -527,7 +503,50 @@ box-shadow:0px 0px 3px 1px rgba(0, 0, 0, .05);}
 .suggestedRow{ margin:30px 10px 0  10px !important; }  
 .suggestedRow .conversationTop{border-bottom:1px solid #d8d8d8; padding:12px; background-color:#ebebeb;}
 .mb20{margin-bottom:20px;}
-
  _::-moz-svg-foreign-content, :root  .selctFormBox {background:url("../assets/images/arrowDown.png") no-repeat 97% center;}
  _::-moz-svg-foreign-content, :root .col-sm-12 .selctFormBox {background:url("../assets/images/arrowDown.png") no-repeat 98% center;}
- .tooltip{font-family: 'Open Sans', sans-serif !important;}
+.tooltip{font-family: 'Open Sans', sans-serif !important;}
+.msgOuter{max-width:810px; margin:auto;}
+.glyphicon{vertical-align:middle; margin-top:-2px;}
+.msgLIstingOuter{width:303px; overflow:auto; border-right: solid 1px #d8d6d6; float:left; }
+.msgOuter .whiteBox{padding:0px; height:auto;}
+.listTOp{background-color:#f7f7f7; padding:20px; font-weight:600; font-size:14px;}
+.listTOp a:hover{color:#10a9d3;}
+.plusIcon{float: right;display: block;background-color: #10A9D3;color: #FFF !important;width: 36px;height: 36px;text-align: center;margin-top: -7px;line-height: 32px;border-radius: 50%;font-size: 19px;margin-right: -10px;}
+.plusIcon:hover{background-color:#CCC; color:#10a9d3 !important;}
+.blueSearchBox{padding:10px; background-color:#10a9d3;}
+.blueSearchBox  .searhInput1 {padding: 6px 8px; font-weight:400; font-size:14px;;}
+.blueSearchBox .searhSub {position: absolute;top: 10px;right: 10px; width: 28px; height: 33px;}
+.msgOuter .notiScroll{}
+.msgOuter  .msgLIstingOuter .cmntRow {margin:0px !important; padding: 20px; position:relative;  -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out;  cursor:pointer;}
+.msgOuter .userImg img {width:54px; height:54px;}
+.msgOuter .userInfo .grayColor {margin-top: -17px; margin-right:-10px;}
+.msgOuter a.removeMSg, .msgOuter a.removeMSg:hover{ opacity:0; position:absolute; right:10px; bottom:10px; font-size:11px; background-color:#fff; width:17px; height:16px; display:block; text-align:center; line-height:13px; border-radius:50%; color:#10a9d3 !important;}
+.msgOuter  .cmntRow.activeMsg{background-color: #10a9d3;}
+.msgOuter  .cmntRow*{ -ms-transition: all  300ms ease-in-out; -webkit-transition: all  300ms ease-in-out;  -moz-transition: all 300ms  ease-in-out;  -o-transition: all 300ms  ease-in-out;  transition: all 300ms  ease-in-out; }
+ .msgOuter  .cmntRow.activeMsg *{color:#fff; }
+.msgOuter  .cmntRow.activeMsg .removeMSg{ opacity:1;}
+.msgOuter a.removeMSg span, .msgOuter a.removeMSg:hover span{ color:#10a9d3 !important;}
+.msgBoxRight{float:right; width:505px;}
+.msgBoxRight .cmntRow {margin: 0px !important; background-color:#FFF; border-bottom: solid 1px #d8d8d8; padding: 15px ;}
+.msgBoxRight .editDlt {margin: 16px 3px;}
+.msgBoxRight .settingDropDown a{box-shadow:0px 0px 0px 0px rgba(0,0,0,0) !important; }
+
+.msgBoxRight .settingDropDown{float:right; border: solid 1px #fff; float: right;width: 20px;display: block;height: 20px;line-height: 15px;text-align: center;border-bottom: 0px !important;  margin: 18px 0px 0px;}
+.msgBoxRight .settingDropDown.open{border: solid 1px #ddd; border-bottom: 0px !important;}
+.msgBoxRight .dropdown-menu {top: 16px;}
+.msgBoxRight .settingDropDown.open > a::after {width: 18px;top: 18px;}
+.time{color:#757575; font-size:12px; font-weight:600;}
+.msgRight{ max-width:340px; margin:10px 20px; }
+.msgRight .grayBkg{background-color:#f7f7f7; font-size:13px; color:#000; border: solid 1px #d8d6d6; padding:10px; margin-bottom:5px;}
+.msgBox{max-height:320px; overflow:auto;}
+.replyBox{font-size:13px; margin:10px 20px 10px 20px; border: solid 1px #d8d6d6; padding:10px; height:130px; position:relative;}
+.replyBox textarea{ width:100%; border:0px; resize:none; display:none; height: 70px;}
+.replyBox .submitRow{position:absolute; right:10px; bottom:10px;  left:0px; text-align:right;}
+.submitRow  span *{display:inline-block; margin-right:2px;}
+.submitRow  span a{opacity:0.6;}
+.submitRow  span a:hover{opacity:0.9;}
+.msgLIstingOuter .scrollbars {height: 443px; margin-bottom:0px;}
+
+.newMsgBox{ margin:20px 20px -11px 20px;  display:none; }
+.newMsgBox input{display:block; border: 1px solid #D8D6D6; font-size:13px; width:100%; padding:10px;}

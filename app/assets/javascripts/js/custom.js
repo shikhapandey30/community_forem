@@ -133,36 +133,3 @@ $(document).on('ready', function () {
     // });
 });
 
-//Pagination 
-(function() {
-  var page = 1,
-      loading = false;
-
-  function nearBottomOfPage() {
-    return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
-  }
-
-  $(window).scroll(function(){
-    if (loading) {
-      return;
-    }
-
-    if(nearBottomOfPage()) {
-      $('.loader-img').show();
-      loading=true;
-      page++;
-      $.ajax({
-        url: '/dashboard?page=' + page,
-        type: 'get',
-        data: {data: page },
-        dataType: 'script',
-        success: function() {
-          $(window).sausage('draw');
-          loading=false;
-        }
-      });
-    }
-  });
-
-  $(window).sausage();
-}());

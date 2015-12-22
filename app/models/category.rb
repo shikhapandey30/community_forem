@@ -6,6 +6,7 @@ class Category < ActiveRecord::Base
   has_many :groups, dependent: :destroy
   mount_uploader :icon, CategoryUploader
   mount_uploader :image, CategoryUploader
+  validates_presence_of :name
 
   # has_many :categorables
   # has_many :users, through: :categorables

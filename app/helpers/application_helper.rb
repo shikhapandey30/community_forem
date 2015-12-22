@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def select_type(f, attribute, class_name=nil)    
     if class_name && f.object.id
-      class_name.classify.constantize.find(f.object.send(attribute)).name
+      class_name.classify.constantize.where(:id => f.object.send(attribute)).first.try(:name)
     else
       f.object.send(attribute) ? f.object.send(attribute) : "Select"
     end 

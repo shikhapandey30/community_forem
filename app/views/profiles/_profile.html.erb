@@ -6,7 +6,7 @@
 
       <div class="uploadPhoto" onclick="$('.profile_picture').click();" style="background-image: url(<%=p.object.try(:image).try(:url)%>);">
         <div class="reletive">
-          <img src="/assets/images/camera.png" alt="" id='imgprvw'>          
+          <img src="/assets/images/camera.png" alt="" id='imgprevw'>
           <div>Change Photo</div>
         </div>
       </div>
@@ -22,11 +22,20 @@
       <div class="col-sm-12">
         <div class="blackHD">Address</div>
       </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6 pr10">
+        <label>Address1</label>
+        <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Address 1" %>
+      </div>
+      <div class="col-sm-6 pr10">
+        <label>Address2</label>
+        <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Address 2" %>
+      </div>
       <div class="col-sm-6 pr10">
         <label>Country</label>
         <div class="selctFormBox">      
-          <%= p.text_field "country", value: select_type(p, "country"), class: "profile selectInput validate[required,maxSize[80]]" %>
-          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select validate[required]")  %>
+          <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required,maxSize[80]]" %>
+          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
         </div>
 <!--         <div id="country_error"></div>
  -->      </div>
@@ -35,24 +44,17 @@
         <label class="">City</label>
         <%= p.text_field :city, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "City" %>
       </div>
+
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>State</label>
-        <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
+        <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "State" %>
       </div>
       <div class="col-sm-6 pl10">
         <label>Zipcode</label>
-        <%= p.number_field :post_code, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "10001" %>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-sm-6 pr10">
-        <label>Address1</label>
-        <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
-      </div>
-      <div class="col-sm-6 pr10">
-        <label>Address2</label>
-        <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Street" %>
-      </div>
+        <%= p.text_field :post_code, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "10001" %>
+      </div>      
+
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
         <label>Gender</label>
@@ -64,7 +66,8 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
-        <%= p.number_field :phone_no, class: "profile inputTextW small validate[required],maxSize[20]", placeholder: "0123456789" %>
+        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789" %>
+
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
@@ -98,53 +101,7 @@
     </div>
   <%end%>
 <%end%>  
-
-
 <script>
- // function showimagepreview(input) {
- //    if (input.files && input.files[0]) {
- //    var filerdr = new FileReader();
- //    filerdr.onload = function(e) {
-
- //    // $('#imgprvw').attr('src', e.target.result);
- //    $(".uploadPhoto").css('background-image', 'url(' + e.target.result + ')');
- //    }
- //    filerdr.readAsDataURL(input.files[0]);
- //    }
- //  }
-
-  // $("form.profile_form").validate({
-  //   errorPlacement: function(error, element) {
-  //     if(element.attr("name") == "user[profile_attributes][gender]") {
-  //       error.appendTo($("#gender_error"));
-  //     } else if(element.attr("name") == "user[profile_attributes][profile_type]") {
-  //       error.appendTo($("#profile_type_error"));
-  //     } else {
-  //       error.insertAfter(element);
-  //     }
-  //   },
-  //   rules: {
-  //       "user[first_name]": { required: true },
-  //       "user[last_name]": { required: true },
-  //       // "user[profile_attributes][country]": { required: true , minlength: 2, maxlength: 80},
-  //       "user[profile_attributes][city]": { required: true, minlength: 2, maxlength: 80},
-  //       "user[profile_attributes][street]": { required: true, minlength: 2, maxlength: 80 },
-  //       "user[profile_attributes][post_code]": { required: true },
-  //       "user[profile_attributes][gender]": { required: true },
-  //       "user[profile_attributes][phone_no]": { required: true },
-  //       "user[profile_attributes][profile_type]": { required: true },
-  //       "user[profile_attributes][dob]": { required: true },
-  //       "user[screen_name]": { required: true , minlength: 4, maxlength: 80},
-  //       "user[profile_attributes][location]": { required: true, minlength: 3, maxlength: 80 }
-  //     },
-  //     messages: {
-  //       "user[profile_attributes][post_code]": "Please enter valid numbers",
-  //       "user[profile_attributes][phone_no]": "Please enter valid numbers",
-  //     },
-  //    submitHandler: function(form) {
-  //      $('form.profile_form').submit();
-  //    }
-  // });
   $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
   $("#form-id").validationEngine();
 </script>

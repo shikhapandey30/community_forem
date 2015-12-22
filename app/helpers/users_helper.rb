@@ -7,8 +7,8 @@ module UsersHelper
 		user.employment_details.last.try(:designation) rescue "N/A"
 	end
 
-	def follow_status(post)
-		status = post.followings.where(follower_id: current_user.id).first 
+	def follow_status(object)
+		status = object.followable.followings.where(follower_id: current_user.id).first 
  		return status.present? ? "Unfollow" : "Follow"
 	end
 

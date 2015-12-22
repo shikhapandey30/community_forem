@@ -1,1 +1,7 @@
- <%= link_to follow_status(post), follow_path(:follower_id => current_user.id,  followable_id: post.user.id, followable_type: "Post"), :method => :post , :id=>"following-button-#{post.user.id}", :remote=>true, :class=>'replyBtn transition following-button-#{post.user.id}' %>
+<% follow_text = current_user.is_follow(object) ? "Unfollow" : "Follow" %>
+<%if object.class.name == 'User '%>
+ <%= link_to follow_text, follow_path(:follower_id => current_user.id,  followable_id: object.id, followable_type: object.class.name), :method => :post , :id=>"following-button-#{object.id}", :remote=>true, :class=>'replyBtn transition following-button-#{object.id}' %>
+ <% else%>
+ <%= link_to follow_text, follow_path(:follower_id => current_user.id,  followable_id: object.user.id, followable_type: object.class.name), :method => :post , :id=>"following-button-#{object.user.id}", :remote=>true, :class=>'replyBtn transition following-button-#{object.user.id}' %>
+
+ <% end %>

@@ -25,7 +25,7 @@
           <%= f.email_field :email,"data-validation-engine"=>"validate[required],custom[email]", placeholder: "Email", :maxlength=>"80", class: "inputText" %>
           <%= f.password_field :password,"data-validation-engine"=>"validate[required]", autocomplete: "off", placeholder: "Password", :maxlength=>"80", class: "inputText" %>
           <%= f.password_field :password_confirmation, "data-validation-engine"=>"validate[required]",autocomplete: "off", placeholder:"Confirm Password", :maxlength=>"80",class: "inputText" %>
-          <%= f.submit "Signup", class: "darkBlueBtn inputSubmit" %>
+          <%= f.submit "Sign Up", class: "darkBlueBtn inputSubmit" %>
         <%end%>
        </div>
       <p>Already Have Account? <%=link_to "Sign In", new_user_session_path%></p>

@@ -4,8 +4,8 @@
       <a href="<%=edit_profile_path(current_user)%>" class="profileImg">      
       <%= image_tag current_user.img %></a>
       <div class="nameLocation">
-        <a href="<%=edit_profile_path(current_user)%>"><%= current_user.try(:screen_name) %></a><br>
-        <span class="location"><%= current_user.try(:profile).try(:country)%> </span>
+        <a href="<%=edit_profile_path(current_user)%>"><%= current_user.try(:screen_name).try(:capitalize) %></a><br>
+        <span class="location"><%= current_user.try(:profile).try(:country).try(:name)%> </span>
       </div>
     </div>
   <% end %>
