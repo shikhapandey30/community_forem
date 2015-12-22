@@ -5,7 +5,7 @@
         <div class="clearfix  "></div>
         <a href="<%= profile_path(firend)%>" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
         <a href="<%= profile_path(firend)%>" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
-        <div class="fr grayColor tar"> <%= time_ago_in_words(firend.created_at) %> ago<br>
+        <div class="fr grayColor tar"> <%= time_ago_in_words(firend.created_at).capitalize %> ago<br>
           <a href="#" class="mt10">Message</a> 
           <br><%= link_to "Remove", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"removeLink", :remote=>true %>
         </div>

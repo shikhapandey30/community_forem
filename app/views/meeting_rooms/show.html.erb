@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="clearfix"></div>
-            <span class="grayColor font12"><span class="post_like_count"><%= @meeting_room.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @meeting_room.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 468 shares</span>
+            <span class="grayColor font12"><span class="post_like_count"><%= @meeting_room.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @meeting_room.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
             <div class="cmntSec">
 
               <%if @meeting_room.liked?(current_user).present?%>

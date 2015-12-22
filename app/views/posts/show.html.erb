@@ -23,7 +23,7 @@
               <a href="#" class="userNAme"><%= @post.user.try(:screen_name) %></a>
               <br>
               <span class="font13"><%#= @designation %></span>
-              <div class="fr grayColor tar"><%= time_ago_in_words(@post.created_at) %><br>
+              <div class="fr grayColor tar"><%= time_ago_in_words(@post.created_at).capitalize %> ago<br>
                <%if !current_user.friendships.collect(&:friend).include? @post.user %>
                   <span class="friendship-button-<%=  @post.user.id  %>">
                   <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>@post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>

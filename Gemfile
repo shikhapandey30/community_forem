@@ -33,7 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "rails-erd"
 gem 'pry'
 gem "nested_form"
-gem 'country_select', github: 'stefanpenner/country_select'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
@@ -77,7 +76,7 @@ gem 'remotipart', '~> 1.2'
 # optional pre-packaged Solr distribution for use in development
 gem 'progress_bar'
 
- gem "espeak-ruby", require: "espeak"
- gem 'will_paginate', '~> 3.0.7'
+gem "espeak-ruby", require: "espeak"
+gem 'will_paginate', '~> 3.0.7'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'activeadmin', '~> 1.0.0.pre2'

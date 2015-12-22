@@ -28,7 +28,7 @@ class EmploymentDetailsController < ApplicationController
         if current_user.skills.present?
           format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully created.' }
         else
-          format.html { redirect_to new_user_skill_path, notice: 'EmploymentDetail was successfully created.' }
+          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail was successfully created.' }
 
         end
         format.json { render :show, status: :created, location: @employment_detail }
@@ -47,7 +47,7 @@ class EmploymentDetailsController < ApplicationController
         if current_user.skills.present?
           format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully Updated.' }
         else
-          format.html { redirect_to new_user_skill_path, notice: 'EmploymentDetail was successfully Updated.' }
+          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail was successfully Updated.' }
           
         end
         format.json { render :show, status: :ok, location: @employment_detail }
