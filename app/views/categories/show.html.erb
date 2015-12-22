@@ -1,8 +1,16 @@
 <div class="bodyCont">
   <%=render "layouts/left_panel"%>
-  <div class="rightContent">
-    <%=render 'layouts/topNav'%>
-    <div class="blueBkg myWall">
+  <div class="rightContent">    
+    <div class="postCover posRel catCover" style="background-image: url(<%=@category.image.url%>);">
+      <div class="postCoverBkg ">
+        <div class="clearfix innerWIdth550 posRel">
+          <div class="pTitltOuter">
+            <div class="postTitle tac"><%= @category.name.try(:capitalize) %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="blueBkg myWall">
       <div class="clearfix innerWIdth550">
         <div class="userTHumb">
           <a href="#" class="profileImg"><%=image_tag @category.image.url%></a>
@@ -11,7 +19,7 @@
           </div>
         </div>        
       </div>
-    </div>
+    </div> -->
     <div class="clearfix innerWIdth550 tac ">
       <a href="/posts/new" class="addPostBtn">Add posts</a>
 

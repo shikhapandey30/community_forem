@@ -1,50 +1,16 @@
-<!--  Header Start -->
-<header class="clearfix">
-<div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-  <a href="#"> <img src="assets/images/logo.png" alt=""></a>
-</div>
-<div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-  <div class="catLIstLink">
-    <a href="#" class="catLIst"><img src="assets/images/catDrop.png" alt=""></a>
-  </div>
-  <div class="formOuter">
-    <form method="post" action="">
-      <input type="text" placeholder="You can also search by keyword, Topic, Peoples..." class="searhInput">
-      <input type="submit" value="" class="searhSub">  
-    </form>
-  </div>
-  <a class="lightBlueBtn" href="#">Get Started</a>
-</div>
-</header>
-<!-- Header End -->
 <div class="mainCOntnt">
-  <div class="leftNAv">
-    <span class="categories"><img src="assets/images/tab.png" alt=""> Categories</span>
-    <ul>
-      <li><a href="#"><img src="assets/images/li1.png" alt="">Entertainment</a></li>
-      <li><a href="#"><img src="assets/images/li2.png" alt="">Politics</a></li>
-      <li><a href="#"><img src="assets/images/li3.png" alt="">Technology</a></li>
-      <li><a href="#"><img src="assets/images/li4.png" alt="">Sports</a></li>
-      <li><a href="#"><img src="assets/images/li5.png" alt="">Music</a></li>
-      <li><a href="#"><img src="assets/images/li6.png" alt="">Religion &amp; Ideas</a></li>
-      <a class="viewAll" href="#"> View All</a>
-      <div class="footerLink">
-        <a href="#">Terms of Use</a>
-        <a href="#">Privacy Policy</a>			
-      </div>
-    </ul>
-  </div>
+  <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <div class="overLAy"></div>
     <div class="topNAv">
-      <span class="blueColor leftMenuTab"><img src="images/tab.png" alt="" class=""> Categories</span>
+      <span class="blueColor leftMenuTab"><img src="/assets/images/tab.png" alt="" class=""> Categories</span>
       <div class="topRightNav">
-        <span class="blueColor rightMenu"> Menu  <img src="images/down.png" alt="" class=""></span>
+        <span class="blueColor rightMenu"> Menu  <img src="/assets/images/down.png" alt="" class=""></span>
         <ul>
-          <li class="activeMenu"><a href="#">About Us</a></li>
-          <li><a href="#">How It Works</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Help Center</a></li>
+          <li><a href="/aboutus">About Us</a></li>
+          <li><a href="/how_it_work">How It Works</a></li>
+          <li><a href="/contactus">Contact Us</a></li>
+          <li class="activeMenu"><a href="/help_center">Help Center</a></li>
         </ul>
       </div>
     </div>
@@ -78,4 +44,3 @@
     </div>
   </div>
 </div>
-  

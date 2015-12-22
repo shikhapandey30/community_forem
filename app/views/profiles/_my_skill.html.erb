@@ -10,7 +10,7 @@
     <div class="col-sm-12 skillsTag ">
     <% if @user.skill.present? %>
       <% @user.skill.name.split(",").each do |skill|%>    
-        <span><%=skill%> <a href="javascript:void(0)"></a> </span>
+        <span><%=skill%></span>
       <%end%>
       <% end %>
     </div>

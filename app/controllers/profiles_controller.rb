@@ -161,7 +161,8 @@ class ProfilesController < ApplicationController
   def update
     success = current_user.profile ? "Profile updated successfully." : "Profile added successfully."
     @success = success if current_user.update_attributes(profile_params)
-    @profile = current_user.profile
+    @profile = current_user.profile    
+    @alert = current_user.errors.full_messages.first if current_user.errors.present?
     # flash[:notice] = "Profile update successfully." 
 
     # respond_to do |format|

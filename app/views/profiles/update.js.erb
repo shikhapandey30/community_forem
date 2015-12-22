@@ -1,6 +1,13 @@
-$(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
+<%if !@alert.present?%>
+	$(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
+	$(".nameLocation a").text("<%=current_user.screen_name%>");
+	$(".popup-success").html("<%=j (render '/layouts/success')%>");
+<%else%>
+	$(".popup-success").html("<%=j (render '/layouts/alert')%>");
+<%end%>
+
 // $(".flash-message").html("flash-message");
-$(".popup-success").html("<%=j (render '/layouts/success')%>");
+
 setTimeout(function(){
   $(".container.popupmsg").hide();
 }, 3000);
