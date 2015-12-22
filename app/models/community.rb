@@ -5,7 +5,7 @@ class Community < ActiveRecord::Base
   has_many :members,:dependent => :destroy, :as => :invitable
   def self.search(search)
     if search
-      where('topic LIKE ?', "%#{search}%")
+       where('lower(topic) LIKE ?', "%#{search}%".downcase)
     else
       all
     end

@@ -3,7 +3,7 @@
     <div class="col-sm-12 mb10">
       <div class="grayHD">EDUCATION HISTORY      
         <%if @user==current_user%>
-         <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Courses</a>
+         <a href="/profiles/add_education" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Education</a>
         <%end%>
       </div>
 
@@ -14,7 +14,7 @@
         <% end %>
         <div class="uniOuter">
           <div class="blackHD"><%= education_history.try(:specialization).try(:name)%>
-            <img src="/assets/images/uni1.jpg" alt="" class="fr">
+            <!-- <img src="/assets/images/uni1.jpg" alt="" class="fr"> -->
           </div>
           <div class="blackColor">
             <%= education_history.try(:course).try(:name) %>

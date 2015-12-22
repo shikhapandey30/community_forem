@@ -7,11 +7,42 @@ ActiveAdmin.register ForumPoll do
 #
 # or
 #
- permit_params  :ForumPoll_id, :category_id, :topic, :body, :visibility, :start_date, :end_date,:topic_id, :attachement, :user_id, :headline, :vote_id
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if resource.something?
 #   permitted
 # end
+ permit_params  :user_id, :category_id, :topic, :body, :visibility, :start_date, :end_date, :attachement, :headline
+ index do
+    selectable_column
+    id_column
+    column "User" do |form_poll|
+    	form_poll.user.try(:first_name)
+    end
+    column "Category" do |form_poll|
+      form_poll.category.try(:name)
+    end
+    column :topic
+    column :headline
+    column :body
+    column :visibility
+    column :start_date
+    column :end_date
+    column :attachement
+    actions
+  end
 
-
+  form do |f|
+    f.inputs "ForumPoll Details" do
+      f.input :user_id, as: :select, collection: User.all.collect {|user| [user.first_name, user.id]}
+      f.input :category_id, as: :select, collection: Category.all.collect {|category| [category.name, category.id]}
+      f.input :topic
+      f.input :headline
+      f.input :body
+      f.input :visibility
+      f.input :start_date
+      f.input :end_date
+      f.input :attachement, as: :file
+    end
+    f.actions
+  end
 end

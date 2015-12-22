@@ -14,11 +14,12 @@
       }
     });
 
-    function showimagepreview(input,profile_image) {
+    function showimagepreview(input) {
       extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
       if ( extension == "png" || extension == "jpeg" || extension == "jpg" ) {
         $(".error.img_error").html("");
         if (input.files && input.files[0]) {
+
           if (input.files[0].size > 3000000) {            
             $(".error.img_error").html("Image should not be longer than 5 MB.");
             return false
@@ -30,6 +31,7 @@
             $('#imgprvw').attr('src', e.target.result);
           }
           $("#image_url").val(false);
+
         }
         filerdr.readAsDataURL(input.files[0]);
         $('.remove_image').show();

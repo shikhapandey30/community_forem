@@ -9,7 +9,7 @@
             <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
             <div class="nameLocation">
               <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
-              <div class="location font14"><%= current_user.try(:profile).try(:country) %></div>
+              <div class="location font14"><%= current_user.try(:profile).try(:country).try(:name) %></div>
               <a href="<%=edit_profile_path(current_user)%>" class="normal">Edit</a>
             </div>
           </div>
@@ -180,16 +180,7 @@
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
 
-  function comment_body(id) {
-    $("#comments_"+id).toggle();
-    $("#comment_box_"+id).toggle(200);
-    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 200);
-  }
-  function show_comments(post_id){
-    $('#comments_'+post_id).toggle(200);
-    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 600);    
-
-  }
+ 
 $(document).ready(function() {
   if ($('.pagination').length) {
     $(window).scroll(function() {
@@ -203,7 +194,40 @@ $(document).ready(function() {
   }
 });
   
-  
+  //Pagination 
+(function() {
+  var page = 1,
+      loading = false;
+
+  function nearBottomOfPage() {
+    return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
+  }
+
+  $(window).scroll(function(){
+    if (loading) {
+      return;
+    }
+
+    if(nearBottomOfPage()) {
+      //$('.loader-img').show();
+      loading=true;
+      page++;
+      $.ajax({
+        url: '/dashboard?page=' + page,
+        type: 'get',
+        data: {data: page },
+        dataType: 'script',
+        success: function() {
+          $(window).sausage('draw');
+          loading=false;
+        }
+      });
+    }
+  });
+
+  $(window).sausage();
+}());
+
    
 
 </script>

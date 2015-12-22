@@ -13,7 +13,7 @@
         <div class="error img_error"></div>
         <%= hidden_field_tag "image_url", false%>
         <%= hidden_field_tag "file_url", false%>
-        <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this,true)" %>
+        <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image profile_picture", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showimagepreview(this)" %>
         <div class="grayBig mt20 bold"> 
           Add an image to bring your post to life
         </div>
@@ -50,7 +50,8 @@
       <div class="grayBig bold ">Add Your Video</div>
       <%= u.url_field :video, placeholder: "http://", class: "inputTextW" %><br>
 
-      <div class="mt10">Paste a link from YouTube, Vimeo, Vine etc.</div>
+      <div class="mt10">Paste a link from YouTube.</div>
+
       </div>
     </div>
     <ul class="tabs uploadIcon">

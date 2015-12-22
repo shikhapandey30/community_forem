@@ -75,8 +75,8 @@ gem 'remotipart', '~> 1.2'
 
 # optional pre-packaged Solr distribution for use in development
 gem 'progress_bar'
-
 gem "espeak-ruby", require: "espeak"
 gem 'will_paginate', '~> 3.0.7'
+
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'activeadmin', '~> 1.0.0.pre2'

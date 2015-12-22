@@ -1,5 +1,4 @@
 ActiveAdmin.register Specialization do
-permit_params :name
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,6 +11,18 @@ permit_params :name
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  permit_params :name
+  index do
+    selectable_column
+    id_column
+    column :name
+    actions
+  end
 
-
+  form do |f|
+    f.inputs "Specialization Detail" do
+      f.input :name
+    end
+    f.actions
+  end
 end

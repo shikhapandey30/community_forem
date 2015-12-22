@@ -17,13 +17,7 @@
                 <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
               <% end %>
 
-              <% if post.upload.present? %>
-                <!-- <a href="<%= post_path(post)%>" class="post"><img src="/assets/images/videoPost.png" alt=""></a> -->
-              <% end %>
-
-              <%# if post.upload.try(:video).present? %>
-                <!-- <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:video) %></a> -->
-              <%# end %>
+             
               <% if post.upload.try(:file).present? %>                
                 Attachment: <a href="<%= post.upload.try(:file)%>" class="post" target="_blank"><%=post.upload[:file]%></a>
               <% end %>
@@ -47,8 +41,8 @@
               <%end%>
 
               <% if current_user != post.user %>
-                <span id="following-button-span-<%= post.id %>" class="user-folowed-<%=post.user.id %>">
-                  <%= render :partial=> "users/follow_link", :locals => {:post => post} %>
+                <span id="following-button-span-<%= post.user.id %>" class="user-folowed-<%=post.user.id %>">
+                  <%= render :partial=> "users/follow_link", :locals => {:object => post} %>
                 </span>
               <% end %>
               <!-- <a href="#">Follow</a> -->
@@ -73,3 +67,15 @@
 <div class="loader-img" style="display:none;">
   <img src="../assets/images/preloader.gif"> Loading....
 </div>
+<script type="text/javascript">
+   function comment_body(id) {
+    $("#comments_"+id).toggle();
+    $("#comment_box_"+id).toggle(500);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 200);
+  }
+  function show_comments(post_id){
+    $('#comments_'+post_id).toggle(500);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 600);    
+
+  }
+</script>

@@ -123,13 +123,13 @@ class User < ActiveRecord::Base
     if self.profile.present?
       self.profile.try(:image)
     else
-      '/images/profile.jpeg'
+      '/images/profile.png'
     end
   end
 
   def self.search(search)
     if search
-      where('screen_name LIKE ?', "%#{search}%")
+      where('lower(screen_name) LIKE ?', "%#{search}%".downcase)
     else
       all
     end
@@ -152,5 +152,9 @@ class User < ActiveRecord::Base
 
   def is_disliked(model)
     Dislike.where(:dislikable=> model ,:user_id => self.id).present?
+  end
+
+  def is_follow(model)
+    Following.where(:followable=> model ,:follower_id => self.id).present?
   end
 end
