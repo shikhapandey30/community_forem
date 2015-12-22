@@ -3,12 +3,12 @@
     <div class="rightContent">
       <div class="clearfix blueBkg meetingRoomTOp">
         <div class="innerWIdth550">
-          <span><img src="/assets/images/andthumb.jpg" alt=""></span>
+          <span><%=image_tag @meeting_room.img%></span>
           <div class="mtngTitle"><%= @meeting_room.topic %>
           </div>
           <div class="fr font12">
             <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
-            <div class="fr font12">  200 members</div>
+            <div class="fr font12"> 0 members</div>
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
             <div class="col-sm-12 mb10">
               <div class="blackHD font22"><%= @meeting_room.headline %>
               </div>
-              <img src="/assets/images/android.jpg" alt="" class="fullWdth mtb10">
+              <%=image_tag @meeting_room.img, class: "fullWdth mtb10"%>              
               <div class="uniOuter">
                 <div class=" blackColor ">
                   <p><%= @meeting_room.slogan %></p>

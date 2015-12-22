@@ -7,7 +7,7 @@
             'message': "This field cannot be empty."
           }
           ,'custom[url]': {
-            'message': "This validation error message will never be called"
+            'message': "Please enter valid URL."
           }
           // Custom Error Messages for IDs
           ,'#url' : {

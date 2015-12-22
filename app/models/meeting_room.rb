@@ -16,4 +16,12 @@ class MeetingRoom < ActiveRecord::Base
 	# UserRace.where(:user_id => current_user.id ).first
 	self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "MeetingRoom" )
 	end
+
+	def img
+	  if self.upload.try(:image).present?
+	    self.upload.try(:image)
+	  else
+	    'images/meeting_room.jpg'
+	  end
+	end
 end

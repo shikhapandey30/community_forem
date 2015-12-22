@@ -8,8 +8,8 @@
         Your Contest Module
         <div class="fr mt-10 ">
           <div class="fr font12">
-            <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> create contest</a><br>
-            <div class="fr font14 underLine mt5">  6 contest</div>
+            <a href="/contests/new" class="back"><img src="/assets/images/accept.png" alt=""> create contest</a><br>
+            <div class="fr font14 underLine mt5"> <%=@contests.size%> </div>
           </div>
         </div>
       </div>
@@ -24,100 +24,23 @@
         </div>
       </div>
       <div class="clearfix grpOuter">
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
+        <%@contests.each do |contest|%>
+          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
+            <div class="editDlt  dropdown">
+              <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+              <ul class="dropdown-menu">
+                <li><a href="#"> Edit </a> </li>
+                <li> <a href="#"> Delete</a> </li>
+              </ul>
+            </div>
+            <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp1.jpg" alt="" ></a>
+            <a href="#" class="block groupName width"><%=contest.headline%></a>
+            <div class="virwJoinBtn">
+              <a class="btmBtn" href="#"> <span class="redColor">Expire</span></a>
+              <a class="btmBtn" href="#" > 15 Polls </a>
+            </div>
           </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp1.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">Awesome Freebies and Deals</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> <span class="redColor">Expire</span></a>
-            <a class="btmBtn" href="#" > 15 Polls </a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/fp2.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">CMKM Diamonds United<br>
-          Shareholader Board</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> 05:10:00</a>
-            <a class="btmBtn" href="#" > 15 Polls </a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp3.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">The GMCR Community<br>
-          Coffeehouse</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> 05:10:00</a>
-            <a class="btmBtn" href="#" > 3 Polls </a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/fp4.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">Confederacy of Black<br>
-          Knights</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> 05:10:00</a>
-            <a class="btmBtn" href="#" > 02 Polls </a>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp5.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">The Hunger Game</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> 05:10:00</a>
-            <a class="btmBtn" href="#" > 26 Polls </a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/fp6.jpg" alt="" ></a>
-          <a href="#" class="block groupName width">Forever Twilight</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn" href="#"> 05:10:00</a>
-            <a class="btmBtn" href="#" > 0 Polls </a>
-          </div>
-        </div>
+        <%end%>  
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">

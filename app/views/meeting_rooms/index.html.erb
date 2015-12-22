@@ -9,7 +9,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/meeting_rooms/new" class="back"><img src="/assets/images/accept.png" alt=""> create meeting room</a><br>
-            <div class="fr font14 underLine mt5">  6 meeting room</div>
+            <div class="fr font14 underLine mt5"> <%=@meeting_rooms.size%> </div>
           </div>
         </div>
       </div>
@@ -24,98 +24,24 @@
         </div>
       </div>
       <div class="clearfix grpOuter">
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
+        <% @meeting_rooms.each do |room|%>
+          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
+            <%if room.user == current_user%>
+              <div class="editDlt  dropdown">
+                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to "Edit", edit_meeting_room_path(room)%></li>
+                  <li><%=link_to "Delete", meeting_room_path(room), method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                </ul>
+              </div>
+            <%end%>
+            <%=link_to image_tag(room.img), meeting_room_path(room), class: "block mt20 grpImg"%>            
+            <a href="<%=meeting_room_path(room)%>" class="block groupName width"><%=room.headline%></a>
+            <div class="virwJoinBtn">
+              <a class="btmBtn fullWdth" href="<%=meeting_room_path(room)%>"> 0 Members</a>
+            </div>
           </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/m1.jpg" alt="" ></a>
-          <a href="#" class="block groupName">Using Android Without
-          Compromising Security</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 50 Members</a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/m2.jpg" alt="" ></a>
-          <a href="#" class="block groupName">7 Reasons to Unlock Developer
-          Options on Your Android</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 5 Members</a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/m3.jpg" alt="" ></a>
-          <a href="#" class="block groupName">Choose from 1000's of Meeting Rooms Worldwide</a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 150 Members</a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/m4.jpg" alt="" ></a>
-          <a href="#" class="block groupName"> Control your environment by
-          booking the right space for<br>
-          your next meeting or event. </a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 36 Members</a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20 grpImg">  <img src="/assets/images/m5.jpg" alt="" ></a>
-          <a href="#" class="block groupName">How to Check if You Have a
-          Counterfeit SD Card
-          </a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 35 Members</a>
-          </div>
-        </div>
-        <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-          <div class="editDlt  dropdown">
-            <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-            <ul class="dropdown-menu">
-              <li><a href="#"> Edit </a> </li>
-              <li> <a href="#"> Delete</a> </li>
-            </ul>
-          </div>
-          <a href="#" class="block mt20">  <img src="/assets/images/m6.jpg" alt="" ></a>
-          <a href="#" class="block groupName">How to Get Hearthstone Packs for Free (Or Cheap) Using
-          Amazon Coins
-          </a>
-          <div class="virwJoinBtn">
-            <a class="btmBtn fullWdth" href="#"> 95 Members</a>
-          </div>
-        </div>
+        <%end%>
       </div>
     </div>
   </div>

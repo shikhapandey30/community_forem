@@ -26,7 +26,7 @@
         <div class="grayBig bold ">
           Add Your Website Links
         </div>
-        <%=u.url_field :site_link, class: 'inputTextW', placeholder: "http://"%>
+        <%=u.text_field :site_link, class: 'inputTextW', placeholder: "http://", "data-validation-engine"=>"validate[],custom[url]"%>
       </div>
     </div>
     <div id="tab-3" class="tab-content">
@@ -48,7 +48,7 @@
       <img src="/assets/images/videoIcon.png" alt="">
       
       <div class="grayBig bold ">Add Your Video</div>
-      <%= u.url_field :video, placeholder: "http://", class: "inputTextW" %><br>
+      <%= u.text_field :video, placeholder: "http://", class: "inputTextW", "data-validation-engine"=>"validate[],custom[url]" %><br>
 
       <div class="mt10">Paste a link from YouTube.</div>
 

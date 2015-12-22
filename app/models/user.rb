@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
    def revealed?(reveal)
     RevealIdentity.where(:sender_id=>self.id,:user_id=>reveal.id).present?
   end
+  
   def img
     if self.profile.present?
       self.profile.try(:image)
