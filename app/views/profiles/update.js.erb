@@ -1,6 +1,7 @@
 <%if !@alert.present?%>
 	$(".mt30.profile").html("<%=j (render '/profiles/profile')%>");
 	$(".nameLocation a").text("<%=current_user.screen_name%>");
+	$(".nameLocation span.location").text("<%=current_user.try(:profile).try(:country).try(:name)%>");
 	$(".popup-success").html("<%=j (render '/layouts/success')%>");
 <%else%>
 	$(".popup-success").html("<%=j (render '/layouts/alert')%>");

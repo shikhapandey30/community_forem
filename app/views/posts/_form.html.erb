@@ -62,11 +62,11 @@
           </div>
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
           <div class="col-sm-6  pr10  dateOuter">
-            <label>From</label> <%= f.text_field :start_date,  :value => Time.now, class: "inputTextW small date start_date validate[required]" %>
+            <label>From</label> <%= f.text_field :start_date, class: "inputTextW small date start_date validate[required]" %>
         
           </div>
           <div class="col-sm-6  pl10 dateOuter">
-            <label>To</label><%= f.text_field :expiration_date, :value => Time.now, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date validate[required]" %>
+            <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date validate[required]" %>
           </div>
           <div class="col-sm-12">
             <%= f.submit "Save Post", class: "blueBtn common_submit" %>
@@ -87,6 +87,7 @@
       $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
     }
     $(".start_date").data("DateTimePicker").minDate(new Date());
+    $(".end_date").data("DateTimePicker").minDate(new Date());
     $(".start_date").on("dp.change", function (selected) {
       $(".end_date").data("DateTimePicker").minDate(selected.date);
     });
