@@ -8,7 +8,9 @@ class ProfilesController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @category = current_user.users_category.present? ? current_user.users_category : Category.new
+    # @category = current_user.users_category.present? ? current_user.users_category : Category.new
+    @category = @user.users_category
+    @user_categories =  @category.present? ? @category.category_ids.split(',') : []
     current_user.profile.present? ? current_user.profile : current_user.build_profile    
   end
 
@@ -107,7 +109,10 @@ class ProfilesController < ApplicationController
       @success = "Category added successfully." if category.save
     else
       render :nothing => true, :status => 200
-    end    
+    end
+    @user=current_user
+    @category = @user.users_category
+    @user_categories =  @category.present? ? @category.category_ids.split(',') : []
   end
 
   # GET /Profiles/new

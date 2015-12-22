@@ -27,9 +27,9 @@
           var filerdr = new FileReader();
           filerdr.onload = function(e) {
             $(".uploadPhoto").css('background-image', 'url('+ e.target.result+')');
-          if (profile_image == true){
+          
             $('#imgprvw').attr('src', e.target.result);
-          }
+          
           $("#image_url").val(false);
 
         }

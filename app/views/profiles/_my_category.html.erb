@@ -1,18 +1,18 @@
-<!-- <div class="clearfix whiteBox mb10">
+<div class="clearfix whiteBox mb10">
   <div class="clearfix formOuterPost tal">
     <div class="col-sm-12 mb10">
-      <div class="grayHD">Category</div>
+      <div class="grayHD">Category
+        <% if current_user==@user%>
+          <a href="/profiles/edit_category" class="blueBtn fr addBtn" data-remote=true>&nbsp;&nbsp;EDIT/ADD CATEGORY</a>
+        <%end%>
+      </div>  
     </div>
-    
-    <div class="col-sm-6 pr10 categoriesChk">
-      <ul>
-        <li> Entertainment </li>
-      </ul>
-    </div>
-    <div class="col-sm-6 pl10 categoriesChk">
-      <ul>
-        <li>  Music</li>
-      </ul>
-    </div>
+    <% @user_categories.each_with_index do |category, index|%>
+      <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">
+        <ul>
+          <li><%=Category.where(:id =>category.to_i ).first.try(:name) %></li>
+        </ul>
+      </div>
+    <%end%>  
   </div>
-</div> -->
+</div>
