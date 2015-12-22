@@ -12,7 +12,7 @@
           <div class="row">
             <% @categories.each do |category| %>
               <div class="col-sm-3">
-                <a href="#"><%= image_tag(category.image_url) %>
+                <a href="<%= category_path(category)%>"><%= image_tag(category.image_url) %>
                   <span><%= category.name %></span>
                 </a>
               </div>
