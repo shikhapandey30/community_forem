@@ -6,10 +6,13 @@
           <div class="clearfix userInfo posRel">
             <div class="videoPost">
               <% if current_user == post.user %>
-              <div class="text-right">
-                <%=link_to (image_tag 'images/edit.png'), edit_post_path(post) %>
-                <%= link_to (image_tag 'images/delete.png'), post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </div>
+                <div class="editDlt  dropdown">
+                  <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
+                    <ul class="dropdown-menu">
+                      <li><%=link_to 'Edit', edit_post_path(post) %></li>
+                      <li> <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+                    </ul>
+                 </div>
               <% end %>
               
               <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>              
