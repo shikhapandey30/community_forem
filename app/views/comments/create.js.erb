@@ -7,3 +7,4 @@
 	$('#comment_body').val("");
 	$('#comments_count').html("<%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %>");
 <% end %>
+$('#comment_box_<%= params[:post_id]%>').hide();

@@ -1,11 +1,12 @@
 <div class="commentSec">          
-  <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"  class ="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>" class="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;<span id="comments_count_<%= post.id %>" ><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
+  <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"  class ="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>" class="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;
+  <span id="comments_count_<%= post.id %>"  class="cursor"  onclick="$('.add-comment-button-<%= post.id %>').click();"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
   <div class="cmntSec">          
     <%= render 'layouts/shared/like', model_obj: post if user_signed_in? %>
     <%= render 'layouts/shared/dislike', model_obj: post if user_signed_in? %>
     <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
     <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-    <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" onclick="$('#comments_<%= post.id%>').slideToggle(500);  $('html, body').scrollTop($('#comment_box_'+id).offset().top- 200);" id="comment_button_<%= post.id %>">
+    <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= post.id %>" onclick="$('#comments_<%= post.id%>').toggle();" id="comment_button_<%= post.id %>">
   </div>
 </div>
 

@@ -39,8 +39,8 @@ menu false
       f.input :headline
       f.input :description
       f.input :visibility
-      f.input :start_date
-      f.input :end_date
+      f.input :start_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
+      f.input :end_date, as: :datepicker, datepicker_options: { changeYear: true, changeMonth: true }
     end
     f.actions
   end
