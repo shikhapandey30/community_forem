@@ -25,7 +25,7 @@ class ForumPollsController < ApplicationController
 
     respond_to do |format|
       if @forum_poll.save
-        format.html { redirect_to @forum_poll, notice: 'Forum Poll was successfully created.' }
+        format.html { redirect_to @forum_poll, notice: 'Forum Poll is successfully created.' }
         format.json { render :show, status: :created, location: @forum_poll }
       else
         format.html { render :new }
@@ -42,12 +42,22 @@ class ForumPollsController < ApplicationController
     respond_to do |format|
       if @forum_poll.update(forum_poll_params)
         set_upload
-        format.html { redirect_to dashboard_path, notice: 'Forum Poll was successfully updated.' }
+        format.html { redirect_to dashboard_path, notice: 'Forum Poll is successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # DELETE /contests/1
+  # DELETE /contests/1.json
+  def destroy
+    @forum_poll.destroy
+    respond_to do |format|
+      format.html { redirect_to forum_polls_url, notice: 'Forum Poll is successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

@@ -29,6 +29,10 @@ module ApplicationHelper
     action.include?(params[:action])
   end
 
+  def expireDate(expire_date)
+    (Time.now>expire_date) ? 'Expired' : distance_of_time_in_words( Time.now,expire_date ) + " rem."
+  end
+
 
   # def flash(level)
   #       case level

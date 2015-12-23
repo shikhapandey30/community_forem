@@ -91,6 +91,8 @@
     } else{
       $('.end_date').datetimepicker({format: 'YYYY-MM-DD',minDate: moment()});
     }
+    $(".start_date").data("DateTimePicker").minDate(new Date());
+    $(".end_date").data("DateTimePicker").minDate(new Date());
     $(".start_date").on("dp.change", function (selected) {
       $(".end_date").data("DateTimePicker").minDate(selected.date);
     });

@@ -26,9 +26,9 @@ class EmploymentDetailsController < ApplicationController
     respond_to do |format|
       if @employment_detail.save
         if current_user.skills.present?
-          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully created.' }
+          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail is successfully created.' }
         else
-          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail was successfully created.' }
+          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail is successfully created.' }
 
         end
         format.json { render :show, status: :created, location: @employment_detail }
@@ -45,9 +45,9 @@ class EmploymentDetailsController < ApplicationController
     respond_to do |format|
       if @employment_detail.update(employment_detail_params)
         if current_user.skills.present?
-          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail was successfully Updated.' }
+          format.html { redirect_to edit_user_skill_path(current_user.user_skill), notice: 'EmploymentDetail is successfully Updated.' }
         else
-          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail was successfully Updated.' }
+          format.html { redirect_to new_user_skill_path, notice: 'Employment Detail is successfully Updated.' }
           
         end
         format.json { render :show, status: :ok, location: @employment_detail }
@@ -63,7 +63,7 @@ class EmploymentDetailsController < ApplicationController
   def destroy
     @employment_detail.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Employment Detail was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Employment Detail is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

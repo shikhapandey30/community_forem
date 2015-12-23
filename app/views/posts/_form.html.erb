@@ -92,7 +92,7 @@
       $(".end_date").data("DateTimePicker").minDate(selected.date);
     });
     $(".end_date").on("dp.change", function (selected) {
-      $(".start_date").data("DateTimePicker").maxDate(new Date());
+      $(".start_date").data("DateTimePicker").maxDate(selected.date);
     });
   });
 </script>

@@ -26,9 +26,9 @@ class EducationHistoriesController < ApplicationController
     # respond_to do |format|
     #   if @education_history.save
     #     if current_user.employment_detail.present?
-    #       format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'EducationHistory was successfully created.' }
+    #       format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'EducationHistory is successfully created.' }
     #     else
-    #       format.html { redirect_to new_employment_detail_path, notice: 'EducationHistory was successfully created.' }
+    #       format.html { redirect_to new_employment_detail_path, notice: 'EducationHistory is successfully created.' }
 
     #     end
     #     format.json { render :show, status: :created, location: @education_history }
@@ -49,9 +49,9 @@ class EducationHistoriesController < ApplicationController
 
       redirect_to :back
         # if current_user.employment_detail.present?
-        #   format.html { redirect_to edit_employment_detail_path(current_user.employment_detail) , notice: 'EducationHistory was successfully updated.' }
+        #   format.html { redirect_to edit_employment_detail_path(current_user.employment_detail) , notice: 'EducationHistory is successfully updated.' }
         # else
-        #    format.html { redirect_to new_employment_detail_path , notice: 'EducationHistory was successfully updated.' }
+        #    format.html { redirect_to new_employment_detail_path , notice: 'EducationHistory is successfully updated.' }
         # end
          # format.json { render :show, status: :ok, location: @education_history }
       # else
@@ -66,7 +66,7 @@ class EducationHistoriesController < ApplicationController
   def destroy
     @education_history.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'EducationHistory was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'EducationHistory is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

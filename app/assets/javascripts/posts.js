@@ -13,7 +13,18 @@
         return false;
       }
     });
-
+    $(function () {
+      $(".new_comment").validationEngine();
+    });
+    $(function () {
+      $(".new_reply").submit(function( event ) {        
+        $("#" + this.id).validationEngine();
+        if ($(this).find('input.addReply').val()=="") {
+          $(this).find('input.addReply').blur();
+          return false;
+        }
+      });
+    });
     function showimagepreview(input) {
       extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
       if ( extension == "png" || extension == "jpeg" || extension == "jpg" ) {
