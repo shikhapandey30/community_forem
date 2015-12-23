@@ -37,6 +37,7 @@
   </div>
   <%end%>
 <script>  
+ $(window).load(function() {
 
   $('#employment_detail_description').keyup(function () {
     var left = 300 - $(this).val().length;
@@ -69,4 +70,5 @@
     $(".datetimepicker4").data("DateTimePicker").maxDate(selected.date);
   });
   $(".employment-form-validate").validationEngine();
+  )};
 </script> 
