@@ -111,6 +111,7 @@ Rails.application.routes.draw do
    get '/how_it_work'=>'home#how_it_work'
    get '/privacy_policy'=>'home#privacy_policy'
    get '/terms_and_conditions'=>'home#terms_and_conditions'
+   post '/contact_help'=>'home#contact_help'
 
    get '/dashboard'=>'users#dashboard'
    get '/payment'=>'users#payment'

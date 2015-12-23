@@ -22,6 +22,7 @@ li.cat.true a { color: #0BB4D3; }
 .error.img_error { margin-left: 22%; font-size: 13px;}
 /*Pavitra Css*/
 .error_file { color: #FF0000; font-size: 13px;}
+.success_message { color: #008000; }
 /*Pavitra Css*/
 
 .errorMSg.login {padding: 5px 15px 7px; text-align: center;}

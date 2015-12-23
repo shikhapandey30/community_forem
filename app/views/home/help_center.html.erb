@@ -20,27 +20,34 @@
           <h1 class="bigHD mt15">Help Center?</h1>
           <p class="font16 mt20"> If you need more information, would like to inquire about our Full Services or turnkey solutions, or just have some general feedback send us a message and we will get right back to you.</p>
           <div class=" loginForm contactForm mt20">
-            <div class="clearfix row">
-              <div class="pr10 col-sm-6">
-                <input placeholder="Name" class="inputText" type="text">
+            <span class="success_message" style="display:none;">Your request has been sent successfully !!</span>
+            <%= form_for @contact, url: contact_help_path, :html => { class: "form-validate" }, :remote => true do |f| %>
+
+              <div class="clearfix row">
+                <div class="pr10 col-sm-6">
+                  <%= f.text_field :name, class: "inputText small validate[required]", placeholder: "Name", :maxlength=>"80" %>
+                </div>
+                <div class="pl10 col-sm-6">
+                  <%= f.text_field :phone_no, class: "inputText  validate[required,custom[phone]]", placeholder: "Contact Number", :maxlength=>"80" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.text_field :email, class: "inputText validate[required,custom[email]]", placeholder: "Email", :maxlength=>"80" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.text_area :body, class: "inputText validate[required]", placeholder: "Message", :maxlength=>"80" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.submit "Send", class: 'darkBlueBtn inputSubmit' %>
+                </div>
+                <div class="clearfix"></div>
               </div>
-              <div class="pl10 col-sm-6">
-                <input placeholder="Contact Number" class="inputText" type="text">
-              </div>
-              <div class="col-sm-12">
-                <input placeholder="Email" class="inputText" type="text">
-              </div>
-              <div class="col-sm-12">
-                <textarea class="inputText" placeholder="Message"></textarea>
-              </div>
-              <div class="col-sm-12">
-                <input value="Send" class="darkBlueBtn inputSubmit" type="submit">
-              </div>
-              <div class="clearfix"></div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $(".form-validate").validationEngine();
+</script>
