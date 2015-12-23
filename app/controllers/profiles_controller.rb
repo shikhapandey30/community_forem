@@ -67,7 +67,11 @@ class ProfilesController < ApplicationController
       @success = "Education History updated successfully." if @education.update_attributes(education_params)
     else
       @education = current_user.education_histories.create(education_params)
-      @success = "Education History added successfully."
+      if @education.save 
+        flash[:success] = "Education History added successfully." 
+      else
+        flash[:alert] = "Start Year cannot be greater then end year." 
+      end
     end
     @user=current_user
   end
@@ -79,7 +83,11 @@ class ProfilesController < ApplicationController
       @employment.update_attributes(employment_params)
     else
       @employment = current_user.employment_details.create(employment_params)
-      @success = "Employment Details added successfully."
+      if @employment.save 
+        flash[:success] = "Employment History added successfully." 
+      else
+        flash[:alert] = "Start date cannot be greater then end date." 
+      end
     end
     @user=current_user
   end
