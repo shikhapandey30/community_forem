@@ -32,7 +32,7 @@ class MeetingRoomsController < ApplicationController
 
     respond_to do |format|
       if @meeting_room.save
-        format.html { redirect_to @meeting_room, notice: 'Meeting room was successfully created.' }
+        format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully created.' }
         format.json { render :show, status: :created, location: @meeting_room }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class MeetingRoomsController < ApplicationController
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
         set_upload
-        format.html { redirect_to @meeting_room, notice: 'Meeting room was successfully updated.' }
+        format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class MeetingRoomsController < ApplicationController
   def destroy
     @meeting_room.destroy
     respond_to do |format|
-      format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully destroyed.' }
+      format.html { redirect_to meeting_rooms_url, notice: 'Meeting room is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

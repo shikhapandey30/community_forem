@@ -25,7 +25,7 @@ class UserSkillsController < ApplicationController
 
     respond_to do |format|
       if @user_skill.save
-          format.html { redirect_to dashboard_path, notice: 'UserSkill was successfully created.' }
+          format.html { redirect_to dashboard_path, notice: 'UserSkill is successfully created.' }
         format.json { render :show, status: :created, location: @user_skill }
       else
         format.html { render :new }
@@ -39,7 +39,7 @@ class UserSkillsController < ApplicationController
   def update
     respond_to do |format|
       if @user_skill.update(user_skill_params)
-         format.html { redirect_to dashboard_path, notice: 'UserSkill was successfully Updated.' }
+         format.html { redirect_to dashboard_path, notice: 'UserSkill is successfully Updated.' }
         format.json { render :show, status: :ok, location: @user_skill }
       else
         format.html { render :edit }
@@ -53,7 +53,7 @@ class UserSkillsController < ApplicationController
   def destroy
     @user_skill.destroy
     respond_to do |format|
-      format.html { redirect_to UserSkills_url, notice: 'UserSkill was successfully destroyed.' }
+      format.html { redirect_to UserSkills_url, notice: 'UserSkill is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

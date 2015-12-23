@@ -30,7 +30,7 @@ class ContestsController < ApplicationController
 
     respond_to do |format|
       if @contest.save
-        format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
+        format.html { redirect_to @contest, notice: 'Contest is successfully created.' }
         format.json { render :show, status: :created, location: @contest }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class ContestsController < ApplicationController
     respond_to do |format|
       if @contest.update(contest_params)
         set_upload
-        format.html { redirect_to @contest, notice: 'Contest was successfully updated.' }
+        format.html { redirect_to @contest, notice: 'Contest is successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class ContestsController < ApplicationController
   def destroy
     @contest.destroy
     respond_to do |format|
-      format.html { redirect_to contests_url, notice: 'Contest was successfully destroyed.' }
+      format.html { redirect_to contests_url, notice: 'Contest is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

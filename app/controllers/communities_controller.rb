@@ -46,7 +46,7 @@ class CommunitiesController < ApplicationController
 
           end
         end
-        format.html { redirect_to @community, notice: 'Community was successfully created.' }
+        format.html { redirect_to @community, notice: 'Community is successfully created.' }
         format.json { render :show, status: :created, location: @community }
       else
         format.html { render :new }
@@ -71,7 +71,7 @@ class CommunitiesController < ApplicationController
            notification.save
           end
         end
-        format.html { redirect_to @community, notice: 'Community was successfully updated.' }
+        format.html { redirect_to @community, notice: 'Community is successfully updated.' }
         format.json { render :show, status: :ok, location: @community }
       else
         format.html { render :edit }
@@ -85,7 +85,7 @@ class CommunitiesController < ApplicationController
   def destroy
     @community.destroy
     respond_to do |format|
-      format.html { redirect_to communities_url, notice: 'Community was successfully destroyed.' }
+      format.html { redirect_to communities_url, notice: 'Community is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

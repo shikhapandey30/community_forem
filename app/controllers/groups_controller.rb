@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    @groups = Group.all.order("updated_at desc")
   end
 
   # GET /groups/1
@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to @group, notice: 'Group is successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update(group_params)
         set_upload
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to @group, notice: 'Group is successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to groups_url, notice: 'Group is successfully destroyed.' }
       format.json { head :no_content }
     end
   end
