@@ -38,17 +38,17 @@
             <label>Select Category</label>
             <div class="selctFormBox">              
               <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select validate[required]")  %>
+              <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
             </div>
             <div id="category_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
-            <%= f.text_field :topic, class: "inputTextW small validate[required,maxSize[80]]", placeholder: "Topics"%>
+            <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Topics"%>
           </div>
           <div class="col-sm-12">
             <label class="font20">Write Your Headline</label>
-            <%= f.text_field :headline,class: "inputTextW small validate[required,maxSize[80]]", placeholder: "Write headline here...." %>
+            <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here...." %>
           </div>
           <div class="col-sm-12">
             <label class="">Write Something</label>
@@ -59,7 +59,7 @@
             <input type="text" placeholder="" class="inputTextW small">
           </div>
           <div class="col-sm-12 mt10">
-            <%= f.submit "Create Contest", class: "blueBtn common_submit" %>
+            <%= f.submit "Create Group", class: "blueBtn common_submit" %>
             <a href="#" class="grayBtn">Cancel</a> 
           </div>
         </div>
