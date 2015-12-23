@@ -42,7 +42,7 @@
             <%= image_tag @contest.img, class: "fullWdth mtb10" %>
             <div class="uniOuter">
               <div class=" blackColor ">
-                <%= @contest.description %>
+                <%= @contest.try(:description) %>
               </div>
             </div>
           </div>
