@@ -29,8 +29,8 @@
         <% end %>
         <%= yield %>
       </div>
-      <%if action_exist? %>
-        <%= render "layouts/footer"%>
+      <%if action_exist?%>
+        <%= render "layouts/footer" if !user_signed_in? %>
       <% end %>
     </div>    
   </body>
