@@ -34,7 +34,7 @@
             <div class="mt5 mb-10">
               <a href="#" class="removeLink inline">Message </a> |  
               <span id="following-button-span-<%= follow.followable.id %>">
-                <%= render :partial=> "users/follow_link", :locals => {:post => follow.followable} %>
+                <%= render :partial=> "users/follow_link", :locals => {:object => follow.followable} %>
               </span>
 
             </div>
