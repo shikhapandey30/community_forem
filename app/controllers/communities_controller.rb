@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [:show, :edit, :update, :destroy]
+  before_action :set_community, only: [:show, :edit, :update, :destroy, :join]
 
   # GET /communities
   # GET /communities.json
@@ -88,6 +88,14 @@ class CommunitiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to communities_url, notice: 'Community is successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def join    
+    @community.members.create(:user_id=>current_user.id)
+    @invitable_members = @community.members - @community.members.where(user_id: current_user.id)
+    @invitable_members.map(&:user).uniq.each do |user|
+      Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
     end
   end
 
