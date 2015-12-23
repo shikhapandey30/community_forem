@@ -26,13 +26,15 @@
       <div class="clearfix grpOuter">
         <%@contests.each do |contest|%>
           <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <div class="editDlt  dropdown">
-              <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-              <ul class="dropdown-menu">
-                <li><%=link_to "Edit", edit_contest_path(contest)%></li>
-                <li><%=link_to "Delete", contest_path(contest), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-              </ul>
-            </div>
+            <% if current_user && current_user == contest.user %>
+              <div class="editDlt  dropdown">
+                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to "Edit", edit_contest_path(contest)%></li>
+                  <li><%=link_to "Delete", contest_path(contest), method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                </ul>
+              </div>
+            <% end %>
             <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
             <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
             <div class="virwJoinBtn">
