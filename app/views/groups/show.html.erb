@@ -4,11 +4,9 @@
     <%=render 'layouts/topNav'%>
     <div class="clearfix blueBkg meetingRoomTOp">
       <div class="innerWIdth550">
-        <span><img src="/assets/images/ps.jpg" alt=""></span>
+        <span><%= image_tag @group.img %></span>
         <div class="mtngTitle font18 mt10Final">
-          Designers Talk: Graphic, web,
-          digital design and creative
-          professionals group
+          <%= @group.try(:headline) %>
         </div>
         <div class="fr font12">
           <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>

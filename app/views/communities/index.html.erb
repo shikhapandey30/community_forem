@@ -10,7 +10,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/communities/new" class="back"><img src="/assets/images/accept.png" alt=""> create Community</a><br>
-            <div class="fr font14 underLine mt5"> <%=@communities.size%></div>
+            <div class="fr font14 underLine mt5"> <%=@communities.size%> communities</div>
           </div>
         </div>
       </div>
@@ -27,13 +27,15 @@
       <div class="clearfix grpOuter">
         <%@communities.each do |community|%>
           <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <div class="editDlt  dropdown">
-              <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-              <ul class="dropdown-menu">
-                <li><%=link_to "Edit", edit_community_path(community)%></li>
-                <li><%=link_to "Delete", community_path(community), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-              </ul>
-            </div>
+            <% if current_user && current_user == community.user %>
+              <div class="editDlt  dropdown">
+                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to "Edit", edit_community_path(community)%></li>
+                  <li><%=link_to "Delete", community_path(community), method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                </ul>
+              </div>
+            <% end %>
             <a href="<%=community_path(community)%>" class="block mt20 grpImg"> <%=image_tag community.img%> </a>
             <a href="<%=community_path(community)%>" class="block groupName width"><%=community.headline%></a>
             <div class="virwJoinBtn">

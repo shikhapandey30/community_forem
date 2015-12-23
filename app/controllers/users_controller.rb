@@ -42,6 +42,8 @@ class UsersController < ApplicationController
   end
 
 	def dashboard
+    @suggested_communities = current_user.friends.collect(&:communities).compact.flatten
+    @suggested_connections = current_user.friends.collect(&:my_friends).compact.flatten
     # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
     # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
     # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')

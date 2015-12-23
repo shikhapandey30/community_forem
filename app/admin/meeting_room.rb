@@ -12,7 +12,7 @@ ActiveAdmin.register MeetingRoom do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :category_id, :topic, :headline, :name, :slogan, :user_id
+  permit_params :category_id, :topic, :headline, :name, :slogan, :user_id, upload_attributes: [ :id, :image, :video, :site_link, :file ]
   index do
     selectable_column
     id_column
@@ -26,6 +26,18 @@ ActiveAdmin.register MeetingRoom do
     column :headline
     column :name
     column :slogan
+    column "Image" do |meeting_room|
+      image_tag(meeting_room.upload.try(:image_url), :style=>"width: 60px")
+    end
+    column "Video" do |meeting_room|
+      meeting_room.upload.try(:video)
+    end
+    column "Site Link" do |meeting_room|
+      meeting_room.upload.try(:site_link)
+    end
+    column "File" do |meeting_room|
+      meeting_room.upload.try(:file)
+    end
     actions
   end
 
@@ -37,6 +49,14 @@ ActiveAdmin.register MeetingRoom do
       f.input :headline
       f.input :name
       f.input :slogan
+      f.inputs "Upload" do
+        f.has_many :upload do |u|
+          u.input :image
+          u.input :video
+          u.input :site_link
+          u.input :file
+        end
+      end
     end
     f.actions
   end

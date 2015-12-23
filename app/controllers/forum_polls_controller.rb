@@ -9,7 +9,7 @@ class ForumPollsController < ApplicationController
 
   def show
   	votes=@forum_poll.votes
-  	user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first
+  	user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first if current_user
   	 if user_vote
        @user_vote_type=user_vote.vote_type
   	 end
