@@ -29,7 +29,7 @@
           <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id)) do |f| %>
           <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
           <div class="field">
-            <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
+            <%= f.text_field :body, placeholder: "Add Your Comment", required: true, class: "addReply inputTextW small" %>
           </div>
           <% end %>
         </div>
