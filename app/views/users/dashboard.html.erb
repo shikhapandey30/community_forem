@@ -6,7 +6,7 @@
       <div class="blueBkg myWall">
         <div class="clearfix innerWIdth550">
           <div class="userTHumb">
-            <a href="#" class="profileImg"><%= image_tag current_user.img %></a>
+            <a href="<%=edit_profile_path(current_user)%>" class="profileImg"><%= image_tag current_user.img %></a>
             <div class="nameLocation">
               <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
               <div class="location font14"><%= current_user.try(:profile).try(:country).try(:name) %></div>
@@ -86,21 +86,35 @@
           </div>
         </div>
         <div class="connectionOuter ">
-          <div class="col-sm-6 borderRight">
-            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> 
-            <span>H. Peter Curran</span></a>
-            <div class="dsignation">Appraiser, Art, Antiques,
-              Deconstruction      
+          <%@suggested_connections.each_with_index do |connection, index|%>
+            <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%>">
+              <a href="#"> <%=image_tag connection.img%>
+              <span><%=connection.try(:screen_name)%></span></a>
+              <div class="dsignation"><%=connection.employment_details.current_company.try(:last).try(:designation)%>
+              </div>
+              <a href="#" class="whiteBtn"> Follow </a>
             </div>
-            <a href="#" class="whiteBtn"> Follow </a>
-          </div>
-          <div class="col-sm-6">
-            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> 
-            <span>Trip Spencer</span></a>
-            <div class="dsignation">Director</div>
-            <a href="#" class="whiteBtn"> Follow </a>
+          <%end%>
+        </div>        
+      </div>
+      <div class="clearfix whiteBox borderTop  mb10 pb0">
+        <div class="clearfix conversationTop borderBtm">
+          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
+          <div class="fr">
+            <a href="#" class="grayColor">See More Community <img src="/assets/images/rightArrow.jpg" alt=""></a>
           </div>
         </div>
+        <div class="connectionOuter ">        
+          <%@suggested_communities.each_with_index do |community, index|%>          
+            <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%>">
+              <a href="#"> <%=image_tag community.img%>
+              <span><%=community.headline%></span></a>
+              <div class="dsignation"><%=community.description%>
+              </div>
+              <a href="#" class="whiteBtn"> Follow </a>
+            </div>
+          <%end%>
+        </div>        
       </div>
       <div class="clearfix whiteBox borderTop  mb10 pb0">
         <div class="clearfix conversationTop borderBtm">

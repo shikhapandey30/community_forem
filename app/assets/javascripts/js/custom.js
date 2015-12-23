@@ -8,6 +8,15 @@ $(document).on('click', ".add_skill", function(){
   }  
 });
 
+// Comments
+function show_my_comments(validate, id){
+  if (validate) {
+    $('#comments_'+id).toggle();
+  } else {
+    window.location.href="/users/sign_in"
+  }
+}
+
 //Followers & Followings
 $(document).on("keyup", ".searhInput1.following", function(){
   $.ajax({

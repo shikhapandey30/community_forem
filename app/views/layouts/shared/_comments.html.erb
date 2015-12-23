@@ -1,24 +1,28 @@
 <div class="commentSec">          
   <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"  class ="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>" class="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;
-  <span id="comments_count_<%= post.id %>"  class="cursor"  onclick="$('.add-comment-button-<%= post.id %>').click();"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
-  <div class="cmntSec">          
-    <%= render 'layouts/shared/like', model_obj: post if user_signed_in? %>
-    <%= render 'layouts/shared/dislike', model_obj: post if user_signed_in? %>
-    <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
-    <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-    <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= post.id %>" onclick="$('#comments_<%= post.id%>').toggle();" id="comment_button_<%= post.id %>">
+  <span id="comments_count_<%= post.id %>"  class="cursor" onclick="show_my_comments(<%=user_signed_in?%>,<%=post.id%>)"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) <= 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
+  <div class="cmntSec">  
+    <%if user_signed_in?%>
+      <%= render 'layouts/shared/like', model_obj: post %>
+      <%= render 'layouts/shared/dislike', model_obj: post %>
+      <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
+      <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
+      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= post.id %>" onclick="$('#comments_<%= post.id%>').toggle();" id="comment_button_<%= post.id %>">
+    <%end%>  
   </div>
 </div>
 
 <div class="commentShow" id="comments_<%= post.id %>" style="display:none;">
-  <div  class="clearfix commentSec cmntRow">
-    <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
-    <div class="clearfix userInfo posRel">
-      <div >
-        <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
-      </div>  
+  <%if !post.comments.try(:count).zero? && user_signed_in?%>
+    <div  class="clearfix commentSec cmntRow">
+      <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
+      <div class="clearfix userInfo posRel">
+        <div >
+          <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
+        </div>  
+      </div>
     </div>
-  </div>
+  <%end%> 
   <%if user_signed_in?%>
     <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= post.id %>">
       <div class="clearfix userInfo posRel">
@@ -26,7 +30,7 @@
         <div class="addcomtntTA">
           <%= form_for(@comment, remote: true) do |f| %>
             <div class="field">
-              <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", class: "addCmnt inputTextW small" %>
+              <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", "data-validation-engine"=>"validate[required]", class: "addCmnt inputTextW small" %>
               <%= hidden_field_tag :from, "post_index" %>
               <%= hidden_field_tag :post_id, post.id %>
               <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>

@@ -135,15 +135,15 @@ class ProfilesController < ApplicationController
     #   if @profile.save
     #     if @profile.profile_type=='Individual'
     #       if current_user.education_history.present?
-    #        format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile is successfully created.' }
     #       else
-    #        format.html { redirect_to new_education_history_path(@profile), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to new_education_history_path(@profile), notice: 'Profile is successfully created.' }
     #       end
     #     else
     #       if current_user.employment_detail.present?
-    #        format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'Profile is successfully created.' }
     #       else
-    #        format.html { redirect_to new_employment_detail_path(@profile), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to new_employment_detail_path(@profile), notice: 'Profile is successfully created.' }
     #       end
     #     end
     #     format.json { render :show, status: :created, location: @profile }
@@ -169,15 +169,15 @@ class ProfilesController < ApplicationController
     #   if @profile.update(profile_params)
     #      if @profile.profile_type=='Individual'
     #       if current_user.education_history.present?
-    #        format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to edit_education_history_path(current_user.education_history), notice: 'Profile is successfully created.' }
     #       else
-    #        format.html { redirect_to new_education_history_path, notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to new_education_history_path, notice: 'Profile is successfully created.' }
     #       end
     #     else
     #       if current_user.employment_detail.present?
-    #        format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'Profile is successfully created.' }
     #       else
-    #        format.html { redirect_to new_employment_detail_path, notice: 'Profile was successfully created.' }
+    #        format.html { redirect_to new_employment_detail_path, notice: 'Profile is successfully created.' }
     #       end
     #     end
     #     format.json { render :show, status: :ok, location: @profile }

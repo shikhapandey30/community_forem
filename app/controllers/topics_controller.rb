@@ -9,7 +9,7 @@ class TopicsController < ApplicationController
       end
     if @topic.save
       attachment=@topic.attachments.create(:file=>params[:topic][:file])
-      redirect_to dashboard_path, notice: 'topic was successfully created.' 
+      redirect_to dashboard_path, notice: 'topic is successfully created.' 
     else
        render 'new'
     end
@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
    def update
     respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'topic was successfully updated.' }
+        format.html { redirect_to @topic, notice: 'topic is successfully updated.' }
         format.js { render :update, status: :ok, location: @topic}
        # format.json { render :show, status: :ok, location: @topic }
       else
@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'topic was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'topic is successfully destroyed.' }
       format.json { head :no_content }
     end
   end

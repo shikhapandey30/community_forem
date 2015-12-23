@@ -26,21 +26,25 @@
       <div class="clearfix grpOuter">
         <%@contests.each do |contest|%>
           <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <div class="editDlt  dropdown">
-              <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-              <ul class="dropdown-menu">
-                <li><a href="#"> Edit </a> </li>
-                <li> <a href="#"> Delete</a> </li>
-              </ul>
-            </div>
-            <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp1.jpg" alt="" ></a>
-            <a href="#" class="block groupName width"><%=contest.headline%></a>
+            <% if current_user && current_user == contest.user %>
+              <div class="editDlt  dropdown">
+                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to "Edit", edit_contest_path(contest)%></li>
+                  <li><%=link_to "Delete", contest_path(contest), method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                </ul>
+              </div>
+            <% end %>
+            <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
+            <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
             <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <span class="redColor">Expire</span></a>
-              <a class="btmBtn" href="#" > 15 Polls </a>
+              <a class="btmBtn" href="#"> <span class="redColor" id="remainTime_<%=contest.id%>">
+                <%=expireDate(contest.end_date)%>
+              </span></a>
+              <a class="btmBtn" href="#" > 0 Polls </a>
             </div>
-          </div>
-        <%end%>  
+          </div>          
+        <%end%>
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">
