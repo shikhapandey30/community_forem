@@ -38,25 +38,25 @@
             <div class="selctFormBox">
               <%= f.hidden_field :category_id, :value=>select_type(f, "category_id", "Category"), class: " selectInputField" %>
               <%= f.text_field "category_id", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select validate[required]")  %>
+              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
             </div>
             <div id="category_name_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
-            <%= f.text_field :topic, class: "inputTextW small validate[required,maxSize[360]", placeholder: "Topic" %>
+            <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Topic" %>
           </div>
           <div class="col-sm-12">
             <label class="font20">Write Your Headline</label>
-            <%= f.text_field :headline, class: "inputTextW small validate[required,maxSize[360]]", placeholder: "Write headline here...." %>
+            <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here...." %>
           </div>
           <div class="col-sm-12">
             <label class=""> Assign Name </label>
-            <%= f.text_field :name, class: "inputTextW small validate[required,maxSize[80]]", placeholder: "Assign Name" %>
+            <%= f.text_field :name, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Assign Name" %>
           </div>
           <div class="col-sm-12 ">
             <label class="">Slogan of Meeting </label>
-            <%= f.text_field :slogan, class: "inputTextW small validate[required,maxSize[360]]", placeholder: "Please write slogan of meeting here...." %>
+            <%= f.text_field :slogan, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Please write slogan of meeting here...." %>
           </div>
           <div class="col-sm-12 ">
             <label class="">Invite Members </label>

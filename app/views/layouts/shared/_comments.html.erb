@@ -30,7 +30,7 @@
         <div class="addcomtntTA">
           <%= form_for(@comment, remote: true) do |f| %>
             <div class="field">
-              <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", class: "addCmnt inputTextW small" %>
+              <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", "data-validation-engine"=>"validate[required]", class: "addCmnt inputTextW small" %>
               <%= hidden_field_tag :from, "post_index" %>
               <%= hidden_field_tag :post_id, post.id %>
               <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>
