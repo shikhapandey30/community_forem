@@ -11,6 +11,21 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password) }
   end
 
+   # Mobile Devices and Format
+  def mobile_device?
+    if session[:mobile_param] == '1'
+      return true
+    elsif request.user_agent =~ /iPad/
+      return false
+    else
+      request.user_agent =~ /Mobile|webOS/
+    end
+    # if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// && request.remote_ip == "125.63.73.83"
+     #return true
+    # end
+  end
+helper_method :mobile_device?
+
   # def keyword_filter(name,keyword)    
   #   @peoples = User.search(params[:name])
   #   @groups = Group.search(params[:name]).collect(&:members).compact.flatten
