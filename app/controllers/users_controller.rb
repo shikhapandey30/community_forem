@@ -129,4 +129,10 @@ class UsersController < ApplicationController
   def payment
   end
 
+  def suggested_communities
+  end
+
+  def suggested_connections
+  end
+
 end

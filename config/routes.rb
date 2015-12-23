@@ -129,9 +129,13 @@ Rails.application.routes.draw do
    get '/reveal_identity', to: 'users#reveal_identity'
    get '/users'=>'users#index'
    #forums route
-    get '/manage_forum'=>'forums#manage_forum'
-    get '/manage_skill'=>'skills#manage_skill'
+  get '/manage_forum'=>'forums#manage_forum'
+  get '/manage_skill'=>'skills#manage_skill'
    
+
+   get '/suggested_connections', to: 'users#suggested_connections', as: :suggested_connections
+   get '/suggested_communities', to: 'users#suggested_communities', as: :suggested_communities
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   # Error pages/
