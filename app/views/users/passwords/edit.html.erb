@@ -8,7 +8,7 @@
       <a href="/" class="logoShadow  wow fadeIn" data-wow-delay="" data-wow-duration="1.5s"> <img src="/assets/images/logoShadow.png"></a>
       <div class="login" >
         <h2>Change your password</h2>
-       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: "form-id", method: :put }) do |f| %>
         <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
         <%= devise_error_messages! %>
         </div>
@@ -18,12 +18,12 @@
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> characters minimum)</em><br />
             <% end %>
-            <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "inputTextW small "%>
+            <%= f.password_field :password, autofocus: true, autocomplete: "off", "data-validation-engine"=>"validate[required]", class: "inputTextW small "%>
           </div>
 
       <div class="field">
         <%= f.label :password_confirmation, "Confirm new password" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "inputTextW small " %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", "data-validation-engine"=>"validate[required]", class: "inputTextW small " %>
       </div>
         <%= f.submit "Change my password",class: "darkBlueBtn inputSubmit" %>       
         <div class="clearfix"></div>
