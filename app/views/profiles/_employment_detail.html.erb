@@ -1,4 +1,9 @@
 <%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form employment-form-validate" }, remote: true do |f| %>
+<ul>
+      <% @employment_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
   <div class="col-sm-6 pr10">
     <label>Enter Designation </label>
     <%= f.text_field :designation, class: "inputTextW small validate[required]", placeholder: "Designation", :maxlength=>"80" %>

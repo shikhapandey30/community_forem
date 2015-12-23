@@ -15,6 +15,8 @@
   <body>
     <%if notice%><%=render 'layouts/success', :@success=>notice%><%end%>
     <%if alert%><%=render 'layouts/alert', :@alert=>alert%><%end%>
+    <%if flash[:alert].present? %><%=render 'layouts/alert', :@alert=>flash[:alert]%><%end%>
+    <%if flash[:success].present? %><%=render 'layouts/success', :@success=>flash[:success]%><%end%>
     <div class="popup-success"></div>
     <div class="bodyCont">      
       <%if user_signed_in? && !request.url.include?("admin")%>

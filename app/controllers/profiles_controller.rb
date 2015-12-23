@@ -26,18 +26,24 @@ class ProfilesController < ApplicationController
   end
 
   def update_education_history
-    @user = current_user
-    @education_histories = EducationHistory.find(params[:id])
-    @education_histories.update(education_params)
-     @success = "Education History updated successfully." 
+      @user = current_user
+      @education_histories = EducationHistory.find(params[:id])
+       if @education_histories.update(education_params)
+         flash[:success] = "Education History updated successfully."
+      else
+        flash[:alert] = "Start year cannot be greater then end year." 
+      end 
     render 'education_history'
   end
 
   def update_employment_detail
     @user = current_user
     @employment_detail = EmploymentDetail.find(params[:id])
-    @employment_detail.update(employment_params)
-     @success = "Employment History updated successfully." 
+     if @employment_detail.update(employment_params)
+        flash[:success] = "Employment History updated successfully." 
+     else
+        flash[:alert] = "Start date cannot be greater then end date." 
+    end 
     render 'employment_detail'
   end
 
