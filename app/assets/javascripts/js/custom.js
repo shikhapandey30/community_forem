@@ -16,6 +16,7 @@ function show_my_comments(validate, id){
     window.location.href="/users/sign_in"
   }
 }
+
 //Followers & Followings
 $(document).on("keyup", ".searhInput1.following", function(){
   $.ajax({

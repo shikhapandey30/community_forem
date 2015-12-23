@@ -36,11 +36,13 @@
             <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
             <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
             <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <span class="redColor"><%=Time.now%></span></a>
-              <a class="btmBtn" href="#" > 15 Polls </a>
+              <a class="btmBtn" href="#"> <span class="redColor" id="remainTime_<%=contest.id%>">
+                <%=expireDate(contest.end_date)%>
+              </span></a>
+              <a class="btmBtn" href="#" > 0 Polls </a>
             </div>
-          </div>
-        <%end%>  
+          </div>          
+        <%end%>
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">
@@ -67,16 +69,4 @@
 </div>
 <script>
 $(".commentShowScroll").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});
-</script>
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    auto_refresh();
-  });
-  function auto_refresh(){
-    var randomnumber = Math.floor(Math.random() * 100);
-    $('.redColor').html();
-  }
-  var refreshId = setInterval(auto_refresh, 1000);
 </script>
