@@ -1,6 +1,6 @@
 module UsersHelper
 	def designation(post)
-		post.user.employment_details.collect(&:designation).reject(&:empty?).join(', ') rescue "N/A"
+		post.user.employment_details.current_company.try(:last).try(:designation)
 	end
 
 	def designations(user)

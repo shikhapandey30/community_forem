@@ -29,14 +29,14 @@
             <div class="editDlt  dropdown">
               <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
               <ul class="dropdown-menu">
-                <li><a href="#"> Edit </a> </li>
-                <li> <a href="#"> Delete</a> </li>
+                <li><%=link_to "Edit", edit_contest_path(contest)%></li>
+                <li><%=link_to "Delete", contest_path(contest), method: :delete, data: { confirm: 'Are you sure?' }%></li>
               </ul>
             </div>
-            <a href="#" class="block mt20 grpImg">  <img src="/assets/images/fp1.jpg" alt="" ></a>
-            <a href="#" class="block groupName width"><%=contest.headline%></a>
+            <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
+            <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
             <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <span class="redColor">Expire</span></a>
+              <a class="btmBtn" href="#"> <span class="redColor"><%=Time.now%></span></a>
               <a class="btmBtn" href="#" > 15 Polls </a>
             </div>
           </div>
@@ -67,4 +67,16 @@
 </div>
 <script>
 $(".commentShowScroll").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});
+</script>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    auto_refresh();
+  });
+  function auto_refresh(){
+    var randomnumber = Math.floor(Math.random() * 100);
+    $('.redColor').html();
+  }
+  var refreshId = setInterval(auto_refresh, 1000);
 </script>

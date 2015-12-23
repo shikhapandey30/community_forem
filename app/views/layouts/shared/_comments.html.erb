@@ -1,7 +1,7 @@
 <div class="commentSec">          
   <span class="grayColor font12"><span id="post_like_count_<%= post.id %>"  class ="post_like_count_<%= post.id %>"><%= post.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= post.id %>" class="dislike_count_<%= post.id %>"><%= post.dislikes.count %></span> Disikes &nbsp; &nbsp;
-  <span id="comments_count_<%= post.id %>"  class="cursor" onclick="$('#comments_<%= post.id%>').toggle();"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) <= 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
-  <div class="cmntSec">
+  <span id="comments_count_<%= post.id %>"  class="cursor" onclick="show_my_comments(<%=user_signed_in?%>,<%=post.id%>)"><%= post.comments.try(:count) %>&nbsp;<%= post.comments.try(:count) <= 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
+  <div class="cmntSec">  
     <%if user_signed_in?%>
       <%= render 'layouts/shared/like', model_obj: post %>
       <%= render 'layouts/shared/dislike', model_obj: post %>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="commentShow" id="comments_<%= post.id %>" style="display:none;">
-  <%if !post.comments.try(:count).zero?%>
+  <%if !post.comments.try(:count).zero? && user_signed_in?%>
     <div  class="clearfix commentSec cmntRow">
       <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
       <div class="clearfix userInfo posRel">
