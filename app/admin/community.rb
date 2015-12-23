@@ -12,7 +12,7 @@ menu false
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :topic, :headline, :slogan, :description, :user_id, upload_attributes: [ :image ]
+  permit_params :topic, :headline, :slogan, :description, :user_id, upload_attributes: [ :id, :image ]
   index do
     selectable_column
     id_column

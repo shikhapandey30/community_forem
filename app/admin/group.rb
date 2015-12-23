@@ -12,7 +12,7 @@ ActiveAdmin.register Group do
 #   permitted << :other if resource.something?
 #   permitted
 # end
- permit_params :category_id, :headline, :description, :topic, :user_id, upload_attributes: [ :image, :video, :site_link, :file ]
+ permit_params :category_id, :headline, :description, :topic, :user_id, upload_attributes: [ :id, :image, :video, :site_link, :file ]
  index do
     selectable_column
     id_column
