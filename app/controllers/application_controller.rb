@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
     #   return false
     # else
     #   request.user_agent =~ /Mobile|webOS/
+   else
+    return true
     end
     # if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// && request.remote_ip == "125.63.73.83"
      #return true
