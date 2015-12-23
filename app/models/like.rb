@@ -17,12 +17,12 @@ class Like < ActiveRecord::Base
 
     if like.id.present? 
    	  like.destroy
-   	   return nil, @model
+   	   return nil, nil, @model
    	else
    	  like.save 
        dis = Dislike.where(:dislikable=>@model,:user_id=>current_user.id)
        dis.destroy_all
-   	  return like, @model
+   	  return like,dis, @model
     end
 	end
 end
