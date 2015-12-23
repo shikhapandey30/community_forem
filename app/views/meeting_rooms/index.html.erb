@@ -26,7 +26,7 @@
       <div class="clearfix grpOuter">
         <% @meeting_rooms.each do |room|%>
           <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <%if room.user == current_user%>
+            <%if current_user && room.user == current_user%>
               <div class="editDlt  dropdown">
                 <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
                 <ul class="dropdown-menu">
