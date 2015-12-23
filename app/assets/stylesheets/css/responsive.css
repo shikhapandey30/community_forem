@@ -12,6 +12,10 @@
 .whiteHeader .searhInput {width: 340px;}
 .whiteHeader .topSearchRight {float: right; margin-right:5px; }
 .topRight {margin: 20px 10px 0px 0px;}
+.msgLIstingOuter {width: 270px;}
+.msgBoxRight {width: 500px;}
+.msgReplyBox .settingDropDown.open > a:after {    right: -4px;}
+
 }
 @media only screen and (max-width : 992px) {
 .searhInput {width: 400px;}
@@ -32,6 +36,12 @@
 .footerLink a {padding: 10px 4px;}
 header .searhInput {max-width: 211px;}
 .searchDropDown {    position: fixed; right: 40px;left: 40px;top: 54px;}
+.msgLIstingOuter {width: 90%;margin: auto;float: none;border: 1px solid #D8D6D6;}
+.msgOuter .whiteBox {padding: 0px;height: auto;margin-top: 0px;padding-top: 20px;}
+.msgLIstingOuter .scrollbars {height: 285px;}
+.msgBoxRight {width: 90%;margin:20px  auto;float: none;}
+.stepNumber {    margin-top: -93px;}
+
 }
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) {
@@ -87,7 +97,7 @@ header .searhInput {max-width: 211px;}
 .formOuterPost  .pl10 {padding-left:15px;}
 .dateOuter{clear:both;}
 .blueBkg span {width: 50px;height: 50px;margin-right: 10px;line-height: 30px;border: 2px solid #0BB4D3;padding: 5px; margin-left:5px;}
-.blueBkg {font-size: 14px;}
+.blueBkg {font-size: 13px;}
 .back {font-size: 12px;padding: 7px 12px;margin: 9px 5px 0 0;}
 .mainCOntnt {margin-top: 0px; position:static}
 .leftNAv {top: 0px; }
@@ -111,7 +121,7 @@ header{position:static !important;}
 .grayHD {font-size: 18px;}
 .blackHD {font-size: 16px;}
 .grayHD  .blueBtn.fr.addBtn{overflow: hidden;height: 30px;width: 40px;  background-position: center center; margin:-2px -3px 0 0 }
-.whiteBox .formOuterPost {padding: 20px 0px;}
+.whiteBox .formOuterPost {clear:both;}
 .ProfileTHumb {margin: -30px -10px 20px;}
 .myWall .userTHumb {margin-left:20px; float:none;}
 .myWall .back {margin:20px auto; float:none; width:180px;}
@@ -137,7 +147,15 @@ header{position:static !important;}
 .payment .userInfo .grayColor {float: right;width: 202px;text-align: right;}
 .mt23Final{float: left;width: 70%;margin-top: 6px !important;}
  _::-moz-svg-foreign-content, :root  .selctFormBox {background:url("../images/arrowDown.png") no-repeat 98% center;}
+.msgOuter .userInfo .grayColor {float: right;}
+.msgBoxRight {width: 100%; margin:auto}
+.msgLIstingOuter {width: 100%;}
+.meetingRoomTOp {padding:0 5px}
+.underLine {margin-right: 8px;}
+.footerLink {position:static;}
+.comntONcmnt .userInfo .grayColor {margin-top:0px;}
 }
+
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (max-width : 479px) {
@@ -149,15 +167,22 @@ header{position:static !important;}
 .connectionRow .userInfo .grayColor {float: none;margin: 10px 0 0 0 ;}
 .connectionRow .userInfo .grayColor a{display:inline-block; margin:0px 2px;}
 .connectionRow .font13.mt5 {margin-top: 20px;}
-.meetingRoomTOp .fr.font12{float:none; clear:both; } 
+.meetingRoomTOp .fr.font12{float:none; clear:both; }  
 .meetingRoomTOp .mtngTitle {max-width: 70%;}
 .meetingRoomTOp .fr.font12 br{display:none ;}
 .frNone{float:none; display:block;}
 .meetingRoomTOp .fr.font12 *{float:left; margin:5px; clear:none;}
 .payment .userInfo .grayColor {float: right;width: 100%;text-align: left;}
 .grpOuter .col-sm-6{width:90%; margin:3% 5%;}
-.blueBkg .back{font-size: 10px !important; padding: 7px 3px;}
-.blueBkg span {margin-right: 0px; }
+.blueBkg .back {font-size: 10px !important;padding: 2px 5px;}
+.blueBkg .back  img{margin:0px !important;}
+.blueBkg span img{max-height:100%;}
+.blueBkg span {margin-right: 0px;}
+.meetingRoomTOp span { margin-right:5px;}
+.hotTopics a span, .hotTopics a:hover span {    line-height: 370px;}
+.backBtn {right: 10px;}
+.revealIdentity {right:auto;  left:7px; top:7px;}
+
 }
 
 
