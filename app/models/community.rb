@@ -10,4 +10,12 @@ class Community < ActiveRecord::Base
       all
     end
   end
+  def img
+    if self.upload.try(:image).present?
+      self.upload.try(:image)
+    else
+      'images/cmn1.jpg'
+    end
+  end
+  
 end

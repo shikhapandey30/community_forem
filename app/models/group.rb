@@ -12,6 +12,14 @@ class Group < ActiveRecord::Base
     else
       all
     end
-  end    
+  end
+
+  def img
+    if self.upload.try(:image).present?
+      self.upload.try(:image)
+    else
+      'images/gr4.jpg'
+    end
+  end  
 
 end

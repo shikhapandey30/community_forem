@@ -4,7 +4,8 @@ class CommunitiesController < ApplicationController
   # GET /communities
   # GET /communities.json
   def index
-    @communities = current_user.communities
+    # @communities = current_user.communities
+    @communities = Community.all.order("updated_at desc")
     @friends = current_user.my_friends
     @friends = @friends.present? ? @friends : []
     # @suggested_communities = 
