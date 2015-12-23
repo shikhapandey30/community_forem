@@ -39,7 +39,7 @@
               <span class="downVote vote" data-toggle="tooltip" title="Againest"></span>  0  &nbsp;
               <span class="fr blueColor frNone"><%=expireDate(@contest.end_date) %></span>
             </div>
-            <img src="/assets/images/banner1.jpg" alt="" class="fullWdth mtb10">
+            <%= image_tag @contest.img, class: "fullWdth mtb10" %>
             <div class="uniOuter">
               <div class=" blackColor ">
                 <%= @contest.description %>
