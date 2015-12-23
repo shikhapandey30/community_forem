@@ -12,13 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
    # Mobile Devices and Format
-  def mobile_device?
-    if session[:mobile_param] == '1'
-      return true
-    elsif request.user_agent =~ /iPad/
+  def mobile_device?    
+    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPad|iPod|BlackBerry|Android)/]
       return false
-    else
-      request.user_agent =~ /Mobile|webOS/
+    # elsif request.user_agent =~ /tab/
+    #   return false
+    # else
+    #   request.user_agent =~ /Mobile|webOS/
     end
     # if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// && request.remote_ip == "125.63.73.83"
      #return true
