@@ -17,6 +17,15 @@ class HomeController < ApplicationController
   end
 
   def help_center
+    @contact = Contact.new
+  end
+
+  def contact_help
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      UserMailer.help_request(@contact.id).deliver_later
+    end
+
   end
 
   def how_it_work
@@ -26,5 +35,10 @@ class HomeController < ApplicationController
   end
 
   def privacy_policy
+  end
+  
+  private
+  def contact_params
+    params.require(:contact).permit!
   end
 end

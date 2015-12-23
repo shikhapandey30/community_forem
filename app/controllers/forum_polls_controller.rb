@@ -2,7 +2,7 @@ class ForumPollsController < ApplicationController
   before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
   
   def index
-    @forum_polls = ForumPoll.all
+    @forum_polls = ForumPoll.all.order("updated_at desc")
   end
   
  
