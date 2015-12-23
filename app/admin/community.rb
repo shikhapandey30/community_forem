@@ -12,19 +12,28 @@ menu false
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :topic, :headline, :slogan, :description, :user_id, upload_attributes: [ :image ]
+  permit_params :topic, :headline, :slogan, :description, :user_id, upload_attributes: [ :id, :image, :video, :site_link, :file ]
   index do
     selectable_column
     id_column
     column :topic
     column :headline
     column :slogan
-    column "Image" do |community|
-    	image_tag(community.upload.try(:image_url), :style=>"width: 60px")
-    end
-    column :description
     column "User" do |community|
     	community.user.try(:first_name)
+    end
+    column :description
+    column "Image" do |community|
+      image_tag(community.upload.try(:image_url), :style=>"width: 60px")
+    end
+    column "Video" do |community|
+      community.upload.try(:video)
+    end
+    column "Site Link" do |community|
+      community.upload.try(:site_link)
+    end
+    column "File" do |community|
+      community.upload.try(:file)
     end
     actions
   end
@@ -38,6 +47,9 @@ menu false
       f.inputs "Upload" do
         f.has_many :upload do |u|
           u.input :image
+          u.input :video
+          u.input :site_link
+          u.input :file
         end
       end
       f.input :description

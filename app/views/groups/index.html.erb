@@ -26,13 +26,15 @@
       <div class="clearfix grpOuter">
         <%@groups.each do |group|%>
           <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <div class="editDlt  dropdown">
-              <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-              <ul class="dropdown-menu">
-                <li><%=link_to "Edit", edit_group_path(group)%></li>
-                <li><%=link_to "Delete", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-              </ul>
-            </div>
+            <% if current_user && current_user == group.user %>
+              <div class="editDlt  dropdown">
+                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
+                <ul class="dropdown-menu">
+                  <li><%=link_to "Edit", edit_group_path(group)%></li>
+                  <li><%=link_to "Delete", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }%></li>
+                </ul>
+              </div>
+            <% end %>
             <a href="<%=group_path(group)%>" class="block mt20"> <%=image_tag group.img%></a>
             <a href="<%=group_path(group)%>" class="block groupName width">Designer Talk:<br>
             Graphic, Web, Digital Design
