@@ -7,7 +7,7 @@
       <title>:: TGS ::</title>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-      <% if !((request.user_agent =~ /Mobile|webOS/) || (request.user_agent =~ /iPad/)) %>
+      <% if !(request.user_agent =~ /Mobile|webOS/) || !(request.user_agent =~ /iPad/) %>
           <script src="../assets/js/jquery.nicescroll.min"></script>
       <% end %>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
