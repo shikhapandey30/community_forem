@@ -39,17 +39,17 @@
             <div class="selctFormBox">
               <%= f.hidden_field :category_id, :value=>select_type(f, "category_id", "Category"), class: " selectInputField" %>
               <%= f.text_field "category_id", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, class: "select validate[required]")  %>
+              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]",class: "select")  %>
             </div>
             <div id="category_name_error"></div>
           </div>
           <div class="col-sm-6 pl10">
             <label>Type Topic</label>
-            <%= f.text_field :topic, class: "inputTextW small validate[required,maxSize[360]]", placeholder: "Topic" %>
+            <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Topic" %>
           </div>
           <div class="col-sm-12">
             <label class="font20">Write Your Headline</label>
-            <%= f.text_field :headline, class: "inputTextW small validate[required,maxSize[360]]", placeholder: "Write headline here...." %>
+            <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here...." %>
           </div>
           <div class="col-sm-12">
             <label class="">Write Something</label>
@@ -67,10 +67,10 @@
           </div>
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
           <div class="col-sm-6  pr10  dateOuter">
-            <label>From</label>   <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date start_date validate[required]" %>
+            <label>From</label>   <%= f.text_field :start_date, placeholder: "DD-MM-YYYY", "data-validation-engine"=>"validate[required]", class: "inputTextW small date start_date" %>
           </div>
           <div class="col-sm-6  pl10 dateOuter">
-            <label>To</label><%= f.text_field :end_date, placeholder: "DD-MM-YYYY", class: "inputTextW small date end_date validate[required]" %>
+            <label>To</label><%= f.text_field :end_date, placeholder: "DD-MM-YYYY", "data-validation-engine"=>"validate[required]", class: "inputTextW small date end_date" %>
           </div>
           <div class="clearfix"></div>
           <div class="col-sm-12 mt10">
