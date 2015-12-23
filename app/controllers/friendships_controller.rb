@@ -37,7 +37,7 @@ class FriendshipsController < ApplicationController
       
     respond_to do |format|
       if @friendship.save
-           Notification.create(recepient: @friendship.friend, user: current_user, body: "#{current_user.screen_name } has request to connect ", notificable: @friendship, :accept => false)
+        Notification.create(recepient: @friendship.friend, user: current_user, body: "#{current_user.screen_name } has request to connect ", notificable: @friendship, :accept => false)
 
         format.html { redirect_to '/', notice: 'Invitation has been sent successfully' }
         # format.json { render :show, status: :created, location: @friendship }
