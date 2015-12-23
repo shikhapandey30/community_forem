@@ -95,7 +95,11 @@ Rails.application.routes.draw do
     end
   end
   resources :organisations
-  resources :communities
+  resources :communities do
+  	member do
+  	  get :join
+  	end
+  end
   devise_for :users, controllers: { registrations: "registrations" }
   
   # The priority is based upon order of creation: first created -> highest priority.
