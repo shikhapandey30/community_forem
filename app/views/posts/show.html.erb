@@ -31,7 +31,7 @@
                 <%end%>
               <%if current_user != @post.user %>
                 <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.user.id %>">
-                  <%= render :partial=> "users/follow_link", :locals => {:post => @post} %>
+                  <%= render :partial=> "users/follow_link", :locals => {:object => @post} %>
                 </span>
               <% end %>
               </div>

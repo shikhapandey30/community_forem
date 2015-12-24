@@ -17,7 +17,7 @@
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
         </div>      
       <div class="notiScroll scrollbars"> 
-        <% notifications.each do |notification|%>
+        <% notifications.try(:reverse).each do |notification|%>
           <li class="notification-<%= notification.id %>">
             <div class="clearfix commentSec cmntRow">
               <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
@@ -48,7 +48,7 @@
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if messages.count > 0 %> </div>
       
       <div class="notiScroll scrollbars">
-        <% messages.each do |notification|%>
+        <% messages.try(:reverse).each do |notification|%>
         <li>
           <div class="clearfix commentSec cmntRow">
             <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
@@ -73,7 +73,7 @@
              <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
           
           <div class="notiScroll scrollbars">
-            <% friend_requests.each do |notification|%>
+            <% friend_requests.try(:reverse).each do |notification|%>
             <li class="notification-<%= notification.id %>" >
               <div class="clearfix commentSec cmntRow">
                 <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
