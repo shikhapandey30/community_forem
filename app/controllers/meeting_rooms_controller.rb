@@ -1,5 +1,5 @@
 class MeetingRoomsController < ApplicationController
-  before_action :set_meeting_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting_room, only: [:show, :edit, :update, :destroy, :leave]
 
   # GET /meeting_rooms
   # GET /meeting_rooms.json
@@ -83,6 +83,13 @@ class MeetingRoomsController < ApplicationController
       format.html { redirect_to meeting_rooms_url, notice: 'Meeting room is successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def leave  
+    members = @meeting_room.members.where(:user_id=> current_user.id)
+    members.delete_all
+    flash[:notice] = 'Group is successfully Leaved.'
+    redirect_to '/dashboard'
   end
 
   private

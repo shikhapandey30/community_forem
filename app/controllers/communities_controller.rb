@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :set_community, only: [:show, :edit, :update, :destroy, :join]
+  before_action :set_community, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # GET /communities
   # GET /communities.json
@@ -102,6 +102,13 @@ class CommunitiesController < ApplicationController
   def filter    
     @suggested_communities = Community.where(id: new_suggested_communities).by_topic(params[:topic])
     @suggest = false
+  end
+
+   def leave  
+    members = @community.members.where(:user_id=> current_user.id)
+    members.delete_all
+    flash[:notice] = 'Group is successfully Leaved.'
+    redirect_to '/dashboard'
   end
 
   private

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :groups do
     resources :posts
   end  
+  post "/groups/:id/leave", :to => 'groups#leave', as: 'leave_group'
+  post "/communities/:id/leave", :to => 'communities#leave', as: 'leave_community'
+  post "/meeting_rooms/:id/leave", :to => 'meeting_rooms#leave', as: 'leave_meeting_room'
+  post "/contests/:id/leave", :to => 'contests#leave', as: 'leave_contest'
 
   resources :friendships
   post '/unfriend', to: 'friendships#unfriend'

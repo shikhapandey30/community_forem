@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :leave]
 
   # GET /groups
   # GET /groups.json
@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-     @suggested_communities = new_suggested_communities.first(2)
+    @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
     @posts = @group.posts.paginate(:page => params[:page], :per_page => 15)
     @comment = Comment.new
@@ -69,6 +69,13 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_url, notice: 'Group is successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+   def leave  
+    members = @group.members.where(:user_id=> current_user.id)
+    members.delete_all
+    flash[:notice] = 'Group is successfully Leaved.'
+    redirect_to '/dashboard'
   end
 
   private
