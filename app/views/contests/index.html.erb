@@ -38,7 +38,7 @@
             <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
             <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
             <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <span class="redColor" id="remainTime_<%=contest.id%>">
+              <a class="btmBtn" href="#"> <span class="<%=expireDate(contest.end_date)=="Expired" ? 'redColor' : 'blackColor'%>" id="remainTime_<%=contest.id%>">
                 <%=expireDate(contest.end_date)%>
               </span></a>
               <a class="btmBtn" href="#" > 0 Polls </a>

@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   def show
      @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
-    @posts = Post.all.paginate(:page => params[:page], :per_page => 15)
+    @posts = @group.posts.paginate(:page => params[:page], :per_page => 15)
     @comment = Comment.new
     @post = Post.new
     @post.build_upload
