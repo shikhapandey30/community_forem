@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :contests do
     resources :posts
+    resources :comments, only: [:create]
   end 
   resources :meeting_rooms do
     resources :likes, only: [:create]
     resources :dislikes, only: [:create]
+    resources :comments, only: [:create]
      resources :posts
   end
   resources :groups do
