@@ -14,6 +14,8 @@ class GroupsController < ApplicationController
     @suggested_connections = new_suggested_connections.first(2)
     @posts = Post.all.paginate(:page => params[:page], :per_page => 15)
     @comment = Comment.new
+    @post = Post.new
+    @post.build_upload
   end
 
   # GET /groups/new

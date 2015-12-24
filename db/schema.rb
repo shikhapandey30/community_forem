@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223104700) do
+ActiveRecord::Schema.define(version: 20151224103252) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -383,6 +383,8 @@ ActiveRecord::Schema.define(version: 20151223104700) do
     t.string   "topic",           limit: 255
     t.date     "start_date"
     t.boolean  "visibility",                    default: true
+    t.integer  "postable_id",     limit: 4
+    t.string   "postable_type",   limit: 255
   end
 
   create_table "profiles", force: :cascade do |t|

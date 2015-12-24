@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 	# validates_presence_of :description
 	belongs_to :user
 	 # has_one :topic
+  belongs_to :postable, :polymorphic => true
 	has_many :likes, :as => :likable, dependent: :destroy
   has_many :dislikes, :as => :dislikable, dependent: :destroy
 	has_many :comments,:dependent => :destroy, :as => :commentable
