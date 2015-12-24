@@ -16,7 +16,22 @@ class ApplicationController < ActionController::Base
     @join_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
     return (@communities.to_a - @join_communities)
   end
-
+   # Mobile Devices and Format
+  def mobile_device?    
+    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPad|iPod|BlackBerry|Android)/]
+      return false
+    # elsif request.user_agent =~ /tab/
+    #   return false
+    # else
+    #   request.user_agent =~ /Mobile|webOS/
+   else
+    return true
+    end
+    # if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// && request.remote_ip == "125.63.73.83"
+     #return true
+    # end
+  end
+helper_method :mobile_device?
   # def keyword_filter(name,keyword)    
   #   @peoples = User.search(params[:name])
   #   @groups = Group.search(params[:name]).collect(&:members).compact.flatten
