@@ -1,2 +1,7 @@
 $("#joinCommunity_<%=params[:id]%>").text("Joined");
 $("#community_<%=params[:id]%>").fadeOut(2000);
+setTimeout(
+  function() 
+  {
+	$(".grpOuter.suggest_communities").html("<%= j render('users/shared/suggested_communities', suggest: @suggest)%>");
+  }, 2000);

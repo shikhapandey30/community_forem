@@ -1,0 +1,20 @@
+<%if @suggested_communities.present?%>
+  <%if suggest%>
+    <div class="suggestedRow">
+      <div class="clearfix conversationTop">
+        <span class="bold grayColor"> <span class="font13 blackColor">Suggested Communities</span></span>
+        <div class="fr"> <a href="/suggested_communities" class="grayColor">See More Communities <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
+      </div>
+    </div>
+  <%end%>
+  <%@suggested_communities.each_with_index do |community, index|%>
+    <div class="whiteBox borderTop  col-sm-6 pb0 fl" id="community_<%=community.id%>">
+      <a href="<%=community_path(community)%>" class="block mt20 grpImg"><%=image_tag community.img%></a>
+      <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
+      <div class="virwJoinBtn">
+        <a class="btmBtn" href="#"> 0 Updates</a>
+        <%=link_to "Join", join_community_path(community), class: "btmBtn", id: "joinCommunity_#{community.id}", remote: true%>              
+      </div>
+    </div>
+  <%end%>
+<%end%>
