@@ -10,6 +10,7 @@ class ContestsController < ApplicationController
   # GET /contests/1
   # GET /contests/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /contests/new
