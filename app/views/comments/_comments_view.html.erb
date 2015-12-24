@@ -22,7 +22,7 @@
       <%if user_signed_in?%>
         <div class="font13 bold blueColor">
           <%=link_to 'Like', like_create_path(id: comment.id, type: comment.class.name.downcase), method: :post, remote: true,:class=>"", :id=> "like_image_post_liked_#{comment.id}"%> 
-          <span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"> (<%= comment.likes.count %>)</span> | <a href="javascript:void();" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" onclick='$("#reply_box_id_<%= comment.id %>).toggle(400);'> Reply</a>
+          <span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"> (<%= comment.likes.count %>)</span> | <a href="#-" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" > Reply</a>
         </div>
 
         <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">

@@ -1,14 +1,14 @@
- <div  class="clearfix commentSec cmntRow borderNOne" id="comment_form_<%= comment.id %>" >
-    <div class="clearfix userInfo posRel">
-      <a href="#" class="userImg"><%= image_tag comment.user.try(:img) %></a>
-      <div class="addcomtntTA">
-        <%= form_for(comment, remote: true) do |f| %>
-          <div class="field">
-            <%= f.text_area :body, placeholder: "Add Your Comment", class: "addCmnt inputTextW small" %>
-            <%= f.submit "Save", class: "blueBtn", id: "save_comment#{comment.id}" %>
-            <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_form_<%= comment.id %>').hide();">Cancel</a> 
-          </div>
-        <% end %> 
-      </div>
+<div  class="clearfix commentSec cmntRow borderNOne" id="comment_form_<%= comment.id %>" >
+  <div class="clearfix userInfo posRel">
+    <a href="#" class="userImg"><%= image_tag comment.user.try(:img) %></a>
+    <div class="addcomtntTA">
+      <%= form_for(comment, remote: true) do |f| %>
+        <div class="field">
+          <%= f.text_area :body, placeholder: "Add Your Comment", class: "addCmnt inputTextW small" %>
+          <%= f.submit "Save", class: "blueBtn", id: "save_comment#{comment.id}" %>
+          <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_form_<%= comment.id %>').hide();">Cancel</a> 
+        </div>
+      <% end %> 
     </div>
   </div>
+</div>
