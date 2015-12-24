@@ -92,7 +92,7 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-       params.require(:meeting_room).permit(:topic, :category_id, :headline, :name, :slogan,upload_attributes: [:id, :site_link, :video, :_destroy])
+       params.require(:meeting_room).permit(:topic, :category_id, :headline, :name, :image, :slogan,upload_attributes: [:id, :site_link, :video, :image, :_destroy])
     end
 
     def set_upload
