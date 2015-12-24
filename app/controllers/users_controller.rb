@@ -148,11 +148,6 @@ class UsersController < ApplicationController
   def suggested_groups    
     @suggested_groups = new_suggested_groups
   end
-
-
-  def group_filter
-    @suggested_connections = User.where(id: new_suggested_connections).by_name(params[:name])
-    @suggest = false
-  end
+  
 
 end
