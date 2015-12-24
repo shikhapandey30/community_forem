@@ -2,12 +2,17 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :contests
+  resources :contests do
+    resources :posts
+  end 
   resources :meeting_rooms do
     resources :likes, only: [:create]
     resources :dislikes, only: [:create]
+     resources :posts
   end
-  resources :groups
+  resources :groups do
+    resources :posts
+  end  
 
   resources :friendships
   post '/unfriend', to: 'friendships#unfriend'
@@ -96,6 +101,7 @@ Rails.application.routes.draw do
   end
   resources :organisations
   resources :communities do
+    resources :posts
     collection do
       get :filter
     end
