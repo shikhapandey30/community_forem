@@ -11,7 +11,7 @@
         </div>
         <div class="fr font12">
           <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
-          <div class="fr font14">  154 members</div>
+          <div class="fr font14">  <%= @community.members.try(:count)%> members</div>
         </div>
       </div>
     </div>

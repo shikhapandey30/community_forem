@@ -1,15 +1,15 @@
-  <%@friends.each do |firend|%>
-  <div class="clearfix whiteBox connectionRow borderTpBlue">
+  <%@friends.each do |friend|%>
+  <div class="clearfix whiteBox connectionRow borderTpBlue frined-box-<%= friend.id%>">
     <div class="clearfix  cmntRow">
       <div class="clearfix userInfo posRel">
         <div class="clearfix  "></div>
-        <a href="<%= profile_path(firend)%>" class="userImg"><img src="<%= firend.try(:img)%>" alt=""></a>
-        <a href="<%= profile_path(firend)%>" class="userNAme"> <%=firend.try(:screen_name)%></a> <br>
-        <div class="fr grayColor tar"> <%= time_ago_in_words(firend.created_at).capitalize %> ago<br>
+        <a href="<%= profile_path(friend)%>" class="userImg"><img src="<%= friend.try(:img)%>" alt=""></a>
+        <a href="<%= profile_path(friend)%>" class="userNAme"> <%=friend.try(:screen_name)%></a> <br>
+        <div class="fr grayColor tar"> <%= time_ago_in_words(friend.created_at).capitalize %> ago<br>
           <a href="#" class="mt10">Message</a> 
-          <br><%= link_to "Remove", unfriend_path(:friend_id => firend.id), :method => :post , :class=>"removeLink", :remote=>true %>
+          <br><%= link_to "Remove", unfriend_path(:friend_id => friend.id), :method => :post , :class=>"removeLink", :remote=>true %>
         </div>
-        <div class="font13 mt5"><%=designations(firend)%></div>
+        <div class="font13 mt5"><%=designations(friend)%></div>
         <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
       </div>
     </div>

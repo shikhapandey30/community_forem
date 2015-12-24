@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+  helper_method :mobile_device?  
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
@@ -18,9 +18,27 @@ class ApplicationController < ActionController::Base
   end
 
   def new_suggested_connections
-    debugger
-    current_user.friends.collect(&:my_friends).compact.flatten.uniq
+    @friend = current_user.friendships.collect(&:friend).flatten.uniq
+    @frends_of_friend = current_user.friends.collect(&:my_friends).compact.flatten.uniq
+    return @frends_of_friend.to_a - @friend.to_a
   end
+
+   # Mobile Devices and Format
+  def mobile_device?    
+    if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPad|iPod|BlackBerry|Android)/]
+      return false
+    # elsif request.user_agent =~ /tab/
+    #   return false
+    # else
+    #   request.user_agent =~ /Mobile|webOS/
+   else
+    return true
+    end
+    # if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// && request.remote_ip == "125.63.73.83"
+     #return true
+    # end
+  end
+  
   # def keyword_filter(name,keyword)    
   #   @peoples = User.search(params[:name])
   #   @groups = Group.search(params[:name]).collect(&:members).compact.flatten

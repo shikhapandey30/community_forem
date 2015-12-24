@@ -13,17 +13,25 @@
         return false;
       }
     });
-    $(function () {
-      $(".new_comment").validationEngine();
+    
+    $(document).on("click",".save_comment", function( event ) {      
+      id = $(this).data("id")
+      $("#comment_form_"+id).validationEngine();
+      if ($("#comment_body_" + id).val()=="") {
+        $("#comment_body_" + id).blur();
+        return false;
+      }
     });
-    $(function () {
-      $(".new_reply").submit(function( event ) {        
-        $("#" + this.id).validationEngine();
-        if ($(this).find('input.addReply').val()=="") {
-          $(this).find('input.addReply').blur();
+    $(document).on("keyup",".submit_reply", function( e ) {
+      if (e.keyCode == 13){
+        id = $(this).data("id")
+        $("#reply_form_"+id).validationEngine();        
+        if ($("#reply_body_" + id).val()=="") {          
+          $("#reply_body_" + id).blur();
+          e.preventDefault();
           return false;
         }
-      });
+      }
     });
     function showimagepreview(input) {
       extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
