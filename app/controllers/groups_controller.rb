@@ -29,6 +29,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
     respond_to do |format|
       if @group.save
+         set_members if params[:group][:members].present?         
         format.html { redirect_to @group, notice: 'Group is successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -44,6 +45,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.update(group_params)
         set_upload
+        set_members if params[:group][:members].present? 
         format.html { redirect_to @group, notice: 'Group is successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
@@ -71,11 +73,21 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit!
+       params.require(:group).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
     end
 
     def set_upload
       @group.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @group.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+    end
+
+    def set_members
+      members_ids = params[:group][:members].reject(&:empty?)
+       @group.members.destroy_all if params[:action] == "update"
+      members_ids.each do |members_id|
+        member = Member.create(:user_id => members_id.to_i, :invitable => @group)
+        #send notification
+        Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
+      end
     end
 end

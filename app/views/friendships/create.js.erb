@@ -5,6 +5,6 @@ $(".friendship-btnlnk-<%= params[:friend_id] %>").text("Sent");
 setTimeout(
   function() 
   {
-	$(".connectionOuter.suggest_connections").html("<%= j render('users/shared/suggested_connections', suggest: @suggest)%>");
+	$(".suggest_connections").html("<%= j render('users/shared/suggested_connections', suggest: @suggest)%>");
   }, 2000);
 
