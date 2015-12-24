@@ -9,7 +9,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/meeting_rooms/new" class="back"><img src="/assets/images/accept.png" alt=""> create meeting room</a><br>
-            <div class="fr font14 underLine mt5"> <%=@meeting_rooms.size%> </div>
+            <div class="fr font14 underLine mt5"> <%=@meeting_rooms.size%> <%= @meeting_rooms.size <=1 ? "Meeting Room" : "Meeting Rooms"%> </div>
           </div>
         </div>
       </div>
@@ -18,7 +18,7 @@
       <div class=" ">
         <div class="formOuter searchFrnd width100per">
           <form method="post" action="">
-            <input placeholder="Search Groups" class="searhInput1" type="text">
+            <input placeholder="Search Meeting Rooms" class="searhInput1" type="text">
             <input value="" class="searhSub" type="submit">
           </form>
         </div>
