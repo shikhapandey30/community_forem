@@ -100,10 +100,17 @@
       </div>
     </div>
   <%end%>
-<%end%>  
-<script>
-$(window).load(function() {
-  $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
-  $("#form-id").validationEngine();
-});
-</script>
+<%end%>
+<%if !mobile_device? %>  
+  <script>
+    $(window).load(function() {
+      $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
+      $("#form-id").validationEngine();
+    });
+  </script>
+<% else %>
+  <script>
+    $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
+    $("#form-id").validationEngine();
+  </script>
+<% end %>
