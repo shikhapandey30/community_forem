@@ -24,10 +24,12 @@
                 <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at).capitalize %> ago</div>
                 <div class="font13"><%= notification.body.truncate(50) %></div>
                 <!-- <div class="blackColor font12 bold"> is now a connection</div> -->
+                <% if (notification.notificable.class.name == "Group") || (notification.notificable.class.name == "Community") || (notification.notificable.class.name == "MeetingRoom")%>
                  <div class="acceptRej">
                   <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
                      <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
                     </div>
+                    <% end %>
               </div>              
             </li>
             <% end %>       
