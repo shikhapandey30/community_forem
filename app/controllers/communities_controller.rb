@@ -97,7 +97,7 @@ class CommunitiesController < ApplicationController
     @invitable_members.map(&:user).uniq.each do |user|
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
     end
-    @suggested_communities, @suggest = suggested_communities    
+    @suggested_communities, @suggest = suggested_communities
   end
 
   def filter    

@@ -121,6 +121,8 @@ Rails.application.routes.draw do
    post '/contact_help'=>'home#contact_help'
 
    get '/dashboard'=>'users#dashboard'
+   get '/connection_filter'=>'users#connection_filter'
+   
    get '/payment'=>'users#payment'
    get '/auth/:provider/callback', to: 'users#social_login'
    get '/search'=>'users#search'

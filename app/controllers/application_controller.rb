@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     return (@communities.to_a - @join_communities)
   end
 
+  def new_suggested_connections
+    debugger
+    current_user.friends.collect(&:my_friends).compact.flatten.uniq
+  end
   # def keyword_filter(name,keyword)    
   #   @peoples = User.search(params[:name])
   #   @groups = Group.search(params[:name]).collect(&:members).compact.flatten

@@ -1,3 +1,10 @@
 $(".friendship-button-<%= params[:friend_id] %>").html('Request Sent');
 $(".friendship-btn-<%= params[:friend_id] %>").fadeOut(2000);
 $(".friendship-btnlnk-<%= params[:friend_id] %>").text("Sent");
+
+setTimeout(
+  function() 
+  {
+	$(".connectionOuter.suggest_connections").html("<%= j render('users/shared/suggested_connections', suggest: @suggest)%>");
+  }, 2000);
+

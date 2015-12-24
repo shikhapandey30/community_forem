@@ -38,7 +38,8 @@ class FriendshipsController < ApplicationController
     respond_to do |format|
       if @friendship.save
         Notification.create(recepient: @friendship.friend, user: current_user, body: "#{current_user.screen_name } has request to connect ", notificable: @friendship, :accept => false)
-        NotificationMailer.friend_request(@friendship).deliver_later        
+        NotificationMailer.friend_request(@friendship).deliver_later
+        @suggested_connections, @suggest = suggested_connections
         format.html { redirect_to '/', notice: 'Invitation has been sent successfully' }
         # format.json { render :show, status: :created, location: @friendship }
         format.js
@@ -102,5 +103,16 @@ class FriendshipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def friendship_params
       params.require(:friendship).permit(:user_id, :friend_id, :approved, :create, :destroy)
+    end
+
+    def suggested_connections
+      if request.headers["HTTP_REFERER"].include?("suggested_connections")
+        @suggested_connections = new_suggested_connections
+        @suggest =  false
+      else
+        @suggested_connections = new_suggested_connections.first(2)
+        @suggest =  true
+      end
+      return @suggested_connections, @suggest
     end
 end

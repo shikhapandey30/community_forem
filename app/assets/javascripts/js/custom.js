@@ -35,6 +35,17 @@ $(document).on("keyup", ".searhInput1.community", function(){
   }); 
 });
 
+// Suggested connections
+$(document).on("keyup", ".connectionOuter.suggest_connections", function(){
+  $.ajax({
+    method: "get",
+    url: "/connection_filter",
+    data: {topic: this.value}
+  }); 
+});
+
+
+
 $(document).on("keyup", ".searhInput1.follower", function(){
   $.ajax({
     method: "get",

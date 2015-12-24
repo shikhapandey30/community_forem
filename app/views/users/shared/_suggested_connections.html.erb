@@ -1,0 +1,9 @@
+<%@suggested_connections.each_with_index do |connection, index|%>
+  <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%> friendship-btn-<%= connection.id%>">
+    <a href="#"> <%=image_tag connection.img%>
+    <span><%=connection.try(:screen_name)%></span></a>
+    <div class="dsignation"><%=connection.employment_details.current_company.try(:last).try(:designation)%>
+    </div>
+    <%= link_to "Connect", friendships_path(:friend_id => connection.id), :class=>"whiteBtn friendship-btnlnk-#{connection.id}", :remote=>true ,:method => :post %>
+  </div>
+<%end%>
