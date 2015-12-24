@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :leave]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :leave, :join]
 
   # GET /groups
   # GET /groups.json
@@ -71,11 +71,20 @@ class GroupsController < ApplicationController
     end
   end
 
-   def leave  
+  def leave  
     members = @group.members.where(:user_id=> current_user.id)
     members.delete_all
     flash[:notice] = 'Group is successfully Leaved.'
     redirect_to '/dashboard'
+  end
+
+  def join    
+    @group.members.create(:user_id=>current_user.id)
+    @invitable_members = @group.members - @group.members.where(user_id: current_user.id)    
+    @invitable_members.map(&:user).uniq.each do |user|
+      Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@group.topic}", notificable: @group, :accept => true)
+    end    
+    @suggested_groups, @suggest = suggested_groups
   end
 
   private
@@ -102,5 +111,16 @@ class GroupsController < ApplicationController
         #send notification
         Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
       end
+    end
+
+    def suggested_groups
+      if request.headers["HTTP_REFERER"].include?("suggested_groups")
+        @suggested_groups = new_suggested_groups
+        @suggest =  false
+      else
+        @suggested_groups = new_suggested_groups.first(2)
+        @suggest =  true
+      end
+      return @suggested_groups, @suggest
     end
 end

@@ -13,14 +13,20 @@ class ApplicationController < ActionController::Base
 
   def new_suggested_communities    
     @communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
-    @join_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
-    return (@communities.to_a - @join_communities)
+    @joined_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
+    return (@communities.to_a - @joined_communities)
   end
 
   def new_suggested_connections
     @frends_of_friend = current_user.friends.collect(&:my_friends).compact.flatten.uniq
     @friend = current_user.friendships.collect(&:friend).flatten.uniq    
     return @frends_of_friend.to_a - @friend.to_a
+  end
+
+  def new_suggested_groups    
+    @groups = current_user.friends.collect(&:groups).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
+    @joined_groups = current_user.members.where(invitable_type: "Group").collect(&:invitable).uniq
+    return (@groups.to_a - @joined_groups)
   end
 
    # Mobile Devices and Format

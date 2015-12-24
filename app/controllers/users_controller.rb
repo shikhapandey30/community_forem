@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 	def dashboard
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
+    @suggested_groups = new_suggested_groups.first(2)
     # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
     # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
     # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
@@ -142,6 +143,10 @@ class UsersController < ApplicationController
 
   def suggested_connections    
     @suggested_connections = new_suggested_connections
+  end
+
+  def suggested_groups    
+    @suggested_groups = new_suggested_groups
   end
 
 end

@@ -24,7 +24,7 @@
           (<%= @contest.start_date.strftime("%m/%d") %> - <%= @contest.end_date.strftime("%m/%d") %>)
         </div>
         <div class="fr font12">
-          <a href="<%= leave_contest_path(@contest)%>" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
+          <a href="<%= leave_contest_path(@contest)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
           <div class="fr font14">  <%= @contest.members.try(:count) %> members</div>
         </div>
       </div>

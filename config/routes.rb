@@ -11,6 +11,9 @@ Rails.application.routes.draw do
      resources :posts
   end
   resources :groups do
+    member do
+      get :join
+    end
     resources :posts
   end  
   post "/groups/:id/leave", :to => 'groups#leave', as: 'leave_group'
@@ -154,6 +157,7 @@ Rails.application.routes.draw do
 
    get '/suggested_connections', to: 'users#suggested_connections', as: :suggested_connections
    get '/suggested_communities', to: 'users#suggested_communities', as: :suggested_communities
+   get '/suggested_groups', to: 'users#suggested_groups', as: :suggested_groups
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
