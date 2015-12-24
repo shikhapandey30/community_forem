@@ -27,7 +27,7 @@
 					    <div class="font13 bold blueColor mt5">
 						    <%=link_to 'Like', like_create_path(id: reply.id, type: reply.class.name.downcase), method: :post, remote: true,:class=>"", :id=> "like_image_post_liked_#{reply.id}"%> 
 
-						    <span id ="post_like_count_<%= reply.id %>" class ="post_like_count_<%= reply.id %>"> (<%= reply.likes.count %>)</span>
+						    (<span id ="post_like_count_<%= reply.id %>" class ="post_like_count_<%= reply.id %>"><%= reply.likes.count %></span>)
 					    </div>
 			        <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= reply.id %>">
 				        <%= form_for(reply, remote: true) do |f| %>
