@@ -48,8 +48,8 @@ $(document).on("keyup", ".searhInput1.connections", function(){
 $(document).on("keyup", ".searhInput1.groups", function(){
   $.ajax({
     method: "get",
-    url: "/group_filter",
-    data: {name: this.value}
+    url: "/groups/filter",
+    data: {topic: this.value}
   });
 });
 

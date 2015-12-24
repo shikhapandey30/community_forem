@@ -87,6 +87,11 @@ class GroupsController < ApplicationController
     @suggested_groups, @suggest = suggested_groups
   end
 
+  def filter    
+    @suggested_groups = Group.where(id: new_suggested_groups).by_topic(params[:topic])
+    @suggest = false
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

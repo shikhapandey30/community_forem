@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   has_many :members,:dependent => :destroy, :as => :invitable
   has_one :upload, as: :uploadable, dependent: :destroy
   accepts_nested_attributes_for :upload, :allow_destroy => true
-
+  scope :by_topic, lambda{|topic| where("lower(topic) like ?", "%#{topic}%")}
   def self.search(search)
     if search
       where('lower(topic) LIKE ?', "%#{search}%".downcase)

@@ -99,7 +99,7 @@ class CommunitiesController < ApplicationController
     @suggested_communities, @suggest = suggested_communities
   end
 
-  def filter    
+  def filter
     @suggested_communities = Community.where(id: new_suggested_communities).by_topic(params[:topic])
     @suggest = false
   end
