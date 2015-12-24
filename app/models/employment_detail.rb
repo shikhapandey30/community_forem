@@ -5,7 +5,14 @@ class EmploymentDetail < ActiveRecord::Base
 	# has_many :organisations
 	# accepts_nested_attributes_for :organisations, :allow_destroy => true
  #    validates_presence_of :organisations
+  validate :validdate_date
 
+  def validdate_date
+    if self.start_work_date.to_date > self.worked_till.to_date
+      errors.add(:model_years, "Start date cannot be greater then end date.")
+    end
+  end
+  
  def set_experience
  	min_date = self.user.employment_details.collect(&:start_work_date).min
  	max_date = self.user.employment_details.collect(&:worked_till).max

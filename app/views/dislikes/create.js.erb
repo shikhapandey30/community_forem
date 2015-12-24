@@ -1,14 +1,14 @@
 <%if @dislike.present? %>
-$("#dislike_image_post_<%= params[:id] %>").css('background-color', '#0bb4d3');
-$("#dislike_image_post_disliked_<%= params[:id] %>").css('background-color', '#0bb4d3');
+$("#dislike_image_post_<%= params[:id] %>").css('background-color', '#ddd');
+$("#dislike_image_post_disliked_<%= params[:id] %>").css('background-color', '#ddd');
 <%else%>
 $("#dislike_image_post_<%= params[:id] %>").css('background-color', '#fff');
 $("#dislike_image_post_disliked_<%=  params[:id] %>").css('background-color', '#fff');
 <% end %>
 
 <%if @like.present? %>
-$(".like_image_post_<%= params[:id].to_i %>").css('background-color', '#0bb4d3');
-$(".like_image_post_liked_<%= params[:id].to_i %>").css('background-color', '#0bb4d3');
+$(".like_image_post_<%= params[:id].to_i %>").css('background-color', '#ddd');
+$(".like_image_post_liked_<%= params[:id].to_i %>").css('background-color', '#ddd');
 <%else%>
 $(".like_image_post_<%= params[:id].to_i %>").css('background-color', '#fff');
 $(".like_image_post_liked_<%=  params[:id] %>").css('background-color', '#fff');

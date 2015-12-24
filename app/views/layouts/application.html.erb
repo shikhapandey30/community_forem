@@ -3,15 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0">
       <title>:: TGS ::</title>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <% if mobile_device? %>
+          <script src="../assets/js/jquery.nicescroll.min.js"></script>
+      <% end %>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <%if notice%><%=render 'layouts/success', :@success=>notice%><%end%>
     <%if alert%><%=render 'layouts/alert', :@alert=>alert%><%end%>
+    <%if flash[:alert].present? %><%=render 'layouts/alert', :@alert=>flash[:alert]%><%end%>
+    <%if flash[:success].present? %><%=render 'layouts/success', :@success=>flash[:success]%><%end%>
     <div class="popup-success"></div>
     <div class="bodyCont">      
       <%if user_signed_in? && !request.url.include?("admin")%>
@@ -37,17 +42,11 @@
 </html>
 <script src="/assets/posts.js"></script>
 
-
 <script type="text/javascript">
-  $(function() {
-      var tId;
-    $(".popupmsg").hide().slideDown();
-    clearTimeout(tId);
-    tId=setTimeout(function(){
+    $(window).load(function() {
+      setTimeout(function(){
       $(".popupmsg").hide();        
     }, 5000);
-        // setTimeout() function will be fired after page is loaded
-        // it will wait for 5 sec. and then will fire
-        // $("#successMessage").hide() function       
+          
     });
 </script>

@@ -3,6 +3,11 @@ class UserMailer < ApplicationMailer
  
   def help_request(contact_id)
     @user = Contact.where(id: contact_id).first
-    mail(to: "admin@example.com", subject: "#{@user.name} need assistance")
+    mail(to: "rorflexsin@gmail.com", :bcc => ["#{@user.email}","amit_pareek@seologistics.com"], subject: "#{@user.name} need assistance")
+  end
+
+  def notification(user)
+  	@user = user
+    mail(to: @user.email, subject: "TGS Notification")
   end
 end

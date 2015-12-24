@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def new_suggested_communities    
     @communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @join_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
-    return (@communities.to_a)
+    return (@communities.to_a - @join_communities)
   end
 
   # def keyword_filter(name,keyword)    

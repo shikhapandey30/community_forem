@@ -44,7 +44,9 @@ class EducationHistoriesController < ApplicationController
   def update
     # respond_to do |format|      
       # if
-      current_user.update(education_history_params)
+      current_user.update(education_params)
+      @success = "Education History updated successfully." 
+
       redirect_to :back
         # if current_user.employment_detail.present?
         #   format.html { redirect_to edit_employment_detail_path(current_user.employment_detail) , notice: 'EducationHistory is successfully updated.' }
@@ -75,8 +77,10 @@ class EducationHistoriesController < ApplicationController
     end
 
     def education_history_params
-      params.require(:user).permit!
-      # params.require(:education_history).permit(:user_id, :specialization_id,courses_attributes: [:id, :name, :_destroy,:education_history_id],institutes_attributes: [:id, :name, :_destroy,:education_history_id])
+      params.require(:education_history).permit(:user_id, :specialization_id,courses_attributes: [:id, :name, :_destroy,:education_history_id],institutes_attributes: [:id, :name, :_destroy,:education_history_id])
+    end
+     def education_params
+      params.require(:education_history).permit!
     end
 end
 

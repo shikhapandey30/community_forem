@@ -102,6 +102,8 @@
   <%end%>
 <%end%>  
 <script>
+$(window).load(function() {
   $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
   $("#form-id").validationEngine();
+});
 </script>

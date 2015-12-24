@@ -21,7 +21,7 @@
               <% end %>
 
                <% if post.upload.try(:video).present? %>
-                <iframe width="100%" src="<%= post.upload.try(:video) %>"></iframe>
+                <iframe width="100%"> src="<%= post.upload.try(:video) %>"></iframe>
               <% end %>
              
               <% if post.upload.try(:file).present? %>                
