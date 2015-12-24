@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
   def new_suggested_connections
     @frends_of_friend = current_user.friends.collect(&:my_friends).compact.flatten.uniq
     @friend = current_user.friendships.collect(&:friend).flatten.uniq    
-    return @frends_of_friend.to_a
+    return @frends_of_friend.to_a - @friend.to_a
   end
 
    # Mobile Devices and Format
-  def mobile_device?    
+  def mobile_device?
     if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(iPhone|iPad|iPod|BlackBerry|Android)/]
       return false
     # elsif request.user_agent =~ /tab/
