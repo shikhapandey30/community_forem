@@ -33,7 +33,6 @@ module ApplicationHelper
     (Time.now>expire_date) ? 'Expired' : distance_of_time_in_words( Time.now,expire_date ) + " rem."
   end
 
-
   # def flash(level)
   #       case level
   #       when 'notice' then "alert alert-info"

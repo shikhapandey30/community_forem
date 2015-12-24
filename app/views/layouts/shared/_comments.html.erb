@@ -28,12 +28,12 @@
       <div class="clearfix userInfo posRel">
         <a href="<%= profile_path(post.user) %>" class="userImg"><img src="<%= post.user.img %>" alt=""></a>
         <div class="addcomtntTA">
-          <%= form_for(@comment, remote: true) do |f| %>
+          <%= form_for(@comment, remote: true, html: {id: "comment_form_#{post.id}"}) do |f| %>
             <div class="field">
               <%= f.text_area :body, placeholder: "Add Your Comment", id: "comment_body_#{post.id}", "data-validation-engine"=>"validate[required]", class: "addCmnt inputTextW small" %>
               <%= hidden_field_tag :from, "post_index" %>
               <%= hidden_field_tag :post_id, post.id %>
-              <%= f.submit "Save", class: "blueBtn", id: "save_comment#{post.id}" %>
+              <%= f.submit "Save", class: "blueBtn save_comment", "data-id" => post.id, id: "save_comment#{post.id}" %>
               <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_box_<%= post.id %>').hide();">Cancel</a> 
             </div>
           <% end %> 
