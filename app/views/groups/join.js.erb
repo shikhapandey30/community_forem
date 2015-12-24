@@ -1,0 +1,7 @@
+$("#joinGroup_<%=params[:id]%>").text("Joined");
+$("#group_<%=params[:id]%>").fadeOut(2000);
+setTimeout(
+  function() 
+  {
+	$(".grpOuter.suggest_groups").html("<%= j render('users/shared/suggested_groups', suggest: @suggest)%>");
+  }, 2000);

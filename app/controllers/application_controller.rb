@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   def new_suggested_groups    
     @groups = current_user.friends.collect(&:groups).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_groups = current_user.members.where(invitable_type: "Group").collect(&:invitable).uniq
-    return (@groups.to_a - @joined_groups)
+    return (@groups.to_a )
   end
 
    # Mobile Devices and Format

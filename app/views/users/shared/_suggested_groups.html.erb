@@ -1,0 +1,20 @@
+<%if @suggested_groups.present?%>
+  <%if suggest%>
+    <div class="suggestedRow">
+      <div class="clearfix conversationTop">
+        <span class="bold grayColor"> <span class="font13 blackColor">Suggested Groups</span></span>
+        <div class="fr"> <a href="/suggested_groups" class="grayColor">See More Groups <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
+      </div>
+    </div>
+  <%end%>
+  <%@suggested_groups.each_with_index do |group, index|%>
+    <div class="whiteBox borderTop col-sm-6 pb0 fl" id="group_<%=group.id%>">
+      <a href="<%=group_path(group)%>" class="block mt20 grpImg"><%=image_tag group.img%></a>
+      <a href="<%=group_path(group)%>" class="block groupName width"><%=group.topic%></a>
+      <div class="virwJoinBtn">
+        <a class="btmBtn" href="#"> 0 Updates</a>
+        <%=link_to "Join", join_group_path(group), class: "btmBtn", id: "joinGroup_#{group.id}", remote: true%>              
+      </div>
+    </div>
+  <%end%>
+<%end%>
