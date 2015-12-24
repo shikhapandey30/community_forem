@@ -10,7 +10,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/communities/new" class="back"><img src="/assets/images/accept.png" alt=""> create Community</a><br>
-            <div class="fr font14 underLine mt5"> <%=@communities.size%> communities</div>
+            <div class="fr font14 underLine mt5"> <%=@communities.size%> <%= @communities.size <=1 ? "Community" : "Communities"%></div>
           </div>
         </div>
       </div>
