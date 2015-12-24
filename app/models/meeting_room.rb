@@ -7,6 +7,8 @@ class MeetingRoom < ActiveRecord::Base
 	has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
 	accepts_nested_attributes_for :upload, :allow_destroy => true
+	has_many :members,:dependent => :destroy, :as => :invitable
+
 
 	def liked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first

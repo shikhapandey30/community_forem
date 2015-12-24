@@ -29,9 +29,16 @@ class MeetingRoomsController < ApplicationController
   # POST /meeting_rooms.json
   def create
     @meeting_room = current_user.meeting_rooms.new(meeting_room_params)
-
     respond_to do |format|
       if @meeting_room.save
+        if params[:meeting_room][:members].present?
+          members_ids = params[:meeting_room][:members].reject(&:empty?)
+          members_ids.each do |members_id|
+          member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
+            #send notification
+            Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a meeting rooms #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
+          end
+        end
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully created.' }
         format.json { render :show, status: :created, location: @meeting_room }
       else
@@ -47,6 +54,17 @@ class MeetingRoomsController < ApplicationController
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
         set_upload
+
+        if params[:meeting_room][:members].present?
+          members_ids = params[:meeting_room][:members].reject(&:empty?)
+          members_ids.each do |members_id|
+            member = Member.find_or_initialize_by(:user_id => members_id.to_i, :invitable => @meeting_room)
+            member.save
+            #send notification
+           notification = Notification.find_or_initialize_by(recepient_id:  members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
+           notification.save
+          end
+        end
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
@@ -74,7 +92,7 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-      params.require(:meeting_room).permit!
+       params.require(:meeting_room).permit(:topic, :category_id, :headline, :name, :slogan,upload_attributes: [:id, :site_link, :video, :_destroy])
     end
 
     def set_upload
