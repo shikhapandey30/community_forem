@@ -26,11 +26,11 @@
         </div>
 
         <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
-          <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id), html: {id: "reply_form_id_#{comment.id}"}) do |f| %>
-          <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-          <div class="field">
-            <%= f.text_field :body, placeholder: "Add Your Comment", "data-validation-engine"=>"validate[required]", class: "addReply inputTextW small" %>
-          </div>
+          <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id), html: {id: "reply_form_#{comment.id}"}) do |f| %>
+            <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+            <div class="field">
+              <%= f.text_field :body, placeholder: "Add Your Comment", "data-validation-engine"=>"validate[required]", id: "reply_body_#{comment.id}", "data-id" => comment.id, class: "addReply inputTextW small submit_reply" %>
+            </div>
           <% end %>
         </div>
         <div id="comment_form_box_<%= comment.id %>" style ="display:none !important;">
