@@ -1,5 +1,5 @@
 class ContestsController < ApplicationController
-  before_action :set_contest, only: [:show, :edit, :update, :destroy]
+  before_action :set_contest, only: [:show, :edit, :update, :destroy, :leave]
 
   # GET /contests
   # GET /contests.json
@@ -64,6 +64,12 @@ class ContestsController < ApplicationController
     end
   end
 
+  def leave  
+    members = @contest.members.where(:user_id=> current_user.id)
+    members.delete_all
+    flash[:notice] = 'Group is successfully Leaved.'
+    redirect_to '/dashboard'
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contest

@@ -9,7 +9,7 @@
           <%= @group.try(:headline) %>
         </div>
         <div class="fr font12">
-          <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
+          <a href="<%= leave_group_path(@group)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
           <div class="fr font14">  <%= @group.members.try(:count)%> Members</div>
         </div>
       </div>

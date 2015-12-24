@@ -10,7 +10,7 @@
           <div class="font14">professionals group</div>
         </div>
         <div class="fr font12">
-          <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
+          <a href="<%= leave_community_path(@community)%>" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
           <div class="fr font14">  <%= @community.members.try(:count)%> members</div>
         </div>
       </div>

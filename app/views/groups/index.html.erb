@@ -9,7 +9,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/groups/new" class="back"><img src="/assets/images/accept.png" alt=""> create group</a><br>
-            <div class="fr font14 underLine mt5"> <%=@groups.size%> Groups</div>
+            <div class="fr font14 underLine mt5"> <%=@groups.size%> <%= @groups.size <=1 ? "Group" : "Groups"%></div>
           </div>
         </div>
       </div>
