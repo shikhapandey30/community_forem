@@ -63,13 +63,12 @@ class CommunitiesController < ApplicationController
       if @community.update(community_params)
         set_upload
         if params[:community][:members].present?
+            @community.members.destroy_all
           members_ids = params[:community][:members].reject(&:empty?)
           members_ids.each do |members_id|
-            member = Member.find_or_initialize_by(:user_id => members_id.to_i, :invitable => @community)
-            member.save
+            member = Member.create(:user_id => members_id.to_i, :invitable => @community)
             #send notification
-           notification = Notification.find_or_initialize_by(recepient_id: @friendship.members_id, user: current_user, body: "#{current_user.screen_name } has has invited you to join a community #{@community.headline} ", notificable: @friendship, :accept => false)
-           notification.save
+           notification = Notification.create(recepient_id: members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
           end
         end
         format.html { redirect_to @community, notice: 'Community is successfully updated.' }

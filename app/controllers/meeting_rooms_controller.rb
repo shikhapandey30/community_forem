@@ -54,11 +54,12 @@ class MeetingRoomsController < ApplicationController
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
         set_upload
-
+      
         if params[:meeting_room][:members].present?
+           @meeting_room.members.destroy_all
           members_ids = params[:meeting_room][:members].reject(&:empty?)
           members_ids.each do |members_id|
-            member = Member.find_or_initialize_by(:user_id => members_id.to_i, :invitable => @meeting_room)
+            member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
             member.save
             #send notification
            notification = Notification.find_or_initialize_by(recepient_id:  members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
