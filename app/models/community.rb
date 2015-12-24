@@ -3,6 +3,7 @@ class Community < ActiveRecord::Base
   has_one :upload, as: :uploadable, dependent: :destroy
   accepts_nested_attributes_for :upload, :allow_destroy => true
   has_many :members,:dependent => :destroy, :as => :invitable
+  scope :by_topic, lambda{|topic| where("lower(topic) like ?", "%#{topic}%")}
   def self.search(search)
     if search
        where('lower(topic) LIKE ?', "%#{search}%".downcase)

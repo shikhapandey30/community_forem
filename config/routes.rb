@@ -96,6 +96,9 @@ Rails.application.routes.draw do
   end
   resources :organisations
   resources :communities do
+    collection do
+      get :filter
+    end
   	member do
   	  get :join
   	end

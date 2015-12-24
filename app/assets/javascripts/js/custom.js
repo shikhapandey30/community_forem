@@ -26,6 +26,15 @@ $(document).on("keyup", ".searhInput1.following", function(){
   });
 });
 
+// Suggested community
+$(document).on("keyup", ".searhInput1.community", function(){
+  $.ajax({
+    method: "get",
+    url: "/communities/filter",
+    data: {topic: this.value}
+  }); 
+});
+
 $(document).on("keyup", ".searhInput1.follower", function(){
   $.ajax({
     method: "get",

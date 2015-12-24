@@ -42,10 +42,8 @@ class UsersController < ApplicationController
   end
 
 	def dashboard
-    @communities = current_user.friends.collect(&:communities).compact.flatten.uniq
-    @join_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
-    @suggested_communities = @communities.to_a - @join_communities.to_a
-    @suggested_connections = current_user.friends.collect(&:my_friends).compact.flatten.uniq
+    @suggested_communities = new_suggested_communities.first(2)
+    @suggested_connections = (current_user.friends.collect(&:my_friends).compact.flatten.uniq).first(2)
     # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
     # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
     # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
@@ -134,6 +132,7 @@ class UsersController < ApplicationController
   end
 
   def suggested_communities
+    @suggested_communities = new_suggested_communities
   end
 
   def suggested_connections

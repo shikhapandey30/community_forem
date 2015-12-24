@@ -82,7 +82,7 @@
         <div class="clearfix conversationTop borderBtm">
           <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
           <div class="fr">
-            <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
+            <a href="/suggested_connections" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
           </div>
         </div>
         <div class="connectionOuter ">
@@ -97,27 +97,9 @@
           <%end%>
         </div>
       </div>
-      <%if @suggested_communities.present?%>
-        <div class="clearfix whiteBox borderTop  mb10 pb0">
-          <div class="clearfix conversationTop borderBtm">
-            <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
-            <div class="fr">
-              <a href="#" class="grayColor">See More Community <img src="/assets/images/rightArrow.jpg" alt=""></a>
-            </div>
-          </div>
-          <div class="connectionOuter ">        
-            <%@suggested_communities.each_with_index do |community, index|%>          
-              <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%>" id="community_<%=community.id%>">
-                <a href="#"> <%=image_tag community.img%>
-                <span><%=community.headline%></span></a>
-                <div class="dsignation"><%=community.description%>
-                </div>
-                <%=link_to "Join", join_community_path(community), class: "whiteBtn", id: "joinCommunity_#{community.id}", remote: true%>
-              </div>
-            <%end%>
-          </div>
-        </div>
-      <%end%>  
+      <div class="clearfix grpOuter suggest_communities">
+        <%=render 'users/shared/suggested_communities', suggest: true%>
+      </div>
       <div class="clearfix whiteBox borderTop  mb10 pb0">
         <div class="clearfix conversationTop borderBtm">
           In the conversation on Game of Thrones

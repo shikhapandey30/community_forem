@@ -97,6 +97,12 @@ class CommunitiesController < ApplicationController
     @invitable_members.map(&:user).uniq.each do |user|
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
     end
+    @suggested_communities, @suggest = suggested_communities    
+  end
+
+  def filter    
+    @suggested_communities = Community.where(id: new_suggested_communities).by_topic(params[:topic])
+    @suggest = false
   end
 
   private
@@ -108,6 +114,17 @@ class CommunitiesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def community_params
       params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
+    end
+
+    def suggested_communities
+      if request.headers["HTTP_REFERER"].include?("suggested_communities")
+        @suggested_communities = new_suggested_communities
+        @suggest =  false
+      else
+        @suggested_communities = new_suggested_communities.first(2)
+        @suggest =  true
+      end
+      return @suggested_communities, @suggest
     end
 
     def set_upload
