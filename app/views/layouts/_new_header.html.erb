@@ -17,13 +17,19 @@
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
         </div>      
       <div class="notiScroll scrollbars"> 
-        <% notifications.each do |notification|%>
+        <% notifications.try(:reverse).each do |notification|%>
           <li class="notification-<%= notification.id %>">
             <div class="clearfix commentSec cmntRow">
               <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
                 <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at).capitalize %> ago</div>
                 <div class="font13"><%= notification.body.truncate(50) %></div>
-                <div class="blackColor font12 bold"> is now a connection</div>
+                <!-- <div class="blackColor font12 bold"> is now a connection</div> -->
+                <% if (notification.notificable.class.name == "Group") || (notification.notificable.class.name == "Community") || (notification.notificable.class.name == "MeetingRoom")%>
+                 <div class="acceptRej">
+                  <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
+                     <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
+                    </div>
+                    <% end %>
               </div>              
             </li>
             <% end %>       
@@ -42,7 +48,7 @@
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if messages.count > 0 %> </div>
       
       <div class="notiScroll scrollbars">
-        <% messages.each do |notification|%>
+        <% messages.try(:reverse).each do |notification|%>
         <li>
           <div class="clearfix commentSec cmntRow">
             <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
@@ -67,7 +73,7 @@
              <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
           
           <div class="notiScroll scrollbars">
-            <% friend_requests.each do |notification|%>
+            <% friend_requests.try(:reverse).each do |notification|%>
             <li class="notification-<%= notification.id %>" >
               <div class="clearfix commentSec cmntRow">
                 <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
@@ -113,8 +119,8 @@
       </div>
       <div class="formOuter">
         <%#=form_tag search_path do%>
-        <%=text_field_tag "name", nil, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput header_search_input"%>
-        <span class="searhSub"></span>
+        <%=text_field_tag "name", nil,:required => true, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput header_search_input"%>
+        <input type="submit" value="" class="searhSub"></input>
         <%#end%>
       </div>
       <div class="searchDropDown">
