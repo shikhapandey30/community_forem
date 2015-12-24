@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def new_suggested_connections
-    @friend = current_user.friendships.collect(&:friend).flatten.uniq
     @frends_of_friend = current_user.friends.collect(&:my_friends).compact.flatten.uniq
-    return @frends_of_friend.to_a - @friend.to_a
+    @friend = current_user.friendships.collect(&:friend).flatten.uniq    
+    return @frends_of_friend.to_a
   end
 
    # Mobile Devices and Format
