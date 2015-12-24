@@ -1,9 +1,23 @@
-<%@suggested_connections.each_with_index do |connection, index|%>
-  <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%> friendship-btn-<%= connection.id%>">
-    <a href="#"> <%=image_tag connection.img%>
-    <span><%=connection.try(:screen_name)%></span></a>
-    <div class="dsignation"><%=connection.employment_details.current_company.try(:last).try(:designation)%>
-    </div>
-    <%= link_to "Connect", friendships_path(:friend_id => connection.id), :class=>"whiteBtn friendship-btnlnk-#{connection.id}", :remote=>true ,:method => :post %>
-  </div>
-<%end%>
+<%if @suggested_connections.present?%>
+	<div class="clearfix whiteBox borderTop mb10 pb0">
+		<%if suggest%>
+			<div class="clearfix conversationTop borderBtm">
+			  <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
+			  <div class="fr">
+			    <a href="/suggested_connections" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a>
+			  </div>
+			</div>
+	  <%end%>
+		<%@suggested_connections.each_with_index do |connection, index|%>
+			<div class="connectionOuter">
+			  <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%> friendship-btn-<%= connection.id%>">
+			    <a href="#"> <%=image_tag connection.img%>
+			    <span><%=connection.try(:screen_name)%></span></a>
+			    <div class="dsignation"><%=connection.employment_details.current_company.try(:last).try(:designation)%>
+			    </div>
+			    <%= link_to "Connect", friendships_path(:friend_id => connection.id), :class=>"whiteBtn friendship-btnlnk-#{connection.id}", :remote=>true ,:method => :post %>
+			  </div>
+			</div>  
+		<%end%>
+	</div>	
+<%end%>	

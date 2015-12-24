@@ -32,15 +32,15 @@ $(document).on("keyup", ".searhInput1.community", function(){
     method: "get",
     url: "/communities/filter",
     data: {topic: this.value}
-  }); 
+  });
 });
 
 // Suggested connections
-$(document).on("keyup", ".connectionOuter.suggest_connections", function(){
+$(document).on("keyup", ".searhInput1.connections", function(){
   $.ajax({
     method: "get",
     url: "/connection_filter",
-    data: {topic: this.value}
+    data: {name: this.value}
   }); 
 });
 

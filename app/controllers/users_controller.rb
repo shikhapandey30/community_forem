@@ -109,7 +109,8 @@ class UsersController < ApplicationController
   end
 
   def connection_filter
-    
+    @suggested_connections = User.where(id: new_suggested_connections).by_name(params[:name])
+    @suggest = false
   end
 
 	def social_login
@@ -139,7 +140,7 @@ class UsersController < ApplicationController
     @suggested_communities = new_suggested_communities
   end
 
-  def suggested_connections
+  def suggested_connections    
     @suggested_connections = new_suggested_connections
   end
 
