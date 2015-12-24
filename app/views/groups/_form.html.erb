@@ -56,7 +56,9 @@
           </div>
           <div class="col-sm-12 ">
             <label class="">Invite Users / Community</label>
-            <input type="text" placeholder="" class="inputTextW small">
+            <!-- <input type="text" placeholder="" class="inputTextW small"> -->
+             <%= f.select(:members, User.all.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
+
           </div>
           <div class="col-sm-12 mt10">
             <%= f.submit "Create Group", class: "blueBtn common_submit" %>
@@ -89,3 +91,12 @@
   // });
 </script>
 
+<%if @group.id.present? %>
+  <script type="text/javascript">
+    $( "#dropdown" ).select2().select2('val',<%=  @group.members.collect(&:user_id) %>)
+  </script>
+<% else %>
+  <script type="text/javascript">
+    $( "#dropdown" ).select2();
+  </script>
+<% end %>

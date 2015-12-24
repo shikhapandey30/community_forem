@@ -9,7 +9,7 @@
         <div class="fr mt-10 ">
           <div class="fr font12">
             <a href="/groups/new" class="back"><img src="/assets/images/accept.png" alt=""> create group</a><br>
-            <div class="fr font14 underLine mt5"> <%=@groups.size%></div>
+            <div class="fr font14 underLine mt5"> <%=@groups.size%> Groups</div>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             Graphic, Web, Digital Design
             and Creative</a>
             <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> 0 Updates</a>
+              <a class="btmBtn" href="#"> <%= group.members.try(:count)%> Members</a>
               <a class="btmBtn" href="#" > 0 Discussion </a>
             </div>
           </div>
