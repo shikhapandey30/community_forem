@@ -35,10 +35,19 @@ class PostsController < ApplicationController
   # POST /Posts
   # POST /Posts.json
   def create
-    @post = current_user.posts.new(post_params)
+      @post = current_user.posts.new(post_params)
+    if params[:group_id].present?
+      @group = Group.find(params[:group_id])
+       @post.postable =  @group
+    end
+    
     respond_to do |format|
       if @post.save
-        format.html { redirect_to dashboard_path, notice: 'Post is successfully created.' }
+        if @post.postable.present?
+          format.html { redirect_to :back, notice: 'Post is successfully created.' }          
+        else
+          format.html { redirect_to dashboard_path, notice: 'Post is successfully created.' }
+        end
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }

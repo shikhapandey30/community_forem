@@ -23,8 +23,9 @@ class NotificationsController < ApplicationController
     	notificable = @notification.notificable
     	member = Member.where(:invitable_id => @notification.notificable_id , :user_id => current_user.id ).first
     	@notification.update_attributes(accept:true)
+
         if @notification.notificable.class.name =="Friendship"
-            @notification.notificable.update(:accept => true)
+            @notification.notificable.update(:accept => true)                
         end
     	member.update_attributes(accept:true) if member.present?
     end

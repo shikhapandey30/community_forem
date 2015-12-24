@@ -36,9 +36,7 @@
               </div>
             <% end %>
             <a href="<%=group_path(group)%>" class="block mt20"> <%=image_tag group.img%></a>
-            <a href="<%=group_path(group)%>" class="block groupName width">Designer Talk:<br>
-            Graphic, Web, Digital Design
-            and Creative</a>
+            <a href="<%=group_path(group)%>" class="block groupName width"><%= group.try(:topic) %></a>
             <div class="virwJoinBtn">
               <a class="btmBtn" href="#"> <%= group.members.try(:count)%> Members</a>
               <a class="btmBtn" href="#" > 0 Discussion </a>

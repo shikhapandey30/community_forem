@@ -17,7 +17,7 @@
     <div  class="clearfix commentSec cmntRow">
       <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= post.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
       <div class="clearfix userInfo posRel">
-        <div >
+        <div id="last_post_comment_<%=post.id%>">
           <%= render partial: "comments/comments_view", locals: { comments: post.comments, from: "post_index" } %>
         </div>  
       </div>

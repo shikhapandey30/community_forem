@@ -4,12 +4,18 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all.order("updated_at desc")
+    @groups =(current_user.groups + current_user.group_members).compact
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
+     @suggested_communities = new_suggested_communities.first(2)
+    @suggested_connections = new_suggested_connections.first(2)
+    @posts = Post.all.paginate(:page => params[:page], :per_page => 15)
+    @comment = Comment.new
+    @post = Post.new
+    @post.build_upload
   end
 
   # GET /groups/new
