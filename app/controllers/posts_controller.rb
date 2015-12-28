@@ -37,13 +37,12 @@ class PostsController < ApplicationController
   def create
       @post = current_user.posts.new(post_params)
     if params[:group_id].present?
-      @group = Group.find(params[:group_id])
-      @post.postable =  @group
+      @object = Group.find(params[:group_id])
     elsif params[:community_id].present?
-      @community = Community.find(params[:community_id])
-      @post.postable =  @community
+      @object = Community.find(params[:community_id])
     end
-    
+      @post.postable =  @object
+
     respond_to do |format|
       if @post.save
         if @post.postable.present?

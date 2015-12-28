@@ -1,0 +1,85 @@
+<!-- Header End -->
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>	
+  <div class="rightContent">
+    <div class="overLAy"></div>
+    <%=render 'layouts/topNav'%>
+	<div class="clearfix innerWIdth550 tac payment ">
+	  <div class="clearfix whiteBox">
+	    <div class="clearfix formOuterPost tac">
+	      <div class="blueColor bold font28">Congratulation!</div>
+	      <div class="blackColor bold font18 mt10">Your reveal identity has been accepted by the user</div>
+	    </div>
+	  </div>
+	  <% @reveal_identities.each do |reveal|%>
+	  <div class="clearfix whiteBox connectionRow borderTpBlue">
+	    <div class="clearfix cmntRow tal">
+	      <div class="clearfix userInfo posRel">
+	        <div class="clearfix  "></div>
+	        <a href="#" class="userImg"><img src=" <%= reveal.user.try(:img) %>" alt=""></a>
+	        <a href="#" class="userNAme font20 mt10"> <%= reveal.user.try(:screen_name) %></a> <br>
+	        <div class="fr grayColor tar font15 "><span  class="blackColor bold"> Pay <span class="font24">$2</span> to reveal identity</span><br>
+	          <a href="javascript:void(0)" class="mt10 paymentBtn">Proceed to Payment</a> 
+	        </div>
+	        <div class="font14 mt5"> <%= reveal.user.try(:city) %></div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="clearfix whiteBox paymentDetail">
+	    <div class="clearfix formOuterPost tal">
+	      <div class="blackHD tac">Enter Your Credit or Debit Card Information</div>
+	      <form class="mt20" action="/payment_details/express" >
+	        <div class="col-sm-6 pr10">
+	          <label>First Name <span class="redColor">*</span></label>
+	          <input type="text" name="first_name" placeholder="John" class="inputTextW small" data-validation-engine = "validate[required]" data-id = "<% reveal.id %>">
+	        </div>
+	        <div class="col-sm-6 pl10">
+	          <label>Last Name <span class="redColor">*</span></label>
+	          <input type="text" name="last_name" placeholder="Smith" class="inputTextW small">
+	        </div>
+	        <div class="col-sm-12">
+	          <label class="">Credit or Debit Card Number  <span class="redColor">*</span></label>
+	          <input type="text" name="card_no" placeholder="" class="inputTextW small">
+	        </div>
+	        <div class="col-sm-12">
+	          <label class="">Card Holder Name <span class="redColor">*</span></label>
+	          <input placeholder="" name="cardholder_name"type="text" class="inputTextW small" value="">
+	        </div>
+	        <div class="col-sm-4 pr10">
+	          <label>Expiration Date <span class="redColor">*</span></label>
+	          <div class="selctFormBox">
+	            <input value="MM" readonly="" class="selectInput" type="text">
+	            <select class="select">
+	              <option value="1">1</option>
+	               <option value="2">2</option>
+	               <option value="3">3</option>
+	            </select>
+	          </div>
+	        </div>
+	        <div class="col-sm-4 pr10">
+	          <label>&nbsp;</label>
+	          <div class="selctFormBox">
+	            <input value="YYYY" readonly="" class="selectInput" type="text">
+	            <select class="select">
+	             <option value="1890">1890</option>
+	               <option value="1891">1891</option>
+	               <option value="1892">1892</option>
+	            </select>
+	          </div>
+	        </div>
+	        <div class="col-sm-4 pl10">
+	          <label>Security Code <span class="redColor">*</span></label>
+	          <input placeholder="" type="text" class="inputTextW small ccv" value="" maxlength="10">
+	        </div>
+	        <div class="col-sm-12 mt15">
+	          <input type="submit" value="Pay Now" class="blueBtn fullWdth">
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+    <% end %>
+	</div>
+
+
+  </div>
+</div>
