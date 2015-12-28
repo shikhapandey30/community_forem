@@ -6,12 +6,18 @@ class Like < ActiveRecord::Base
      @model = Post.find(id)
     when 'comment'
     	@model = Comment.find(id)	        
-    when 'meeting_room' 
+    when 'meetingroom' 
     	@model = MeetingRoom.find(id)
     when 'reply' 
     	 @model = Reply.find(id)
     when 'topic'
     	 @model = Topic.find(id)
+    when 'contest'
+       @model = Contest.find(id)
+    when 'group'
+       @model = Group.find(id)
+    when 'community'
+       @model = Community.find(id)
     end
    like =  Like.find_or_initialize_by(:likable=>@model,:user_id=>current_user.id)
 

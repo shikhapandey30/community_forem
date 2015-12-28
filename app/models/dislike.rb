@@ -7,12 +7,18 @@ class Dislike < ActiveRecord::Base
 	     @model = Post.find(id)
 	    when 'comment'
 	    	@model = Comment.find(id)	        
-	    when 'meeting_room' 
+	    when 'meetingroom' 
 	    	@model = MeetingRoom.find(id)
 	    when 'reply' 
 	    	 @model = Reply.find(id)
 	    when 'topic'
 	    	 @model = Topic.find(id)
+	    when 'contest'
+	       @model = Contest.find(id)
+	    when 'group'
+	       @model = Group.find(id)
+	    when 'community'
+	       @model = Community.find(id)
 	    end
 	   dislike =  Dislike.find_or_initialize_by(:dislikable=>@model,:user_id=>current_user.id)
 	    if dislike.id.present? 
