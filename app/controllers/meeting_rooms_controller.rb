@@ -6,7 +6,7 @@ class MeetingRoomsController < ApplicationController
   def index
      # start change code- kandarp
     if params[:data].present?
-      @meeting_rooms = MeetingRoom.search(params[:data])
+      @meeting_rooms = (current_user.meeting_rooms.search(params[:data]) + current_user.meeting_rooms_members.search(params[:data])).compact.uniq
     else
       @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact.uniq
     end

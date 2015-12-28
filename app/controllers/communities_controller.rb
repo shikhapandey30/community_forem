@@ -7,9 +7,9 @@ class CommunitiesController < ApplicationController
     # @communities = current_user.communities
     # start change code- kandarp
     if params[:data].present?
-      @communities = Community.search(params[:data])
+      @communities = (current_user.communities.search(params[:data]) + current_user.community_members.search(params[:data])).compact.uniq
     else
-      @communities =(current_user.communities + current_user.community_members).compact
+      @communities = (current_user.communities + current_user.community_members).compact.uniq
     end
     # end change code- kandarp
     # @communities =(current_user.communities + current_user.community_members).compact
