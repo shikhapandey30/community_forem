@@ -3,8 +3,8 @@ class ForumPollsController < ApplicationController
   
   def index
     # start change code- kandarp
-    if params[:search].present?
-      @forum_polls = ForumPoll.search(params[:search])
+    if params[:data].present?
+      @forum_polls = ForumPoll.search(params[:data])
     else
       @forum_polls = ForumPoll.all.order("updated_at desc")
     end

@@ -6,8 +6,8 @@ class CommunitiesController < ApplicationController
   def index
     # @communities = current_user.communities
     # start change code- kandarp
-    if params[:search].present?
-      @communities = Community.search(params[:search])
+    if params[:data].present?
+      @communities = Community.search(params[:data])
     else
       @communities =(current_user.communities + current_user.community_members).compact
     end
