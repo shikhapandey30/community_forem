@@ -9,8 +9,8 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-     # redirect_to conversation_path(@conversation)
-     render json: { conversation_id: @conversation.id }
+
+    render json: { conversation_id: @conversation.id }
   end
 
   def show

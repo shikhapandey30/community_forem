@@ -91,7 +91,13 @@ class User < ActiveRecord::Base
   has_many :group_members, through: :members, source: :invitable, source_type: 'Group'
   has_many :meeting_rooms_members, through: :members, source: :invitable, source_type: 'MeetingRoom'
   has_many :meeting_rooms, dependent: :destroy
+
   has_many :votes, dependent: :destroy
+
+  has_many :conversations, :foreign_key => :sender_id
+  has_one :notification_setting, dependent: :destroy
+  accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
+  after_create :set_notification_setting
 
 
 
@@ -159,5 +165,9 @@ class User < ActiveRecord::Base
 
   def is_follow(model)
     Following.where(:followable=> model ,:follower_id => self.id).present?
+  end
+
+  def set_notification_setting     
+      NotificationSetting.create(:user_id => self.id, new_update: true,  friend_request: true, is_new_record: true, comments_and_like: true, friends_birthday: true) unless self.notification_setting
   end
 end

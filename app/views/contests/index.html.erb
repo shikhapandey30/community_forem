@@ -17,10 +17,16 @@
     <div class="clearfix innerWIdth550 tac  mt20">
       <div class=" ">
         <div class="formOuter searchFrnd width100per">
-          <form method="post" action="">
+          <!-- start change code- kandarp -->
+          <%= form_tag contests_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search Contest Modules", class: "searhInput1" %>
+              <%= submit_tag "", class: "searhSub" %>
+          <% end %>
+          <!-- <form method="post" action="">
             <input placeholder="Search Contest Modules" class="searhInput1" type="text">
             <input value="" class="searhSub" type="submit">
-          </form>
+          </form> -->
+        <!-- end change code- kandarp -->
         </div>
       </div>
       <div class="clearfix grpOuter">
@@ -36,7 +42,7 @@
               </div>
             <% end %>
             <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
-            <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.headline%></a>
+            <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.topic%></a>
             <div class="virwJoinBtn">
               <a class="btmBtn" href="#"> <span class="<%=expireDate(contest.end_date)=="Expired" ? 'redColor' : 'blackColor'%>" id="remainTime_<%=contest.id%>">
                 <%=expireDate(contest.end_date)%>

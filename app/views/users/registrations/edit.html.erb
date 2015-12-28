@@ -57,21 +57,27 @@
         <!-- container -->
         <div class="clearfix formOuterPost  tal">
           <div class="blackHD tal col-sm-12 font16">Notifications</div>
-          <div class="col-sm-12 mt15">
-            <label class="radioV"> <input name="visiblility" type="checkbox"> Notify me for NEW updates </label>
-          </div>
-          <div class="col-sm-12 ">
-            <label class="radioV"> <input name="visiblility" type="checkbox"> Notify me for friendship requests </label>
-          </div>
-          <div class="col-sm-12 ">
-            <label class="radioV"> <input name="visiblility" type="checkbox"> Notify me of comments and like</label>
-          </div>
-          <div class="col-sm-12 ">
-            <label class="radioV"> <input name="visiblility" type="checkbox"> Send me special notification on birthday of my friends  </label>
-          </div>
-          <div class="col-sm-12 mt15">
-            <input type="submit" value="Save" class="blueBtn">
-          </div>
+           <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <% notification_setting = resource.notification_setting.present? ? resource.notification_setting : resource.build_notification_setting %>
+              <%= f.fields_for :notification_setting ,notification_setting do |task_form| %>
+              <div class="col-sm-12 mt15">
+                <label class="radioV"> <%= task_form.check_box :new_update, :class=>"ch"%> Notify me for NEW updates </label>
+              </div>
+              <div class="col-sm-12 ">
+                <label class="radioV"><%= task_form.check_box :friend_request, :class=>"ch"%> Notify me for friendship requests </label>
+              </div>
+              <div class="col-sm-12 ">
+                <label class="radioV"> <%= task_form.check_box :comments_and_like, :class=>"ch"%> Notify me of comments and like</label>
+              </div>
+              <div class="col-sm-12 ">
+                <label class="radioV"><%= task_form.check_box :friends_birthday, :class=>"ch"%>Send me special notification on birthday of my friends  </label>
+              </div>
+              <% end %>
+            <div class="col-sm-12 mt15">
+              <input type="submit" value="Save" class="blueBtn">
+            </div>
+         <% end %>
+
         </div>
       </div>
     </div>
