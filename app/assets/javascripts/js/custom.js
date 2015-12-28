@@ -62,6 +62,56 @@ $(document).on("keyup", ".searhInput1.follower", function(){
   });
 });
 
+// Search communities
+$(document).on("keyup", ".searhInput1.communities", function(){
+  $.ajax({
+    method: "get",
+    url: "/communities",
+    dataType: "script",
+    data: {data: this.value}
+  });
+});
+
+// Search Groups
+$(document).on("keyup", ".searhInput1.group_search", function(){
+  $.ajax({
+    method: "get",
+    url: "/groups",
+    dataType: "script",
+    data: {data: this.value}
+  });
+});
+
+// Search Forum Polls
+$(document).on("keyup", ".searhInput1.forum_polls", function(){
+  $.ajax({
+    method: "get",
+    url: "/forum_polls",
+    dataType: "script",
+    data: {data: this.value}
+  });
+});
+
+// Search Contest
+$(document).on("keyup", ".searhInput1.contests", function(){
+  $.ajax({
+    method: "get",
+    url: "/contests",
+    dataType: "script",
+    data: {data: this.value}
+  });
+});
+
+// Search Meeting Rooms
+$(document).on("keyup", ".searhInput1.meeting_rooms", function(){
+  $.ajax({
+    method: "get",
+    url: "/meeting_rooms",
+    dataType: "script",
+    data: {data: this.value}
+  });
+});
+
 $(window).load(function(){
   $(".add_skill").trigger('click');
 });

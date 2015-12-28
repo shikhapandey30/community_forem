@@ -5,8 +5,8 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms.json
   def index
      # start change code- kandarp
-    if params[:search].present?
-      @meeting_rooms = MeetingRoom.search(params[:search])
+    if params[:data].present?
+      @meeting_rooms = MeetingRoom.search(params[:data])
     else
       @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact.uniq
     end

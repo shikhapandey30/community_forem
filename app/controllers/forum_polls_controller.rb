@@ -3,8 +3,8 @@ class ForumPollsController < ApplicationController
   
   def index
     # start change code- kandarp
-    if params[:search].present?
-      @forum_polls = ForumPoll.search(params[:search])
+    if params[:data].present?
+      @forum_polls = ForumPoll.search(params[:data])
     else
       @forum_polls = ForumPoll.all.order("updated_at desc")
     end
@@ -14,12 +14,13 @@ class ForumPollsController < ApplicationController
   
  
 
-  def show
-  	votes=@forum_poll.votes
-  	user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first if current_user
-  	 if user_vote
-       @user_vote_type=user_vote.vote_type
-  	 end
+  def show    
+    @users = @forum_poll.votes.collect(&:user).uniq
+  	# votes=@forum_poll.votes
+  	# user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first if current_user
+  	#  if user_vote
+   #     @user_vote_type=user_vote.vote_type
+  	#  end
   end
 
   def new
