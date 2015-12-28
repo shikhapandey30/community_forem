@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 	def social_login
 		user = Authenticate.from_omniauth(env["omniauth.auth"])
     if user
-      flash[:notice] = "Authentication successful."
+      # flash[:notice] = "Authentication successful."
      if user.confirmed_at==nil
      	user.confirmed_at=Time.now
      end
