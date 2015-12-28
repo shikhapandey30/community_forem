@@ -15,7 +15,7 @@ class ForumPollsController < ApplicationController
  
 
   def show    
-    @users = @forum_poll.votes.collect(&:user).uniq
+    @users = @forum_poll.votes.collect(&:user).uniq.sort_by {|u| u.updated_at}.reverse
   	# votes=@forum_poll.votes
   	# user_vote=votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first if current_user
   	#  if user_vote
