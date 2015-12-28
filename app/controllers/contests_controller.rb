@@ -18,7 +18,7 @@ class ContestsController < ApplicationController
   # GET /contests/1.json
   def show
     # @comment = Comment.new
-    @users = @contest.votes.collect(&:user).uniq
+    @users = @contest.votes.collect(&:user).uniq.sort_by {|u| u.updated_at}.reverse
   end
 
   # GET /contests/new
