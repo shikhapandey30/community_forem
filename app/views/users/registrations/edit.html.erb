@@ -57,7 +57,7 @@
         <!-- container -->
         <div class="clearfix formOuterPost  tal">
           <div class="blackHD tal col-sm-12 font16">Notifications</div>
-           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+           <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <% notification_setting = resource.notification_setting.present? ? resource.notification_setting : resource.build_notification_setting %>
               <%= f.fields_for :notification_setting ,notification_setting do |task_form| %>
               <div class="col-sm-12 mt15">

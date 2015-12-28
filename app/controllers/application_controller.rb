@@ -58,10 +58,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy]) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy]) }
-  end
-  def user_params
-       params.require(:user).permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy])
-    end
+  end 
 end
