@@ -2,10 +2,15 @@
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render "layouts/topNav"%>
+     <div class="revalTop" >
+          Note: To view the complete profile of the user you have to first reveal the identity of the user
+    </div>
     <div class="clearfix innerWIdth550 tac ">
       <div class="clearfix whiteBox mt30 borderBtmBlue">
         <div class="clearfix formOuterPost tal">
           <div class="ProfileTHumb">
+           <img src="../assets/images/arrowTop.png" alt="" class="arrowTop">
+            <a href="#" class="backBtn  revealIdentity" data-toggle="modal" data-target="#revIdentity">Reveal Identity </a>
             <div class="noConn">
               <div class="blueColor font16 bold"><%= @user.my_friends.count %></div>
               connections
@@ -52,6 +57,33 @@
     </div>
   </div>
 </div>  
+
+<!-- Modal -->
+<div class="modal fade" id="revIdentity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="clearfix modal-content">   
+      <a class="close" data-dismiss="modal">X close</a>  
+    
+        <div class="blackHD tac font22">please reply to below question to reveal identity</div>
+            <%= form_tag reveal_request_path(@user), :class=>"mt20",:id =>'form-id' do%>
+            <%#= hidden_field_tag "user_id", nil, value => @user.id %>
+            <div class="col-sm-12">
+              <label class="">Q1 Why do want to reveal identity ?</label>
+              <textarea class="inputTextW small validate[required]" name = "body1" placeholder=""></textarea>
+            </div>
+            
+            <div class="col-sm-12">
+              <label class="">Q2 What is your key area of interest ?</label>
+              <textarea class="inputTextW small  validate[required]"  name = "body2" placeholder=""></textarea>
+            </div>
+
+            <div class="col-sm-12">
+              <input value="Submit" class="darkBlueBtn inputSubmit" type="submit">
+            </div>
+            <% end %>      
+    </div>
+  </div>
+</div>
 <script>
   $(".hide-show").hide();
   $("#skill").click(function(event) {
