@@ -6,9 +6,9 @@ class MeetingRoomsController < ApplicationController
   def index
      # start change code- kandarp
     if params[:data].present?
-      @meeting_rooms = (current_user.meeting_rooms.search(params[:data]) + current_user.meeting_rooms_members.search(params[:data])).compact.uniq
+      @meeting_rooms = (current_user.meeting_rooms.search(params[:data]) + current_user.meeting_rooms_members.search(params[:data])).compact.uniq.sort_by(&:updated_at).reverse
     else
-      @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact.uniq
+      @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact.uniq.sort_by(&:updated_at).reverse
     end
     # end change code- kandarp
     # @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact

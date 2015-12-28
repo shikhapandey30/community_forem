@@ -6,9 +6,9 @@ class GroupsController < ApplicationController
   def index
     # start change code- kandarp
     if params[:data].present?
-      @groups = (current_user.groups.search(params[:data]) + current_user.group_members.search(params[:data])).compact.uniq
+      @groups = (current_user.groups.search(params[:data]) + current_user.group_members.search(params[:data])).compact.uniq.sort_by(&:updated_at).reverse
     else
-      @groups = (current_user.groups + current_user.group_members).compact.uniq
+      @groups = (current_user.groups + current_user.group_members).compact.uniq.sort_by(&:updated_at).reverse
     end
     # end change code- kandarp
   # @groups =(current_user.groups + current_user.group_members).compact
