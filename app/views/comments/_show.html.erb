@@ -4,7 +4,7 @@
       <div class="editDlt  dropdown">
           <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
             <ul class="dropdown-menu">
-              <li><a href="#-" onClick ="$('#comment_form_box_<%=comment.id%>').toggle();" >Edit</a>             </li>
+              <li><a href="#-" onClick ="$('#comment_form_box_<%=comment.id%>').toggle(); $('#comment_form_<%=comment.id%>').css('display','block');" >Edit</a>             </li>
               <li><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
             </ul>
          </div> 

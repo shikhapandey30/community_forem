@@ -91,8 +91,9 @@ class User < ActiveRecord::Base
   has_many :group_members, through: :members, source: :invitable, source_type: 'Group'
   has_many :meeting_rooms_members, through: :members, source: :invitable, source_type: 'MeetingRoom'
   has_many :meeting_rooms, dependent: :destroy
-
-
+  has_many :conversations, :foreign_key => :sender_id
+  has_one :notification_setting, dependent: :destroy
+  
 
  #  has_one :employment_detail
  #  has_one :specialization,through: :education_history

@@ -16,9 +16,9 @@ class CommentsController < ApplicationController
        @object = Comunity.find(params[:community_id])
     end
 
-     @comment = @object.comments.create(comment_params)
-     @comments = @object.comments
-     @comment.user_id =current_user.id
+    @comment = @object.comments.create(comment_params)
+    @comments = @object.comments
+    params[:comment][:user_id] = current_user.id
 
     respond_to do |format|
       if @comment.save
