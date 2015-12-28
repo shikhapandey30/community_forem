@@ -1,66 +1,61 @@
-    <div class="clearfix innerWIdth550 tac ">
-      <%= nested_form_for([@group, @post], html: {class: "", :id => "form-id"}) do |f| %>
-      <% if @post.errors.any? %>
-      <div id="error_explanation">
-        <!-- <h2><%#= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2> -->
-        <ul>
-          <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-     
-      
-      <div class="clearfix whiteBox connectionRow borderTpBlue">
-        <div class="clearfix cmntRow tal">
-              <div class="clearfix userInfo posRel">
-                
-                <div class="clearfix  "></div>
-                <a href="<%= profile_path(current_user)%>" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
-                <a href="<%= profile_path(current_user)%>" class="userNAme font14 mt23Final"> <%= current_user.screen_name %> Start a conversation with your group</a> <br>
-
-                  </div>
-            </div>
-  </div>
-      
-      <div class="clearfix whiteBox mt-1  mb10  ">   
-        <!-- upload assets -->
-        <%=render 'layouts/shared/upload', f: f, obj: @post %>        
-      </div>
-      <div class="clearfix whiteBox">
-        <div class="clearfix formOuterPost tal">
-          <div class="col-sm-6 pr10">
-            <label>Select Category</label>
-            <div class="selctFormBox">
-              <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
-            </div>
-            <div id="category_name_error"></div>
-          </div>
-          <div class="col-sm-6 pl10">
-            <label>Type Topic</label>
-            <!-- <div class="selctFormBox"> -->
-            <%#= f.hidden_field :topic_id, :value=>'Select', class: " selectInputField" %>
-            <%#= f.text_field "topic_id", :value=>'Select', class: "selectInput" ,:id=>'topic'%>
-            <%#= f.select("topic_id", Topic.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
-            <!-- </div> -->
-            <%= f.text_field :topic, :id=>"topic", "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Topics" %>
-          </div>
-          <div class="col-sm-12">
-            <label class="font20">Write Your Headline</label>
-            <%= f.text_field :title, "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Please write headline here...." %>
-          </div>
-          <div class="col-sm-12">
-            <label class=""><%= f.label "Write Something" %></label>
-            <%= f.text_area :description, class: "inputTextW small", placeholder: "Please write description here...." %>
-          </div>        
-          <div class="col-sm-12">
-            <%= f.submit "Save Post", class: "blueBtn common_submit" %>
-            <a href="/dashboard" class="grayBtn">Cancel</a>  
-          </div>
+<div class="clearfix innerWIdth550 tac ">
+  <%= nested_form_for([object, @post], html: {class: "", :id => "form-id"}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <!-- <h2><%#= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2> -->
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="clearfix whiteBox connectionRow borderTpBlue">
+      <div class="clearfix cmntRow tal">
+        <div class="clearfix userInfo posRel">
+          <div class="clearfix  "></div>
+          <a href="<%= profile_path(current_user)%>" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+          <a href="<%= profile_path(current_user)%>" class="userNAme font14 mt23Final"> <%= current_user.screen_name %> Start a conversation with your group</a> <br>
         </div>
       </div>
-      <br>
-      <% end %>
     </div>
+    <div class="clearfix whiteBox mt-1  mb10  ">
+      <!-- upload assets -->
+      <%=render 'layouts/shared/upload', f: f, obj: @post %>        
+    </div>
+    <div class="clearfix whiteBox">
+      <div class="clearfix formOuterPost tal">
+        <div class="col-sm-6 pr10">
+          <label>Select Category</label>
+          <div class="selctFormBox">
+            <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
+            <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
+          </div>
+          <div id="category_name_error"></div>
+        </div>
+        <div class="col-sm-6 pl10">
+          <label>Type Topic</label>
+          <!-- <div class="selctFormBox"> -->
+          <%#= f.hidden_field :topic_id, :value=>'Select', class: " selectInputField" %>
+          <%#= f.text_field "topic_id", :value=>'Select', class: "selectInput" ,:id=>'topic'%>
+          <%#= f.select("topic_id", Topic.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+          <!-- </div> -->
+          <%= f.text_field :topic, :id=>"topic", "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Topics" %>
+        </div>
+        <div class="col-sm-12">
+          <label class="font20">Write Your Headline</label>
+          <%= f.text_field :title, "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Please write headline here...." %>
+        </div>
+        <div class="col-sm-12">
+          <label class=""><%= f.label "Write Something" %></label>
+          <%= f.text_area :description, class: "inputTextW small", placeholder: "Please write description here...." %>
+        </div>
+        <div class="col-sm-12">
+          <%= f.submit "Save Post", class: "blueBtn common_submit" %>
+          <a href="/dashboard" class="grayBtn">Cancel</a>  
+        </div>
+      </div>
+    </div>
+    <br>
+  <% end %>
+</div>
