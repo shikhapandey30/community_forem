@@ -27,15 +27,15 @@
             </div>
             <%= image_tag @contest.img, class: "fullWdth mtb10" %>
             <div class="uniOuter">
-              <div class=" blackColor ">
+              <div class="blackColor">
                 <p class="blackHD font18 mt20"><%= @contest.try(:headline) %></p>
                 <p><%= @contest.try(:description) %></p>
               </div>
             </div>
           </div>
           <div class="clearfix"></div>
-          <div class="contest_vote">            
-            <%=render 'votes/shared/voted_users', model: @contest %>            
+          <div class="contest_vote">
+            <%=render 'votes/shared/voted_users', model: @contest %>
           </div>
         </div>
       </div>

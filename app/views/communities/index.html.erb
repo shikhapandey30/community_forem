@@ -20,7 +20,7 @@
         <div class="formOuter searchFrnd width100per">
         <!-- start change code- kandarp -->
           <%= form_tag communities_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search Communities", class: "searhInput1" %>
+              <%= text_field_tag :data, params[:data], placeholder: "Search Communities", class: "searhInput1 communities" %>
               <%= submit_tag "", class: "searhSub" %>
           <% end %>
           <!-- <form method="post" action="">
@@ -30,26 +30,8 @@
         <!-- end change code- kandarp -->
         </div>
       </div>
-      <div class="clearfix grpOuter">
-        <%@communities.each do |community|%>
-          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <% if current_user && current_user == community.user %>
-              <div class="editDlt  dropdown">
-                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to "Edit", edit_community_path(community)%></li>
-                  <li><%=link_to "Delete", community_path(community), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-                </ul>
-              </div>
-            <% end %>
-            <a href="<%=community_path(community)%>" class="block mt20 grpImg"> <%=image_tag community.img%> </a>
-            <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
-            <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <%= community.members.try(:count)%> Members</a>
-              <a class="btmBtn" href="#" > 0 Discussion </a>
-            </div>
-          </div>
-        <%end%>  
+      <div class="clearfix grpOuter" id="communities">
+        <%= render partial: "communities", locals: {communities: @communities} %>
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">

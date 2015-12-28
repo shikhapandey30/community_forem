@@ -2,19 +2,6 @@
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render 'layouts/topNav'%>
-    <!-- <div class="topNAv visible-xs">
-      <span class="blueColor leftMenuTab"><img src="/assets/images/tab.png" alt="" class=""> Categories</span>
-      <div class="topRightNav">
-        <span class="blueColor rightMenu"> Menu  <img src="/assets/images/down.png" alt="" class=""></span>
-        <ul>
-          <li class="activeMenu"><a href="#">News Feed</a></li>
-          <li><a href="#">Hot Topics</a></li>
-          <li><a href="#">Followers (25)</a></li>
-          <li><a href="#">Following (100)</a></li>
-          <li><a href="#">More <img src="/assets/images/arrowBlack.png" alt=""> </a></li>
-        </ul>
-      </div>
-    </div> -->
     <div class="clearfix blueBkg meetingRoomTOp">
       <div class="innerWIdth550">
         <span><%= image_tag @forum_poll.img %></span>
@@ -34,9 +21,9 @@
           <div class="col-sm-12 mb10">
             <div class="blackHD font20"><%=@forum_poll.headline %> (<%= @forum_poll.start_date.present? ? @forum_poll.start_date.strftime("%m/%d") : "" %> - <%= @forum_poll.end_date.present? ? @forum_poll.end_date.strftime("%m/%d") : "" %>)</div>
             <div class="bold font15 mtb10">
-              <span class="upVote vote" data-toggle="tooltip" title="For"></span> 587   &nbsp;
-              <span class="downVote vote" data-toggle="tooltip" title="Againest"></span>  468  &nbsp;
-              <span class="noVote vote" data-toggle="tooltip" title="Undecided"></span>  100 
+              <span class="upVote vote" data-toggle="tooltip" title="For"></span> <span class="favour"> <%=@forum_poll.votes.favour.size rescue 0%></span>  &nbsp;
+              <span class="downVote vote" data-toggle="tooltip" title="Againest"></span> <span class="against"> <%=@forum_poll.votes.against.size rescue 0%></span> &nbsp;
+              <span class="noVote vote" data-toggle="tooltip" title="Undecided"></span>  <span class="undecided"> <%=@forum_poll.votes.undecided.size rescue 0%></span> 
               <span class="fr <%=expireDate(@forum_poll.end_date).eql?("Expired") ? 'redColor' : 'blueColor' %> frNone"><%=expireDate(@forum_poll.end_date) %></span>
             </div>
             <%= image_tag @forum_poll.img, class: "fullWdth mtb10" %>
@@ -47,7 +34,10 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <div class="commentShow ">
+          <div class="contest_vote">
+            <%=render 'votes/shared/voted_users', model: @forum_poll %>
+          </div>
+          <!-- <div class="commentShow ">
             <div class="clearfix commentSec cmntRow">
               <div class="font14 bold">Please vote for this post through the options</div>
               <div class="vodeSection mt10">  
@@ -58,7 +48,7 @@
               <div >
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

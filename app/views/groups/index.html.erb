@@ -19,7 +19,7 @@
         <div class="formOuter searchFrnd width100per">
           <!-- start change code- kandarp -->
           <%= form_tag groups_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search Groups", class: "searhInput1" %>
+              <%= text_field_tag :data, params[:data], placeholder: "Search Groups", class: "searhInput1 group_search" %>
               <%= submit_tag "", class: "searhSub" %>
           <% end %>
           <!-- <form method="post" action="">
@@ -29,33 +29,8 @@
           <!-- end change code- kandarp -->
         </div>
       </div>
-      <div class="clearfix grpOuter">
-        <%@groups.each do |group|%>
-          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <% if current_user && current_user == group.user %>
-              <div class="editDlt  dropdown">
-                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to "Edit", edit_group_path(group)%></li>
-                  <li><%=link_to "Delete", group_path(group), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-                </ul>
-              </div>
-            <% end %>
-            <a href="<%=group_path(group)%>" class="block mt20"> <%=image_tag group.img%></a>
-            <a href="<%=group_path(group)%>" class="block groupName width"><%= group.try(:topic) %></a>
-            <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <%= group.members.try(:count)%> Members</a>
-              <a class="btmBtn" href="#" > 0 Discussion </a>
-            </div>
-          </div>
-        <%end%>  
-        <div class="clearfix"></div>
-        <div class="suggestedRow">
-          <div class="clearfix conversationTop">
-            <span class="bold grayColor"> <span class="font13 blackColor">Suggested Groups</span></span>
-            <div class="fr"> <a href="#" class="grayColor">See More Group <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
-          </div>
-        </div>        
+      <div class="clearfix grpOuter" id="groups">
+        <%= render partial: "groups", locals: {groups: @groups} %>
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">

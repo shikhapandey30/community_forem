@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     # start change code- kandarp
-    if params[:search].present?
-      @groups = Group.search(params[:search])
+    if params[:data].present?
+      @groups = Group.search(params[:data])
     else
       @groups =(current_user.groups + current_user.group_members).compact.uniq
     end

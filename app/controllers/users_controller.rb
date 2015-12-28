@@ -27,14 +27,7 @@ class UsersController < ApplicationController
     # redirect_to profile_path(@user)
   end
   
-  def reveal_identity
-     @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:user_id])
-    if @reveal_identity.present?
-      @status=false
-    else
-       @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:user_id],:body=>params[:message])
-       @status=true
-    end
+  def reveal_identity    
   end
 
   def notification_count
@@ -131,6 +124,22 @@ class UsersController < ApplicationController
     else
         flash[:notice] = "Authentication Failed."
     end
+  end
+
+  def reveal_request
+     @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:id])
+    if @reveal_identity.present?
+      @status=false
+      flash[:success] = "You already sent request to reveal identity for this user"
+
+    else
+       @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2])
+        NotificationMailer.reveal_request(@reveal_identity).deliver_later       
+       @status=true
+      flash[:success] = "Request sent"
+
+    end
+      redirect_to :back
   end
 
 
