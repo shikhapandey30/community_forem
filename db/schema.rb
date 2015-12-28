@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151228062641) do
 
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
     t.text     "body",          limit: 65535
@@ -539,13 +540,14 @@ ActiveRecord::Schema.define(version: 20151228062641) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id",       limit: 4
-    t.integer  "forum_poll_id", limit: 4
-    t.integer  "votable_id",    limit: 4
-    t.string   "votable_type",  limit: 255
-    t.string   "vote_type",     limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "user_id",        limit: 4
+    t.integer  "forum_poll_id",  limit: 4
+    t.integer  "votable_id",     limit: 4
+    t.string   "votable_type",   limit: 255
+    t.string   "vote_type",      limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "vote_in_favour"
   end
 
   add_foreign_key "messages", "conversations"

@@ -1,11 +1,10 @@
-
 <%if @is_vote=='true'%>
-$('#error').show();
-$('#success').hide();
-$("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
-<%else%>
-$('#error').hide();
-$('#success').show();
-$("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
+	$('#error').show();
+	$('#success').hide();
+	$("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
+	<%else%>
+	$('#error').hide();
+	$('#success').show();
+	$("#table_data").html("<%= escape_javascript(render partial: 'forum_polls/data', locals: { user_vote_type: @user_vote_type } ) %>"); 
 
 <%end%>

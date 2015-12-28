@@ -8,7 +8,7 @@ class MeetingRoomsController < ApplicationController
     if params[:search].present?
       @meeting_rooms = MeetingRoom.search(params[:search])
     else
-      @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact
+      @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact.uniq
     end
     # end change code- kandarp
     # @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact

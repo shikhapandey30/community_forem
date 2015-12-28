@@ -1,0 +1,3 @@
+$(".contest_vote").html("<%=j render('votes/shared/voted_users', model: @model)%>");
+$("span.favour").html("<%=@model.votes.favour.size rescue 0%>");
+$("span.against").html("<%=@model.votes.against.size rescue 0%>");

@@ -37,7 +37,7 @@
               <span class="upVote vote" data-toggle="tooltip" title="For"></span> 587   &nbsp;
               <span class="downVote vote" data-toggle="tooltip" title="Againest"></span>  468  &nbsp;
               <span class="noVote vote" data-toggle="tooltip" title="Undecided"></span>  100 
-              <span class="fr blueColor frNone"><%=expireDate(@forum_poll.end_date) %></span>
+              <span class="fr <%=expireDate(@forum_poll.end_date).eql?("Expired") ? 'redColor' : 'blueColor' %> frNone"><%=expireDate(@forum_poll.end_date) %></span>
             </div>
             <%= image_tag @forum_poll.img, class: "fullWdth mtb10" %>
             <div class="uniOuter">

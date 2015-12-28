@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     if params[:search].present?
       @groups = Group.search(params[:search])
     else
-      @groups =(current_user.groups + current_user.group_members).compact
+      @groups =(current_user.groups + current_user.group_members).compact.uniq
     end
     # end change code- kandarp
   # @groups =(current_user.groups + current_user.group_members).compact
