@@ -38,7 +38,10 @@ class PostsController < ApplicationController
       @post = current_user.posts.new(post_params)
     if params[:group_id].present?
       @group = Group.find(params[:group_id])
-       @post.postable =  @group
+      @post.postable =  @group
+    elsif params[:community_id].present?
+      @community = Community.find(params[:community_id])
+      @post.postable =  @community
     end
     
     respond_to do |format|

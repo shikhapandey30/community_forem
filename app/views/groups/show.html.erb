@@ -14,9 +14,9 @@
         </div>
       </div>
     </div>
-    <%= render 'posts/polymorphic_form'%>
-   <div class="clearfix innerWIdth550 tac ">
-      <a href="/posts/new" class="addPostBtn"><%=params[:data] ? 'CREATE TOPICS' : 'ADD POSTS'%></a>
+    <%= render 'posts/polymorphic_form', object: @group%>
+    <div class="clearfix innerWIdth550 tac ">
+      <!-- <a href="/posts/new" class="addPostBtn"><%#=params[:data] ? 'CREATE TOPICS' : 'ADD POSTS'%></a> -->
       <div id="posts" class="masonry-container">
         <%=render "users/post"%>
       </div>
