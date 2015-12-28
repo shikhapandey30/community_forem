@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  new_update: false
+  friend_request: false
+  is_new_record: false
+  comments_and_like: false
+  friends_birthday: false
+
+two:
+  user_id: 1
+  new_update: false
+  friend_request: false
+  is_new_record: false
+  comments_and_like: false
+  friends_birthday: false
