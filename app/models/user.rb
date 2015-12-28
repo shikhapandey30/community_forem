@@ -69,8 +69,8 @@ class User < ActiveRecord::Base
 
   #friendsships
   has_many :friendships
-  has_many :friends, :through => :friendships
-  #has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
+  # has_many :friends, :through => :friendships
+  has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
   # has_many :friends, -> { where(inverse_friendships: { accept: true}) }, through: :friendships
   has_many :inverse_friendships, -> { where(accept: true) }, :class_name => "Friendship", :foreign_key => "friend_id"
 
@@ -91,10 +91,14 @@ class User < ActiveRecord::Base
   has_many :group_members, through: :members, source: :invitable, source_type: 'Group'
   has_many :meeting_rooms_members, through: :members, source: :invitable, source_type: 'MeetingRoom'
   has_many :meeting_rooms, dependent: :destroy
+
+  has_many :votes, dependent: :destroy
+
   has_many :conversations, :foreign_key => :sender_id
   has_one :notification_setting, dependent: :destroy
   accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
   after_create :set_notification_setting
+
 
 
  #  has_one :employment_detail
