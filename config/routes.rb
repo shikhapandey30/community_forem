@@ -4,13 +4,21 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :contests do
     resources :posts
+    resources :comments, only: [:create]
   end 
   resources :meeting_rooms do
     resources :likes, only: [:create]
     resources :dislikes, only: [:create]
+    resources :comments, only: [:create]
      resources :posts
   end
   resources :groups do
+    collection do
+      get :filter
+    end
+    member do
+      get :join
+    end
     resources :posts
   end  
   post "/groups/:id/leave", :to => 'groups#leave', as: 'leave_group'
@@ -154,6 +162,7 @@ Rails.application.routes.draw do
 
    get '/suggested_connections', to: 'users#suggested_connections', as: :suggested_connections
    get '/suggested_communities', to: 'users#suggested_communities', as: :suggested_communities
+   get '/suggested_groups', to: 'users#suggested_groups', as: :suggested_groups
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

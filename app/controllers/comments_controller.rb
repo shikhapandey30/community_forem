@@ -6,21 +6,20 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # if params[:forum_id].present?
-    #   @forum = Forum.find(params[:forum_id])
-    #   @comment = @forum.comments.create(comment_params)
-    # else
-      if params[:post_id].present?
-    	  @post = Post.find(params[:post_id])
-        params[:comment][:user_id] = current_user.id
-        @comment = @post.comments.create(comment_params)
-        @comments = @post.comments
-      elsif params[:meeting_room_id].present?
-        @meeting_room = MeetingRoom.find(params[:meeting_room_id])
-        params[:comment][:user_id] = current_user.id
-        @comment = @meeting_room.comments.create(comment_params)
-        @comments = @meeting_room.comments
-      end
+    if params[:post_id].present?
+  	  @object = Post.find(params[:post_id])       
+    elsif params[:meeting_room_id].present?
+      @object = MeetingRoom.find(params[:meeting_room_id])       
+    elsif params[:contest_id].present?
+       @object = Contest.find(params[:contest_id])
+    elsif params[:comunity_id].present?
+       @object = Comunity.find(params[:community_id])
+    end
+
+     @comment = @object.comments.create(comment_params)
+     @comments = @object.comments
+       params[:comment][:user_id] = current_user.id
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment is successfully created.' }

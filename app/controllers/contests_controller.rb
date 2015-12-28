@@ -10,6 +10,7 @@ class ContestsController < ApplicationController
   # GET /contests/1
   # GET /contests/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /contests/new
@@ -30,6 +31,8 @@ class ContestsController < ApplicationController
 
     respond_to do |format|
       if @contest.save
+        set_upload
+        set_members if params[:contest][:members].present? 
         format.html { redirect_to @contest, notice: 'Contest is successfully created.' }
         format.json { render :show, status: :created, location: @contest }
       else
@@ -45,6 +48,7 @@ class ContestsController < ApplicationController
     respond_to do |format|
       if @contest.update(contest_params)
         set_upload
+        set_members if params[:contest][:members].present?         
         format.html { redirect_to @contest, notice: 'Contest is successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
@@ -78,11 +82,23 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit!
+      # params.require(:contest).permit!
+       params.require(:contest).permit(:category_id, :topic, :headline, :slogan, :community_logo, :start_date, :end_date, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
+
     end
 
     def set_upload
       @contest.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @contest.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+    end
+
+     def set_members
+      members_ids = params[:contest][:members].reject(&:empty?)
+       @contest.members.destroy_all if params[:action] == "update"
+      members_ids.each do |members_id|
+        member = Member.create(:user_id => members_id.to_i, :invitable => @contest)
+        #send notification
+        Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a contest #{@contest.topic} ", notificable: @contest, :accept => false)
+      end
     end
 end

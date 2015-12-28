@@ -41,9 +41,17 @@ $(document).on("keyup", ".searhInput1.connections", function(){
     method: "get",
     url: "/connection_filter",
     data: {name: this.value}
-  }); 
+  });
 });
 
+// Suggested group
+$(document).on("keyup", ".searhInput1.groups", function(){
+  $.ajax({
+    method: "get",
+    url: "/groups/filter",
+    data: {topic: this.value}
+  });
+});
 
 
 $(document).on("keyup", ".searhInput1.follower", function(){

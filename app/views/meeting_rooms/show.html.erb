@@ -7,7 +7,7 @@
           <div class="mtngTitle"><%= @meeting_room.topic %>
           </div>
           <div class="fr font12">
-            <a href="<%= leave_meeting_room_path(@meeting_room)%>" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
+            <a href="<%= leave_meeting_room_path(@meeting_room)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
             <div class="fr font12"> <%= @meeting_room.members.try(:count) %> members</div>
           </div>
         </div>

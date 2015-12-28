@@ -1,10 +1,10 @@
 <% if params[:from]=="post_index" %>
-	$('#last_post_comment_<%=params[:post_id]%>').last().append("<%= escape_javascript(render partial: 'comments/show', locals: { comment: @comment } ) %>");
-	$('#comment_body_<%= params[:post_id] %>').val("");
-	$('#comments_count_<%= params[:post_id] %>').html("<%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %>");
+	$('#last_post_comment_<%=@object.id %>').last().append("<%= escape_javascript(render partial: 'comments/show', locals: { comment: @comment } ) %>");
+	$('#comment_body_<%= @object.id  %>').val("");
+	$('#comments_count_<%= @object.id  %>').html("<%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %>");
 <% else %>
 	$("#comments").html("<%= escape_javascript(render partial: 'comments/comments_view', locals: { comments: @comments } ) %>");
 	$('#comment_body').val("");
 	$('#comments_count').html("<%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %>");
 <% end %>
-// $('#comment_box_<%= params[:post_id]%>').hide();
+// $('#comment_box_<%= @object.id %>').hide();
