@@ -170,4 +170,15 @@ class User < ActiveRecord::Base
   def set_notification_setting     
       NotificationSetting.create(:user_id => self.id, new_update: true,  friend_request: true, is_new_record: true, comments_and_like: true, friends_birthday: true) unless self.notification_setting
   end
+
+  def is_reveal_sent(user)
+     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => false).first
+     reveal_identity.present? ? true : false
+  end
+
+  def is_revealed(user)
+     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => true).first
+     reveal_identity.present? ? true : false
+  end
+  
 end
