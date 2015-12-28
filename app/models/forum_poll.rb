@@ -14,4 +14,13 @@ class ForumPoll < ActiveRecord::Base
 	    'images/fp2.jpg'
 	  end
 	end
+  	# start code - kandarp
+  	def self.search(search)
+	  if search
+	    where('lower(topic) LIKE ?', "%#{search}%".downcase)
+	  else
+	    all
+	  end
+	end
+  # end code - kandarp
 end
