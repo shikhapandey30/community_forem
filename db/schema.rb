@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228093818) do
+ActiveRecord::Schema.define(version: 20151228123438) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -470,9 +470,12 @@ ActiveRecord::Schema.define(version: 20151228093818) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.boolean  "subscribe"
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "user_id",           limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "payer_id",          limit: 4
+    t.integer  "subscribable_id",   limit: 4
+    t.string   "subscribable_type", limit: 255
   end
 
   create_table "topics", force: :cascade do |t|

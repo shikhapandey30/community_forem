@@ -2,6 +2,8 @@ class RevealIdentity < ActiveRecord::Base
 	before_update :add_notification
 	belongs_to :user
 	belongs_to :sender, :foreign_key => :sender_id, class_name: 'User'
+	has_many :subscriptions,:dependent => :destroy, :as => :subscribable
+
 
 	def add_notification
 		if self.accept==true
