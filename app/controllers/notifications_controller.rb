@@ -27,6 +27,10 @@ class NotificationsController < ApplicationController
         if @notification.notificable.class.name =="Friendship"
             @notification.notificable.update(:accept => true)                
         end
+
+        if @notification.notificable.class.name =="RevealIdentity"
+            @notification.notificable.update(:accept => true)                
+        end
     	member.update_attributes(accept:true) if member.present?
     end
 
