@@ -5,7 +5,14 @@ class CommunitiesController < ApplicationController
   # GET /communities.json
   def index
     # @communities = current_user.communities
-    @communities =(current_user.communities + current_user.community_members).compact
+    # start change code- kandarp
+    if params[:search].present?
+      @communities = Community.search(params[:search])
+    else
+      @communities =(current_user.communities + current_user.community_members).compact
+    end
+    # end change code- kandarp
+    # @communities =(current_user.communities + current_user.community_members).compact
     @friends = current_user.my_friends
     @friends = @friends.present? ? @friends : []
     # @suggested_communities = 
