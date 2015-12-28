@@ -27,4 +27,13 @@ class MeetingRoom < ActiveRecord::Base
 	    'images/meeting_room.jpg'
 	  end
 	end
+	# start code - kandarp
+  	def self.search(search)
+	  if search
+	    where('lower(topic) LIKE ?', "%#{search}%".downcase)
+	  else
+	    all
+	  end
+	end
+  	# end code - kandarp
 end

@@ -2,7 +2,14 @@ class ForumPollsController < ApplicationController
   before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
   
   def index
-    @forum_polls = ForumPoll.all.order("updated_at desc")
+    # start change code- kandarp
+    if params[:search].present?
+      @forum_polls = ForumPoll.search(params[:search])
+    else
+      @forum_polls = ForumPoll.all.order("updated_at desc")
+    end
+    # end change code- kandarp
+    # @forum_polls = ForumPoll.all.order("updated_at desc")
   end
   
  

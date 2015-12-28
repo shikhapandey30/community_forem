@@ -4,7 +4,14 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups =(current_user.groups + current_user.group_members).compact
+    # start change code- kandarp
+    if params[:search].present?
+      @groups = Group.search(params[:search])
+    else
+      @groups =(current_user.groups + current_user.group_members).compact
+    end
+    # end change code- kandarp
+  # @groups =(current_user.groups + current_user.group_members).compact
   end
 
   # GET /groups/1
