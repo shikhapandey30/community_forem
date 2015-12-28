@@ -6,7 +6,7 @@ class Like < ActiveRecord::Base
      @model = Post.find(id)
     when 'comment'
     	@model = Comment.find(id)	        
-    when 'meeting_room' 
+    when 'meetingroom' 
     	@model = MeetingRoom.find(id)
     when 'reply' 
     	 @model = Reply.find(id)

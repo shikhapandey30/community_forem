@@ -25,29 +25,9 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix"></div>
-            <span class="grayColor font12"><span class="post_like_count"><%= @meeting_room.likes.count%></span> Likes &nbsp; &nbsp; <span class="post_dislike_count"><%= @meeting_room.dislikes.count%></span> Dislikes &nbsp; &nbsp;<span id="comments_count"><%= @comments.count %> <%= @comments.count == 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
-            <div class="cmntSec">
-
-              <%if @meeting_room.liked?(current_user).present?%>
-                <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post_liked'%>
-              <%else%>
-                <%=link_to image_tag("images/up.png"), meeting_room_likes_path(@meeting_room), method: :post, remote: true,:class=>'like_image_post'%>
-              <%end%>
-              <!-- <a href="#"><img src="/assets/images/down1.png" alt=""></a> -->
-              <%if @meeting_room.disliked?(current_user).present?%>
-                <%=link_to image_tag("images/down1.png"), meeting_room_dislikes_path(@meeting_room), method: :post, remote: true,:class=>'dislike_image_post_disliked'%>
-              <%else%>
-                <%=link_to image_tag("images/down1.png"), meeting_room_dislikes_path(@meeting_room), method: :post, remote: true,:class=>'dislike_image_post'%>
-              <%end%>
-              <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
-              <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-              <input type="button" value="Add Your Comment" class="addCmnt inputTextW small" id="comment_button">
-            </div>
-            <div class="clearfix"></div>
-            <div id="comments">
-              <%= render partial: "comments/comments_view", locals: { comments: @meeting_room.comments } %>
-            </div>
+            <div class="clearfix"></div>           
+               <%= render 'layouts/shared/comments' , object: @meeting_room %>
+            
             <div class="commentShow">
               <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box">
                 <div class="clearfix userInfo posRel">
