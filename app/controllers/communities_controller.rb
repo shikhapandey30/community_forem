@@ -21,10 +21,15 @@ class CommunitiesController < ApplicationController
   # GET /communities/1
   # GET /communities/1.json
   def show
-    @posts = @community.posts.paginate(:page => params[:page], :per_page => 15)
-    @comment = Comment.new
-    @post = Post.new
-    @post.build_upload
+    if params[:post_id]
+      @post = current_user.posts.find(params[:post_id])
+      @post.upload
+    else
+      @post = Post.new
+      @post.build_upload
+    end
+    @posts = @community.posts.paginate(:page => params[:page], :per_page => 5)
+    @comment = Comment.new    
   end
 
   # GET /communities/new

@@ -9,7 +9,7 @@
                 <div class="editDlt  dropdown">
                   <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
                     <ul class="dropdown-menu">
-                      <li><%=link_to 'Edit', edit_post_path(post) %></li>
+                      <li><%=link_to 'Edit', change_post_path(post) %></li>
                       <li> <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
                     </ul>
                  </div>

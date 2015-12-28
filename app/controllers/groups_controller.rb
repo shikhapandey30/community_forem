@@ -17,12 +17,17 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    if params[:post_id]
+      @post = current_user.posts.find(params[:post_id])
+      @post.upload
+    else
+      @post = Post.new
+      @post.build_upload
+    end
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
-    @posts = @group.posts.paginate(:page => params[:page], :per_page => 15)
-    @comment = Comment.new
-    @post = Post.new
-    @post.build_upload
+    @posts = @group.posts.paginate(:page => params[:page], :per_page => 5)
+    @comment = Comment.new    
   end
 
   # GET /groups/new
