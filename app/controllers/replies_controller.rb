@@ -21,6 +21,16 @@ class RepliesController < ApplicationController
 	  end
   end
 
+    # DELETE /replys/1
+  # DELETE /replys/1.json
+  def destroy
+    @reply.destroy
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'reply is successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
 	private
 	def set_reply
