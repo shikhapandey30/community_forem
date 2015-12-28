@@ -2,8 +2,8 @@
   <div class="clearfix commentSec cmntRow">
     <div class="font14 bold">Please vote for this post through the options</div>
     <div class="vodeSection mt10">
-      <a href="<%=favour_path(id: model.id, model: 'contest', favour: 'true')%>" data-remote=true><span title="" data-toggle="tooltip" class="upVote vote <%= 'activeVote' if current_user.votes.my_vote(model, 'contest').try(:vote_in_favour)==true%>" data-original-title="For"></span></a>
-      <a href="<%=favour_path(id: model.id, model: 'contest', favour: 'false')%>" data-remote=true><span title="" data-toggle="tooltip" class="downVote vote <%= 'activeVote' if current_user.votes.my_vote(model, 'contest').try(:vote_in_favour)==false%>" data-original-title="Against"></span></a>
+      <a href="<%=favour_path(id: model.id, model: 'contest', favour: 'true')%>" data-remote=true><span title="" data-toggle="tooltip" class="upVote vote <%= 'activeVote' if current_user.votes.my_vote(model).try(:vote_in_favour)==true%>" data-original-title="For"></span></a>
+      <a href="<%=favour_path(id: model.id, model: 'contest', favour: 'false')%>" data-remote=true><span title="" data-toggle="tooltip" class="downVote vote <%= 'activeVote' if current_user.votes.my_vote(model).try(:vote_in_favour)==false%>" data-original-title="Against"></span></a>
     </div>
     <div>
     </div>
@@ -16,7 +16,7 @@
   	    <a class="userImg" href="#"><%=image_tag user.img%></a>
   	    <a class="userNAme" href="#"> <%=user.screen_name%></a> <br>
   	    <span class="font13 "> <%=designations(user)%> </span>	    
-  	    <div class="fr grayColor tar">     <span class="upVote vote" style="background-position:<%=user.votes.my_vote(model, 'contest').try(:vote_in_favour)==true ? '0 0' : '-22px 0' %>"></span> <%=time_ago_in_words(user.votes.my_vote(model, 'contest').updated_at).capitalize%></div>
+  	    <div class="fr grayColor tar">     <span class="upVote vote" style="background-position:<%=user.votes.my_vote(model).try(:vote_in_favour)==true ? '0 0' : '-22px 0' %>"></span> <%=time_ago_in_words(user.votes.my_vote(model).updated_at).capitalize%></div>
   	  </div>
   	</div>
   </div>  

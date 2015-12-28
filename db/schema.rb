@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151228062641) do
 
-
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
     t.text     "body",          limit: 65535
