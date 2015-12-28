@@ -154,6 +154,8 @@ Rails.application.routes.draw do
    get'followings', to: 'users#followings'
    get '/notification_count', to: 'users#notification_count'
    get '/reveal_identity', to: 'users#reveal_identity'
+   post '/reveal_request:/id', to: 'users#reveal_request', as: :reveal_request
+
    get '/users'=>'users#index'
    #forums route
   get '/manage_forum'=>'forums#manage_forum'

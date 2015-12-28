@@ -133,6 +133,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def reveal_request
+     @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:id])
+    if @reveal_identity.present?
+      @status=false
+    else
+       @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id],:body=>params[:message])
+       @status=true
+    end
+  end
+
 
   def payment
   end
