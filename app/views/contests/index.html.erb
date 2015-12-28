@@ -19,7 +19,7 @@
         <div class="formOuter searchFrnd width100per">
           <!-- start change code- kandarp -->
           <%= form_tag contests_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search Contest Modules", class: "searhInput1" %>
+              <%= text_field_tag :data, params[:data], placeholder: "Search Contest Modules", class: "searhInput1 contests" %>
               <%= submit_tag "", class: "searhSub" %>
           <% end %>
           <!-- <form method="post" action="">
@@ -29,28 +29,8 @@
         <!-- end change code- kandarp -->
         </div>
       </div>
-      <div class="clearfix grpOuter">
-        <%@contests.each do |contest|%>
-          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <% if current_user && current_user == contest.user %>
-              <div class="editDlt  dropdown">
-                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to "Edit", edit_contest_path(contest)%></li>
-                  <li><%=link_to "Delete", contest_path(contest), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-                </ul>
-              </div>
-            <% end %>
-            <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
-            <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.topic%></a>
-            <div class="virwJoinBtn">
-              <a class="btmBtn" href="#"> <span class="<%=expireDate(contest.end_date)=="Expired" ? 'redColor' : 'blackColor'%>" id="remainTime_<%=contest.id%>">
-                <%=expireDate(contest.end_date)%>
-              </span></a>
-              <a class="btmBtn" href="#" > 0 Polls </a>
-            </div>
-          </div>          
-        <%end%>
+      <div class="clearfix grpOuter" id= "contests">
+          <%= render partial: "contests", locals: {contests: @contests} %>
       </div>
       <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">

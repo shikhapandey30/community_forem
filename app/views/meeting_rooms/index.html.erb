@@ -19,7 +19,7 @@
         <div class="formOuter searchFrnd width100per">
           <!-- start change code- kandarp -->
           <%= form_tag meeting_rooms_path, :method => 'get' do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search Meeting Rooms", class: "searhInput1" %>
+              <%= text_field_tag :data, params[:data], placeholder: "Search Meeting Rooms", class: "searhInput1 meeting_rooms" %>
               <%= submit_tag "", class: "searhSub" %>
           <% end %>
           <!-- <form method="post" action="">
@@ -29,25 +29,8 @@
           <!-- end change code- kandarp -->
         </div>
       </div>
-      <div class="clearfix grpOuter">
-        <% @meeting_rooms.each do |room|%>
-          <div class="whiteBox borderTop  col-sm-6 pb0  fl">
-            <%if current_user && room.user == current_user%>
-              <div class="editDlt  dropdown">
-                <a aria-expanded="true" href="javascript:void(0)" data-toggle="dropdown"> <img src="/assets/images/arrowDown.png" alt=""> </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to "Edit", edit_meeting_room_path(room)%></li>
-                  <li><%=link_to "Delete", meeting_room_path(room), method: :delete, data: { confirm: 'Are you sure?' }%></li>
-                </ul>
-              </div>
-            <%end%>
-            <%=link_to image_tag(room.img), meeting_room_path(room), class: "block mt20 grpImg"%>
-            <a href="<%=meeting_room_path(room)%>" class="block groupName width"><%=room.topic%></a>
-            <div class="virwJoinBtn">
-              <a class="btmBtn fullWdth" href="<%=meeting_room_path(room)%>"> <%= room.members.try(:count)%>  Members</a>
-            </div>
-          </div>
-        <%end%>
+      <div class="clearfix grpOuter" id="meeting_rooms">
+        <%= render partial: "meeting_rooms", locals: {meeting_rooms: @meeting_rooms} %>
       </div>
     </div>
   </div>
