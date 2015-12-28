@@ -348,7 +348,7 @@ PLATFORMS
 DEPENDENCIES
   active_skin
   activeadmin (~> 1.0.0.pre2)
-  activemerchant (= 1.50.0)
+  activemerchant
   acts-as-taggable-on (~> 3.4)
   byebug
   carrierwave

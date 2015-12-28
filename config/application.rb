@@ -4,6 +4,7 @@ require 'rails/all'
 require 'rubygems' # not necessary with ruby 1.9 but included for completeness
 require 'twilio-ruby'
 require 'will_paginate/array'
+require "active_merchant"
 account_sid = 'AC6ed1ef793a411dd07d2cfa533eedb30e'
 auth_token = 'a8472a48e49f9be22527e93d2cf147ba'
 

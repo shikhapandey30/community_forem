@@ -1,0 +1,5 @@
+<%if @success %>
+window.location.href = '/profiles/<%= params[:user_id]%>'
+<% else %>
+$('.errors').html('<%=j flash[:alert] %>')
+<% end %>
