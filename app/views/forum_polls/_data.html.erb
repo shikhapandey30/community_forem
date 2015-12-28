@@ -1,53 +1,58 @@
-
 <% if @user_vote_type.present?%>
-       <tr>
-        <td>UpVote</td> 
-          <% if @user_vote_type=='Upvote'%>
-          <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);" checked='true'></td></br>
-          </tr>
-          <tr>
-          <td>DownVote</td>
-           <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td></br>
-           </tr>
-           <tr>
-           <td>NotConcern</td>
-             <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td></br>
-             </tr>
-
-
-           <% elsif  @user_vote_type=='Downvote'%>
-           <tr>
-          <td>Upvote</td> 
-           <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td></tr>
-           <tr>
-           <td>DownVote</td>
-           <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)" checked='true'></td></tr>
-           <tr>
-            <td>NotConcern</td>
-           <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td>
-           </tr>
- 
-          <% elsif @user_vote_type=='Not concerned '%>
-          <tr>
-         <td>Upvote</td> 
-          <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" checked="true"></td></tr>
-          <tr>
-           <td>DownVote</td>
-          <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td></tr>
-           <tr>
-           <td>NotConcern</td>
-            <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td>
-            </tr>
-          <%end%>
-          <%else%>
-           <tr>
-           <td>Upvote</td> 
-            <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td></tr>
-            <tr>
-            <td>DownVote</td>
-            <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td></tr>
-            <tr>
-            <td>NotConcern</td>
-             <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td>
-             </tr>
-          <%end%>
+  <tr>
+    <td>UpVote</td>
+    <% if @user_vote_type=='Upvote'%>
+    <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);" checked='true'></td>
+    </br>
+  </tr>
+  <tr>
+    <td>DownVote</td>
+    <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td>
+    </br>
+  </tr>
+  <tr>
+    <td>NotConcern</td>
+    <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td>
+    </br>
+  </tr>
+  <% elsif  @user_vote_type=='Downvote'%>
+  <tr>
+    <td>Upvote</td>
+    <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td>
+  </tr>
+  <tr>
+    <td>DownVote</td>
+    <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)" checked='true'></td>
+  </tr>
+  <tr>
+    <td>NotConcern</td>
+    <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td>
+  </tr>
+  <% elsif @user_vote_type=='Not concerned '%>
+  <tr>
+    <td>Upvote</td>
+    <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" checked="true"></td>
+  </tr>
+  <tr>
+    <td>DownVote</td>
+    <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td>
+  </tr>
+  <tr>
+    <td>NotConcern</td>
+    <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td>
+  </tr>
+  <%end%>
+  <%else%>
+  <tr>
+    <td>Upvote</td>
+    <td><input type="radio" name="vote" value="Upvote" class="vote1"  onclick="myfunction(<%=@forum_poll.id %>);"></td>
+  </tr>
+  <tr>
+    <td>DownVote</td>
+    <td><input type="radio" name="vote" value="Downvote" class="vote2"  onclick="myFunction2(<%=@forum_poll.id%>)"></td>
+  </tr>
+  <tr>
+    <td>NotConcern</td>
+    <td><input type="radio" name="vote" value="Not concerened" class="vote3" onclick="myFunction3(<%=@forum_poll.id%>)" ></td>
+  </tr>
+<%end%>

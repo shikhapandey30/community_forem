@@ -46,6 +46,11 @@ Rails.application.routes.draw do
   resources :forum_polls do
     resources :votes, only: [:create]
   end
+
+  get "/votes/favour", to: "votes#favour", as: 'favour'
+  # get "/votes/against", to: "votes#against", as: 'against'
+  
+
   resources :comments do
     resources :likes
     resources :replies, only: [:create, :show]

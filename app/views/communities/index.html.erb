@@ -37,7 +37,7 @@
               </div>
             <% end %>
             <a href="<%=community_path(community)%>" class="block mt20 grpImg"> <%=image_tag community.img%> </a>
-            <a href="<%=community_path(community)%>" class="block groupName width"><%=community.headline%></a>
+            <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
             <div class="virwJoinBtn">
               <a class="btmBtn" href="#"> <%= community.members.try(:count)%> Members</a>
               <a class="btmBtn" href="#" > 0 Discussion </a>

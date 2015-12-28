@@ -10,7 +10,8 @@ class ContestsController < ApplicationController
   # GET /contests/1
   # GET /contests/1.json
   def show
-    @comment = Comment.new
+    # @comment = Comment.new
+    @users = @contest.votes.collect(&:user).uniq
   end
 
   # GET /contests/new

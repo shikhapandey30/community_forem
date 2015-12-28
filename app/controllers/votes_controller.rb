@@ -1,13 +1,18 @@
 class VotesController < ApplicationController
-	def create
-  	@forum_poll= ForumPoll.find(params[:forum_poll_id])
-  	user_vote=@forum_poll.votes.where(:user_id=>current_user.id,:votable_id=>@forum_poll.id).first
-  	 if user_vote
-       @user_vote_type=user_vote.vote_type
-  	   @is_vote='true'
-  	else
-  		@vote = @forum_poll.votes.create(:user_id => current_user.id,:vote_type=>params[:value])
-      @user_vote_type=@vote.vote_type
+  before_action :get_model
+	def favour    
+    if current_user.votes.my_vote(params[:id], params[:model]).present?
+      current_user.votes.my_vote(params[:id], params[:model]).update(vote_in_favour: params[:favour])
+    else
+      @model.votes.create(user_id: current_user.id, vote_in_favour: params[:favour])
     end
+    @users = @model.votes.collect(&:user).uniq
   end
+
+  private
+
+  def get_model
+    @model = params[:model].classify.constantize.find(params[:id])
+  end
+  
 end
