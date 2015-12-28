@@ -6,9 +6,9 @@ class GroupsController < ApplicationController
   def index
     # start change code- kandarp
     if params[:data].present?
-      @groups = Group.search(params[:data])
+      @groups = (current_user.groups.search(params[:data]) + current_user.group_members.search(params[:data])).compact.uniq.sort_by(&:updated_at).reverse
     else
-      @groups =(current_user.groups + current_user.group_members).compact.uniq
+      @groups = (current_user.groups + current_user.group_members).compact.uniq.sort_by(&:updated_at).reverse
     end
     # end change code- kandarp
   # @groups =(current_user.groups + current_user.group_members).compact
@@ -17,12 +17,17 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    if params[:post_id]
+      @post = current_user.posts.find(params[:post_id])
+      @post.upload
+    else
+      @post = Post.new
+      @post.build_upload
+    end
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
-    @posts = @group.posts.paginate(:page => params[:page], :per_page => 15)
-    @comment = Comment.new
-    @post = Post.new
-    @post.build_upload
+    @posts = @group.posts.paginate(:page => params[:page], :per_page => 5)
+    @comment = Comment.new    
   end
 
   # GET /groups/new

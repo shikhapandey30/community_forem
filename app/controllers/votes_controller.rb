@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     else
       @model.votes.create(user_id: current_user.id, status: params[:vote])
     end
-    @users = @model.votes.collect(&:user).uniq
+    @users = @model.votes.collect(&:user).uniq.sort_by {|u| u.updated_at}.reverse
   end
 
   private
