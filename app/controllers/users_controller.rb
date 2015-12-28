@@ -126,22 +126,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def reveal_request
-     @reveal_identity=RevealIdentity.where(:sender_id=>current_user.id,:user_id=>params[:id])
-    if @reveal_identity.present?
-      @status=false
-      flash[:success] = "You already sent request to reveal identity for this user"
+  def reveal_request     
+    @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2], :accept => false)
+    Notification.create(recepient_id: params[:id].to_i, user: current_user, body: "#{current_user.screen_name } wants to reveal your identity", notificable: @reveal_identity, :accept => false)
 
-    else
-       @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2], :accept => false)
-      Notification.create(recepient_id: params[:id], user: current_user, body: "#{current_user.screen_name } wants to reveal your identity", notificable: @reveal_identity, :accept => false)
-
-        NotificationMailer.reveal_request(@reveal_identity).deliver_later       
-       @status=true
-      flash[:success] = "Request sent"
-
-    end
-      redirect_to :back
+      NotificationMailer.reveal_request(@reveal_identity).deliver_later       
+     @status=true
+    flash[:success] = "Request sent"
+    redirect_to :back
   end
 
 
