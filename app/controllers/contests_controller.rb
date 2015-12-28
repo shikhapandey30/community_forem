@@ -6,7 +6,7 @@ class ContestsController < ApplicationController
   def index
     # start change code- kandarp
     if params[:data].present?
-      @contests = Contest.search(params[:data])
+      @contests = Contest.search(params[:data]).order("updated_at desc")
     else
       @contests = Contest.all.order("updated_at desc")
     end
