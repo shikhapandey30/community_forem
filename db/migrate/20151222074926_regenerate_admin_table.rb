@@ -1,7 +1,7 @@
 class RegenerateAdminTable < ActiveRecord::Migration
   def change
-  	drop_table :admin_users
-  	drop_table :active_admin_comments
+  	# drop_table :admin_users
+  	# drop_table :active_admin_comments
 
   	#create admin
   	 create_table(:admin_users) do |t|
