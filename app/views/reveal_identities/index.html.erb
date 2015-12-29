@@ -28,7 +28,7 @@
 	  <div class="clearfix whiteBox paymentDetail">
 	    <div class="clearfix formOuterPost tal">
 	      <div class="blackHD tac">Enter Your Credit or Debit Card Information</div>
-	      <form class="mt20" action="/payment_details/create" data-remote= "true" >
+	      <form class="mt20 payment_form" action="/payment_details/create" data-remote= "true" id="payment_form_<%= reveal.id%>" >
 	      	<div class="errors"></div>
 	      	<%= hidden_field_tag :user_id, nil, :value => reveal.user.try(:id) %>
 	      	<%= hidden_field_tag :reveal_id, nil, :value => reveal.id %>
@@ -39,41 +39,52 @@
 	        </div>
 	        <div class="col-sm-6 pl10">
 	          <label>Last Name <span class="redColor">*</span></label>
-	          <input type="text" name="last_name" value="<%= reveal.user.try(:first_name)%>" class="inputTextW small">
+	          <input type="text" name="last_name" value="<%= reveal.user.try(:first_name)%>" class="inputTextW small" data-validation-engine = "validate[required]">
 	        </div>
 	        <div class="col-sm-12">
 	          <label class="">Credit or Debit Card Number  <span class="redColor">*</span></label>
-	          <input type="text" name="card_no" value="" class="inputTextW small">
+	          <input type="text" name="card_no" value="" class="inputTextW small" data-validation-engine = "validate[required]">
 	        </div>
 	        <div class="col-sm-12">
 	          <label class="">Card Holder Name <span class="redColor">*</span></label>
-	          <input value="<%= reveal.user.try(:screen_name)%>" name="cardholder_name" type="text" class="inputTextW small" value="">
+	          <input value="<%= reveal.user.try(:screen_name)%>" name="cardholder_name" type="text" class="inputTextW small" value="" data-validation-engine = "validate[required]">
 	        </div>
 	        <div class="col-sm-4 pr10">
 	          <label>Expiration Date <span class="redColor">*</span></label>
 	          <div class="selctFormBox">
-	            <input value="MM" readonly="" name="month"  class="selectInput" type="text">
+	            <input value="" readonly="" name="month"  class="selectInput" type="text" placeholder="Select Month" data-validation-engine = "validate[required]">
 	            <select class="select">
-	              <option value="1">1</option>
-	               <option value="2">2</option>
-	               <option value="3">3</option>
+	             <option value="">Select Month</option>
+	             <option value="1">1</option>
+	             <option value="2">2</option>
+	             <option value="3">3</option>
+	             <option value="4">4</option>
+	             <option value="5">5</option>
+	             <option value="6">6</option>
+	             <option value="7">7</option>
+	             <option value="8">8</option>
+	             <option value="9">9</option>
+	             <option value="10">10</option>
+	             <option value="11">11</option>
+	             <option value="12">12</option>
 	            </select>
 	          </div>
 	        </div>
 	        <div class="col-sm-4 pr10">
 	          <label>&nbsp;</label>
 	          <div class="selctFormBox">
-	            <input value="YYYY" readonly="" name="year" class="selectInput" type="text">
-	            <select class="select">
-	             <option value="2015">2015</option>
-	               <option value="2016">2016</option>
-	               <option value="2017">2017</option>
+	            <input value="" readonly="" name="year" class="selectInput" type="text" placeholder="Select Year" data-validation-engine = "validate[required]">
+	            <select class="select validate[required]">
+	            <option value="">Select Year</option>
+	            <% 20.times do |y| %>	
+	             <option value="<%=Time.now.year + y%>"><%=Time.now.year + y%></option>
+	            <% end %>
 	            </select>
 	          </div>
 	        </div>
 	        <div class="col-sm-4 pl10">
 	          <label>Security Code <span class="redColor">*</span></label>
-	          <input placeholder="123" name = "csv" type="text" class="inputTextW small ccv" value="" maxlength="10">
+	          <input placeholder="1234" name = "csv" type="text" class="inputTextW small ccv"  maxlength="10" data-validation-engine = "validate[required]">
 	        </div>
 	        <div class="col-sm-12 mt15">
 	          <input type="submit" value="Pay Now" class="blueBtn fullWdth">
@@ -95,6 +106,6 @@
 	$(document).ajaxStop(function() {	
 	  $(".ajax-loading").hide();
 	  $(".loader-img").hide();
-	 });
-
+	});
+	$(".payment_form").validationEngine();
 </script>
