@@ -8,7 +8,7 @@
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
       <% if mobile_device? %>
-          <script src="/assets/js/jquery.nicescroll.min.js"></script>
+          <script src="../assets/js/jquery.nicescroll.min.js"></script>
       <% end %>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
   </head>
@@ -37,16 +37,9 @@
       <%if action_exist?%>
         <%= render "layouts/footer" if !user_signed_in? %>
       <% end %>
-    </div>  
-    <div class="ajax-loading">
-    <span>
-      <p id="please_wait"><strong>Please wait..</strong></p>
-      <p><i class="glyphicon glyphicon-refresh gly-spin" aria-hidden="true"></i></p>
-    </span>
-  </div>  
+    </div>    
   </body>
 </html>
-
 <script src="/assets/posts.js"></script>
 
 <script type="text/javascript">
