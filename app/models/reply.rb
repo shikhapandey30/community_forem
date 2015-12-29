@@ -3,4 +3,6 @@ class Reply < ActiveRecord::Base
 	has_many :dislikes, :as => :dislikable, dependent: :destroy
 	belongs_to :comment
 	belongs_to :user
+	validates_presence_of :body
+
 end

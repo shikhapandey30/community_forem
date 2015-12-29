@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :leave, :join]
 
   # GET /groups
@@ -26,6 +27,7 @@ class GroupsController < ApplicationController
     end
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
+    @suggested_groups = new_suggested_groups.first(2)
     @posts = @group.posts.paginate(:page => params[:page], :per_page => 5)
     @comment = Comment.new    
   end
@@ -38,6 +40,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
   end
 
@@ -60,6 +63,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    authorize @group
     respond_to do |format|
       if @group.update(group_params)
         set_upload
@@ -76,6 +80,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    authorize @group
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group is successfully destroyed.' }

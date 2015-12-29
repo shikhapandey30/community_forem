@@ -1,32 +1,4 @@
 class User < ActiveRecord::Base
-
-  # searchable do
-    # text :first_name
-    # text :last_name
-    # text :screen_name
-    # text :posts do
-    #   posts.map { |post| post.title }
-    # end
-    # text :education_histories do
-    #   education_histories.map { |education| education.course }
-    #   education_histories.map { |education| education.specialization }
-    #   education_histories.map { |education| education.institute }
-    # end
-
-    # text :employment_details do
-    #   employment_details.map { |employment| employment.designation }
-    #   employment_details.map { |employment| employment.organisation }
-    #   employment_details.map { |employment| employment.description }
-    # end
-
-    # text :skill do
-    #   skill.name
-    # end
-
-    # text :users_category do
-    #   users_category.name
-    # end
-  # end
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -99,32 +71,24 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
   after_create :set_notification_setting
   has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
+
   has_many :messages, dependent: :destroy
 
- #  has_one :employment_detail
- #  has_one :specialization,through: :education_history
- #  has_one :user_skill
- #  has_many :organisations , through: :employment_detail
- #  has_many :institutes , through: :education_history
- #  has_many :courses, through: :education_history
- #  has_many :authenticates
- #  
- #  has_many :topics
- #  has_many :forums
- #  has_many :forum_polls
- #  # has_many :skills,through: :user_skill
- # has_many :followings, :foreign_key => "following_id"
- # has_many :followers, :class_name => "Following", :foreign_key => "follower_id"
- #  # accepts_nested_attributes_for :skills, :allow_destroy => true
- #  has_many :categorables, dependent: :destroy
- # has_many :conversations, :foreign_key => :sender_id
- #  #has_many :categorables_categories, through: :categorables, source: :categorable, source_type: 'Category'
- #  has_many :categories, through: :categorables
- #  has_one :subscription
-   def following?(follow)
+  
+  def active_for_authentication?
+    super && self.active # i.e. super && self.is_active
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
+  end
+
+
+  def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
   end
-   def revealed?(reveal)
+
+  def revealed?(reveal)
     RevealIdentity.where(:sender_id=>self.id,:user_id=>reveal.id).present?
   end
   
@@ -172,13 +136,13 @@ class User < ActiveRecord::Base
   end
 
   def is_reveal_sent(user)
-     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => false).first
+     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id).first
      reveal_identity.present? ? true : false
   end
 
   def is_revealed(user)
-     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => true).first
-     reveal_identity.present? ? true : false
+    subscription = Subscription.where(:user_id => user.id, :payer_id => self.id, :subscribable_type => 'RevealIdentity')
+    subscription.present? ? true : false
   end
 
   def isLogin?(user)

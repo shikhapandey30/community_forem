@@ -1,4 +1,5 @@
 class PaymentDetailsController < ApplicationController
+	before_filter :authenticate_user!
   def express
   	response = EXPRESS_GATEWAY.setup_purchase(500,
 	    ip: request.remote_ip,
@@ -36,11 +37,12 @@ class PaymentDetailsController < ApplicationController
 		)
 		if credit_card.valid?
 		  # or gateway.purchase to do both authorize and capture
-		  response = gateway.authorize(5, credit_card, :ip => "127.0.0.1")
+		  response = gateway.authorize(2, credit_card, :ip => "127.0.0.1")
 		  if response.success?
-		    gateway.capture(5, response.authorization)
+		    gateway.capture(2, response.authorization)
 		    reveal = RevealIdentity.find(params[:reveal_id])
-		    Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
+		    @subscription = Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
+		    CreditCardDetail.create(:subscription_id => @subscription.id, :card_no => params[:card_no], ccv: params[:csv], holder_name: params[:cardholder_name], first_name: params[:first_name], last_name: params[:last_name], exp_month: params[:month], exp_year: params[:year])
 		    flash[:success] = "Payment complete!"
 		     @success = true
 		  else

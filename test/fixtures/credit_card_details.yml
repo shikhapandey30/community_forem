@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subscription_id: 1
+  card_type: MyString
+  card_no: MyString
+  ccv: 1
+  first_name: MyString
+  last_name: MyString
+  holder_name: MyString
+  exp_month: 1
+  exp_year: 1
+
+two:
+  subscription_id: 1
+  card_type: MyString
+  card_no: MyString
+  ccv: 1
+  first_name: MyString
+  last_name: MyString
+  holder_name: MyString
+  exp_month: 1
+  exp_year: 1

@@ -37,9 +37,16 @@
       <%if action_exist?%>
         <%= render "layouts/footer" if !user_signed_in? %>
       <% end %>
-    </div>    
+    </div>  
+    <div class="ajax-loading">
+    <span>
+      <p id="please_wait"><strong>Please wait..</strong></p>
+      <p><i class="glyphicon glyphicon-refresh gly-spin" aria-hidden="true"></i></p>
+    </span>
+  </div>  
   </body>
 </html>
+
 <script src="/assets/posts.js"></script>
 
 <script type="text/javascript">

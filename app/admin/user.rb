@@ -11,7 +11,7 @@ ActiveAdmin.register User do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :email, :name, :screen_name, :first_name, :last_name
+  permit_params :email, :name, :screen_name, :first_name, :last_name, :active
   index do
     selectable_column
     id_column
@@ -20,6 +20,7 @@ ActiveAdmin.register User do
     column :screen_name
     column :first_name
     column :last_name
+    column :active
     actions
   end
 
@@ -30,6 +31,7 @@ ActiveAdmin.register User do
       f.input :screen_name
       f.input :first_name
       f.input :last_name
+      f.input :active
     end
     f.actions
   end

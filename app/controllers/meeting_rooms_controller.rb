@@ -1,4 +1,5 @@
 class MeetingRoomsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_meeting_room, only: [:show, :edit, :update, :destroy, :leave]
 
   # GET /meeting_rooms
@@ -29,6 +30,7 @@ class MeetingRoomsController < ApplicationController
 
   # GET /meeting_rooms/1/edit
   def edit
+    authorize @meeting_room
     @meeting_room.upload.present? ? @meeting_room.upload : @meeting_room.build_upload
   end
 
@@ -58,6 +60,7 @@ class MeetingRoomsController < ApplicationController
   # PATCH/PUT /meeting_rooms/1
   # PATCH/PUT /meeting_rooms/1.json
   def update
+    authorize @meeting_room
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
         set_upload
@@ -85,6 +88,7 @@ class MeetingRoomsController < ApplicationController
   # DELETE /meeting_rooms/1
   # DELETE /meeting_rooms/1.json
   def destroy
+    authorize @meeting_room
     @meeting_room.destroy
     respond_to do |format|
       format.html { redirect_to meeting_rooms_url, notice: 'Meeting room is successfully destroyed.' }

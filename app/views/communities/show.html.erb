@@ -11,7 +11,7 @@
         </div>
         <div class="fr font12">
           <a href="<%= leave_community_path(@community)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
-          <div class="fr font14">  <%= @community.members.try(:count)%> members</div>
+          <div class="fr font14">  <%= @community.members.try(:count)%> <%= @community.members.try(:count) <= 1 ? 'member' : 'members'%></div>
         </div>
       </div>
     </div>
@@ -21,81 +21,14 @@
       <div id="posts" class="masonry-container">
         <%=render "users/post"%>
       </div> 
-      <div class="clearfix whiteBox borderTop  mb10 pb0">
-        <div class="clearfix conversationTop borderBtm">
-          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
-          <div class="fr"> <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
-        </div>
-        <div class="connectionOuter ">
-          <div class="col-sm-6 borderRight">
-            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> <span>H. Peter Curran</span></a>
-            <div class="dsignation">Appraiser, Art, Antiques,
-              Deconstruction 
-            </div>
-            <a href="#" class="whiteBtn"> Follow </a> 
-          </div>
-          <div class="col-sm-6">
-            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> <span>Trip Spencer</span></a>
-            <div class="dsignation">Director</div>
-            <a href="#" class="whiteBtn"> Follow </a> 
-          </div>
-        </div>
+      <div class="suggest_connections">
+        <%=render 'users/shared/suggested_connections', suggest: true%>        
       </div>
-      <div class="clearfix whiteBox borderTop  mb10 pb0">
-        <div class="clearfix conversationTop borderBtm">
-          In the conversation on Game of Thrones
-          <div class="converRight"> <a href="#"><img src="/assets/images/con1.jpg" alt=""></a> &nbsp; <a href="#"><img src="/assets/images/con2.jpg" alt=""></a> &nbsp; <a href="#"><img src="/assets/images/con3.jpg" alt=""></a> &nbsp; <a class="blueColor">+11</a> </div>
-        </div>
-        <div class="clearfix formOuterPost tal padding10-0 ">
-          <div class="col-sm-12 mb10">
-            <div class="clearfix userInfo posRel">
-              <a href="#" class="userImg"><img src="/assets/images/profileImg.jpg" alt=""></a> <a href="#" class="userNAme"> Sarah</a> <br>
-              <span class="font13">Events Coordinator, Designer</span>
-              <div class="fr grayColor tar">2h<br>
-                <a href="#"><img src="/assets/images/add.png" alt=""></a> <a href="#">Follow</a> 
-              </div>
-            </div>
-            <div class="uniOuter">
-              <div class="mt0 blackColor bold ">
-                <p>FREE Whitepaper: Driving "Make in India" with Simulation-Driven Product Development <a href="#" class="blueColor">http://bit.ly/1jivyyN</a></p>
-                <div class="clearfix videoFeed bold">
-                  <a href="#" class="videoFeedImg"><img src="/assets/images/videoFeed.jpg" alt=""></a>
-                  <div class="font18">Make in India</div>
-                  ansys.comThe "Make in India" initiative aims to remove policy and infrastructure bottle­necks and catapult India into a global manufacturing hub.... 
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-          <div class="commentSec">
-            <span class="grayColor font12">22,577 Likes &nbsp; &nbsp; 587 Comments &nbsp; &nbsp; 0 shares</span>
-            <div class="cmntSec"> <a href="#"><img src="/assets/images/up.png" alt=""></a> <a href="#"><img src="/assets/images/down1.png" alt=""></a> <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a> <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-              <input type="button" value="Add Your Comment" class="addCmnt inputTextW small">
-            </div>
-          </div>
-          <div class="commentShow">
-            <div  class="clearfix commentSec cmntRow">
-              <div class="clearfix userInfo posRel">
-                <div class="bold mb10"><a href="#" class="grayColor font13 showCmnt">Show Previous Comments</a></div>
-                <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a> <a href="#" class="userNAme"> You</a> <br>
-                <span class="font13">Web Designer</span>
-                <div class="fr grayColor tar">2 Oct</div>
-                <div class="clearfix mt15 font13 blackColor bold">What are you most excited about? <a href="#" class="blueColor">I know mine!</a></div>
-                <div class="font13 bold blueColor"><a href="#" class="blueColor" >Like </a></div>
-              </div>
-            </div>
-            <div class="clearfix commentSec cmntRow borderNOne">
-              <div class="clearfix userInfo posRel">
-                <a href="#" class="userImg"><img src="/assets/images/smith.jpg" alt=""></a>
-                <div class="addcomtntTA">
-                  <textarea placeholder="Add Your Comment" class="inputTextW small "></textarea>
-                  <input value="Save" class="blueBtn" type="submit">
-                  <a href="javascript:void(0)" class="grayBtn Cancel">Cancel</a> 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="clearfix grpOuter suggest_communities">
+        <%=render 'users/shared/suggested_communities', suggest: true%>
+      </div>
+      <div class="clearfix grpOuter suggest_groups">
+        <%=render 'users/shared/suggested_groups', suggest: true%>
       </div>
     </div>
   </div>

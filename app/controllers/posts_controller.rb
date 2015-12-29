@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
   # GET /Posts/1/edit
   def edit
+    authorize @post
     @post.upload.present? ? @post.upload : @post.build_upload
   end
 
@@ -61,6 +62,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /Posts/1
   # PATCH/PUT /Posts/1.json
   def update
+     authorize @post
     respond_to do |format|
       if @post.update(post_params)
         set_upload
@@ -76,6 +78,7 @@ class PostsController < ApplicationController
   # DELETE /Posts/1
   # DELETE /Posts/1.json
   def destroy
+    authorize @post
     @post.destroy
     respond_to do |format|
       format.html { redirect_to dashboard_path, notice: 'Post is successfully destroyed.' }

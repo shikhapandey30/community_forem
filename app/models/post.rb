@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   # friendly_id :title, :use => :slugged
   # validates :title, uniqueness: true, :allow_blank => true
 	belongs_to :category
-	# validates_presence_of :description
+	validates_presence_of :topic, :category_id, :description, :title
 	belongs_to :user
 	 # has_one :topic
   belongs_to :postable, :polymorphic => true

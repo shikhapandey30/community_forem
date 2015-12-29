@@ -11,7 +11,7 @@
         </div>
         <div class="fr font12">
           <a href="<%= leave_contest_path(@contest)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
-          <div class="fr font14"> <%= @contest.members.try(:count) %> members</div>
+          <div class="fr font14"> <%= @contest.members.try(:count) %> <%= @contest.members.try(:count) <= 1 ? 'member' : 'members' %></div>
         </div>
       </div>
     </div>
