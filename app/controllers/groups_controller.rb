@@ -40,6 +40,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
   end
 
@@ -62,6 +63,7 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    authorize @group
     respond_to do |format|
       if @group.update(group_params)
         set_upload
@@ -78,6 +80,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    authorize @group
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group is successfully destroyed.' }

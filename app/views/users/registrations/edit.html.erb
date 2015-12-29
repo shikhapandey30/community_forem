@@ -11,58 +11,54 @@
             <span class="location"><%= current_user.try(:profile).try(:country).try(:name) %></span>
           </div>
         </div>
-        
         <!-- container -->
         <div class="clearfix formOuterPost mt20 tal">
           <div class="col-sm-12 ">
             <label class="font16">Screen Name: &nbsp; <span class="disName"><%= current_user.try(:screen_name) %></span></label>
           </div>
+
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
-
-          <div class="col-sm-12  mt10">
-            <label>Password  <a href="javascript:void(0)" class="blueColor font12 enable"> Change Password</a></label>
-            
-            <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small", disabled: "disabled" %>
-
-            <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small", disabled:"disabled" %>
-
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small", disabled: "disabled" %>
-          </div>
-          <div class="col-sm-12 mt5">
-            <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change </a></label>
-            <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled"  , :placeholder => "Email" %>
-          </div>
-           <div class="col-sm-12">
-            <%= f.submit "Save" ,:class=>"blueBtn"%>
-          </div>
+            <%= devise_error_messages! %>
+            <div class="col-sm-12  mt10">
+              <label>Password  <a href="javascript:void(0)" class="blueColor font12 enable"> Change Password</a></label>
+              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small", disabled: "disabled" %>
+              <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small", disabled:"disabled" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small", disabled: "disabled" %>
+            </div>
+            <div class="col-sm-12 mt5">
+              <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change </a></label>
+              <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled"  , :placeholder => "Email" %>
+            </div>
+            <div class="col-sm-12">
+              <input type="submit" value="Save" class="blueBtn">
+            </div>
           <% end %>
-          <%= form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true, class: "profile_form", id: "edit_profile" } do |fp| %>
-          <%=fp.fields_for :profile do |p|%>
 
-          <div class="col-sm-12 mt5">
-            <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Change</a> </label>
-            <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" , :placeholder => "Phone Number"%>
-          </div>
-          <div class="col-sm-12">
-            <input type="submit" value="Save " class="blueBtn", id="form_submit">
-            <a href="/dashboard" class="grayBtn">Cancel</a>
-          </div>
+          <%= nested_form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true} do |fp| %>
+            <%=fp.fields_for :profile do |p|%>
+              <div class="col-sm-12 mt5">
+                <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Change</a> </label>
+                <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" , :placeholder => "Phone Number"%>
+              </div>
+            <% end %>
+            <div class="col-sm-12 mt15">
+              <input type="submit" value="Save" class="blueBtn">
+              <a href="/dashboard" class="grayBtn">Cancel</a>
+            </div>
           <% end %>
-          <% end %>
-       
+
         </div>
       </div>
       <div class="whiteBox mb10 ">
         <!-- container -->
         <div class="clearfix formOuterPost  tal">
           <div class="blackHD tal col-sm-12 font16">Notifications</div>
-           <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|  %>
+
+          <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|  %>
             <%= f.hidden_field :email %>
             <%= f.hidden_field :screen_name %>
-
             <% notification_setting = resource.notification_setting.present? ? resource.notification_setting : resource.build_notification_setting %>
-              <%= f.fields_for :notification_setting ,notification_setting do |task_form| %>
+            <%= f.fields_for :notification_setting ,notification_setting do |task_form| %>
               <div class="col-sm-12 mt15">
                 <label class="radioV"> <%= task_form.check_box :new_update, :class=>"ch"%> Notify me for NEW updates </label>
               </div>
@@ -75,67 +71,14 @@
               <div class="col-sm-12 ">
                 <label class="radioV"><%= task_form.check_box :friends_birthday, :class=>"ch"%>Send me special notification on birthday of my friends  </label>
               </div>
-              <% end %>
+            <% end %>
             <div class="col-sm-12 mt15">
               <input type="submit" value="Save" class="blueBtn">
             </div>
-         <% end %>
-
+          <% end %>
+          
         </div>
       </div>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(function () {
-    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
-  });
-  $('#form_submit').click( function() {
-    $("#edit_user").submit();
-    $("#edit_profile").submit();
-  });
-</script>
-
-
-
-
-<!-- <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
- -->

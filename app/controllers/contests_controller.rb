@@ -29,6 +29,7 @@ class ContestsController < ApplicationController
 
   # GET /contests/1/edit
   def edit
+    authorize @contest
     @contest.upload.present? ? @contest.upload : @contest.build_upload
   end
 
@@ -53,6 +54,7 @@ class ContestsController < ApplicationController
   # PATCH/PUT /contests/1
   # PATCH/PUT /contests/1.json
   def update
+    authorize @contest
     respond_to do |format|
       if @contest.update(contest_params)
         set_upload
@@ -69,6 +71,7 @@ class ContestsController < ApplicationController
   # DELETE /contests/1
   # DELETE /contests/1.json
   def destroy
+    authorize @contest
     @contest.destroy
     respond_to do |format|
       format.html { redirect_to contests_url, notice: 'Contest is successfully destroyed.' }
