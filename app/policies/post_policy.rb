@@ -10,4 +10,12 @@ class PostPolicy < ApplicationPolicy
   def update?
     @user == @post.user
   end
+
+  def destroy?
+    @user == @post.user
+  end
+
+  def edit?
+    update?
+  end
 end

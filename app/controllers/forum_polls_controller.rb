@@ -43,10 +43,12 @@ class ForumPollsController < ApplicationController
   end
 
   def edit
+    authorize @forum_poll
     @forum_poll.upload.present? ? @forum_poll.upload : @forum_poll.build_upload
   end
 
   def update
+    authorize @forum_poll
     respond_to do |format|
       if @forum_poll.update(forum_poll_params)
         set_upload
@@ -62,6 +64,7 @@ class ForumPollsController < ApplicationController
   # DELETE /contests/1
   # DELETE /contests/1.json
   def destroy
+    authorize @forum_poll
     @forum_poll.destroy
     respond_to do |format|
       format.html { redirect_to forum_polls_url, notice: 'Forum Poll is successfully destroyed.' }

@@ -45,6 +45,7 @@ class CommunitiesController < ApplicationController
 
   # GET /communities/1/edit
   def edit
+    authorize @community
     @community.upload.present? ? @community.upload : @community.build_upload
     @friends = current_user.my_friends
     @friends = @friends.present? ? @friends : []
@@ -78,6 +79,7 @@ class CommunitiesController < ApplicationController
   # PATCH/PUT /communities/1
   # PATCH/PUT /communities/1.json
   def update
+    authorize @community
     respond_to do |format|
       if @community.update(community_params)
         set_upload
@@ -102,6 +104,7 @@ class CommunitiesController < ApplicationController
   # DELETE /communities/1
   # DELETE /communities/1.json
   def destroy
+    authorize @community
     @community.destroy
     respond_to do |format|
       format.html { redirect_to communities_url, notice: 'Community is successfully destroyed.' }
