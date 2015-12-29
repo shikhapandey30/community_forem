@@ -123,6 +123,7 @@ class UsersController < ApplicationController
 
     else
         flash[:notice] = "Authentication Failed."
+        redirect_to root_path
     end
   end
 
