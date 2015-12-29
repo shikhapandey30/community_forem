@@ -36,9 +36,9 @@ class PaymentDetailsController < ApplicationController
 		)
 		if credit_card.valid?
 		  # or gateway.purchase to do both authorize and capture
-		  response = gateway.authorize(5, credit_card, :ip => "127.0.0.1")
+		  response = gateway.authorize(2, credit_card, :ip => "127.0.0.1")
 		  if response.success?
-		    gateway.capture(5, response.authorization)
+		    gateway.capture(2, response.authorization)
 		    reveal = RevealIdentity.find(params[:reveal_id])
 		    Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
 		    flash[:success] = "Payment complete!"
