@@ -9,7 +9,7 @@
       <div class="clearfix whiteBox mt30 borderBtmBlue">
         <div class="clearfix formOuterPost tal">
           <div class="ProfileTHumb">
-          <% if !current_user.is_reveal_sent(@user) %>
+          <% if !current_user.is_reveal_sent(@user) && (current_user != @user) %>
            <img src="../assets/images/arrowTop.png" alt="" class="arrowTop">
             <a href="#" class="backBtn  revealIdentity" data-toggle="modal" data-target="#revIdentity">Reveal Identity </a>
             <% end %>
