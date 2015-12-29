@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   has_one :notification_setting, dependent: :destroy
   accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
   after_create :set_notification_setting
-  has_many :reveal_identities, dependent: :destroy, :foreign_key => 'sender_id'
+  has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
 
 
  #  has_one :employment_detail
