@@ -61,6 +61,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /Posts/1
   # PATCH/PUT /Posts/1.json
   def update
+     authorize @post
     respond_to do |format|
       if @post.update(post_params)
         set_upload
