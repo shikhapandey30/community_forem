@@ -7,6 +7,11 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
    '/profiles/new'# Or :prefix_to_your_route
   end
+
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
    # private 
 
    #  # Never trust parameters from the scary internet, only allow the white list through.
