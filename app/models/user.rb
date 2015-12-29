@@ -172,7 +172,7 @@ class User < ActiveRecord::Base
   end
 
   def is_reveal_sent(user)
-     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => false).first
+     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id).first
      reveal_identity.present? ? true : false
   end
 
