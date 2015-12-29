@@ -17,14 +17,14 @@ class MessagesController < ApplicationController
     current_user.messages.create(message_params)
     @friend = User.find(params[:message][:conversation_id])
     @messages = Message.between(current_user, @friend)
-    conversation_message_path(@friend, current_user)
+    # conversation_message_path(@friend, current_user)
     # @conversation = Conversation.find(params[:conversation_id])
     # @message = @conversation.messages.build(message_params)
     # @message.user_id = current_user.id
     # @message.save!
 
     # @path = conversation_path(@conversation)
-    redirect_to :back
+   # redirect_to :back
   end
 
   private

@@ -18,11 +18,12 @@
     </div>
     <div class="msgBox" style="overflow-y: hidden;" tabindex="4">
       <div class="tac font13 mt10 blackColor">Nov 17</div>
-      <div class="chatboxcontent">
+      <div  id = "chatmsg" class="chatboxcontent">
         <% if @messages.any? %>
           <%#=render 'chatBox', friend: @friend%>        
           <%= render @messages%>
         <% end %>
+        
       </div>
     </div>
   </div>
@@ -44,3 +45,4 @@
     </div>
   <%end%>
 </div>
+<%= subscribe_to conversation_message_path(friend, current_user) %>

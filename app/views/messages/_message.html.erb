@@ -15,12 +15,4 @@
     </div>
   <%end%>  
 <%end%>
-<%= subscribe_to conversation_path(@messages) %>
-<script type="text/javascript">
-  PrivatePub.sign({
-    channel: "/conversations",
-    timestamp: 1302306682972,
-    signature: "dc1c71d3e959ebb6f49aa6af088d",
-    server: "http://localhost:9292/faye"
-  });
-</script>
+<%= subscribe_to conversation_message_path(@friend, current_user) %>
