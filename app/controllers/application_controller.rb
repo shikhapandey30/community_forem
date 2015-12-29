@@ -64,9 +64,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy]) }
   end
   private
-
-  def user_not_authorized
+  
+  def user_not_authorized(exception)
+    # policy_name = exception.policy.class.to_s.underscore
     flash[:alert] = "You are not authorized to perform this action."
+    # flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
     redirect_to(request.referrer || root_path)
   end 
 end
