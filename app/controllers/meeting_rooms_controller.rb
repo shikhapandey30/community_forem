@@ -1,4 +1,5 @@
 class MeetingRoomsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_meeting_room, only: [:show, :edit, :update, :destroy, :leave]
 
   # GET /meeting_rooms

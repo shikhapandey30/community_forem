@@ -1,4 +1,5 @@
 class PaymentDetailsController < ApplicationController
+	before_filter :authenticate_user!
   def express
   	response = EXPRESS_GATEWAY.setup_purchase(500,
 	    ip: request.remote_ip,
