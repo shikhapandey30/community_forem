@@ -21,6 +21,9 @@ class CommunitiesController < ApplicationController
   # GET /communities/1
   # GET /communities/1.json
   def show
+    @suggested_communities = new_suggested_communities.first(2)
+    @suggested_connections = new_suggested_connections.first(2)
+    @suggested_groups = new_suggested_groups.first(2)
     if params[:post_id]
       @post = current_user.posts.find(params[:post_id])
       @post.upload

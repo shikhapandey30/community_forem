@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
     end
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
+    @suggested_groups = new_suggested_groups.first(2)
     @posts = @group.posts.paginate(:page => params[:page], :per_page => 5)
     @comment = Comment.new    
   end
