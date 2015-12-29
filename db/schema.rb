@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228123438) do
+ActiveRecord::Schema.define(version: 20151229062743) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -180,6 +180,20 @@ ActiveRecord::Schema.define(version: 20151228123438) do
     t.string   "name",                 limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "credit_card_details", force: :cascade do |t|
+    t.integer  "subscription_id", limit: 4
+    t.string   "card_type",       limit: 255
+    t.string   "card_no",         limit: 255
+    t.integer  "ccv",             limit: 4
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.string   "holder_name",     limit: 255
+    t.integer  "exp_month",       limit: 4
+    t.integer  "exp_year",        limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "dislikes", force: :cascade do |t|

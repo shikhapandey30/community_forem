@@ -40,7 +40,8 @@ class PaymentDetailsController < ApplicationController
 		  if response.success?
 		    gateway.capture(2, response.authorization)
 		    reveal = RevealIdentity.find(params[:reveal_id])
-		    Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
+		    @subscription = Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
+		    CreditCardDetail.create(:subscription_id => @subscription.id, :card_no => params[:card_no], ccv: params[:csv], holder_name: params[:cardholder_name], first_name: params[:first_name], last_name: params[:last_name], exp_month: params[:month], exp_year: params[:year])
 		    flash[:success] = "Payment complete!"
 		     @success = true
 		  else
