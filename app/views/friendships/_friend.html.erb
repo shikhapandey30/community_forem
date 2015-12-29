@@ -1,4 +1,4 @@
-  <%@friends.each do |friend|%>
+<%@friends.each do |friend|%>
   <div class="clearfix whiteBox connectionRow borderTpBlue frined-box-<%= friend.id%>">
     <div class="clearfix  cmntRow">
       <div class="clearfix userInfo posRel">
@@ -6,8 +6,9 @@
         <a href="<%= profile_path(friend)%>" class="userImg"><img src="<%= friend.try(:img)%>" alt=""></a>
         <a href="<%= profile_path(friend)%>" class="userNAme"> <%=friend.try(:screen_name)%></a> <br>
         <div class="fr grayColor tar"> <%= time_ago_in_words(friend.created_at).capitalize %> ago<br>
-           <%= link_to "Message", "#", class: "mt10 start-conversation",
-                    "data-sid" => current_user.id, "data-rip" => friend.id %>
+           <%= link_to "Message", conversation_message_path(friend, current_user), class: "mt10 start-conversation" %>
+           
+           <%#= link_to "Message", conversation_message_path(friend, current_user), class: "mt10 start-conversation", "data-sid" => current_user.id, "data-rip" => friend.id %>
           <br><%= link_to "Remove", unfriend_path(:friend_id => friend.id), :method => :post , :class=>"removeLink", :remote=>true %>
         </div>
         <div class="font13 mt5"><%=designations(friend)%></div>
@@ -15,4 +16,4 @@
       </div>
     </div>
   </div>
-  <% end %>
+<%end%>

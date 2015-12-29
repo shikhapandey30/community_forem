@@ -1,0 +1,45 @@
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
+    <div class="clearfix msgOuter mt20 tac">
+      <div class="whiteBox  tal ">
+        <div class="clearfix msgLIstingOuter">
+          <div class="listTOp">
+            <a href="#">All Messages </a>
+            <a href="javascript:void(0)" class="plusIcon"><span class="glyphicon glyphicon-envelope"></span></a>
+          </div>
+          <div class="formOuter searchFrnd width100per blueSearchBox">
+            <form method="post" action="">
+              <input placeholder="Search" class="searhInput1" type="text">
+              <input value="" class="searhSub" type="submit">
+            </form>
+          </div>
+          <ul class="notiScroll scrollbars">
+            <%@friends.each do |friend|%>
+              <li>
+                <div class="clearfix commentSec cmntRow <%='activeMsg' if friend.id==params[:conversation_id].to_i%>">
+                  <div class="clearfix userInfo posRel">
+                    <a href="#-" class="userImg"><img src="<%=friend.try(:img)%>" alt=""></a> <a href="#-" class="userNAme font14"><%=friend.try(:screen_name)%></a> <br>
+                    <div class="fr grayColor tar"><%= time_ago_in_words(friend.created_at).capitalize %></div>
+                    <div class="font13"><%=designations(friend)%></div>
+                    <div class="blackColor font12 bold"> is now a connection</div>
+                  </div>
+                  <a href="javascript:void(0)" class="removeMSg"> <span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+              </li>
+            <%end%>
+          </ul>
+        </div>
+        <%=render 'chatBox', friend: @friend%>        
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <script>
+    $(function () {
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+    });
+  </script>

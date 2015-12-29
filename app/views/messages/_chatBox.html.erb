@@ -1,0 +1,46 @@
+<div class="msgBoxRight">
+  <div class="msgReplyBox">
+    <div class="clearfix  cmntRow">
+      <div class="clearfix userInfo posRel">
+        <span class="dropdown settingDropDown ">
+          <a aria-expanded="true" href="#" data-toggle="dropdown">
+          <img src="/assets/images/arrowBlack.png" alt="">
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"> Mark as unread </a> </li>
+            <li> <a href="#">  Delete Conversation</a> </li>
+          </ul>
+        </span>
+        <a href="#" class="userImg"><img src="/assets/images/profileImg.jpg" alt=""></a>
+        <a href="#" class="userNAme"> Sarah</a> <br>
+        <div class="font13 mt5">Senior Manager Marketing at Info Edge India</div>
+      </div>
+    </div>
+    <div class="msgBox" style="overflow-y: hidden;" tabindex="4">
+      <div class="tac font13 mt10 blackColor">Nov 17</div>
+      <div class="chatboxcontent">
+        <% if @messages.any? %>
+          <%#=render 'chatBox', friend: @friend%>        
+          <%= render @messages%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="newMsgBox">
+    <input type="text" placeholder="Type a Name">
+  </div>
+  <%=form_for Message.new, url: conversation_messages_path(friend), remote: true do |f|%>
+    <div class="replyBox">
+      <div class="replyRowFrwd">  Click here to or <a href="#-" class="blackColor bold">reply</a> or <a href="#-" class="blueColor bold">forword</a></div>
+      <%=f.text_area :body, placeholder: "Write your message..."%>
+      <%=f.hidden_field :conversation_id, value: friend.id%>
+      <div class="submitRow">
+        <span><input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+        <a href="#-" onclick="document.getElementById('Photo').click(); return false"><img src="/assets/images/c1.png" alt=""></a>
+        <input id="attachmentS" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
+        <a href="#-" onclick="document.getElementById('attachmentS').click(); return false"><img src="/assets/images/c3.png" alt=""></a></span>
+        <input type="submit" value="Sent" class="blueBtn">
+      </div>
+    </div>
+  <%end%>
+</div>

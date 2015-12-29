@@ -79,7 +79,17 @@ $(document).ready(function(){
 	});
 
 	$(".scrollbars, .searchDropDown").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});
+	// 29-12-15
+	$(".replyBox").click(function(){
+		// $(".replyBox textarea").val('');
+		$(".replyBox textarea").css("display","block").focus();
+		$(".replyRowFrwd").css("display","none");	
+	});
 
+	$(".plusIcon").click(function(){
+		$(".msgReplyBox").css("display","none");
+		$(".newMsgBox").css("display","block");
+	});
 });
 
 /* For Select Option */	

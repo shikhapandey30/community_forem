@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228123438) do
+ActiveRecord::Schema.define(version: 20151229080736) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -553,6 +553,5 @@ ActiveRecord::Schema.define(version: 20151228123438) do
     t.string   "status",        limit: 255
   end
 
-  add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end
