@@ -71,6 +71,14 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
   after_create :set_notification_setting
   has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
+  
+  def active_for_authentication?
+    super && self.active # i.e. super && self.is_active
+  end
+
+  def inactive_message
+    "Sorry, this account has been deactivated."
+  end
 
   def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
