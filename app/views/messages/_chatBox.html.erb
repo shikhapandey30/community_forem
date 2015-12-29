@@ -16,11 +16,10 @@
         <div class="font13 mt5">Senior Manager Marketing at Info Edge India</div>
       </div>
     </div>
-    <div class="msgBox" style="overflow-y: hidden;" tabindex="4">
+    <div class="msgBox" style="" tabindex="4">
       <div class="tac font13 mt10 blackColor">Nov 17</div>
-      <div  id = "chatmsg" class="chatboxcontent">
+      <div  id = "chatmsg">
         <% if @messages.any? %>
-          <%#=render 'chatBox', friend: @friend%>        
           <%= render @messages%>
         <% end %>
         
@@ -45,4 +44,4 @@
     </div>
   <%end%>
 </div>
-<%= subscribe_to conversation_message_path(friend, current_user) %>
+<%= subscribe_to '/messages/new' %>

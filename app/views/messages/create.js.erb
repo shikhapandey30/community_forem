@@ -1,3 +1,4 @@
-<% publish_to conversation_message_path(@friend, current_user) do %>
+$(".replyBox textarea").val('');
+<% publish_to '/messages/new' do %>
   $("#chatmsg").append("<%= j render(@messages) %>");
 <% end %>
