@@ -11,7 +11,7 @@
         </div>
         <div class="fr font12">
           <a href="<%= leave_community_path(@community)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
-          <div class="fr font14">  <%= @community.members.try(:count)%> <%= @community.members.try(:count) == 1 ? 'member' : 'members'%></div>
+          <div class="fr font14">  <%= @community.members.try(:count)%> <%= @community.members.try(:count) <= 1 ? 'member' : 'members'%></div>
         </div>
       </div>
     </div>
