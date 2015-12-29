@@ -177,8 +177,8 @@ class User < ActiveRecord::Base
   end
 
   def is_revealed(user)
-     reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id, :accept => true).first
-     reveal_identity.present? ? true : false
+    subscription = Subscription.where(:user_id => user.id, :payer_id => self.id, :subscribable_type => 'RevealIdentity')
+    subscription.present? ? true : false
   end
 
 end

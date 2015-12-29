@@ -16,15 +16,20 @@
 	    <div class="clearfix cmntRow tal">
 	      <div class="clearfix userInfo posRel">
 	        <div class="clearfix  "></div>
-	        <a href="#" class="userImg"><img src=" <%= reveal.user.try(:img) %>" alt=""></a>
-	        <a href="#" class="userNAme font20 mt10"> <%= reveal.user.try(:screen_name) %></a> <br>
-	        <div class="fr grayColor tar font15 "><span  class="blackColor bold"> Pay <span class="font24">$2</span> to reveal identity</span><br>
-	          <a href="javascript:void(0)" class="mt10 paymentBtn">Proceed to Payment</a> 
-	        </div>
+	        <a href="<%= profile_path(reveal.user)%>" class="userImg"><img src=" <%= reveal.user.try(:img) %>" alt=""></a>
+	        <a href="<%= profile_path(reveal.user)%>" class="userNAme font20 mt10"> <%= reveal.user.try(:screen_name) %></a> <br>
+	        <% if current_user.is_revealed(reveal.user) %>
+	        	<span class = 'right'>Paid</span>
+	        <% else %>
+		        <div class="fr grayColor tar font15 "><span  class="blackColor bold"> Pay <span class="font24">$2</span> to reveal identity</span><br>
+		          <a href="javascript:void(0)" class="mt10 paymentBtn">Proceed to Payment</a> 
+		        </div>
+	        <% end %>
 	        <div class="font14 mt5"> <%= reveal.user.try(:city) %></div>
 	      </div>
 	    </div>
 	  </div>
+	 <% if !current_user.is_revealed(reveal.user) %>
 	  <div class="clearfix whiteBox paymentDetail">
 	    <div class="clearfix formOuterPost tal">
 	      <div class="blackHD tac">Enter Your Credit or Debit Card Information</div>
@@ -92,6 +97,7 @@
 	      </form>
 	    </div>
 	  </div>
+	  <% end %>
     <% end %>
 	</div>
 
