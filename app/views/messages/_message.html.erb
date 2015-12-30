@@ -1,18 +1,17 @@
-
-  <%if msg.user.isLogin?(current_user)%>
-    <div class="msgRight fr">
-      <div class="grayBkg">
-        <p><%=msg.body%></p>
-      </div>
-      <div class="time tar"><%=msg.created_at.strftime("%I:%M %p")%></div>
+<%if msg.user.isLogin?(current_user)%>
+  <div class="msgRight fr">
+    <div class="grayBkg">
+      <p><%=msg.body%></p>
     </div>
-    <div class="clearfix"></div>
-  <%else%>        
-    <div class="msgRight fl">
-      <div class="grayBkg">
-        <p><%=msg.body%></p>
-      </div>
-      <div class="time tal"><%=msg.created_at.strftime("%I:%M %p")%></div>
+    <div class="time tar"><%=msg.created_at.strftime("%I:%M %p")%></div>
+  </div>
+  <div class="clearfix"></div>
+<%else%>        
+  <div class="msgRight fl">
+    <div class="grayBkg">
+      <p><%=msg.body%></p>
     </div>
-    <div class="clearfix"></div>
-  <%end%>  
+    <div class="time tal"><%=msg.created_at.strftime("%I:%M %p")%></div>
+  </div>
+  <div class="clearfix"></div>
+<%end%>

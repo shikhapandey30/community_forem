@@ -44,6 +44,16 @@ $(document).on("keyup", ".searhInput1.connections", function(){
   });
 });
 
+// My connections
+$(document).on("keyup", ".searhInput1.myConnections", function(){
+  $.ajax({
+    method: "get",
+    url: "/messages/connection_filter",
+    data: {name: this.value}
+  });
+});
+
+
 // Suggested group
 $(document).on("keyup", ".searhInput1.groups", function(){
   $.ajax({

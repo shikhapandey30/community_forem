@@ -75,6 +75,9 @@ Rails.application.routes.draw do
     resources :messages
   end
   resources :messages, only: [:index] do 
+    collection do 
+      get :connection_filter
+    end
   end
   # resources :users do
   # resources :notifications, only: [:create]  

@@ -27,6 +27,12 @@ class MessagesController < ApplicationController
    # redirect_to :back
   end
 
+  def connection_filter
+    @friends = current_user.friends.by_name(params[:name]) + current_user.inverse_friends.by_name(params[:name])
+    @friends.delete(current_user)
+    @friends = @friends.paginate(:page => params[:page], :per_page => 10)
+  end
+
   private
 
   def message_params

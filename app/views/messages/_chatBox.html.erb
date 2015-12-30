@@ -11,9 +11,9 @@
             <li> <a href="#">  Delete Conversation</a> </li>
           </ul>
         </span>
-        <a href="#" class="userImg"><img src="/assets/images/profileImg.jpg" alt=""></a>
-        <a href="#" class="userNAme"> Sarah</a> <br>
-        <div class="font13 mt5">Senior Manager Marketing at Info Edge India</div>
+        <a href="#" class="userImg"><img src="<%=friend.img%>" alt=""></a>
+        <a href="#" class="userNAme"><%=friend.try(:screen_name)%></a> <br>
+        <div class="font13 mt5"><%=designations(friend)%></div>
       </div>
     </div>
     <div class="msgBox" style="" tabindex="4">
@@ -23,8 +23,7 @@
           <%= render 'message', msg: msg%>
         <% end %>
       </div>
-      <%= subscribe_to '/messages/new' %>
-      
+      <%= subscribe_to '/messages/new' %>      
     </div>
   </div>
   <div class="newMsgBox">
