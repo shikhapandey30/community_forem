@@ -131,7 +131,10 @@ class GroupsController < ApplicationController
       members_ids.each do |members_id|
         member = Member.create(:user_id => members_id.to_i, :invitable => @group)
         #send notification
-        Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
+        reciver =  User.find(members_id)
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
+        end
       end
     end
 

@@ -34,7 +34,9 @@
             <div class="mt5 mb-10">
               <a href="#" class="removeLink inline">Message </a> |  
               <span id="following-button-span-<%= follow.followable.id %>">
-                <%= render :partial=> "users/follow_link", :locals => {:object => follow.followable} %>
+               <% follow_text = current_user.is_follow(follow.followable) ? "Unfollow" : "Follow" %>
+
+               <%= link_to follow_text, follow_path(:follower_id => current_user.id,  followable_id: follow.followable.id, followable_type: follow.followable.class.name), :method => :post , :id=>"following-button-#{follow.followable.id}", :remote=>true, :class=>'replyBtn removeLink following-button-#{follow.followable.id}' %>
               </span>
 
             </div>

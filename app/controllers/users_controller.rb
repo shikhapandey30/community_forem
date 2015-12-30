@@ -49,11 +49,14 @@ class UsersController < ApplicationController
 
     if params[:data]=="hot_topic"
       @posts = EmploymentDetail.select{|e| e.total_experience}.sort_by(&:total_experience).reverse.
-                  collect(&:user).flatten.map{|u| u.posts.validity.order("updated_at desc")}.compact.flatten rescue []
+                  collect(&:user).flatten.map{|u| u.posts.validity}.compact.flatten rescue []
     else     
-      @posts = Post.all.validity.order("updated_at asc").reverse
+      @posts = Post.all.validity
     end
-    @posts = @posts.paginate(:page => params[:page], :per_page => 15)
+    self_post=current_user.posts
+    @posts= (@posts  + self_post).compact.sort_by(&:updated_at).reverse
+
+    @posts = @posts.uniq.paginate(:page => params[:page], :per_page => 15)
     @comment = Comment.new
 	end
 

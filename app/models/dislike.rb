@@ -1,7 +1,7 @@
 class Dislike < ActiveRecord::Base
 	belongs_to :dislikable, :polymorphic => true
 
-		def self.create_like(id, type, current_user)
+		def self.create_like(id, type, current_user, body)
 	    case type
 	    when 'post' 
 	     @model = Post.find(id)
@@ -25,6 +25,7 @@ class Dislike < ActiveRecord::Base
 	   	  dislike.destroy
 	   	   return nil,nil, @model
 	   	else
+	   	  dislike.body = body
 	   	  dislike.save 
 	   	   like = Like.where(:likable=>@model,:user_id=>current_user.id)
            like.destroy_all

@@ -1,1 +1,24 @@
-<%=link_to image_tag("images/down1.png"), dislikes_create_path(id: model_obj.id, type: model_obj.class.name.downcase), method: :post, remote: true,:class=>"#{current_user.is_disliked(model_obj) ? 'like_image_post_liked' : 'like_image_post'}", :id=>"dislike_image_post_disliked_#{model_obj.id}"%>
+<%#=link_to image_tag("images/down1.png"), '#', :class=>"#{current_user.is_disliked(model_obj) ? 'like_image_post_liked' : 'like_image_post'}", "data-toggle"=>"modal", "data-target"=>"#dislike_image_post_disliked_#{model_obj.id}"%>
+
+ <a href="javascript:void(0)" data-toggle="modal" data-target="#dislike_image_post_disliked_<%= model_obj.id %>"><img src="/assets/images/down1.png" alt=""></a>
+
+<div class="modal fade " id="dislike_image_post_disliked_<%= model_obj.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="clearfix modal-content">
+      <a class="close" data-dismiss="modal">X</a>
+      <div class="blackHD tac font22">Why you Dislike ?</div>
+      <form class="mt20 dislike-form" action="<%= dislikes_create_path(id: model_obj.id, type: model_obj.class.name.downcase) %>" data-remote ="true" method="post" id="payment_form_<%= model_obj.id%>">
+        <div class="col-sm-12">
+          <label class=""> Write Messaage</label>
+          <textarea class="inputTextW small" name="body" placeholder="" data-validation-engine = "validate[required]" data-id = "<% model_obj.id %>"></textarea>
+        </div>
+        <div class="col-sm-12">
+          <input value="Submit" class="darkBlueBtn inputSubmit" type="submit">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$(".dislike-form").validationEngine();
+</script>

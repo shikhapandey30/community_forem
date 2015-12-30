@@ -110,7 +110,7 @@ Rails.application.routes.draw do
       post :education_history, as: :education
       post 'update_education_history/:education_history_id', to: 'profiles#update_education_history', as: :edit_education
       patch 'update_education_history/:education_history_id', to: 'profiles#update_education_history'
-      
+      post :download_resume
 
       post :employment_detail, as: :employment
       post 'update_employment_detail/:employment_detail_id', to: 'profiles#update_employment_detail', as: :edit_employment

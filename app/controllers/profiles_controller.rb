@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
 
-  before_action :authenticate_user!
-  before_action :set_profile, only: [:show]
+  before_action :authenticate_user!, except: [:download_resume]
+  before_action :authenticate_admin_user!, only: [:download_resume]
+  before_action :set_profile, only: [:show, :download_resume]
   before_action :current_user_profile, only: [:education_history,:employment_detail,:skill,:category]
   def index    
   end
@@ -213,6 +214,14 @@ class ProfilesController < ApplicationController
     end
   end
   
+  def download_resume
+    @category = @user.users_category
+    @user_categories =  @category.present? ? @category.category_ids.split(',') : []
+    pdf = WickedPdf.new.pdf_from_string(
+      render_to_string('profiles/resume.html.erb', layout: false)
+    )
+    send_data pdf, :filename => "resume_#{@user.screen_name}_#{@user.id}.pdf", :type => "application/pdf", :disposition => "attachment"
+  end
   private
     def set_profile
       @user=User.find(params[:id])
