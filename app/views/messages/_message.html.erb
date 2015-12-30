@@ -1,4 +1,4 @@
-<%@messages.each do |msg|%>
+
   <%if msg.user.isLogin?(current_user)%>
     <div class="msgRight fr">
       <div class="grayBkg">
@@ -14,4 +14,3 @@
       <div class="time tal"><%=msg.created_at.strftime("%I:%M %p")%></div>
     </div>
   <%end%>  
-<%end%>

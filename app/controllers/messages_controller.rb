@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
     @messages = Message.between(current_user, @friend)
   end
 
-  def create
-    current_user.messages.create(message_params)
+  def create    
+    @message = current_user.messages.create(message_params)
     @friend = User.find(params[:message][:conversation_id])
     @messages = Message.between(current_user, @friend)
     # conversation_message_path(@friend, current_user)

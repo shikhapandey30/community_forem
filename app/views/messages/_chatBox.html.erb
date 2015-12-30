@@ -19,11 +19,12 @@
     <div class="msgBox" style="" tabindex="4">
       <div class="tac font13 mt10 blackColor">Nov 17</div>
       <div  id = "chatmsg">
-        <% if @messages.any? %>
-          <%= render @messages%>
+        <%@messages.each do |msg|%>          
+          <%= render 'message', msg: msg%>
         <% end %>
-        
       </div>
+      <%= subscribe_to '/messages/new' %>
+      
     </div>
   </div>
   <div class="newMsgBox">
@@ -44,4 +45,3 @@
     </div>
   <%end%>
 </div>
-<%= subscribe_to '/messages/new' %>
