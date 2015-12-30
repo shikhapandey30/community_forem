@@ -72,12 +72,15 @@ Rails.application.routes.draw do
     resources :comments
   end
    resources :conversations do
-    resources :messages
+    resources :messages do
+      collection do 
+        get :connection_filter, as: :filter
+        get :archive
+      end
+    end
   end
   resources :messages, only: [:index] do 
-    collection do 
-      get :connection_filter
-    end
+    
   end
   # resources :users do
   # resources :notifications, only: [:create]  

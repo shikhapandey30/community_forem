@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   scope :by_name, lambda{|name| where("lower(screen_name) like ?", "%#{name}%")}
+  scope :archive, -> {where(archive: true)}
   
   validates :screen_name, uniqueness: true
   validates :first_name, :last_name, :email, :screen_name, presence: true

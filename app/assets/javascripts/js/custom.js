@@ -44,11 +44,12 @@ $(document).on("keyup", ".searhInput1.connections", function(){
   });
 });
 
-// My connections
-$(document).on("keyup", ".searhInput1.myConnections", function(){
+// My connections (Chat)
+$(document).on("click keyup", ".searhInput1.myConnections", function(){
+  conversation = $(this).data("conversation");
   $.ajax({
     method: "get",
-    url: "/messages/connection_filter",
+    url: "/conversations/"+conversation+"/messages/connection_filter",
     data: {name: this.value}
   });
 });

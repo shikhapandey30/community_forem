@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
 	def show
 		@category = Category.find(params[:id])
-		@posts = @category.posts
+		@posts = @category.posts.order("updated_at desc")
 		@comment = Comment.new
 	end
 

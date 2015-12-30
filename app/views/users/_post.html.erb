@@ -37,7 +37,7 @@
             <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
             <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a> <br>
             <span class="font13"><%= designation(post) %></span>
-            <div class="fr grayColor tar"><%= time_ago_in_words(post.created_at).capitalize rescue 0%> ago<br>
+            <div class="fr grayColor tar"><%= time_ago_in_words(post.updated_at).capitalize rescue 0%> ago<br>
               <%if !current_user.eql?(post.user)%>
                 <%if user_signed_in? && (!current_user.friendships.collect(&:friend).include? post.user) %>
                   <span class="friendship-button-<%=  post.user.id  %>">

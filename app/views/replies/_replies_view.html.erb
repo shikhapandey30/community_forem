@@ -16,7 +16,7 @@
 				    <a href="#" class="userNAme"> <%= reply.user.try(:screen_name) %></a> <br>
 				    <% @designation = reply.user.employment_details.collect(&:designation) %>
 				    <div class="fr grayColor tar">
-				    	<%= time_ago_in_words(reply.created_at).capitalize if reply.created_at.present? %> ago
+				    	<%= time_ago_in_words(reply.updated_at).capitalize if reply.created_at.present? %> ago
 				    </div>
 				    <span class="font13"> <%= @designation.present? ? @designation.join(", ") : ""  %></span>
 				    

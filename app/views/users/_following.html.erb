@@ -8,7 +8,7 @@
             <a href="<%= profile_path(follow.followable)%>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:screen_name)%></a>
             <a href="<%= profile_path(user(follow.followable))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
             <div class="fr grayColor tar">
-            <%= time_ago_in_words(follow.created_at).capitalize %> ago<br>
+            <%= time_ago_in_words(follow.updated_at).capitalize %> ago<br>
               <%if !current_user.friendships.collect(&:friend).include? follow.followable %>
               <span class="friendship-button-<%= follow.followable.id %>">
                   <%= link_to "Connect", friendships_path(:friend_id => follow.followable.id), :class=>"mt10", :remote=>true ,:method => :post %>

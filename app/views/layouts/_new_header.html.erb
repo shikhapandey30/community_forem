@@ -21,7 +21,7 @@
           <li class="notification-<%= notification.id %>">
             <div class="clearfix commentSec cmntRow">
               <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
-                <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at).capitalize %> ago</div>
+                <div class="fr grayColor tar"><%= time_ago_in_words(notification.updated_at).capitalize %> ago</div>
                 <div class="font13"><%= notification.body.truncate(50) %></div>
                 <!-- <div class="blackColor font12 bold"> is now a connection</div> -->
                 <% if (notification.notificable.class.name == "Group") || (notification.notificable.class.name == "Community") || (notification.notificable.class.name == "MeetingRoom") || (notification.notificable.class.name == "RevealIdentity")%>
@@ -52,7 +52,7 @@
         <li>
           <div class="clearfix commentSec cmntRow">
             <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
-              <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at).capitalize %> ago</div>
+              <div class="fr grayColor tar"><%= time_ago_in_words(notification.updated_at).capitalize %> ago</div>
               <div class="font13">Web Designer</div>
               <div class="blackColor font12 bold"> is now a connection</div>
             </div>
@@ -77,7 +77,7 @@
             <li class="notification-<%= notification.id %>" >
               <div class="clearfix commentSec cmntRow">
                 <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
-                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.created_at).capitalize %> ago</div>
+                  <div class="fr grayColor tar"><%= time_ago_in_words(notification.updated_at).capitalize %> ago</div>
                   <div class="font13">Web Designer</div>
                   <div class="blackColor font12 bold"> is now a connection</div>
                 </div>
