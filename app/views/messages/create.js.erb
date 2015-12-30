@@ -2,3 +2,4 @@ $(".replyBox textarea").val('');
 <% publish_to '/messages/new' do %>
   $("#chatmsg").append("<%= j render('message', msg: @message) %>");
 <% end %>
+$('#chatmsg').children().last()[0].scrollIntoView(true);
