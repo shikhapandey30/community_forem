@@ -134,6 +134,10 @@ $(function () {
   $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
 });
 
+$(function () {
+  $('#chatmsg').children().last()[0].scrollIntoView(true);
+});
+
 $(document).on('ready', function () {
 
   $(".dropdown-menu.searchOpt li").click(function(){    
