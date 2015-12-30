@@ -109,7 +109,10 @@ class ContestsController < ApplicationController
       members_ids.each do |members_id|
         member = Member.create(:user_id => members_id.to_i, :invitable => @contest)
         #send notification
-        Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a contest #{@contest.topic} ", notificable: @contest, :accept => false)
+        reciver =  User.find(members_id)
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a contest #{@contest.topic} ", notificable: @contest, :accept => false)
+        end
       end
     end
 end

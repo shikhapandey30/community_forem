@@ -72,8 +72,11 @@ class MeetingRoomsController < ApplicationController
             member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
             member.save
             #send notification
-           notification = Notification.find_or_initialize_by(recepient_id:  members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
-           notification.save
+            reciver =  User.find(members_id)
+            if reciver.notification_setting.try(:new_update)
+             notification = Notification.find_or_initialize_by(recepient_id:  members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
+             notification.save
+            end
           end
         end
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully updated.' }
