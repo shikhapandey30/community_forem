@@ -17,7 +17,7 @@
     $(document).on("click",".save_comment", function( event ) {      
       id = $(this).data("id")
       $("#comment_form_"+id).validationEngine();
-      if ($("#comment_body_" + id).val()=="") {
+      if ($("#comment_body_" + id).val().trim() =="") {
         $("#comment_body_" + id).blur();
         return false;
       }
@@ -26,11 +26,19 @@
       if (e.keyCode == 13){
         id = $(this).data("id")
         $("#reply_form_"+id).validationEngine();        
-        if ($("#reply_body_" + id).val()=="") {          
+        if ($("#reply_body_" + id).val().trim() =="") {          
           $("#reply_body_" + id).blur();
           e.preventDefault();
           return false;
         }
+      }
+    });
+    $(document).on("click",".save_dislike", function( event ) {      
+      id = $(this).data("id");
+      $("#payment_form_"+id).validationEngine();
+      if ($("#dislike_body_" + id).val().trim() =="") {
+        $("#dislike_body_" + id).blur();
+        return false;
       }
     });
     function showimagepreview(input) {
