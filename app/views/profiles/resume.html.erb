@@ -90,7 +90,7 @@
       <div class="grayHD">Category</div>  
     </div>
     <% @user_categories.each_with_index do |category, index|%>
-      <div class="col-sm-6 <%=index.even? ? 'pr10' : 'pl10'%> categoriesChk">
+      <div class="col-sm-6 <%=index.even? ? 'pl10' : 'pl10'%> categoriesChk">
         <ul>
           <li><%=Category.where(:id =>category.to_i ).first.try(:name) %></li>
         </ul>
