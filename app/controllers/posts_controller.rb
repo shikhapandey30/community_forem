@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     posts = Post.all
     pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
     self_post=current_user.posts
-    @posts=pub_post+self_post
+    @posts= (pub_pos + self_post).sort_by(&:updated_at)
   end
 
   # GET /Posts/1
