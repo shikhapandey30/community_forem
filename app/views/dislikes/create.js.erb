@@ -14,6 +14,6 @@ $(".like_image_post_<%= params[:id].to_i %>").css('background-color', '#fff');
 $(".like_image_post_liked_<%=  params[:id] %>").css('background-color', '#fff');
 <% end %>
 
-
+$('#dislike_image_post_disliked_<%=  params[:id] %>').modal('toggle');
 $("#dislike_count_<%= params[:id] %>").html('<%= @model.dislikes.count %>');
 $(".post_like_count_<%= params[:id].to_i %>").html('<%= @model.likes.count%>');
