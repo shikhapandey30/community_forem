@@ -1,4 +1,4 @@
 $(".replyBox textarea").val('');
 <% publish_to '/messages/new' do %>
-  $("#chatmsg").append("<%= j render(@messages) %>");
+  $("#chatmsg").append("<%= j render(@message, msg: @message) %>");
 <% end %>
