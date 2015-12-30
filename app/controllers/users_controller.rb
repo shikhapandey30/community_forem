@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     self_post=current_user.posts
     @posts= (@posts  + self_post).compact.sort_by(&:updated_at).reverse
 
-    @posts = @posts.paginate(:page => params[:page], :per_page => 15)
+    @posts = @posts.uniq.paginate(:page => params[:page], :per_page => 15)
     @comment = Comment.new
 	end
 
