@@ -184,6 +184,7 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.3.20)
     nested_form (0.3.2)
+    newrelic_rpm (3.14.1.311)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     oauth (0.4.7)
@@ -368,6 +369,7 @@ DEPENDENCIES
   mobile_detect
   mysql2 (~> 0.3.18)
   nested_form
+  newrelic_rpm
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
@@ -395,3 +397,6 @@ DEPENDENCIES
   wicked_pdf
   will_paginate (~> 3.0.7)
   wkhtmltopdf-binary
+
+BUNDLED WITH
+   1.10.6

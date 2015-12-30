@@ -84,3 +84,5 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'activeadmin', '~> 1.0.0.pre2'
 gem 'active_skin'
 gem 'mobile_detect'
+# For performance management 
+gem 'newrelic_rpm'

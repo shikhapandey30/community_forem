@@ -1,4 +1,17 @@
-$(document).ready(function(){
+	/* search Drop Down*/						
+	$(document).on("click keyup", ".header_search_input", function(){
+		keyword = $(".keyword_filter").val();
+		$.ajax({
+			method: "GET",
+			url: "/search",
+			data: {name: this.value, keyword: keyword}
+		});		
+
+	});
+
+	$(document).ready(function(){
+
+
 
 	// 29-12-15
 	$(".replyBox").click(function(){		
@@ -11,16 +24,7 @@ $(document).ready(function(){
 		$(".msgReplyBox").css("display","none");
 		$(".newMsgBox").css("display","block");
 	});
-	/* search Drop Down*/						
-	$(document).on("click keyup", ".header_search_input", function(){
-		keyword = $(".keyword_filter").val();
-		$.ajax({
-			method: "GET",
-			url: "/search",
-			data: {name: this.value, keyword: keyword}
-		});		
-
-	});
+	
 	$(".searchOverLAy").click(function(){
 		$(".searchDropDown").stop().slideUp(500);
 		$(".searchOverLAy").stop().fadeOut(500);	
