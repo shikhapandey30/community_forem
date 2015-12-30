@@ -22,6 +22,10 @@ ActiveAdmin.register User do
     column :last_name
     column :active
     actions
+    column do |user|
+      link_to 'Download Resume', download_resume_profiles_path(id: user.id), method: :post
+      # here you need to use a string retuning method
+    end
   end
 
   form do |f|

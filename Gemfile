@@ -42,6 +42,8 @@ gem 'select2-rails'
 # gem 'activeadmin-select2', git: 'https://github.com/mfairburn/activeadmin-select2.git'
 gem 'public_activity'
 gem 'activemerchant'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
