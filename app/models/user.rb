@@ -164,4 +164,8 @@ class User < ActiveRecord::Base
     self.id==user.id
   end
 
+  def wallet_amount
+    self.wallets.collect(&:amount).sum
+  end
+
 end
