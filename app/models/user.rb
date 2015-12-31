@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
   has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
 
   has_many :messages, dependent: :destroy
+  has_many :wallets, dependent: :destroy
 
   
   def active_for_authentication?
@@ -161,6 +162,10 @@ class User < ActiveRecord::Base
   ## whether the current user is authorized or not for particular action
   def isLogin?(user)
     self.id==user.id
+  end
+
+  def wallet_amount
+    self.wallets.collect(&:amount).sum
   end
 
 end

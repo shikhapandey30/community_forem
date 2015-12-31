@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230102900) do
+ActiveRecord::Schema.define(version: 20151231102529) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -568,6 +568,15 @@ ActiveRecord::Schema.define(version: 20151230102900) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "status",        limit: 255
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.float    "amount",          limit: 24
+    t.integer  "walletable_id",   limit: 4
+    t.string   "walletable_type", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_foreign_key "messages", "users"

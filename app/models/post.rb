@@ -4,8 +4,12 @@ class Post < ActiveRecord::Base
    # extend FriendlyId
   # friendly_id :title, :use => :slugged
   # validates :title, uniqueness: true, :allow_blank => true
-	belongs_to :category
-	validates_presence_of :topic, :category_id, :description, :title
+
+  ## Model Validations
+  validates_presence_of :topic, :category_id, :description, :title
+	
+  ## Model Associations
+  belongs_to :category
 	belongs_to :user
 	 # has_one :topic
   belongs_to :postable, :polymorphic => true
@@ -14,7 +18,11 @@ class Post < ActiveRecord::Base
 	has_many :comments,:dependent => :destroy, :as => :commentable
   has_many :followings, as: :followable, :dependent => :destroy
   has_one :upload, as: :uploadable, dependent: :destroy
+  # has_many :attachments,:dependent => :destroy, :as => :attachable
+
   accepts_nested_attributes_for :upload, :allow_destroy => true
+
+  ## scopes
   scope :validity, -> { where("expiration_date >= ? and visibility = ?", Date.today, true) }
   # scope :visibility, ~> { where(visibility: true) }
   
@@ -22,17 +30,18 @@ class Post < ActiveRecord::Base
     # UserRace.where(:user_id => current_user.id ).first
     self.likes.where(:user_id => current_user.id,:likable_type=> "Post" )
   end
+
   def disliked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first
     self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "Post" )
   end
-    # has_many :attachments,:dependent => :destroy, :as => :attachable
 
-    def self.search(search)
-      if search
-        where('topic LIKE ?', "%#{search}%")
-      else
-        all
-      end
+  ## search by post topic
+  def self.search(search)
+    if search
+      where('topic LIKE ?', "%#{search}%")
+    else
+      all
     end
+  end
 end
