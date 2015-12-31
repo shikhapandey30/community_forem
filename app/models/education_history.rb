@@ -1,11 +1,15 @@
 class EducationHistory < ActiveRecord::Base
+
+  ## Model Associations
 	belongs_to :course
 	belongs_to :institute
 	belongs_to :specialization
 	belongs_to :user
 
+  ## Model Validations
   validate :validdate_date
 
+  ## validation for date
   def validdate_date
     if self.start_year > self.end_year
       errors.add(:start_year, "Start date cannot be greater then end date.")

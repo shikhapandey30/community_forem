@@ -11,14 +11,16 @@ class Post < ActiveRecord::Base
   ## Model Associations
   belongs_to :category
 	belongs_to :user
-	 # has_one :topic
   belongs_to :postable, :polymorphic => true
+  
 	has_many :likes, :as => :likable, dependent: :destroy
   has_many :dislikes, :as => :dislikable, dependent: :destroy
 	has_many :comments,:dependent => :destroy, :as => :commentable
   has_many :followings, as: :followable, :dependent => :destroy
-  has_one :upload, as: :uploadable, dependent: :destroy
   # has_many :attachments,:dependent => :destroy, :as => :attachable
+
+  has_one :upload, as: :uploadable, dependent: :destroy
+  # has_one :topic
 
   accepts_nested_attributes_for :upload, :allow_destroy => true
 

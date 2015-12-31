@@ -2,12 +2,16 @@ class Community < ActiveRecord::Base
 
   ## Model Associations
 	belongs_to :user
-  has_one :upload, as: :uploadable, dependent: :destroy
-  accepts_nested_attributes_for :upload, :allow_destroy => true
+
   has_many :members,:dependent => :destroy, :as => :invitable
   has_many :posts,:dependent => :destroy, :as => :postable
+  
+  has_one :upload, as: :uploadable, dependent: :destroy
+  
+  accepts_nested_attributes_for :upload, :allow_destroy => true
+  
 
-  ##Scope
+  ##Scopes
   scope :by_topic, lambda{|topic| where("lower(topic) like ?", "%#{topic}%")}
   
   ## Search by community topic

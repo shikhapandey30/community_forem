@@ -1,6 +1,10 @@
 class Like < ActiveRecord::Base
+
+  ## Model Associations
 	belongs_to :likable, :polymorphic => true
-	def self.create_like(id, type, current_user)
+	
+  ## finding like and dislike for different models
+  def self.create_like(id, type, current_user)
     case type
     when 'post' 
      @model = Post.find(id)
@@ -23,11 +27,11 @@ class Like < ActiveRecord::Base
 
     if like.id.present? 
    	  like.destroy
-   	   return nil, nil, @model
+   	  return nil, nil, @model
    	else
    	  like.save 
-       dis = Dislike.where(:dislikable=>@model,:user_id=>current_user.id)
-       dis.destroy_all
+      dis = Dislike.where(:dislikable=>@model,:user_id=>current_user.id)
+      dis.destroy_all
    	  return like,dis, @model
     end
 	end

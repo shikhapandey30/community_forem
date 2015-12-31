@@ -1,26 +1,32 @@
 class MeetingRoom < ActiveRecord::Base
+
+	## Model Associations
 	belongs_to :category
 	belongs_to :user
-	validates_presence_of :category_id, :topic, :slogan, :name, :headline
 	
-	has_one :upload, as: :uploadable, dependent: :destroy
 	has_many :likes, :as => :likable
 	has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
-	accepts_nested_attributes_for :upload, :allow_destroy => true
 	has_many :members,:dependent => :destroy, :as => :invitable
-    has_many :posts,:dependent => :destroy, :as => :postable
-    
-
+  has_many :posts,:dependent => :destroy, :as => :postable
+	
+	has_one :upload, as: :uploadable, dependent: :destroy
+	
+	accepts_nested_attributes_for :upload, :allow_destroy => true
+	
+  ## Model Validations
+  validates_presence_of :category_id, :topic, :slogan, :name, :headline
+	
 	def liked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first
     self.likes.where(:user_id => current_user.id,:likable_type=> "MeetingRoom" )
 	end
 	def disliked?(current_user)
 	# UserRace.where(:user_id => current_user.id ).first
-	self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "MeetingRoom" )
+		self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "MeetingRoom" )
 	end
 
+	## Meeting room image OR meeting room default image
 	def img
 	  if self.upload.try(:image).present?
 	    self.upload.try(:image)
@@ -29,7 +35,8 @@ class MeetingRoom < ActiveRecord::Base
 	  end
 	end
 	# start code - kandarp
-  	def self.search(search)
+	## Search meeting room by topic
+  def self.search(search)
 	  if search
 	    where('lower(topic) LIKE ?', "%#{search}%".downcase)
 	  else
