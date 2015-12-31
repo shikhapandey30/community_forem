@@ -22,6 +22,9 @@
       <div id="posts" class="masonry-container">
         <%=render "post"%>
       </div>
+      <div class="loader-img" style="display:none;">
+        Loading... please wait
+      </div>
       <div class="suggest_connections">
         <%=render 'users/shared/suggested_connections', suggest: true%>        
       </div>
@@ -69,23 +72,19 @@ $(document).ready(function() {
     }
 
     if(nearBottomOfPage()) {
-      //$('.loader-img').show();
+      $('.loader-img').show();
       loading=true;
       page++;
       $.ajax({
         url: '/dashboard?page=' + page,
         type: 'get',
         data: {data: page },
-        dataType: 'script',
-        success: function() {
-          $(window).sausage('draw');
-          loading=false;
-        }
+        dataType: 'script'
       });
     }
   });
 
-  $(window).sausage();
+  
 }());
 
    
