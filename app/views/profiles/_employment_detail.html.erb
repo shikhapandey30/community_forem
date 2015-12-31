@@ -1,4 +1,4 @@
-<!-- Start employment detail form -- >
+<!-- Employment detail form -->
 <%=form_for @employment_detail, url: employment_path(@employment_detail), :html => { class: "employment_form employment-form-validate" }, remote: true do |f| %>
 <ul>
       <% @employment_detail.errors.full_messages.each do |message| %>
@@ -40,10 +40,10 @@
     <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
   <%end%>
-<!-- End employment detail form -- >
-<!-- Start script for employment detail description and date field -- >
+<!-- Employment detail form -->
+<!-- script for employment detail description and date field -->
 <script>
-  // Start script for employment detail description
+  // script for employment detail description
   $('#employment_detail_description').keyup(function () {
     var left = 300 - $(this).val().length;
     if (left < 0) {
@@ -51,8 +51,9 @@
     }
     $('#counter').text('Characters left: ' + left);
   });
-  // End script for employment detail description
-  // Start script for Worked till field
+  // script for employment detail description
+
+  // script for Worked till field
   $("#present_time").hide();
   $('#current_company').change(function () {
     if ((this.checked) == true){
@@ -68,8 +69,8 @@
       $("#worked_till").show();
     }
   });
-  // End script for Worked till field
-  // Start script for date field
+  // script for Worked till field
+  // script for date field
   $('.datetimepicker4').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
   $('.datetimepicker5').datetimepicker({format: 'YYYY-MM-DD',maxDate: moment()});
   $(".datetimepicker4").on("dp.change", function (selected) {
@@ -83,6 +84,6 @@
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
     $('.start_work_date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
-  // End script for date field
+  // script for date field
 </script>
-<!-- End script for employment detail description and date field -- >
+<!-- script for employment detail description and date field -->

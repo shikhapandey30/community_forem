@@ -1,3 +1,4 @@
+<!-- Education history form -->
 <%= form_for @education_history, url: education_path(@education_history), :html => { class: "education_form form-validate" }, :remote => true do |f| %>
   <div class="col-sm-6 pr10">
     <label>Course</label>
@@ -45,34 +46,9 @@
     <%= link_to "Cancel", "#-",class: 'cancel hided grayBtn' %>
   </div>
 <%end%>
+<!-- Education history form -->
+<!-- script for input validation -->
 <script>
-  // $("form.education_form").validate({
-  //     errorPlacement: function(error, element) {
-  //       if(element.attr("name") == "education_history[course_id]") {
-  //         error.appendTo($("#course_error"));
-  //       } else if(element.attr("name") == "education_history[specialization_id]") {
-  //         error.appendTo($("#specialization_error"));
-  //       } else if(element.attr("name") == "education_history[institute_id]") {
-  //         error.appendTo($("#institute_error"));
-  //       } else if(element.attr("name") == "education_history[start_year]") {
-  //         error.appendTo($("#start_year_error"));
-  //       } else if(element.attr("name") == "education_history[end_year]") {
-  //         error.appendTo($("#end_year_error"));
-  //       } else {
-  //         error.insertAfter(element);
-  //       }
-  //     },
-  //     rules: {
-  //         "education_history[course_id]": {required: true},
-  //         "education_history[specialization_id]": {required: true},
-  //         "education_history[institute_id]": {required: true},
-  //         "education_history[start_year]": {required: true},
-  //         "education_history[end_year]": {required: true}
-  //     },      
-  //     submitHandler: function(form) {
-  //         $('form.education_form').submit();
-  //     }  
-  // });
   $(".form-validate").validationEngine();
-
 </script>
+<!-- script for input validation -->

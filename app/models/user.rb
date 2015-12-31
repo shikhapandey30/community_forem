@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   scope :archive, -> {where(archive: true)}
   
   
-  ## Validations
+  #Form Validations
   validates :screen_name, uniqueness: true
   validates :first_name, :last_name, :email, :screen_name, presence: true
   
 
-  ## Associations
+  # Model Associations
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
   # accepts_nested22attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  

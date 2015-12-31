@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
 
-	## Associations
+	## Model Associations
 	belongs_to :user
 	belongs_to :contry, class_name: "Country", :foreign_key => "country"
 

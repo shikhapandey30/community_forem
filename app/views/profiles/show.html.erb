@@ -6,7 +6,7 @@
           Note: To view the complete profile of the user you have to first reveal the identity of the user
     </div>
     <div class="clearfix innerWIdth550 tac ">
-      <!-- Start Profile Image section -->
+      <!-- Profile Image section, screen name and desigantion -->
       <div class="clearfix whiteBox mt30 borderBtmBlue">
         <div class="clearfix formOuterPost tal">
           <div class="ProfileTHumb">
@@ -42,37 +42,37 @@
           </div>
         </div>
       </div>
-      <!-- End Profile Image section  -->
+      <!-- Profile Image section, screen name and desigantion -->
       
-      <!-- Start Education History -->
+      <!-- Render Education History -->
       <div id ='education_history'>
         <%=render 'my_education_history'%>
       </div>
-      <!-- End Education History -->
+      <!-- Render Education History -->
 
-      <!-- Start Emplyment Detail -->
+      <!-- Render Employment Detail -->
       <div id ='employment_detail'>
         <%=render 'my_employment_detail'%>
       </div>
-      <!-- End Emplyment Detail -->
+      <!-- Render Employment Detail -->
 
-      <!-- Start Skills -->
+      <!-- Render Skills -->
       <div class="my_skillsTag">
         <%=render 'my_skill'%>
       </div>
-      <!-- End Skills -->
+      <!-- Render Skills -->
 
-      <!-- Start Category -->
+      <!-- Render Category -->
       <div class="my_category">
         <%=render 'my_category'%>
       </div>
-      <!-- End Category -->
+      <!-- Render Category -->
     </div>
   </div>
 </div>  
 
 <!-- Modal -->
-<!-- Start Reveal Identity Form -->
+<!-- Reveal Identity Form -->
 <div class="modal fade" id="revIdentity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="clearfix modal-content">   
@@ -98,8 +98,8 @@
     </div>
   </div>
 </div>
-<!-- End Reveal Identity Form -->
-<!--  Start of script for skills-->
+<!-- Reveal Identity Form -->
+<!-- script for skills-->
 <script>
   $(".hide-show").hide();
   $("#skill").click(function(event) {
@@ -109,5 +109,5 @@
    $('#skill_form').show();
   });
 </script>
-<!--  Start of script for skills-->
+<!-- script for skills-->
 
