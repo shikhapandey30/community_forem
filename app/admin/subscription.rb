@@ -17,9 +17,12 @@ permit_params :subscribe, :user_id
     selectable_column
     id_column
     column "User" do |subscription|
-    	subscription.user.try(:first_name)
+    	subscription.user.try(:screen_name)
     end
-    column :subscribe
+    column "Payer" do |subscription|
+      subscription.payer.try(:screen_name)
+    end
+    column :created_at
     actions
   end
 
