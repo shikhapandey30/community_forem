@@ -7,7 +7,7 @@ $('.loader-img').html('Sorry! No more records Founds!');
       loading = false;
 
   function nearBottomOfPage() {
-    return $(window).scrollTop() > $(document).height() - $(window).height() - 300;
+    return $(window).scrollTop() > $(document).height() - $(window).height();
   }
 
   $(window).scroll(function(){
@@ -23,14 +23,9 @@ $('.loader-img').html('Sorry! No more records Founds!');
         url: '/dashboard?page=' + page,
         type: 'get',
         data: {data: name },
-        dataType: 'script',
-        success: function() {
-          $(window).sausage('draw');
-          loading=false;
-        }
+        dataType: 'script'
       });
     }
   });
 
-  $(window).sausage();
 }());

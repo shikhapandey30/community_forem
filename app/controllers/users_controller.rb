@@ -40,9 +40,10 @@ class UsersController < ApplicationController
     current_user.notifications.update_all(:notification_status=>'Read')
   end
 
+
 	## user dashboard
   def dashboard
-    ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
+    # ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
     @suggested_groups = new_suggested_groups.first(2)

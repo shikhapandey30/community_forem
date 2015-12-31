@@ -12,6 +12,7 @@
 	$(".plusIcon").click(function(){
 		$(".msgReplyBox").css("display","none");
 		$(".newMsgBox").css("display","block");
+		$(".msg-select-users").css("display","block");		
 	});
 	
 	$(".searchOverLAy").click(function(){

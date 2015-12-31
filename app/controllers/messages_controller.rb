@@ -17,6 +17,7 @@ class MessagesController < ApplicationController
     @friend = User.find(params[:message][:conversation_id])
     @friend.update(archive: false)
     @messages = Message.between(current_user, @friend)
+    set_members if params[:message][:recipient_ids].present?  
     # conversation_message_path(@friend, current_user)
     # @conversation = Conversation.find(params[:conversation_id])
     # @message = @conversation.messages.build(message_params)
@@ -59,6 +60,20 @@ class MessagesController < ApplicationController
     archive_friends = User.archive
     @friends = friends - archive_friends
   end
+
+
+   def set_members
+      members_ids = params[:message][:recipient_ids].reject(&:empty?)
+      members_ids.each do |members_id|
+        @message = current_user.messages.create(:conversation_id => members_id , :body => params[:message][:body])
+
+        #send notification
+        reciver =  User.find(members_id)
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has send a message #{@message.topic} ", notificable: @message, :accept => false)
+        end
+      end
+    end
 
   
 end

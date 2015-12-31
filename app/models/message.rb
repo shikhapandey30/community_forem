@@ -6,4 +6,6 @@ class Message < ActiveRecord::Base
 	scope :between, -> (sender_id,recipient_id) do
 	  where("(user_id = ? OR conversation_id =?) AND (conversation_id = ? OR user_id =?)", sender_id,sender_id, recipient_id, recipient_id)
 	end
+	attr_accessor :recipient_ids
+
 end
