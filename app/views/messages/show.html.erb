@@ -28,10 +28,11 @@
   
 <script>
   $(function () {
-  $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
-  $('#chatmsg').children().last()[0].scrollIntoView(true);
-
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
   });
+  $(window).load(function(){
+    $('#chatmsg').children().last()[0].scrollIntoView(true);
+  })
 
 </script>
   
