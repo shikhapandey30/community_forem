@@ -29,7 +29,9 @@
 <script>
   $(function () {
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
-    $('#chatmsg').children().last()[0].scrollIntoView(true);
   });
+  $(window).load(function(){
+    $('#chatmsg').children().last()[0].scrollIntoView(true);
+  })
 </script>
   
