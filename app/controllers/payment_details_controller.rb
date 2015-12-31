@@ -41,7 +41,6 @@ class PaymentDetailsController < ApplicationController
 		  if response.success?
 		    gateway.capture(2, response.authorization)
 		    reveal = RevealIdentity.find(params[:reveal_id])
-		    binding.pry
 		    @subscription = Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
 		    flash[:success] = "Payment complete!"
 		     @success = true
