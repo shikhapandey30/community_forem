@@ -1,3 +1,14 @@
+  /* search Drop Down*/           
+  $(document).on("click keyup", ".header_search_input", function(){
+    keyword = $(".keyword_filter").val();
+    $.ajax({
+      method: "GET",
+      url: "/search",
+      data: {name: this.value, keyword: keyword}
+    });   
+
+  });
+
 $(document).on('click', ".add_skill", function(){  
   if ($('.skills_attr').val().length!=0 || $(this).data("val")!=undefined) {
     $("#skill_error").hide();

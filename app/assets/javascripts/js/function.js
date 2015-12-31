@@ -1,24 +1,13 @@
-	/* search Drop Down*/						
-	$(document).on("click keyup", ".header_search_input", function(){
-		keyword = $(".keyword_filter").val();
-		$.ajax({
-			method: "GET",
-			url: "/search",
-			data: {name: this.value, keyword: keyword}
-		});		
-
-	});
-
-	$(document).ready(function(){
-
-
-
+	
 	// 29-12-15
-	$(".replyBox").click(function(){		
+	$(document).on('click', ".replyBox", function(){		
 		// $(".replyBox textarea").val('');
 		$(".replyBox textarea").css("display","block").focus();
 		$(".replyRowFrwd").css("display","none");	
 	});
+
+	$(document).ready(function(){
+
 
 	$(".plusIcon").click(function(){
 		$(".msgReplyBox").css("display","none");
