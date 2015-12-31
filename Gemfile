@@ -86,3 +86,8 @@ gem 'active_skin'
 gem 'mobile_detect'
 # For performance management 
 gem 'newrelic_rpm'
+gem 'redis'
+#User for background processing
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'

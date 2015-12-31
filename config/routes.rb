@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
 
   resources :reveal_identities
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
      resources :posts
   end
+  mount Sidekiq::Web, at: "/sidekiq"
   resources :groups do
     collection do
       get :filter
