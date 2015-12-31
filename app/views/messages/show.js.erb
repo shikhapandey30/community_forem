@@ -1,0 +1,10 @@
+$('.myConnection').html("<%= j render('my_connections') %>");
+$(".replyBox textarea").val('');
+$(".chatBox").html("<%= j render('chatBox', friend: @friend) %>");
+$('#chatmsg').children().last()[0].scrollIntoView(true);
+if (history && history.pushState) {
+	history.pushState(null, null, "<%= conversation_message_url(@friend, current_user) %>");
+	$(window).bind("popstate", function(){
+    $.getScript(location.href);
+  });
+}

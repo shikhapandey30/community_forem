@@ -19,7 +19,9 @@
             <%=render 'my_connections'%>
           </ul>
         </div>
-        <%=render 'chatBox', friend: @friend%>        
+        <div class="chatBox">
+          <%=render 'chatBox', friend: @friend%>
+        </div>
         <div class="clearfix"></div>
       </div>
     </div>
@@ -32,7 +34,7 @@
   });
   $(window).load(function(){
     $('#chatmsg').children().last()[0].scrollIntoView(true);
-  })
+  });
 
 </script>
   

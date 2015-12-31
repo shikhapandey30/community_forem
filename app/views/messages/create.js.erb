@@ -1,3 +1,6 @@
+<%if @archive%>
+	$('.myConnection').html("<%= j render('my_connections') %>");
+<%end%>
 $(".replyBox textarea").val('');
 <% publish_to '/messages/new' do %>
   $("#chatmsg").append("<%= j render('message', msg: @message) %>");
