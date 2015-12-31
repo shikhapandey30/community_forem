@@ -42,8 +42,7 @@ class PaymentDetailsController < ApplicationController
 		    gateway.capture(2, response.authorization)
 		    reveal = RevealIdentity.find(params[:reveal_id])
 		    @subscription = Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
-		    amount = (2 * 5)/100
-		    Wallet.create(:user => current_user, :amount => amount , :walletable => reveal)
+		    Wallet.create(:user => current_user, :amount => 0.5 , :walletable => reveal)
 		    flash[:success] = "Payment complete!"
 		     @success = true
 		  else
