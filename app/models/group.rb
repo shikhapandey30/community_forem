@@ -1,4 +1,7 @@
 class Group < ActiveRecord::Base
+  
+  extend FriendlyId
+  friendly_id :topic, :use => :slugged
 
   ## Model Associations
 	belongs_to :user

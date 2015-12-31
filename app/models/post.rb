@@ -1,12 +1,8 @@
 class Post < ActiveRecord::Base
   #  include PublicActivity::Model
   # tracked
-   # extend FriendlyId
-  # friendly_id :title, :use => :slugged
-  # validates :title, uniqueness: true, :allow_blank => true
-
-  ## Model Validations
-  validates_presence_of :topic, :category_id, :description, :title
+  extend FriendlyId
+  friendly_id :title, :use => :slugged
 	
   ## Model Associations
   belongs_to :category
@@ -23,6 +19,10 @@ class Post < ActiveRecord::Base
   # has_one :topic
 
   accepts_nested_attributes_for :upload, :allow_destroy => true
+
+  ## Model Validations
+  validates_presence_of :topic, :category_id, :description, :title
+  # validates :title, uniqueness: true, :allow_blank => true
 
   ## scopes
   scope :validity, -> { where("expiration_date >= ? and visibility = ?", Date.today, true) }

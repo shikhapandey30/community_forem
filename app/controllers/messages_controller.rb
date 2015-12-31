@@ -10,12 +10,20 @@ class MessagesController < ApplicationController
     @friends = @friends.paginate(:page => params[:page], :per_page => 10)
     @friend = User.find(params[:conversation_id])
     @messages = Message.between(current_user, @friend)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def create    
     @message = current_user.messages.create(message_params)
     @friend = User.find(params[:message][:conversation_id])
-    @friend.update(archive: false)
+    if @friend.archive.eql?(true)
+      @friend.update(archive: false)
+      get_users
+      @archive="true"
+    end  
     @messages = Message.between(current_user, @friend)
     set_members if params[:message][:recipient_ids].present?  
     # conversation_message_path(@friend, current_user)
@@ -31,14 +39,13 @@ class MessagesController < ApplicationController
   def destroy
     @friend = User.find(params[:conversation_id])
     @messages = Message.between(current_user, @friend)
-    @messages.destroy_all if @messages.present?
-    redirect_to :back
+    @messages.destroy_all if @messages.present?    
   end
 
   def archive
     @user = User.find(params[:conversation_id])
     @user.update(archive: true)
-    redirect_to :back
+    get_users
   end
 
   def connection_filter

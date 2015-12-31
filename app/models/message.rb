@@ -13,7 +13,7 @@ class Message < ActiveRecord::Base
 	  where("(user_id = ? OR conversation_id =?) AND (conversation_id = ? OR user_id =?)", sender_id,sender_id, recipient_id, recipient_id)
 	end
 
-	## getter and setter methods
+	## generating getter and setter methods
 	attr_accessor :recipient_ids
 
 end

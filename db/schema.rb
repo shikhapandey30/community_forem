@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231102529) do
+ActiveRecord::Schema.define(version: 20151231114319) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -137,7 +137,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "slug",        limit: 255
   end
+
+  add_index "communities", ["slug"], name: "index_communities_on_slug", unique: true, using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -159,7 +162,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "slug",        limit: 255
   end
+
+  add_index "contests", ["slug"], name: "index_contests_on_slug", unique: true, using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
@@ -252,7 +258,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.integer  "user_id",     limit: 4
     t.string   "headline",    limit: 255
     t.string   "vote_id",     limit: 255
+    t.string   "slug",        limit: 255
   end
+
+  add_index "forum_polls", ["slug"], name: "index_forum_polls_on_slug", unique: true, using: :btree
 
   create_table "forums", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -296,7 +305,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "slug",        limit: 255
   end
+
+  add_index "groups", ["slug"], name: "index_groups_on_slug", unique: true, using: :btree
 
   create_table "institutes", force: :cascade do |t|
     t.integer  "education_history_id", limit: 4
@@ -324,7 +336,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.integer  "user_id",     limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "slug",        limit: 255
   end
+
+  add_index "meeting_rooms", ["slug"], name: "index_meeting_rooms_on_slug", unique: true, using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "user_id",        limit: 4
@@ -411,7 +426,10 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.boolean  "visibility",                    default: true
     t.integer  "postable_id",     limit: 4
     t.string   "postable_type",   limit: 255
+    t.string   "slug",            limit: 255
   end
+
+  add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "first_name",        limit: 255
@@ -545,11 +563,13 @@ ActiveRecord::Schema.define(version: 20151231102529) do
     t.string   "last_name",              limit: 255
     t.boolean  "active",                             default: true
     t.boolean  "archive",                            default: false
+    t.string   "slug",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   create_table "users_categories", force: :cascade do |t|
     t.integer  "user_id",      limit: 4

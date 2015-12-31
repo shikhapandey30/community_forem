@@ -17,13 +17,13 @@ menu false
     selectable_column
     id_column
     column "User" do |friendship|
-    	friendship.user.try(:first_name)
+    	friendship.user.try(:screen_name)
     end
     column "Friend" do |friendship|
-      friendship.friend.try(:first_name)
+      friendship.friend.try(:screen_name)
     end
     column :accept
     actions
   end
-  actions :show, :index
+  # actions :show, :index
 end
