@@ -46,6 +46,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+            # ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
+
         if @post.postable.present?
           format.html { redirect_to :back, notice: 'Post is successfully created.' }          
         else
