@@ -7,9 +7,13 @@ class User < ActiveRecord::Base
   scope :by_name, lambda{|name| where("lower(screen_name) like ?", "%#{name}%")}
   scope :archive, -> {where(archive: true)}
   
+  
+  ## Validations ##
   validates :screen_name, uniqueness: true
   validates :first_name, :last_name, :email, :screen_name, presence: true
   
+
+  ## Associations ##
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
   # accepts_nested22attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
@@ -28,7 +32,6 @@ class User < ActiveRecord::Base
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :replies, dependent: :destroy
-
   has_many :communities, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :forum_polls, dependent: :destroy
@@ -39,7 +42,6 @@ class User < ActiveRecord::Base
   has_many :followers, :class_name => "Following", as: :followable
   has_many :authenticates
   
-
   #friendsships
   has_many :friendships
   # has_many :friends, :through => :friendships
@@ -50,8 +52,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 
-#Notifications
- has_many :sent_notifications,
+  #Notifications
+  has_many :sent_notifications,
    :class_name => 'Notification',
    :foreign_key => 'user_id'
 
