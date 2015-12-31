@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   scope :archive, -> {where(archive: true)}
   
   
-  #Form Validations
+  ## Form Validations
   validates :screen_name, uniqueness: true
   validates :first_name, :last_name, :email, :screen_name, presence: true
   
 
-  # Model Associations
+  ## Model Associations
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
   # accepts_nested22attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :followers, :class_name => "Following", as: :followable
   has_many :authenticates
   
-  #friendsships
+  ##friendsships
   has_many :friendships
   # has_many :friends, :through => :friendships
   has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 
-  #Notifications
+  ##Notifications
   has_many :sent_notifications,
    :class_name => 'Notification',
    :foreign_key => 'user_id'
