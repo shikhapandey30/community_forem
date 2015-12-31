@@ -1,4 +1,6 @@
 class Community < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :topic, :use => :slugged
 
   ## Model Associations
 	belongs_to :user
@@ -6,7 +8,8 @@ class Community < ActiveRecord::Base
   accepts_nested_attributes_for :upload, :allow_destroy => true
   has_many :members,:dependent => :destroy, :as => :invitable
   has_many :posts,:dependent => :destroy, :as => :postable
-
+  validates_presence_of :category_id, :topic, :headline, :description
+  
   ##Scope
   scope :by_topic, lambda{|topic| where("lower(topic) like ?", "%#{topic}%")}
   
