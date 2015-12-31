@@ -1,5 +1,6 @@
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
+  <!-- Showing Post -->
   <div class="rightContent">
     <div class="overLAy"></div>
     <div class="postCover posRel <%=@post.try(:upload).try(:image).present? ? '' : 'noImagePost'%>" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
@@ -30,9 +31,11 @@
                   </span>
                 <%end%>
               <%if current_user != @post.user %>
+                <!-- render follow link -->
                 <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.user.id %>">
                   <%= render :partial=> "users/follow_link", :locals => {:object => @post} %>
                 </span>
+                <!-- render follow link -->
               <% end %>
               </div>
             </div>
@@ -44,13 +47,17 @@
             </div>
           </div>
           <div class="clearfix"></div>
-           <%= render 'layouts/shared/comments' , object: @post %>          
+          <!-- render comments -->
+          <%= render 'layouts/shared/comments' , object: @post %>
+          <!-- render comments -->          
         </div>
       </div>
     </div>
   </div>
+  <!-- Showing Post -->
 </div>
 
+<!-- script for comments functionality-->
 <script type="text/javascript">
   $(function () {
     $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
@@ -84,3 +91,4 @@
     }
   });
 </script>
+<!-- script for comments functionality -->
