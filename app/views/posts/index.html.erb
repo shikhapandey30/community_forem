@@ -15,19 +15,22 @@
           </tr>
 
   <tbody>
+    <!-- Showing ALl Posts -->
     <% @posts.each do |post| %>
       <tr>
         <td>Created by:<%= post.user.try(:screen_name) %></td>
         <td><%= post.title %></td>
         <td><%= link_to 'Show', post %></td>
 
-         <td>
-             <span class="hide-show-comment" onclick= "$('#commentBox-<%= post.id%>').toggle();">Comment</span>
-              <div class="lists-comments-<%= post.id%>">
-            <% post.comments.each do |comment|%>
+        <td>
+          <span class="hide-show-comment" onclick= "$('#commentBox-<%= post.id%>').toggle();">Comment</span>
+          <div class="lists-comments-<%= post.id%>">
+          <% post.comments.each do |comment|%>
 <!--           <div class="comments-box"><%#= comment.body %></div>
- -->       <div class="comment-box-<%=comment.id%>">
-           <%= render 'comments/show' , :comment => comment %>
+ -->        <div class="comment-box-<%=comment.id%>">
+            <!-- render comment --> 
+            <%= render 'comments/show' , :comment => comment %>
+            <!-- render comment --> 
            </div>
           <%end%>
              <div class="commentBox commentBox-<%= post.id%>" style="display :none" id="commentBox-<%= post.id%>">
@@ -49,6 +52,7 @@
          <%end%>
       </tr>
     <% end %>
+    <!-- Showing ALl Posts -->
   </tbody>
 </table>
 </div>
@@ -57,11 +61,10 @@
 </div>
 <br>
 <style>
-#comment_body{
-  width: 100% !important;
-}
-#comment{
- width: 200px !important;
-
-}
-<%#= link_to 'New Post', new_post_path %>
+  #comment_body{
+    width: 100% !important;
+  }
+  #comment{
+   width: 200px !important;
+  }
+</style>
