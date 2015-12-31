@@ -41,6 +41,7 @@
           </div>
         </div>
       </div>
+      <%if current_user.is_revealed(@user) ||  (current_user == @user)%>
       <%#= render 'education_history' %>
       <div id ='education_history'>
         <%=render 'my_education_history'%>
@@ -56,6 +57,7 @@
       <div class="my_category">
         <%=render 'my_category'%>
       </div>
+      <% end %>
     </div>
   </div>
 </div>  

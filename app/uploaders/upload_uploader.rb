@@ -1,12 +1,10 @@
 # encoding: utf-8
 
-class PostUploader < CarrierWave::Uploader::Base
+class UploadUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-  include Sidekiq::Worker
-    sidekiq_options :queue => :post_uploader
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -18,7 +16,7 @@ class PostUploader < CarrierWave::Uploader::Base
   end
     def default_url
     # '/assets/images/default_post.jpeg'
-   end
+   end  
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-            # ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
+          # ProjectCleanupWorker.perform_async(@post.id, @post.class.name, params[:post][:upload_attributes][:image].try(:path) ,params[:post][:upload_attributes][:video], params[:post][:upload_attributes][:file].try(:path), params[:post][:upload_attributes][:site_link])
 
         if @post.postable.present?
           format.html { redirect_to :back, notice: 'Post is successfully created.' }          
@@ -94,8 +94,9 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit!
-      # (:user_id, :category_id, :title, :description, :visibility, :expiration_date, :created_at, :updated_at, :topic_id, :topic, :start_date)
+      # params.require(:post).permit(:user_id, :category_id, :title, :description, :visibility, :expiration_date, :topic, :start_date, :headline)
+      params.require(:post).permit(:user_id, :category_id, :title, :description, :visibility, :expiration_date, :topic, :start_date, :headline ,upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
+      
     end
 
     def set_upload
