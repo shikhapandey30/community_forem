@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+
+  ## Filters
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]  
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     posts = Post.all
     pub_post=posts.where("visibility =? AND user_id != ?", 'Public', current_user.id)
@@ -8,8 +11,7 @@ class PostsController < ApplicationController
     @posts=pub_post+self_post
   end
 
-  # GET /Posts/1
-  # GET /Posts/1.json
+  ## Showing post
   def show
     @comment = Comment.new
     @comments = @post.comments
@@ -21,20 +23,19 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /Posts/new
+  ## Initializing Post
   def new
     @post = Post.new
     @post.build_upload
   end
 
-  # GET /Posts/1/edit
+  ## Editing Post
   def edit
     authorize @post
     @post.upload.present? ? @post.upload : @post.build_upload
   end
 
-  # POST /Posts
-  # POST /Posts.json
+  ## Creation of Post
   def create
       @post = current_user.posts.new(post_params)
     if params[:group_id].present?
@@ -61,8 +62,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /Posts/1
-  # PATCH/PUT /Posts/1.json
+  ## Updating Post
   def update
      authorize @post
     respond_to do |format|
@@ -77,8 +77,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /Posts/1
-  # DELETE /Posts/1.json
+  ## Deleting Post
   def destroy
     authorize @post
     @post.destroy
@@ -89,16 +88,20 @@ class PostsController < ApplicationController
   end
 
   private
-      def set_post       
-       @post=Post.find(params[:id])     
+
+    ## Setting Post
+    def set_post       
+     @post=Post.find(params[:id])     
     end
 
+    ## Allowing post parameters
     def post_params
       # params.require(:post).permit(:user_id, :category_id, :title, :description, :visibility, :expiration_date, :topic, :start_date, :headline)
       params.require(:post).permit(:user_id, :category_id, :title, :description, :visibility, :expiration_date, :topic, :start_date, :headline ,upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
       
     end
 
+    ## Updating image, file
     def set_upload
       @post.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @post.upload.update_column(:file, nil) if params[:file_url].eql?("true")

@@ -7,9 +7,13 @@ class User < ActiveRecord::Base
   scope :by_name, lambda{|name| where("lower(screen_name) like ?", "%#{name}%")}
   scope :archive, -> {where(archive: true)}
   
+  
+  ## Form Validations
   validates :screen_name, uniqueness: true
   validates :first_name, :last_name, :email, :screen_name, presence: true
   
+
+  ## Model Associations
   has_many :categories, dependent: :destroy
   has_many :education_histories, dependent: :destroy
   # accepts_nested22attributes_for :education_histories, :reject_if => :all_blank, :allow_destroy => true  
@@ -28,7 +32,6 @@ class User < ActiveRecord::Base
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :replies, dependent: :destroy
-
   has_many :communities, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :forum_polls, dependent: :destroy
@@ -39,8 +42,7 @@ class User < ActiveRecord::Base
   has_many :followers, :class_name => "Following", as: :followable
   has_many :authenticates
   
-
-  #friendsships
+  ##friendsships
   has_many :friendships
   # has_many :friends, :through => :friendships
   has_many :friends, -> { where(friendships: { accept: true}) }, through: :friendships
@@ -50,8 +52,8 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
 
-#Notifications
- has_many :sent_notifications,
+  ##Notifications
+  has_many :sent_notifications,
    :class_name => 'Notification',
    :foreign_key => 'user_id'
 
@@ -84,15 +86,17 @@ class User < ActiveRecord::Base
   #   "Sorry, this account has been deactivated."
   # end
 
-
+  ## finding for follower 
   def following?(follow)
     self.followings.find_by(follower_id: follow.id).present?
   end
 
+  ## finding the reveal identities
   def revealed?(reveal)
     RevealIdentity.where(:sender_id=>self.id,:user_id=>reveal.id).present?
   end
   
+  ## profile image OR default profile image
   def img
     if self.profile.present?
       self.profile.try(:image)
@@ -101,6 +105,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  ## Searching by user screen name
   def self.search(search)
     if search
       where('lower(screen_name) LIKE ?', "%#{search}%".downcase)
@@ -109,25 +114,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  ## return whether friend or not?
   def is_friend(friend)
     friend=  Friendship.where(:friend_id => friend.id, :user_id => self.id,:accept=>true).first
     friend.present? ? true : false
   end
 
+  ## user friends lists
   def my_friends
     @friends = self.friends + self.inverse_friends
     @friends.delete(self)
     @friends
   end
 
+  ## return whether the post, commnet is liked or not?
   def is_liked(model)    
     Like.where(:likable => model ,:user_id => self.id).present?
   end
 
+  ## return whether the post, commnet is disliked or not?
   def is_disliked(model)
     Dislike.where(:dislikable=> model ,:user_id => self.id).present?
   end
 
+  ## return whether the user is follower or not?
   def is_follow(model)
     Following.where(:followable=> model ,:follower_id => self.id).present?
   end
@@ -136,16 +146,19 @@ class User < ActiveRecord::Base
       NotificationSetting.create(:user_id => self.id, new_update: true,  friend_request: true, is_new_record: true, comments_and_like: true, friends_birthday: true) unless self.notification_setting
   end
 
+  ## whether the reveal identity request sent or not?
   def is_reveal_sent(user)
      reveal_identity=RevealIdentity.where(:sender_id=>self.id,:user_id=>user.id).first
      reveal_identity.present? ? true : false
   end
 
+  ## whether the user has paid for revealing the identity or not?
   def is_revealed(user)
     subscription = Subscription.where(:user_id => user.id, :payer_id => self.id, :subscribable_type => 'RevealIdentity')
     subscription.present? ? true : false
   end
 
+  ## whether the current user is authorized or not for particular action
   def isLogin?(user)
     self.id==user.id
   end

@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
+
+  ## filters
 	before_action :authenticate_user!,:except => [:social_login]
+
+  ## all topics and users
   def index
     @topic=Topic.all
     @users=User.all
 	end
 
+  ## searching for people, communitites and groups
   def search
     case params[:keyword]
     when "People"
@@ -30,11 +35,15 @@ class UsersController < ApplicationController
   def reveal_identity    
   end
 
+  ## Marked notifications as read for the user 
   def notification_count
     current_user.notifications.update_all(:notification_status=>'Read')
   end
 
-	def dashboard
+
+	## user dashboard
+  def dashboard
+    # ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
     @suggested_groups = new_suggested_groups.first(2)
@@ -60,6 +69,8 @@ class UsersController < ApplicationController
     @comment = Comment.new
 	end
 
+
+  ## creating followers and notification
   def follow
     @following = Following.where(followable_id: params[:followable_id], followable_type: params[:followable_type], follower_id: params[:follower_id]).first
     if @following.nil?
@@ -71,6 +82,7 @@ class UsersController < ApplicationController
     end
   end
  
+  ## creating followers and notification
   def followings    
     @followings = current_user.followings
     respond_to do |format|
@@ -79,6 +91,7 @@ class UsersController < ApplicationController
     end
   end
  
+ ## finding followers
   def followers    
     @followers = current_user.followers  
     respond_to do |format|
@@ -87,6 +100,7 @@ class UsersController < ApplicationController
     end
   end
   
+  ## finding user associated categories
   def user_category
     @category=Category.all
     if current_user.categories.present?
@@ -97,14 +111,14 @@ class UsersController < ApplicationController
     @category_ids=params[:category_ids]
     if @category_ids.present?
       current_user.categorables.delete_all
-     @category_ids.each do |f|
-      category=Categorable.create(:categorable_type=>'Category',:categorable_id=>f,:user_id=>current_user.id,:category_id=>f)
+      @category_ids.each do |f|
+        category=Categorable.create(:categorable_type=>'Category',:categorable_id=>f,:user_id=>current_user.id,:category_id=>f)
+      end
+      redirect_to dashboard_path, notice: 'Categories Added successfully'
     end
-     redirect_to dashboard_path, notice: 'Categories Added successfully'
-  end
- 
   end
 
+  ## suggested connection filter by name
   def connection_filter
     @suggested_connections = User.where(id: new_suggested_connections).by_name(params[:name])
     @suggest = false
@@ -123,19 +137,19 @@ class UsersController < ApplicationController
      else
       redirect_to dashboard_path
      end
-
     else
         flash[:notice] = "Authentication Failed."
         redirect_to root_path
     end
   end
 
+
+  ## creating and sending user revealing request
   def reveal_request     
     @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2], :accept => false)
     Notification.create(recepient_id: params[:id].to_i, user: current_user, body: "#{current_user.screen_name } wants to reveal your identity", notificable: @reveal_identity, :accept => false)
-
-      NotificationMailer.reveal_request(@reveal_identity).deliver_later       
-     @status=true
+    NotificationMailer.reveal_request(@reveal_identity).deliver_later       
+    @status=true
     flash[:success] = "Request sent"
     redirect_to :back
   end
@@ -144,17 +158,18 @@ class UsersController < ApplicationController
   def payment
   end
 
+  ## suggested communities for user
   def suggested_communities
     @suggested_communities = new_suggested_communities
   end
 
+  ## suggested connections for user
   def suggested_connections    
     @suggested_connections = new_suggested_connections
   end
 
+  ## suggested groups for user
   def suggested_groups    
     @suggested_groups = new_suggested_groups
   end
-  
-
 end

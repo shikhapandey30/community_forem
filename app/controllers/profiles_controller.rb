@@ -1,12 +1,15 @@
 class ProfilesController < ApplicationController
 
+  ## filters
   before_action :authenticate_user!, except: [:download_resume]
   before_action :authenticate_admin_user!, only: [:download_resume]
   before_action :set_profile, only: [:show, :download_resume]
   before_action :current_user_profile, only: [:education_history,:employment_detail,:skill,:category]
-  def index    
+  
+  def index
   end
 
+  ## editing user profile
   def edit
     @user = User.find(params[:id])
     # @category = current_user.users_category.present? ? current_user.users_category : Category.new
@@ -15,6 +18,7 @@ class ProfilesController < ApplicationController
     current_user.profile.present? ? current_user.profile : current_user.build_profile    
   end
 
+  ## showing profile
   def show
     @category = @user.users_category
     @user_categories =  @category.present? ? @category.category_ids.split(',') : []
@@ -22,46 +26,53 @@ class ProfilesController < ApplicationController
     # @category<<@user.users_category.category_ids.split(',') rescue nil
   end
 
+  ## adding new education history to user
   def add_education
     @education_history = current_user.education_histories.new    
   end
 
+  ## updating education history
   def update_education_history
-      @user = current_user
-      @education_histories = EducationHistory.find(params[:id])
-       if @education_histories.update(education_params)
-         flash[:success] = "Education History updated successfully."
-      else
-        flash[:alert] = "Start year cannot be greater then end year." 
-      end 
+    @user = current_user
+    @education_histories = EducationHistory.find(params[:id])
+     if @education_histories.update(education_params)
+       flash[:success] = "Education History updated successfully."
+    else
+      flash[:alert] = "Start year cannot be greater then end year." 
+    end 
     render 'education_history'
   end
 
-  def update_employment_detail
-    @user = current_user
-    @employment_detail = EmploymentDetail.find(params[:id])
-     if @employment_detail.update(employment_params)
-        flash[:success] = "Employment History updated successfully." 
-     else
-        flash[:alert] = "Start date cannot be greater then end date." 
-    end 
-    render 'employment_detail'
-  end
-
+  ## adding new employment details
   def add_employment
     @employment_detail = current_user.employment_details.new    
   end
 
+  ## updating employment detail
+  def update_employment_detail
+    @user = current_user
+    @employment_detail = EmploymentDetail.find(params[:id])
+    if @employment_detail.update(employment_params)
+      flash[:success] = "Employment History updated successfully." 
+    else
+      flash[:alert] = "Start date cannot be greater then end date." 
+    end 
+    render 'employment_detail'
+  end
+
+  ## adding or updatin skills for user
   def edit_skill
     @user = current_user
     @skill = current_user.skill.present? ? current_user.skill : current_user.build_skill
   end
 
+  ## editing users category
   def edit_category
     @category = current_user.users_category.present? ? current_user.users_category : Category.new
     @user = current_user
   end
 
+  ## adding and updating education history
   def education_history
     if params[:id].present?
       @education = current_user.education_histories.find(params[:id])
@@ -77,6 +88,7 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
+  ## adding and updating employment detail
   def employment_detail    
     if params[:id].present?
       @success = "Employment Detail updated successfully."
@@ -93,6 +105,7 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
+  ## adding new skills and updating skills
   def skill
     @user = current_user
     if current_user.skill
@@ -110,6 +123,7 @@ class ProfilesController < ApplicationController
     end
   end
 
+  ## users category adding and updating
   def category
     if current_user.users_category
        @before_changed = current_user.users_category.try(:category_ids)
@@ -173,6 +187,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /Profiles/1
   # PATCH/PUT /Profiles/1.json
 
+  ## updating profile
   def update
     success = current_user.profile ? "Profile updated successfully." : "Profile added successfully."
     @success = success if current_user.update_attributes(profile_params)
@@ -204,8 +219,7 @@ class ProfilesController < ApplicationController
   end
 
 
-  # DELETE /Profiles/1
-  # DELETE /Profiles/1.json
+  ## delete profile
   def destroy
     @profile.destroy
     respond_to do |format|
@@ -214,6 +228,7 @@ class ProfilesController < ApplicationController
     end
   end
   
+  ## downloading user's profile by admin
   def download_resume
     @category = @user.users_category
     @user_categories =  @category.present? ? @category.category_ids.split(',') : []
@@ -222,26 +237,35 @@ class ProfilesController < ApplicationController
     )
     send_data pdf, :filename => "resume_#{@user.screen_name}_#{@user.id}.pdf", :type => "application/pdf", :disposition => "attachment"
   end
+
   private
+
+    ## setting user before coming to any action
     def set_profile
       @user=User.find(params[:id])
     end
+
+    ## setting profile for current user
     def current_user_profile
       @profile=current_user.profile
     end
 
+    ## allowing profile parameters
     def profile_params
       params.require(:user).permit!
     end
 
+    ## allowing education parameters
     def education_params
       params.require(:education_history).permit!
     end
 
+    ## allowing employment parameters
     def employment_params
       params.require(:employment_detail).permit!
     end
 
+    ## allowing category parameters
     def category_params
       params.require(:education_history).permit!
     end
