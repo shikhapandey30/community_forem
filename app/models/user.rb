@@ -66,7 +66,6 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
 
   has_many :conversations, :foreign_key => :sender_id
-  accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
   
   has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
 
@@ -74,6 +73,8 @@ class User < ActiveRecord::Base
   has_many :wallets, dependent: :destroy
 
   has_one :notification_setting, dependent: :destroy
+  accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
+
   # has_many :skills, dependent: :destroy
   has_one :skill
   # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
