@@ -1,4 +1,6 @@
 class MeetingRoom < ActiveRecord::Base
+	 extend FriendlyId
+     friendly_id :topic, :use => :slugged
 	belongs_to :category
 	belongs_to :user
 	validates_presence_of :category_id, :topic, :slogan, :name, :headline

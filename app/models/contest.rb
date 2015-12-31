@@ -1,4 +1,6 @@
 class Contest < ActiveRecord::Base
+	extend FriendlyId
+    friendly_id :topic, :use => :slugged
 	belongs_to :category
 	belongs_to :user
     has_many :posts,:dependent => :destroy, :as => :postable

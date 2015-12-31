@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :topic, :use => :slugged
 	belongs_to :user
 	belongs_to :category
   has_many :posts,:dependent => :destroy, :as => :postable
