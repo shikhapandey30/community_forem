@@ -6,6 +6,7 @@
           Note: To view the complete profile of the user you have to first reveal the identity of the user
     </div>
     <div class="clearfix innerWIdth550 tac ">
+      <!-- Start Profile Image section -->
       <div class="clearfix whiteBox mt30 borderBtmBlue">
         <div class="clearfix formOuterPost tal">
           <div class="ProfileTHumb">
@@ -41,51 +42,64 @@
           </div>
         </div>
       </div>
-      <%#= render 'education_history' %>
+      <!-- End Profile Image section  -->
+      
+      <!-- Start Education History -->
       <div id ='education_history'>
         <%=render 'my_education_history'%>
       </div>
-      <%#= render 'employment_detail' %>
+      <!-- End Education History -->
+
+      <!-- Start Emplyment Detail -->
       <div id ='employment_detail'>
-        <%#=render 'my_employment_detail'%>
+        <%=render 'my_employment_detail'%>
       </div>
+      <!-- End Emplyment Detail -->
+
+      <!-- Start Skills -->
       <div class="my_skillsTag">
         <%=render 'my_skill'%>
       </div>
-      <!-- Render Category -->
+      <!-- End Skills -->
+
+      <!-- Start Category -->
       <div class="my_category">
         <%=render 'my_category'%>
       </div>
+      <!-- End Category -->
     </div>
   </div>
 </div>  
 
 <!-- Modal -->
+<!-- Start Reveal Identity Form -->
 <div class="modal fade" id="revIdentity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="clearfix modal-content">   
       <a class="close" data-dismiss="modal">X close</a>  
     
-        <div class="blackHD tac font22">please reply to below question to reveal identity</div>
-            <%= form_tag reveal_request_path(@user), :class=>"mt20",:id =>'form-id' do%>
-            <%#= hidden_field_tag "user_id", nil, value => @user.id %>
-            <div class="col-sm-12">
-              <label class="">Q1 Why do want to reveal identity ?</label>
-              <textarea class="inputTextW small validate[required]" name = "body1" placeholder=""></textarea>
-            </div>
-            
-            <div class="col-sm-12">
-              <label class="">Q2 What is your key area of interest ?</label>
-              <textarea class="inputTextW small  validate[required]"  name = "body2" placeholder=""></textarea>
-            </div>
+      <div class="blackHD tac font22">please reply to below question to reveal identity</div>
+      <%= form_tag reveal_request_path(@user), :class=>"mt20",:id =>'form-id' do%>
+      <%#= hidden_field_tag "user_id", nil, value => @user.id %>
+      <div class="col-sm-12">
+        <label class="">Q1 Why do want to reveal identity ?</label>
+        <textarea class="inputTextW small validate[required]" name = "body1" placeholder=""></textarea>
+      </div>
+      
+      <div class="col-sm-12">
+        <label class="">Q2 What is your key area of interest ?</label>
+        <textarea class="inputTextW small  validate[required]"  name = "body2" placeholder=""></textarea>
+      </div>
 
-            <div class="col-sm-12">
-              <input value="Submit" class="darkBlueBtn inputSubmit" type="submit">
-            </div>
-            <% end %>      
+      <div class="col-sm-12">
+        <input value="Submit" class="darkBlueBtn inputSubmit" type="submit">
+      </div>
+      <% end %>      
     </div>
   </div>
 </div>
+<!-- End Reveal Identity Form -->
+<!--  Start of script for skills-->
 <script>
   $(".hide-show").hide();
   $("#skill").click(function(event) {
@@ -93,11 +107,7 @@
   });
   $("#skill_new").click(function(event) {
    $('#skill_form').show();
-  
-  // event.preventDefault();
-  // $(".add-show").hide();
-  // $(".hide-show").show();
-  
   });
 </script>
+<!--  Start of script for skills-->
 
