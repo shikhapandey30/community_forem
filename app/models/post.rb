@@ -1,8 +1,8 @@
 class Post < ActiveRecord::Base
   #  include PublicActivity::Model
   # tracked
-   # extend FriendlyId
-  # friendly_id :title, :use => :slugged
+   extend FriendlyId
+  friendly_id :title, :use => :slugged
   # validates :title, uniqueness: true, :allow_blank => true
 
   ## Model Validations
