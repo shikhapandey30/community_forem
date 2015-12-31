@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   scope :by_name, lambda{|name| where("lower(screen_name) like ?", "%#{name}%")}
   scope :archive, -> {where(archive: true)}
   
+  ## Callbacks
+  after_create :set_notification_setting
+
   
   ## Form Validations
   validates :screen_name, uniqueness: true
@@ -23,14 +26,6 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile, :allow_destroy => true
-  
-  # has_many :skills, dependent: :destroy
-  has_one :skill
-  # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
-  
-  has_one :users_category, dependent: :destroy
-  # has_many :categories
-  #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
   
   has_many :replies, dependent: :destroy
   has_many :communities, dependent: :destroy
@@ -71,14 +66,22 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
 
   has_many :conversations, :foreign_key => :sender_id
-  has_one :notification_setting, dependent: :destroy
   accepts_nested_attributes_for :notification_setting, reject_if: :all_blank, :allow_destroy => true
-  after_create :set_notification_setting
+  
   has_many :reveal_identities, -> { where(accept: true) }, dependent: :destroy, :foreign_key => 'sender_id'
 
   has_many :messages, dependent: :destroy
   has_many :wallets, dependent: :destroy
 
+  has_one :notification_setting, dependent: :destroy
+  # has_many :skills, dependent: :destroy
+  has_one :skill
+  # accepts_nested_attributes_for :skill, :reject_if => :all_blank, :allow_destroy => true
+  
+  has_one :users_category, dependent: :destroy
+  # has_many :categories
+  #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
+  
   
   def active_for_authentication?
     super && self.active # i.e. super && self.is_active
