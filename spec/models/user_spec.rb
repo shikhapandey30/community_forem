@@ -4,6 +4,7 @@ describe User do
   
   before(:each) do
     @user = FactoryGirl.create(:user)
+    @reciver = User.create(:email => "test@gmail", :password => "password", password_confirmation: "password", first_name: "hemant", last_name: "gupta", :screen_name => "screen_name2")
   end
 	
 	it "It should have one notification_setting" do 
@@ -181,6 +182,11 @@ describe User do
 	## Scopes
 	it "should be active with status_id 3" do
 	  User.archive.should include(@user)
+	end
+
+	## Scopes
+	it "should be active with status_id 3" do
+	  Message.between(@user, @reciver)
 	end
 
 end

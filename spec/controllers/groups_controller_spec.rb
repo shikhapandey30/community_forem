@@ -73,18 +73,7 @@ RSpec.describe GroupsController, type: :controller do
         expect(response).to redirect_to(Group.last)
       end
     end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved group as @group" do
-        post :create, {:group => invalid_attributes}, valid_session
-        expect(assigns(:group)).to be_a_new(Group)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:group => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
+    
   end
 
   describe "PUT #update" do
