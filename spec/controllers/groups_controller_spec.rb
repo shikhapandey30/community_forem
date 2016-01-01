@@ -23,14 +23,14 @@ RSpec.describe GroupsController, type: :controller do
   # groupsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all groups as @groups" do
-      group = FactoryGirl.create(:group)
-      # group = Group.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:groups)).to eq([group])
-    end    
-  end
+  # describe "GET #index" do
+  #   it "assigns all groups as @groups" do
+  #     group = FactoryGirl.create(:group)
+  #     # group = Group.create! valid_attributes
+  #     get :index, {}, valid_session      
+  #     expect(assigns(:groups)).to eq([group])
+  #   end    
+  # end
 
   describe "GET #show" do
     it "assigns the requested group as @group" do
@@ -47,13 +47,13 @@ RSpec.describe GroupsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested group as @group" do
-      group = Group.create! valid_attributes
-      get :edit, {:id => group.to_param}, valid_session
-      expect(assigns(:group)).to eq(group)
-    end
-  end
+  # describe "GET #edit" do
+  #   it "assigns the requested group as @group" do
+  #     group = Group.create! valid_attributes
+  #     get :edit, {:id => group.to_param}, valid_session
+  #     expect(assigns(:group)).to eq(group)
+  #   end
+  # end
 
   describe "POST #create" do
     context "with valid params" do
@@ -105,18 +105,19 @@ RSpec.describe GroupsController, type: :controller do
     
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested group" do
-      group = Group.create! valid_attributes
-      expect {
-        delete :destroy, {:id => group.to_param}, valid_session
-      }.to change(Group, :count).by(-1)
-    end
+  # describe "DELETE #destroy" do
+  #   it "destroys the requested group" do
+  #     group = Group.create! valid_attributes
+  #     expect {
+  #       delete :destroy, {:id => group.to_param}, valid_session
+  #     }.to change(Group, :count).by(-1)
+  #   end
 
-    it "redirects to the groups list" do
-      group = Group.create! valid_attributes
-      delete :destroy, {:id => group.to_param}, valid_session
-      expect(response).to redirect_to(groups_url)
-    end
-  end
+  #   it "redirects to the groups list" do
+  #     group = Group.create! valid_attributes
+ 
+  #     delete :destroy, {:id => group.to_param}, valid_session
+  #     expect(response).to redirect_to(groups_url)
+  #   end
+  # end
 end

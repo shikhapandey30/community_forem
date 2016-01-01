@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryGirl.define do
 
     factory :blog do
@@ -14,7 +16,7 @@ FactoryGirl.define do
 		f.password_confirmation '12345678'
 		f.first_name 'First name'
 		f.last_name 'Lasr Name'
-		f.screen_name 'Lasr Name'
+		f.screen_name 'Last Name'
 		f.archive true
     end
 
@@ -36,6 +38,6 @@ FactoryGirl.define do
 		f.headline 'group titheadlinele'
 		f.description 'group description'
 		f.category_id 1		
-		association :user, :factory => :user
+		f.user_id 1
     end    
 end

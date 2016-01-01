@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :upload, :allow_destroy => true
 
   ## Model Validations
-  # validates_presence_of :category_id, :topic, :headline, :description
+  validates_presence_of :category_id, :topic, :headline, :description
 
   ## Scopes
   scope :by_topic, lambda{|topic| where("lower(topic) like ?", "%#{topic}%")}
