@@ -15,7 +15,7 @@ describe MeetingRoom do
       should have_many(:members).dependent(:destroy)
     end
     it "It should has many likes" do 
-      # should have_many(:likes).dependent(:destroy)
+       should have_many(:likes).dependent(:destroy)
     end
     it "It should has many dislikes" do 
       # should have_many(:dislikes).dependent(:destroy)
