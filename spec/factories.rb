@@ -64,4 +64,13 @@ FactoryGirl.define do
 		f.category_id 1
 		f.user_id 2
     end
+
+    factory :meeting_room do |f|
+		f.topic 'meeting_room title'
+		f.headline 'meeting_room titheadlinele'
+		f.name 'meeting_room name'
+		f.slogan 'meeting_room slogan'
+		f.category_id 1
+		f.user_id 2
+    end
 end
