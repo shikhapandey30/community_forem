@@ -37,5 +37,15 @@ FactoryGirl.define do
 		f.description 'group description'
 		f.category_id 1		
 		association :user, :factory => :user
-    end    
+    end   
+
+
+    factory :community do |f|
+		f.topic 'group title'
+		f.headline 'group titheadlinele'
+		f.description 'group description'
+		f.category_id 1		
+		# association :user, :factory => :user
+		f.user_id 2
+    end  
 end
