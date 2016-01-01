@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
   
   ## Form Validations
-  validates :screen_name, uniqueness: true
-  validates :first_name, :last_name, :email, :screen_name, presence: true
+  validates_uniqueness_of :screen_name
+  validates :first_name, :last_name, :screen_name, presence: true
   
 
   ## Model Associations
