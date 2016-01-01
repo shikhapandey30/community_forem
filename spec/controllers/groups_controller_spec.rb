@@ -25,10 +25,11 @@ RSpec.describe GroupsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all groups as @groups" do
-      group = Group.create! valid_attributes
+      group = FactoryGirl.create(:group)
+      # group = Group.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:groups)).to eq([group])
-    end
+    end    
   end
 
   describe "GET #show" do

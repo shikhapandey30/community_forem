@@ -1,10 +1,12 @@
-FactoryGirl.define do  factory :blog do
-    name "MyString"
-description "MyText"
-image "MyString"
-user_id 1
-slug "MyString"
-  end
+FactoryGirl.define do
+
+    factory :blog do
+	    name "MyString"
+		description "MyText"
+		image "MyString"
+		user_id 1
+	    slug "MyString"
+	end
 
 	factory :user do |f|
 		f.email 'flexsin@ywr.com'
@@ -35,5 +37,5 @@ slug "MyString"
 		f.description 'group description'
 		f.category_id 1		
 		association :user, :factory => :user
-    end 
+    end    
 end
