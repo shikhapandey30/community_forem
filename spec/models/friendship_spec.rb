@@ -6,7 +6,7 @@ describe Friendship do
       should belong_to(:user)
     end
     it "It should belong_to friend" do
-      should belong_to(:friend)
+      should belong_to(:friend).class_name('User').with_foreign_key(:friend_id)
     end
   end
 end

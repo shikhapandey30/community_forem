@@ -14,8 +14,11 @@ describe Group do
     it "It should has many members" do 
       should have_many(:members).dependent(:destroy)
     end
-    it "It should has many upload" do 
+    it "It should has one upload" do 
       should have_one(:upload).dependent(:destroy)
+    end
+    it "It should has one upload" do 
+      accept_nested_attributes_for(:upload).allow_destroy(true)
     end
   end
   ## Validation
