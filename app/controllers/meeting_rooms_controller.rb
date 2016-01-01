@@ -1,9 +1,10 @@
 class MeetingRoomsController < ApplicationController
+
+  # filters
   before_filter :authenticate_user!
   before_action :set_meeting_room, only: [:show, :edit, :update, :destroy, :leave]
 
-  # GET /meeting_rooms
-  # GET /meeting_rooms.json
+  # fetching meeting rooms by search OR meeting rooms or members for user
   def index
      # start change code- kandarp
     if params[:data].present?
@@ -15,27 +16,25 @@ class MeetingRoomsController < ApplicationController
     # @meeting_rooms =(current_user.meeting_rooms + current_user.meeting_rooms_members).compact
   end
 
-  # GET /meeting_rooms/1
-  # GET /meeting_rooms/1.json
+  # meeting room comments
   def show
     @comment = Comment.new
     @comments = @meeting_room.comments
   end
 
-  # GET /meeting_rooms/new
+  # initalising meeting room
   def new
     @meeting_room = MeetingRoom.new
     @meeting_room.build_upload
   end
 
-  # GET /meeting_rooms/1/edit
+  # edit meeting room
   def edit
     authorize @meeting_room
     @meeting_room.upload.present? ? @meeting_room.upload : @meeting_room.build_upload
   end
 
-  # POST /meeting_rooms
-  # POST /meeting_rooms.json
+  # meeting room creation and sending invitation to user to join
   def create
     @meeting_room = current_user.meeting_rooms.new(meeting_room_params)
     respond_to do |format|
@@ -60,8 +59,7 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /meeting_rooms/1
-  # PATCH/PUT /meeting_rooms/1.json
+  # updating meeting room and sending notification
   def update
     authorize @meeting_room
     respond_to do |format|
@@ -91,8 +89,7 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
-  # DELETE /meeting_rooms/1
-  # DELETE /meeting_rooms/1.json
+  # deleting meeting room
   def destroy
     authorize @meeting_room
     @meeting_room.destroy
@@ -102,6 +99,7 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
+  # leaving meeting room
   def leave  
     members = @meeting_room.members.where(:user_id=> current_user.id)
     members.delete_all
@@ -120,6 +118,7 @@ class MeetingRoomsController < ApplicationController
        params.require(:meeting_room).permit(:topic, :category_id, :headline, :name, :image, :slogan,upload_attributes: [:id, :site_link, :video, :image, :_destroy])
     end
 
+    # updating image and file for meeting room
     def set_upload
       @meeting_room.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @meeting_room.upload.update_column(:file, nil) if params[:file_url].eql?("true")
