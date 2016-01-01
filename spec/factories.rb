@@ -57,5 +57,14 @@ FactoryGirl.define do
 		f.category_id 1		
 		# association :user, :factory => :user
 		f.user_id 2
-    end  
+    end
+
+    factory :forum_poll do |f|
+		f.topic 'forum_poll title'
+		f.headline 'forum_poll titheadlinele'
+		f.body 'forum_poll description'
+		f.category_id 1		
+		# association :user, :factory => :user
+		f.user_id 2
+    end
 end
