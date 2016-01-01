@@ -4,12 +4,12 @@ one:
   user_id: 1
   forum_poll_id: 1
   votable_id: 
-  votabable_type: MyString
+  votable_type: MyString
   vote_type: MyString
 
 two:
   user_id: 1
   forum_poll_id: 1
   votable_id: 
-  votabable_type: MyString
+  votable_type: MyString
   vote_type: MyString
