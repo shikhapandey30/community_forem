@@ -52,7 +52,7 @@ RSpec.describe BlogsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested blog as @blog" do
-      blog = Blog.create! valid_attributes
+      blog = FactoryGirl.create(:blog)
       get :show, {:id => blog.to_param}, valid_session
       expect(assigns(:blog)).to eq(blog)
     end
@@ -67,7 +67,7 @@ RSpec.describe BlogsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested blog as @blog" do
-      blog = Blog.create! valid_attributes
+      blog =FactoryGirl.create(:blog)
       get :edit, {:id => blog.to_param}, valid_session
       expect(assigns(:blog)).to eq(blog)
     end
@@ -113,20 +113,20 @@ RSpec.describe BlogsController, type: :controller do
       }
 
       it "updates the requested blog" do
-        blog = Blog.create! valid_attributes
+        blog = FactoryGirl.create(:blog)
         put :update, {:id => blog.to_param, :blog => new_attributes}, valid_session
         blog.reload
         # skip("Add assertions for updated state")
       end
 
       it "assigns the requested blog as @blog" do
-        blog = Blog.create! valid_attributes
+        blog = FactoryGirl.create(:blog)
         put :update, {:id => blog.to_param, :blog => valid_attributes}, valid_session
         expect(assigns(:blog)).to eq(blog)
       end
 
       it "redirects to the blog" do
-        blog = Blog.create! valid_attributes
+        blog = FactoryGirl.create(:blog)
         put :update, {:id => blog.to_param, :blog => valid_attributes}, valid_session
         expect(response).to redirect_to(blog)
       end
@@ -149,7 +149,7 @@ RSpec.describe BlogsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested blog" do
-      blog = Blog.create! valid_attributes
+      blog = FactoryGirl.create(:blog)
       expect {
         delete :destroy, {:id => blog.to_param}, valid_session
       }.to change(Blog, :count).by(-1)

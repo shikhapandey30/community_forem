@@ -9,12 +9,12 @@ FactoryGirl.define do
 	end
 
 	factory :user do |f|
-		f.email 'flexsin@ywr.com'
+		f.email Faker::Internet.email
 		f.password '12345678'
 		f.password_confirmation '12345678'
 		f.first_name 'First name'
 		f.last_name 'Lasr Name'
-		f.screen_name 'Lasr Name'
+		f.screen_name Faker::Internet.user_name
 		f.archive true
     end
 
@@ -36,7 +36,7 @@ FactoryGirl.define do
 		f.headline 'group titheadlinele'
 		f.description 'group description'
 		f.category_id 1		
-		association :user, :factory => :user
+		f.user User.last
     end   
 
 

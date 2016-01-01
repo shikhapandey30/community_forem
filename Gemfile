@@ -62,7 +62,7 @@ group :development, :test do
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   gem 'capybara'
-  # gem 'faker'
+  gem 'faker'
   # gem 'fabrication', "~> 2.2.2"
   # gem 'database_cleaner'
 end
