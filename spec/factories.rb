@@ -9,12 +9,12 @@ FactoryGirl.define do
 	end
 
 	factory :user do |f|
-		f.email 'flexsin@ywr.com'
+		f.email Faker::Internet.email
 		f.password '12345678'
 		f.password_confirmation '12345678'
 		f.first_name 'First name'
 		f.last_name 'Lasr Name'
-		f.screen_name 'Lasr Name'
+		f.screen_name Faker::Internet.user_name
 		f.archive true
     end
 
@@ -36,6 +36,32 @@ FactoryGirl.define do
 		f.headline 'group titheadlinele'
 		f.description 'group description'
 		f.category_id 1		
-		association :user, :factory => :user
-    end    
+		f.user User.last
+    end   
+
+    factory :community do |f|
+		f.topic 'group title'
+		f.headline 'group titheadlinele'
+		f.description 'group description'
+		f.category_id 1
+		f.user_id 2
+    end  
+
+    factory :contest do |f|
+		f.topic 'contest title'
+		f.headline 'contest titheadlinele'
+		f.description 'contest description'
+		f.start_date '2016-01-12'
+		f.end_date '2017-01-12'
+		f.category_id 1
+		f.user_id 2
+    end
+
+    factory :forum_poll do |f|
+		f.topic 'forum_poll title'
+		f.headline 'forum_poll titheadlinele'
+		f.body 'forum_poll description'
+		f.category_id 1
+		f.user_id 2
+    end
 end
