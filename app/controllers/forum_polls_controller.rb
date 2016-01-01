@@ -1,6 +1,9 @@
 class ForumPollsController < ApplicationController
+
+  #filters
   before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
   
+  # fetching forum poll by search OR all forum poll
   def index
     # start change code- kandarp
     if params[:data].present?
@@ -11,9 +14,8 @@ class ForumPollsController < ApplicationController
     # end change code- kandarp
     # @forum_polls = ForumPoll.all.order("updated_at desc")
   end
-  
- 
 
+  # fetching forum poll users
   def show    
     @users = @forum_poll.votes.collect(&:user).uniq.sort_by {|u| u.updated_at}.reverse
   	# votes=@forum_poll.votes
@@ -23,14 +25,15 @@ class ForumPollsController < ApplicationController
   	#  end
   end
 
+  # initializing forum poll
   def new
     @forum_poll= ForumPoll.new
     @forum_poll.build_upload
   end
 
+  # creating forum poll
   def create
     @forum_poll = current_user.forum_polls.new(forum_poll_params)
-
     respond_to do |format|
       if @forum_poll.save
         format.html { redirect_to @forum_poll, notice: 'Forum Poll is successfully created.' }
@@ -42,11 +45,13 @@ class ForumPollsController < ApplicationController
     end
   end
 
+  # editing forum poll
   def edit
     authorize @forum_poll
     @forum_poll.upload.present? ? @forum_poll.upload : @forum_poll.build_upload
   end
 
+  # updating forum poll
   def update
     authorize @forum_poll
     respond_to do |format|
@@ -61,8 +66,7 @@ class ForumPollsController < ApplicationController
     end
   end
 
-  # DELETE /contests/1
-  # DELETE /contests/1.json
+  # delete forum poll
   def destroy
     authorize @forum_poll
     @forum_poll.destroy
@@ -74,13 +78,18 @@ class ForumPollsController < ApplicationController
 
 
   private
+    
+    # setting forum poll for all action under this controller
     def set_forum_poll
       @forum_poll= ForumPoll.find(params[:id])
     end
+
+    #permitting forum polls parameters
     def forum_poll_params
       params.require(:forum_poll).permit!
     end
 
+    # Image updating or not
     def set_upload
       @forum_poll.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @forum_poll.upload.update_column(:file, nil) if params[:file_url].eql?("true")
