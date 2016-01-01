@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  
   extend FriendlyId
   friendly_id :screen_name, :use => :slugged
   # Include default devise modules. Others available are:
