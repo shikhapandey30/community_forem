@@ -1,10 +1,9 @@
 class GroupsController < ApplicationController
-
-  # filters
   before_filter :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :leave, :join]
 
-  # all groups and members for user
+  # GET /groups
+  # GET /groups.json
   def index
     # start change code- kandarp
     if params[:data].present?
@@ -16,7 +15,8 @@ class GroupsController < ApplicationController
   # @groups =(current_user.groups + current_user.group_members).compact
   end
 
-  # fetching posts, suggested communities, connections and groups
+  # GET /groups/1
+  # GET /groups/1.json
   def show
     if params[:post_id]
       @post = current_user.posts.find(params[:post_id])
@@ -32,19 +32,20 @@ class GroupsController < ApplicationController
     @comment = Comment.new    
   end
 
-  # Initializing group
+  # GET /groups/new
   def new
     @group = Group.new
     @group.build_upload
   end
 
-  # eidt group
+  # GET /groups/1/edit
   def edit
     authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
   end
 
-  # create group
+  # POST /groups
+  # POST /groups.json
   def create
     @group = current_user.groups.new(group_params)
     respond_to do |format|
@@ -59,7 +60,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  # updating group
+  # PATCH/PUT /groups/1
+  # PATCH/PUT /groups/1.json
   def update
     authorize @group
     respond_to do |format|
@@ -75,7 +77,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  # delete group
+  # DELETE /groups/1
+  # DELETE /groups/1.json
   def destroy
     authorize @group
     @group.destroy
@@ -85,15 +88,13 @@ class GroupsController < ApplicationController
     end
   end
 
-  # leaving group by member
-  def leave 
+  def leave  
     members = @group.members.where(:user_id=> current_user.id)
     members.delete_all
     flash[:notice] = 'Group is successfully Leaved.'
     redirect_to '/dashboard'
   end
 
-  # joining group and sending the notification to all members
   def join    
     @group.members.create(:user_id=>current_user.id)
     @invitable_members = @group.members - @group.members.where(user_id: current_user.id)    
@@ -103,7 +104,6 @@ class GroupsController < ApplicationController
     @suggested_groups, @suggest = suggested_groups
   end
 
-  # filter group by topic
   def filter    
     @suggested_groups = Group.where(id: new_suggested_groups).by_topic(params[:topic])
     @suggest = false
@@ -120,13 +120,11 @@ class GroupsController < ApplicationController
        params.require(:group).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
     end
 
-    # image and file uploading for group
     def set_upload
       @group.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @group.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 
-    # creating members and sending notification to join the group while creating contest
     def set_members
       members_ids = params[:group][:members].reject(&:empty?)
        @group.members.destroy_all if params[:action] == "update"
@@ -140,7 +138,6 @@ class GroupsController < ApplicationController
       end
     end
 
-    # suggested groups
     def suggested_groups
       if request.headers["HTTP_REFERER"].include?("suggested_groups")
         @suggested_groups = new_suggested_groups
