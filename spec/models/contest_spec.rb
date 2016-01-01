@@ -35,7 +35,7 @@ describe Contest do
   end
   ## Validation
   describe "validates_presence_of" do 
-    it "validate_presence_of email, category_id, topic, headline, visibility, start_date, end_date, description" do
+    it "validate_presence_of category_id, topic, headline, visibility, start_date, end_date, description" do
       should validate_presence_of(:category_id)
       should validate_presence_of(:topic) 
       should validate_presence_of(:headline) 
