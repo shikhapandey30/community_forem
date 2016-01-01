@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+  resources :blogs
   resources :reveal_identities
 
   devise_for :admin_users, ActiveAdmin::Devise.config

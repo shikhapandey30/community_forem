@@ -1,4 +1,11 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :blog do
+    name "MyString"
+description "MyText"
+image "MyString"
+user_id 1
+slug "MyString"
+  end
+
 	factory :user do |f|
 		f.email 'flexsin@ywr.com'
 		f.password '12345678'
@@ -17,8 +24,16 @@ FactoryGirl.define do
 		association :user, :factory => :user	
     end
 
-    factory :posts do |f|
+    factory :post do |f|
 		f.title true
+		association :user, :factory => :user
+    end
+
+    factory :group do |f|
+		f.topic 'group title'
+		f.headline 'group titheadlinele'
+		f.description 'group description'
+		f.category_id 1		
 		association :user, :factory => :user
     end 
 end

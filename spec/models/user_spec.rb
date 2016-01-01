@@ -164,6 +164,11 @@ describe User do
 	  User.all.should eq [@user]
 	end
 
+	it 'Check img' do
+	 @user.img
+	end
+
+
 	## Nested Attributes
 	it 'accept_nested_attributes_for profile' do
 		should accept_nested_attributes_for(:profile)
