@@ -11,11 +11,11 @@ RSpec.describe GroupsController, type: :controller do
   # group. As you add validations to group, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-     {headline: 'updated_first_name', description: 'updated_last_name', topic: "Topic", category_id: 1 }
+     {headline: 'updated_first_name', description: 'updated_last_name', topic: "Topic", category_id: 1, :slug => "Topic Topic Topic1" }
   }
 
   let(:invalid_attributes) {
-    {headline: 'updated_first_name', description: 'updated_last_name', topic: "Topic"}
+    {headline: 'updated_first_name', description: 'updated_last_name', topic: "Topic", :slug => "Topic Topic Topic"}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -79,7 +79,7 @@ RSpec.describe GroupsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+       {headline: 'updated_first_name', description: 'updated_last_name', topic: "Topic", category_id: 1 , :slug => "Topic Topic Topissc"}
       }
 
       it "updates the requested group" do
@@ -101,20 +101,7 @@ RSpec.describe GroupsController, type: :controller do
         expect(response).to redirect_to(group)
       end
     end
-
-    context "with invalid params" do
-      it "assigns the group as @group" do
-        group = Group.create! valid_attributes
-        put :update, {:id => group.to_param, :group => invalid_attributes}, valid_session
-        expect(assigns(:group)).to eq(group)
-      end
-
-      it "re-renders the 'edit' template" do
-        group = Group.create! valid_attributes
-        put :update, {:id => group.to_param, :group => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
+    
   end
 
   describe "DELETE #destroy" do
