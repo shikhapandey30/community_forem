@@ -179,6 +179,3 @@ describe User do
 	end
 
 end
-
-
-
