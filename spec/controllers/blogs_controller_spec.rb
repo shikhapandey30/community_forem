@@ -43,7 +43,8 @@ RSpec.describe BlogsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all blogs as @blogs" do
-      blog = Blog.create! valid_attributes
+      blog = FactoryGirl.create(:blog)      
+      # blog = Blog.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:blogs)).to eq([blog])
     end
