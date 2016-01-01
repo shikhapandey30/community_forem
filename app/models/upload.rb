@@ -1,5 +1,8 @@
 class Upload < ActiveRecord::Base
+
+    ## Model Associations
 	belongs_to :uploadable, polymorphic: true
+    
 	mount_uploader :file, UploadUploader
     mount_uploader :image, UploadUploader
     # mount_uploader :file, GroupUploader
