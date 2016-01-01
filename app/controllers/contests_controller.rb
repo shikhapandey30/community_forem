@@ -1,8 +1,9 @@
 class ContestsController < ApplicationController
+
+  #filters
   before_action :set_contest, only: [:show, :edit, :update, :destroy, :leave]
 
-  # GET /contests
-  # GET /contests.json
+  # fetching all contests
   def index
     # start change code- kandarp
     if params[:data].present?
@@ -14,27 +15,25 @@ class ContestsController < ApplicationController
     # @contests = Contest.all.order("updated_at desc")
   end
 
-  # GET /contests/1
-  # GET /contests/1.json
+  # fetching contest users
   def show
     # @comment = Comment.new
     @users = @contest.votes.collect(&:user).uniq.sort_by {|u| u.updated_at}.reverse
   end
 
-  # GET /contests/new
+  # initializing contest
   def new
     @contest = Contest.new
     @contest.build_upload
   end
 
-  # GET /contests/1/edit
+  # editin contest
   def edit
     authorize @contest
     @contest.upload.present? ? @contest.upload : @contest.build_upload
   end
 
-  # POST /contests
-  # POST /contests.json
+  # creating contest
   def create
     @contest = current_user.contests.new(contest_params)
 
@@ -51,8 +50,7 @@ class ContestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contests/1
-  # PATCH/PUT /contests/1.json
+  # uodating contest
   def update
     authorize @contest
     respond_to do |format|
@@ -68,8 +66,7 @@ class ContestsController < ApplicationController
     end
   end
 
-  # DELETE /contests/1
-  # DELETE /contests/1.json
+  # deleting contest
   def destroy
     authorize @contest
     @contest.destroy
@@ -79,6 +76,7 @@ class ContestsController < ApplicationController
     end
   end
 
+  # leaving contest by member
   def leave  
     members = @contest.members.where(:user_id=> current_user.id)
     members.delete_all
@@ -98,14 +96,16 @@ class ContestsController < ApplicationController
 
     end
 
+    # updating image and file for contest
     def set_upload
       @contest.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @contest.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 
-     def set_members
+    # creating members and sending notification to join the contest while creating contest
+    def set_members
       members_ids = params[:contest][:members].reject(&:empty?)
-       @contest.members.destroy_all if params[:action] == "update"
+      @contest.members.destroy_all if params[:action] == "update"
       members_ids.each do |members_id|
         member = Member.create(:user_id => members_id.to_i, :invitable => @contest)
         #send notification
