@@ -1,8 +1,12 @@
 class FriendshipsController < ApplicationController
+
+  # filters
   before_action :set_friendship, only: [:show, :edit, :update, :destroy]
 
   # GET /friendships
   # GET /friendships.json
+
+  # fetching all friends to whom the user sent request and from whom the user got friendship request
   def index
     # @friendships = current_user.friendships +  current_user.inverse_friendships
     # # @friends =  current_user.friends +  current_user.inverse_friends
@@ -19,7 +23,7 @@ class FriendshipsController < ApplicationController
   def show
   end
 
-  # GET /friendships/new
+  # initializing friendship
   def new
     @friendship = Friendship.new
   end
@@ -28,8 +32,7 @@ class FriendshipsController < ApplicationController
   def edit
   end
 
-  # POST /friendships
-  # POST /friendships.json
+  # creating friendship request and sending notification to connect to user
   def create
     #user = User.find(params[:friend_id])
     #User.invite!(:email => user.email, :first_name => user.first_name)
@@ -50,8 +53,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /friendships/1
-  # PATCH/PUT /friendships/1.json
+  # accepting the friendship request
   def update
     respond_to do |format|
       if @friendship.update_attributes(:accept => params[:accept])
@@ -64,8 +66,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # DELETE /friendships/1
-  # DELETE /friendships/1.json
+  # delete friendship
   def destroy
     @friendship.destroy
     respond_to do |format|
@@ -74,6 +75,7 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  # Unfriend the friendship
   def unfriend
      @friendship = Friendship.where(:user_id => current_user.id, :friend_id => params[:friend_id])
      @friendship = Friendship.where(:friend_id => current_user.id, :user_id => params[:friend_id]) if @friendship.blank?
@@ -84,6 +86,7 @@ class FriendshipsController < ApplicationController
     @users = User.all.paginate(:page => params[:page], :per_page => 10)
   end
 
+  # following nad unfollowing
   def follow
     @following = Following.where(:following_id => current_user.id, :follower_id => params[:follower_id]).first
 
@@ -105,6 +108,7 @@ class FriendshipsController < ApplicationController
       params.require(:friendship).permit(:user_id, :friend_id, :approved, :create, :destroy)
     end
 
+    # suggested connections
     def suggested_connections
       if request.headers["HTTP_REFERER"].include?("suggested_connections")
         @suggested_connections = new_suggested_connections
