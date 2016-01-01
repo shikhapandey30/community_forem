@@ -1,6 +1,6 @@
 <%@friends.each do |friend|%>
   <li>
-    <div class="clearfix commentSec cmntRow <%='activeMsg' if friend.id==params[:conversation_id].to_i%>">
+    <div class="clearfix commentSec cmntRow myfriends <%='activeMsg' if friend.id==params[:conversation_id].to_i%>" id = "friend_<%=friend.id%>">
       <div class="clearfix userInfo posRel" onclick="$.ajax('<%=conversation_message_path(friend, current_user)%>',{async:false});">
         <a href="<%=conversation_message_path(friend, current_user)%>" class="userImg"><img src="<%=friend.try(:img)%>" alt="" data-remote=true></a> <a href="<%=conversation_message_path(friend, current_user)%>" class="userNAme font14" data-remote=true><%=friend.try(:screen_name)%></a> <br>        
         <div class="fr grayColor tar"><%= time_ago_in_words(friendship(friend)).capitalize %></div>

@@ -1,4 +1,5 @@
-$('.myConnection').html("<%= j render('my_connections') %>");
+$('.myfriends').removeClass('activeMsg');
+$("#friend_<%=@friend.id%>").addClass('activeMsg');
 $(".replyBox textarea").val('');
 $(".chatBox").html("<%= j render('chatBox', friend: @friend) %>");
 $('#chatmsg').children().last()[0].scrollIntoView(true);
