@@ -11,14 +11,14 @@ class MeetingRoom < ActiveRecord::Base
 	has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
 	has_many :members,:dependent => :destroy, :as => :invitable
-  has_many :posts,:dependent => :destroy, :as => :postable
+    has_many :posts,:dependent => :destroy, :as => :postable
 	
 	has_one :upload, as: :uploadable, dependent: :destroy
 	
 	accepts_nested_attributes_for :upload, :allow_destroy => true
 	
-  ## Model Validations
-  validates_presence_of :category_id, :topic, :slogan, :name, :headline
+    ## Model Validations
+    validates_presence_of :category_id, :topic, :slogan, :name, :headline
 	
 	def liked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first

@@ -1,6 +1,5 @@
 # require 'spec_helper'
 require "rails_helper" 
-require 'factory_girl_rails'
 describe User do
   
   before(:each) do
@@ -154,7 +153,6 @@ describe User do
 	       should validate_presence_of(:password)              
 	    end
     end
-
     ## Validation uniqeness_of
 	describe "validates_uniqeness_of_of" do 
 	    it "validate_presence_of , screen_name" do
@@ -179,7 +177,7 @@ describe User do
 	it "should be active with status_id 3" do
 	  User.archive.should include(@user)
 	end
-	
+
 end
 
 

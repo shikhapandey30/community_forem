@@ -1,8 +1,9 @@
 class CommunitiesController < ApplicationController
+  
+  #filters
   before_action :set_community, only: [:show, :edit, :update, :destroy, :join, :leave]
 
-  # GET /communities
-  # GET /communities.json
+  # fetching user communities and associated community members
   def index
     # @communities = current_user.communities
     # start change code- kandarp
@@ -14,12 +15,10 @@ class CommunitiesController < ApplicationController
     # end change code- kandarp
     # @communities =(current_user.communities + current_user.community_members).compact
     @friends = current_user.my_friends
-    @friends = @friends.present? ? @friends : []
-    # @suggested_communities = 
+    @friends = @friends.present? ? @friends : [] 
   end
 
-  # GET /communities/1
-  # GET /communities/1.json
+  # fetching posts for a cummunity and all suggested communities, suggested connections and suggested groups
   def show
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
@@ -35,7 +34,7 @@ class CommunitiesController < ApplicationController
     @comment = Comment.new    
   end
 
-  # GET /communities/new
+  # Initializing commnunity
   def new
     @community = Community.new
     @community.build_upload
@@ -43,7 +42,7 @@ class CommunitiesController < ApplicationController
     @friends = @friends.present? ? @friends : []
   end
 
-  # GET /communities/1/edit
+  # editing community
   def edit
     authorize @community
     @community.upload.present? ? @community.upload : @community.build_upload
@@ -51,8 +50,7 @@ class CommunitiesController < ApplicationController
     @friends = @friends.present? ? @friends : []
   end
 
-  # POST /communities
-  # POST /communities.json
+  # creating community and send invitation to the other members to join
   def create
     @community = current_user.communities.new(community_params)
     respond_to do |format|
@@ -78,8 +76,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /communities/1
-  # PATCH/PUT /communities/1.json
+  # Updating community
   def update
     authorize @community
     respond_to do |format|
@@ -106,8 +103,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  # DELETE /communities/1
-  # DELETE /communities/1.json
+  # deleting community
   def destroy
     authorize @community
     @community.destroy
@@ -117,6 +113,7 @@ class CommunitiesController < ApplicationController
     end
   end
 
+  # joining the community and send notification of joining
   def join    
     @community.members.create(:user_id=>current_user.id)
     @invitable_members = @community.members - @community.members.where(user_id: current_user.id)
@@ -126,12 +123,14 @@ class CommunitiesController < ApplicationController
     @suggested_communities, @suggest = suggested_communities
   end
 
+  # suggested communities filter by community topic
   def filter
     @suggested_communities = Community.where(id: new_suggested_communities).by_topic(params[:topic])
     @suggest = false
   end
 
-   def leave  
+  # Leaving the community by member
+  def leave  
     members = @community.members.where(:user_id=> current_user.id)
     members.delete_all
     flash[:notice] = 'Group is successfully Leaved.'
@@ -149,6 +148,7 @@ class CommunitiesController < ApplicationController
       params.require(:community).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
     end
 
+    # suggested communities
     def suggested_communities
       if request.headers["HTTP_REFERER"].include?("suggested_communities")
         @suggested_communities = new_suggested_communities
@@ -160,6 +160,7 @@ class CommunitiesController < ApplicationController
       return @suggested_communities, @suggest
     end
 
+    # updating the image for community
     def set_upload
       # @community.upload.destroy
       # @community.build_upload( image: params[:image] )

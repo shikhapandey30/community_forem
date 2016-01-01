@@ -1,10 +1,15 @@
 class CommentsController < ApplicationController
+
+  # filters
   before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+
+  # getting all comments for user
   def index
     @comments = current_user.comments
   end
 
+  # creating comments for post, meeting room, contest and community
   def create
     if params[:post_id].present?
   	  @object = Post.find(params[:post_id])       
@@ -35,6 +40,7 @@ class CommentsController < ApplicationController
   def show
   end
 
+  # updating comment
   def update
 	  respond_to do |format|
 	    if @comment.update(comment_params)
@@ -48,6 +54,7 @@ class CommentsController < ApplicationController
 	  end
   end
 
+  # deleting comment
   def destroy
     @comment.destroy
     respond_to do |format|
@@ -62,6 +69,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+  # allowing the parameters for comment
   def comment_params
     params.require(:comment).permit(:user_id, :post_id, :title, :body)
   end
