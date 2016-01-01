@@ -43,8 +43,7 @@ FactoryGirl.define do
 		f.topic 'group title'
 		f.headline 'group titheadlinele'
 		f.description 'group description'
-		f.category_id 1		
-		# association :user, :factory => :user
+		f.category_id 1
 		f.user_id 2
     end  
 
@@ -54,8 +53,7 @@ FactoryGirl.define do
 		f.description 'contest description'
 		f.start_date '2016-01-12'
 		f.end_date '2017-01-12'
-		f.category_id 1		
-		# association :user, :factory => :user
+		f.category_id 1
 		f.user_id 2
     end
 
@@ -63,8 +61,7 @@ FactoryGirl.define do
 		f.topic 'forum_poll title'
 		f.headline 'forum_poll titheadlinele'
 		f.body 'forum_poll description'
-		f.category_id 1		
-		# association :user, :factory => :user
+		f.category_id 1
 		f.user_id 2
     end
 end
