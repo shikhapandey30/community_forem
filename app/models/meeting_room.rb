@@ -7,8 +7,8 @@ class MeetingRoom < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :user
 	
-	has_many :likes, :as => :likable
-	has_many :dislikes, :as => :dislikable
+	has_many :likes, dependent: :destroy, :as => :likable
+	has_many :dislikes, dependent: :destroy, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
 	has_many :members,:dependent => :destroy, :as => :invitable
     has_many :posts,:dependent => :destroy, :as => :postable

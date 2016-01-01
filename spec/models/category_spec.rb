@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Category do
-  describe "Category associatin with user, user_category, post & group" do    
+  describe "Category association with user, user_category, post & group" do    
     it "It should belong_to user" do
     	should belong_to(:user)
     end
