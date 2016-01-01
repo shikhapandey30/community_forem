@@ -4,22 +4,25 @@ class ApplicationController < ActionController::Base
   helper_method :mobile_device?  
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-    protect_from_forgery with: :exception
-    skip_before_filter  :verify_authenticity_token
-    before_action :configure_permitted_parameters, if: :devise_controller?  
+  protect_from_forgery with: :exception
+  skip_before_filter  :verify_authenticity_token
+  before_action :configure_permitted_parameters, if: :devise_controller?  
 
+  # Fetching the suggested communitites to join
   def new_suggested_communities    
     @communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
     return (@communities.to_a - @joined_communities)
   end
 
+  # Fetching the suggested connections to join
   def new_suggested_connections
     @frends_of_friend = current_user.friends.collect(&:my_friends).compact.flatten.uniq
     @friend = current_user.friendships.collect(&:friend).flatten.uniq    
     return @frends_of_friend.to_a - @friend.to_a
   end
 
+  # Fetching the suggested groups to join
   def new_suggested_groups    
     @groups = current_user.friends.collect(&:groups).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_groups = current_user.members.where(invitable_type: "Group").collect(&:invitable).uniq
@@ -59,12 +62,14 @@ class ApplicationController < ActionController::Base
   # end
   protected
 
+  # Allowing the parameters for sign up and account update
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy]) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :screen_name, :email, :password, :password_confirmation, :current_password, notification_setting_attributes: [:id, :user_id, :new_update, :friend_request, :is_new_record, :comments_and_like ,:friends_birthday, :_destroy]) }
   end
   private
   
+  # Redirecting to root if user not authorized
   def user_not_authorized(exception)
     # policy_name = exception.policy.class.to_s.underscore
     flash[:alert] = "You are not authorized to perform this action."

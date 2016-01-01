@@ -1,5 +1,9 @@
 class EducationHistoriesController < ApplicationController
- before_action :set_education_history, only: [:show, :edit, :update, :destroy]
+
+  # filters
+  before_action :set_education_history, only: [:show, :edit, :update, :destroy]
+
+  # fetching all education history
   def index
     @education_histories = EducationHistory.all
   end
@@ -39,8 +43,7 @@ class EducationHistoriesController < ApplicationController
     # end
   end
 
-  # PATCH/PUT /EducationHistorys/1
-  # PATCH/PUT /EducationHistorys/1.json
+  # updating education history for update
   def update
     # respond_to do |format|      
       # if
@@ -61,8 +64,7 @@ class EducationHistoriesController < ApplicationController
     # end
   end
 
-  # DELETE /EducationHistorys/1
-  # DELETE /EducationHistorys/1.json
+  # deleting education history
   def destroy
     @education_history.destroy
     respond_to do |format|
@@ -72,14 +74,17 @@ class EducationHistoriesController < ApplicationController
   end
 
   private
+
+    # setting education history for all actions
     def set_education_history      
       @education_history=EducationHistory.find(params[:id])      
     end
 
+    # permitting education history parameters
     def education_history_params
       params.require(:education_history).permit(:user_id, :specialization_id,courses_attributes: [:id, :name, :_destroy,:education_history_id],institutes_attributes: [:id, :name, :_destroy,:education_history_id])
     end
-     def education_params
+    def education_params
       params.require(:education_history).permit!
     end
 end
