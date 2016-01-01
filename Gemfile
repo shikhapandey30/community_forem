@@ -59,7 +59,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'shoulda'
+  gem 'shoulda', '~> 3.5'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   gem 'capybara'
   # gem 'faker'

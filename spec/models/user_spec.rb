@@ -2,7 +2,7 @@
 require "rails_helper" 
 require 'factory_girl_rails'
 describe User do
-
+  
   before(:each) do
     @user = FactoryGirl.create(:user)
   end
@@ -11,176 +11,175 @@ describe User do
 	 should have_one(:notification_setting).dependent(:destroy)
 	end
 
-	## Validation
-	 describe "validates_presence_of" do 
-    it "validate_presence_of email, first_name, last_name, screen_name" do
-       should validate_presence_of(:first_name) 
-       should validate_presence_of(:last_name)
-       should validate_presence_of(:screen_name) 
-       should validate_presence_of(:email) 
-       should validate_presence_of(:password)              
+	it "It should have many posts" do 
+	 should have_many(:posts).dependent(:destroy)
+	end
+
+	it "It should have many categories" do 
+	 should have_many(:categories).dependent(:destroy)
+	end
+
+	it "It should have many education_histories" do 
+	 should have_many(:education_histories).dependent(:destroy)
+	end
+
+	it "It should have many employment_details" do 
+	 should have_many(:employment_details).dependent(:destroy)
+	end
+
+	it "It should have one profile" do 
+	 should have_one(:profile).dependent(:destroy)
+	end
+
+	it "It should have many replies" do 
+	 should have_many(:replies).dependent(:destroy)
+	end
+
+	it "It should have many communities" do 
+	 should have_many(:communities).dependent(:destroy)
+	end
+
+	it "It should have many groups" do 
+	 should have_many(:groups).dependent(:destroy)
+	end
+
+	it "It should have many forum_polls" do 
+	 should have_many(:forum_polls).dependent(:destroy)
+	end
+
+	it "It should have many contests" do 
+	 should have_many(:contests).dependent(:destroy)
+	end
+
+	it "It should have many meeting_rooms" do 
+	 should have_many(:meeting_rooms).dependent(:destroy)
+	end
+
+	it "It should have many followings" do 
+	 should have_many(:followings).dependent(:destroy)
+	end
+
+	it "It should have many followers" do 
+	 should have_many(:followers)
+	end
+
+	it "It should have many authenticates" do 
+	 should have_many(:authenticates)
+	end
+
+	it "It should have many friendships" do 
+	 should have_many(:friendships)
+	end
+
+	it "It should have many friends" do 
+	 should have_many(:friends)
+	end
+
+	it "It should have many inverse_friendships" do 
+	 should have_many(:inverse_friendships).class_name('Friendship')
+	end
+
+	it "It should have many inverse_friends" do 
+	 should have_many(:inverse_friends)
+	end
+
+	it "It should have many sent_notifications" do 
+	 should have_many(:sent_notifications).class_name('Notification').with_foreign_key('user_id')
+	end
+
+	it "It should have many notifications" do 
+	 should have_many(:notifications).class_name('Notification').with_foreign_key('recepient_id')
+	end
+
+	it "It should have many members" do 
+	 should have_many(:members).dependent(:destroy)
+	end
+
+	it "It should have many community_members" do 
+	 should have_many(:community_members).through(:members).source(:invitable)
+	end
+
+	it "It should have many meeting_rooms_members" do 
+	 should have_many(:meeting_rooms_members).through(:members).source(:invitable)
+	end
+
+	it "It should have many group_members" do 
+	 should have_many(:group_members).through(:members).source(:invitable)
+	end
+
+	it "It should have many meeting_rooms" do 
+	 should have_many(:meeting_rooms).dependent(:destroy)
+	end
+
+
+	it "It should have many votes" do 
+	 should have_many(:votes).dependent(:destroy)
+	end
+
+	it "It should have many conversations" do 
+	 should have_many(:conversations).with_foreign_key('sender_id')
+	end
+
+	it "It should have many reveal_identities" do 
+	 should have_many(:reveal_identities).dependent(:destroy).with_foreign_key('sender_id')
+	end
+
+	it "It should have many messages" do 
+	 should have_many(:messages).dependent(:destroy)
+	end
+
+	it "It should have many wallets" do 
+	 should have_many(:wallets).dependent(:destroy)
+	end
+
+	it "It should have one skill" do 
+	 should have_one(:skill)
+	end
+
+	it "It should have one users_category" do 
+	 should have_one(:users_category).dependent(:destroy)
+	end
+
+	## Callback methos
+	it "should trigger set_notification_setting on after create" do
+	 should callback(:set_notification_setting).after(:create)	 
+	end
+
+	## Validation presence_of
+	describe "validates_presence_of" do 
+	    it "validate_presence_of email, first_name, last_name, screen_name" do
+	       should validate_presence_of(:first_name) 
+	       should validate_presence_of(:last_name)
+	       should validate_presence_of(:screen_name) 
+	       should validate_presence_of(:password)              
+	    end
     end
-  end
 
-	# it "It should belongs to account" do 
-	#  should belong_to(:account)
-	# end
+    ## Validation uniqeness_of
+	describe "validates_uniqeness_of_of" do 
+	    it "validate_presence_of , screen_name" do
+	       should validate_uniqueness_of(:screen_name) 
+	    end
+    end
 
-	# it "It should has one partner" do 
-	#  should have_one(:partner)
-	# end
+    it 'Check user' do
+	  User.all.should eq [@user]
+	end
 
-	# it "It should belong to fitnesslevel" do 
-	#  should belong_to(:fitnesslevel)
-	# end
+	## Nested Attributes
+	it 'accept_nested_attributes_for profile' do
+		should accept_nested_attributes_for(:profile)
+	end
 
-	# it "It should belong to healthybacklevel" do 
-	#  should belong_to(:healthybacklevel)
-	# end
+	it 'accept_nested_attributes_for notification_setting' do
+		should accept_nested_attributes_for(:notification_setting)
+	end
 
-	# it "It should belong to mobileprovider" do 
-	#  should belong_to(:mobileprovider)
-	# end
-
-	# it "It should belong to siteterm" do 
-	#  should belong_to(:siteterm)
-	# end
-
-	# it "It should belong to sittinglevel" do 
-	#  should belong_to(:sittinglevel)
-	# end
-
-	# it "It should belong to sleepinglevel" do 
-	#  should belong_to(:sleepinglevel)
-	# end
-
-	# it "It should belong to userlevel" do 
-	#  should belong_to(:userlevel)
-	# end
-
-	# it "It should belong to activation_code" do 
-	#  should belong_to(:activation_code)
-	# end
-
-	# it "It should belong to discount" do 
-	#  should belong_to(:discount)
-	# end
-
-	# it "It should has many daily_reminders" do 
-	#  should have_many(:daily_reminders)
-	# end
-
-
-	# it "It should has many custom_progs" do 
-	#  should have_many(:custom_progs)
-	# end
-    
- #    it "It should has one dfl_challenge" do 
-	#  should have_one(:dfl_challenge)
-	# end
-
-	# it "It should has many personal_journals" do 
-	#  should have_many(:personal_journals)
-	# end
-	# it "It should has many personal_measurements" do 
-	#  should have_many(:personal_measurements)
-	# end
-
-	# it "It should has many diagnoses" do 
-	#  should have_many(:diagnoses).dependent(:destroy)
-	# end
-
-	# it "It should has many conditions" do 
-	#  should have_many(:conditions)
-	# end
+	## Scopes
+	it "should be active with status_id 3" do
+	  User.archive.should include(@user)
+	end
 	
- #    it "It should has many usergoals" do 
-	#  should have_many(:usergoals).dependent(:destroy)
-	# end   
-
-	#  it "It should has many userbundles" do 
-	#  should have_many(:userbundles).dependent(:destroy)
-	# end
-
-	# it "It should has many bundles" do 
-	#  should have_many(:bundles)
-	# end
-
-	# it "It should has many userprogs" do 
-	#  should have_many(:userprogs).dependent(:destroy)
-	# end
-
-	# it "It should has many progs" do 
-	#  should have_many(:progs)
-	# end
- #    it "It should has many userworkouts" do 
-	#  should have_many(:userworkouts).dependent(:destroy)
-	# end
-	# it "It should has many workouts" do 
-	#  should have_many(:workouts)
-	# end
-
-	# it "It should has many subscriptions" do 
-	#  should have_many(:subscriptions)
-	# end	
-
-	# it "It should has many paymethods" do 
-	#  should have_many(:paymethods)
-	# end
-
-	# it "It should has many useroauths" do 
-	#  should have_many(:useroauths)
-	# end
-
-	# it "It should has many oauths" do 
-	#  should have_many(:oauths)
-	# end
-
- #    it "It should has many userlogins" do 
-	#  should have_many(:userlogins)
-	# end
-
- #     it "It should has many userworkoutevents" do 
-	#  should have_many(:userworkoutevents)
-	# end
-
-	# it "should trigger create_usersetting on after create" do
-	#  should callback(:create_usersetting).after(:create)	 
-	# end
-
-	#  it  "should trigger create_initial_diagnoses on after create" do 
-	#   is_expected.to callback(:create_initial_diagnoses).after(:create) 
-	# end
-
-	# it  "should trigger delete_user_information on before destroy" do 
-	#   is_expected.to callback(:delete_user_information).before(:destroy) 
-	# end
-
-	# it 'Check user' do
-	#   User.all.should eq [@user]
-	# end
-
-	#   describe "Scopes" do 
- #      it "should be active with status_id 3" do
- #      User.active.should include(@user)
- #      end
-
- #      it "should not be suspended without status_id 4" do
- #          User.suspended.should_not include(@user)
- #      end
-
- #      it "should not be inactive without status_id 5" do
- #          User.inactive.should_not include(@user)
- #      end
-
- #      it "should not be hidden without status_id 6" do
- #          User.hidden.should_not include(@user)
- #      end
-
- #      it "should not be deleted without status_id 7" do
- #          User.deleted.should_not include(@user)
- #      end
-  # end
 end
 
 
