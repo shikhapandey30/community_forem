@@ -11,3 +11,15 @@
     </div>
   </li>
 <%end%>
+<!-- script for loader -->
+<script type="text/javascript"> 
+  $(document).ajaxStart(function() {
+    $(".ajax-loading").show();
+  });
+
+  $(document).ajaxStop(function() { 
+    $(".ajax-loading").hide();
+    $(".loader-img").hide();
+   });
+</script>
+<!-- script for loader -->

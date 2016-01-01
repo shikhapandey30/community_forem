@@ -56,6 +56,15 @@ gem 'wkhtmltopdf-binary'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'shoulda'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'capybara'
+  # gem 'faker'
+  # gem 'fabrication', "~> 2.2.2"
+  # gem 'database_cleaner'
 end
 
 group :development do
