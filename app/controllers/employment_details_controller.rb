@@ -1,5 +1,9 @@
 class EmploymentDetailsController < ApplicationController
- before_action :set_employment_detail, only: [:show, :edit, :update, :destroy]
+
+  # filters
+  before_action :set_employment_detail, only: [:show, :edit, :update, :destroy]
+
+  # fetching all emplyment detail
   def index
     @employment_detail = EmploymentDetail.all
   end
@@ -18,10 +22,9 @@ class EmploymentDetailsController < ApplicationController
   def edit
   end
 
-  # POST /EmploymentDetails
-  # POST /EmploymentDetails.json
+  # creating new employment detail for user
   def create
-    @employment_detail = EmploymentDetail.new(employment_detail_params)
+    @employment_detail = current_user.employment_details.new(employment_detail_params)
 
     respond_to do |format|
       if @employment_detail.save
@@ -39,8 +42,7 @@ class EmploymentDetailsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /EmploymentDetails/1
-  # PATCH/PUT /EmploymentDetails/1.json
+   # updating employment detail for user
   def update
     respond_to do |format|
       if @employment_detail.update(employment_detail_params)
@@ -58,8 +60,7 @@ class EmploymentDetailsController < ApplicationController
     end
   end
 
-  # DELETE /EmploymentDetails/1
-  # DELETE /EmploymentDetails/1.json
+  # deleting employment detail
   def destroy
     @employment_detail.destroy
     respond_to do |format|
@@ -69,9 +70,12 @@ class EmploymentDetailsController < ApplicationController
   end
 
   private
-      def set_employment_detail
+    # setting employment detail for all action under this controller
+    def set_employment_detail
       @employment_detail=EmploymentDetail.find(params[:id])
     end
+
+    # permitting empployment detail parameters
     def employment_detail_params
       params.require(:employment_detail).permit(:user_id,:total_experience,organisations_attributes: [:id, :name, :_destroy,:employment_detail_id,:designation,:start_date,:end_date,:current_company,:job_profile,:total_experience])
     end

@@ -11,7 +11,7 @@ class MeetingRoom < ActiveRecord::Base
 	has_many :dislikes, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
 	has_many :members,:dependent => :destroy, :as => :invitable
-  	has_many :posts,:dependent => :destroy, :as => :postable
+  has_many :posts,:dependent => :destroy, :as => :postable
 	
 	has_one :upload, as: :uploadable, dependent: :destroy
 	
