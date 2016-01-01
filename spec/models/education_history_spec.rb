@@ -1,10 +1,13 @@
 require "rails_helper"
 
-describe EducationHistory do
-  describe "EducationHistory associaties with following models" do
-    it { should belong_to(:course) }
-    it { should belong_to(:institute) }
-    it { should belong_to(:specialization) }
-    it { should belong_to(:user) }
+describe Following do
+  describe "Following associaties with following models" do    
+    it "It should belong_to followable" do 
+    	should belong_to(:followable)
+    end
+
+    it "It should belong_to follower" do 
+    	should belong_to(:follower)
+    end
   end
 end
