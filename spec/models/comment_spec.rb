@@ -22,4 +22,10 @@ describe Comment do
     	should have_many(:replies).dependent(:destroy)
     end
   end
+  ## Validation
+  describe "validates_presence_of" do 
+    it "validate_presence_of body" do
+      should validate_presence_of(:body)
+    end
+  end
 end
