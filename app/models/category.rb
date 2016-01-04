@@ -11,6 +11,7 @@ class Category < ActiveRecord::Base
   
   ## Model Validations
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   # has_many :categorables
   # has_many :users, through: :categorables

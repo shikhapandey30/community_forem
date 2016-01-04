@@ -1,6 +1,9 @@
 class RepliesController < ApplicationController
-    before_action :set_reply, only: [:update, :destroy]
 
+	# filters
+  before_action :set_reply, only: [:update, :destroy]
+
+	# reply creation
 	def create
 		@comment = Comment.find(params[:comment_id])
 		params[:reply][:user_id] = current_user.id
@@ -8,6 +11,7 @@ class RepliesController < ApplicationController
 		@replies = @comment.replies
 	end
 
+	#reply updation
 	def update
 	  respond_to do |format|
 	    if @reply.update(reply_params)
@@ -21,8 +25,7 @@ class RepliesController < ApplicationController
 	  end
   end
 
-    # DELETE /replys/1
-  # DELETE /replys/1.json
+  # reply deletion
   def destroy
     @reply.destroy
     respond_to do |format|
@@ -33,9 +36,13 @@ class RepliesController < ApplicationController
 
 
 	private
+
+	# setting reply for update and destroy action
 	def set_reply
-      @reply = Reply.find(params[:id])
-    end
+  	@reply = Reply.find(params[:id])
+  end
+
+  # permitting reply parameters
 	def reply_params
 		params.require(:reply).permit(:comment_id, :user_id, :body)
 	end
