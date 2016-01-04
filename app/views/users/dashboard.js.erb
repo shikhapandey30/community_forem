@@ -23,9 +23,9 @@ $('.loader-img').html('No more records Founds!');
       loading=true;
       page++;
       $.ajax({
-        url: '/dashboard?page=' + page,
+        url: '/dashboard',
         type: 'get',
-        data: {data: page },
+        data: {data: page, page: page },
         dataType: 'script'
       });
     }
