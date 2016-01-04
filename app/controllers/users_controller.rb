@@ -67,7 +67,10 @@ class UsersController < ApplicationController
 
     @posts = @posts.uniq.paginate(:page => params[:page], :per_page => 8)
     @comment = Comment.new
-    render 'dashboard'
+    respond_to do |format|
+      format.html
+      format.js      
+    end
 	end
 
 
