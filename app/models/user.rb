@@ -175,4 +175,8 @@ class User < ActiveRecord::Base
     self.wallets.collect(&:amount).sum
   end
 
+  def dob
+    self.profile.dob
+  end
+
 end
