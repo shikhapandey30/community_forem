@@ -5,8 +5,9 @@ namespace :birthday do
 	    users.each do |user|
 	    	user.my_friends.each do |friend|
 	            if friend.notification_setting.try(:friends_birthday)
-		          	if (user.dob.try(:to_date).day == Date.today.day) && (user.dob.try(:to_date).month == Date.today.month)
+		          	if (user.dob.try(:to_date).try(:day) == Date.today.day) && (user.dob.try(:to_date).try(:month) == Date.today.month)
 		            	Notification.create(recepient: user, user: friend, body: "#{friend.name } has birhday today")
+		            	puts "#{friend.name } has birhday today"
 		        	end
 	            end
 	        end

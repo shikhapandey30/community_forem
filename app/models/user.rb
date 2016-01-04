@@ -176,7 +176,7 @@ class User < ActiveRecord::Base
   end
 
   def dob
-    self.profile.dob
+    self.profile.try(:dob)
   end
 
 end
