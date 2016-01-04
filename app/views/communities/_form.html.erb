@@ -70,7 +70,8 @@
  -->          </div>
           </div>
           <div class="col-sm-12">
-            <%= f.submit "Create Community", class: "blueBtn common_submit" %>
+          <% button_text = @community.id.present? ? "Update Community" : "Create Community" %>
+            <%= f.submit button_text, class: "blueBtn common_submit" %>
             <a href="/dashboard" class="grayBtn">Cancel</a> 
           </div>
         </div>
