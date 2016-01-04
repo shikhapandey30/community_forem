@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
     @group = Group.new
     @group.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # GET /groups/1/edit
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
     authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # POST /groups

@@ -30,7 +30,7 @@ class ForumPollsController < ApplicationController
     @forum_poll= ForumPoll.new
     @forum_poll.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # creating forum poll
@@ -53,7 +53,7 @@ class ForumPollsController < ApplicationController
     authorize @forum_poll
     @forum_poll.upload.present? ? @forum_poll.upload : @forum_poll.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # updating forum poll

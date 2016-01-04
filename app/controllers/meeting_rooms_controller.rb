@@ -27,7 +27,7 @@ class MeetingRoomsController < ApplicationController
     @meeting_room = MeetingRoom.new
     @meeting_room.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # edit meeting room
@@ -35,7 +35,7 @@ class MeetingRoomsController < ApplicationController
     authorize @meeting_room
     @meeting_room.upload.present? ? @meeting_room.upload : @meeting_room.build_upload
     @users = User.all
-    @users.delete(current_user)
+    @users = @users - [current_user]
   end
 
   # meeting room creation and sending invitation to user to join
