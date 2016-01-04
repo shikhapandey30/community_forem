@@ -50,7 +50,8 @@ $(document).on("keyup", ".searhInput1.community", function(){
 $(document).on("keyup", ".searhInput1.connections", function(){
   $.ajax({
     method: "get",
-    url: "/connection_filter",
+    dataType: "script",
+    url: "/friendships",
     data: {name: this.value}
   });
 });
