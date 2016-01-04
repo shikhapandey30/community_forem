@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
 
   ## editing user profile
   def edit
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     # @category = current_user.users_category.present? ? current_user.users_category : Category.new
     @category = @user.users_category
     @user_categories =  @category.present? ? @category.category_ids.split(',') : []
