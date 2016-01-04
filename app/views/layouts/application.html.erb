@@ -20,7 +20,11 @@
     <div class="popup-success"></div>
     <div class="bodyCont">      
       <%if user_signed_in? && !request.url.include?("admin")%>
-        <%=render 'layouts/new_header'%>        
+        
+        <div id='new_header'>
+          <%=render 'layouts/new_header'%>              
+        </div>
+        <%= subscribe_to "/profiles/new_#{current_user.id}" %>
       <%elsif request.url.include?("sign") || request.url.include?("password") || params[:controller]=="registrations"%>
         <%#=render 'layouts/header'%>      
       <%elsif request.url.include?("admin")%>
