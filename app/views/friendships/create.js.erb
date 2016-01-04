@@ -1,7 +1,9 @@
 $(".friendship-button-<%= params[:friend_id] %>").html('Request Sent');
 $(".friendship-btn-<%= params[:friend_id] %>").fadeOut(2000);
 $(".friendship-btnlnk-<%= params[:friend_id] %>").text("Sent");
-
+<% publish_to '/profiles/new' do %>
+$("#new_header").html("<%= j (render '/layouts/new_header')%>");
+<%end%>
 setTimeout(
   function() 
   {

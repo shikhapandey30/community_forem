@@ -41,7 +41,8 @@ class FriendshipsController < ApplicationController
     respond_to do |format|
       if @friendship.save
         Notification.create(recepient: @friendship.friend, user: current_user, body: "#{current_user.screen_name } has request to connect ", notificable: @friendship, :accept => false)
-        NotificationMailer.friend_request(@friendship).deliver_later
+        # NotificationMailer.friend_request(@friendship).deliver_later
+        
         @suggested_connections, @suggest = suggested_connections
         format.html { redirect_to '/', notice: 'Invitation has been sent successfully' }
         # format.json { render :show, status: :created, location: @friendship }
@@ -50,7 +51,7 @@ class FriendshipsController < ApplicationController
         format.html { render :new }
         format.json { render json: @friendship.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end
 
   # accepting the friendship request
