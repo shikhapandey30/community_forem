@@ -1,7 +1,7 @@
 class MeetingRoom < ActiveRecord::Base
  	
  	extend FriendlyId
-  friendly_id :topic, :use => :slugged
+  friendly_id :topic, :use => [:slugged, :finders]
   
 	## Model Associations
 	belongs_to :category

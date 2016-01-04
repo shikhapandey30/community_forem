@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   #  include PublicActivity::Model
   # tracked
   extend FriendlyId
-  friendly_id :title, :use => :slugged
+  friendly_id :title, :use => [:slugged, :finders]
 	
   ## Model Associations
   belongs_to :category
