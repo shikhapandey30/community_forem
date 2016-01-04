@@ -7,7 +7,7 @@
       <%= render 'layouts/shared/dislike', model_obj: object %>
       <a href="#" class="shareLInk"><img src="/assets/images/share.png" alt=""></a>
       <a href="#" class="shareArrow"><img src="/assets/images/arrowSmall.png" alt=""></a>
-      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle();" id="comment_button_<%= object.id %>">
+      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400);" id="comment_button_<%= object.id %>">
     <%end%>  
   </div>
 </div>
@@ -17,7 +17,7 @@
     <div  class="clearfix commentSec cmntRow" style="display: <%= (object.comments.try(:count).zero? && user_signed_in?) ? 'none' : 'block' %>; ">
       <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= object.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
       <div class="clearfix userInfo posRel">
-        <div id="last_post_comment_<%=object.id%>">
+        <div id="last_post_comment_<%=object.id%>" class="scrollbars-comments">
           <%= render partial: "comments/comments_view", locals: { comments: object.comments, from: "post_index" } %>
         </div>  
       </div>

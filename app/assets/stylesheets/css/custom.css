@@ -182,3 +182,8 @@ div.ajax-loading span p i{
 }
 .cursor{cursor: pointer;}
 .right{float: right;}
+.scrollbars-comments{  
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
