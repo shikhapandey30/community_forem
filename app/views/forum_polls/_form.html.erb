@@ -75,15 +75,15 @@
             <label>To</label><%= f.text_field :end_date,placeholder: "DD-MM-YYYY", "data-validation-engine"=>"validate[required]", class: "inputTextW small date end_date" %>
           </div>
           <div class="clearfix"></div>
-          <div class="col-sm-6 mt10 pr10">
-            <label>Vote Type</label>
-            <div class="selctFormBox">
-              <%= f.hidden_field :vote_id, :value=>'Against', class: " selectInputField" %>
-              <%= f.text_field "vote_id", :value=>'Against', class: "selectInput" ,:id=>'vote'%>
-              <%= f.select("vote_id", Vote.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
-              </select>
-            </div>
-          </div>
+          <!-- <div class="col-sm-6 mt10 pr10"> -->
+            <!-- <label>Vote Type</label> -->
+            <!-- <div class="selctFormBox"> -->
+              <%#= f.hidden_field :vote_id, :value=>'Against', class: " selectInputField" %>
+              <%#= f.text_field "vote_id", :value=>'Against', class: "selectInput" ,:id=>'vote'%>
+              <%#= f.select("vote_id", Vote.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
+              <!-- </select> -->
+            <!-- </div> -->
+          <!-- </div> -->
           <div class="col-sm-12 mt10">
             <%= f.submit "Create Poll", class: "blueBtn common_submit" %>
             <a href="/dashboard" class="grayBtn">Cancel</a>
