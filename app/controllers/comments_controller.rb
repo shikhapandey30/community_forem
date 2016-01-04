@@ -12,13 +12,13 @@ class CommentsController < ApplicationController
   # creating comments for post, meeting room, contest and community
   def create
     if params[:post_id].present?
-  	  @object = Post.find(params[:post_id])       
+  	  @object = Post.friendly.find(params[:post_id])       
     elsif params[:meeting_room_id].present?
-      @object = MeetingRoom.find(params[:meeting_room_id])       
+      @object = MeetingRoom.friendly.find(params[:meeting_room_id])       
     elsif params[:contest_id].present?
-       @object = Contest.find(params[:contest_id])
+       @object = Contest.friendly.find(params[:contest_id])
     elsif params[:comunity_id].present?
-       @object = Comunity.find(params[:community_id])
+       @object = Comunity.friendly.find(params[:community_id])
     end
 
     @comment = @object.comments.create(comment_params)
