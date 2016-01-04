@@ -242,7 +242,7 @@ class ProfilesController < ApplicationController
 
     ## setting user before coming to any action
     def set_profile
-      @user=User.find(params[:id])
+      @user=User.friendly.find(params[:id])
     end
 
     ## setting profile for current user
