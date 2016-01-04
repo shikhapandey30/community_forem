@@ -87,12 +87,14 @@ class ForumPollsController < ApplicationController
     
     # setting forum poll for all action under this controller
     def set_forum_poll
-      @forum_poll= ForumPoll.find(params[:id])
+      @forum_poll= ForumPoll.friendly.find(params[:id])
     end
 
     #permitting forum polls parameters
     def forum_poll_params
-      params.require(:forum_poll).permit!
+      # params.require(:forum_poll).permit!
+       params.require(:forum_poll).permit(:category_id, :topic, :headline, :slogan, :body, :visibility, :end_date, :start_date, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
+
     end
 
     # Image updating or not
