@@ -18,7 +18,6 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    debugger
     if params[:post_id]
       @post = current_user.posts.friendly.find(params[:post_id])
       @post.upload
