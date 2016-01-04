@@ -1,4 +1,6 @@
 class ForumPoll < ActiveRecord::Base
+	extend FriendlyId
+    friendly_id :topic, :use => :slugged
 
 	## Model Associations
 	belongs_to :category
@@ -14,7 +16,8 @@ class ForumPoll < ActiveRecord::Base
 	
 	## Model Validations
 	# validates_presence_of :topic_id
-	validates_presence_of :category_id
+	validates_presence_of :category_id, :topic, :headline
+	validates_uniqueness_of :topic
 	
   ## Forum poll image OR default forum poll image
   def img

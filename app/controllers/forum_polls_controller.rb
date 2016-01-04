@@ -87,12 +87,14 @@ class ForumPollsController < ApplicationController
     
     # setting forum poll for all action under this controller
     def set_forum_poll
-      @forum_poll= ForumPoll.find(params[:id])
+      @forum_poll= ForumPoll.friendly.find(params[:id])
     end
 
     #permitting forum polls parameters
     def forum_poll_params
-      params.require(:forum_poll).permit!
+      # params.require(:forum_poll).permit!
+       params.require(:forum_poll).permit(:category_id, :topic, :headline, :slogan, :body, :visibility, :end_date, :start_date, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
+
     end
 
     # Image updating or not
@@ -108,6 +110,7 @@ class ForumPollsController < ApplicationController
         member = Member.create(:user_id => members_id.to_i, :invitable => @forum_poll)
         #send notification
         reciver =  User.find(members_id)
+        debugger
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a forum_poll #{@forum_poll.topic} ", notificable: @forum_poll, :accept => false)
         end
