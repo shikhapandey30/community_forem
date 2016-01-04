@@ -21,19 +21,9 @@
       <a href="/posts/new" class="addPostBtn"><%=params[:data] ? 'CREATE TOPICS' : 'ADD POSTS'%></a>
       <div id="posts" class="masonry-container">
         <%=render "post"%>
-      </div>      
-      <div class="suggest_connections">
-        <%=render 'users/shared/suggested_connections', suggest: true%>        
-      </div>
-      <div class="clearfix grpOuter suggest_communities">
-        <%=render 'users/shared/suggested_communities', suggest: true%>
-      </div>
-      <div class="clearfix grpOuter suggest_groups">
-        <%=render 'users/shared/suggested_groups', suggest: true%>
-      </div>
-
+      </div> 
       <div class="loader-img" style="display:none;">
-        <img alt="" src="../assets/images/preloader.gif"> Loading... please wait
+        <img alt="" src="../assets/images/preloader.gif" width="40"> Loading... please wait
       </div>
       
     </div>

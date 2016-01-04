@@ -44,9 +44,9 @@ class UsersController < ApplicationController
 	## user dashboard
   def dashboard
     # ProjectCleanupWorker.perform_in(2.minutes, current_user.id)
-    @suggested_communities = new_suggested_communities.first(2)
-    @suggested_connections = new_suggested_connections.first(2)
-    @suggested_groups = new_suggested_groups.first(2)
+    @suggested_communities = new_suggested_communities.paginate(:page => params[:page], :per_page => 2)
+    @suggested_connections = new_suggested_connections.paginate(:page => params[:page], :per_page => 2)
+    @suggested_groups = new_suggested_groups.paginate(:page => params[:page], :per_page => 2)
     # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
     # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
     # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     self_post=current_user.posts
     @posts= (@posts  + self_post).compact.sort_by(&:updated_at).reverse
 
-    @posts = @posts.uniq.paginate(:page => params[:page], :per_page => 15)
+    @posts = @posts.uniq.paginate(:page => params[:page], :per_page => 8)
     @comment = Comment.new
 	end
 
