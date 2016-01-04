@@ -1,15 +1,17 @@
 class UserSkillsController < ApplicationController
+
+  # filters
   before_action :user_skill, only: [:show, :edit, :update, :destroy]
+
+  # all user skills
   def index
     @user_skill = UserSkill.all
   end
 
-  # GET /UserSkills/1
-  # GET /UserSkills/1.json
   def show
   end
 
-  # GET /UserSkills/new
+  # initializing user skill
   def new
     @user_skill = UserSkill.new
   end
@@ -18,8 +20,7 @@ class UserSkillsController < ApplicationController
   def edit
   end
 
-  # POST /UserSkills
-  # POST /UserSkills.json
+  # creating user skill
   def create
     @user_skill = UserSkill.new(user_skill_params)
 
@@ -34,8 +35,7 @@ class UserSkillsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /UserSkills/1
-  # PATCH/PUT /UserSkills/1.json
+  # updating user skill
   def update
     respond_to do |format|
       if @user_skill.update(user_skill_params)
@@ -48,8 +48,7 @@ class UserSkillsController < ApplicationController
     end
   end
 
-  # DELETE /UserSkills/1
-  # DELETE /UserSkills/1.json
+  # deleting user skill
   def destroy
     @user_skill.destroy
     respond_to do |format|
@@ -59,11 +58,13 @@ class UserSkillsController < ApplicationController
   end
 
   private
-      def user_skill
+
+    # setting user skill
+    def user_skill
       @user_skill=UserSkill.find(params[:id])
     end
-  private
 
+    # permitting user skill parameters
     def user_skill_params
       params.require(:user_skill).permit(:user_id,skills_attributes: [:id, :name, :_destroy,:user_skill_id])
     end

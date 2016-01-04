@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!
- before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   def create
     if params[:topic][:forum_id].present? 
   	 @forum = Forum.find(params[:topic][:forum_id])
