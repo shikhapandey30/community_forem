@@ -4,7 +4,7 @@ class ForumPoll < ActiveRecord::Base
 	belongs_to :category
 	belongs_to :user
 	# belongs_to :topic
-
+    has_many :members,:dependent => :destroy, :as => :invitable
 	# has_many :votes, :as => :votable
 	has_many :votes, as: :votable, dependent: :destroy
 	

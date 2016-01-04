@@ -63,8 +63,10 @@
             </div>
           </div>
           <div class="col-sm-12 mt10">
-            <label class="">Invite Users / Community</label>
-            <input type="text" placeholder="" class="inputTextW small">
+            <label class="">Invite Users</label>
+            <%= f.select(:members, @users.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
+
+            <!-- <input type="text" placeholder="" class="inputTextW small"> -->
           </div>
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
           <div class="col-sm-6  pr10  dateOuter">
@@ -113,3 +115,12 @@
   });
 </script>
 
+<%if @forum_poll.id.present? %>
+  <script type="text/javascript">
+    $( "#dropdown" ).select2().select2('val',<%=  @forum_poll.members.collect(&:user_id) %>)
+  </script>
+<% else %>
+  <script type="text/javascript">
+    $( "#dropdown" ).select2();
+  </script>
+<% end %>
