@@ -29,6 +29,8 @@ class ForumPollsController < ApplicationController
   def new
     @forum_poll= ForumPoll.new
     @forum_poll.build_upload
+    @users = User.all
+    @users.delete(current_user)
   end
 
   # creating forum poll
@@ -36,6 +38,7 @@ class ForumPollsController < ApplicationController
     @forum_poll = current_user.forum_polls.new(forum_poll_params)
     respond_to do |format|
       if @forum_poll.save
+        set_members if params[:forum_poll][:members].present?
         format.html { redirect_to @forum_poll, notice: 'Forum Poll is successfully created.' }
         format.json { render :show, status: :created, location: @forum_poll }
       else
@@ -49,6 +52,8 @@ class ForumPollsController < ApplicationController
   def edit
     authorize @forum_poll
     @forum_poll.upload.present? ? @forum_poll.upload : @forum_poll.build_upload
+    @users = User.all
+    @users.delete(current_user)
   end
 
   # updating forum poll
@@ -57,6 +62,7 @@ class ForumPollsController < ApplicationController
     respond_to do |format|
       if @forum_poll.update(forum_poll_params)
         set_upload
+         set_members if params[:forum_poll][:members].present?
         format.html { redirect_to dashboard_path, notice: 'Forum Poll is successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -93,5 +99,18 @@ class ForumPollsController < ApplicationController
     def set_upload
       @forum_poll.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @forum_poll.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+    end
+
+    def set_members
+      members_ids = params[:forum_poll][:members].reject(&:empty?)
+       @forum_poll.members.destroy_all if params[:action] == "update"
+      members_ids.each do |members_id|
+        member = Member.create(:user_id => members_id.to_i, :invitable => @forum_poll)
+        #send notification
+        reciver =  User.find(members_id)
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a forum_poll #{@forum_poll.topic} ", notificable: @forum_poll, :accept => false)
+        end
+      end
     end
 end
