@@ -55,9 +55,9 @@
             <%= f.text_area :description, class: "inputTextW small", placeholder: "Write description here...."%>
           </div>
           <div class="col-sm-12 ">
-            <label class="">Invite Users / Community</label>
+            <label class="">Invite Users</label>
             <!-- <input type="text" placeholder="" class="inputTextW small"> -->
-             <%= f.select(:members, User.all.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
+             <%= f.select(:members, @users.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
 
           </div>
           <div class="col-sm-12 mt10">

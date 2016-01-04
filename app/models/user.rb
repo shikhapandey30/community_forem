@@ -83,6 +83,7 @@ class User < ActiveRecord::Base
   has_one :users_category, dependent: :destroy
   # has_many :categories
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
+   attr_accessor :current_password
   
   
   def active_for_authentication?

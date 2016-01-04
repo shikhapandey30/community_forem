@@ -365,8 +365,9 @@ ActiveRecord::Schema.define(version: 20160104040714) do
     t.text     "body",            limit: 65535
     t.integer  "conversation_id", limit: 4
     t.integer  "user_id",         limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "archive",                       default: false
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree

@@ -36,12 +36,16 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     @group.build_upload
+    @users = User.all
+    @users = @users - [current_user]
   end
 
   # GET /groups/1/edit
   def edit
     authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
+    @users = User.all
+    @users = @users - [current_user]
   end
 
   # POST /groups
