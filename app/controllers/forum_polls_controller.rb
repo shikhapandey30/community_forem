@@ -110,7 +110,6 @@ class ForumPollsController < ApplicationController
         member = Member.create(:user_id => members_id.to_i, :invitable => @forum_poll)
         #send notification
         reciver =  User.find(members_id)
-        debugger
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a forum_poll #{@forum_poll.topic} ", notificable: @forum_poll, :accept => false)
         end
