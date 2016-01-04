@@ -23,6 +23,8 @@ Things you may want to cover:
 
 * ...
 
+## To Start private pub server
+rackup private_pub.ru -s thin -E production
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
