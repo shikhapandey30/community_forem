@@ -21,7 +21,7 @@
               <% end %>
 
                <% if post.upload.try(:video).present? %>
-                <iframe width="100%"> src="<%= post.upload.try(:video) %>"></iframe>
+                <iframe width="100%" src="<%= post.upload.try(:video) %>"></iframe>
               <% end %>
              
               <% if post.upload.try(:file).present? %>                
@@ -70,6 +70,15 @@
     </div>
   </a> 
 <%end%>
+ <div class="suggest_connections">
+  <%=render 'users/shared/suggested_connections', suggest: true%>        
+</div>
+<div class="clearfix grpOuter suggest_communities">
+  <%=render 'users/shared/suggested_communities', suggest: true%>
+</div>
+<div class="clearfix grpOuter suggest_groups">
+  <%=render 'users/shared/suggested_groups', suggest: true%>
+</div>
 <!-- <div class="loader-img" style="display:none;">
   <img src="../assets/images/preloader.gif"> Loading....
 </div> -->

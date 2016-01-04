@@ -61,7 +61,8 @@
 
           </div>
           <div class="col-sm-12 mt10">
-            <%= f.submit "Create Group", class: "blueBtn common_submit" %>
+            <% button_text = @group.id.present? ? "Update Group" : "Create Group" %>
+            <%= f.submit button_text, class: "blueBtn common_submit" %>
             <a href="/dashboard" class="grayBtn">Cancel</a> 
           </div>
         </div>
@@ -97,6 +98,6 @@
   </script>
 <% else %>
   <script type="text/javascript">
-    $( "#dropdown" ).select2();
+    $( "#dropdown" ).select2({placeholder: "Select members" });
   </script>
 <% end %>

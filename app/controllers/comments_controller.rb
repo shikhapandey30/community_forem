@@ -16,9 +16,9 @@ class CommentsController < ApplicationController
     elsif params[:meeting_room_id].present?
       @object = MeetingRoom.friendly.find(params[:meeting_room_id])       
     elsif params[:contest_id].present?
-       @object = Contest.friendly.find(params[:contest_id])
+      @object = Contest.friendly.find(params[:contest_id])
     elsif params[:comunity_id].present?
-       @object = Comunity.friendly.find(params[:community_id])
+      @object = Community.friendly.find(params[:community_id])
     end
 
     @comment = @object.comments.create(comment_params)

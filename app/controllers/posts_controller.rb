@@ -39,9 +39,9 @@ class PostsController < ApplicationController
   def create
       @post = current_user.posts.new(post_params)
     if params[:group_id].present?
-      @object = Group.find(params[:group_id])
+      @object = Group.friendly.find(params[:group_id])
     elsif params[:community_id].present?
-      @object = Community.find(params[:community_id])
+      @object = Community.friendly.find(params[:community_id])
     end
       @post.postable =  @object
 

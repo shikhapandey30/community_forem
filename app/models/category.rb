@@ -1,5 +1,8 @@
 class Category < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :name, :use => [:slugged, :finders]
+
   ## Model Associations
 	# has_many :categorable_categories,:dependent => :destroy, :as => :categorable
   belongs_to :user

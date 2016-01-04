@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, :use => :slugged
+  friendly_id :name, :use => [:slugged, :finders]
 
   ## Model Associations
   belongs_to :forum
