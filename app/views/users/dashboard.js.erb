@@ -1,13 +1,14 @@
 $(".masonry-container").append("<%= escape_javascript(render('users/post')) %>");
 <%if @posts.total_pages.to_i == params[:page].to_i %>
-$('.loader-img').html('Sorry! No more records Founds!');
+$('.loader-img').html('No more records Founds!');
 <%end%>
 	(function() {
   var page = '<%= params[:page]%>',
       loading = false;
 
+ 
   function nearBottomOfPage() {
-    return $(window).scrollTop() > $(document).height() - $(window).height();
+    return $(window).scrollTop() > $(document).height() - $(window).height() - 300;
   }
 
   $(window).scroll(function(){
@@ -16,16 +17,17 @@ $('.loader-img').html('Sorry! No more records Founds!');
     }
 
     if(nearBottomOfPage()) {
-     $('.loader-img').show();
+      $('.loader-img').show();
       loading=true;
       page++;
       $.ajax({
         url: '/dashboard?page=' + page,
         type: 'get',
-        data: {data: name },
+        data: {data: page },
         dataType: 'script'
       });
     }
   });
 
+  
 }());
