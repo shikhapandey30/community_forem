@@ -1,42 +1,35 @@
+<% if object.first.class.name == "Community" %>
+ <span class="userNAme">Communities</span>
+<% elsif object.first.class.name == "MeetingRoom"%>
+  <span class="userNAme">Meeting Rooms</span>
+<% elsif object.first.class.name == "Group"%>
+  <span class="userNAme">Groups</span>
+<% elsif object.first.class.name == "Post"%>
+  <span class="userNAme">Posts</span>
+<% end %>
+<div class="clearfix"></div>
 <% object.each do |follow|%>
-  <% if (follow.followable.class.name == "Community" || follow.followable.class.name == "Group" || follow.followable.class.name == "MeetingRoom") %>
-    <div class="clearfix whiteBox connectionRow borderTpBlue">
-      <div class="clearfix  cmntRow">
-        <div class="clearfix userInfo posRel">
-          <div class="clearfix  "></div>
-            <% if follow.followable.class.name == "Community"%>
-              <% @path_name = community_path(follow.followable) %>
-            <% elsif follow.followable.class.name == "Group" %>
-              <% @path_name = group_path(follow.followable) %>
-            <% elsif follow.followable.class.name == "MeetingRoom" %>
-              <% @path_name = meeting_room_path(follow.followable) %>
-            <% end %>
-            <a href="<%= @path_name %>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:topic)%></a>
-            <a href="<%= @path_name %>" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
-            <div class="fr grayColor tar">
-            <%= time_ago_in_words(follow.updated_at).capitalize %> ago<br>
-              <span class="friendship-button-<%#= follow.followable.id %>">
-                <% if follow.followable.class.name == "Community"%>
-                  <%#= link_to "Join", join_community_path(follow.followable), :class=>"mt10", :remote=>true %>
-                <% elsif follow.followable.class.name == "Group"%>
-                  <%#= link_to "Join", join_group_path(follow.followable), :class=>"mt10", :remote=>true %>
-                <% end %>
-              </span>
-          </div>         
-        </div>
+  <% if (follow.class.name == "Community" || follow.class.name == "Group" || follow.class.name == "MeetingRoom") %>
+    <div class="whiteBox borderTop col-sm-6 pb0 fl">
+      <% if follow.class.name == "Community"%>
+        <% @path_name = community_path(follow) %>
+      <% elsif follow.class.name == "Group" %>
+        <% @path_name = group_path(follow) %>
+      <% elsif follow.class.name == "MeetingRoom" %>
+        <% @path_name = meeting_room_path(follow) %>
+      <% end %>
+      <a href="<%= @path_name %>" class="block mt20 grpImg text-center"><%=image_tag follow.img , :title =>follow.try(:topic)%></a>
+      <a href="<%= @path_name %>" class="block groupName width"> <%=follow.try(:topic)%></a>
+      <div class="virwJoinBtn">
+        <a class="btmBtn" href="#"> Join </a>            
       </div>
     </div>
-  <%elsif follow.followable.class.name == "Post"%>
-    <div class="clearfix whiteBox connectionRow borderTpBlue">
-      <div class="clearfix  cmntRow">
-        <div class="clearfix userInfo posRel">
-          <div class="clearfix  "></div>
-            <a href="<%= post_path(follow.followable) %>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:topic)%></a>
-            <a href="<%= post_path(follow.followable) %>" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
-            <div class="fr grayColor tar">
-            <%= time_ago_in_words(follow.updated_at).capitalize %> ago<br>
-          </div>         
-        </div>
+  <%elsif follow.class.name == "Post"%>
+    <div class="whiteBox borderTop col-sm-6 pb0 fl">
+      <a href="<%= post_path(follow) %>" class="block mt20 grpImg text-center"><%=image_tag follow.img , :title =>follow.try(:topic)%></a>
+      <a href="<%= post_path(follow) %>" class="block groupName width"> <%=follow.try(:topic)%></a>
+      <div class="virwJoinBtn">
+        <a class="btmBtn" href="#"> Join</a>             
       </div>
     </div>
   <% end %> 

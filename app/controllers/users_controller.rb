@@ -86,28 +86,28 @@ class UsersController < ApplicationController
     end
   end
  
-  ## creating followers and notification
+  ## Fething followings
   def followings
     @followings = current_user.followings
-    if params[:type].present? and params[:type] == "group" and  params[:name].present? 
-      @group_following = @followings.where(followable_id: Group.search(params[:name]).map(&:id), followable_type: "Group") 
+    if params[:name].present? 
+      @group_following = current_user.followings_groups.search(params[:name])
     else
-      @group_following = @followings.where(followable_type: "Group")
+      @group_following = current_user.followings_groups
     end
-    if params[:type].present? and params[:type] == "post" and  params[:name].present?
-      @post_following = @followings.where(followable_id: Post.search(params[:name]).map(&:id), followable_type: "Post") 
+    if params[:name].present?
+      @post_following = current_user.followings_posts.search(params[:name])
     else
-      @post_following = @followings.where(followable_type: "Post")
+      @post_following = current_user.followings_posts
     end
-    if params[:type].present? and params[:type] == "community" and  params[:name].present?
-      @community_following = @followings.where(followable_id: Community.search(params[:name]).map(&:id), followable_type: "Community")
+    if params[:name].present?
+      @community_following = current_user.followings_communities.search(params[:name])
     else
-      @community_following = @followings.where(followable_type: "Community")
+      @community_following = current_user.followings_communities
     end
-    if params[:type].present? and params[:type] == "meeting_room" and  params[:name].present?
-      @meeting_room_following = @followings.where(followable_id: MeetingRoom.search(params[:name]).map(&:id), followable_type: "MeetingRoom")
+    if params[:name].present?
+      @meeting_room_following = current_user.followings_meeting_rooms.search(params[:name])
     else
-      @meeting_room_following = @followings.where(followable_type: "MeetingRoom")
+      @meeting_room_following = current_user.followings_meeting_rooms
     end
 
     respond_to do |format|
@@ -170,9 +170,8 @@ class UsersController < ApplicationController
 
 
   ## creating and sending user revealing request
-  def reveal_request  
-    receipent = User.friendly.find(params[:id])   
-    @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>receipent.id, :body=>params[:body1], :body2 => params[:body2], :accept => false)
+  def reveal_request     
+    @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2], :accept => false)
     Notification.create(recepient_id: params[:id].to_i, user: current_user, body: "#{current_user.screen_name } wants to reveal your identity", notificable: @reveal_identity, :accept => false)
     NotificationMailer.reveal_request(@reveal_identity).deliver_later       
     @status=true
