@@ -7,7 +7,7 @@
           <div class="mtngTitle"><%= @meeting_room.topic %>
           </div>
           <div class="fr font12">
-            <a href="<%= leave_meeting_room_path(@meeting_room)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
+            <a href="<%= leave_meeting_room_path(@meeting_room)%>" class="back hoverOut" data-method ="post"><img src="/assets/images/accept.png" alt="" ><b> member</b></a><br>
             <% if current_user != @meeting_room.user %>
             <span id="following-button-span-<%= @meeting_room.id %>" class="user-folowed-<%=@meeting_room.id %>">
               <%= render :partial=> "users/follow_link", :locals => {:object => @meeting_room} if user_signed_in?%>
