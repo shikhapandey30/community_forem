@@ -87,8 +87,29 @@ class UsersController < ApplicationController
   end
  
   ## creating followers and notification
-  def followings    
+  def followings
     @followings = current_user.followings
+    if params[:type].present? and params[:type] == "group" and  params[:name].present? 
+      @group_following = @followings.where(followable_id: Group.search(params[:name]).map(&:id), followable_type: "Group") 
+    else
+      @group_following = @followings.where(followable_type: "Group")
+    end
+    if params[:type].present? and params[:type] == "post" and  params[:name].present?
+      @post_following = @followings.where(followable_id: Post.search(params[:name]).map(&:id), followable_type: "Post") 
+    else
+      @post_following = @followings.where(followable_type: "Post")
+    end
+    if params[:type].present? and params[:type] == "community" and  params[:name].present?
+      @community_following = @followings.where(followable_id: Community.search(params[:name]).map(&:id), followable_type: "Community")
+    else
+      @community_following = @followings.where(followable_type: "Community")
+    end
+    if params[:type].present? and params[:type] == "meeting_room" and  params[:name].present?
+      @meeting_room_following = @followings.where(followable_id: MeetingRoom.search(params[:name]).map(&:id), followable_type: "MeetingRoom")
+    else
+      @meeting_room_following = @followings.where(followable_type: "MeetingRoom")
+    end
+
     respond_to do |format|
       format.js
       format.html

@@ -38,6 +38,13 @@ class Post < ActiveRecord::Base
     self.dislikes.where(:user_id => current_user.id,:dislikable_type=> "Post" )
   end
 
+  def img
+    if self.upload.try(:image).present?
+      self.upload.try(:image)
+    else
+      'images/profile.png'
+    end
+  end
   ## search by post topic
   def self.search(search)
     if search

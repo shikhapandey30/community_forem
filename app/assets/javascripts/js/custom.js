@@ -33,7 +33,8 @@ $(document).on("keyup", ".searhInput1.following", function(){
   $.ajax({
     method: "get",
     url: "/followings",
-    data: {data: this.value}
+    dataType: "script",
+    data: {name: this.value, type: this.id}
   });
 });
 

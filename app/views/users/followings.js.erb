@@ -1,1 +1,4 @@
-$(".following").html("<%= j render('/users/following')%>");
+$(".group_following").html("<%= j render('users/following', object: @group_following)%>");
+$(".community_following").html("<%= j render('users/following', object: @community_following)%>");
+$(".meeting_room_following").html("<%= j render('users/following', object: @meeting_room_following)%>");
+$(".post_following").html("<%= j render('users/following', object: @post_following)%>");
