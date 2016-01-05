@@ -106,6 +106,10 @@ class GroupsController < ApplicationController
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@group.topic}", notificable: @group, :accept => true)
     end    
     @suggested_groups, @suggest = suggested_groups
+    respond_to do |format|
+      format.js
+      format.html { redirect_to groups_url }
+    end
   end
 
   def filter    

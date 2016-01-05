@@ -9,7 +9,7 @@
           <%= @group.try(:headline) %>
         </div>
         <div class="fr font12">
-          <a href="<%= leave_group_path(@group)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
+          <a href="<%= leave_group_path(@group)%>" class="back hoverOut" data-method ="post"><img src="/assets/images/accept.png" alt="" ><b> member</b></a><br>
           <% if current_user != @group.user %>
             <span id="following-button-span-<%= @group.id %>" class="user-folowed-<%=@group.id %>">
               <%= render :partial=> "users/follow_link", :locals => {:object => @group} if user_signed_in?%>

@@ -187,3 +187,6 @@ div.ajax-loading span p i{
     overflow-x: hidden;
     overflow-y: scroll;
 }
+/* 5-Jan-2016*/
+a.hoverOut:hover b {display:none}
+a.hoverOut:hover:before {content:"Leave"}

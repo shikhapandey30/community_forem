@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   post "/communities/:id/leave", :to => 'communities#leave', as: 'leave_community'
   post "/meeting_rooms/:id/leave", :to => 'meeting_rooms#leave', as: 'leave_meeting_room'
   post "/contests/:id/leave", :to => 'contests#leave', as: 'leave_contest'
+  post "/forum_polls/:id/leave", :to => 'forum_polls#leave', as: 'leave_forum_poll'
+
 
   resources :friendships
   post '/unfriend', to: 'friendships#unfriend'

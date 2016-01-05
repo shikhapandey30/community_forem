@@ -81,6 +81,13 @@ class ForumPollsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    # Leaving the community by member
+  def leave  
+    members = @forum_poll.members.where(:user_id=> current_user.id)
+    members.delete_all
+    flash[:notice] = 'Forum poll is successfully Leaved.'
+    redirect_to '/dashboard'
+  end
 
 
   private
