@@ -32,12 +32,10 @@ ActiveAdmin.register User do
     f.inputs "User details" do
       f.input :email
       f.input :name
-      f.input :password
       f.input :screen_name
       f.input :first_name
       f.input :last_name
       f.input :active
-      f.input :confirmed_at
     end
     f.actions
   end
