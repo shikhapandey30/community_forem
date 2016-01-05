@@ -12,9 +12,9 @@
     <% messages = @current_user.notifications.messages.unread %>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
     <% notifications = notifications - messages - friend_requests %>
-       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt="">
+       <a href="#" class ="push-notification" data-toggle="dropdown"><img src="/assets/images/noti.png" alt="">
         <%if notifications.count > 0 %>
-         <span id ="all-notifications" class ="push-notification"><%= notifications.count %></span>
+         <span id ="all-notifications" ><%= notifications.count %></span>
          <% end %>
        </a>
          <ul class="clearfix dropdown-menu">
