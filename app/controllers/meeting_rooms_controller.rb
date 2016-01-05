@@ -57,6 +57,8 @@ class MeetingRoomsController < ApplicationController
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully created.' }
         format.json { render :show, status: :created, location: @meeting_room }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @meeting_room.errors, status: :unprocessable_entity }
       end
@@ -87,6 +89,8 @@ class MeetingRoomsController < ApplicationController
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @meeting_room.errors, status: :unprocessable_entity }
       end

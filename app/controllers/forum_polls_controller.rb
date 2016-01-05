@@ -42,6 +42,8 @@ class ForumPollsController < ApplicationController
         format.html { redirect_to @forum_poll, notice: 'Forum Poll is successfully created.' }
         format.json { render :show, status: :created, location: @forum_poll }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @forum_poll.errors, status: :unprocessable_entity }
       end
@@ -66,6 +68,8 @@ class ForumPollsController < ApplicationController
         format.html { redirect_to dashboard_path, notice: 'Forum Poll is successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

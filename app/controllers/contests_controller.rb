@@ -44,6 +44,8 @@ class ContestsController < ApplicationController
         format.html { redirect_to @contest, notice: 'Contest is successfully created.' }
         format.json { render :show, status: :created, location: @contest }
       else
+         @users = User.all
+         @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end
@@ -60,6 +62,8 @@ class ContestsController < ApplicationController
         format.html { redirect_to @contest, notice: 'Contest is successfully updated.' }
         format.json { render :show, status: :ok, location: @contest }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @contest.errors, status: :unprocessable_entity }
       end

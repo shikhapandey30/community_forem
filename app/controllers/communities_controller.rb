@@ -70,6 +70,8 @@ class CommunitiesController < ApplicationController
         format.html { redirect_to @community, notice: 'Community is successfully created.' }
         format.json { render :show, status: :created, location: @community }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @community.errors, status: :unprocessable_entity }
       end
@@ -97,6 +99,8 @@ class CommunitiesController < ApplicationController
         format.html { redirect_to @community, notice: 'Community is successfully updated.' }
         format.json { render :show, status: :ok, location: @community }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @community.errors, status: :unprocessable_entity }
       end
