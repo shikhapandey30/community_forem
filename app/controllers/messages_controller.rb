@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
       get_users
       @archive="true"
     end
-    @unread_incoming_messages = Message.incoming_messages(@friend)
+    @unread_incoming_messages = Message.incoming_messages
     # incoming_messages
     @messages = Message.between(current_user, @friend)
     set_members if params[:message][:recipient_ids].present?
