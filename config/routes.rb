@@ -105,6 +105,7 @@ Rails.application.routes.draw do
   post 'accept/:id', to: 'notifications#accept', as: :notification_accept
   post 'reject/:id', to: 'notifications#reject', as: :notification_reject
   post '/update_notification', to: 'notifications#update_notification', as: :update_notification
+  post '/update_message_notification', to: 'notifications#update_message_notification', as: :update_message_notification
 
 
   # post 'accept/:id', to: 'communities#accept', as: :community_accept

@@ -13,9 +13,9 @@
     <% messages = Message.incoming_messages%>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
     <% notifications = notifications - messages - friend_requests %>
-       <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt="">
+       <a href="#" data-toggle="dropdown" class="push-notification"><img src="/assets/images/noti.png" alt="">
         <%if notifications.count > 0 %>
-         <span id ="all-notifications" class ="push-notification"><%= notifications.count %></span>
+         <span id ="all-notifications"><%= notifications.count %></span>
          <% end %>
        </a>
          <ul class="clearfix dropdown-menu">
@@ -42,8 +42,8 @@
           </div>
         </ul>
       </span>      
-        <span class="dropdown notification">  
-          <a href="#" data-toggle="dropdown"><img src="/assets/images/email.png" alt="">
+        <span class="dropdown notification">
+          <a href="#" data-toggle="dropdown" class="read-messages"><img src="/assets/images/email.png" alt="">
             <%if messages.count > 0 %>
               <span><%= messages.count%></span>
             <% end %>
@@ -141,6 +141,13 @@
     $.ajax({
       type: 'post',
       url: '/update_notification'
+    });
+  });
+
+  $('.read-messages').click(function(){
+    $.ajax({
+      type: 'post',
+      url: '/update_message_notification'
     });
   });
 </script>

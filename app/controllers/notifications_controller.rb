@@ -50,4 +50,8 @@ class NotificationsController < ApplicationController
 
   def update_notification
   end
+
+  def update_message_notification
+    Message.incoming_messages.update(is_read: true)
+  end
 end
