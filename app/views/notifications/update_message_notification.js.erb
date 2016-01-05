@@ -1,0 +1,6 @@
+setTimeout(function(){
+  $(".container.popupmsg").hide();
+}, 50000);
+$(function () {
+  $('.message_notifications').html('<%= j (render "notifications/message_notifications")%>')
+});
