@@ -1,2 +1,6 @@
-$('#friends').append('<%= escape_javascript render(@friends) %>');
-$('.pagination').replaceWith('<%= escape_javascript will_paginate(@friends) %>');
+<% if params[:name].present? || params[:name] == "" %>
+	$("#friends").html("<%= j(render partial: 'friendships/friend', locals: {friend: @friends}) %>");
+<% else %>
+	$('#friends').append('<%= escape_javascript render(@friends) %>');
+	$('.pagination').replaceWith('<%= escape_javascript will_paginate(@friends) %>');
+<% end %>

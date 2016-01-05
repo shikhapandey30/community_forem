@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
   # GET /friendships
   # GET /friendships.json
 
-  # fetching all friends to whom the user sent request and from whom the user got friendship request
+  # fetching all friends to whom the user sent request and from whom the user got friendship request OR searching user friend connection by screen name
   def index
     # @friendships = current_user.friendships +  current_user.inverse_friendships
     # # @friends =  current_user.friends +  current_user.inverse_friends
@@ -14,9 +14,14 @@ class FriendshipsController < ApplicationController
     # @inverse_friends = User.where(:id => current_user.inverse_friendships.collect(&:user_id))
     # @friends = (@friends + @inverse_friends)
     # @friends =@friends.paginate(:page => params[:page], :per_page => 10)
-    @friends = current_user.friends + current_user.inverse_friends
-    @friends.delete(current_user)
-    @friends = @friends.paginate(:page => params[:page], :per_page => 10)
+    if params[:name].present?
+      @friends = (current_user.friends.search(params[:name]) + current_user.inverse_friends.search(params[:name])).compact.uniq.sort_by(&:updated_at).reverse
+      @friends.delete(current_user)
+    else
+      @friends = current_user.friends + current_user.inverse_friends
+      @friends.delete(current_user)
+      @friends = @friends.paginate(:page => params[:page], :per_page => 10)
+    end
   end
   # GET /friendships/1
   # GET /friendships/1.json
@@ -41,7 +46,8 @@ class FriendshipsController < ApplicationController
     respond_to do |format|
       if @friendship.save
         Notification.create(recepient: @friendship.friend, user: current_user, body: "#{current_user.screen_name } has request to connect ", notificable: @friendship, :accept => false)
-        NotificationMailer.friend_request(@friendship).deliver_later
+        # NotificationMailer.friend_request(@friendship).deliver_later
+        
         @suggested_connections, @suggest = suggested_connections
         format.html { redirect_to '/', notice: 'Invitation has been sent successfully' }
         # format.json { render :show, status: :created, location: @friendship }
@@ -50,7 +56,7 @@ class FriendshipsController < ApplicationController
         format.html { render :new }
         format.json { render json: @friendship.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end
 
   # accepting the friendship request

@@ -11,6 +11,12 @@
         </div>
         <div class="fr font12">
           <a href="<%= leave_community_path(@community)%>" class="back" data-method ="post"><img src="/assets/images/accept.png" alt=""> member</a><br>
+          <% if current_user != @community.user %>
+            <span id="following-button-span-<%= @community.id %>" class="user-folowed-<%=@community.id %>">
+              <%= render :partial=> "users/follow_link", :locals => {:object => @community} if user_signed_in?%>
+            </span>
+          <% end %>
+
           <div class="fr font14">  <%= @community.members.try(:count)%> <%= @community.members.try(:count) <= 1 ? 'member' : 'members'%></div>
         </div>
       </div>

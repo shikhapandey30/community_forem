@@ -11,7 +11,12 @@
         </div>
         <div class="fr font12">
           <a href="#" class="back"><img src="/assets/images/accept.png" alt=""> member</a><br>
-          <div class="fr font14">  200 members</div>
+          <% if current_user != @forum_poll.user %>
+            <span id="following-button-span-<%= @forum_poll.id %>" class="user-folowed-<%=@forum_poll.id %>">
+              <%= render :partial=> "users/follow_link", :locals => {:object => @forum_poll} if user_signed_in?%>
+            </span>
+          <% end %>
+          <div class="fr font14"> <%= @forum_poll.members.count %> <%= @forum_poll.members.count>1 ? "Members" : "Member" %></div>
         </div>
       </div>
     </div>
