@@ -18,7 +18,7 @@ class CommunitiesController < ApplicationController
     @friends = @friends.present? ? @friends : [] 
   end
 
-  # fetching posts for a cummunity and all suggested communities, suggested connections and suggested groups
+  # fetching posts for a cummunity and all suggested communities, suggested connections and suggested communitys
   def show
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
@@ -55,21 +55,12 @@ class CommunitiesController < ApplicationController
     @community = current_user.communities.new(community_params)
     respond_to do |format|
       if @community.save
-        if params[:community][:members].present?
-          members_ids = params[:community][:members].reject(&:empty?)
-          members_ids.each do |members_id|
-            member = Member.create(:user_id => members_id.to_i, :invitable => @community)
-
-            #send notification
-            reciver =  User.find(members_id)
-            if reciver.notification_setting.try(:new_update)
-             Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
-            end
-          end
-        end
+        set_members if params[:community][:members].present?
         format.html { redirect_to @community, notice: 'Community is successfully created.' }
         format.json { render :show, status: :created, location: @community }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @community.errors, status: :unprocessable_entity }
       end
@@ -82,21 +73,12 @@ class CommunitiesController < ApplicationController
     respond_to do |format|
       if @community.update(community_params)
         set_upload
-        if params[:community][:members].present?
-            @community.members.destroy_all
-          members_ids = params[:community][:members].reject(&:empty?)
-          members_ids.each do |members_id|
-            member = Member.create(:user_id => members_id.to_i, :invitable => @community)
-            #send notification
-            reciver =  User.find(members_id)
-            if reciver.notification_setting.try(:new_update)
-               notification = Notification.create(recepient_id: members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a community #{@community.headline} ", notificable: @community, :accept => false)
-             end
-          end
-        end
+        set_members if params[:community][:members].present?        
         format.html { redirect_to @community, notice: 'Community is successfully updated.' }
         format.json { render :show, status: :ok, location: @community }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @community.errors, status: :unprocessable_entity }
       end
@@ -119,6 +101,8 @@ class CommunitiesController < ApplicationController
     @invitable_members = @community.members - @community.members.where(user_id: current_user.id)
     @invitable_members.map(&:user).uniq.each do |user|
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
+      PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+
     end
     @suggested_communities, @suggest = suggested_communities
   end
@@ -167,5 +151,20 @@ class CommunitiesController < ApplicationController
       # @community.save
       @community.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @community.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+    end
+
+     def set_members
+      members_ids = params[:community][:members].reject(&:empty?)
+       @community.members.destroy_all if params[:action] == "update"
+      members_ids.each do |members_id|
+        member = Member.create(:user_id => members_id.to_i, :invitable => @community)
+        #send notification
+        reciver =  User.find(members_id)
+        notifications = reciver.notifications.unread 
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a community #{@community.topic} ", notificable: @community, :accept => false)
+          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+        end
+      end
     end
 end

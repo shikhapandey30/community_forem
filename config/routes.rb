@@ -104,6 +104,8 @@ Rails.application.routes.draw do
   # Accept and Regect path
   post 'accept/:id', to: 'notifications#accept', as: :notification_accept
   post 'reject/:id', to: 'notifications#reject', as: :notification_reject
+  post '/update_notification', to: 'notifications#update_notification', as: :update_notification
+
 
   # post 'accept/:id', to: 'communities#accept', as: :community_accept
   # post 'reject/:id', to: 'communities#reject', as: :community_reject

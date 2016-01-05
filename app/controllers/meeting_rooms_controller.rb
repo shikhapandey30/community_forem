@@ -43,20 +43,12 @@ class MeetingRoomsController < ApplicationController
     @meeting_room = current_user.meeting_rooms.new(meeting_room_params)
     respond_to do |format|
       if @meeting_room.save
-        if params[:meeting_room][:members].present?
-          members_ids = params[:meeting_room][:members].reject(&:empty?)
-          members_ids.each do |members_id|
-          member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
-            #send notification
-            reciver =  User.find(members_id)
-            if reciver.notification_setting.try(:new_update)
-              Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a meeting rooms #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
-            end
-          end
-        end
+        set_members if params[:meeting_room][:members].present?
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully created.' }
         format.json { render :show, status: :created, location: @meeting_room }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @meeting_room.errors, status: :unprocessable_entity }
       end
@@ -68,25 +60,13 @@ class MeetingRoomsController < ApplicationController
     authorize @meeting_room
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
-        set_upload
-      
-        if params[:meeting_room][:members].present?
-           @meeting_room.members.destroy_all
-          members_ids = params[:meeting_room][:members].reject(&:empty?)
-          members_ids.each do |members_id|
-            member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
-            member.save
-            #send notification
-            reciver =  User.find(members_id)
-            if reciver.notification_setting.try(:new_update)
-             notification = Notification.find_or_initialize_by(recepient_id:  members_id.to_i, user: current_user, body: "#{current_user.screen_name } has has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
-             notification.save
-            end
-          end
-        end
+        set_upload      
+        set_members if params[:meeting_room][:members].present?
         format.html { redirect_to @meeting_room, notice: 'Meeting room is successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @meeting_room.errors, status: :unprocessable_entity }
       end
@@ -126,5 +106,21 @@ class MeetingRoomsController < ApplicationController
     def set_upload
       @meeting_room.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @meeting_room.upload.update_column(:file, nil) if params[:file_url].eql?("true")
+    end
+
+    def set_members
+      members_ids = params[:meeting_room][:members].reject(&:empty?)
+       @meeting_room.members.destroy_all if params[:action] == "update"
+      members_ids.each do |members_id|
+        member = Member.create(:user_id => members_id.to_i, :invitable => @meeting_room)
+        #send notification
+        reciver =  User.find(members_id)
+        notifications = reciver.notifications.unread         
+        if reciver.notification_setting.try(:new_update)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
+          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+          
+        end
+      end
     end
 end

@@ -15,14 +15,14 @@
     <% notifications = notifications - messages - friend_requests %>
        <a href="#" data-toggle="dropdown"><img src="/assets/images/noti.png" alt="">
         <%if notifications.count > 0 %>
-         <span><%= notifications.count %></span>
+         <span id ="all-notifications" class ="push-notification"><%= notifications.count %></span>
          <% end %>
        </a>
          <ul class="clearfix dropdown-menu">
          <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
          <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
         </div>      
-      <div class="notiScroll scrollbars"> 
+      <div class="notiScroll scrollbars notifications"> 
         <% notifications.try(:reverse).each do |notification|%>
           <li class="notification-<%= notification.id %>">
             <div class="clearfix commentSec cmntRow">
@@ -136,3 +136,11 @@
     </div>
   </div>
 </header>
+<script type="text/javascript">
+  $('.push-notification').click(function(){
+    $.ajax({
+      type: 'post',
+      url: '/update_notification'
+    });
+  });
+</script>

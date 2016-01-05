@@ -42,6 +42,8 @@ class ForumPollsController < ApplicationController
         format.html { redirect_to @forum_poll, notice: 'Forum Poll is successfully created.' }
         format.json { render :show, status: :created, location: @forum_poll }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @forum_poll.errors, status: :unprocessable_entity }
       end
@@ -66,6 +68,8 @@ class ForumPollsController < ApplicationController
         format.html { redirect_to dashboard_path, notice: 'Forum Poll is successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
@@ -117,8 +121,11 @@ class ForumPollsController < ApplicationController
         member = Member.create(:user_id => members_id.to_i, :invitable => @forum_poll)
         #send notification
         reciver =  User.find(members_id)
+        notifications = reciver.notifications.unread         
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a forum_poll #{@forum_poll.topic} ", notificable: @forum_poll, :accept => false)
+          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+          
         end
       end
     end
