@@ -29,9 +29,11 @@ class MessagesController < ApplicationController
       @friend.update(archive: false)
       get_users
       @archive="true"
-    end  
+    end
+    @unread_incoming_messages = Message.incoming_messages(@friend)
+    # incoming_messages
     @messages = Message.between(current_user, @friend)
-    set_members if params[:message][:recipient_ids].present?    
+    set_members if params[:message][:recipient_ids].present?
     # conversation_message_path(@friend, current_user)
     # @conversation = Conversation.find(params[:conversation_id])
     # @message = @conversation.messages.build(message_params)
