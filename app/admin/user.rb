@@ -11,7 +11,7 @@ ActiveAdmin.register User do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :email, :name, :screen_name, :first_name, :last_name, :active
+  permit_params :password, :confirmed_at, :email, :name, :screen_name, :first_name, :last_name, :active
   index do
     selectable_column
     id_column
@@ -29,13 +29,15 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs "Meeting Room Details" do
+    f.inputs "User details" do
       f.input :email
       f.input :name
+      f.input :password
       f.input :screen_name
       f.input :first_name
       f.input :last_name
       f.input :active
+      f.input :confirmed_at
     end
     f.actions
   end

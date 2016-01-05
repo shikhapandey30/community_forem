@@ -85,7 +85,7 @@ Rails.application.routes.draw do
     end
   end
   resources :messages, only: [:index] do 
-    
+  post "/groups/:id/leave", :to => 'groups#leave', as: 'leave_group'    
   end
   # resources :users do
   # resources :notifications, only: [:create]  
