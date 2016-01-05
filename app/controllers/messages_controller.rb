@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
       @archive="true"
     end  
     @messages = Message.between(current_user, @friend)
-    set_members if params[:message][:recipient_ids].present?  
+    set_members if params[:message][:recipient_ids].present?    
     # conversation_message_path(@friend, current_user)
     # @conversation = Conversation.find(params[:conversation_id])
     # @message = @conversation.messages.build(message_params)

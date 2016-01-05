@@ -1,0 +1,44 @@
+<div class="clearfix commentSec cmntRow">
+  <div class="clearfix userInfo posRel">
+    <% if user_signed_in? && (current_user == comment.user) %>
+      <div class="editDlt  dropdown">
+        <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
+          <ul class="dropdown-menu">
+            <li><a href="#-" onClick ="$('#comment_form_box_<%=comment.id%>').toggle();" >Edit</a>             </li>
+            <li><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+          </ul>
+       </div>      
+    <% end %>
+    <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
+    <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userNAme"> <%= comment.user.try(:screen_name) %></a> <br>
+    <div class="fr grayColor tar"><%= time_ago_in_words(comment.updated_at).capitalize %> ago</div>
+    <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation) rescue nil %>
+    <%= @designation.present? ? @designation.join(", ") : " " %></span>
+    <% if params[:controller]=="users" && params[:action]=="dashboard"
+      bold = 'bold' else bold = '' end %>
+    <div class="clearfix mt15 font13 blackColor <%= bold %>" id ="comment-body-<%= comment.id%>" ><%= comment.body.html_safe %></div>
+
+    <%if user_signed_in?%>
+      <div class="font13 bold blueColor">
+        <%=link_to 'Like', like_create_path(id: comment.id, type: comment.class.name.downcase), method: :post, remote: true,:class=>"", :id=> "like_image_post_liked_#{comment.id}"%> 
+        (<span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"><%= comment.likes.count %></span>) | <a href="#-" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" > Reply</a>
+      </div>
+
+      <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
+        <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id), html: {id: "reply_form_#{comment.id}"}) do |f| %>
+          <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+          <div class="field">
+            <%= f.text_field :body, placeholder: "Add Your Comment", "data-validation-engine"=>"validate[required]", id: "reply_body_#{comment.id}", "data-id" => comment.id, class: "addReply inputTextW small submit_reply" %>
+          </div>
+        <% end %>
+      </div>
+      <div id="comment_form_box_<%= comment.id %>" style ="display:none !important;">
+        <%= render 'comments/form' ,comment: comment %>
+     </div>
+    <%end%> 
+  </div>
+</div>
+
+<div id="replies_view_<%= comment.id%>">
+  <%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
+</div>
