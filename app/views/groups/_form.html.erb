@@ -35,7 +35,7 @@
       <div class="clearfix whiteBox">
         <div class="clearfix formOuterPost tal">
           <div class="col-sm-6 pr10">
-            <label>Select Category</label>
+            <label>Categories</label>
             <div class="selctFormBox">              
               <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
               <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
@@ -43,15 +43,15 @@
             <div id="category_error"></div>
           </div>
           <div class="col-sm-6 pl10">
-            <label>Type Topic</label>
+            <label>Topic</label>
             <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Topics"%>
           </div>
           <div class="col-sm-12">
-            <label class="font20">Write Your Headline</label>
+            <label class="font20">Headline</label>
             <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here...." %>
           </div>
           <div class="col-sm-12">
-            <label class="">Write Something</label>
+            <label class="">Description</label>
             <%= f.text_area :description, class: "inputTextW small", placeholder: "Write description here...."%>
           </div>
           <div class="col-sm-12 ">
