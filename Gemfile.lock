@@ -297,8 +297,6 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.2)
-    rbjs (1.0.0)
-      json
     rdoc (4.2.1)
       json (~> 1.4)
     redis (3.2.2)
@@ -448,7 +446,6 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-erd
   rails_12factor
-  rbjs
   redis
   remotipart (~> 1.2)
   rspec-rails (~> 3.0)
@@ -473,6 +470,3 @@ DEPENDENCIES
   wicked_pdf
   will_paginate (~> 3.0.7)
   wkhtmltopdf-binary
-
-BUNDLED WITH
-   1.10.6
