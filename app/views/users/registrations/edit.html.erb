@@ -20,8 +20,8 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= devise_error_messages! %>
             <div class="col-sm-12  mt10">
-              <label>Password</label>
-              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small"%>
+              <!-- <label>Password</label>
+              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small"%> -->
               <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small" %>
               <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small" %>
             </div>

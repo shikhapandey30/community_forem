@@ -58,6 +58,8 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: 'Group is successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :new }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
@@ -75,6 +77,8 @@ class GroupsController < ApplicationController
         format.html { redirect_to @group, notice: 'Group is successfully updated.' }
         format.json { render :show, status: :ok, location: @group }
       else
+        @users = User.all
+        @users = @users - [current_user]
         format.html { render :edit }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
@@ -106,6 +110,10 @@ class GroupsController < ApplicationController
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@group.topic}", notificable: @group, :accept => true)
     end    
     @suggested_groups, @suggest = suggested_groups
+    respond_to do |format|
+      format.js
+      format.html { redirect_to groups_url }
+    end
   end
 
   def filter    
@@ -136,9 +144,10 @@ class GroupsController < ApplicationController
         member = Member.create(:user_id => members_id.to_i, :invitable => @group)
         #send notification
         reciver =  User.find(members_id)
+        notifications = reciver.notifications.unread 
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
-           # PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#new_header').html('#{notification_html(members_id).html_safe}')"
+          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
         end
       end
     end

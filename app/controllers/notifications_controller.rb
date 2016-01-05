@@ -47,4 +47,7 @@ class NotificationsController < ApplicationController
   	@notification.update_attributes(accept:true)
   	member.destroy_all if member.present?
   end
+
+  def update_notification
+  end
 end

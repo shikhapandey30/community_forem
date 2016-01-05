@@ -40,9 +40,14 @@ class PaymentDetailsController < ApplicationController
 		  response = gateway.authorize(2, credit_card, :ip => "127.0.0.1")
 		  if response.success?
 		    gateway.capture(2, response.authorization)
-		    reveal = RevealIdentity.find(params[:reveal_id])
-		    @subscription = Subscription.create(:user_id => params[:user_id], :payer_id => current_user.id, :subscribable => reveal)
-		    Wallet.create(:user => current_user, :amount => 0.5 , :walletable => reveal)
+		    if params[:reveal_id].present?
+		    	object = RevealIdentity.find(params[:reveal_id])
+		    else
+		    	object = User.friendly.find(params[:user_id])
+		    end
+		    user_id = object.class.name == "User" ? object.id : params[:user_id]
+		    @subscription = Subscription.create(:user_id => user_id, :payer_id => current_user.id, :subscribable => object)
+		    Wallet.create(:user => current_user, :amount => 0.5 , :walletable => object)
 		    flash[:success] = "Payment complete!"
 		     @success = true
 		  else

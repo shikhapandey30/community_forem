@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   post "/communities/:id/leave", :to => 'communities#leave', as: 'leave_community'
   post "/meeting_rooms/:id/leave", :to => 'meeting_rooms#leave', as: 'leave_meeting_room'
   post "/contests/:id/leave", :to => 'contests#leave', as: 'leave_contest'
+  post "/forum_polls/:id/leave", :to => 'forum_polls#leave', as: 'leave_forum_poll'
+
 
   resources :friendships
   post '/unfriend', to: 'friendships#unfriend'
@@ -79,11 +81,12 @@ Rails.application.routes.draw do
       collection do 
         get :connection_filter, as: :filter
         get :archive
+        get :subscription
       end
     end
   end
   resources :messages, only: [:index] do 
-    
+  post "/users/:id/subscribed", :to => 'groups#leave'   
   end
   # resources :users do
   # resources :notifications, only: [:create]  
@@ -101,6 +104,8 @@ Rails.application.routes.draw do
   # Accept and Regect path
   post 'accept/:id', to: 'notifications#accept', as: :notification_accept
   post 'reject/:id', to: 'notifications#reject', as: :notification_reject
+  post '/update_notification', to: 'notifications#update_notification', as: :update_notification
+
 
   # post 'accept/:id', to: 'communities#accept', as: :community_accept
   # post 'reject/:id', to: 'communities#reject', as: :community_reject
