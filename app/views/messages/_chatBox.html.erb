@@ -23,7 +23,8 @@
           <%= render 'message', msg: msg%>
         <% end %>
       </div>
-      <%= subscribe_to '/messages/new' %>
+      <%#= subscribe_to '/messages/sender_#{current_user.id}' %>      
+      <%= subscribe_to "/messages/reciever_#{current_user.id}" %>
     </div>
   </div>
   <div class="newMsgBox">

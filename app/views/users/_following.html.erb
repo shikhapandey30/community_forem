@@ -1,51 +1,43 @@
-<%@followings.each do |follow|%>
-  <%#if follower.follower.screen_name.downcase.include?(params[:data].downcase)%>
+<% object.each do |follow|%>
+  <% if (follow.followable.class.name == "Community" || follow.followable.class.name == "Group" || follow.followable.class.name == "MeetingRoom") %>
     <div class="clearfix whiteBox connectionRow borderTpBlue">
       <div class="clearfix  cmntRow">
         <div class="clearfix userInfo posRel">
           <div class="clearfix  "></div>
-           <% if follow.followable.class.name == "User"%>
-            <a href="<%= profile_path(follow.followable)%>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:screen_name)%></a>
-            <a href="<%= profile_path(user(follow.followable))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
+            <% if follow.followable.class.name == "Community"%>
+              <% @path_name = community_path(follow.followable) %>
+            <% elsif follow.followable.class.name == "Group" %>
+              <% @path_name = group_path(follow.followable) %>
+            <% elsif follow.followable.class.name == "MeetingRoom" %>
+              <% @path_name = meeting_room_path(follow.followable) %>
+            <% end %>
+            <a href="<%= @path_name %>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:topic)%></a>
+            <a href="<%= @path_name %>" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
             <div class="fr grayColor tar">
             <%= time_ago_in_words(follow.updated_at).capitalize %> ago<br>
-              <%if !current_user.friendships.collect(&:friend).include? follow.followable %>
-              <span class="friendship-button-<%= follow.followable.id %>">
-                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.id), :class=>"mt10", :remote=>true ,:method => :post %>
-                  </span>
-             <%end%>
-            <div class="mt5 mb-10">
-              <a href="#" class="removeLink inline">Message </a> |  <a href="#" class="removeLink inline">  Unfollow</a>
-            </div>
-          </div>
-          <div class="font13 mt5"><%=designations(user(follow))%></div>
-          <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
-
-          <%else %>
-            <a href="<%= profile_path(follow.followable.try(:user))%>" class="userImg"><%=image_tag follow.followable.try(:user).img , :title =>follow.followable.try(:user).try(:screen_name)%></a>
-            <a href="<%= profile_path(follow.followable.try(:user))%>" class="userNAme"> <%=follow.followable.try(:user).try(:screen_name)%></a> <br>
-            <div class="fr grayColor tar">
-            <%= time_ago_in_words(follow.created_at).capitalize %> ago<br>
-              <%if !current_user.friendships.collect(&:friend).include? follow.followable.try(:user) %>
-              <span class="friendship-button-<%= follow.followable.id %>">
-                  <%= link_to "Connect", friendships_path(:friend_id => follow.followable.try(:user).id), :class=>"mt10", :remote=>true ,:method => :post %>
-                  </span>
-             <%end%>
-            <div class="mt5 mb-10">
-              <a href="#" class="removeLink inline">Message </a> |  
-              <span id="following-button-span-<%= follow.followable.id %>">
-               <% follow_text = current_user.is_follow(follow.followable) ? "Unfollow" : "Follow" %>
-
-               <%= link_to follow_text, follow_path(:follower_id => current_user.id,  followable_id: follow.followable.id, followable_type: follow.followable.class.name), :method => :post , :id=>"following-button-#{follow.followable.id}", :remote=>true, :class=>'replyBtn removeLink following-button-#{follow.followable.id}' %>
+              <span class="friendship-button-<%#= follow.followable.id %>">
+                <% if follow.followable.class.name == "Community"%>
+                  <%#= link_to "Join", join_community_path(follow.followable), :class=>"mt10", :remote=>true %>
+                <% elsif follow.followable.class.name == "Group"%>
+                  <%#= link_to "Join", join_group_path(follow.followable), :class=>"mt10", :remote=>true %>
+                <% end %>
               </span>
-
-            </div>
-          </div>
-          <div class="font13 mt5"><%=designations(user(follow))%></div>
-          <div class="font13">Ltd Lake Hiawatha, New Jersey</div>
-           <%end %>          
+          </div>         
         </div>
       </div>
     </div>
-  <%#end%>  
+  <%elsif follow.followable.class.name == "Post"%>
+    <div class="clearfix whiteBox connectionRow borderTpBlue">
+      <div class="clearfix  cmntRow">
+        <div class="clearfix userInfo posRel">
+          <div class="clearfix  "></div>
+            <a href="<%= post_path(follow.followable) %>" class="userImg"><%=image_tag follow.followable.img , :title =>follow.followable.try(:topic)%></a>
+            <a href="<%= post_path(follow.followable) %>" class="userNAme"> <%=follow.followable.try(:topic)%></a> <br>
+            <div class="fr grayColor tar">
+            <%= time_ago_in_words(follow.updated_at).capitalize %> ago<br>
+          </div>         
+        </div>
+      </div>
+    </div>
+  <% end %> 
 <%end%>
