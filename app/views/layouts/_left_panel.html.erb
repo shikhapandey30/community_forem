@@ -1,11 +1,12 @@
 <div class="leftNAv">
   <%if user_signed_in? %>
     <div class="userTHumb">
-      <a href="<%=edit_profile_path(current_user)%>" class="profileImg">      
+      <a href="<%=profile_path(current_user)%>" class="profileImg">      
       <%= image_tag current_user.img %></a>
       <div class="nameLocation">
-        <a href="<%=edit_profile_path(current_user)%>"><%= current_user.try(:screen_name).try(:capitalize).truncate(13) rescue nil%></a><br>
+        <a href="<%= profile_path(current_user)%>"><%= current_user.try(:screen_name).try(:capitalize).truncate(13) rescue nil%></a><br>
         <span class="location"><%= current_user.try(:profile).try(:country).try(:name)%> </span>
+        <a href="<%=edit_profile_path(current_user)%>">Edit</a>
       </div>
     </div>
   <% end %>
