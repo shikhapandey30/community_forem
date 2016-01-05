@@ -28,51 +28,27 @@
       <div class="mt20 ">
         <div class="formOuter searchFrnd width100per">
           <form method="post" action="">
-            <input placeholder="Search Community" class="searhInput1 following" type="text" id="community">
+            <input placeholder="Search Community" class="searhInput1 following" type="text">
             <input value="" class="searhSub" type="">
           </form>
         </div>
       </div>
-      <div class="community_following"><%=render partial: "following", locals: {object: @community_following} %></div>      
+      <div class="community_following grpOuter"><%=render partial: "following", locals: {object: @community_following} %></div>      
         <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
     </div>
 
     <div class="clearfix innerWIdth550  ">
-      <div class="mt20 ">
-        <div class="formOuter searchFrnd width100per">
-          <form method="post" action="">
-            <input placeholder="Search Group" class="searhInput1 following" type="text" id="group">
-            <input value="" class="searhSub" type="">
-          </form>
-        </div>
-      </div>
-      <div class="group_following"><%=render partial: "following", locals: {object: @group_following} %></div>      
+      <div class="group_following grpOuter"><%=render partial: "following", locals: {object: @group_following} %></div>      
       <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
     </div>
 
     <div class="clearfix innerWIdth550  ">
-      <div class="mt20 ">
-        <div class="formOuter searchFrnd width100per">
-          <form method="post" action="">
-            <input placeholder="Search Meeting Room" class="searhInput1 following" type="text" id="meeting_room">
-            <input value="" class="searhSub" type="">
-          </form>
-        </div>
-      </div>
-      <div class="meeting_room_following"><%=render partial: "following", locals: {object: @meeting_room_following} %></div>      
+      <div class="meeting_room_following grpOuter"><%=render partial: "following", locals: {object: @meeting_room_following} %></div>      
       <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
     </div>
 
     <div class="clearfix innerWIdth550  ">
-      <div class="mt20 ">
-        <div class="formOuter searchFrnd width100per">
-          <form method="post" action="">
-            <input placeholder="Search Post" class="searhInput1 following" type="text" id="post">
-            <input value="" class="searhSub" type="">
-          </form>
-        </div>
-      </div>
-      <div class="post_following"><%=render partial: "following", locals: {object: @post_following} %></div>      
+      <div class="post_following grpOuter"><%=render partial: "following", locals: {object: @post_following} %></div>      
       <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
     </div>
   </div>
