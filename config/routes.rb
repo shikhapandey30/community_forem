@@ -81,11 +81,12 @@ Rails.application.routes.draw do
       collection do 
         get :connection_filter, as: :filter
         get :archive
+        get :subscription
       end
     end
   end
   resources :messages, only: [:index] do 
-  post "/groups/:id/leave", :to => 'groups#leave', as: 'leave_group'    
+  post "/users/:id/subscribed", :to => 'groups#leave'   
   end
   # resources :users do
   # resources :notifications, only: [:create]  

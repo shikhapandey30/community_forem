@@ -64,6 +64,9 @@ class MessagesController < ApplicationController
     @friends = @friends.paginate(:page => params[:page], :per_page => 10)
   end
 
+  def subscription
+  end
+
   private
 
   # permitting message parameters

@@ -172,6 +172,11 @@ class User < ActiveRecord::Base
     subscription.present? ? true : false
   end
 
+  def is_chat_subscribed(user)
+    subscription = Subscription.where(:user_id => user.id, :payer_id => self.id, :subscribable_type => 'User')
+    subscription.present? ? true : false
+  end
+
   ## whether the current user is authorized or not for particular action
   def isLogin?(user)
     self.id==user.id
