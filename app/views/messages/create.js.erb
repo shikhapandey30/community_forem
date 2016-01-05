@@ -6,9 +6,11 @@ $(".replyBox textarea").val('');
 <%# publish_to "/messages/sender_#{current_user.id}" do %>
   $("#chatmsg").append("<%= j render('message', msg: @message) %>");
 <%# end %>
-<% publish_to "/messages/reciever_#{@friend.id}" do %>	
+<% publish_to "/messages/reciever_#{@friend.id}" do %>
   $("#chatmsg").append("<%= j render('reciever_msg', msg: @message) %>");
   $('#chatmsg').children().last()[0].scrollIntoView(true);
+  $(".dropdown").html("<%=@unread_incoming_messages.count%>");
 <% end %>
+
 
 $('#chatmsg').children().last()[0].scrollIntoView(true);
