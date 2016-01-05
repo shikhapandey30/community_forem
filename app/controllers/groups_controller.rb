@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :leave, :join]
-
+  include NotificationsHelper
   # GET /groups
   # GET /groups.json
   def index
@@ -53,8 +53,8 @@ class GroupsController < ApplicationController
   def create
     @group = current_user.groups.new(group_params)
     respond_to do |format|
-      if @group.save
-         set_members if params[:group][:members].present?         
+      if @group.save      
+        set_members if params[:group][:members].present?         
         format.html { redirect_to @group, notice: 'Group is successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
@@ -138,6 +138,7 @@ class GroupsController < ApplicationController
         reciver =  User.find(members_id)
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
+           # PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#new_header').html('#{notification_html(members_id).html_safe}')"
         end
       end
     end

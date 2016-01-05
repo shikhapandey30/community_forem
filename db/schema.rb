@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104040714) do
+ActiveRecord::Schema.define(version: 20160104125910) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -368,6 +368,8 @@ ActiveRecord::Schema.define(version: 20160104040714) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.boolean  "archive",                       default: false
+    t.boolean  "is_read",                       default: false
+    t.datetime "read_at"
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree

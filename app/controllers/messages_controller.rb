@@ -23,13 +23,15 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.create(message_params)
     @friend = User.friendly.find(params[:message][:conversation_id])
+    # Notification.create(recepient: @friend, user: current_user, body: "#{current_user.screen_name } message to you ", notificable: @message, :accept => false)
+
     if @friend.archive.eql?(true)
       @friend.update(archive: false)
       get_users
       @archive="true"
     end  
     @messages = Message.between(current_user, @friend)
-    set_members if params[:message][:recipient_ids].present?  
+    set_members if params[:message][:recipient_ids].present?    
     # conversation_message_path(@friend, current_user)
     # @conversation = Conversation.find(params[:conversation_id])
     # @message = @conversation.messages.build(message_params)

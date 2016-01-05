@@ -170,8 +170,9 @@ class UsersController < ApplicationController
 
 
   ## creating and sending user revealing request
-  def reveal_request     
-    @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>params[:id], :body=>params[:body1], :body2 => params[:body2], :accept => false)
+  def reveal_request  
+    receipent = User.friendly.find(params[:id])   
+    @reveal_identity=RevealIdentity.create(:sender_id=>current_user.id,:user_id=>receipent.id, :body=>params[:body1], :body2 => params[:body2], :accept => false)
     Notification.create(recepient_id: params[:id].to_i, user: current_user, body: "#{current_user.screen_name } wants to reveal your identity", notificable: @reveal_identity, :accept => false)
     NotificationMailer.reveal_request(@reveal_identity).deliver_later       
     @status=true

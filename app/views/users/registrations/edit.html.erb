@@ -20,32 +20,30 @@
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= devise_error_messages! %>
             <div class="col-sm-12  mt10">
-              <label>Password  <a href="javascript:void(0)" class="blueColor font12 enable"> Change Password</a></label>
-              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small", disabled: "disabled" %>
-              <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small", disabled:"disabled" %>
-              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small", disabled: "disabled" %>
+              <label>Password</label>
+              <%= f.password_field :current_password, autocomplete: "off", placeholder: "Old Password", class: "inputTextW small"%>
+              <%= f.password_field :password, autocomplete: "off", placeholder: "New Password", class: "inputTextW small" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "inputTextW small" %>
             </div>
             <div class="col-sm-12 mt5">
-              <label>Primary Email <a href="javascript:void(0)" class="blueColor font12 enable">Change </a></label>
-              <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small", disabled: "disabled"  , :placeholder => "Email" %>
+              <label>Primary Email</label>
+              <%= f.email_field :email, autofocus: true, value:"#{current_user.email}", class: "inputTextW small",  :placeholder => "Email" %>
             </div>
-            <div class="col-sm-12">
+            <!-- <div class="col-sm-12">
               <input type="submit" value="Save" class="blueBtn">
-            </div>
-          <% end %>
-
-          <%= nested_form_for current_user, url: profile_path(current_user), :html => { :multipart => true, :remote => true} do |fp| %>
-            <%=fp.fields_for :profile do |p|%>
+            </div> -->
+<!-- 
+            <%=f.fields_for :profile do |p|%>
               <div class="col-sm-12 mt5">
-                <label class="">Phone Numbers <a href="javascript:void(0)" class="blueColor font12 enable">Change</a> </label>
-                <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", disabled: "disabled" , :placeholder => "Phone Number"%>
+                <label class="">Phone Numbers</label>
+                <%= p.text_field :phone_no, value:"#{current_user.profile.phone_no}", class: "inputTextW small", :placeholder => "Phone Number"%>
               </div>
-            <% end %>
+            <% end %> -->
             <div class="col-sm-12 mt15">
               <input type="submit" value="Save" class="blueBtn">
               <a href="/dashboard" class="grayBtn">Cancel</a>
             </div>
-          <% end %>
+            <% end %>
 
         </div>
       </div>
