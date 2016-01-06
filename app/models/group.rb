@@ -31,7 +31,7 @@ class Group < ActiveRecord::Base
   ## Group image OR default group image
   def img
     if self.upload.try(:image).present?
-      self.upload.try(:image)
+      self.upload.try(:image).url(:thumb)
     else
       'images/gr4.jpg'
     end

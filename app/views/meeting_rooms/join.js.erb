@@ -1,0 +1,8 @@
+$("#joinMeetingRoom_<%=@meeting_room.id%>").text("Joined").attr("href","#-").removeAttr("data-remote");
+
+// $("#meeting_room_<%=@meeting_room.id%>").fadeOut(2000);
+// setTimeout(
+//   function() 
+//   {
+// 	$(".grpOuter.suggest_meeting_rooms").html("<%= j render('users/shared/suggested_meeting_rooms', suggest: @suggest)%>");
+//   }, 2000);

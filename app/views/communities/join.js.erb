@@ -1,7 +1,11 @@
-$("#joinCommunity_<%=params[:id]%>").text("Joined");
-$("#community_<%=params[:id]%>").fadeOut(2000);
-setTimeout(
-  function() 
-  {
-	$(".grpOuter.suggest_communities").html("<%= j render('users/shared/suggested_communities', suggest: @suggest)%>");
-  }, 2000);
+<%if request.referrer.include?("followings")%>
+	$("#joinCommunity_<%=@community.id%>").text("Joined").attr("href","#-").removeAttr("data-remote");
+<%else%>
+	$("#joinCommunity_<%=@community.id%>").text("Joined");
+	$("#community_<%=@community.id%>").fadeOut(2000);
+	setTimeout(
+	  function() 
+	  {
+		$(".grpOuter.suggest_communities").html("<%= j render('users/shared/suggested_communities', suggest: @suggest)%>");
+	  }, 2000);
+<%end%>

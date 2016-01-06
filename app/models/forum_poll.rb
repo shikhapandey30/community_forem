@@ -23,7 +23,7 @@ class ForumPoll < ActiveRecord::Base
   ## Forum poll image OR default forum poll image
   def img
 	  if self.upload.try(:image).present?
-	    self.upload.try(:image)
+	    self.upload.try(:image).url(:thumb)
 	  else
 	    'images/fp2.jpg'
 	  end

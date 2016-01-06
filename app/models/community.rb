@@ -30,7 +30,7 @@ class Community < ActiveRecord::Base
   ## community image or default image
   def img
     if self.upload.try(:image).present?
-      self.upload.try(:image)
+      self.upload.try(:image).url(:thumb)
     else
       'images/cmn1.jpg'
     end

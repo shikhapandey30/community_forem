@@ -90,9 +90,9 @@ class UsersController < ApplicationController
   def followings
     @followings = current_user.followings
     if params[:name].present? 
-      @group_following = current_user.followings_groups.search(params[:name])
+      @suggested_groups = current_user.followings_groups.search(params[:name])
     else
-      @group_following = current_user.followings_groups
+      @suggested_groups = current_user.followings_groups
     end
     if params[:name].present?
       @post_following = current_user.followings_posts.search(params[:name])
@@ -100,14 +100,14 @@ class UsersController < ApplicationController
       @post_following = current_user.followings_posts
     end
     if params[:name].present?
-      @community_following = current_user.followings_communities.search(params[:name])
+      @suggested_communities = current_user.followings_communities.search(params[:name])
     else
-      @community_following = current_user.followings_communities
+      @suggested_communities = current_user.followings_communities
     end
     if params[:name].present?
-      @meeting_room_following = current_user.followings_meeting_rooms.search(params[:name])
+      @suggested_meeting_rooms = current_user.followings_meeting_rooms.search(params[:name])
     else
-      @meeting_room_following = current_user.followings_meeting_rooms
+      @suggested_meeting_rooms = current_user.followings_meeting_rooms
     end
 
     respond_to do |format|

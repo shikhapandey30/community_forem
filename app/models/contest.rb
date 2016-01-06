@@ -27,7 +27,7 @@ class Contest < ActiveRecord::Base
 	## contest image OR contest default image
 	def img
 	  if self.upload.try(:image).present?
-	    self.upload.try(:image)
+	    self.upload.try(:image).url(:thumb)
 	  else
 	    'images/contests.png'
 	  end

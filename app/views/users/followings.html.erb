@@ -33,27 +33,37 @@
           </form>
         </div>
       </div>
-      <div class="community_following grpOuter"><%=render partial: "following", locals: {object: @community_following} %></div>      
-        <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
-    </div>
 
-    <div class="clearfix innerWIdth550  ">
-      <div class="group_following grpOuter"><%=render partial: "following", locals: {object: @group_following} %></div>      
-      <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
-    </div>
+      
+      <div class="community_following grpOuter">
+        <span class="userNAme"><%= @suggested_communities.first.class.name.pluralize if @suggested_communities %></span>        
+        <div class="clearfix"></div>
+        <%=render "users/shared/suggested_communities", suggest: false %>
+      </div>
+            
+      <div class="group_following grpOuter">
+      <span class="userNAme"><%= @suggested_groups.first.class.name.pluralize if @suggested_groups %></span>
+        
+        <div class="clearfix"></div>
+        <%=render "users/shared/suggested_groups", suggest: false %>
+      </div>
 
-    <div class="clearfix innerWIdth550  ">
-      <div class="meeting_room_following grpOuter"><%=render partial: "following", locals: {object: @meeting_room_following} %></div>      
-      <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
-    </div>
+      <div class="community_following grpOuter">
+        <span class="userNAme"><%= @suggested_meeting_rooms.first.class.name.pluralize if @suggested_meeting_rooms %></span>
+        <div class="clearfix"></div>
+        <%=render "users/shared/suggested_meeting_rooms", suggest: false %>
+      </div>
 
-    <div class="clearfix innerWIdth550  ">
-      <div class="post_following grpOuter"><%=render partial: "following", locals: {object: @post_following} %></div>      
-      <!-- <div class="tac preloader "> <img src="/assets/images/preloader.gif" alt=""> </div> -->
+      <!-- <div class="community_following grpOuter">
+        <span class="userNAme"><%# @suggested_forum_polls.first.class.name.pluralize if @suggested_forum_polls %></span>
+        <div class="clearfix"></div>
+        <%#=render "users/shared/suggested_forum_polls", suggest: false %>
+      </div> -->
+
     </div>
   </div>
 </div>
-</br>
+<div class="clearfix"></div>
 
 <script type="text/javascript">
   $(function () {

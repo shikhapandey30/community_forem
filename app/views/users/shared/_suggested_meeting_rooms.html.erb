@@ -1,0 +1,25 @@
+<%if @suggested_meeting_rooms.present?%>
+  <%if suggest%>
+    <div class="suggestedRow">
+      <div class="clearfix conversationTop">
+        <span class="bold grayColor"> <span class="font13 blackColor">Suggested Meeting Rooms</span></span>
+        <div class="fr"> <a href="/suggested_meeting_rooms" class="grayColor">See More Meeting Rooms <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
+      </div>
+    </div>
+  <%end%>
+  <%@suggested_meeting_rooms.each_with_index do |meeting_room, index|%>    
+    <div class="whiteBox borderTop col-sm-6 pb0 fl" id="meeting_room_<%=meeting_room.id%>">
+      <a href="<%=meeting_room_path(meeting_room)%>" class="pollImgOuter mt20 grpImg"><%=image_tag meeting_room.img%></a>
+      <a href="<%=meeting_room_path(meeting_room)%>" class="block groupName width"><%=meeting_room.topic%></a>
+      <div class="virwJoinBtn">
+      
+        <a class="btmBtn" href="#"> 0 Updates</a>        
+        <% if !meeting_room.members.isMe?(current_user).present? %>
+          <%=link_to "Join", join_meeting_room_path(meeting_room), class: "btmBtn", id: "joinMeetingRoom_#{meeting_room.id}", remote: true%>
+        <%else%>
+          <%=link_to "Joined", "#-", class: "btmBtn"%>
+        <%end%>  
+      </div>
+    </div>
+  <%end%>
+<%end%>

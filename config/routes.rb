@@ -11,10 +11,13 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end 
   resources :meeting_rooms do
+    member do
+      get :join
+    end
     resources :likes, only: [:create]
     resources :dislikes, only: [:create]
     resources :comments, only: [:create]
-     resources :posts
+    resources :posts
   end
   mount Sidekiq::Web, at: "/sidekiq"
   resources :groups do

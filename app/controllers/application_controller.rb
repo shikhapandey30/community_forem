@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?  
 
   # Fetching the suggested communitites to join
-  def new_suggested_communities    
-    @communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
+  def new_suggested_communities
+    @Communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
-    return (@communities.to_a - @joined_communities)
+    return (@communities.to_a - (@joined_communities + current_user.communities))
   end
 
   # Fetching the suggested connections to join
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   def new_suggested_groups    
     @groups = current_user.friends.collect(&:groups).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_groups = current_user.members.where(invitable_type: "Group").collect(&:invitable).uniq
-    return (@groups.to_a - @joined_groups)
+    return (@groups.to_a - (@joined_groups + current_user.groups))
   end
 
    # Mobile Devices and Format

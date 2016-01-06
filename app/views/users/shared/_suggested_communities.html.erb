@@ -13,7 +13,11 @@
       <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>
-        <%=link_to "Join", join_community_path(community), class: "btmBtn", id: "joinCommunity_#{community.id}", remote: true%>              
+        <% if !community.members.isMe?(current_user).present? %>
+          <%=link_to "Join", join_community_path(community), class: "btmBtn", id: "joinCommunity_#{community.id}", remote: true%>
+        <%else%>
+          <%=link_to "Joined", "#-", class: "btmBtn"%>
+        <%end%> 
       </div>
     </div>
   <%end%>

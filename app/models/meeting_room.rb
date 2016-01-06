@@ -11,14 +11,15 @@ class MeetingRoom < ActiveRecord::Base
 	has_many :dislikes, dependent: :destroy, :as => :dislikable
 	has_many :comments,:dependent => :destroy, :as => :commentable
 	has_many :members,:dependent => :destroy, :as => :invitable
-    has_many :posts,:dependent => :destroy, :as => :postable
-	
+    has_many :posts,:dependent => :destroy, :as => :postable	
 	has_one :upload, as: :uploadable, dependent: :destroy
 	
 	accepts_nested_attributes_for :upload, :allow_destroy => true
 	
     ## Model Validations
     validates_presence_of :category_id, :topic, :slogan, :name, :headline
+
+    
 	
 	def liked?(current_user)
     # UserRace.where(:user_id => current_user.id ).first
@@ -32,7 +33,7 @@ class MeetingRoom < ActiveRecord::Base
 	## Meeting room image OR meeting room default image
 	def img
 	  if self.upload.try(:image).present?
-	    self.upload.try(:image)
+	    self.upload.try(:image).url(:thumb)
 	  else
 	    'images/meeting_room.jpg'
 	  end
@@ -41,7 +42,7 @@ class MeetingRoom < ActiveRecord::Base
 	## Search meeting room by topic
   def self.search(search)
 	  if search
-	    where('lower(topic) LIKE ?', "%#{search}%".downcase)
+	    where('lower(topic) LIKE lower(?)', "%#{search}%")
 	  else
 	    all
 	  end

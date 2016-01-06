@@ -40,7 +40,7 @@ class Post < ActiveRecord::Base
 
   def img
     if self.upload.try(:image).present?
-      self.upload.try(:image)
+      self.upload.try(:image).url(:thumb)
     else
       'images/profile.png'
     end
