@@ -5,7 +5,7 @@
       <%= image_tag current_user.img %></a>
       <div class="nameLocation">
         <a href="<%= profile_path(current_user)%>"><%= current_user.try(:screen_name).try(:capitalize).truncate(13) rescue nil%></a><br>
-        <span class="location"><%= current_user.try(:profile).try(:country).try(:name)%> </span>
+        <span class="location"><%= current_user.try(:profile).try(:country).try(:name)%> </span><br/>
         <a href="<%=edit_profile_path(current_user)%>">Edit</a>
       </div>
     </div>
