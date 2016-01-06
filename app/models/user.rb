@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   has_many :followings_posts, through: :followings, source: :followable, source_type: 'Post'
   has_many :followings_forum_polls, through: :followings, source: :followable, source_type: 'ForumPoll'
   has_many :followings_meeting_rooms, through: :followings, source: :followable, source_type: 'MeetingRoom'
+  has_many :followings_contests, through: :followings, source: :followable, source_type: 'Contest'
 
   has_many :followings, :foreign_key => "follower_id", :dependent => :destroy
   has_many :followers, :class_name => "Following", as: :followable

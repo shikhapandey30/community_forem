@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :contests do
+    member do
+      get :join
+    end
     resources :posts
     resources :comments, only: [:create]
   end 

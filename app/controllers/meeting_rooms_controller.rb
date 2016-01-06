@@ -87,7 +87,7 @@ class MeetingRoomsController < ApplicationController
   def leave  
     members = @meeting_room.members.where(:user_id=> current_user.id)
     members.delete_all
-    flash[:notice] = 'Group is successfully Leaved.'
+    flash[:notice] = 'Meeting Room is successfully Leaved.'
     redirect_to '/dashboard'
   end
 
@@ -98,10 +98,14 @@ class MeetingRoomsController < ApplicationController
       reciver =  User.find(user)
       notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@meeting_room.topic}", notificable: @meeting_room, :accept => true)
-      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"      
+      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
     end    
-    # @suggested_meeting_rooms, @suggest = suggested_meeting_rooms
-    @suggest =  false
+    
+    if request.referrer.include?("followings")
+      @suggest=false
+    else
+      @suggested_meeting_rooms, @suggest = suggested_meeting_rooms
+    end    
     respond_to do |format|
       format.js
       format.html { redirect_to meeting_rooms_url }
@@ -125,10 +129,17 @@ class MeetingRoomsController < ApplicationController
       @meeting_room.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 
-    # def suggested_meeting_rooms
-    #   @suggested_meeting_rooms = current_user.followings_meeting_rooms
-    #   @suggest =  false
-    # end
+    # suggested communities
+    def suggested_meeting_rooms
+      if request.headers["HTTP_REFERER"].include?("suggested_meeting_rooms")
+        @suggested_meeting_rooms = new_suggested_meeting_rooms
+        @suggest =  false
+      else
+        @suggested_meeting_rooms = new_suggested_meeting_rooms.first(2)
+        @suggest =  true
+      end
+      return @suggested_meeting_rooms, @suggest
+    end
 
     def set_members
       members_ids = params[:meeting_room][:members].reject(&:empty?)
@@ -140,8 +151,7 @@ class MeetingRoomsController < ApplicationController
         notifications = reciver.notifications.unread         
         if reciver.notification_setting.try(:new_update)
           Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a meeting_room #{@meeting_room.topic} ", notificable: @meeting_room, :accept => false)
-          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
-          
+          PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"          
         end
       end
     end

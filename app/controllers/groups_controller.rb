@@ -107,7 +107,10 @@ class GroupsController < ApplicationController
     @group.members.create(:user_id=>current_user.id)
     @invitable_members = @group.members - @group.members.where(user_id: current_user.id)    
     @invitable_members.map(&:user).uniq.each do |user|
+      reciver =  User.find(user)
+      notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@group.topic}", notificable: @group, :accept => true)
+      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
     end    
     if request.referrer.include?("followings")
       @suggest=false

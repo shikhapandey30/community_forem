@@ -37,7 +37,7 @@ class Contest < ActiveRecord::Base
 	# start code - kandarp
 	def self.search(search)
 	  if search
-	    where('lower(topic) LIKE ?', "%#{search}%".downcase)
+	    where('lower(topic) LIKE lower(?)', "%#{search}%")
 	  else
 	    all
 	  end
