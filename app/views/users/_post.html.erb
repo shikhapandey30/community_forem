@@ -4,8 +4,10 @@
       <div class="clearfix formOuterPost tal padding10-0">
         <div class="col-sm-12 mb10">
           <div class="clearfix userInfo posRel">
-            <div class="videoPost">
-              <% if current_user == post.user %>
+           <div>
+            <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
+            <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a>
+            <% if current_user == post.user %>
                 <div class="editDlt  dropdown">
                   <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
                     <ul class="dropdown-menu">
@@ -13,29 +15,7 @@
                       <li> <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
                     </ul>
                  </div>
-              <% end %>
-              
-              <div class="font12 bold blackColor"><%=link_to post.try(:title), post %></div>              
-              <% if post.upload.try(:image).present? %>
-                <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
-              <% end %>
-
-               <% if post.upload.try(:video).present? %>
-                <iframe width="100%" src="<%= post.upload.try(:video) %>"></iframe>
-              <% end %>
-             
-              <% if post.upload.try(:file).present? %>                
-                Attachment: <a href="<%= post.upload.try(:file)%>" class="post" target="_blank"><%=post.upload[:file]%></a>
-              <% end %>
-
-              <% if post.upload.try(:site_link).present? %>
-                WebSite Link: <a href="<%= post.upload.try(:site_link) %>" class="post" target="_blank"><%= post.upload.try(:site_link) %></a>
-              <% end %>
-              
-            </div>
-            <%if post.upload.try(:image).present?%><div class="clearfix borderBtmS"></div><%end%>
-            <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
-            <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a> <br>
+              <% end %> <br>
             <span class="font13"><%= designation(post) %></span>
             <div class="fr grayColor tar"><%= time_ago_in_words(post.updated_at).capitalize rescue 0%> ago<br>
               <%if !current_user.eql?(post.user)%>
@@ -54,7 +34,38 @@
               <!-- <a href="#">Follow</a> -->
             </div>
           </div>
-          <div class="uniOuter">
+          <div class="clearfix"></div>
+            <div class="videoPost mt10">             
+              
+              <div class="font16 bold blackColor mb10"><%=link_to post.try(:topic), post %>
+              </div>              
+              <% if post.upload.try(:image).present? %>
+                <a href="<%= post_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
+              <% end %>
+
+               <% if post.upload.try(:video).present? %>
+                <iframe class="mt20"  width="100%" src="<%= post.upload.try(:video) %>"></iframe>
+              <% end %>
+
+              <div class="mt20 font14">
+                
+                <% if post.upload.try(:file).present? %>                
+                   <span class="glyphicon glyphicon-paperclip"> </span> <a href="<%= post.upload.try(:file)%>" class="post inline" target="_blank"><%=post.upload[:file]%> </a>
+                <% end %>
+                 </div>
+                <div class="mt10 font14"> 
+                <% if post.upload.try(:site_link).present? %>
+                  <span class="glyphicon glyphicon-link"> </span> <a href="<%= post.upload.try(:site_link) %>" class="post inline" target="_blank"><%= post.upload.try(:site_link) %> </a>
+                <% end %>
+              </div>
+            </div>
+
+            <%if post.upload.try(:image).present?%><div class="clearfix borderBtmS"></div><%end%>
+            
+           
+
+          </div>
+          <div class="uniOuter pt0">
             <div class="mt0 blackColor bold ">
               <p><%= post.title %></p>
               <p>

@@ -182,11 +182,11 @@ div.ajax-loading span p i{
 }
 .cursor{cursor: pointer;}
 .right{float: right;}
-.scrollbars-comments{  
+/*.scrollbars-comments{  
     height: 400px;
     overflow-x: hidden;
     overflow-y: scroll;
-}
+}*/
 /* 5-Jan-2016*/
 a.hoverOut:hover b {display:none;}
 a.hoverOut:hover img {display:none;}
@@ -195,3 +195,9 @@ a.hoverOut:hover:before {content:"Leave"}
 /*6-Jan-2016*/
 .pollImgOuter{display: inline-block;width: 175px;max-height: 118px;overflow: hidden;}
 .pollImgOuter  img{width:100%;}
+iframe {border: 0px;}
+
+.acceptRej a {    
+    margin-top: 12px !important;
+   
+}

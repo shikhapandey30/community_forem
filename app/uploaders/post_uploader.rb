@@ -3,7 +3,7 @@
 class PostUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include Sidekiq::Worker
     sidekiq_options :queue => :post_uploader
@@ -34,7 +34,13 @@ class PostUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+   version :thumb do
+    process :resize_to_fit => [197, 229]
+  end
 
+   version :banner do
+    process :resize_to_fit => [1024, 328]
+  end
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :resize_to_fit => [50, 50]

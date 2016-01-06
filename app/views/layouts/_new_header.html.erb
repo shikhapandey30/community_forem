@@ -13,6 +13,7 @@
     <% messages = Message.incoming_messages%>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
     <% notifications = notifications - messages - friend_requests %>
+
        <a href="#" data-toggle="dropdown" class="push-notification"><img src="/assets/images/noti.png" alt="">
         <%if notifications.count > 0 %>
          <span id ="all-notifications"><%= notifications.count %></span>

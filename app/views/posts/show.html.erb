@@ -3,7 +3,7 @@
   <!-- Showing Post -->
   <div class="rightContent">
     <div class="overLAy"></div>
-    <div class="postCover posRel <%=@post.try(:upload).try(:image).present? ? '' : 'noImagePost'%>" style="background-image: url('<%=@post.try(:upload).try(:image).try(:url)%>')">
+    <div class="postCover posRel <%=@post.try(:upload).try(:image).present? ? '' : 'noImagePost'%>" style="background-image: url('<%=@post.try(:upload).try(:image).url(:banner) rescue nil%>')">
       <div class="postCoverBkg ">
         <div class="clearfix innerWIdth550 posRel">
           <div class="pTitltOuter">

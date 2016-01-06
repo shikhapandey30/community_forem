@@ -11,8 +11,8 @@
             </ul>
          </div>      
       <% end %>
-      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
-      <a href="/profiles/<%= comment.try(:user).try(:id)%>" class="userNAme"> <%= comment.user.try(:screen_name) %></a> <br>
+      <a href="<%=profile_path(comment.try(:user)) rescue nil%>" class="userImg"><img src="<%= comment.try(:user).try(:img) %>" alt=""></a>
+      <a href="<%=profile_path(comment.try(:user)) rescue nil%>" class="userNAme"> <%= comment.user.try(:screen_name) %></a> <br>
       <div class="fr grayColor tar"><%= time_ago_in_words(comment.updated_at).capitalize %> ago</div>
       <span class="font13"> <% @designation = comment.user.employment_details.collect(&:designation) rescue nil %>
       <%= @designation.present? ? @designation.join(", ") : " " %></span>

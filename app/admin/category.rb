@@ -22,9 +22,9 @@ ActiveAdmin.register Category do
     column "Image" do |category|
       image_tag(category.try(:image_url), :style=>"width: 60px")
     end
-    column "Icon" do |category|
-      image_tag(category.try(:icon_url), :style=>"width: 60px")
-    end
+    # column "Icon" do |category|
+    #   image_tag(category.try(:icon_url), :style=>"width: 60px")
+    # end
     actions
   end
 
@@ -32,7 +32,6 @@ ActiveAdmin.register Category do
     f.inputs "Category Details" do
       f.input :name
       f.input :image, as: :file
-      f.input :icon, as: :file
     end
     f.actions
   end

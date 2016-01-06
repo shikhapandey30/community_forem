@@ -104,9 +104,8 @@ class GroupsController < ApplicationController
   end
 
   def join
-    debugger
     @group.members.create(:user_id=>current_user.id)
-    @invitable_members = @group.members - @group.members.where(user_id: current_user.id)
+    @invitable_members = @group.members - @group.members.where(user_id: current_user.id)    
     @invitable_members.map(&:user).uniq.each do |user|
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@group.topic}", notificable: @group, :accept => true)
     end    
