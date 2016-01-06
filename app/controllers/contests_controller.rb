@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
 
   #filters
-  before_action :set_contest, only: [:show, :edit, :update, :destroy, :leave]
+  before_action :set_contest, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # fetching all contests
   def index
@@ -80,11 +80,31 @@ class ContestsController < ApplicationController
     end
   end
 
+  def join
+    @contest.members.create(:user_id=>current_user.id)
+    @invitable_members = @contest.members - @contest.members.where(user_id: current_user.id)    
+    @invitable_members.map(&:user).uniq.each do |user|
+      reciver =  User.find(user)
+      notifications = reciver.notifications.unread 
+      Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@meeting_room.topic}", notificable: @meeting_room, :accept => true)
+      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+    end    
+    if request.referrer.include?("followings")
+      @suggest=false
+    else    
+      @suggested_contests, @suggest = suggested_contests
+    end
+    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to contests_url }
+    end
+  end
   # leaving contest by member
   def leave  
     members = @contest.members.where(:user_id=> current_user.id)
     members.delete_all
-    flash[:notice] = 'Group is successfully Leaved.'
+    flash[:notice] = 'Contest is successfully Leaved.'
     redirect_to '/dashboard'
   end
   private
@@ -121,5 +141,16 @@ class ContestsController < ApplicationController
 
         end
       end
+    end
+
+    def suggested_contests
+      if request.headers["HTTP_REFERER"].include?("suggested_contests")
+        @suggested_contests = new_suggested_contests
+        @suggest =  false
+      else
+        @suggested_contests = new_suggested_contests.first(2)
+        @suggest =  true
+      end
+      return @suggested_contests, @suggest
     end
 end

@@ -54,6 +54,12 @@
         <%=render "users/shared/suggested_meeting_rooms", suggest: false %>
       </div>
 
+      <div class="contest_following grpOuter">
+        <span class="userNAme"><%= @suggested_contests.first.class.name.pluralize if @suggested_contests %></span>
+        <div class="clearfix"></div>
+        <%=render "users/shared/suggested_contests", suggest: false %>
+      </div>
+
       <!-- <div class="community_following grpOuter">
         <span class="userNAme"><%# @suggested_forum_polls.first.class.name.pluralize if @suggested_forum_polls %></span>
         <div class="clearfix"></div>

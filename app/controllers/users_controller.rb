@@ -109,6 +109,12 @@ class UsersController < ApplicationController
     else
       @suggested_meeting_rooms = current_user.followings_meeting_rooms
     end
+    if params[:name].present?
+      @suggested_contests = current_user.followings_contests.search(params[:name])
+    else
+      @suggested_contests = current_user.followings_contests
+    end
+    
 
     respond_to do |format|
       format.js

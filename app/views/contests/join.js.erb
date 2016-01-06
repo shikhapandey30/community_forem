@@ -1,0 +1,11 @@
+<%if request.referrer.include?("followings")%>
+	$("#joinContest_<%=@contest.id%>").text("Joined").attr("href","#-").removeAttr("data-remote");
+<%else%>
+	$("#joinContest_<%=@contest.id%>").text("Joined");
+	$("#contest_<%=@contest.id%>").fadeOut(2000);
+	setTimeout(
+	  function() 
+	  {
+		$(".grpOuter.suggest_contests").html("<%= j render('users/shared/suggested_contests', suggest: @suggest)%>");
+	  }, 2000);
+<%end%>
