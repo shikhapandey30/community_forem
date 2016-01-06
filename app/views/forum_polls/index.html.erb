@@ -8,7 +8,7 @@
         Forum Poll
         <div class="fr mt-10 ">
           <div class="fr font12">
-            <a href="/forum_polls/new" class="back"><img src="/assets/images/accept.png" alt=""> create forum poll</a><br>
+            <a href="/forum_polls/new" class="back"><img src="/assets/images/accept.png" alt=""> Create Forum Poll</a><br>
             <div class="fr font14 underLine mt5"> <%=@forum_polls.size%> <%= @forum_polls.size <=1 ? "Forum Poll" : "Forum Polls"%></div>
           </div>
         </div>
@@ -32,7 +32,7 @@
       <div class="clearfix grpOuter" id="forum_polls">
         <%= render partial: "forum_polls", locals: {forum_polls: @forum_polls} %>
       </div>
-      <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
+      <!-- <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">
           <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
           <div class="fr"> <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
@@ -51,7 +51,7 @@
             <a href="#" class="whiteBtn"> Connect </a> 
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
