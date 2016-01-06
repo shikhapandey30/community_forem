@@ -13,14 +13,8 @@
     <a href="<%=group_path(group)%>" class="block groupName width"><%= group.try(:topic) %></a>
     <div class="virwJoinBtn">
       <a class="btmBtn" href="#"> <%= group.members.try(:count)%> <%= group.members.try(:count) >1 ? 'Members' : 'Member' %></a>
-      <a class="btmBtn" href="#" > 0 Discussion </a>
+      <a class="btmBtn" href="#" > <%=group.posts.size rescue 0%> Discussion </a>
     </div>
   </div>
 <%end%>  
 <div class="clearfix"></div>
-<div class="suggestedRow">
-  <div class="clearfix conversationTop">
-    <span class="bold grayColor"> <span class="font13 blackColor">Suggested Groups</span></span>
-    <div class="fr"> <a href="#" class="grayColor">See More Group <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
-  </div>
-</div>  

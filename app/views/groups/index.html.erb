@@ -8,7 +8,7 @@
         Your Groups
         <div class="fr mt-10 ">
           <div class="fr font12">
-            <a href="/groups/new" class="back"><img src="/assets/images/accept.png" alt=""> create group</a><br>
+            <a href="/groups/new" class="back"><img src="/assets/images/accept.png" alt=""> Create Group</a><br>
             <div class="fr font14 underLine mt5"> <%=@groups.size%> <%= @groups.size <=1 ? "Group" : "Groups"%></div>
           </div>
         </div>
@@ -31,27 +31,7 @@
       </div>
       <div class="clearfix grpOuter" id="groups">
         <%= render partial: "groups", locals: {groups: @groups} %>
-      </div>
-      <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
-        <div class="clearfix conversationTop borderBtm">
-          <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
-          <div class="fr"> <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
-        </div>
-        <div class="connectionOuter ">
-          <div class="col-sm-6 borderRight">
-            <a href="#"> <img src="/assets/images/user1.jpg" alt=""> <span>H. Peter Curran</span></a>
-            <div class="dsignation">Appraiser, Art, Antiques,
-              Deconstruction 
-            </div>
-            <a href="#" class="whiteBtn"> Connect </a> 
-          </div>
-          <div class="col-sm-6">
-            <a href="#"> <img src="/assets/images/user2.jpg" alt=""> <span>Trip Spencer</span></a>
-            <div class="dsignation">Director</div>
-            <a href="#" class="whiteBtn"> Connect </a> 
-          </div>
-        </div>
-      </div>
+      </div>      
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ class CommunitiesController < ApplicationController
   # fetching user communities and associated community members
   def index
     # @communities = current_user.communities
-    # start change code- kandarp
+    # start change code- kandarp    
     if params[:data].present?
       @communities = (current_user.communities.search(params[:data]) + current_user.community_members.search(params[:data])).compact.uniq.sort_by(&:updated_at).reverse
     else
@@ -16,22 +16,6 @@ class CommunitiesController < ApplicationController
     # @communities =(current_user.communities + current_user.community_members).compact
     @friends = current_user.my_friends
     @friends = @friends.present? ? @friends : [] 
-  end
-
-  # fetching posts for a cummunity and all suggested communities, suggested connections and suggested communitys
-  def show
-    @suggested_communities = new_suggested_communities.first(2)
-    @suggested_connections = new_suggested_connections.first(2)
-    @suggested_groups = new_suggested_groups.first(2)
-    if params[:post_id]
-      @post = current_user.posts.friendly.find(params[:post_id])
-      @post.upload
-    else
-      @post = Post.new
-      @post.build_upload
-    end
-    @posts = @community.posts.paginate(:page => params[:page], :per_page => 5)
-    @comment = Comment.new    
   end
 
   # Initializing commnunity
@@ -85,6 +69,22 @@ class CommunitiesController < ApplicationController
     end
   end
 
+  # fetching posts for a cummunity and all suggested communities, suggested connections and suggested communitys
+  def show
+    @suggested_communities = new_suggested_communities.first(2)
+    @suggested_connections = new_suggested_connections.first(2)
+    @suggested_groups = new_suggested_groups.first(2)
+    if params[:post_id]
+      @post = current_user.posts.friendly.find(params[:post_id])
+      @post.upload
+    else
+      @post = Post.new
+      @post.build_upload
+    end
+    @posts = @community.posts.order("updated_at desc").paginate(:page => params[:page], :per_page => 5)
+    @comment = Comment.new    
+  end
+
   # deleting community
   def destroy
     authorize @community
@@ -96,13 +96,14 @@ class CommunitiesController < ApplicationController
   end
 
   # joining the community and send notification of joining
-  def join    
+  def join
     @community.members.create(:user_id=>current_user.id)
     @invitable_members = @community.members - @community.members.where(user_id: current_user.id)
     @invitable_members.map(&:user).uniq.each do |user|
+      reciver =  User.find(user)
+      notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
-      PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
-
+      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
     end
     @suggested_communities, @suggest = suggested_communities
   end

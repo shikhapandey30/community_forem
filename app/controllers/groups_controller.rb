@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
     @suggested_communities = new_suggested_communities.first(2)
     @suggested_connections = new_suggested_connections.first(2)
     @suggested_groups = new_suggested_groups.first(2)
-    @posts = @group.posts.paginate(:page => params[:page], :per_page => 5)
+    @posts = @group.posts.order("updated_at desc").paginate(:page => params[:page], :per_page => 5)
     @comment = Comment.new    
   end
 
@@ -139,7 +139,7 @@ class GroupsController < ApplicationController
 
     def set_members
       members_ids = params[:group][:members].reject(&:empty?)
-       @group.members.destroy_all if params[:action] == "update"
+      @group.members.destroy_all if params[:action] == "update"
       members_ids.each do |members_id|
         member = Member.create(:user_id => members_id.to_i, :invitable => @group)
         #send notification

@@ -8,7 +8,7 @@
         Your Contest Module
         <div class="fr mt-10 ">
           <div class="fr font12">
-            <a href="/contests/new" class="back"><img src="/assets/images/accept.png" alt=""> create contest</a><br>
+            <a href="/contests/new" class="back"><img src="/assets/images/accept.png" alt=""> Create Contest</a><br>
             <div class="fr font14 underLine mt5"> <%=@contests.size%> <%= @contests.size <=1 ? "Contest Module" : "Contest Modules"%> </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
       <div class="clearfix grpOuter" id= "contests">
           <%= render partial: "contests", locals: {contests: @contests} %>
       </div>
-      <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
+      <!-- <div class="clearfix whiteBox borderTop mt20 mb20  pb0">
         <div class="clearfix conversationTop borderBtm">
           <span class="bold grayColor">See anyone you know? <span class="font13 blackColor">Connect with them</span></span>
           <div class="fr"> <a href="#" class="grayColor">See More Connection <img src="/assets/images/rightArrow.jpg" alt=""></a> </div>
@@ -51,7 +51,7 @@
             <a href="#" class="whiteBtn"> Connect </a> 
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
