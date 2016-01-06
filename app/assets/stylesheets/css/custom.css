@@ -182,11 +182,11 @@ div.ajax-loading span p i{
 }
 .cursor{cursor: pointer;}
 .right{float: right;}
-.scrollbars-comments{  
+/*.scrollbars-comments{  
     height: 400px;
     overflow-x: hidden;
     overflow-y: scroll;
-}
+}*/
 /* 5-Jan-2016*/
 a.hoverOut:hover b {display:none}
 a.hoverOut:hover:before {content:"Leave"}
