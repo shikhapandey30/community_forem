@@ -31,6 +31,17 @@ Rails.application.configure do
   #     :authentication => :plain,
   #     :enable_starttls_auto => true
   # }
+
+  config.action_mailer.smtp_settings = {
+       :address => "email-smtp.us-west-2.amazonaws.com",
+       :port => 25, #[25, 465, 587]
+       :domain => 'localhost:3000',
+       :user_name => "GoTry-SMTP-2016",
+       :password => "go-Try-2015!!",
+       :authentication => :plain,
+       :enable_starttls_auto => true
+   }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
