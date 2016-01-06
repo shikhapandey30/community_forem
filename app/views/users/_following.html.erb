@@ -1,12 +1,4 @@
-<% if object.first.class.name == "Community" %>
- <span class="userNAme">Communities</span>
-<% elsif object.first.class.name == "MeetingRoom"%>
-  <span class="userNAme">Meeting Rooms</span>
-<% elsif object.first.class.name == "Group"%>
-  <span class="userNAme">Groups</span>
-<% elsif object.first.class.name == "Post"%>
-  <span class="userNAme">Posts</span>
-<% end %>
+<span class="userNAme"><%= model_type(object.first.class.name) %></span>
 <div class="clearfix"></div>
 <% object.each do |follow|%>
   <% if (follow.class.name == "Community" || follow.class.name == "Group" || follow.class.name == "MeetingRoom") %>

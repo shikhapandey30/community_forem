@@ -33,6 +33,19 @@ module ApplicationHelper
     (Date.today>expire_date) ? 'Expired' : distance_of_time_in_words( Time.now,expire_date ) + " rem."
   end
 
+  def model_type(type)
+    case type
+    when 'Community' 
+     model_type = 'Communities'
+    when 'Post'
+      model_type = 'Posts'  
+    when 'MeetingRoom'
+      model_type = 'MeetingRooms'  
+    when 'Group' 
+      model_type = 'Groups'
+    end
+    return model_type
+  end
   # def flash(level)
   #       case level
   #       when 'notice' then "alert alert-info"
