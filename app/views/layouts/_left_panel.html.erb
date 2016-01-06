@@ -25,8 +25,8 @@
       <li><a href="#"><img src="/assets/images/li7.png" alt="">Politics &amp; Government</a></li>
       <li><a href="#"><img src="/assets/images/li8.png" alt="">Travel &amp; Lifestyle</a></li>
       <li><a href="#"><img src="/assets/images/li9.png" alt="">Food &amp; Drink</a></li> -->
-      
-      <%=link_to "View All", categories_path, class: "viewAll"%>
+        <%=link_to "View All", categories_path, class: "viewAll" if categories%>
+            
       <div class="footerLink">
         <a href="/terms_and_conditions">Terms of Use</a>
         <a href="/privacy_policy">Privacy Policy</a>

@@ -188,5 +188,10 @@ div.ajax-loading span p i{
     overflow-y: scroll;
 }*/
 /* 5-Jan-2016*/
-a.hoverOut:hover b {display:none}
+a.hoverOut:hover b {display:none;}
+a.hoverOut:hover img {display:none;}
 a.hoverOut:hover:before {content:"Leave"}
+/*a.hoverOut:hover img.reject {display:block;}*/
+/*6-Jan-2016*/
+.pollImgOuter{display: inline-block;width: 175px;max-height: 118px;overflow: hidden;}
+.pollImgOuter  img{width:100%;}

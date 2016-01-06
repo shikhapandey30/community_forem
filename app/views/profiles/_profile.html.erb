@@ -35,7 +35,7 @@
       <div class="col-sm-6 pr10">
         <label>Country</label>
         <div class="selctFormBox">      
-          <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required,maxSize[80]]" %>
+          <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required]" %>
           <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
         </div>
       </div>

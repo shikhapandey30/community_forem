@@ -9,7 +9,7 @@
         </ul>
       </div>
     <% end %>
-    <a href="<%=contest_path(contest)%>" class="block mt20 grpImg"><%=image_tag contest.img%></a>
+    <a href="<%=contest_path(contest)%>" class="pollImgOuter mt20 grpImg"><%=image_tag contest.img%></a>
     <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.topic%></a>
     <div class="virwJoinBtn">
       <a class="btmBtn" href="<%=contest_path(contest)%>"> <span class="<%=expireDate(contest.end_date)=="Expired" ? 'redColor' : 'blackColor'%>" id="remainTime_<%=contest.id%>">
