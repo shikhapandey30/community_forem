@@ -47,6 +47,8 @@ class UsersController < ApplicationController
     @suggested_communities = new_suggested_communities.paginate(:page => params[:page], :per_page => 2)
     @suggested_connections = new_suggested_connections.paginate(:page => params[:page], :per_page => 2)
     @suggested_groups = new_suggested_groups.paginate(:page => params[:page], :per_page => 2)
+    @suggested_meeting_rooms = new_suggested_meeting_rooms.paginate(:page => params[:page], :per_page => 2)
+    @suggested_contests = new_suggested_contests.paginate(:page => params[:page], :per_page => 2)
     # @user_notification=current_user.notifications.where(:notification_status=>'Unread')
     # @reveal_identity=@user_notification.where(:notifictaion_type=>'RevealIdentity')
     # @follow=@user_notification.where(:notifictaion_type=>'Follow Request')

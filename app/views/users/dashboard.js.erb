@@ -1,5 +1,8 @@
+
 $(".masonry-container").append("<%= j (render('users/post')) %>");
-$('#comment_button_<%=@posts.first.id %>').focus();
+<%if @posts.first%>
+  $('#comment_button_<%=@posts.first.id %>').focus();
+<%end%>
 <%if @posts.total_pages.to_i == params[:page].to_i || @posts.blank? %>
 $('.loader-img').html('No more records Founds!');
 <%end%>
