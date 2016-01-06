@@ -46,6 +46,21 @@ module ApplicationHelper
     end
     return model_type
   end
+
+  def model_path(follow)
+    follow_type_class = follow.class.name
+    case follow_type_class
+    when 'Community' 
+     model_path = community_path(follow)
+    when 'Post'
+      model_path = post_path(follow) 
+    when 'MeetingRoom'
+      model_path = meeting_room_path(follow) 
+    when 'Group' 
+      model_path = group_path(follow)
+    end
+    return model_path
+  end
   # def flash(level)
   #       case level
   #       when 'notice' then "alert alert-info"
