@@ -3,7 +3,7 @@
 class MeetingRoomUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -26,7 +26,9 @@ class MeetingRoomUploader < CarrierWave::Uploader::Base
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
+   version :thumb do
+    process :resize_to_fit => [197, 229]
+  end
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
