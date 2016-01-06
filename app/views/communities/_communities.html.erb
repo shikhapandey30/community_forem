@@ -9,7 +9,7 @@
         </ul>
       </div>
     <% end %>
-    <a href="<%=community_path(community)%>" class="block mt20 grpImg"> <%=image_tag community.img%> </a>
+    <a href="<%=community_path(community)%>" class="pollImgOuter mt20 grpImg"> <%=image_tag community.img%> </a>
     <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
     <div class="virwJoinBtn">
       <a class="btmBtn" href="<%=community_path(community)%>"> <%= community.members.try(:count)%> <%= community.members.try(:count) <= 1 ? 'Member' : 'Members'%></a>

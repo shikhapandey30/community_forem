@@ -9,11 +9,11 @@
   <%end%>
   <%@suggested_groups.each_with_index do |group, index|%>    
     <div class="whiteBox borderTop col-sm-6 pb0 fl" id="group_<%=group.id%>">
-      <a href="<%=group_path(group)%>" class="block mt20 grpImg"><%=image_tag group.img%></a>
+      <a href="<%=group_path(group)%>" class="pollImgOuter mt20 grpImg"><%=image_tag group.img%></a>
       <a href="<%=group_path(group)%>" class="block groupName width"><%=group.topic%></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>
-        <%=link_to "Join", join_group_path(group), class: "btmBtn", id: "joinGroup_#{group.id}", remote: true%>              
+        <%=link_to "Join", join_group_path(group), class: "btmBtn", id: "joinGroup_#{group.id}", remote: true%>
       </div>
     </div>
   <%end%>

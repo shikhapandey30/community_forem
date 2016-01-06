@@ -10,7 +10,7 @@
           (<%= @contest.start_date.strftime("%m/%d") rescue nil%> - <%= @contest.end_date.strftime("%m/%d") rescue nil %>)
         </div>
         <div class="fr font12">
-          <a href="<%= leave_contest_path(@contest)%>" class="back hoverOut" data-method ="post"><img src="/assets/images/accept.png" alt="" ><b> member</b></a><br>
+          <a href="<%= leave_contest_path(@contest)%>" class="back hoverOut" data-method ="post"><img src="/assets/images/accept.png" alt="" ><img src="/assets/images/reject.png" alt="" class="hide reject" ><b> member</b></a><br>
           <div class="fr font14"> <%= @contest.members.try(:count) %> <%= @contest.members.try(:count) <= 1 ? 'member' : 'members' %></div>
         </div>
       </div>

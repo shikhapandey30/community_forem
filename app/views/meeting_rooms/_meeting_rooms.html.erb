@@ -9,7 +9,8 @@
         </ul>
       </div>
     <%end%>
-    <%=link_to image_tag(room.img), meeting_room_path(room), class: "block mt20 grpImg"%>
+    <a href="<%=meeting_room_path(room)%>" class="pollImgOuter mt20 grpImg"> <%=image_tag room.img%></a>
+    <%#=link_to image_tag(room.img), meeting_room_path(room), class: "pollImgOuter mt20 grpImg"%>
     <a href="<%=meeting_room_path(room)%>" class="block groupName width"><%=room.topic%></a>
     <div class="virwJoinBtn">
       <a class="btmBtn fullWdth" href="<%=meeting_room_path(room)%>"> <%= room.members.try(:count)%>  Members</a>

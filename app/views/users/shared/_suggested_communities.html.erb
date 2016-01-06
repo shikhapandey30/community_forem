@@ -9,7 +9,7 @@
   <%end%>
   <%@suggested_communities.each_with_index do |community, index|%>
     <div class="whiteBox borderTop  col-sm-6 pb0 fl" id="community_<%=community.id%>">
-      <a href="<%=community_path(community)%>" class="block mt20 grpImg"><%=image_tag community.img%></a>
+      <a href="<%=community_path(community)%>" class="pollImgOuter mt20 grpImg"><%=image_tag community.img%></a>
       <a href="<%=community_path(community)%>" class="block groupName width"><%=community.topic%></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>
