@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   # Fetching the suggested communitites to join
   def new_suggested_communities
-    @Communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
+    @communities = current_user.friends.collect(&:communities).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_communities = current_user.members.where(invitable_type: "Community").collect(&:invitable).uniq
     return (@communities.to_a - (@joined_communities + current_user.communities))
   end
@@ -27,6 +27,18 @@ class ApplicationController < ActionController::Base
     @groups = current_user.friends.collect(&:groups).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
     @joined_groups = current_user.members.where(invitable_type: "Group").collect(&:invitable).uniq
     return (@groups.to_a - (@joined_groups + current_user.groups))
+  end
+
+  def new_suggested_meeting_rooms
+    @meeting_rooms = current_user.friends.collect(&:meeting_rooms).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
+    @joined_meeting_rooms = current_user.members.where(invitable_type: "MeetingRoom").collect(&:invitable).uniq
+    return (@meeting_rooms.to_a - (@joined_meeting_rooms + current_user.meeting_rooms))
+  end
+
+  def new_suggested_contests    
+    @contests = current_user.friends.collect(&:contests).compact.flatten.uniq.sort_by {|c| c.updated_at}.reverse
+    @joined_contests = current_user.members.where(invitable_type: "Contest").collect(&:invitable).uniq
+    return (@contests.to_a - (@joined_contests + current_user.contests))
   end
 
    # Mobile Devices and Format
