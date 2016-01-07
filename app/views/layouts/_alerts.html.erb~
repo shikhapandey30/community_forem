@@ -78,3 +78,37 @@ border-color: #bce8f1;
 }
 .close{float: right;}
 </style>
+<div class="socialmedia-icons" >
+          <ul class="social-list">
+            <li class="twitter" id="social-icn-bg" >
+              <a href="https://twitter.com/intent/tweet?url=<%= request.url %>&text=<%= recipe.name %> - 'FREE 7 DAY TRIAL - Get Fat-Burning Recipes and UNLIMITED ACCESS to hundreds of programs and workouts from top wellness experts. Lose weight, get in shape, improve sleep and reduce stress. Try it RISK FREE today.'&via=fitnessaccount"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Twitter</a>
+            </li>
+            <li class="facebook" id="social-icn-bg">
+              <a href="#" id="facebook-share_<%= recipe.id%>">Facebook</a>
+            </li>
+           <li class="googleplus" id="social-icn-bg">
+              <a href="https://plus.google.com/share?title= <%= recipe.name %>&url=<%= request.url %>&description=FREE 7 DAY TRIAL - Get Fat-Burning Recipes and UNLIMITED ACCESS to hundreds of programs and workouts from top wellness experts. Lose weight, get in shape, improve sleep and reduce stress. Try it RISK FREE today.& image= <%= recipe_image_url %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"  target="_blank" >Google +</a>
+            </li>
+           
+            <li class="pinterest" id="social-icn-bg">
+              <a href="http://pinterest.com/pin/create/button/?url=<%= url_for(:only_path => false) %>&title=<%= recipe.name %>&media=<%= recipe_image_url %>&description=FREE 7 DAY TRIAL - Get Fat-Burning Recipes and UNLIMITED ACCESS to hundreds of programs and workouts from top wellness experts. Lose weight, get in shape, improve sleep and reduce stress. Try it RISK FREE today."onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Pinterest</a>
+            </li>
+            <li class="linkedin" id="social-icn-bg">
+              <a href="http://www.linkedin.com/shareArticle?mini=true&title= '<%= recipe.name %>'&url=<%= request.url %>&summary='FREE 7 DAY TRIAL - Get Fat-Burning Recipes and UNLIMITED ACCESS to hundreds of programs and workouts from top wellness experts. Lose weight, get in shape, improve sleep and reduce stress. Try it RISK FREE today.'&image= <%= recipe_image_url %>&via=fitnessaccount" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">linkedin</a>
+  
+
+            </li>
+          </ul>
+          <script type="text/javascript">
+  $(document).on('click','#facebook-share_<%=recipe.id %>',function(e){
+    e.preventDefault();
+    FB.ui(
+    {
+        method: 'feed',
+        link: 'https://<% if request.subdomain.present? && request.subdomain != "www" %><%= request.subdomain %>.<% else %><% end %>yourwellnessroom.com/recipes/<%= recipe.id %>',
+        name: '<%= recipe.name %>',
+        picture: '<%= recipe_image_url %>',
+        description: 'FREE 7 DAY TRIAL - Get Fat-Burning Recipes and UNLIMITED ACCESS to hundreds of programs and workouts from top wellness experts. Lose weight, get in shape, improve sleep and reduce stress. Try it RISK FREE today.'
+    }, function(response){});
+  });
+  </script>
