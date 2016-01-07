@@ -9,9 +9,9 @@ class Contest < ActiveRecord::Base
 
   has_many :posts,:dependent => :destroy, :as => :postable
   has_many :members,:dependent => :destroy, :as => :invitable
-  has_many :likes, :as => :likable, dependent: :destroy
-  has_many :dislikes, :as => :dislikable, dependent: :destroy
-	has_many :comments,:dependent => :destroy, :as => :commentable
+  # has_many :likes, :as => :likable, dependent: :destroy
+  # has_many :dislikes, :as => :dislikable, dependent: :destroy
+  # has_many :comments,:dependent => :destroy, :as => :commentable
   has_many :followings, as: :followable, :dependent => :destroy
   has_many :votes, as: :votable, dependent: :destroy
   

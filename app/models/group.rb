@@ -8,7 +8,8 @@ class Group < ActiveRecord::Base
 	belongs_to :category
   has_many :posts,:dependent => :destroy, :as => :postable
   has_many :members,:dependent => :destroy, :as => :invitable
-
+  # has_many :likes, :as => :likable, dependent: :destroy
+  # has_many :dislikes, :as => :dislikable, dependent: :destroy
   has_one :upload, as: :uploadable, dependent: :destroy
 
   accepts_nested_attributes_for :upload, :allow_destroy => true
