@@ -48,7 +48,7 @@ class Post < ActiveRecord::Base
   ## search by post topic
   def self.search(search)
     if search
-      where('topic LIKE ?', "%#{search}%")
+      where('lower(topic) LIKE ?', "%#{search}%".downcase)
     else
       all
     end

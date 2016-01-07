@@ -91,6 +91,16 @@ class User < ActiveRecord::Base
   # has_many :categories
   #accepts_nested_attributes_for :users_categories, :reject_if => :all_blank, :allow_destroy => true
    attr_accessor :current_password
+   attr_accessor :login
+
+   def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(screen_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end  
   
   
   def active_for_authentication?

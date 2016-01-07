@@ -11,14 +11,14 @@
       </div>
     </div>
   <%end%>
-  <%@suggested_forum_polls.each_with_index do |group, index|%>    
-    <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="group_<%=group.id%>">
-      <a href="<%=group_path(group)%>" class="pollImgOuter mt20 grpImg"><%=image_tag group.img%></a>
-      <a href="<%=group_path(group)%>" class="block groupName width"><%=group.topic%></a>
+  <%@suggested_forum_polls.each_with_index do |forum_poll, index|%>    
+    <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="forum_poll_<%=forum_poll.id%>">
+      <a href="<%=forum_poll_path(forum_poll)%>" class="pollImgOuter mt20 grpImg"><%=image_tag forum_poll.img%></a>
+      <a href="<%=forum_poll_path(forum_poll)%>" class="block groupName width"><%=forum_poll.try(:topic) %></a>
       <div class="virwJoinBtn">
-        <a class="btmBtn" href="#"> 0 Updates</a>
-        <%=link_to "Join", join_group_path(group), class: "btmBtn", id: "joinGroup_#{group.id}", remote: true%>
-      </div>
+      <a class="btmBtn" href="<%=forum_poll_path(forum_poll)%>"><%=expireDate(forum_poll.end_date) if forum_poll.end_date%></a>      
+      <a class="btmBtn" href="<%=forum_poll_path(forum_poll)%>" > <%=forum_poll.votes.size%> <%=forum_poll.votes.size>1 ? 'Votes' : 'Vote'%> </a>
+    </div>
     </div>
   <%end%>
 <%end%>
