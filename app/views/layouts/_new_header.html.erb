@@ -9,14 +9,14 @@
     <%end%>
     <% notifications = @current_user.notifications.unread %>
     <%# messages = @current_user.notifications.messages.unread %>
-    <% messages = Message.incoming_messages%>
+    <% messages = Message.incoming_messages(current_user)%>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
     <% notifications = notifications - messages - friend_requests %> 
     <span class="dropdown notification">   
       <%=render 'notifications/notifications'%>
     </span>      
     <span class="dropdown notification message_notifications">
-      <%=render 'notifications/message_notifications'%>
+      <%=render 'notifications/message_notifications', user: current_user%>
     </span>
        <span class="dropdown notification ">  
           <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt="">
