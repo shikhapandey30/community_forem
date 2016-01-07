@@ -41,35 +41,26 @@
       </div>
 
       <div class="community_following grpOuter">
-        <span class="userNAme"><%= @suggested_communities.first.class.name.pluralize if @suggested_communities.present? %></span>        
-        <div class="clearfix"></div>
         <%=render "users/shared/suggested_communities", suggest: false %>
       </div>
-            
+      <div class="clearfix"></div>
       <div class="group_following grpOuter">
-      <span class="userNAme"><%= @suggested_groups.first.class.name.pluralize if @suggested_groups.present? %></span>
-        
-        <div class="clearfix"></div>
         <%=render "users/shared/suggested_groups", suggest: false %>
       </div>
-
-      <div class="community_following grpOuter">
-        <span class="userNAme"><%= @suggested_meeting_rooms.first.class.name.pluralize if @suggested_meeting_rooms.present? %></span>
-        <div class="clearfix"></div>
-        <%=render "users/shared/suggested_meeting_rooms", suggest: false %>
+      <div class="clearfix"></div>
+      <div class="meeting_room_following grpOuter">
+          <%=render "users/shared/suggested_meeting_rooms", suggest: false %>
       </div>
-
+      <div class="clearfix"></div>
       <div class="contest_following grpOuter">
-        <span class="userNAme"><%= @suggested_contests.first.class.name.pluralize if @suggested_contests.present? %></span>
-        <div class="clearfix"></div>
         <%=render "users/shared/suggested_contests", suggest: false %>
       </div>
-
-      <!-- <div class="community_following grpOuter">
-        <span class="userNAme"><%# @suggested_forum_polls.first.class.name.pluralize if @suggested_forum_polls %></span>
+      <div class="clearfix"></div>
+      <div class="forum_poll_following grpOuter">
+        <span class="userNAme"><% @suggested_forum_polls.first.class.name.pluralize if @suggested_forum_polls %></span>
         <div class="clearfix"></div>
-        <%#=render "users/shared/suggested_forum_polls", suggest: false %>
-      </div> -->
+        <%=render "users/shared/suggested_forum_polls", suggest: false %>
+      </div>
 
     </div>
   </div>

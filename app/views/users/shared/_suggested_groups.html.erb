@@ -1,5 +1,9 @@
+<% if @suggested_groups.present? %>
+  <span class='userNAme'>Groups</span>
+<% end %>
+<div class='clearfix'></div>
 <%if @suggested_groups.present?%>
-  <%if suggest%>
+  <%if suggest %>
     <div class="suggestedRow">
       <div class="clearfix conversationTop">
         <span class="bold grayColor"> <span class="font13 blackColor">Suggested Groups</span></span>
@@ -8,7 +12,7 @@
     </div>
   <%end%>
   <%@suggested_groups.each_with_index do |group, index|%>    
-    <div class="whiteBox borderTop col-sm-6 pb0 fl" id="group_<%=group.id%>">
+    <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="group_<%=group.id%>">
       <a href="<%=group_path(group)%>" class="pollImgOuter mt20 grpImg"><%=image_tag group.img%></a>
       <a href="<%=group_path(group)%>" class="block groupName width"><%=group.topic%></a>
       <div class="virwJoinBtn">

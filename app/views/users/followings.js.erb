@@ -1,4 +1,6 @@
-$(".group_following").html("<%= j render('users/following', object: @group_following)%>");
-$(".community_following").html("<%= j render('users/following', object: @community_following)%>");
-$(".meeting_room_following").html("<%= j render('users/following', object: @meeting_room_following)%>");
-$(".post_following").html("<%= j render('users/following', object: @post_following)%>");
+$(".group_following").html("<%= j render('users/shared/suggested_groups', suggested_groups: @suggested_groups, suggest: false)%>");
+$(".community_following").html("<%= j render('users/shared/suggested_communities', suggested_communities: @suggested_communities, suggest: false)%>");
+$(".meeting_room_following").html("<%= j render('users/shared/suggested_meeting_rooms', suggested_meeting_rooms: @suggested_meeting_rooms, suggest: false)%>");
+$(".contest_following").html("<%= j render('users/shared/suggested_contests', suggested_contests: @suggested_contests, suggest: false)%>");
+$(".forum_poll_following").html("<%= j render('users/shared/suggested_forum_polls', suggested_forum_polls: @suggested_forum_polls, suggest: false)%>");
+// $(".post_following").html("<%= j render('users/following', object: @post_following)%>");
