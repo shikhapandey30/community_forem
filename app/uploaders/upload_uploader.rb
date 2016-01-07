@@ -32,12 +32,18 @@ class UploadUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-   version :thumb do
+  version :thumb, :if => :image? do
     process :resize_to_fit => [197, 229]
   end
 
-   version :banner do
+   version :banner, :if => :image? do
     process :resize_to_fit => [1024, 328]
+  end
+
+  protected
+
+  def image?(file)
+    file.content_type.include? 'image'
   end
 
   # Create different versions of your uploaded files:

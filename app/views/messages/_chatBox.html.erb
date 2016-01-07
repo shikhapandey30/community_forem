@@ -38,10 +38,10 @@
       <div class="submitRow">
         <%=f.fields_for :upload do |u|%>
           <span>
-          <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image profile_picture", style: "visibility: hidden; width: 1px; height: 1px" %>
+          <%= u.file_field :image, class: "post post_image profile_picture", style: "visibility: hidden; width: 1px; height: 1px" %>
 
           <a href="#-" onclick="document.getElementById('message_upload_attributes_image').click(); return false"><img src="/assets/images/c1.png" alt=""></a>
-          <%= u.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" %>
+          <%= u.file_field :file, style: "visibility: hidden; width: 1px; height: 1px" %>
           <a href="#-" onclick="document.getElementById('message_upload_attributes_file').click(); return false"><img src="/assets/images/c3.png" alt=""></a></span>        
           <input type="submit" value="Send" class="blueBtn">
         <%end%>
