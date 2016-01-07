@@ -20,7 +20,7 @@
             <%#= flash.try(:alert) %>
           </div> -->
           <%#= devise_error_messages! %>          
-          <%= f.email_field :email, autofocus: true, placeholder: "Enter Your Email", :maxlength=>"80", "data-validation-engine"=>"validate[required],custom[email]", class: "inputText" %>
+          <%= f.text_field :login, autofocus: true, placeholder: "Enter Your Email or Screen_name", :maxlength=>"80", "data-validation-engine"=>"validate[required]", class: "inputText" %>
           <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :maxlength=>"40",  "data-validation-engine"=>"validate[required]", class: "inputText" %>
           <%= f.submit "Log In", class: "darkBlueBtn inputSubmit" %>
           <!--  <label class="fl remPAss font12"><input type="checkbox"> Remenber Password </label>

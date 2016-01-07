@@ -17,7 +17,7 @@
           <br><%= link_to "Remove", unfriend_path(:friend_id => friend.id), :method => :post , :class=>"removeLink", :remote=>true %>
         </div>
         <div class="font13 mt5"><%=designations(friend)%></div>
-        <div class="font13"><%=friend.try(:country)%></div>
+        <div class="font13"><%=friend.try(:profile).try(:country).try(:name)%></div>
       </div>
     </div>
   </div>

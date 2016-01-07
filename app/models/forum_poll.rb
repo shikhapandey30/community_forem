@@ -12,6 +12,8 @@ class ForumPoll < ActiveRecord::Base
 	has_many :votes, as: :votable, dependent: :destroy
 	
 	has_one :upload, as: :uploadable, dependent: :destroy
+	# has_many :likes, :as => :likable, dependent: :destroy
+ #    has_many :dislikes, :as => :dislikable, dependent: :destroy
 	
 	accepts_nested_attributes_for :upload, :allow_destroy => true
 	
