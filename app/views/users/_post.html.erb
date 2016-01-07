@@ -44,7 +44,7 @@
               <% end %>
 
                <% if post.upload.try(:video).present? %>
-                <iframe class="mt20"  width="100%" src="<%= post.upload.try(:video) %>"></iframe>
+                <iframe class="mt20" width="100%" height="280px" src="<%= post.upload.try(:video) %>"></iframe>
               <% end %>
 
               <div class="mt20 font14">
