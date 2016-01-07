@@ -367,7 +367,6 @@ ActiveRecord::Schema.define(version: 20160107102616) do
     t.integer  "user_id",         limit: 4
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.boolean  "archive",                       default: false
     t.boolean  "is_read",                       default: false
     t.datetime "read_at"
     t.integer  "by_user",         limit: 4
