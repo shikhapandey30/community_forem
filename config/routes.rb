@@ -58,6 +58,9 @@ Rails.application.routes.draw do
   end
   resources :forum_polls do
     resources :votes, only: [:create]
+    member do
+      get :join
+    end
   end
 
   get "/votes/favour", to: "votes#favour", as: 'favour'

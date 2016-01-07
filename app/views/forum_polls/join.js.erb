@@ -1,0 +1,11 @@
+<%if request.referrer.include?("followings")%>
+	$("#joinForumPoll_<%=@forum_poll.id%>").text("Joined").attr("href","#-").removeAttr("data-remote");
+<%else%>
+	$("#joinForumPoll_<%=@forum_poll.id%>").text("Joined");
+	$("#forum_poll_<%=@forum_poll.id%>").fadeOut(2000);
+	setTimeout(
+	  function() 
+	  {
+		$(".grpOuter.suggest_forum_polls").html("<%= j render('users/shared/forum_polls', suggest: @suggest)%>");
+	  }, 2000);
+<%end%>

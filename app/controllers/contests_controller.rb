@@ -84,7 +84,7 @@ class ContestsController < ApplicationController
     @contest.members.create(:user_id=>current_user.id)
     @invitable_members = @contest.members - @contest.members.where(user_id: current_user.id)    
     @invitable_members.map(&:user).uniq.each do |user|
-      reciver =  User.find(user)
+      reciver =  User.find(user.id)
       notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@meeting_room.topic}", notificable: @meeting_room, :accept => true)
       PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
