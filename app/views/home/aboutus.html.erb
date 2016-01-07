@@ -1,5 +1,5 @@
 <%#= StaticPage.try(:first).try(:about_us).try(:html_safe) %>
-
+<%= content_for(:title, ':: About US ::') %>
   <div class="mainCOntnt">
     <%=render "layouts/left_panel"%>
     <div class="rightContent">
