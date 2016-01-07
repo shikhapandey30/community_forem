@@ -1,3 +1,4 @@
+<%= content_for(:title, @group.new_record? ? 'New Group' : @group.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">

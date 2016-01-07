@@ -103,3 +103,4 @@ gem 'slim'
 gem 'whenever', :require => false
 gem 'rmagick'
 gem 'ckeditor'
+gem "figaro"
