@@ -1,6 +1,6 @@
 module UsersHelper
 	def designation(post)
-		post.user.employment_details.current_company.try(:last).try(:designation)
+		post.user.employment_details.current_company.try(:last).try(:designation) rescue "N/A"
 	end
 
 	def designations(user)
