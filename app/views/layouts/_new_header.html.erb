@@ -1,9 +1,8 @@
 <header class="clearfix whiteHeader ">
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="/dashboard"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
   <div class="topRightHeader">
-    <div class="topRight">    
-    <span class="dropdown notification">
-    <%if params[:friend_id]%>
+    <div class="topRight">   
+     <%if params[:friend_id]%>
       <%@current_user = User.find(params[:friend_id])%>
     <%else%> 
       <%@current_user = current_user%>    
@@ -12,40 +11,13 @@
     <%# messages = @current_user.notifications.messages.unread %>
     <% messages = Message.incoming_messages%>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
-    <% notifications = notifications - messages - friend_requests %>
-
-       <a href="#" data-toggle="dropdown" class="push-notification"><img src="/assets/images/noti.png" alt="">
-        <%if notifications.count > 0 %>
-         <span id ="all-notifications"><%= notifications.count %></span>
-         <% end %>
-       </a>
-         <ul class="clearfix dropdown-menu">
-         <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
-         <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
-        </div>      
-      <div class="notiScroll scrollbars notifications"> 
-        <% notifications.try(:reverse).each do |notification|%>
-          <li class="notification-<%= notification.id %>">
-            <div class="clearfix commentSec cmntRow">
-              <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user)%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user)%>" class="userNAme font14"><%=notification.user.try(:screen_name )%></a> <br>
-                <div class="fr grayColor tar"><%= time_ago_in_words(notification.updated_at).capitalize %> ago</div>
-                <div class="font13"><%= notification.body.truncate(50) %></div>
-                <!-- <div class="blackColor font12 bold"> is now a connection</div> -->
-                <% if (notification.notificable.class.name == "Group") || (notification.notificable.class.name == "Community") || (notification.notificable.class.name == "MeetingRoom") || (notification.notificable.class.name == "RevealIdentity")%>
-                 <div class="acceptRej">
-                  <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
-                     <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
-                    </div>
-                    <% end %>
-              </div>              
-            </li>
-            <% end %>       
-          </div>
-        </ul>
-      </span>      
-      <span class="dropdown notification message_notifications">
-        <%=render 'notifications/message_notifications'%>
-      </span>
+    <% notifications = notifications - messages - friend_requests %> 
+    <span class="dropdown notification">   
+      <%=render 'notifications/notifications'%>
+    </span>      
+    <span class="dropdown notification message_notifications">
+      <%=render 'notifications/message_notifications'%>
+    </span>
        <span class="dropdown notification ">  
           <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt="">
            <%if friend_requests.count > 0 %>

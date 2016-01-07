@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104125910) do
+ActiveRecord::Schema.define(version: 20160107090505) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -367,7 +367,6 @@ ActiveRecord::Schema.define(version: 20160104125910) do
     t.integer  "user_id",         limit: 4
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
-    t.boolean  "archive",                       default: false
     t.boolean  "is_read",                       default: false
     t.datetime "read_at"
   end
@@ -388,14 +387,15 @@ ActiveRecord::Schema.define(version: 20160104125910) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id",          limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "recepient_id",     limit: 4
     t.integer  "notificable_id",   limit: 4
     t.string   "notificable_type", limit: 255
     t.datetime "readt_at"
     t.text     "body",             limit: 65535
     t.boolean  "accept"
+    t.boolean  "is_acceptable",                  default: false
   end
 
   create_table "organisations", force: :cascade do |t|

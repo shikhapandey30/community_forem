@@ -154,7 +154,7 @@ class GroupsController < ApplicationController
         reciver =  User.find(members_id)
         notifications = reciver.notifications.unread 
         if reciver.notification_setting.try(:new_update)
-          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false)
+          Notification.create(recepient_id: members_id, user: current_user, body: "#{current_user.screen_name } has invited you to join a group #{@group.topic} ", notificable: @group, :accept => false, :is_acceptable=>true)
           PrivatePub.publish_to "/profiles/new_#{members_id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
         end
       end
