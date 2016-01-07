@@ -17,7 +17,6 @@
 /tmp
 /public/assets/*
 /public/uploads/*
-/config/application.yml
 /config/database.yml
 /db/schema.rb
 .byebug_history
