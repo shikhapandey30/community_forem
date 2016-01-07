@@ -1,3 +1,4 @@
+<%= content_for(:title, @user.try(:screen_name).try(:capitalize)) %>
 <%= render 'form' %>
 <!-- script for loader -->
 <script type="text/javascript">	
