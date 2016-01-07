@@ -12,6 +12,6 @@ class Comment < ActiveRecord::Base
 	has_many :replies, dependent: :destroy
 
 	## Model Validations
-	validates_presence_of :body
+	validates_presence_of :body, :user_id
 
 end

@@ -2,6 +2,8 @@
   <div class="msgRight fr">
     <div class="grayBkg">
       <p><%=msg.body%></p>
+      <p><%=image_tag msg.try(:upload).try(:image).url(:thumb) if msg.try(:upload).try(:image)%></p>
+      <% if msg.try(:upload).try(:file)%><span class="glyphicon glyphicon-link"> </span> <a href="<%= msg.upload.try(:file) %>" class="post inline" target="_blank"><%= msg.upload.try(:file) %> </a><%end%>
     </div>
     <div class="time tar"><%=msg.created_at.strftime("%I:%M %p")%></div>
   </div>
@@ -10,6 +12,8 @@
   <div class="msgRight fl">
     <div class="grayBkg">
       <p><%=msg.body%></p>
+      <p><%=image_tag msg.try(:upload).try(:image).url(:thumb) if msg.try(:upload).try(:image)%></p>
+      <% if msg.try(:upload).try(:file)%><span class="glyphicon glyphicon-link"> </span> <a href="<%= msg.upload.try(:file) %>" class="post inline" target="_blank"><%= msg.upload.try(:file) %> </a><%end%>
     </div>
     <div class="time tal"><%=msg.created_at.strftime("%I:%M %p")%></div>
   </div>

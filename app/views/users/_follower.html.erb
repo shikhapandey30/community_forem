@@ -9,14 +9,14 @@
           <div class="fr grayColor tar">
             <%= time_ago_in_words(follower.updated_at).capitalize %> ago<br>
             <%if !current_user.friendships.collect(&:friend).include? @post.user %>
-                  <span class="friendship-button-<%=  @post.user.id  %> mt10">
-                  <%= link_to 'Connect', friendships_path(:friend_id =>@post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
+                  <span class="friendship-button-<%=  @post.try(:user).try(:id)  %> mt10">
+                  <%= link_to 'Connect', friendships_path(:friend_id =>@post.try(:user).try(:id)), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
                   </span>
                 <%end%>
             <div class="mt5 mb-10">
               <a href="#" class="removeLink inline">Message </a> |                
               <%if current_user != @post.user %>
-                <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.user.id %>">
+                <span id="following-button-span-<%= @post.id %>" class="user-folowed-<%=@post.try(:user).try(:id) %>">
                   <%= render :partial=> "users/follow_link", :locals => {:post => @post} %>
                 </span>
               <% end %>
