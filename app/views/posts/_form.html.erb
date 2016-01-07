@@ -1,4 +1,4 @@
-<%= content_for(:title, @post.new_record? ? 'New Meeting Room' : @post.try(:topic).try(:capitalize)) %>
+<%= content_for(:title, @post.new_record? ? 'New Post' : @post.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
