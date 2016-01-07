@@ -30,6 +30,7 @@
 //= require js/bootstrap.min
 //= require js/wow
 //= require js/function
+//= require ckeditor/init
 
 // $(document).ready(function() {
 // 	debugger
