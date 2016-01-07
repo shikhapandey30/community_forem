@@ -83,7 +83,7 @@ class MessagesController < ApplicationController
 
   # permitting message parameters
   def message_params
-    params.require(:message).permit(:body, :conversation_id)
+    params.require(:message).permit!
   end
 
   # get unarchive users
