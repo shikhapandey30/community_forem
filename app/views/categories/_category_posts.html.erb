@@ -5,8 +5,8 @@
         <div class="col-sm-12 mb10">
           <div class="clearfix userInfo posRel">
            <div>
-            <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
-            <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a>
+            <a href="<%= profile_path(post.user) rescue nil%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
+            <a href="<%= profile_path(post.user) rescue nil%>" class="userNAme"> <%= post.user.try(:screen_name) %></a>
             <% if current_user == post.user %>
                 <div class="editDlt  dropdown">
                   <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
