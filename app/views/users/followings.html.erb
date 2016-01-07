@@ -56,6 +56,10 @@
         <%=render "users/shared/suggested_contests", suggest: false %>
       </div>
       <div class="clearfix"></div>
+      <div class="post_following grpOuter">
+        <%=render "users/shared/following_posts", suggest: false %>
+      </div>
+      <div class="clearfix"></div>
       <div class="forum_poll_following grpOuter">
         <span class="userNAme"><% @suggested_forum_polls.first.class.name.pluralize if @suggested_forum_polls %></span>
         <div class="clearfix"></div>
