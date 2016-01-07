@@ -7,18 +7,18 @@ ActiveAdmin.register StaticPage do
 	    column "ID" do |static_page|
 	     link_to static_page.id, admin_static_page_path(static_page)
 	    end
-	    column "terms_and_conditions" do |static_page|
-	    	static_page.terms_and_conditions.try(:html_safe)
-	    end
+	    # column "terms_and_conditions" do |static_page|
+	    # 	static_page.terms_and_conditions.try(:html_safe)
+	    # end
 
-	    column "privacy_policy" do |static_page|
-	    	image_tag static_page.privacy_policy.try(:html_safe)
-	    end
+	    # column "privacy_policy" do |static_page|
+	    # 	 static_page.privacy_policy.try(:html_safe)
+	    # end
 
-	    column "help_center" do |static_page|
-	    	image_tag static_page.help_center.try(:html_safe)
-	    end
-	 
+	    # column "help_center" do |static_page|
+	    # 	static_page.help_center.try(:html_safe)
+	    # end
+
 
 	    # Adds view/edit/delete actions
 	    actions
