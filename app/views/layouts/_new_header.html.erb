@@ -12,7 +12,7 @@
     <% messages = Message.incoming_messages%>
     <% friend_requests = @current_user.notifications.friend_requests.unread %>
     <% notifications = notifications - messages - friend_requests %> 
-    <span class="dropdown notification">   
+    <span class="dropdown notification-combine">   
       <%=render 'notifications/notifications'%>
     </span>      
     <span class="dropdown notification message_notifications">

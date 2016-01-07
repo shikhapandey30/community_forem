@@ -12,7 +12,7 @@
         <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
         <%= devise_error_messages! %>
         </div>
-        <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) , placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText"  %> 
+        <%= f.email_field :login, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) , placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText"  %> 
         <div class="error"></div>
         <%= f.submit "Resend confirmation instructions",class: "darkBlueBtn inputSubmit" %>       
         <div class="clearfix"></div>

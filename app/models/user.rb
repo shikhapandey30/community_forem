@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, reset_password_keys: [:login]
   scope :by_name, lambda{|name| where("lower(screen_name) like ?", "%#{name}%")}
   scope :archive, -> {where(archive: true)}
   
@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
    attr_accessor :login
 
    def self.find_first_by_auth_conditions(warden_conditions)
+    debugger
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       where(conditions).where(["lower(screen_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
