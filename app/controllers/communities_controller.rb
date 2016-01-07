@@ -100,7 +100,7 @@ class CommunitiesController < ApplicationController
     @community.members.create(:user_id=>current_user.id)
     @invitable_members = @community.members - @community.members.where(user_id: current_user.id)
     @invitable_members.map(&:user).uniq.each do |user|
-      reciver =  User.find(user)
+      reciver = user
       notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@community.topic}", notificable: @community, :accept => true)
       PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"

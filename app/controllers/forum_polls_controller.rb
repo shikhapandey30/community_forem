@@ -97,7 +97,7 @@ class ForumPollsController < ApplicationController
     @forum_poll.members.create(:user_id=>current_user.id)
     @invitable_members = @forum_poll.members - @forum_poll.members.where(user_id: current_user.id)    
     @invitable_members.map(&:user).uniq.each do |user|
-      reciver =  User.find(user)
+      reciver =  user
       notifications = reciver.notifications.unread 
       Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@forum_poll.topic}", notificable: @forum_poll, :accept => true)
       PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
