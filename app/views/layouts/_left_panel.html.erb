@@ -15,7 +15,7 @@
     <ul>
     <%categories.each do |category|%>
       <li class="cat <%=controller?("categories") && category.id.eql?(params[:id].to_i)%>"><a href="<%=category_path(category)%>">
-      <%= image_tag category.image.url(:tiny) rescue nil%><%=category.name%></a></li>
+      <%= image_tag category.icon rescue nil%><%=category.name%></a></li>
     <%end if categories%>
       <!-- 
       <li><a href="#"><img src="/assets/images/li2.png" alt="">Politics</a></li>

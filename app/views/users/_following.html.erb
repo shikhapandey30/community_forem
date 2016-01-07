@@ -1,19 +1,6 @@
-<!-- <span class="userNAme"><%= object.first.class.name.pluralize %></span>
-<div class="clearfix"></div>
-<% object.each do |follow|%>
-  <% if follow.class.name == "Post"%>
+<% @post_followings.each do |post|%>  
     <div class="whiteBox borderTop col-sm-6 pb0 fl">
-      <a href="<%= model_path(follow) %>" class="block mt20 grpImg text-center"><%=image_tag follow.img , :title =>follow.try(:topic)%></a>
-      <a href="<%= model_path(follow) %>" class="block groupName width"> <%=follow.try(:topic)%></a>
-    </div>
-  <%else%>
-    <div class="whiteBox borderTop col-sm-6 pb0 fl">   
-      <a href="<%= model_path(follow) %>" class="block mt20 grpImg text-center"><%=image_tag follow.img , :title =>follow.try(:topic)%></a>
-      <a href="<%= model_path(follow) %>" class="block groupName width"> <%=follow.try(:topic)%></a>
-      <div class="virwJoinBtn">
-        <a class="btmBtn" href="#" > <%= follow.members.try(:count)%> <%= follow.members.try(:count) >1 ? 'Members' : 'Member' %> </a>
-        <a class="btmBtn" href="#"> Join </a>           
-      </div>
-    </div>
-  <% end %> 
-<%end%> -->
+      <a href="<%= post_path(post) %>" class="block mt20 grpImg text-center"><%=image_tag post.img , :title =>post.try(:topic)%></a>
+      <a href="<%= post_path(post) %>" class="block groupName width"> <%=post.try(:topic)%></a>
+    </div>  
+<%end%>

@@ -34,7 +34,12 @@
         </div>
       </div>
 
-      
+      <div class="post_following grpOuter">
+        <span class="userNAme"><%= @post_followings.first.class.name.pluralize if @post_followings.present? %></span>        
+        <div class="clearfix"></div>
+        <%=render "users/following" %>
+      </div>
+
       <div class="community_following grpOuter">
         <%=render "users/shared/suggested_communities", suggest: false %>
       </div>
