@@ -1,3 +1,4 @@
+<%= content_for(:title, @category.try(:name).try(:capitalize)) %>
 <div class="bodyCont">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">    

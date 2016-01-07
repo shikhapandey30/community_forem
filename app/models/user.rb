@@ -184,7 +184,7 @@ class User < ActiveRecord::Base
   end
 
   def is_chat_subscribed(user)
-    subscription = Subscription.where(:user_id => user.id, :payer_id => self.id, :subscribable_type => 'User')
+    subscription = Subscription.where("(user_id = ? OR payer_id = ?) AND (user_id = ? OR payer_id = ?) AND subscribable_type = ?", user.id, user.id, self.id, self.id, 'User')
     subscription.present? ? true : false
   end
 
