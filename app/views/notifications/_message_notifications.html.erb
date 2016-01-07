@@ -1,4 +1,4 @@
-<% messages = Message.incoming_messages%>
+<% messages = Message.incoming_messages(user)%>
 
 <a href="#" data-toggle="dropdown" class="read-messages"><img src="/assets/images/email.png" alt="">
   <%if messages.count > 0 %>

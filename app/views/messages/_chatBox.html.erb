@@ -30,17 +30,21 @@
   <div class="newMsgBox">
     <input type="text" placeholder="Type a Name">
   </div>
-  <%=form_for Message.new, url: conversation_messages_path(friend), remote: true do |f|%>
+  <%=form_for @message, url: conversation_messages_path(friend), remote: true do |f|%>
     <div class="replyBox">
       <div class="replyRowFrwd">  Click here to or <a href="#-" class="blackColor bold">reply</a> or <a href="#-" class="blueColor bold">forword</a></div>
       <%=f.text_area :body, placeholder: "Write your message..."%>
       <%=f.hidden_field :conversation_id, value: friend.id%>
       <div class="submitRow">
-        <span><input id="Photo" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
-        <a href="#-" onclick="document.getElementById('Photo').click(); return false"><img src="/assets/images/c1.png" alt=""></a>
-        <input id="attachmentS" name="Photo" style="visibility: hidden; width: 1px; height: 1px" multiple="" type="file">
-        <a href="#-" onclick="document.getElementById('attachmentS').click(); return false"><img src="/assets/images/c3.png" alt=""></a></span>
-        <input type="submit" value="Send" class="blueBtn">
+        <%=f.fields_for :upload do |u|%>
+          <span>
+          <%= u.file_field :image, :value=>u.object.image.url, class: "post post_image profile_picture", style: "visibility: hidden; width: 1px; height: 1px" %>
+
+          <a href="#-" onclick="document.getElementById('message_upload_attributes_image').click(); return false"><img src="/assets/images/c1.png" alt=""></a>
+          <%= u.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" %>
+          <a href="#-" onclick="document.getElementById('message_upload_attributes_file').click(); return false"><img src="/assets/images/c3.png" alt=""></a></span>        
+          <input type="submit" value="Send" class="blueBtn">
+        <%end%>
       </div>
     </div>
   <%end%>

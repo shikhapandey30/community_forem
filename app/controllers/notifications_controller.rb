@@ -52,6 +52,6 @@ class NotificationsController < ApplicationController
   end
 
   def update_message_notification
-    Message.incoming_messages.update_all(is_read: true)
+    Message.incoming_messages(current_user).update_all(is_read: true)
   end
 end

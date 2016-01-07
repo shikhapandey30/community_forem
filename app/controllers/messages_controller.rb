@@ -11,8 +11,12 @@ class MessagesController < ApplicationController
   # fetching friend and messages
   def show    
     @friends = @friends.paginate(:page => params[:page], :per_page => 10)
-    @friend = User.friendly.find(params[:conversation_id])
-    @messages = Message.between(current_user, @friend)
+    @friend = User.friendly.find(params[:conversation_id])    
+    @chat_messages = Message.between(current_user, @friend)
+    @archive_messages = @chat_messages.archive_messages(current_user)
+    @messages = @chat_messages - @archive_messages
+    @message = Message.new
+    @message.build_upload
     respond_to do |format|
       format.js
       format.html
@@ -30,7 +34,7 @@ class MessagesController < ApplicationController
       get_users
       @archive="true"
     end
-    @unread_incoming_messages = Message.incoming_messages
+    # @unread_incoming_messages = Message.incoming_messages
     # incoming_messages
     @messages = Message.between(current_user, @friend)
     set_members if params[:message][:recipient_ids].present?
@@ -47,16 +51,22 @@ class MessagesController < ApplicationController
   # delete messages
   def destroy
     @friend = User.friendly.find(params[:conversation_id])
-    @messages = Message.between(current_user, @friend)
-    @messages.destroy_all if @messages.present?    
+    @chat_messages = Message.between(current_user, @friend)
+    @archive_messages = @chat_messages.archive_messages(@friend)
+    @archive_messages.destroy_all if @archive_messages    
+    if @chat_messages.present?
+      @chat_messages.archive(current_user)
+    end
+    @messages = []
+    get_users
   end
 
   # hiding the user and its messages on message page
-  def archive
-    @user = User.find(params[:conversation_id])
-    @user.update(archive: true)
-    get_users
-  end
+  # def archive
+  #   @user = User.find(params[:conversation_id])
+  #   @user.update(archive: true)
+  #   get_users
+  # end
 
   def connection_filter
     if params[:name].present?
@@ -81,6 +91,7 @@ class MessagesController < ApplicationController
     friends = current_user.my_friends
     archive_friends = User.archive
     @friends = friends - archive_friends
+    @friends = @friends.uniq
   end
 
   # sending notification for messages
