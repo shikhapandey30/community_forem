@@ -1,7 +1,7 @@
 class ForumPollsController < ApplicationController
 
   #filters
-  before_action :set_forum_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_forum_poll, only: [:show, :edit, :update, :destroy, :join]
   
   # fetching forum poll by search OR all forum poll
   def index
@@ -93,6 +93,26 @@ class ForumPollsController < ApplicationController
     redirect_to '/dashboard'
   end
 
+  def join
+    @forum_poll.members.create(:user_id=>current_user.id)
+    @invitable_members = @forum_poll.members - @forum_poll.members.where(user_id: current_user.id)    
+    @invitable_members.map(&:user).uniq.each do |user|
+      reciver =  User.find(user)
+      notifications = reciver.notifications.unread 
+      Notification.create(recepient: user, user: current_user, body: "#{current_user.screen_name } has join #{@forum_poll.topic}", notificable: @forum_poll, :accept => true)
+      PrivatePub.publish_to "/profiles/new_#{user.id}", "jQuery('#all-notifications').html('#{notifications.count}'); jQuery('#all-notifications').addClass('push-notification');"
+    end    
+    if request.referrer.include?("followings")
+      @suggest=false
+    else    
+      @suggested_groups, @suggest = suggested_groups
+    end
+    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to groups_url }
+    end
+  end
 
   private
     
@@ -128,5 +148,16 @@ class ForumPollsController < ApplicationController
           
         end
       end
+    end
+
+    def suggested_forum_polls
+      if request.headers["HTTP_REFERER"].include?("suggested_forum_polls")
+        @suggested_forum_polls = new_suggested_forum_polls
+        @suggest =  false
+      else
+        @suggested_forum_polls = new_suggested_forum_polls.first(2)
+        @suggest =  true
+      end
+      return @suggested_forum_polls, @suggest
     end
 end
