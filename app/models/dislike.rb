@@ -22,6 +22,8 @@ class Dislike < ActiveRecord::Base
        @model = Group.find(id)
     when 'community'
        @model = Community.find(id)
+    when 'forumpoll'
+      @model = ForumPoll.find(id)
     end
    dislike =  Dislike.find_or_initialize_by(:dislikable=>@model,:user_id=>current_user.id)
     if dislike.id.present? 

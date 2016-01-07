@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 
   has_many :followings, :foreign_key => "follower_id", :dependent => :destroy
   has_many :followers, :class_name => "Following", as: :followable
-  has_many :authenticates
+  has_many :authenticates, dependent: :destroy
   
   ##friendsships
   has_many :friendships

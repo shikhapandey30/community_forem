@@ -22,6 +22,8 @@ class Like < ActiveRecord::Base
        @model = Group.find(id)
     when 'community'
        @model = Community.find(id)
+     when 'forumpoll'
+     @model = ForumPoll.find(id)
     end
    like =  Like.find_or_initialize_by(:likable=>@model,:user_id=>current_user.id)
 

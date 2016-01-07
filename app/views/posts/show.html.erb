@@ -1,4 +1,4 @@
-<%= content_for(:title, @post.topic) %>
+<%= content_for(:title, @post.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <!-- Showing Post -->
