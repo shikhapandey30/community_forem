@@ -97,9 +97,9 @@ class UsersController < ApplicationController
       @suggested_groups = current_user.followings_groups
     end
     if params[:name].present?
-      @post_following = current_user.followings_posts.search(params[:name])
+      @post_followings = current_user.followings_posts.search(params[:name])
     else
-      @post_following = current_user.followings_posts
+      @post_followings = current_user.followings_posts
     end
     if params[:name].present?
       @suggested_communities = current_user.followings_communities.search(params[:name])
@@ -115,6 +115,11 @@ class UsersController < ApplicationController
       @suggested_contests = current_user.followings_contests.search(params[:name])
     else
       @suggested_contests = current_user.followings_contests
+    end
+    if params[:name].present?
+      @suggested_forum_polls = current_user.followings_forum_polls.search(params[:name])
+    else
+      @suggested_forum_polls = current_user.followings_forum_polls
     end
     
 

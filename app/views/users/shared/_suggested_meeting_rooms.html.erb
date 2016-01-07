@@ -1,3 +1,7 @@
+<% if @suggested_meeting_rooms.present? %>
+  <span class='userNAme'>Meeting Rooms</span>
+<% end %>
+<div class='clearfix'></div>
 <%if @suggested_meeting_rooms.present?%>
   <%if suggest%>
     <div class="suggestedRow">
@@ -8,7 +12,7 @@
     </div>
   <%end%>
   <%@suggested_meeting_rooms.each_with_index do |meeting_room, index|%>    
-    <div class="whiteBox borderTop col-sm-6 pb0 fl" id="meeting_room_<%=meeting_room.id%>">
+    <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="meeting_room_<%=meeting_room.id%>">
       <a href="<%=meeting_room_path(meeting_room)%>" class="pollImgOuter mt20 grpImg"><%=image_tag meeting_room.img%></a>
       <a href="<%=meeting_room_path(meeting_room)%>" class="block groupName width"><%=meeting_room.topic%></a>
       <div class="virwJoinBtn">
