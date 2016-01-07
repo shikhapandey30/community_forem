@@ -116,6 +116,11 @@ class UsersController < ApplicationController
     else
       @suggested_contests = current_user.followings_contests
     end
+    if params[:name].present?
+      @suggested_forum_polls = current_user.followings_forum_polls.search(params[:name])
+    else
+      @suggested_forum_polls = current_user.followings_forum_polls
+    end
     
 
     respond_to do |format|
