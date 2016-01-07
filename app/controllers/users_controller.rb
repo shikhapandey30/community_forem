@@ -97,9 +97,9 @@ class UsersController < ApplicationController
       @suggested_groups = current_user.followings_groups
     end
     if params[:name].present?
-      @suggested_posts = current_user.followings_posts.search(params[:name])
+      @post_followings = current_user.followings_posts.search(params[:name])
     else
-      @suggested_posts = current_user.followings_posts
+      @post_followings = current_user.followings_posts
     end
     if params[:name].present?
       @suggested_communities = current_user.followings_communities.search(params[:name])

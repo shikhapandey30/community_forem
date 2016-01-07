@@ -3,4 +3,4 @@ $(".community_following").html("<%= j render('users/shared/suggested_communities
 $(".meeting_room_following").html("<%= j render('users/shared/suggested_meeting_rooms', suggested_meeting_rooms: @suggested_meeting_rooms, suggest: false)%>");
 $(".contest_following").html("<%= j render('users/shared/suggested_contests', suggested_contests: @suggested_contests, suggest: false)%>");
 $(".forum_poll_following").html("<%= j render('users/shared/suggested_forum_polls', suggested_forum_polls: @suggested_forum_polls, suggest: false)%>");
-$(".post_following").html("<%= j render('users/shared/following_posts', suggested_posts: @suggested_posts, suggest: false)%>");
+$(".post_following").html("<%= j render('users/following', post_followings: @post_followings, suggest: false)%>");

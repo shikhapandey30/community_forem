@@ -1,6 +1,10 @@
-<% @post_followings.each do |post|%>  
+<% if @post_followings.present? %>
+	<span class='userNAme'>Posts</span>
+	<div class='clearfix'></div>
+	<% @post_followings.each do |post|%>  
     <div class="whiteBox borderTop col-sm-6 pb0 fl">
       <a href="<%= post_path(post) %>" class="block mt20 grpImg text-center"><%=image_tag post.img , :title =>post.try(:topic)%></a>
       <a href="<%= post_path(post) %>" class="block groupName width"> <%=post.try(:topic)%></a>
     </div>  
-<%end%>
+	<%end%>
+<% end %>
