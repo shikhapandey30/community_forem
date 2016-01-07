@@ -94,7 +94,6 @@ class User < ActiveRecord::Base
    attr_accessor :login
 
    def self.find_first_by_auth_conditions(warden_conditions)
-    debugger
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       where(conditions).where(["lower(screen_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
