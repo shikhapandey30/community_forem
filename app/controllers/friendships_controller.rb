@@ -14,13 +14,14 @@ class FriendshipsController < ApplicationController
     # @inverse_friends = User.where(:id => current_user.inverse_friendships.collect(&:user_id))
     # @friends = (@friends + @inverse_friends)
     # @friends =@friends.paginate(:page => params[:page], :per_page => 10)
+    
     if params[:name].present?
       @friends = (current_user.friends.search(params[:name]) + current_user.inverse_friends.search(params[:name])).compact.uniq.sort_by(&:updated_at).reverse
-      @friends.delete(current_user)
+      @friends.uniq.delete(current_user)
     else
       @friends = current_user.friends + current_user.inverse_friends
       @friends.delete(current_user)
-      @friends = @friends.paginate(:page => params[:page], :per_page => 10)
+      @friends = @friends.uniq.paginate(:page => params[:page], :per_page => 10)
     end
   end
   # GET /friendships/1

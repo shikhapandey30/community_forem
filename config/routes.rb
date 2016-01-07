@@ -174,6 +174,10 @@ Rails.application.routes.draw do
    
    get '/payment'=>'users#payment'
    get '/auth/:provider/callback', to: 'users#social_login'
+    get   '/auth/failure' do
+    flash[:notice] = "We were unable to link your account. #{params[:message]}"
+    redirect '/'
+  end
    get '/search'=>'users#search'
    post '/search'=>'users#search'
    get '/search_data'=>'users#search_data'

@@ -5,6 +5,6 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 production:
-  server: "http://tgs-network.herokuapp.com/faye"
-  secret_token: "d979661d0d93fd3bb98985dcf6b24dbb33b0da26369fe8597e7e647c76c807c5"
-  signature_expiration: 3600 # one hour
+  server: "http://tgs-privatpub.herokuapp.com/faye"
+  secret_token: "1c8d5ec9aa425b5758a7390f724f69bb40ee53053aedfca8da4ffefa8b4b9c62"
+  signature_expiration: 86400
