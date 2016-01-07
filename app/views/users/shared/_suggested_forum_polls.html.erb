@@ -16,9 +16,9 @@
       <a href="<%=forum_poll_path(forum_poll)%>" class="pollImgOuter mt20 grpImg"><%=image_tag forum_poll.img%></a>
       <a href="<%=forum_poll_path(forum_poll)%>" class="block groupName width"><%=forum_poll.try(:topic) %></a>
       <div class="virwJoinBtn">
-        <a class="btmBtn" href="#"> 0 Updates</a>
-        <%=link_to "Join", join_group_path(forum_poll), class: "btmBtn", id: "joinGroup_#{forum_poll.id}", remote: true%>
-      </div>
+      <a class="btmBtn" href="<%=forum_poll_path(forum_poll)%>"><%=expireDate(forum_poll.end_date) if forum_poll.end_date%></a>      
+      <a class="btmBtn" href="<%=forum_poll_path(forum_poll)%>" > <%=forum_poll.votes.size%> <%=forum_poll.votes.size>1 ? 'Votes' : 'Vote'%> </a>
+    </div>
     </div>
   <%end%>
 <%end%>
