@@ -18,8 +18,7 @@
     <div class="clearfix  innerWIdth550 tac ">
       <div class=" whiteBox col-sm-12">
         <div class="col-sm-12">
-          <h1 class="bigHD mt15">Help Center?</h1>
-          <p class="font16 mt20"> If you need more information, would like to inquire about our Full Services or turnkey solutions, or just have some general feedback send us a message and we will get right back to you.</p>
+          <%= StaticPage.first.help_center.try(:html_safe)%>
           <div class=" loginForm contactForm mt20">
             <span class="success_message" style="display:none;">Your request has been sent successfully !!</span>
             <%= form_for @contact, url: contact_help_path, :html => { class: "form-validate" }, :remote => true do |f| %>

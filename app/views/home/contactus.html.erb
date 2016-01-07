@@ -17,27 +17,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth innerWIdth550 tac ">
-      <h1 class="bigHD">Speedy Responses</h1>
-      <p class="font16">Slow is unacceptable. That's why we strive to get back to you same day.</p>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="whiteBox1">
-            <img src="/assets/images/location.png" alt="">
-            <div>TGS</div>
-            Based out of Philadelphia, PA<br>
-            E: <a href="mailto:contact@tgs.com">contact@tgs.com</a>			    
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="whiteBox1">
-            <img src="/assets/images/mail.png" alt="">
-            <div>Technical Support </div>
-            E: <a href="mailto:support@tgs.com">support@tgs.com</a>
-          </div>
-        </div>
-      </div>
-      <h1 class="bigHD">Still have Questions?</h1>
-      <p class="font16">If you need more information, would like to inquire about our Full Services or turnkey solutions, or just have some general feedback send us a message and we will get right back to you.</p>
+       <%= StaticPage.first.contactus.try(:html_safe)%>
       <div class="loginForm contactForm">
         <div class="row">
           <div class="pr10 col-sm-6">
