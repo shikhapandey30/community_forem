@@ -7,8 +7,8 @@ class CategoriesController < ApplicationController
 
 	# fetching all posts for particular category
 	def show
-		@category = Category.friendly.find(params[:id])
-		@posts = @category.posts.order("updated_at desc")
+		@category = Category.friendly.find(params[:id])	
+		@posts = (@category.posts + @category.groups + @category.meeting_rooms + @category.contests + @category.forum_polls + @category.communities).compact.flatten.sort_by{|p| p.updated_at}.reverse
 		@comment = Comment.new
 	end
 

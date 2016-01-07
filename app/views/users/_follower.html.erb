@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="font13 mt5"><%=designations(user(follower))%></div>
-          <div class="font13"><%=follower.follower.try(:country)%></div>
+          <div class="font13"><%=follower.follower.try(:profile).try(:country).try(:name)%></div>
         </div>
       </div>
     </div>

@@ -1,0 +1,156 @@
+<% @posts.each do |post| %>
+  <a href = "/<%=post.class.name.downcase.pluralize%>/<%= post.id %>">
+    <div class="clearfix whiteBox borderTop mb10 pb0">
+      <div class="clearfix formOuterPost tal padding10-0">
+        <div class="col-sm-12 mb10">
+          <div class="clearfix userInfo posRel">
+           <div>
+            <a href="<%= profile_path(post.user)%>" class="userImg"><img src="<%= post.user.try(:img) %>" alt=""></a>
+            <a href="<%= profile_path(post.user)%>" class="userNAme"> <%= post.user.try(:screen_name) %></a>
+            <% if current_user == post.user %>
+                <div class="editDlt  dropdown">
+                  <a href="javascript:void(0)" data-toggle="dropdown"> <img src="../assets/images/arrowDown.png" alt=""></a>
+                    <ul class="dropdown-menu">
+                      <li><%=link_to 'Edit', change_model_path(post) %></li>
+                      <li> <%= link_to 'Delete', show_model_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+                    </ul>
+                 </div>
+              <% end %> <br>
+            <span class="font13"><%= designation(post) %></span>
+            <div class="fr grayColor tar"><%= time_ago_in_words(post.updated_at).capitalize rescue 0%> ago<br>
+              <%if !current_user.eql?(post.user)%>
+                <%if user_signed_in? && (!current_user.friendships.collect(&:friend).include? post.user) %>
+                  <span class="friendship-button-<%=  post.user.id  %>">
+                  <%= link_to (image_tag 'images/add.png'), friendships_path(:friend_id =>post.user.id), :class=>"mt10 fr grayColor tar ", :remote=>true ,:method => :post %>
+                  </span>
+                <%end%>
+              <%end%>
+
+              <% if current_user != post.user %>
+                <span id="following-button-span-<%= post.id %>" class="user-folowed-<%=post.id %>">
+                  <%= render :partial=> "users/follow_link", :locals => {:object => post} if user_signed_in?%>
+                </span>
+              <% end %>
+              <!-- <a href="#">Follow</a> -->
+            </div>
+          </div>
+          <div class="clearfix"></div>
+            <div class="videoPost mt10">       
+              
+              <div class="font16 bold blackColor mb10"><%=link_to post.try(:topic), post %>
+              </div>              
+              <% if post.upload.try(:image).present? %>
+                <a href="<%= show_model_path(post)%>" class="post"><%= image_tag post.upload.try(:image) %></a>
+              <% end %>
+
+               <% if post.upload.try(:video).present? %>
+                <iframe class="mt20"  width="100%" src="<%= post.upload.try(:video) %>"></iframe>
+              <% end %>
+
+              <div class="mt20 font14">
+                
+                <% if post.upload.try(:file).present? %>                
+                   <span class="glyphicon glyphicon-paperclip"> </span> <a href="<%= post.upload.try(:file)%>" class="post inline" target="_blank"><%=post.upload[:file]%> </a>
+                <% end %>
+                 </div>
+                <div class="mt10 font14"> 
+                <% if post.upload.try(:site_link).present? %>
+                  <span class="glyphicon glyphicon-link"> </span> <a href="<%= post.upload.try(:site_link) %>" class="post inline" target="_blank"><%= post.upload.try(:site_link) %> </a>
+                <% end %>
+              </div>
+            </div>
+
+            <%if post.upload.try(:image).present?%><div class="clearfix borderBtmS"></div><%end%>
+            
+           
+
+          </div>
+          <div class="uniOuter pt0">
+            <div class="mt0 blackColor bold ">
+              <p><%= post.topic %></p>
+              <p>
+                <%= post.try(:description).try(:html_safe) %> 
+              </p>
+              <a href="<%=root_path(id: post.id)%>" class="listen whiteBtn" data-remote="true"><img src="/assets/images/audio38.png" alt=""> Listen this post </a>                    
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <%= render 'layouts/shared/comments', object: post if postExist?(post)%>
+      </div>
+    </div>
+  </a> 
+<%end%>
+ <div class="suggest_connections">
+  <%=render 'users/shared/suggested_connections', suggest: true%>        
+</div>
+<div class="clearfix grpOuter suggest_communities">
+  <%=render 'users/shared/suggested_communities', suggest: true%>
+</div>
+<div class="clearfix grpOuter suggest_groups">
+  <%=render 'users/shared/suggested_groups', suggest: true%>
+</div>
+<div class="clearfix grpOuter suggest_meeting_rooms">
+  <%=render 'users/shared/suggested_meeting_rooms', suggest: true%>
+</div>
+<div class="clearfix grpOuter suggest_contests">
+  <%=render 'users/shared/suggested_contests', suggest: true%>
+</div>
+<!-- <div class="loader-img" style="display:none;">
+  <img src="../assets/images/preloader.gif"> Loading....
+</div> -->
+<script type="text/javascript">
+   function comment_body(id) {
+    $("#comments_"+id).toggle();
+    $("#comment_box_"+id).toggle(500);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 200);
+  }
+  function show_comments(post_id){
+    $('#comments_'+post_id).toggle(500);
+    $("html, body").scrollTop($('#comment_box_'+id).offset().top- 600);
+  }
+
+  // $(document).ready(function() {
+  //   if ($('.pagination').length) {
+  //     $(window).scroll(function() {
+  //       var url = $('.pagination .next_page').attr('href');
+  //       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+  //         $('.pagination').text("Please Wait...");
+  //         return $.getScript(url);
+  //       }
+  //     });
+  //     return $(window).scroll();
+  //   }
+  // });
+    
+  // //Pagination 
+  // (function() {
+  //   var page = 1,
+  //       loading = false;
+
+  //   function nearBottomOfPage() {
+  //     return $(window).scrollTop() > $(document).height() - $(window).height() - 100;
+  //   }
+
+  //   $(window).scroll(function(){
+  //     if (loading) {
+  //       return;
+  //     }
+
+  //     if(nearBottomOfPage()) {
+  //       $('.loader-img').show();
+  //       loading=true;
+  //       page++;
+  //       $.ajax({
+  //         url: '/dashboard',
+  //         type: 'get',
+  //         data: {data: page, page: page },
+  //         dataType: 'script'
+  //       });
+  //     }
+  //   });
+
+    
+  // }());
+
+</script>

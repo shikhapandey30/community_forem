@@ -9,6 +9,11 @@ class Category < ActiveRecord::Base
   has_many :users_categories, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :groups, dependent: :destroy
+  has_many :forum_polls, dependent: :destroy
+  has_many :meeting_rooms, dependent: :destroy
+  has_many :contests, dependent: :destroy
+  has_many :communities, dependent: :destroy
+
   mount_uploader :icon, CategoryUploader
   mount_uploader :image, CategoryUploader
   
