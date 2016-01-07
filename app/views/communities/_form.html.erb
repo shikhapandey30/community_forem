@@ -1,4 +1,4 @@
-<%= content_for(:title, @community.new_record? ? 'Community' : @community.try(:topic).try(:capitalize)) %>
+<%= content_for(:title, @community.new_record? ? 'New Community' : @community.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
