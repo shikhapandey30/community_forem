@@ -10,13 +10,13 @@
         <ul class=" dropdown-menu">
           <li><a href="#-" id="facebook-share_<%=object.id %>">Facebook</a> </li>
 
-          <li><a href="http://www.linkedin.com/shareArticle?mini=true&title= '<%= object.topic %>'&url=<%= request.url %>&summary='<%= object.description %>'&image= <%= object.image %>&via=fitnessaccount" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">linkedin</a> </li>
+          <li><a href="http://www.linkedin.com/shareArticle?mini=true&title= '<%= object.topic %>'&url=<%= request.url %>&summary='<%= object.try(:description) %>'&image= <%= object.try(:image) %>&via=fitnessaccount" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">linkedin</a> </li>
 
           <li><a href="https://twitter.com/intent/tweet?url=<%= request.url %>&text=<%= object.topic %>&via=tgs-networ"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Twitter</a> </li>
 
-          <li><a href="https://plus.google.com/share?title= <%= object.topic  %>&url=<%= request.url %>&description=<%= object.description %>& image= <%= object.image %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"  target="_blank" >Google +</a> </li>
+          <li><a href="https://plus.google.com/share?title= <%= object.topic  %>&url=<%= request.url %>&description=<%= object.try(:description) %>& image= <%= object.try(:image) %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"  target="_blank" >Google +</a> </li>
 
-          <li><a href="http://pinterest.com/pin/create/button/?url=<%= url_for(:only_path => false) %>&title=<%= object.topic %>&media=<%= object.image %>&description= <%= object.description %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Pinterest</a></li>
+          <li><a href="http://pinterest.com/pin/create/button/?url=<%= url_for(:only_path => false) %>&title=<%= object.topic %>&media=<%= object.try(:image) %>&description= <%= object.try(:description) %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Pinterest</a></li>
         </ul>
       <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400);" id="comment_button_<%= object.id %>">
     <%end%>  
@@ -30,7 +30,7 @@
         method: 'feed',
         link: '<%= post_path(object) %>',
         name: '<%= object.topic %>',
-       // picture: '<%= object.image %>',
+       // picture: '<%#= object.image %>',
         description: 'this is test post'
     }, function(response){});
   });
