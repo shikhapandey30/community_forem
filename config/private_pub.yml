@@ -7,4 +7,4 @@ test:
 production:
   server: "http://tgs-privatpub.herokuapp.com/faye"
   secret_token: "1c8d5ec9aa425b5758a7390f724f69bb40ee53053aedfca8da4ffefa8b4b9c62"
-  signature_expiration: 3600 # one hour
+  signature_expiration: 86400 # one hour
