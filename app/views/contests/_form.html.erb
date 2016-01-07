@@ -1,3 +1,4 @@
+<%= content_for(:title, @contest.new_record? ? 'New Contest' : @contest.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
