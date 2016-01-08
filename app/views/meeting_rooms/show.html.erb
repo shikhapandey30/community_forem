@@ -1,3 +1,4 @@
+<!-- showing meeting room -->
 <%= content_for(:title, @meeting_room.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
     <%=render "layouts/left_panel"%>
@@ -32,9 +33,10 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix"></div>           
-               <%= render 'layouts/shared/comments' , object: @meeting_room %>
-            
+            <div class="clearfix"></div>
+              <!-- rendering comments -->
+              <%= render 'layouts/shared/comments' , object: @meeting_room %>
+              <!-- rendering comments -->
             <div class="commentShow">
               <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box">
                 <div class="clearfix userInfo posRel">
@@ -59,6 +61,8 @@
       </div>
     </div>
 </div>
+<!-- showing meeting room -->
+<!-- script for comment functionality -->
 <script type="text/javascript">
  $(function () {
    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
@@ -92,7 +96,7 @@
     }
   });
 </script>
-
+<!-- script for comment functionality -->
 
 <!-- 
 

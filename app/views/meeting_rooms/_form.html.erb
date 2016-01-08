@@ -1,3 +1,4 @@
+<!-- Form for new and edit meeting room -->
 <%= content_for(:title, @meeting_room.new_record? ? 'New Meeting Room' : @meeting_room.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -30,7 +31,9 @@
             <span class="location"><%= current_user.try(:profile).try(:location) %></span>
           </div>
         </div>
+        <!-- rendering upload for uploading image, file and vedio url -->
         <%=render 'layouts/shared/upload', f: f, obj: @meeting_room %>
+        <!-- rendering upload for uploading image, file and vedio url -->
       </div>
       <div class="clearfix whiteBox">
         <div class="clearfix formOuterPost tal">
@@ -75,6 +78,7 @@
     </div>
   </div>
 </div>
+<!-- Form for new and edit meeting room -->
 <%if @meeting_room.id.present? %>
   <script type="text/javascript">
     $( "#dropdown" ).select2().select2('val',<%=  @meeting_room.members.collect(&:user_id) %>)
