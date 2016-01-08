@@ -1,3 +1,4 @@
+<!-- Privacy & Setting Page -->
 <%= content_for(:title, 'Privacy & Settings') %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -50,9 +51,9 @@
       </div>
       <div class="whiteBox mb10 ">
         <!-- container -->
+        <!-- Notification setting -->
         <div class="clearfix formOuterPost  tal">
           <div class="blackHD tal col-sm-12 font16">Notifications</div>
-
           <%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|  %>
             <%= f.hidden_field :email %>
             <%= f.hidden_field :screen_name %>
@@ -75,9 +76,10 @@
               <input type="submit" value="Save" class="blueBtn">
             </div>
           <% end %>
-          
         </div>
+        <!-- Notification setting -->
       </div>
     </div>
   </div>
 </div>
+<!-- Privacy & Setting Page -->
