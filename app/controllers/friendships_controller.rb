@@ -3,9 +3,6 @@ class FriendshipsController < ApplicationController
   # filters
   before_action :set_friendship, only: [:show, :edit, :update, :destroy]
 
-  # GET /friendships
-  # GET /friendships.json
-
   # fetching all friends to whom the user sent request and from whom the user got friendship request OR searching user friend connection by screen name
   def index
     # @friendships = current_user.friendships +  current_user.inverse_friendships

@@ -88,7 +88,7 @@ class UsersController < ApplicationController
     end
   end
  
-  ## Fetching followings
+  ## Fetching all groups, posts, communities, forum polls, meeting rooms, contests followed by user on basis of search parameter passed otherwise all
   def followings
     @followings = current_user.followings
     if params[:name].present? 
