@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   ## Filters
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :previous_comments]
 
   def index
     posts = Post.all
@@ -85,6 +85,10 @@ class PostsController < ApplicationController
       format.html { redirect_to dashboard_path, notice: 'Post is successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def previous_comments
+    @comments = @post.comments.order("updated_at desc").paginate(:page => params[:page], :per_page => 15)
   end
 
   private

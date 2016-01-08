@@ -42,8 +42,8 @@
       <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= object.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
       <div class="clearfix userInfo posRel">
         <div id="last_post_comment_<%=object.id%>" class="scrollbars-comments">
-          <%= render partial: "comments/comments_view", locals: { comments: object.comments.paginate(:page => params[:page], :per_page => 5), from: "post_index" } %>
-        </div>  
+          <%= render partial: "comments/comments_view", locals: { comments: object.comments.order("updated_at desc").paginate(:page => params[:page], :per_page => 15), page: 1, object: object, from: "post_index" } %>
+        </div>
       </div>
     </div>
   <%#end%> 

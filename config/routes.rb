@@ -80,7 +80,10 @@ Rails.application.routes.draw do
      resources :likes, only: [:create]
     resources :comments
   end
-   resources :posts do
+  resources :posts do
+    member do
+      get :previous_comments, as: :previous_comments
+    end
     resources :likes, only: [:create]
     resources :dislikes, only: [:create]
     resources :comments

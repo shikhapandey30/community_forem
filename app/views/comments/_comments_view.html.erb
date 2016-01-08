@@ -1,5 +1,8 @@
-<div class="bold mb10"><a class="grayColor font13 showCmnt" href="#">
-  Show Previous Comments</a></div>
+<% if comments.order("updated_at desc").paginate(:page => params[:page].to_i+1, :per_page => 15).present?%>
+  <div class="bold mb10">
+    <%=link_to "Show Previous Comments", previous_comments_post_path(object, page: page.to_i+1), class: "grayColor font13 showCmnt", remote: true%>
+  </div>
+<%end%>  
 <% comments.each do |comment| %>
   <div class="clearfix commentSec cmntRow">  
     <div class="clearfix userInfo posRel">
@@ -46,4 +49,3 @@
     <%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
   </div>
 <% end %>
-<%= will_paginate comments %>
