@@ -1,3 +1,4 @@
+<!-- showing all comments -->
 <% comments.each do |comment| %>
   <div class="clearfix commentSec cmntRow">  
     <div class="clearfix userInfo posRel">
@@ -24,7 +25,7 @@
           <%=link_to 'Like', like_create_path(id: comment.id, type: comment.class.name.downcase), method: :post, remote: true,:class=>"", :id=> "like_image_post_liked_#{comment.id}"%> 
           (<span id ="post_like_count_<%= comment.id %>" class ="post_like_count_<%= comment.id %>"><%= comment.likes.count %></span>) | <a href="#-" class="blueColor reply reply_link" id="reply_link_id_<%= comment.id %>" > Reply</a>
         </div>
-
+        <!-- Form for creating comment -->
         <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= comment.id %>">
           <%= form_for(comment.replies.new, remote: true, :url => comment_replies_path(comment.id), html: {id: "reply_form_#{comment.id}"}) do |f| %>
             <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
@@ -36,11 +37,14 @@
         <div id="comment_form_box_<%= comment.id %>" style ="display:none !important;">
           <%= render 'comments/form' ,comment: comment %>
        </div>
+       <!-- Form for creating comment -->
       <%end%> 
     </div>
   </div>
-
+  <!-- rendering reply -->
   <div id="replies_view_<%= comment.id%>">
     <%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
   </div>
+  <!-- rendering reply -->
 <% end %>
+<!-- showing all comments -->
