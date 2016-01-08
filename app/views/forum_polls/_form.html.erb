@@ -1,3 +1,4 @@
+<!-- Form for new and edit forum poll -->
 <%= content_for(:title, @forum_poll.new_record? ? 'New Forum Poll' : @forum_poll.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -31,7 +32,9 @@
             <span class="location"><%= current_user.try(:profile).try(:country).try(:name) %></span>
           </div>
         </div>
+        <!-- rendering upload for uploading image, file and vedio url -->
         <%=render 'layouts/shared/upload', f: f, obj: @forum_poll%>
+        <!-- rendering upload for uploading image, file and vedio url -->
         <!-- container -->
       </div>
       <div class="clearfix whiteBox">
@@ -66,8 +69,6 @@
           <div class="col-sm-12 mt10">
             <label class="">Invite Users</label>
             <%= f.select(:members, @users.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
-
-            <!-- <input type="text" placeholder="" class="inputTextW small"> -->
           </div>
           <label  class="col-sm-12 mt20 block">Set expiration of post </label>
           <div class="col-sm-6  pr10  dateOuter">
@@ -98,6 +99,8 @@
     </div>
   </div>
 </div>
+<!-- Form for new and edit forum poll -->
+<!-- Script for start and end date -->
 <script>
   $(function(){
     if ($(".start_date").val() != "") {
@@ -115,7 +118,7 @@
     });
   });
 </script>
-
+<!-- Script for start and end date -->
 <%if @forum_poll.id.present? %>
   <script type="text/javascript">
     $( "#dropdown" ).select2().select2('val',<%=  @forum_poll.members.collect(&:user_id) %>)

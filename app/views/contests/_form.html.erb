@@ -1,3 +1,4 @@
+<!-- Form for new and edit contest -->
 <%= content_for(:title, @contest.new_record? ? 'New Contest' : @contest.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -90,6 +91,7 @@
     </div>
   </div>
 </div>
+<!-- Form for new and edit contest -->
 <!-- script for start and end date -->
 <script>
   $(function(){
