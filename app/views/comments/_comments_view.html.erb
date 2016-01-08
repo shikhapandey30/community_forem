@@ -1,6 +1,7 @@
+<div class="bold mb10"><a class="grayColor font13 showCmnt" href="#">
+  Show Previous Comments</a></div>
 <% comments.each do |comment| %>
-  
-  <div class="clearfix commentSec cmntRow">
+  <div class="clearfix commentSec cmntRow">  
     <div class="clearfix userInfo posRel">
       <% if user_signed_in? && (current_user == comment.user) %>
         <div class="editDlt  dropdown">
@@ -45,3 +46,4 @@
     <%= render partial: "replies/replies_view", locals: { replies: comment.replies } %>
   </div>
 <% end %>
+<%= will_paginate comments %>

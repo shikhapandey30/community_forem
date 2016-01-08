@@ -18,7 +18,7 @@
 
           <li><a href="http://pinterest.com/pin/create/button/?url=<%= url_for(:only_path => false) %>&title=<%= object.topic %>&media=<%= object.try(:image) %>&description= <%= object.try(:description) %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Pinterest</a></li>
         </ul>
-      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400); $('#comment_box_<%=object.id%>').show();" id="comment_button_<%= object.id %>">
+      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400); $('#comment_box_<%=object.id%>').show(); $('#comment_body_<%= object.id %>').val('');" id="comment_button_<%= object.id %>">
     <%end%>  
   </div>
 </div>
@@ -42,7 +42,7 @@
       <!-- <div class="bold mb10"><a href="javascript:void()" onclick="show_comments(<%= object.id %>)" class="grayColor font13 showCmnt">Show Previous Comments</a></div> -->
       <div class="clearfix userInfo posRel">
         <div id="last_post_comment_<%=object.id%>" class="scrollbars-comments">
-          <%= render partial: "comments/comments_view", locals: { comments: object.comments, from: "post_index" } %>
+          <%= render partial: "comments/comments_view", locals: { comments: object.comments.paginate(:page => params[:page], :per_page => 5), from: "post_index" } %>
         </div>  
       </div>
     </div>
@@ -58,7 +58,7 @@
               <%= hidden_field_tag :from, "post_index" %>
               <%#= hidden_field_tag :post_id, object.id %>
               <%= f.submit "Save", class: "blueBtn save_comment", "data-id" => object.id, id: "save_comment#{object.id}" %>
-              <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_box_<%= object.id %>').hide();">Cancel</a> 
+              <a href="javascript:;" class="grayBtn" id="comment_cancel" onclick="$('#comment_body_<%= object.id %>').val('');">Cancel</a> 
             </div>
           <% end %> 
         </div>
