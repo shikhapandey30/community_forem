@@ -4,7 +4,7 @@
    <span id ="all-notifications"><%= notifications.count %></span>
    <% end %>
  </a>
-   <ul class="clearfix dropdown-menu">
+   <ul class="clearfix dropdown-menu dropdown-menuNoti">
    <div class="topGrayRow"> <span class="blackColor font14 bold">Notification</span> 
    <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if notifications.count > 0  %>
   </div>      

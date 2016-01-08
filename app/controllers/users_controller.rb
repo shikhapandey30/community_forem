@@ -88,7 +88,7 @@ class UsersController < ApplicationController
     end
   end
  
-  ## Fething followings
+  ## Fetching followings
   def followings
     @followings = current_user.followings
     if params[:name].present? 
