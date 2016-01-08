@@ -45,6 +45,24 @@ module PostsHelper
 		end
 	end
 
+	def rating(post)		
+		range = (5*post.likes.count)/(post.likes.count + post.dislikes.count) rescue 0
+		# case range
+		if range.between?(0, 10)
+			return "week"
+		elsif range.between?(11, 30)
+			return "medium"
+		elsif range.between?(31, 50)
+			return "good"
+		elsif range.between?(51, 70)
+			return "very_good"
+		elsif range.between?(70, 100)
+			return "excellent"
+		else
+			return "week"
+		end
+	end
+
 	def postExist?(post)
 	 	post.class.name=="Post"
 	end 

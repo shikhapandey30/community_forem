@@ -1,0 +1,5 @@
+<% if comments.order("updated_at desc").paginate(:page => page.to_i+1, :per_page => 15).present?%>
+  <div class="bold mb10">
+    <%=link_to "Show Previous Comments", previous_comments_post_path(object, page: page.to_i+1), class: "grayColor font13 showCmnt prev_comments", remote: true%>
+  </div>
+<%end%>

@@ -201,3 +201,9 @@ iframe {border: 0px;}
     margin-top: 12px !important;
    
 }
+
+.week{color: #D9534F;}
+.medium{color: #F7E182;}
+.good{color: #C5AF50;}
+.very_good{color: #7FDB7F;}
+.excellent{color: #5CB85C;}
