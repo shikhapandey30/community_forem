@@ -19,16 +19,12 @@
     <div class="clearfix innerWIdth550 tac  mt20">
       <div class=" ">
         <div class="formOuter searchFrnd width100per">
-        <!-- start change code- kandarp -->
+        <!-- Form for searching community -->
           <%= form_tag communities_path, :method => 'get' do %>
               <%= text_field_tag :data, params[:data], placeholder: "Search Communities", class: "searhInput1 communities" %>
               <%= submit_tag "", class: "searhSub" %>
           <% end %>
-          <!-- <form method="post" action="">
-            <input placeholder="Search Communities" class="searhInput1" type="text">
-            <input value="" class="searhSub" type="submit">
-          </form> -->
-        <!-- end change code- kandarp -->
+          <!-- Form for searching community -->
         </div>
       </div>
       <div class="clearfix grpOuter" id="communities">
