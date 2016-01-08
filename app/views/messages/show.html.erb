@@ -1,0 +1,41 @@
+<%= content_for(:title, 'Messages') %>
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <%=render 'layouts/topNav'%>
+    <div class="clearfix msgOuter mt20 tac">
+      <div class="whiteBox  tal ">
+        <div class="clearfix msgLIstingOuter">
+          <div class="listTOp">
+            <a href="#">All Messages </a>
+            <a href="javascript:void(0)" class="plusIcon"><span class="glyphicon glyphicon-envelope"></span></a>
+          </div>
+          <div class="formOuter searchFrnd width100per blueSearchBox">
+            <!-- <form method="post" action=""> -->
+              <input placeholder="Search" class="searhInput1 myConnections" type="text" data-conversation="<%=params[:conversation_id]%>">
+              <input value="" class="searhSub" type="">
+            <!-- </form> -->
+          </div>
+          <ul class="notiScroll scrollbars myConnection">
+            <%=render 'my_connections'%>
+          </ul>
+        </div>
+        <div class="chatBox">
+          <%=render 'chatBox', friend: @friend%>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<script>
+  $(function () {
+    $('.date').datetimepicker( {format: 'YYYY-MM-DD'});
+  });
+  $(window).load(function(){
+    $('#chatmsg').children().last()[0].scrollIntoView(true);
+  });
+
+</script>
+  
