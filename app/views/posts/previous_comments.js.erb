@@ -1,1 +1,2 @@
 $("#last_post_comment_<%=@post.id%>").prepend("<%=j render(partial: 'comments/comments_view', locals: { comments: @comments, page: params[:page], object: @post, from: 'post_index' })%>");
+$("#prev_comments_<%=@post.id%>").html("<%=j render(partial: 'layouts/shared/prev_comments', locals: { comments: @comments, page: params[:page], object: @post})%>");
