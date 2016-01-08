@@ -1,3 +1,4 @@
+<!-- Showing forum poll -->
 <%= content_for(:title, @forum_poll.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -60,6 +61,7 @@
     </div>
   </div>
 </div>
+<!-- Showing forum poll -->
 
 <script>
 $(".commentShowScroll").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});

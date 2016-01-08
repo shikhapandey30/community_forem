@@ -1,3 +1,4 @@
+<!-- Showing of contest -->
 <%= content_for(:title, @contest.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -48,6 +49,7 @@
     </div>
   </div>
 </div>
+<!-- Showing of contest -->
 <script>
   $(".commentShowScroll").niceScroll({cursorborder:"0", cursorwidth :"6px", cursorminheight:"50", horizrailenabled:false, cursorcolor:"#999",boxzoom:false});
 </script>

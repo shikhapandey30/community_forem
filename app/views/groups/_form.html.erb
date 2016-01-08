@@ -1,3 +1,4 @@
+<!-- Form for new and edit group -->
 <%= content_for(:title, @group.new_record? ? 'New Group' : @group.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -73,6 +74,7 @@
     </div>
   </div>
 </div>
+<!-- Form for new and edit group -->
 <script>
   $(".remove_image" ).click(function() {
     $("#post_upload_attributes_image").val('');
