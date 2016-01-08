@@ -18,7 +18,7 @@
 
           <li><a href="http://pinterest.com/pin/create/button/?url=<%= url_for(:only_path => false) %>&title=<%= object.topic %>&media=<%= object.try(:image) %>&description= <%= object.try(:description) %>"onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank">Pinterest</a></li>
         </ul>
-      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400);" id="comment_button_<%= object.id %>">
+      <input type="button" value="Add Your Comment" class="addCmnt inputTextW small add-comment-button-<%= object.id %>" onclick="$('#comments_<%= object.id%>').toggle(400); $('#comment_box_<%=object.id%>').show();" id="comment_button_<%= object.id %>">
     <%end%>  
   </div>
 </div>
@@ -34,9 +34,7 @@
         description: 'this is test post'
     }, function(response){});
   });
-  </script>
-
-
+</script>
 
 <div class="commentShow" id="comments_<%= object.id %>" style="display:none;">
   <%#if !object.comments.try(:count).zero? && user_signed_in?%>
