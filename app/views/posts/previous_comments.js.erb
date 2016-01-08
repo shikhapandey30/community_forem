@@ -1,0 +1,1 @@
+$("#last_post_comment_<%=@post.id%>").prepend("<%=j render(partial: 'comments/comments_view', locals: { comments: @comments, page: params[:page], object: @post, from: 'post_index' })%>");
