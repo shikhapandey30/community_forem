@@ -1,3 +1,4 @@
+<!-- Creation and editing of community -->
 <%= content_for(:title, @community.new_record? ? 'New Community' : @community.try(:topic).try(:capitalize)) %>
 <div class="mainCOntnt">
   <%=render "layouts/left_panel"%>
@@ -65,10 +66,9 @@
           </div>
           <div class="col-sm-12   pr10  ">
             <label>Invite Friends</label> 
-             <div class="selctFormBox">
-             <%= f.select(:members, @friends.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
-<!--             <input type="text"  class="inputTextW small ">
- -->          </div>
+            <div class="selctFormBox">
+              <%= f.select(:members, @friends.collect {|s| [s.screen_name, s.id]}, {}, class: "select", id: "dropdown", :multiple => true)  %>
+            </div>
           </div>
           <div class="col-sm-12">
           <% button_text = @community.id.present? ? "Update Community" : "Create Community" %>
@@ -82,6 +82,7 @@
     </div>
   </div>
 </div>
+<!-- Creation and editing of community -->
 <%if @community.id.present? %>
   <script type="text/javascript">
     $( "#dropdown" ).select2().select2('val',<%=  @community.members.collect(&:user_id) %>)

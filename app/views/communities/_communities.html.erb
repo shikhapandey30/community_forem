@@ -1,3 +1,4 @@
+<!-- Showing all communities -->
 <%communities.each do |community|%>
   <div class="whiteBox borderTop  col-sm-6 pb0  fl">
     <% if current_user && current_user == community.user %>
@@ -16,4 +17,5 @@
       <a class="btmBtn" href="<%=community_path(community)%>" > <%=community.posts.size rescue 0%> Discussion </a>
     </div>
   </div>
-<%end%>  
+<%end%>
+<!-- Showing all communities -->
