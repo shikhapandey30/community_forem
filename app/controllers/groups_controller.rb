@@ -1,22 +1,20 @@
 class GroupsController < ApplicationController
+
+  # filters
   before_filter :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :leave, :join]
   include NotificationsHelper
-  # GET /groups
-  # GET /groups.json
+
+  # fetching all group and members and fetching groups and members on basis of search data
   def index
-    # start change code- kandarp
     if params[:data].present?
       @groups = (current_user.groups.search(params[:data]) + current_user.group_members.search(params[:data])).compact.uniq.sort_by(&:updated_at).reverse
     else
       @groups = (current_user.groups + current_user.group_members).compact.uniq.sort_by(&:updated_at).reverse
     end
-    # end change code- kandarp
-  # @groups =(current_user.groups + current_user.group_members).compact
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
+  # fetching post, suggested groups, communitites
   def show
     if params[:post_id]
       @post = current_user.posts.friendly.find(params[:post_id])
@@ -32,7 +30,7 @@ class GroupsController < ApplicationController
     @comment = Comment.new    
   end
 
-  # GET /groups/new
+  # Initializing group
   def new
     @group = Group.new
     @group.build_upload
@@ -40,7 +38,7 @@ class GroupsController < ApplicationController
     @users = @users - [current_user]
   end
 
-  # GET /groups/1/edit
+  # editing group
   def edit
     authorize @group
     @group.upload.present? ? @group.upload : @group.build_upload
@@ -48,8 +46,7 @@ class GroupsController < ApplicationController
     @users = @users - [current_user]
   end
 
-  # POST /groups
-  # POST /groups.json
+  # creating group
   def create
     @group = current_user.groups.new(group_params)
     respond_to do |format|
@@ -66,8 +63,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /groups/1
-  # PATCH/PUT /groups/1.json
+  # updating group
   def update
     authorize @group
     respond_to do |format|
@@ -85,8 +81,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
+  # deleting group
   def destroy
     authorize @group
     @group.destroy
@@ -96,6 +91,7 @@ class GroupsController < ApplicationController
     end
   end
 
+  # leaving the group by user
   def leave  
     members = @group.members.where(:user_id=> current_user.id)
     members.delete_all
@@ -103,6 +99,7 @@ class GroupsController < ApplicationController
     redirect_to '/dashboard'
   end
 
+  # joining the group and sending the notification of joining
   def join
     @group.members.create(:user_id=>current_user.id)
     @invitable_members = @group.members - @group.members.where(user_id: current_user.id)    
@@ -124,6 +121,7 @@ class GroupsController < ApplicationController
     end
   end
 
+  # searching group on basis of topic passed
   def filter    
     @suggested_groups = Group.where(id: new_suggested_groups).by_topic(params[:topic])
     @suggest = false
@@ -140,11 +138,13 @@ class GroupsController < ApplicationController
        params.require(:group).permit(:category_id, :topic, :headline, :slogan, :community_logo, :description, upload_attributes: [:id, :image, :site_link, :file, :video, :_destroy])
     end
 
+    # updaiting image and file
     def set_upload
       @group.upload.update_column(:image, nil) if params[:image_url].eql?("true")
       @group.upload.update_column(:file, nil) if params[:file_url].eql?("true")
     end
 
+    # member creation and sending invitation to join group
     def set_members
       members_ids = params[:group][:members].reject(&:empty?)
       @group.members.destroy_all if params[:action] == "update"
@@ -160,6 +160,7 @@ class GroupsController < ApplicationController
       end
     end
 
+    # fetching suggested groups
     def suggested_groups
       if request.headers["HTTP_REFERER"].include?("suggested_groups")
         @suggested_groups = new_suggested_groups
