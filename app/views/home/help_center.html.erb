@@ -18,23 +18,23 @@
     <div class="clearfix  innerWIdth550 tac ">
       <div class=" whiteBox col-sm-12">
         <div class="col-sm-12">
-          <%= StaticPage.first.help_center.try(:html_safe)%>
+          <%= StaticPage.first.try(:help_center).try(:html_safe)%>
           <div class=" loginForm contactForm mt20">
             <span class="success_message" style="display:none;">Your request has been sent successfully !!</span>
             <%= form_for @contact, url: contact_help_path, :html => { class: "form-validate" }, :remote => true do |f| %>
 
               <div class="clearfix row">
                 <div class="pr10 col-sm-6">
-                  <%= f.text_field :name, class: "inputText small validate[required]", placeholder: "Name", :maxlength=>"80" %>
+                  <%= f.text_field :name, class: "inputText small validate[required]", placeholder: "Name", :maxlength=>"80", "data-errormessage-value-missing"=>"Name should not be blank" %>
                 </div>
                 <div class="pl10 col-sm-6">
-                  <%= f.text_field :phone_no, class: "inputText  validate[required,custom[phone]]", placeholder: "Contact Number", :maxlength=>"80" %>
+                  <%= f.text_field :phone_no, class: "inputText  validate[required,custom[phone]]", placeholder: "Contact Number", :maxlength=>"80", "data-errormessage-value-missing"=>"Phone Number should not be blank" %>
                 </div>
                 <div class="col-sm-12">
-                  <%= f.text_field :email, class: "inputText validate[required,custom[email]]", placeholder: "Email", :maxlength=>"80" %>
+                  <%= f.text_field :email, class: "inputText validate[required,custom[email]]", placeholder: "Email", :maxlength=>"80", "data-errormessage-value-missing"=>"Email should not be blank" %>
                 </div>
                 <div class="col-sm-12">
-                  <%= f.text_area :body, class: "inputText validate[required]", placeholder: "Message", :maxlength=>"80" %>
+                  <%= f.text_area :body, class: "inputText validate[required]", placeholder: "Message", :maxlength=>"80", "data-errormessage-value-missing"=>"Message body should not be blank" %>
                 </div>
                 <div class="col-sm-12">
                   <%= f.submit "Send", class: 'darkBlueBtn inputSubmit' %>
