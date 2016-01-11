@@ -34,9 +34,9 @@
       </div>
       <div class="col-sm-6 pr10">
         <label>Country<span class="redColor">*</span></label>
-        <div class="selctFormBox">      
+        <div class="selctFormBox">
           <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required]", "data-errormessage-value-missing"=>"Country should not be blank" %>
-          <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
+          <%= p.select(:country, Country.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select", :selected => p.object.try(:country).try(:id)}, class: "select")  %>
         </div>
       </div>
       <div class="col-sm-6 pl10">
@@ -107,5 +107,10 @@
   <script>
     $('.dob').datetimepicker( {format: 'YYYY-MM-DD', maxDate: moment()});
     $("#form-id").validationEngine();
+    $( "#form-id" ).submit(function( event ) {      
+      if ($("#form-id").children().find(".formError").size()==0){
+        $(".ajax-loading").show();
+      }
+    });
   </script>
 <% end %>
