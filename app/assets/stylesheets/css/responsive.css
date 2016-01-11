@@ -18,6 +18,7 @@
 
 }
 @media only screen and (max-width : 992px) {
+.formError {left: 0 !important;}
 .searhInput {width: 400px;}
 .banner {min-height: 480px;}
 .featureThumb img {width: 146px; height:auto;}
@@ -45,6 +46,7 @@ header .searhInput {max-width: 211px;}
 }
 /* Small Devices, Tablets */
 @media only screen and (max-width : 767px) {
+.formError {left: 0 !important;}
 .logo {margin:10px 0px; width:100%; text-align:center;}
 .topSearchRight {margin: 0;}
 .searhInput {width: 211px;}
