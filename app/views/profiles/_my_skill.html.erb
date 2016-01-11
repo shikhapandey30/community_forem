@@ -4,7 +4,7 @@
     <div class="col-sm-12 mb10">
       <div class="grayHD">SKILLS
         <%if @user==current_user%>
-         <a href="/profiles/edit_skill" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add/Edit Skills</a>
+         <a href="/profiles/edit_skill" class="blueBtn fr addBtn" data-remote=true onclick = "$('.ajax-loading').show();"> &nbsp;&nbsp; Add/Edit Skills</a>
         <%end%>
       </div>
     </div>

@@ -4,7 +4,7 @@
     <div class="col-sm-12 mb10">
       <div class="grayHD">EMPLOYMENT DETAILS
         <% if @user==current_user %>
-         <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true> &nbsp;&nbsp; Add Employment</a>
+         <a href="/profiles/add_employment" class="blueBtn fr addBtn" data-remote=true onclick = "$('.ajax-loading').show();"> &nbsp;&nbsp; Add Employment</a>
         <% end%>
       </div>
       <% @user.employment_details.each do |employment| %>
