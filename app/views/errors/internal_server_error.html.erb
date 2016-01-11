@@ -1,2 +1,13 @@
-<h1>Errors#internal_server_error</h1>
-<p>Find me in app/views/errors/internal_server_error.html.erb</p>
+<%= content_for(:title, 'Internal Server Error') %>
+<div class="mainCOntnt">
+  <%=render "layouts/left_panel"%>    
+  <div class="rightContent">
+    <%#=render 'layouts/topNav'%>
+    <div class="overLAy"></div>
+    <div class="clearfix innerWIdth page404 tac">
+      <div class="clearfix whiteBox tac">
+        <img src="/assets/images/500.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>

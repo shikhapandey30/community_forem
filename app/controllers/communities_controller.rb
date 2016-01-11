@@ -2,6 +2,7 @@ class CommunitiesController < ApplicationController
   
   #filters
   before_action :set_community, only: [:show, :edit, :update, :destroy, :join, :leave]
+  before_action :authenticate_user!
 
   # fetching user communities and associated community members
   def index

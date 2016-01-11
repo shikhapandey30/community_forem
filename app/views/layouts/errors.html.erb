@@ -1,3 +1,39 @@
-<h1>Not Found</h1>
-<p>The requested URL <%=request.url%> was not found on this server.</p>
-<p>Additionally, a 404 Not Found error was encountered while trying to use an ErrorDocument to handle the request.</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0">
+      <title> 
+        <%= content_for?(:title) ? (":: " + yield(:title) + " ::") : ':: TGS ::' %>
+      </title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,600,300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>    
+    <div class="popup-success"></div>
+    <div class="bodyCont">      
+      <%if user_signed_in? && !request.url.include?("admin")%>        
+        <div id='new_header'>
+          <%=render 'layouts/new_header'%>              
+        </div>
+      <%elsif request.url.include?("sign") || request.url.include?("password") || params[:controller]=="registrations"%>
+        <%#=render 'layouts/header'%>      
+      <%elsif request.url.include?("admin")%>
+        <%#=render 'layouts/header'%>
+      <%else%>
+        <%=render 'layouts/header'%>
+      <%end%>  
+      <div class="<%= class_container %>">
+        <%if user_signed_in? && (params[:controller] =="home" &&  params[:action]!="index")%>
+          <%= render "layouts/left_panel"%>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%if action_exist?%>
+        <%= render "layouts/footer" if !user_signed_in? %>
+      <% end %>
+    </div>    
+  </body>
+</html>

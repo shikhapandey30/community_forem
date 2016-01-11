@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   ## filters
-	before_action :authenticate_user!,:except => [:social_login]
+	before_action :authenticate_user!,:except => [:social_login, :search]
 
   ## all topics and users
   def index

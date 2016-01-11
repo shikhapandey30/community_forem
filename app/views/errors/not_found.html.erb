@@ -1,2 +1,14 @@
-<h1>Errors#not_found</h1>
-<p>Find me in app/views/errors/not_found.html.erb</p>
+<%= content_for(:title, 'Page not found') %>
+<div class="mainCOntnt">
+	<%=render "layouts/left_panel"%>
+  <div class="rightContent">
+    <div class="overLAy"></div>
+    <div class="clearfix innerWIdth page404 tac">
+      <div class="clearfix whiteBox tac">
+        <img src="/assets/images/404.jpg" alt="">
+        <p class="mt30">Aenean non congue metus. Integer cursus nisi at nunc scelerisque auctor? Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;Nullam sed elit</p>
+        <a class="blueBtn mtb10" href="/">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
