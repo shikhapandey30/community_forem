@@ -33,25 +33,26 @@
         <div class="clearfix whiteBox">
           <div class="clearfix formOuterPost tal">
             <div class="col-sm-6 pr10">
-              <label>Category</label>
+
+              <label>Category<span class="redColor">*</span></label>
               <div class="selctFormBox">
                 <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-                <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
+                <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select", "data-errormessage-value-missing"=>"Please select category") %>
               </div>
               <div id="category_name_error"></div>
             </div>
             <div class="col-sm-6 pl10">
-              <label>Topic</label>
+              <label>Topic<span class="redColor">*</span></label>
               <!-- <div class="selctFormBox"> -->
               <%#= f.hidden_field :topic_id, :value=>'Select', class: " selectInputField" %>
               <%#= f.text_field "topic_id", :value=>'Select', class: "selectInput" ,:id=>'topic'%>
               <%#= f.select("topic_id", Topic.all.collect {|s| [s.name, s.id]}, {}, class: "select")  %>
               <!-- </div> -->
-              <%= f.text_field :topic, :id=>"topic", "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Topics" %>
+              <%= f.text_field :topic, :id=>"topic", "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Topics", "data-errormessage-value-missing"=>"Topic should not be blank" %>
             </div>
             <div class="col-sm-12">
-              <label>Headline</label>
-              <%= f.text_field :title, "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Please write headline here...." %>
+              <label>Headline<span class="redColor">*</span></label>
+              <%= f.text_field :title, "data-validation-engine"=>"validate[required]", class: "inputTextW small", placeholder: "Please write headline here....", "data-errormessage-value-missing"=>"Headline should not be blank" %>
             </div>
             <div class="col-sm-12">
               <label class=""><%= f.label "Description" %></label>
@@ -65,11 +66,11 @@
             </div>
             <label  class="col-sm-12 mt20 block">Set expiration of post </label>
             <div class="col-sm-6  pr10  dateOuter">
-              <label>From</label> <%= f.text_field :start_date, "data-validation-engine"=>"validate[required]", class: "inputTextW small date start_date" %>
+              <label>From<span class="redColor">*</span></label> <%= f.text_field :start_date, "data-validation-engine"=>"validate[required]", class: "inputTextW small date start_date", "data-errormessage-value-missing"=>"Please select From date" %>
           
             </div>
             <div class="col-sm-6  pl10 dateOuter">
-              <label>To</label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", "data-validation-engine"=>"validate[required]", class: "inputTextW small date end_date" %>
+              <label>To<span class="redColor">*</span></label><%= f.text_field :expiration_date, placeholder: "DD-MM-YYYY", "data-validation-engine"=>"validate[required]", class: "inputTextW small date end_date", "data-errormessage-value-missing"=>"Please select To date" %>
             </div>
             <div class="col-sm-12">
               <%= f.submit "Save Post", class: "blueBtn common_submit" %>

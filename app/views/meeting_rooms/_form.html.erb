@@ -38,29 +38,29 @@
       <div class="clearfix whiteBox">
         <div class="clearfix formOuterPost tal">
           <div class="col-sm-6 pr10">
-            <label>Categories</label>
+            <label>Categories<span class="redColor">*</span></label>
             <div class="selctFormBox">
               <%= f.hidden_field :category_id, :value=>select_type(f, "category_id", "Category"), class: " selectInputField" %>
               <%= f.text_field "category_id", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
-              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
+              <%= f.select("category_id", Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select", "data-errormessage-value-missing"=>"Please select category")  %>
             </div>
             <div id="category_name_error"></div>
           </div>
           <div class="col-sm-6 pl10">
-            <label>Topic</label>
-            <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Topic" %>
+            <label>Topic<span class="redColor">*</span></label>
+            <%= f.text_field :topic, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Topic", "data-errormessage-value-missing"=>"Topic should not be blank" %>
           </div>
           <div class="col-sm-12">
-            <label class="font20">Headline</label>
-            <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here...." %>
+            <label>Headline<span class="redColor">*</span></label>
+            <%= f.text_field :headline, "data-validation-engine"=>"validate[required,maxSize[360]]", class: "inputTextW small", placeholder: "Write headline here....", "data-errormessage-value-missing"=>"Headline should not be blank" %>
           </div>
           <div class="col-sm-12">
-            <label class=""> Assign Name </label>
-            <%= f.text_field :name, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Assign Name" %>
+            <label class=""> Assign Name<span class="redColor">*</span> </label>
+            <%= f.text_field :name, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Assign Name", "data-errormessage-value-missing"=>"Assign name should not be blank" %>
           </div>
           <div class="col-sm-12 ">
-            <label class="">Slogan of Meeting </label>
-            <%= f.text_field :slogan, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Please write slogan of meeting here...." %>
+            <label class="">Slogan of Meeting<span class="redColor">*</span> </label>
+            <%= f.text_field :slogan, "data-validation-engine"=>"validate[required,maxSize[80]]", class: "inputTextW small", placeholder: "Please write slogan of meeting here....", "data-errormessage-value-missing"=>"Slogan of Meeting should not be blank" %>
           </div>
           <div class="col-sm-12 ">
             <label class="">Invite Members </label>
