@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth innerWIdth550 tac ">
-       <%= StaticPage.first.contactus.try(:html_safe)%>
+       <%= StaticPage.first.try(:contactus).try(:html_safe)%>
       <div class="loginForm contactForm">
         <div class="row">
           <div class="pr10 col-sm-6">

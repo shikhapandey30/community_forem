@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="clearfix innerWIdth tac ">
-        <%= StaticPage.first.terms_and_conditions.try(:html_safe)%> 
+        <%= StaticPage.first.try(:terms_and_conditions).try(:html_safe)%> 
      
     </div>
   </div>
