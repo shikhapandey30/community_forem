@@ -1,55 +1,56 @@
 <header class="clearfix whiteHeader ">
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s"> <a href="/dashboard"> <img src="/assets/images/logoBlue.png" alt=""></a> </div>
   <div class="topRightHeader">
-    <div class="topRight">   
-     <%if params[:friend_id]%>
+    <div class="topRight">
+      <%if params[:friend_id]%>
       <%@current_user = User.find(params[:friend_id])%>
-    <%else%> 
+      <%else%> 
       <%@current_user = current_user%>    
-    <%end%>
-    <% notifications = @current_user.notifications.unread %>
-    <%# messages = @current_user.notifications.messages.unread %>
-    <% messages = Message.incoming_messages(current_user)%>
-    <% friend_requests = @current_user.notifications.friend_requests.unread %>
-    <% notifications = notifications - messages - friend_requests %> 
-    <span class="dropdown notification notification-combine">   
+      <%end%>
+      <% notifications = @current_user.notifications.unread %>
+      <%# messages = @current_user.notifications.messages.unread %>
+      <% messages = Message.incoming_messages(current_user)%>
+      <% friend_requests = @current_user.notifications.friend_requests.unread %>
+      <% notifications = notifications - messages - friend_requests %> 
+      <span class="dropdown notification notification-combine">   
       <%=render 'notifications/notifications'%>
-    </span>      
-    <span class="dropdown notification message_notifications">
+      </span>      
+      <span class="dropdown notification message_notifications">
       <%=render 'notifications/message_notifications', user: current_user%>
-    </span>
-       <span class="dropdown notification ">  
-          <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt="">
-           <%if friend_requests.count > 0 %>
-           <span class="friendship-count"><%= friend_requests.count%></span>
-           <% end %>
-          </a>
-         <ul class="clearfix dropdown-menu request-notification">
-             <div class="topGrayRow"> <span class="blackColor font14 bold friendship-count">Friend Requests (<%= friend_requests.count%>)</span>
-             <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
-             <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> </div>
-          
+      </span>
+      <span class="dropdown notification ">
+        <a href="#" data-toggle="dropdown"><img src="/assets/images/user.png" alt="">
+        <%if friend_requests.count > 0 %>
+        <span class="friendship-count"><%= friend_requests.count%></span>
+        <% end %>
+        </a>
+        <ul class="clearfix dropdown-menu request-notification">
+          <div class="topGrayRow"> <span class="blackColor font14 bold friendship-count">Friend Requests (<%= friend_requests.count%>)</span>
+            <%#= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:style =>"color: #fff"%>         
+            <%= link_to "Mark As Read ", mark_as_read_notifications_path, :method => "post" ,:class =>"blackColor font13 bold fr" if friend_requests.count > 0 %> 
+          </div>
           <div class="notiScroll scrollbars">
             <% friend_requests.try(:reverse).each do |notification|%>
             <li class="notification-<%= notification.id %>" >
               <div class="clearfix commentSec cmntRow">
-                <div class="clearfix userInfo posRel"> <a href="<%= profile_path(notification.user) rescue nil%>" class="userImg"><img src="<%= notification.user.img %>" alt=""></a> <a href="<%= profile_path(notification.user) rescue nil%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
+                <div class="clearfix userInfo posRel">
+                  <a href="<%= profile_path(notification.user) rescue nil%>" class="userImg"><img src="<%= notification.user.try(:img) %>" alt=""></a> <a href="<%= profile_path(notification.user) rescue nil%>" class="userNAme font14"><%= notification.user.try(:screen_name) %></a> <br>
                   <div class="fr grayColor tar"><%= time_ago_in_words(notification.updated_at).capitalize %> ago</div>
                   <!-- <div class="font13">Web Designer</div>
-                  <div class="blackColor font12 bold"> is now a connection</div> -->
+                    <div class="blackColor font12 bold"> is now a connection</div> -->
                 </div>
                 <div class="acceptRej">
                   <%= link_to "", notification_accept_path(notification), :method => :post , :class=>"accept ", :remote=>true %>
-                     <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
-                    </div>
+                  <%= link_to "", notification_reject_path(notification), :method => :post , :class=>"reject ", :remote=>true %>
+                </div>
               </div>
-              </li>
-              <% end %>
-              </div>
+            </li>
+            <% end %>
+          </div>
         </ul>
       </span>
-       <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
-       <a href="#" class="wlt"><%= @current_user.wallet_amount %></a> 
+      <a href="#"><img src="/assets/images/wlt.png" alt=""></a>
+      <a href="#" class="wlt"><%= @current_user.wallet_amount %></a> 
       <span class="dropdown settingDropDown">
         <a href="#"  data-toggle="dropdown"><img src="/assets/images/setting.png" alt=""></a>
         <ul class="dropdown-menu">
@@ -94,7 +95,7 @@
       url: '/update_notification'
     });
   });
-
+  
   $('.read-messages').click(function(){
     $.ajax({
       type: 'post',

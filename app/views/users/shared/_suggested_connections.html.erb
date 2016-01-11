@@ -11,7 +11,7 @@
 		<%@suggested_connections.each_with_index do |connection, index|%>
 			<div class="connectionOuter">
 			  <div class="col-sm-6 <%=index.even? ? 'borderRight' : ''%> friendship-btn-<%= connection.id%>">
-			    <a href="#"> <%=image_tag connection.img%>
+			    <a href="#"> <%=image_tag connection.try(:img)%>
 			    <span><%=connection.try(:screen_name)%></span></a>
 			    <div class="dsignation"><%=connection.employment_details.current_company.try(:last).try(:designation)%>
 			    </div>

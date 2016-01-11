@@ -7,7 +7,7 @@
       <div class="blueBkg myWall">
         <div class="clearfix innerWIdth550">
           <div class="userTHumb">
-            <a href="<%=edit_profile_path(current_user)%>" class="profileImg"><%= image_tag current_user.img %></a>
+            <a href="<%=edit_profile_path(current_user)%>" class="profileImg"><%= image_tag current_user.try(:img) %></a>
             <div class="nameLocation">
               <a href="<%=edit_profile_path(current_user)%>" class="font22"><%= current_user.try(:screen_name) %></a>
               <div class="location font14"><%= current_user.try(:profile).try(:country).try(:name) %></div>

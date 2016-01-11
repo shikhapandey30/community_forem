@@ -13,7 +13,7 @@
 				            </ul>
 				        </div> 				     
 				      <% end %>
-				    <a href="#" class="userImg"><img src="<%= reply.user.img %>" alt=""></a>
+				    <a href="#" class="userImg"><img src="<%= reply.user.try(:img) %>" alt=""></a>
 				    <a href="#" class="userNAme"> <%= reply.user.try(:screen_name) %></a> <br>
 				    <% @designation = reply.user.employment_details.collect(&:designation) %>
 				    <div class="fr grayColor tar">
@@ -32,7 +32,7 @@
 					    </div>
 			        <div class="clearfix replyRow reply_box_class" id= "reply_box_id_<%= reply.id %>">
 				        <%= form_for(reply, remote: true) do |f| %>
-					        <a href="#" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+					        <a href="#" class="userImg"><img src="<%= current_user.try(:img) %>" alt=""></a>
 					        <div class="field">
 					          <%= f.text_field :body, placeholder: "Add Your Comment", class: "addReply inputTextW small" %>
 					        </div>

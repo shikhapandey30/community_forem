@@ -13,7 +13,7 @@
   <%end%>
   <%@suggested_forum_polls.each_with_index do |forum_poll, index|%>    
     <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="forum_poll_<%=forum_poll.id%>">
-      <a href="<%=forum_poll_path(forum_poll)%>" class="pollImgOuter mt20 grpImg"><%=image_tag forum_poll.img%></a>
+      <a href="<%=forum_poll_path(forum_poll)%>" class="pollImgOuter mt20 grpImg"><%=image_tag forum_poll.try(:img)%></a>
       <a href="<%=forum_poll_path(forum_poll)%>" class="block groupName width"><%=forum_poll.try(:topic) %></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>

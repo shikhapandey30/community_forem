@@ -15,7 +15,7 @@
       <div class="clearfix cmntRow tal">
         <div class="clearfix userInfo posRel">
           <div class="clearfix  "></div>
-          <a href="<%= profile_path(current_user)%>" class="userImg"><img src="<%= current_user.img %>" alt=""></a>
+          <a href="<%= profile_path(current_user)%>" class="userImg"><img src="<%= current_user.try(:img) %>" alt=""></a>
           <a href="<%= profile_path(current_user)%>" class="userNAme font14 mt23Final"> <%= current_user.screen_name %> Start a conversation with your <%=object.class.name.downcase rescue nil%></a> <br>
         </div>
       </div>

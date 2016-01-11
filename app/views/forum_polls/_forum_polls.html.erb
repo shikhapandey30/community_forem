@@ -10,7 +10,7 @@
         </ul>
       </div>
     <% end %>
-    <a href="<%=forum_poll_path(poll)%>" class="pollImgOuter mt20"><%=image_tag poll.img%></a>
+    <a href="<%=forum_poll_path(poll)%>" class="pollImgOuter mt20"><%=image_tag poll.try(:img)%></a>
     <a href="<%=forum_poll_path(poll)%>" class="block groupName width"><%=poll.topic%></a>
     <div class="virwJoinBtn">
       <a class="btmBtn" href="<%=forum_poll_path(poll)%>"><%=expireDate(poll.end_date) if poll.end_date%></a>      

@@ -19,7 +19,7 @@
               <div class="blueColor font16 bold"><%= @user.my_friends.count %></div>
               connections
             </div>
-            <div class="thumbImg"> <%=image_tag @user.img%></div>
+            <div class="thumbImg"> <%=image_tag @user.try(:img)%></div>
             <div class="font22"><%= @user.try(:screen_name).try(:capitalize) %></div>
             <div class="designation"> <%=@user.try(:employment_details).current_company.try(:last).try(:designation)%>
             </div>

@@ -2,15 +2,27 @@
   <div class="logo wow fadeIn" data-wow-delay="" data-wow-duration="1s">
     <a href="/"> <img src="/assets/images/logo.png" alt=""></a>
   </div>
+  <div class="searchOverLAy"></div>
   <div class="topSearchRight wow fadeIn" data-wow-delay="" data-wow-duration="1s">
-    <div class="catLIstLink">
-      <a href="/" class="catLIst"><img src="/assets/images/catDrop.png" alt=""></a>
+    <div class="catLIstLink dropdown">
+      <a href="#" class="catLIst " data-toggle="dropdown"> 
+      <%=image_tag "images/sd.png", :class=> "iconChange"%>  <%=image_tag "images/drp.png"%> </a>
+      <ul class="dropdown-menu searchOpt">
+        <li><a href="#" class='header_search_input'><img src="/assets/images/sd1.png" alt="">All</a></li>
+        <lI><a href="#" class='header_search_input'><img src="/assets/images/sd2.png" alt="">People</a></lI>
+        <li><a href="#" class='header_search_input'><img src="/assets/images/sd3.png" alt="">Communities</a></li>
+        <li><a href="#" class='header_search_input'><img src="/assets/images/sd4.png" alt="">Groups</a></li>
+      </ul>
     </div>
     <div class="formOuter">
       <%#=form_tag search_path do%>
-        <%=text_field_tag "name", nil,:required => true, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput header_search_input"%>
-        <input type="submit" value="" class="searhSub"></input>
-        <%#end%>
+      <%=text_field_tag "name", nil,:required => true, autocomplete: "off", placeholder:"You can also search by keyword, Topic, Peoples...",class: "searhInput header_search_input"%>
+      <input type="submit" value="" class="searhSub"></input>
+      <%#end%>
+    </div>
+    <div class="searchDropDown">
+      <%=hidden_field_tag :filter, nil, class: "keyword_filter"%>
+      <div class="search_filter"></div>
     </div>
     <a class="lightBlueBtn" href="/users/sign_up">Get Started</a>
   </div>

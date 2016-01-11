@@ -3,7 +3,7 @@
     <div class="grayHD bold">People</div>
     <%@peoples.each do |user|%>
       <div class="clearfix userInfo posRel">
-        <a href="<%=user_path(user)%>" class="userImg"><%=image_tag user.img%></a>
+        <a href="<%=user_path(user)%>" class="userImg"><%=image_tag user.try(:img)%></a>
         <a href="<%=user_path(user)%>" class="userNAme font14 mt5"><%=user.screen_name%></a> <br>
         <div class="font13 mt5 bold"><%=user.employment_details.try(:last).try(:designation)%></div>
       </div>

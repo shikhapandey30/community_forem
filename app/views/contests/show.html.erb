@@ -6,7 +6,7 @@
     <%=render 'layouts/topNav'%>
     <div class="clearfix blueBkg meetingRoomTOp">
       <div class="innerWIdth550">
-        <span><%= image_tag @contest.img %></span>
+        <span><%= image_tag @contest.try(:img) %></span>
         <div class="mtngTitle">
           <%= @contest.topic %>
           (<%= @contest.start_date.strftime("%m/%d") rescue nil%> - <%= @contest.end_date.strftime("%m/%d") rescue nil %>)
@@ -32,7 +32,7 @@
               <span class="downVote vote" data-toggle="tooltip" title="Againest"></span> <span class="against"> <%=@contest.votes.against.size rescue 0%></span> &nbsp;
               <span class="fr <%=expireDate(@contest.end_date).eql?("Expired") ? 'redColor' : 'blueColor' %> frNone"><%=expireDate(@contest.end_date) %></span>
             </div>
-            <%= image_tag @contest.img, class: "fullWdth mtb10" %>
+            <%= image_tag @contest.try(:img), class: "fullWdth mtb10" %>
             <div class="uniOuter">
               <div class="blackColor">
                 <p class="blackHD font18 mt20"><%= @contest.try(:headline) %></p>

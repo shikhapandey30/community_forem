@@ -13,7 +13,7 @@
   <%end%>
   <%@suggested_contests.each_with_index do |contest, index|%>    
     <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="contest_<%=contest.id%>">
-      <a href="<%=contest_path(contest)%>" class="pollImgOuter mt20 grpImg"><%=image_tag contest.img%></a>
+      <a href="<%=contest_path(contest)%>" class="pollImgOuter mt20 grpImg"><%=image_tag contest.try(:img)%></a>
       <a href="<%=contest_path(contest)%>" class="block groupName width"><%=contest.topic%></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>

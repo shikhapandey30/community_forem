@@ -13,7 +13,7 @@
   <%end%>
   <%@suggested_groups.each_with_index do |group, index|%>    
     <div class="whiteBox borderTop col-sm-6 pb0 fl text-center" id="group_<%=group.id%>">
-      <a href="<%=group_path(group)%>" class="pollImgOuter mt20 grpImg"><%=image_tag group.img%></a>
+      <a href="<%=group_path(group)%>" class="pollImgOuter mt20 grpImg"><%=image_tag group.try(:img)%></a>
       <a href="<%=group_path(group)%>" class="block groupName width"><%=group.topic%></a>
       <div class="virwJoinBtn">
         <a class="btmBtn" href="#"> 0 Updates</a>

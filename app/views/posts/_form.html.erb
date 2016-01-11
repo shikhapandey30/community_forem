@@ -19,7 +19,7 @@
         <div class="whiteBox mt90">
           <div class="userTHumb userTHumbRight">
             <a href="<%= profile_path(current_user)%>" class="profileImg">
-            <%= image_tag current_user.img %>
+            <%= image_tag current_user.try(:img) %>
             </a>
             <div class="nameLocation">
               <a href="<%= profile_path(current_user)%>"><%= current_user.try(:screen_name) %></a><br>

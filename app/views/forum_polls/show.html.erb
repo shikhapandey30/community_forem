@@ -6,7 +6,7 @@
     <%=render 'layouts/topNav'%>
     <div class="clearfix blueBkg meetingRoomTOp">
       <div class="innerWIdth550">
-        <span><%= image_tag @forum_poll.img %></span>
+        <span><%= image_tag @forum_poll.try(:img) %></span>
         <div class="mtngTitle">
           <%= @forum_poll.try(:topic) %>
           (<%= @forum_poll.start_date.present? ? @forum_poll.start_date.strftime("%m/%d") : "" %> - <%= @forum_poll.end_date.present? ? @forum_poll.end_date.strftime("%m/%d") : ""%>)
@@ -33,7 +33,7 @@
               <span class="noVote vote" data-toggle="tooltip" title="Undecided"></span>  <span class="undecided"> <%=@forum_poll.votes.undecided.size rescue 0%></span> 
               <span class="fr <%=expireDate(@forum_poll.end_date).eql?("Expired") ? 'redColor' : 'blueColor' %> frNone"><%=expireDate(@forum_poll.end_date) %></span>
             </div>
-            <%= image_tag @forum_poll.img, class: "fullWdth mtb10" %>
+            <%= image_tag @forum_poll.try(:img), class: "fullWdth mtb10" %>
             <div class="uniOuter">
               <div class=" blackColor ">
                 <%= @forum_poll.try(:description) %>

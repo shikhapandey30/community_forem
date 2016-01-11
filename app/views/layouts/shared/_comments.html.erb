@@ -54,7 +54,7 @@
   <%if user_signed_in?%>
     <div  class="clearfix commentSec cmntRow borderNOne" id="comment_box_<%= object.id %>">
       <div class="clearfix userInfo posRel">
-        <a href="<%= profile_path(object.user) %>" class="userImg"><img src="<%= object.user.img %>" alt=""></a>
+        <a href="<%= profile_path(object.user) %>" class="userImg"><img src="<%= object.user.try(:img) %>" alt=""></a>
         <div class="addcomtntTA">
           <%= form_for([object, @comment], remote: true, html: {id: "comment_form_#{object.id}"}) do |f| %>
             <div class="field">

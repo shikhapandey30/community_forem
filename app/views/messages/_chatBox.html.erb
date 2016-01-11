@@ -11,7 +11,7 @@
             <li> <%=link_to "Delete Conversation", conversation_message_path(friend, current_user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true%></li>
           </ul>
         </span>
-        <a href="#" class="userImg"><img src="<%=friend.img%>" alt=""></a>
+        <a href="#" class="userImg"><img src="<%=friend.try(:img)%>" alt=""></a>
         <a href="#" class="userNAme"><%=friend.try(:screen_name)%></a> <br>
         <div class="font13 mt5"><%=designations(friend)%></div>
       </div>

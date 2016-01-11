@@ -21,7 +21,7 @@
         <div class="clearfix formOuterPost tal padding10-0">
           <div class="col-sm-12 mb10">
             <div class="clearfix userInfo posRel">
-              <a href="#" class="userImg"><img src="<%= @post.user.img %>" alt=""></a>
+              <a href="#" class="userImg"><img src="<%= @post.user.try(:img) %>" alt=""></a>
               <a href="#" class="userNAme"><%= @post.user.try(:screen_name) %></a>
               <br>
               <span class="font13"><%#= @designation %></span>
