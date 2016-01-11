@@ -50,7 +50,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Zipcode<span class="redColor">*</span></label>
-        <%= p.text_field :post_code, class: "profile inputTextW small validate[required,maxSize[10]]", placeholder: "10001", "data-errormessage-value-missing"=>"Zipcode should not be blank" %>
+        <%= p.text_field :post_code, class: "profile inputTextW small validate[required,maxSize[6],minSize[4]]", placeholder: "10001", "data-errormessage-value-missing"=>"Zipcode should not be blank" %>
       </div>      
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
@@ -63,7 +63,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone<span class="redColor">*</span></label>
-        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789", "data-errormessage-value-missing"=>"Phone number should not be blank" %>
+        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[12], minSize[10]", placeholder: "0123456789", "data-errormessage-value-missing"=>"Phone number should not be blank" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
