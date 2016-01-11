@@ -33,7 +33,7 @@
         <div class="clearfix whiteBox">
           <div class="clearfix formOuterPost tal">
             <div class="col-sm-6 pr10">
-              <label>Categories</label>
+              <label>Category</label>
               <div class="selctFormBox">
                 <%= f.text_field "category", :value=>select_type(f, "category_id", "Category"), class: "selectInput" ,:id=>'category', name: "category_name_second"%>
                 <%= f.select(:category_id, Category.all.collect {|s| [s.name, s.id]}, {:include_blank => "Select"}, "data-validation-engine"=>"validate[required]", class: "select")  %>
