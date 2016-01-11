@@ -20,12 +20,12 @@
           <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")%>">
             <%= devise_error_messages! %>
           </div>
-          <%= f.text_field :first_name ,"data-validation-engine"=>"validate[required]", placeholder: "First Name", :maxlength=>"80", class: "inputText"%>
-          <%= f.text_field :last_name, "data-validation-engine"=>"validate[required]", placeholder: "Last Name", :maxlength=>"80", class: "inputText"%>
-          <%= f.text_field :screen_name, "data-validation-engine"=>"validate[required]", placeholder: "Screen Name", :maxlength=>"80", class: "inputText"%>
-          <%= f.email_field :email,"data-validation-engine"=>"validate[required],custom[email]", placeholder: "Email", :maxlength=>"80", class: "inputText" %>
-          <%= f.password_field :password,"data-validation-engine"=>"validate[required]", autocomplete: "off", placeholder: "Password", :maxlength=>"80", class: "inputText" %>
-          <%= f.password_field :password_confirmation, "data-validation-engine"=>"validate[required]",autocomplete: "off", placeholder:"Confirm Password", :maxlength=>"80",class: "inputText" %>
+          <%= f.text_field :first_name ,"data-validation-engine"=>"validate[required]", placeholder: "First Name", :maxlength=>"80", class: "inputText", "data-errormessage-value-missing"=>"First Name should not be blank"%>
+          <%= f.text_field :last_name, "data-validation-engine"=>"validate[required]", placeholder: "Last Name", :maxlength=>"80", class: "inputText", "data-errormessage-value-missing"=>"Last Name should not be blank"%>
+          <%= f.text_field :screen_name, "data-validation-engine"=>"validate[required]", placeholder: "Screen Name", :maxlength=>"80", class: "inputText", "data-errormessage-value-missing"=>"Screen Name should not be blank"%>
+          <%= f.email_field :email,"data-validation-engine"=>"validate[required],custom[email]", placeholder: "Email", :maxlength=>"80", class: "inputText", "data-errormessage-value-missing"=>"Email should not be blank" %>
+          <%= f.password_field :password,"data-validation-engine"=>"validate[required]", autocomplete: "off", placeholder: "Password", :maxlength=>"80", class: "inputText","data-errormessage-value-missing"=>"Password should not be blank" %>
+          <%= f.password_field :password_confirmation, "data-validation-engine"=>"validate[required]",autocomplete: "off", placeholder:"Confirm Password", :maxlength=>"80",class: "inputText", "data-errormessage-value-missing"=>"Confirmation password should not be blank" %>
           <%= f.submit "Sign Up", class: "darkBlueBtn inputSubmit" %>
         <%end%>
        </div>
