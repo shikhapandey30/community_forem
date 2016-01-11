@@ -3,7 +3,7 @@
     <div id="tab-1" class="tab-content current">
       <%=link_to 'X','#',class: 'remove_image',:style=>'display:none;'%>
       <div class="uploadBoxOuter font14">        
-        <a href="#"  onclick="$('.post_image').click();">
+        <a href="#-"  onclick="$('.post_image').click();">
           <% if obj.try(:upload).try(:image).present? %>
             <%= image_tag obj.upload.image_url, id: 'imgprvw' %>
           <% else %>
@@ -32,7 +32,7 @@
     <div id="tab-3" class="tab-content">
       <div class="uploadBoxOuter font14">
         <%= u.file_field :file, class: "post post_file", style: "visibility: hidden; width: 1px; height: 1px" ,:onchange => "showfilepreview(this)" %>
-        <a href="#"  onclick="$('.post_file').click();">
+        <a href="#-"  onclick="$('.post_file').click();">
         <img src="/assets/images/link.png" alt="" id='fleprvw'>  <%=link_to 'X','#',class: 'remove_file',:style=>'display:none;'%>
         </a>
         <div class='file_name'><%=u.object.file.url%></div>
@@ -56,16 +56,16 @@
     </div>
     <ul class="tabs uploadIcon">
       <li class="tab-link current" data-tab="tab-1">
-        <img src="/assets/images/c1.png" alt="">
+        <img src="/assets/images/c1.png" alt="" onclick="$('html, body').animate({scrollTop: $('body').offset().top}, 1000);">
       </li>
-      <li class="tab-link" data-tab="tab-2">
+      <li class="tab-link" data-tab="tab-2" onclick="$('html, body').animate({scrollTop: $('body').offset().top}, 1000);">
         <img src="/assets/images/c2.png" alt="">
       </li>
-      <li class="tab-link" data-tab="tab-3">
-        <img src="/assets/images/c3.png" alt="">
+      <li class="tab-link" data-tab="tab-3" onclick="$('html, body').animate({scrollTop: $('body').offset().top}, 1000);">
+        <img src="/assets/images/c3.png" alt="" onclick="$('html, body').animate({scrollTop: $('body').offset().top}, 1000);">
       </li>
       <li class="tab-link" data-tab="tab-4">
-        <img src="/assets/images/c4.png" alt="">
+        <img src="/assets/images/c4.png" alt="" onclick="$('html, body').animate({scrollTop: $('body').offset().top}, 1000);">
       </li>
     </ul>
   </div>
