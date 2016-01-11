@@ -1,5 +1,5 @@
 <div class="commentSec">          
-  <span class="grayColor font12"><span id="post_like_count_<%= object.id %>"  class ="post_like_count_<%= object.id %>"><%= object.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= object.id %>" class="dislike_count_<%= object.id %>"><%= object.dislikes.count %></span> Disikes &nbsp; &nbsp;
+  <span class="grayColor font12"><span id="post_like_count_<%= object.id %>"  class ="post_like_count_<%= object.id %>"><%= object.likes.count %></span> Likes &nbsp; &nbsp; <span id="dislike_count_<%= object.id %>" class="dislike_count_<%= object.id %>"><%= object.dislikes.count %></span> Dislikes &nbsp; &nbsp;
   <span id="comments_count_<%= object.id %>"  class="cursor" onclick="show_my_comments(<%=user_signed_in?%>,<%=object.id%>)"><%= object.comments.try(:count) %>&nbsp;<%= object.comments.try(:count) <= 1 ? 'Comment' : 'Comments' %></span> &nbsp; &nbsp; 0 shares</span>
   <div class="cmntSec">  
     <%if user_signed_in?%>
