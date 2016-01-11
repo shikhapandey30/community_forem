@@ -63,7 +63,7 @@
       </div>
       <div class="col-sm-6 pl10">
         <label>Phone</label>
-        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789" %>
+        <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789", "data-errormessage-value-missing"=>"Phone number should not be blank" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
