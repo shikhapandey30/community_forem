@@ -38,7 +38,7 @@
           <div class="clearfix"></div>
             <div class="videoPost mt10">
               <div class="font16 bold blackColor mb10"><%=link_to post.try(:topic), post %>
-              <div class="glyphicon glyphicon-star right <%=rating(post)%>"></div>
+              <div class="glyphicon glyphicon-star right <%=rating = rating(post)%>" data-toggle="tooltip" title="<%=rating%>!"></div>
               </div>  
 
               <% if post.upload.try(:image).present? %>

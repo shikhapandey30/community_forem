@@ -55,7 +55,7 @@ module PostsHelper
 		elsif range.between?(31, 50)
 			return "good"
 		elsif range.between?(51, 70)
-			return "very_good"
+			return "strong"
 		elsif range.between?(70, 100)
 			return "excellent"
 		else
