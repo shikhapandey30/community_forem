@@ -6,21 +6,21 @@
       <% end %>
       </ul>
   <div class="col-sm-6 pr10">
-    <label><span class="redColor">*</span>Designation </label>
+    <label>Designation<span class="redColor">*</span></label>
     <%= f.text_field :designation, class: "inputTextW small validate[required]", placeholder: "Designation", :maxlength=>"80", "data-errormessage-value-missing"=>"Designation should not be blank" %>
   </div>
   <div class="col-sm-6 pl10">
-    <label><span class="redColor">*</span>Organization</label>
+    <label>Organization<span class="redColor">*</span></label>
     <%= f.text_field :organization, class: " inputTextW small validate[required]", placeholder: "Organization", :maxlength=>"80", "data-errormessage-value-missing"=>"Organization should not be blank" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
   <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
-    <label class=""><span class="redColor">*</span>Start Working From  </label>
+    <label class="">Start Working From<span class="redColor">*</span></label>
     <%= f.text_field :start_work_date, class: "inputTextW small date start_work_date fullWdth datetimepicker4 validate[required]", "data-errormessage-value-missing"=>"Please select Start Working Date"%> 
   </div>
   <div class="col-sm-6 pl10">
-    <label class=""><span class="redColor">*</span>Worked Till</label>
+    <label class="">Worked Till<span class="redColor">*</span></label>
      <div id="present_time" style="font-weight: 600;">- Present</div>
      <%= f.text_field :worked_till, id: "worked_till", class: "inputTextW small date fullWdth datetimepicker5 validate[required]", "data-errormessage-value-missing"=>"Please select end date" %>
   </div>

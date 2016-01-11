@@ -13,11 +13,11 @@
       </div>
       <div class="error img_error"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>First Name</label>
+        <label>First Name<span class="redColor">*</span></label>
         <%= f.text_field :first_name, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "First Name", "data-errormessage-value-missing"=>"First Name should not be blank" %>
       </div>
       <div class="col-sm-6 pl10">
-        <label><span class="redColor">*</span>Last Name</label>
+        <label>Last Name<span class="redColor">*</span></label>
         <%= f.text_field :last_name, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "Last Name", "data-errormessage-value-missing"=>"Last Name should not be blank" %>
       </div>
       <div class="col-sm-12">
@@ -25,36 +25,36 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Address1</label>
+        <label>Address1<span class="redColor">*</span></label>
         <%= p.text_field :address1, class: "profile inputTextW small validate[required,maxSize[120]]", placeholder: "Address 1", "data-errormessage-value-missing"=>"Address1 should not be blank"%>
       </div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Address2</label>
+        <label>Address2<span class="redColor">*</span></label>
         <%= p.text_field :address2, class: "profile inputTextW small validate[required,maxSize[120]]", placeholder: "Address 2", "data-errormessage-value-missing"=>"Address2 should not be blank" %>
       </div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Country</label>
+        <label>Country<span class="redColor">*</span></label>
         <div class="selctFormBox">      
           <%= p.text_field "country", value: select_type(p, "country", "Country"), class: "profile selectInput validate[required]", "data-errormessage-value-missing"=>"Country should not be blank" %>
           <%= p.select(:country, country_list, {:include_blank => "Select"}, class: "select")  %>
         </div>
       </div>
       <div class="col-sm-6 pl10">
-        <label class=""><span class="redColor">*</span>City</label>
+        <label class="">City<span class="redColor">*</span></label>
         <%= p.text_field :city, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "City", "data-errormessage-value-missing"=>"City should not be blank" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>State</label>
+        <label>State<span class="redColor">*</span></label>
         <%= p.text_field :state, class: "profile inputTextW small validate[required,maxSize[80]]", placeholder: "State", "data-errormessage-value-missing"=>"State should not be blank" %>
       </div>
       <div class="col-sm-6 pl10">
-        <label><span class="redColor">*</span>Zipcode</label>
+        <label>Zipcode<span class="redColor">*</span></label>
         <%= p.text_field :post_code, class: "profile inputTextW small validate[required,maxSize[10]]", placeholder: "10001", "data-errormessage-value-missing"=>"Zipcode should not be blank" %>
       </div>      
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Gender</label>
+        <label>Gender<span class="redColor">*</span></label>
         <div class="selctFormBox">      
           <%= p.text_field "gender", value: select_type(p, "gender"), class: "profile selectInput" %>
           <%= p.select(:gender, [['Male','male'],['Female','female']], {:include_blank => "Select"}, class: "select validate[required]", "data-errormessage-value-missing"=>"Please select Gender")  %>
@@ -62,12 +62,12 @@
         <div id="gender_error"></div>
       </div>
       <div class="col-sm-6 pl10">
-        <label><span class="redColor">*</span>Phone</label>
+        <label>Phone<span class="redColor">*</span></label>
         <%= p.text_field :phone_no, class: "profile inputTextW small validate[required,custom[phone]],maxSize[20]", placeholder: "0123456789", "data-errormessage-value-missing"=>"Phone number should not be blank" %>
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Select Type</label>
+        <label>Select Type<span class="redColor">*</span></label>
         <div class="selctFormBox">
           <%= p.text_field "profile_type", value: select_type(p, "profile_type"), class: "profile selectInput validate[required]", "data-errormessage-value-missing"=>"Please select Type" %>
           <%= p.select(:profile_type, [['Individual','individual'],['Company','company'],['Other','other']], {:include_blank => "Select"}, class: "select")  %>
@@ -75,16 +75,16 @@
         <div id="profile_type_error"></div>
       </div>
       <div class="col-sm-6 pl10">
-        <label><span class="redColor">*</span>Date of Birth</label>
+        <label>Date of Birth<span class="redColor">*</span></label>
           <%= p.text_field :dob, class: "profile inputTextW small date fullWdth dob validate[required]", "data-errormessage-value-missing"=>"Date of Birth should not be blank" %> 
       </div>
       <div class="clearfix"></div>
       <div class="col-sm-6 pr10">
-        <label><span class="redColor">*</span>Screen Name</label>
+        <label>Screen Name<span class="redColor">*</span></label>
         <%= f.text_field :screen_name, class: "inputTextW small validate[required]", placeholder: "Screen Name", "data-errormessage-value-missing"=>"Screen Name should not be blank" %>
       </div>
       <div class="col-sm-6 pl10">
-        <label><span class="redColor">*</span>Location</label>
+        <label>Location<span class="redColor">*</span></label>
         <%= p.text_field :location, class: "inputTextW small validate[required,maxSize[80]]", placeholder: "Location", "data-errormessage-value-missing"=>"Location should not be blank" %>
       </div>      
       <div class="col-sm-12">
