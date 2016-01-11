@@ -22,7 +22,7 @@
           </div> -->
           <%#= devise_error_messages! %>          
           <%= f.text_field :login, autofocus: true, placeholder: "Enter Your Email or Screen_name", :maxlength=>"80", "data-validation-engine"=>"validate[required]", class: "inputText" %>
-          <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :maxlength=>"40",  "data-validation-engine"=>"validate[required]", class: "inputText" %>
+          <%= f.password_field :password, autocomplete: "off",placeholder: "Password", :maxlength=>"40",  "data-validation-engine"=>"validate[required]", "data-errormessage-value-missing"=>"Password should not be blank", class: "inputText" %>
           <%= f.submit "Log In", class: "darkBlueBtn inputSubmit" %>
           <!--  <label class="fl remPAss font12"><input type="checkbox"> Remenber Password </label>
             <a href="#" class="fr font12 frgtPAssLink"> Forgot Password</a> -->

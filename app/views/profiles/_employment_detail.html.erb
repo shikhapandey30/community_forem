@@ -6,18 +6,18 @@
       <% end %>
       </ul>
   <div class="col-sm-6 pr10">
-    <label>Enter Designation </label>
+    <label>Designation </label>
     <%= f.text_field :designation, class: "inputTextW small validate[required]", placeholder: "Designation", :maxlength=>"80" %>
   </div>
   <div class="col-sm-6 pl10">
-    <label>Enter Organization</label>
+    <label>Organization</label>
     <%= f.text_field :organization, class: " inputTextW small validate[required]", placeholder: "Organization", :maxlength=>"80" %>
   </div>
   <%= hidden_field_tag :id, f.object.id%>
   <div class="clearfix"></div>
   <div class="col-sm-6 pr10">
     <label class="">Start Working From  </label>
-    <%= f.text_field :start_work_date, class: "inputTextW small start_work_date fullWdth datetimepicker4 validate[required]"%> 
+    <%= f.text_field :start_work_date, class: "inputTextW small date start_work_date fullWdth datetimepicker4 validate[required]"%> 
   </div>
   <div class="col-sm-6 pl10">
     <label class="">Worked Till</label>
