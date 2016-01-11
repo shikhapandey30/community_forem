@@ -3,9 +3,11 @@
   <%=render "layouts/left_panel"%>
   <div class="rightContent">
     <%=render "layouts/topNav"%>
-     <div class="revalTop" >
-          Note: To view the complete profile of the user you have to first reveal the identity of the user
-    </div>
+    <% if !current_user.is_reveal_sent(@user) && (current_user != @user) %>
+      <div class="revalTop" >
+        Note: To view the complete profile of the user you have to first reveal the identity of the user
+      </div>
+    <%end%>  
     <div class="clearfix innerWIdth550 tac ">
       <!-- Profile Image section, screen name and desigantion -->
       <div class="clearfix whiteBox mt30 borderBtmBlue">
