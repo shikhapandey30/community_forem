@@ -41,7 +41,7 @@
         <div id="error_explanation" class="<%='errorMSg' if devise_error_messages!.include?("error_explanation")  %>">
         <%= devise_error_messages! %>
         </div>
-        <%= f.email_field :login, placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText", "data-validation-engine"=>"validate[required],custom[email]" %>
+        <%= f.email_field :login, placeholder: "Enter Your Email", :maxlength=>"80", class: "inputText", "data-validation-engine"=>"validate[required],custom[email]", "data-errormessage-value-missing"=>"Email should not be blank" %>
         <div class="error"></div>
         <%= f.submit "Submit", class: "darkBlueBtn inputSubmit" %>
         <%#if !isInvalid%>
