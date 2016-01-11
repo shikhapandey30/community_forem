@@ -71,7 +71,7 @@
   }
   function showfilepreview(input) {
     extension = input.files[0].name.substring( input.files[0].name.lastIndexOf('.') + 1).toLowerCase(); 
-    if ( extension == "xls" || extension == "xlsx" || extension == "pdf" || extension == "csv" || extension == "txt" || extension == "doc" || extension == "xml" || extension == "html") {
+    if ( extension == "pdf" || extension == "doc" || extension == "docx" ) {
         $(".file_name").removeClass("error_file");
         $(".file_name").html("");
       if (input.files && input.files[0]) {
@@ -90,7 +90,7 @@
       $('.remove_file').show();
       }
     } else {
-      $(".file_name").html("Please add only xls, xlsx, pdf, csv, txt, doc, xml, html document.").addClass("error_file");
+      $(".file_name").html("Please add only pdf, doc, docx document.").addClass("error_file");
       return false;
     }
   }

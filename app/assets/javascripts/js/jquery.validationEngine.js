@@ -392,56 +392,56 @@
 			// third, check status and scroll the container accordingly
 			form.trigger("jqv.form.result", [errorFound]);
 
-			if (errorFound) {
-				if (options.scroll) {
-					var destination=first_err.offset().top;
-					var fixleft = first_err.offset().left;
+			// if (errorFound) {
+			// 	if (options.scroll) {
+			// 		var destination=first_err.offset().top;
+			// 		var fixleft = first_err.offset().left;
 
-					//prompt positioning adjustment support. Usage: positionType:Xshift,Yshift (for ex.: bottomLeft:+20 or bottomLeft:-20,+10)
-					var positionType=options.promptPosition;
-					if (typeof(positionType)=='string' && positionType.indexOf(":")!=-1)
-						positionType=positionType.substring(0,positionType.indexOf(":"));
+			// 		//prompt positioning adjustment support. Usage: positionType:Xshift,Yshift (for ex.: bottomLeft:+20 or bottomLeft:-20,+10)
+			// 		var positionType=options.promptPosition;
+			// 		if (typeof(positionType)=='string' && positionType.indexOf(":")!=-1)
+			// 			positionType=positionType.substring(0,positionType.indexOf(":"));
 
-					if (positionType!="bottomRight" && positionType!="bottomLeft") {
-						var prompt_err= methods._getPrompt(first_err);
-						if (prompt_err) {
-							destination=prompt_err.offset().top;
-						}
-					}
+			// 		if (positionType!="bottomRight" && positionType!="bottomLeft") {
+			// 			var prompt_err= methods._getPrompt(first_err);
+			// 			if (prompt_err) {
+			// 				destination=prompt_err.offset().top;
+			// 			}
+			// 		}
 
-					// Offset the amount the page scrolls by an amount in px to accomodate fixed elements at top of page
-					if (options.scrollOffset) {
-						destination -= options.scrollOffset;
-					}
+			// 		// Offset the amount the page scrolls by an amount in px to accomodate fixed elements at top of page
+			// 		if (options.scrollOffset) {
+			// 			destination -= options.scrollOffset;
+			// 		}
 
-					// get the position of the first error, there should be at least one, no need to check this
-					//var destination = form.find(".formError:not('.greenPopup'):first").offset().top;
-					if (options.isOverflown) {
-						var overflowDIV = $(options.overflownDIV);
-						if(!overflowDIV.length) return false;
-						var scrollContainerScroll = overflowDIV.scrollTop();
-						var scrollContainerPos = -parseInt(overflowDIV.offset().top);
+			// 		// get the position of the first error, there should be at least one, no need to check this
+			// 		//var destination = form.find(".formError:not('.greenPopup'):first").offset().top;
+			// 		if (options.isOverflown) {
+			// 			var overflowDIV = $(options.overflownDIV);
+			// 			if(!overflowDIV.length) return false;
+			// 			var scrollContainerScroll = overflowDIV.scrollTop();
+			// 			var scrollContainerPos = -parseInt(overflowDIV.offset().top);
 
-						destination += scrollContainerScroll + scrollContainerPos - 5;
-						var scrollContainer = $(options.overflownDIV).filter(":not(:animated)");
+			// 			destination += scrollContainerScroll + scrollContainerPos - 5;
+			// 			var scrollContainer = $(options.overflownDIV).filter(":not(:animated)");
 
-						scrollContainer.animate({ scrollTop: destination }, 1100, function(){
-							if(options.focusFirstField) first_err.focus();
-						});
+			// 			scrollContainer.animate({ scrollTop: destination }, 1100, function(){
+			// 				if(options.focusFirstField) first_err.focus();
+			// 			});
 
-					} else {
-						$("html, body").animate({
-							scrollTop: destination
-						}, 1100, function(){
-							if(options.focusFirstField) first_err.focus();
-						});
-						$("html, body").animate({scrollLeft: fixleft},1100)
-					}
+			// 		} else {
+			// 			$("html, body").animate({
+			// 				scrollTop: destination
+			// 			}, 1100, function(){
+			// 				if(options.focusFirstField) first_err.focus();
+			// 			});
+			// 			$("html, body").animate({scrollLeft: fixleft},1100)
+			// 		}
 
-				} else if(options.focusFirstField)
-					first_err.focus();
-				return false;
-			}
+			// 	} else if(options.focusFirstField)
+			// 		first_err.focus();
+			// 	return false;
+			// }
 			return true;
 		},
 		/**

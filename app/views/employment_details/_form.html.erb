@@ -1,6 +1,6 @@
 <%= nested_form_for(@employment_detail) do |f| %>
   <% if @employment_detail.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="login errorMSg">
       <!-- <h2><%#= pluralize(@employment_detail.errors.count, "error") %> prohibited this employment_detail from being saved:</h2> -->
 
       <ul>

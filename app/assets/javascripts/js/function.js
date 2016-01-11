@@ -90,6 +90,7 @@
 
 /* For Select Option */	
 $(document).on('change', '.select', function(){	
+	$(this).prev(".formError").remove()
 	var text = $(this).find('option:selected').text();
 	var val = $(this).find('option:selected').val();	
 	// $(this).prev().prev('.selectInputField').val(val);

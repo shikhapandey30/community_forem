@@ -1,6 +1,6 @@
 <%= form_for(@friendship) do |f| %>
   <% if @friendship.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="login errorMSg">
       <h2><%= pluralize(@friendship.errors.count, "error") %> prohibited this friendship from being saved:</h2>
 
       <ul>

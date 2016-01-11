@@ -14,7 +14,7 @@
     <div class="clearfix innerWIdth550 tac ">
       <%= form_for(@contest, html: {class: "profile_form", :id => "form-id"}) do |f| %>
       <% if @contest.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="login errorMSg">
         <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
         <ul>
           <% @contest.errors.full_messages.each do |message| %>

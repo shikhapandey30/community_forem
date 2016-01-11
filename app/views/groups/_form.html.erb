@@ -14,7 +14,7 @@
     <div class="clearfix innerWIdth550 tac ">
       <%= form_for(@group, html: {class: "profile_form", :id => "form-id"}) do |f| %>
       <% if @group.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="login errorMSg">
         <h2><%= pluralize(@group.errors.count, "error") %> prohibited this community from being saved:</h2>
         <ul>
           <% @group.errors.full_messages.each do |message| %>

@@ -4,7 +4,7 @@
     <label>Course<span class="redColor">*</span></label>
     <div class="selctFormBox">          
       <%= text_field_tag "course", nil, :value=>select_type(f, "course_id", "Course"), class: "selectInput",:id=>'course'%>
-      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select validate[required]" , :selected => params[:course_id], "data-errormessage-value-missing"=>"Please select course")  %>
+      <%= f.select(:course_id, Course.all.collect {|c| [c.name, c.id]}, {:include_blank => "Select"}, class: "select validate[required]" , :selected => params[:course_id], "data-errormessage-value-missing"=>"Please select Course")  %>
     </div>
     <div id="course_error"></div>
   </div>

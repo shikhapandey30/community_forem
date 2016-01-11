@@ -56,6 +56,7 @@ class PostsController < ApplicationController
         end
         format.json { render :show, status: :created, location: @post }
       else
+        # flash[:alert] = @post.errors.full_messages.join(', ')
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

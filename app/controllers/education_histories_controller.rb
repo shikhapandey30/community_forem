@@ -30,7 +30,7 @@ class EducationHistoriesController < ApplicationController
     # respond_to do |format|
     #   if @education_history.save
     #     if current_user.employment_detail.present?
-    #       format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'EducationHistory is successfully created.' }
+    #       format.html { redirect_to edit_employment_detail_path(current_user.employment_detail), notice: 'Education History is successfully created.' }
     #     else
     #       format.html { redirect_to new_employment_detail_path, notice: 'EducationHistory is successfully created.' }
 
@@ -68,7 +68,7 @@ class EducationHistoriesController < ApplicationController
   def destroy
     @education_history.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'EducationHistory is successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Education History is successfully deleted.' }
       format.json { head :no_content }
     end
   end

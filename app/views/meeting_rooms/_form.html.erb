@@ -14,7 +14,7 @@
     <div class="clearfix innerWIdth550 tac ">
       <%= form_for(@meeting_room, html: {class: "profile_form", :id => "form-id"}) do |f| %>
       <% if @meeting_room.errors.any? %>
-      <div id="error_explanation">
+      <div id="error_explanation" class="login errorMSg">
         <h2><%= pluralize(@meeting_room.errors.count, "error") %> prohibited this meeting room from being saved:</h2>
         <ul>
           <% @meeting_room.errors.full_messages.each do |message| %>

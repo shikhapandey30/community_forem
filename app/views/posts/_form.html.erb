@@ -7,7 +7,7 @@
       <!-- Post creation form -->
       <%= nested_form_for(@post, html: {class: "", :id => "form-id"}) do |f| %>
         <% if @post.errors.any? %>
-          <div id="error_explanation">
+          <div id="error_explanation" class="login errorMSg">
             <!-- <h2><%#= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2> -->
             <ul>
               <% @post.errors.full_messages.each do |message| %>

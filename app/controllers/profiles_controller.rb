@@ -96,7 +96,7 @@ class ProfilesController < ApplicationController
       @employment.update_attributes(employment_params)
     else
       @employment = current_user.employment_details.create(employment_params)
-      if @employment.save 
+      if @employment.save
         flash[:success] = "Employment History added successfully." 
       else
         flash[:alert] = "Start date cannot be greater then end date." 
