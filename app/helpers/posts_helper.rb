@@ -45,8 +45,8 @@ module PostsHelper
 		end
 	end
 
-	def rating(post)		
-		range = (5*post.likes.count)/(post.likes.count + post.dislikes.count) rescue 0
+	def rating(post)
+		range = (5*post.likes.count)/(post.likes.count + post.dislikes.count)*20 rescue 0
 		# case range
 		if range.between?(0, 10)
 			return "week"
