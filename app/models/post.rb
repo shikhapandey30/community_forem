@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :upload, :allow_destroy => true
 
   ## Model Validations
-  validates_presence_of :topic, :category_id, :description, :title
+  validates_presence_of :topic, :category_id, :title
   # validates :title, uniqueness: true, :allow_blank => true
 
   ## scopes
