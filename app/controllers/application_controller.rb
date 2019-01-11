@@ -1,4 +1,4 @@
- class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -10,8 +10,8 @@
   protect_from_forgery with: :exception
 
   #filters
-  skip_before_filter  :verify_authenticity_token
-  before_action :configure_permitted_parameters, if: :devise_controller?  
+  # skip_before_filter  :verify_authenticity_token
+  # before_action :configure_permitted_parameters, if: :devise_controller?  
 
   # Fetching the suggested communitites to join
   def new_suggested_communities
